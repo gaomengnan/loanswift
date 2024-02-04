@@ -2,5 +2,10 @@
   "lang": "id",
   "@@locale": "id",
   "name": "Halo",
-  "hello_world": "Hitungannya bertambah"
+  "hello_world": "Hitungannya bertambah",
+  "home_button": "Rumah",
+  "person_button": "Saya",
+  "maximun_load_text": "Jumlah Pinjaman Maksimum",
+  "maximun_load_text_unit": "(Rupiah)",
+  "maximun_load_sub_text": "Peminjaman 1.000 yuan selama 12 bulan, biaya harian mulai dari 6 persen, suku bunga tahunan (bunga sederhana) mulai dari 3.6 persen"
 }

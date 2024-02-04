@@ -79,6 +79,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Home`
+  String get home_button {
+    return Intl.message(
+      'Home',
+      name: 'home_button',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile`
+  String get person_button {
+    return Intl.message(
+      'Profile',
+      name: 'person_button',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Maximum Loan Amount`
+  String get maximun_load_text {
+    return Intl.message(
+      'Maximum Loan Amount',
+      name: 'maximun_load_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Borrow up to 1,000 yuan for 12 months, starting from 6% daily fee, annual interest rate (simple interest) starting from 3.6%`
+  String get maximun_load_sub_text {
+    return Intl.message(
+      'Borrow up to 1,000 yuan for 12 months, starting from 6% daily fee, annual interest rate (simple interest) starting from 3.6%',
+      name: 'maximun_load_sub_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `(CNY)`
+  String get maximun_load_text_unit {
+    return Intl.message(
+      '(CNY)',
+      name: 'maximun_load_text_unit',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
@@ -88,6 +138,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
     return const <Locale>[
       Locale.fromSubtags(languageCode: 'en'),
       Locale.fromSubtags(languageCode: 'id'),
+      Locale.fromSubtags(languageCode: 'zh'),
     ];
   }
 

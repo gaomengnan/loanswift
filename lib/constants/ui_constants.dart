@@ -13,6 +13,12 @@ class UIConstants {
     );
   }
 
+  Text appText(String text) {
+    return Text(
+      text,
+    );
+  }
+
   static const List<Widget> bottomTabBarPages = [
     // TweetList(),
     // ExploreView(),

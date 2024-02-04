@@ -1,5 +1,5 @@
 // DO NOT EDIT. This is code generated via package:intl/generate_localized.dart
-// This is a library that provides messages for a en locale. All the
+// This is a library that provides messages for a zh locale. All the
 // messages from the main program should be duplicated here with the same
 // function name.
 
@@ -18,19 +18,18 @@ final messages = new MessageLookup();
 typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 
 class MessageLookup extends MessageLookupByLibrary {
-  String get localeName => 'en';
+  String get localeName => 'zh';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "hello_world": MessageLookupByLibrary.simpleMessage("Hello World"),
-        "home_button": MessageLookupByLibrary.simpleMessage("Home"),
-        "lang": MessageLookupByLibrary.simpleMessage("en"),
+        "home_button": MessageLookupByLibrary.simpleMessage("首页"),
+        "lang": MessageLookupByLibrary.simpleMessage("zh"),
         "maximun_load_sub_text": MessageLookupByLibrary.simpleMessage(
-            "Borrow up to 1,000 yuan for 12 months, starting from 6% daily fee, annual interest rate (simple interest) starting from 3.6%"),
-        "maximun_load_text":
-            MessageLookupByLibrary.simpleMessage("Maximum Loan Amount"),
-        "maximun_load_text_unit": MessageLookupByLibrary.simpleMessage("(CNY)"),
+            "1千元借12个月,日费用6分起,年化利率(单利) 3.6%起"),
+        "maximun_load_text": MessageLookupByLibrary.simpleMessage("最高可借额度"),
+        "maximun_load_text_unit": MessageLookupByLibrary.simpleMessage("(元)"),
         "name": MessageLookupByLibrary.simpleMessage("Flutter localization"),
-        "person_button": MessageLookupByLibrary.simpleMessage("Profile")
+        "person_button": MessageLookupByLibrary.simpleMessage("我的")
       };
 }

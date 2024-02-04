@@ -1,0 +1,11 @@
+{
+  "lang": "zh",
+  "@@locale": "zh",
+  "name": "Flutter localization",
+  "hello_world": "Hello World",
+  "home_button": "首页",
+  "person_button": "我的",
+  "maximun_load_text": "最高可借额度",
+  "maximun_load_sub_text": "1千元借12个月,日费用6分起,年化利率(单利) 3.6%起",
+  "maximun_load_text_unit": "(元)"
+}

@@ -24,7 +24,15 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "hello_world":
             MessageLookupByLibrary.simpleMessage("Hitungannya bertambah"),
+        "home_button": MessageLookupByLibrary.simpleMessage("Rumah"),
         "lang": MessageLookupByLibrary.simpleMessage("id"),
-        "name": MessageLookupByLibrary.simpleMessage("Halo")
+        "maximun_load_sub_text": MessageLookupByLibrary.simpleMessage(
+            "Peminjaman 1.000 yuan selama 12 bulan, biaya harian mulai dari 6 persen, suku bunga tahunan (bunga sederhana) mulai dari 3.6 persen"),
+        "maximun_load_text":
+            MessageLookupByLibrary.simpleMessage("Jumlah Pinjaman Maksimum"),
+        "maximun_load_text_unit":
+            MessageLookupByLibrary.simpleMessage("(Rupiah)"),
+        "name": MessageLookupByLibrary.simpleMessage("Halo"),
+        "person_button": MessageLookupByLibrary.simpleMessage("Saya")
       };
 }
