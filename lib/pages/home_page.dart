@@ -18,9 +18,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Pallete.backgroundColor,
+      backgroundColor: Pallete.primaryColor,
       body: SafeArea(
-        child: Container(
+        child: SizedBox(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           // decoration: const BoxDecoration(
@@ -326,114 +326,131 @@ class _HomePageState extends State<HomePage> {
               // 借钱攻略
 
               SliverToBoxAdapter(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: 10.h,
-                    horizontal: 20.w,
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height,
+                  decoration: const BoxDecoration(
+                    color: Pallete.backgroundColor,
                   ),
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      // color: Pallete.backgroundColor,
-                        // color: Colors.orange,
-                        // borderRadius: BorderRadius.circular(5),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          vertical: 10.h,
+                          horizontal: 20.w,
                         ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        AppText(
-                          text: S.current.title600,
-                          size: 16.sp,
-                        ),
-                        SizedBox(
-                          height: 10.h,
-                        ),
-                        Container(
-                          width: double.infinity,
-                          // height: 200,
-                          decoration: BoxDecoration(
-                            gradient: Pallete.loanGradient,
-                            color: Pallete.whiteColor,
-                            borderRadius: BorderRadius.circular(5),
+                        child: Container(
+                          decoration: const BoxDecoration(
+                              // color: Pallete.backgroundColor,
+                              // color: Colors.orange,
+                              // borderRadius: BorderRadius.circular(5),
+                              ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              AppText(
+                                text: S.current.title600,
+                                size: 16.sp,
+                              ),
+                              SizedBox(
+                                height: 10.h,
+                              ),
+                              Container(
+                                width: double.infinity,
+                                // height: 200,
+                                decoration: BoxDecoration(
+                                  gradient: Pallete.loanGradient,
+                                  color: Pallete.whiteColor,
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    vertical: 20.h,
+                                  ),
+                                  child: Row(
+                                    // crossAxisAlignment: CrossAxisAlignment.center,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          // icon
+                                          const Icon(
+                                            IconlyBold.tickSquare,
+                                            color: Pallete.primaryColor,
+                                          ),
+                      
+                                          SizedBox(
+                                            height: 5.h,
+                                          ),
+                      
+                                          AppText(
+                                            text: "3分钟申请",
+                                            size: 13.sp,
+                                          ),
+                                          // title
+                                        ],
+                                      ),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          // icon
+                                          const Icon(
+                                            IconlyBold.activity,
+                                            color: Pallete.primaryColor,
+                                          ),
+                      
+                                          SizedBox(
+                                            height: 5.h,
+                                          ),
+                                          AppText(
+                                            text: "5分钟放贷",
+                                            size: 13.sp,
+                                          ),
+                                          // title
+                                        ],
+                                      ),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          // icon
+                                          const Icon(
+                                            IconlyBold.wallet,
+                                            color: Pallete.primaryColor,
+                                          ),
+                      
+                                          SizedBox(
+                                            height: 5.h,
+                                          ),
+                      
+                                          AppText(
+                                            text: "灵活借还",
+                                            size: 13.sp,
+                                          ),
+                                          // title
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              )
+                            ],
                           ),
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                              vertical: 20.h,
-                            ),
-                            child: Row(
-                              // crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    // icon
-                                    const Icon(
-                                      IconlyBold.tickSquare,
-                                      color: Pallete.primaryColor,
-                                    ),
+                        ),
+                      ),
 
-                                    SizedBox(
-                                      height: 5.h,
-                                    ),
-
-                                    AppText(
-                                      text: "3分钟申请",
-                                      size: 13.sp,
-                                    ),
-                                    // title
-                                  ],
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    // icon
-                                    const Icon(
-                                      IconlyBold.activity,
-                                      color: Pallete.primaryColor,
-                                    ),
-
-                                    SizedBox(
-                                      height: 5.h,
-                                    ),
-                                    AppText(
-                                      text: "5分钟放贷",
-                                      size: 13.sp,
-                                    ),
-                                    // title
-                                  ],
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    // icon
-                                    const Icon(
-                                      IconlyBold.wallet,
-                                      color: Pallete.primaryColor,
-                                    ),
-
-                                    SizedBox(
-                                      height: 5.h,
-                                    ),
-
-                                    AppText(
-                                      text: "灵活借还",
-                                      size: 13.sp,
-                                    ),
-                                    // title
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
+                      //  other
+                    ],
                   ),
                 ),
               ),
 
               // SliverList(
-              //   delegate: SliverChildBuilderDelegate(
+              //   delegate: SliverChildBuilderDelegatk(
               //     (BuildContext context, int index) {
               //       return ListTile(
               //         title: Text('Item $index'),
