@@ -31,6 +31,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Maximum Loan Amount"),
         "maximun_load_text_unit": MessageLookupByLibrary.simpleMessage("(CNY)"),
         "name": MessageLookupByLibrary.simpleMessage("Flutter localization"),
-        "person_button": MessageLookupByLibrary.simpleMessage("Profile")
+        "person_button": MessageLookupByLibrary.simpleMessage("Profile"),
+        "title100": MessageLookupByLibrary.simpleMessage(
+            "After obtaining the limit, rewards can be acquired."),
+        "title200":
+            MessageLookupByLibrary.simpleMessage("Up to 30 days interest-free"),
+        "title300": MessageLookupByLibrary.simpleMessage(
+            "Minimum annual interest rate of 3.6%"),
+        "title400": MessageLookupByLibrary.simpleMessage(
+            "Fastest loan disbursement in five minutes"),
+        "title500": MessageLookupByLibrary.simpleMessage("Check your limit"),
+        "title600": MessageLookupByLibrary.simpleMessage("Borrowing Strategies")
       };
 }

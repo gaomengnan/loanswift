@@ -48,8 +48,9 @@ class _BoardingPageState extends State<BoardingPage> {
             secondaryAnimation,
             child,
           ) {
-            return ScaleTransition(
-              scale: animation,
+            return FadeTransition(
+              opacity: animation,
+              // scale: animation,
               child: child,
             );
           },

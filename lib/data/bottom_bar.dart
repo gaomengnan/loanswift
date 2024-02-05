@@ -1,4 +1,3 @@
-  import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:loanswift/generated/l10n.dart';
 

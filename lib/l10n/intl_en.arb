@@ -8,6 +8,12 @@
   "person_button": "Profile",
   "maximun_load_text": "Maximum Loan Amount",
   "maximun_load_sub_text": "Borrow up to 1,000 yuan for 12 months, starting from 6% daily fee, annual interest rate (simple interest) starting from 3.6%",
-  "maximun_load_text_unit": "(CNY)"
+  "maximun_load_text_unit": "(CNY)",
+  "title100": "After obtaining the limit, rewards can be acquired.",
+  "title200": "Up to 30 days interest-free",
+  "title300": "Minimum annual interest rate of 3.6%",
+  "title400": "Fastest loan disbursement in five minutes",
+  "title500": "Check your limit",
+  "title600": "Borrowing Strategies"
 }
 

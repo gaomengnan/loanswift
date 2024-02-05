@@ -33,6 +33,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "maximun_load_text_unit":
             MessageLookupByLibrary.simpleMessage("(Rupiah)"),
         "name": MessageLookupByLibrary.simpleMessage("Halo"),
-        "person_button": MessageLookupByLibrary.simpleMessage("Saya")
+        "person_button": MessageLookupByLibrary.simpleMessage("Saya"),
+        "title100": MessageLookupByLibrary.simpleMessage(
+            "Setelah mendapatkan batas, hadiah dapat diperoleh."),
+        "title200":
+            MessageLookupByLibrary.simpleMessage("Hingga 30 hari bebas bunga"),
+        "title300": MessageLookupByLibrary.simpleMessage(
+            "Suku bunga tahunan minimum 3.6%"),
+        "title400": MessageLookupByLibrary.simpleMessage(
+            "Pencairan pinjaman tercepat dalam lima menit"),
+        "title500": MessageLookupByLibrary.simpleMessage("Periksa batasmu"),
+        "title600": MessageLookupByLibrary.simpleMessage("Strategi Peminjaman")
       };
 }

@@ -40,7 +40,7 @@ class _IndexPageState extends State<IndexPage> {
       // 底部菜单
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        selectedFontSize: 15.sp,
+        selectedFontSize: 14.sp,
         onTap: (index) {
           setState(() {
             currentIndex = index;

@@ -30,6 +30,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "maximun_load_text": MessageLookupByLibrary.simpleMessage("最高可借额度"),
         "maximun_load_text_unit": MessageLookupByLibrary.simpleMessage("(元)"),
         "name": MessageLookupByLibrary.simpleMessage("Flutter localization"),
-        "person_button": MessageLookupByLibrary.simpleMessage("我的")
+        "person_button": MessageLookupByLibrary.simpleMessage("我的"),
+        "title100": MessageLookupByLibrary.simpleMessage("获取额度之后可获取奖励"),
+        "title200": MessageLookupByLibrary.simpleMessage("最长30天免息"),
+        "title300": MessageLookupByLibrary.simpleMessage("最低年化3.6%"),
+        "title400": MessageLookupByLibrary.simpleMessage("最快五分钟放款"),
+        "title500": MessageLookupByLibrary.simpleMessage("查看额度"),
+        "title600": MessageLookupByLibrary.simpleMessage("借钱攻略")
       };
 }

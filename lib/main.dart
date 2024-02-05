@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:loanswift/core/router.dart';
 import 'package:loanswift/pages/boarding_page.dart';
 
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return ScreenUtilInit(
       designSize: const Size(360, 690),
       minTextAdapt: true,
@@ -36,6 +38,11 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(
               seedColor: Colors.deepPurple,
+            ),
+            textTheme: GoogleFonts.lateefTextTheme(textTheme).copyWith(
+              bodyMedium: GoogleFonts.oswald(
+                textStyle: textTheme.bodyMedium,
+              ),
             ),
             useMaterial3: true,
           ),

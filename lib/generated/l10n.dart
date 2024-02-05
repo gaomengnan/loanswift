@@ -129,6 +129,66 @@ class S {
       args: [],
     );
   }
+
+  /// `After obtaining the limit, rewards can be acquired.`
+  String get title100 {
+    return Intl.message(
+      'After obtaining the limit, rewards can be acquired.',
+      name: 'title100',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Up to 30 days interest-free`
+  String get title200 {
+    return Intl.message(
+      'Up to 30 days interest-free',
+      name: 'title200',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Minimum annual interest rate of 3.6%`
+  String get title300 {
+    return Intl.message(
+      'Minimum annual interest rate of 3.6%',
+      name: 'title300',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fastest loan disbursement in five minutes`
+  String get title400 {
+    return Intl.message(
+      'Fastest loan disbursement in five minutes',
+      name: 'title400',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Check your limit`
+  String get title500 {
+    return Intl.message(
+      'Check your limit',
+      name: 'title500',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Borrowing Strategies`
+  String get title600 {
+    return Intl.message(
+      'Borrowing Strategies',
+      name: 'title600',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
