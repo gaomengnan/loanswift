@@ -40,10 +40,24 @@ class Pallete {
   static const LinearGradient loanGradient = LinearGradient(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
-    stops: [0.0, 0.2],
+    // stops: [0.0, 0.1, 0.2],
     colors: [
       Color(0xffF0FEF5),
+      // Color(0xffF0FEF5),
       Pallete.whiteColor,
+    ],
+  );
+
+  static const LinearGradient bottomSheetGradient = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    stops: [0.0, 0.1, 0.2],
+    colors: [
+      Color(0xffDEFDED),
+      Color(0xffF4FEF9),
+      Pallete.whiteColor,
+      // Color(0xffF0FEF5),
+      // Pallete.whiteColor,
     ],
   );
 }

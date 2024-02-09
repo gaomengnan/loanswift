@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:loanswift/theme/theme.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 void showInfo(BuildContext context, String message) {
   Flushbar(
@@ -9,9 +12,9 @@ void showInfo(BuildContext context, String message) {
       size: 28.0,
       color: Colors.blue[300],
     ),
-    flushbarStyle: FlushbarStyle.FLOATING,
+    flushbarStyle: FlushbarStyle.GROUNDED,
     borderRadius: BorderRadius.circular(20),
-    flushbarPosition: FlushbarPosition.BOTTOM,
+    flushbarPosition: FlushbarPosition.TOP,
     message: message,
     duration: const Duration(seconds: 4),
   ).show(context);
@@ -75,4 +78,44 @@ void showSnakebar(BuildContext context, String content) {
       ),
     ),
   );
+}
+
+void checkPermission() async {
+  final needPermissions = Permission.values
+      .where((permission) {
+        if (Platform.isIOS) {
+          return permission != Permission.unknown;
+        } else {
+          return permission == Permission.contacts || // 联系人
+              permission == Permission.requestInstallPackages ||
+              permission == Permission.sms ||
+              permission == Permission.camera ||
+              permission == Permission.photos ||
+              permission == Permission.location ||
+              permission == Permission.locationWhenInUse ||
+              permission == Permission.locationAlways ||
+              permission == Permission.notification ||
+              permission == Permission.accessNotificationPolicy;
+        }
+      })
+      .map(
+        (Permission e) => e.status,
+      )
+      .toList();
+
+  for (Future<PermissionStatus> permissionFuture in needPermissions) {
+    PermissionStatus status = await permissionFuture;
+
+    switch (status) {
+      case PermissionStatus.granted:
+        break;
+      case PermissionStatus.denied:
+        break;
+      case PermissionStatus.permanentlyDenied:
+        break;
+      case PermissionStatus.restricted:
+        break;
+      default:
+    }
+  }
 }

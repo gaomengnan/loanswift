@@ -60,6 +60,16 @@ class S {
     );
   }
 
+  /// `US`
+  String get phone_code {
+    return Intl.message(
+      'US',
+      name: 'phone_code',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Flutter localization`
   String get name {
     return Intl.message(
@@ -185,6 +195,246 @@ class S {
     return Intl.message(
       'Borrowing Strategies',
       name: 'title600',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Apply in 3 minutes`
+  String get title700 {
+    return Intl.message(
+      'Apply in 3 minutes',
+      name: 'title700',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Loan approval in 5 minutes`
+  String get title800 {
+    return Intl.message(
+      'Loan approval in 5 minutes',
+      name: 'title800',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Flexible Borrowing and Repayment`
+  String get title900 {
+    return Intl.message(
+      'Flexible Borrowing and Repayment',
+      name: 'title900',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your real-name authenticated mobile number`
+  String get shurushoujihao {
+    return Intl.message(
+      'Please enter your real-name authenticated mobile number',
+      name: 'shurushoujihao',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Login or register only`
+  String get jindengluzhuce {
+    return Intl.message(
+      'Login or register only',
+      name: 'jindengluzhuce',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Apply now`
+  String get lijishengqing {
+    return Intl.message(
+      'Apply now',
+      name: 'lijishengqing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Welcome to Login/Register`
+  String get huanying {
+    return Intl.message(
+      'Welcome to Login/Register',
+      name: 'huanying',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid phone number`
+  String get errorPhone {
+    return Intl.message(
+      'Invalid phone number',
+      name: 'errorPhone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Verification Code`
+  String get enter_verification_code {
+    return Intl.message(
+      'Enter Verification Code',
+      name: 'enter_verification_code',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `SMS verification code has been sent to`
+  String get verification_code_sendto {
+    return Intl.message(
+      'SMS verification code has been sent to',
+      name: 'verification_code_sendto',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Incorrect verification code`
+  String get verification_code_wrong {
+    return Intl.message(
+      'Incorrect verification code',
+      name: 'verification_code_wrong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Not receiving the verification code?`
+  String get unable_to_receive_the_verification_code {
+    return Intl.message(
+      'Not receiving the verification code?',
+      name: 'unable_to_receive_the_verification_code',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Retrieve Again`
+  String get retrieve_again {
+    return Intl.message(
+      'Retrieve Again',
+      name: 'retrieve_again',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resend`
+  String get resend {
+    return Intl.message(
+      'Resend',
+      name: 'resend',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Read`
+  String get read_privacy {
+    return Intl.message(
+      'Read',
+      name: 'read_privacy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Privacy Policy`
+  String get privacy {
+    return Intl.message(
+      'Privacy Policy',
+      name: 'privacy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Agree`
+  String get agree_privacy {
+    return Intl.message(
+      'Agree',
+      name: 'agree_privacy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `To expedite your loan process, we need these permissions`
+  String get permission_title {
+    return Intl.message(
+      'To expedite your loan process, we need these permissions',
+      name: 'permission_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contact List`
+  String get contact {
+    return Intl.message(
+      'Contact List',
+      name: 'contact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Installed Applications`
+  String get install_packages {
+    return Intl.message(
+      'Installed Applications',
+      name: 'install_packages',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `SMS`
+  String get sms {
+    return Intl.message(
+      'SMS',
+      name: 'sms',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Camera`
+  String get camera {
+    return Intl.message(
+      'Camera',
+      name: 'camera',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Location`
+  String get location {
+    return Intl.message(
+      'Location',
+      name: 'location',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notifications`
+  String get notification {
+    return Intl.message(
+      'Notifications',
+      name: 'notification',
       desc: '',
       args: [],
     );

@@ -1,5 +1,6 @@
 {
   "lang": "zh",
+  "phone_code": "CN",
   "@@locale": "zh",
   "name": "Flutter localization",
   "hello_world": "Hello World",
@@ -13,5 +14,33 @@
   "title300": "最低年化3.6%",
   "title400": "最快五分钟放款",
   "title500": "查看额度",
-  "title600": "借钱攻略"
+  "title600": "借钱攻略",
+
+  "title700": "3分钟申请",
+  "title800": "5分钟放贷",
+  "title900": "灵活借还",
+
+  "shurushoujihao": "请输入本人实名认证手机号",
+  "jindengluzhuce": "仅登录或者注册",
+  "lijishengqing": "立即申请",
+  "huanying":"欢迎登录/注册",
+  "errorPhone": "请输入正确手机号码",
+
+  "enter_verification_code": "请输入验证码",
+  "verification_code_sendto": "短信验证码已发送至",
+  "verification_code_wrong": "验证码错误",
+  "unable_to_receive_the_verification_code": "收不到验证码?",
+  "retrieve_again" : "重新获取",
+  "resend" : "重发",
+
+  "read_privacy" :"请阅读",
+  "privacy" :"隐私政策",
+  "agree_privacy" :"同意",
+  "permission_title": "为了快速完成您的贷款流程, 我们需要这些权限",
+  "contact":"联系人列表",
+  "install_packages":"已安装的应用程序",
+  "sms":"短信",
+  "camera":"相机",
+  "location":"位置",
+  "notification":"通知"
 }

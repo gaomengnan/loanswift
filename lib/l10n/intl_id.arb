@@ -1,5 +1,6 @@
 {
   "lang": "id",
+  "phone_code": "ID",
   "@@locale": "id",
   "name": "Halo",
   "hello_world": "Hitungannya bertambah",
@@ -11,7 +12,33 @@
   "title100": "Setelah mendapatkan batas, hadiah dapat diperoleh.",
   "title200": "Hingga 30 hari bebas bunga",
   "title300": "Suku bunga tahunan minimum 3.6%",
-  "title400": "Pencairan pinjaman tercepat dalam lima menit",
+  "title400": "Pencairan  lima menit",
   "title500": "Periksa batasmu",
-  "title600": "Strategi Peminjaman"
+  "title600": "Strategi Peminjaman",
+  "title700": "Ajukan dalam 3 menit",
+  "title800": "Persetujuan pinjaman dalam 5 menit",
+  "title900": "Peminjaman dan Pembayaran yang Fleksibel",
+  "shurushoujihao": "Masukkan nomor ponsel yang terverifikasi",
+  "jindengluzhuce": "Hanya masuk atau daftar",
+  "lijishengqing": "Ajukan sekarang",
+  "huanying": "Selamat datang masuk/daftar",
+  "errorPhone":"Masukkan nomor telepon yang benar",
+
+  "enter_verification_code": "Masukkan Kode Verifikasi",
+  "verification_code_sendto": "Kode verifikasi SMS telah dikirim ke",
+  "verification_code_wrong": "Kode verifikasi salah",
+  "unable_to_receive_the_verification_code": "Tidak menerima kode verifikasi?",
+  "retrieve_again": "Dapatkan Kembali",
+  "resend": "Kirim Ulang",
+
+  "read_privacy": "Baca",
+  "privacy": "Kebijakan Privasi",
+  "agree_privacy": "Setuju",
+  "permission_title": "Untuk mempercepat proses pinjaman Anda, kami memerlukan izin-izin ini",
+  "contact": "Daftar Kontak",
+  "install_packages": "Aplikasi Terinstal",
+  "sms": "SMS",
+  "camera": "Kamera",
+  "location": "Lokasi",
+  "notification": "Pemberitahuan"
 }

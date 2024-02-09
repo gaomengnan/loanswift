@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/theme/pallete.dart';
@@ -16,6 +17,8 @@ class AppText extends StatelessWidget {
   double? height;
   FontWeight? fontWeight;
 
+  TextAlign? textAlign;
+
   AppText({
     Key? key,
     required this.text,
@@ -24,6 +27,7 @@ class AppText extends StatelessWidget {
     this.overflow = TextOverflow.ellipsis,
     this.height = 1.2,
     this.fontWeight = FontWeight.normal,
+    this.textAlign = TextAlign.center,
   }) : super(key: key);
 
   @override
@@ -34,9 +38,10 @@ class AppText extends StatelessWidget {
         color: Pallete.blackColor,
         borderRadius: BorderRadius.circular(10.sp),
       ),
-      child: Text(
+      child: AutoSizeText(
         text,
-        maxLines: 1,
+        textAlign: textAlign,
+        maxLines: 2,
         overflow: overflow,
         style: TextStyle(
           color: color,
