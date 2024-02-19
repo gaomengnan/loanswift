@@ -29,8 +29,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Masukkan Kode Verifikasi"),
         "errorPhone": MessageLookupByLibrary.simpleMessage(
             "Masukkan nomor telepon yang benar"),
+        "exclusive": MessageLookupByLibrary.simpleMessage("Eksklusif"),
+        "free_concession": MessageLookupByLibrary.simpleMessage("Discount"),
         "hello_world":
             MessageLookupByLibrary.simpleMessage("Hitungannya bertambah"),
+        "high_quality": MessageLookupByLibrary.simpleMessage("Premium"),
         "home_button": MessageLookupByLibrary.simpleMessage("Rumah"),
         "huanying":
             MessageLookupByLibrary.simpleMessage("Selamat datang masuk/daftar"),
@@ -55,6 +58,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "person_button": MessageLookupByLibrary.simpleMessage("Saya"),
         "phone_code": MessageLookupByLibrary.simpleMessage("ID"),
         "privacy": MessageLookupByLibrary.simpleMessage("Kebijakan Privasi"),
+        "quick_deposit": MessageLookupByLibrary.simpleMessage("Fast Transfer"),
         "read_privacy": MessageLookupByLibrary.simpleMessage("Baca"),
         "resend": MessageLookupByLibrary.simpleMessage("Kirim Ulang"),
         "retrieve_again":

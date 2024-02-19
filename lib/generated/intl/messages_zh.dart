@@ -28,7 +28,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "enter_verification_code":
             MessageLookupByLibrary.simpleMessage("请输入验证码"),
         "errorPhone": MessageLookupByLibrary.simpleMessage("请输入正确手机号码"),
+        "exclusive": MessageLookupByLibrary.simpleMessage("优质专享"),
+        "free_concession": MessageLookupByLibrary.simpleMessage("费率优惠"),
         "hello_world": MessageLookupByLibrary.simpleMessage("Hello World"),
+        "high_quality": MessageLookupByLibrary.simpleMessage("优质专享"),
         "home_button": MessageLookupByLibrary.simpleMessage("首页"),
         "huanying": MessageLookupByLibrary.simpleMessage("欢迎登录/注册"),
         "install_packages": MessageLookupByLibrary.simpleMessage("已安装的应用程序"),
@@ -47,6 +50,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "person_button": MessageLookupByLibrary.simpleMessage("我的"),
         "phone_code": MessageLookupByLibrary.simpleMessage("CN"),
         "privacy": MessageLookupByLibrary.simpleMessage("隐私政策"),
+        "quick_deposit": MessageLookupByLibrary.simpleMessage("快速到账"),
         "read_privacy": MessageLookupByLibrary.simpleMessage("请阅读"),
         "resend": MessageLookupByLibrary.simpleMessage("重发"),
         "retrieve_again": MessageLookupByLibrary.simpleMessage("重新获取"),

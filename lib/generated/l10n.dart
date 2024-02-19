@@ -439,6 +439,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Exclusive`
+  String get high_quality {
+    return Intl.message(
+      'Exclusive',
+      name: 'high_quality',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Concession`
+  String get free_concession {
+    return Intl.message(
+      'Concession',
+      name: 'free_concession',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fast Transfer`
+  String get quick_deposit {
+    return Intl.message(
+      'Fast Transfer',
+      name: 'quick_deposit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exclusive`
+  String get exclusive {
+    return Intl.message(
+      'Exclusive',
+      name: 'exclusive',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

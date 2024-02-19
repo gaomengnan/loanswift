@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
               GlobalCupertinoLocalizations.delegate,
             ],
             supportedLocales: S.delegate.supportedLocales,
-            locale: const Locale("zh"),
+            locale: const Locale("en"),
             title: 'Loanswift',
             theme: ThemeData(
               colorScheme: ColorScheme.fromSeed(

@@ -29,7 +29,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter Verification Code"),
         "errorPhone":
             MessageLookupByLibrary.simpleMessage("Invalid phone number"),
+        "exclusive": MessageLookupByLibrary.simpleMessage("Exclusive"),
+        "free_concession": MessageLookupByLibrary.simpleMessage("Concession"),
         "hello_world": MessageLookupByLibrary.simpleMessage("Hello World"),
+        "high_quality": MessageLookupByLibrary.simpleMessage("Exclusive"),
         "home_button": MessageLookupByLibrary.simpleMessage("Home"),
         "huanying":
             MessageLookupByLibrary.simpleMessage("Welcome to Login/Register"),
@@ -52,6 +55,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "person_button": MessageLookupByLibrary.simpleMessage("Profile"),
         "phone_code": MessageLookupByLibrary.simpleMessage("US"),
         "privacy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
+        "quick_deposit": MessageLookupByLibrary.simpleMessage("Fast Transfer"),
         "read_privacy": MessageLookupByLibrary.simpleMessage("Read"),
         "resend": MessageLookupByLibrary.simpleMessage("Resend"),
         "retrieve_again":

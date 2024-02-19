@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/constants/assets.dart';
+import 'package:loanswift/core/utils.dart';
 import 'package:loanswift/theme/pallete.dart';
 
 class IdentityVefification extends StatefulWidget {
@@ -96,7 +97,8 @@ class _IdentityVefificationState extends State<IdentityVefification> {
                           ), // 设置最小尺寸
                           // padding: const EdgeInsets.all(10), // 设置内边距
                         ),
-                        onPressed: () {},
+                        onPressed: () async {
+                        },
                         child: const Text(
                           "直接上传",
                         ),

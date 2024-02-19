@@ -40,5 +40,9 @@
   "sms": "SMS",
   "camera": "Kamera",
   "location": "Lokasi",
-  "notification": "Pemberitahuan"
+  "notification": "Pemberitahuan",
+  "high_quality": "Premium",
+  "free_concession": "Discount",
+  "quick_deposit": "Fast Transfer",
+  "exclusive":"Eksklusif"
 }

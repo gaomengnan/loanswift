@@ -40,6 +40,11 @@
   "sms": "SMS",
   "camera": "Camera",
   "location": "Location",
-  "notification": "Notifications"
+  "notification": "Notifications",
+
+  "high_quality": "Exclusive",
+  "free_concession": "Concession",
+  "quick_deposit": "Fast Transfer",
+  "exclusive":"Exclusive"
 }
 

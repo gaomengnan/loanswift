@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:loanswift/theme/theme.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -118,4 +119,20 @@ void checkPermission() async {
       default:
     }
   }
+}
+
+// 相册选择图片
+void pickerImageFromGallery() async {
+  final ImagePicker picker = ImagePicker();
+  await picker.pickImage(
+    source: ImageSource.gallery,
+  );
+}
+
+// 相机选择图片
+void pickerImageFromCamera() async {
+  final ImagePicker picker = ImagePicker();
+  await picker.pickImage(
+    source: ImageSource.camera,
+  );
 }
