@@ -8,7 +8,7 @@ import 'package:loanswift/generated/l10n.dart';
 import 'package:loanswift/theme/pallete.dart';
 
 import '../../constants/ui.dart';
-import '../person/identity_verification.dart';
+import '../person/identity.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -37,7 +37,9 @@ class _HomePageState extends State<HomePage> {
           width: MediaQuery.of(context).size.width,
           child: const CustomScrollView(
             slivers: [
+              // Appbar
               BuildSliverAppBar(),
+              // 查看额度
               BuildCheckLimitedSliver(),
               // 借钱攻略
               BuildLoanSliver(),
@@ -384,7 +386,7 @@ class BuildCheckLimitedSliver extends StatelessWidget {
                                         GestureDetector(
                                           onTap: () {
                                             Navigator.of(context).pushNamed(
-                                              IdentityVefification.routerName,
+                                              Identity.routerName,
                                             );
                                             // showPermissionDialog(
                                             //   context,

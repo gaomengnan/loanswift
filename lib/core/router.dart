@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:loanswift/common/page_404.dart';
-import 'package:loanswift/presentation/person/identity_verification.dart';
 
 import '../presentation/index/index_page.dart';
+import '../presentation/person/identity.dart';
 
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
-    case IdentityVefification.routerName:
+    case Identity.routerName:
       return _pageBuilder(
-        (_) => const IdentityVefification(),
+        (_) => const Identity(),
         settings: settings,
       );
 
