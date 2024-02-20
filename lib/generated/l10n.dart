@@ -479,6 +479,36 @@ class S {
       args: [],
     );
   }
+
+  /// `ID Card Photo`
+  String get idcard {
+    return Intl.message(
+      'ID Card Photo',
+      name: 'idcard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ID Card Front Photo`
+  String get idcard_front {
+    return Intl.message(
+      'ID Card Front Photo',
+      name: 'idcard_front',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ID Card Reverse Photo`
+  String get idcard_reverse {
+    return Intl.message(
+      'ID Card Reverse Photo',
+      name: 'idcard_reverse',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

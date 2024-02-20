@@ -36,6 +36,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "home_button": MessageLookupByLibrary.simpleMessage("Home"),
         "huanying":
             MessageLookupByLibrary.simpleMessage("Welcome to Login/Register"),
+        "idcard": MessageLookupByLibrary.simpleMessage("ID Card Photo"),
+        "idcard_front":
+            MessageLookupByLibrary.simpleMessage("ID Card Front Photo"),
+        "idcard_reverse":
+            MessageLookupByLibrary.simpleMessage("ID Card Reverse Photo"),
         "install_packages":
             MessageLookupByLibrary.simpleMessage("Installed Applications"),
         "jindengluzhuce":

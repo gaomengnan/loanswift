@@ -45,6 +45,9 @@
   "high_quality": "Exclusive",
   "free_concession": "Concession",
   "quick_deposit": "Fast Transfer",
-  "exclusive":"Exclusive"
+  "exclusive":"Exclusive",
+  "idcard": "ID Card Photo",
+  "idcard_front": "ID Card Front Photo",
+  "idcard_reverse": "ID Card Reverse Photo"
 }
 

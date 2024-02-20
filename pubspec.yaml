@@ -56,8 +56,6 @@ dependencies:
   auto_size_text: ^3.0.0
   another_flushbar: ^1.12.30
   get_it: ^7.6.7
-  provider: ^6.1.1
-  flutter_riverpod: ^2.4.10
   permission_handler: ^11.2.0
   image_picker: ^1.0.7
   step_progress_indicator: ^1.0.2

@@ -44,5 +44,8 @@
   "high_quality": "Premium",
   "free_concession": "Discount",
   "quick_deposit": "Fast Transfer",
-  "exclusive":"Eksklusif"
+  "exclusive":"Eksklusif",
+  "idcard": "Foto Kartu Identitas",
+  "idcard_front": "Foto Depan Kartu Identitas",
+  "idcard_reverse": "Foto Belakang Kartu Identitas"
 }

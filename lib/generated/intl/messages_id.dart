@@ -37,6 +37,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "home_button": MessageLookupByLibrary.simpleMessage("Rumah"),
         "huanying":
             MessageLookupByLibrary.simpleMessage("Selamat datang masuk/daftar"),
+        "idcard": MessageLookupByLibrary.simpleMessage("Foto Kartu Identitas"),
+        "idcard_front":
+            MessageLookupByLibrary.simpleMessage("Foto Depan Kartu Identitas"),
+        "idcard_reverse": MessageLookupByLibrary.simpleMessage(
+            "Foto Belakang Kartu Identitas"),
         "install_packages":
             MessageLookupByLibrary.simpleMessage("Aplikasi Terinstal"),
         "jindengluzhuce":
