@@ -16,12 +16,23 @@ class IDCardUpload extends StatefulWidget {
 class _IDCardUploadState extends State<IDCardUpload> {
   @override
   Widget build(BuildContext context) {
-    return const BuildUploadCardWidget();
+    return const BuildUploadCardPart();
   }
 }
 
-class BuildUploadCardWidget extends StatelessWidget {
-  const BuildUploadCardWidget({
+class BuildUploadCardPart extends StatelessWidget {
+  const BuildUploadCardPart({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const CardPart();
+  }
+}
+
+class CardPart extends StatelessWidget {
+  const CardPart({
     super.key,
   });
 
@@ -45,9 +56,9 @@ class BuildUploadCardWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const CardDescription(),
+            const CardDescriptionPart(),
             UI.kHeight10(),
-            const UploadContent()
+            const UploadPart()
           ],
         ),
       ),
@@ -55,8 +66,8 @@ class BuildUploadCardWidget extends StatelessWidget {
   }
 }
 
-class UploadContent extends StatelessWidget {
-  const UploadContent({
+class UploadPart extends StatelessWidget {
+  const UploadPart({
     super.key,
   });
 
@@ -65,12 +76,12 @@ class UploadContent extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        ExpandedUploadItem(
+        ExpandedItemPart(
           image: Assets.idcardFront,
           text: S.current.idcard_front,
         ),
         UI.kWidth10(),
-        ExpandedUploadItem(
+        ExpandedItemPart(
           image: Assets.idcardReverse,
           text: S.current.idcard_reverse,
         ),
@@ -79,10 +90,10 @@ class UploadContent extends StatelessWidget {
   }
 }
 
-class ExpandedUploadItem extends StatelessWidget {
+class ExpandedItemPart extends StatelessWidget {
   final String image;
   final String text;
-  const ExpandedUploadItem({
+  const ExpandedItemPart({
     super.key,
     required this.image,
     required this.text,
@@ -132,8 +143,8 @@ class ExpandedUploadItem extends StatelessWidget {
   }
 }
 
-class CardDescription extends StatelessWidget {
-  const CardDescription({
+class CardDescriptionPart extends StatelessWidget {
+  const CardDescriptionPart({
     super.key,
   });
 
