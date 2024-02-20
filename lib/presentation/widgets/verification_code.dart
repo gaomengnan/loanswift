@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/bloc/phone_sender_bloc.dart';
 import 'package:loanswift/common/widgets/app_text.dart';
+import 'package:loanswift/constants/ui.dart';
 import 'package:loanswift/generated/l10n.dart';
 import 'package:loanswift/theme/theme.dart';
 import 'package:pinput/pinput.dart';
@@ -88,9 +89,7 @@ class _VerificationCodeState extends State<VerificationCode> {
                   text: S.current.enter_verification_code,
                   size: 16.sp,
                 ),
-                SizedBox(
-                  height: 10.w,
-                ),
+                UI.kHeight10(),
                 RichText(
                   text: TextSpan(
                     text: S.current.verification_code_sendto,
@@ -119,9 +118,7 @@ class _VerificationCodeState extends State<VerificationCode> {
               ],
             ),
           ),
-          SizedBox(
-            height: 10.h,
-          ),
+          UI.kHeight10(),
           Form(
             key: formKey,
             child: Column(
@@ -182,11 +179,12 @@ class _VerificationCodeState extends State<VerificationCode> {
                     ),
                   ),
                 ),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    AppText(text: "${S.current.unable_to_receive_the_verification_code}?"),
+                    AppText(
+                        text:
+                            "${S.current.unable_to_receive_the_verification_code}?"),
 
                     // Text("${context.select((PhoneSenderBloc bloc) => bloc.state.duration)}"),
 

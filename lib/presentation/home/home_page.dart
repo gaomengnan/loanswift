@@ -31,20 +31,18 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Pallete.primaryColor,
-      body: SafeArea(
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          child: const CustomScrollView(
-            slivers: [
-              // Appbar
-              BuildSliverAppBar(),
-              // 查看额度
-              BuildCheckLimitedSliver(),
-              // 借钱攻略
-              BuildLoanSliver(),
-            ],
-          ),
+      body: SizedBox(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: const CustomScrollView(
+          slivers: [
+            // Appbar
+            BuildSliverAppBar(),
+            // 查看额度
+            BuildCheckLimitedSliver(),
+            // 借钱攻略
+            BuildLoanSliver(),
+          ],
         ),
       ),
     );
@@ -85,9 +83,7 @@ class BuildLoanSliver extends StatelessWidget {
                       text: S.current.title600,
                       size: 16.sp,
                     ),
-                    SizedBox(
-                      height: 10.h,
-                    ),
+                    UI.kHeight10(),
                     Container(
                       width: double.infinity,
                       // height: 200,
@@ -104,9 +100,7 @@ class BuildLoanSliver extends StatelessWidget {
                           // crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            SizedBox(
-                              width: 10.w,
-                            ),
+                            UI.kWidth10(),
                             ...List.generate(loanGuide.length, (index) {
                               final item = loanGuide[index];
 
@@ -193,9 +187,7 @@ class BuildCheckLimitedSliver extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      SizedBox(
-                        width: 20.w,
-                      ),
+                      UI.kWidth20(),
                       RichText(
                         text: TextSpan(
                           text: S.current.exclusive,
@@ -206,9 +198,7 @@ class BuildCheckLimitedSliver extends StatelessWidget {
                           ),
                           children: [
                             WidgetSpan(
-                              child: SizedBox(
-                                width: 10.w,
-                              ),
+                              child: UI.kWidth10(),
                             ),
                             TextSpan(
                               text: "${S.current.high_quality} · ",
@@ -314,18 +304,14 @@ class BuildCheckLimitedSliver extends StatelessWidget {
                                     // ),
                                     child: Column(
                                       children: [
-                                        SizedBox(
-                                          height: 10.w,
-                                        ),
+                                        UI.kHeight10(),
                                         Center(
                                           child: AppText(
                                             text: S.current.title100,
                                             color: Pallete.greyColor,
                                           ),
                                         ),
-                                        SizedBox(
-                                          height: 10.h,
-                                        ),
+                                        UI.kHeight10(),
                                         Padding(
                                           padding: EdgeInsets.symmetric(
                                               horizontal: 20.w),
@@ -449,7 +435,7 @@ class BuildSliverAppBar extends StatelessWidget {
       leadingWidth: 80.w,
       elevation: 0,
       toolbarHeight: 50.h,
-      backgroundColor: Pallete.backgroundColor,
+      backgroundColor: Pallete.whiteColor,
       // foregroundColor: Pallete.primaryColor,
       expandedHeight: 55.0.h,
       floating: false, //
@@ -463,9 +449,7 @@ class BuildSliverAppBar extends StatelessWidget {
       ),
       leading: Row(
         children: [
-          SizedBox(
-            width: 20.w,
-          ),
+          UI.kWidth20(),
           const CircleAvatar(
             backgroundImage: AssetImage(
               Assets.userAvatar,

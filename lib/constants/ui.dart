@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:loanswift/common/widgets/space.dart';
 import 'package:loanswift/theme/theme.dart';
 
 import '../presentation/widgets/login_sheet.dart';
 import '../presentation/widgets/verification_code.dart';
 
-class UI{
+class UI {
   static AppBar appBar() {
     return AppBar(
       centerTitle: true,
@@ -72,4 +73,32 @@ class UI{
     // ExploreView(),
     // NotificationView(),
   ];
+
+  static Widget kHeight10() {
+    return Space(
+      height: 10.h,
+      width: 0,
+    );
+  }
+
+  static Widget kWidth10() {
+    return Space(
+      height: 0,
+      width: 10.w,
+    );
+  }
+
+  static Widget kHeight20() {
+    return Space(
+      height: 20.h,
+      width: 0,
+    );
+  }
+
+  static Widget kWidth20() {
+    return Space(
+      height: 0,
+      width: 20.w,
+    );
+  }
 }

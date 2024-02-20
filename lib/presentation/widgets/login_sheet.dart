@@ -79,9 +79,7 @@ class _LoginWidgetState extends State<LoginWidget> {
             ],
           ),
 
-          SizedBox(
-            height: 20.h,
-          ),
+          UI.kHeight20(),
 
           BuildForm(
             formKey: formKey,
@@ -90,9 +88,7 @@ class _LoginWidgetState extends State<LoginWidget> {
             number: number,
           ),
 
-          SizedBox(
-            height: 20.h,
-          ),
+          UI.kHeight20(),
 
           BuildBottomButton(formKey: formKey),
           // 协议
@@ -161,8 +157,7 @@ class BuildForm extends StatelessWidget {
           //   number = val;
           // });
         },
-        onInputValidated: (bool value) {
-        },
+        onInputValidated: (bool value) {},
         onSaved: (PhoneNumber val) {
           context.read<PhoneSenderBloc>().add(
                 PhoneSenderStarted(

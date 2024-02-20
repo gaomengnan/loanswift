@@ -60,6 +60,7 @@ dependencies:
   flutter_riverpod: ^2.4.10
   permission_handler: ^11.2.0
   image_picker: ^1.0.7
+  step_progress_indicator: ^1.0.2
 
 dev_dependencies:
   flutter_test:

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:loanswift/constants/ui.dart';
 import 'package:loanswift/presentation/widgets/idcard_upload.dart';
 import 'package:loanswift/theme/pallete.dart';
+import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 import '../../common/widgets/app_text.dart';
 
@@ -59,21 +62,41 @@ class _IdentityState extends State<Identity> {
             "实名认证",
           ),
         ),
-        body: Stepper(
-          
-          controlsBuilder: (context, _) {
-            return Container();
-          },
-          onStepContinue: () {
-            setState(() {
-              currentStep++;
-            });
-          },
-          elevation: 0,
-          type: StepperType.horizontal,
-          steps: steps,
-          currentStep: currentStep,
+        body: Column(
+          children: [
+            StepProgressIndicator(
+              size: 10,
+              totalSteps: 4,
+              currentStep: 1,
+              selectedColor: Pallete.primaryColor,
+              roundedEdges: const Radius.circular(10).r,
+              unselectedColor: Pallete.greyColor,
+            ),
+            UI.kHeight10(),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: 20.w,
+                vertical: 10.h,
+              ),
+              child: const IDCardUpload(),
+            ),
+          ],
         ),
+        // body: Stepper(
+        //
+        //   controlsBuilder: (context, _) {
+        //     return Container();
+        //   },
+        //   onStepContinue: () {
+        //     setState(() {
+        //       currentStep++;
+        //     });
+        //   },
+        //   elevation: 0,
+        //   type: StepperType.horizontal,
+        //   steps: steps,
+        //   currentStep: currentStep,
+        // ),
       ),
     );
   }
