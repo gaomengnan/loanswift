@@ -3,12 +3,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/theme/pallete.dart';
 
 import 'core/generated/l10n.dart';
-import 'features/bloc/phone_sender_bloc.dart';
+import 'features/bloc/bloc.dart';
 import 'features/presentation/board/boarding_page.dart';
 
 Future<void> main() async {
@@ -25,7 +24,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    // final textTheme = Theme.of(context).textTheme;
     return BlocProvider(
       create: (_) => sl<PhoneSenderBloc>(),
       child: ScreenUtilInit(
@@ -47,14 +46,15 @@ class MyApp extends StatelessWidget {
             locale: const Locale("zh"),
             title: 'Loanswift',
             theme: ThemeData(
+              fontFamily: "Roboto",
               colorScheme: ColorScheme.fromSeed(
                 seedColor: Pallete.whiteColor,
               ),
-              textTheme: GoogleFonts.lateefTextTheme(textTheme).copyWith(
-                bodyMedium: GoogleFonts.oswald(
-                  textStyle: textTheme.bodyMedium,
-                ),
-              ),
+              // textTheme: GoogleFonts.robotoTextTheme(textTheme).copyWith(
+              //   bodyMedium: GoogleFonts.roboto(
+              //     textStyle: textTheme.bodyMedium,
+              //   ),
+              // ),
               useMaterial3: true,
             ),
             onGenerateRoute: generateRoute,

@@ -7,7 +7,7 @@ import 'package:loanswift/theme/pallete.dart';
 import '../../../core/common/widgets/widgets.dart';
 import '../../../core/core.dart';
 import '../../../core/generated/l10n.dart';
-import '../../bloc/phone_sender_bloc.dart';
+import '../../bloc/bloc.dart';
 
 class LoginWidget extends StatefulWidget {
   const LoginWidget({

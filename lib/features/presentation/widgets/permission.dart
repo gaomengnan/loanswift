@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:loanswift/data/permission.dart';
+import 'package:loanswift/data/entity/entity.dart';
 import 'package:loanswift/theme/pallete.dart';
 import 'package:permission_handler/permission_handler.dart';
 

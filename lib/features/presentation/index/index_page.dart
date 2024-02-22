@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/theme/pallete.dart';
 
-import '../../../data/data.dart';
+import '../../../core/generated/l10n.dart';
 import '../home/home_page.dart';
 import '../person/person_page.dart';
 
@@ -25,6 +26,18 @@ class _IndexPageState extends State<IndexPage> {
 
   @override
   Widget build(BuildContext context) {
+    List<Map<String, dynamic>> bars = [
+      {
+        "title": S.current.home_button,
+        "icon": IconlyLight.home,
+        "active_icon": IconlyBold.home,
+      },
+      {
+        "title": S.current.person_button,
+        "icon": IconlyLight.user2,
+        "active_icon": IconlyBold.user2,
+      },
+    ];
     return Scaffold(
       // 底部菜单
       bottomNavigationBar: BottomNavigationBar(
