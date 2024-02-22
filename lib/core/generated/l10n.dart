@@ -50,20 +50,20 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `en`
+  /// `zh`
   String get lang {
     return Intl.message(
-      'en',
+      'zh',
       name: 'lang',
       desc: '',
       args: [],
     );
   }
 
-  /// `US`
+  /// `CN`
   String get phone_code {
     return Intl.message(
-      'US',
+      'CN',
       name: 'phone_code',
       desc: '',
       args: [],
@@ -90,420 +90,420 @@ class S {
     );
   }
 
-  /// `Home`
+  /// `首页`
   String get home_button {
     return Intl.message(
-      'Home',
+      '首页',
       name: 'home_button',
       desc: '',
       args: [],
     );
   }
 
-  /// `Profile`
+  /// `我的`
   String get person_button {
     return Intl.message(
-      'Profile',
+      '我的',
       name: 'person_button',
       desc: '',
       args: [],
     );
   }
 
-  /// `Maximum Loan Amount`
+  /// `最高可借额度`
   String get maximun_load_text {
     return Intl.message(
-      'Maximum Loan Amount',
+      '最高可借额度',
       name: 'maximun_load_text',
       desc: '',
       args: [],
     );
   }
 
-  /// `Borrow up to 1,000 yuan for 12 months, starting from 6% daily fee, annual interest rate (simple interest) starting from 3.6%`
+  /// `1千元借12个月,日费用6分起,年化利率(单利) 3.6%起`
   String get maximun_load_sub_text {
     return Intl.message(
-      'Borrow up to 1,000 yuan for 12 months, starting from 6% daily fee, annual interest rate (simple interest) starting from 3.6%',
+      '1千元借12个月,日费用6分起,年化利率(单利) 3.6%起',
       name: 'maximun_load_sub_text',
       desc: '',
       args: [],
     );
   }
 
-  /// `(CNY)`
+  /// `(元)`
   String get maximun_load_text_unit {
     return Intl.message(
-      '(CNY)',
+      '(元)',
       name: 'maximun_load_text_unit',
       desc: '',
       args: [],
     );
   }
 
-  /// `After obtaining the limit, rewards can be acquired.`
+  /// `获取额度之后可获取奖励`
   String get title100 {
     return Intl.message(
-      'After obtaining the limit, rewards can be acquired.',
+      '获取额度之后可获取奖励',
       name: 'title100',
       desc: '',
       args: [],
     );
   }
 
-  /// `Up to 30 days interest-free`
+  /// `最长30天免息`
   String get title200 {
     return Intl.message(
-      'Up to 30 days interest-free',
+      '最长30天免息',
       name: 'title200',
       desc: '',
       args: [],
     );
   }
 
-  /// `Minimum annual interest rate of 3.6%`
+  /// `最低年化3.6%`
   String get title300 {
     return Intl.message(
-      'Minimum annual interest rate of 3.6%',
+      '最低年化3.6%',
       name: 'title300',
       desc: '',
       args: [],
     );
   }
 
-  /// `Fastest loan disbursement in five minutes`
+  /// `最快五分钟放款`
   String get title400 {
     return Intl.message(
-      'Fastest loan disbursement in five minutes',
+      '最快五分钟放款',
       name: 'title400',
       desc: '',
       args: [],
     );
   }
 
-  /// `Check your limit`
+  /// `查看额度`
   String get title500 {
     return Intl.message(
-      'Check your limit',
+      '查看额度',
       name: 'title500',
       desc: '',
       args: [],
     );
   }
 
-  /// `Borrowing Strategies`
+  /// `借钱攻略`
   String get title600 {
     return Intl.message(
-      'Borrowing Strategies',
+      '借钱攻略',
       name: 'title600',
       desc: '',
       args: [],
     );
   }
 
-  /// `Apply in 3 minutes`
+  /// `3分钟申请`
   String get title700 {
     return Intl.message(
-      'Apply in 3 minutes',
+      '3分钟申请',
       name: 'title700',
       desc: '',
       args: [],
     );
   }
 
-  /// `Loan approval in 5 minutes`
+  /// `5分钟放贷`
   String get title800 {
     return Intl.message(
-      'Loan approval in 5 minutes',
+      '5分钟放贷',
       name: 'title800',
       desc: '',
       args: [],
     );
   }
 
-  /// `Flexible Borrowing and Repayment`
+  /// `灵活借还`
   String get title900 {
     return Intl.message(
-      'Flexible Borrowing and Repayment',
+      '灵活借还',
       name: 'title900',
       desc: '',
       args: [],
     );
   }
 
-  /// `Please enter your real-name authenticated mobile number`
+  /// `请输入本人实名认证手机号`
   String get shurushoujihao {
     return Intl.message(
-      'Please enter your real-name authenticated mobile number',
+      '请输入本人实名认证手机号',
       name: 'shurushoujihao',
       desc: '',
       args: [],
     );
   }
 
-  /// `Login or register only`
+  /// `仅登录或者注册`
   String get jindengluzhuce {
     return Intl.message(
-      'Login or register only',
+      '仅登录或者注册',
       name: 'jindengluzhuce',
       desc: '',
       args: [],
     );
   }
 
-  /// `Apply now`
+  /// `立即申请`
   String get lijishengqing {
     return Intl.message(
-      'Apply now',
+      '立即申请',
       name: 'lijishengqing',
       desc: '',
       args: [],
     );
   }
 
-  /// `Welcome to Login/Register`
+  /// `欢迎登录/注册`
   String get huanying {
     return Intl.message(
-      'Welcome to Login/Register',
+      '欢迎登录/注册',
       name: 'huanying',
       desc: '',
       args: [],
     );
   }
 
-  /// `Invalid phone number`
+  /// `请输入正确手机号码`
   String get errorPhone {
     return Intl.message(
-      'Invalid phone number',
+      '请输入正确手机号码',
       name: 'errorPhone',
       desc: '',
       args: [],
     );
   }
 
-  /// `Enter Verification Code`
+  /// `请输入验证码`
   String get enter_verification_code {
     return Intl.message(
-      'Enter Verification Code',
+      '请输入验证码',
       name: 'enter_verification_code',
       desc: '',
       args: [],
     );
   }
 
-  /// `SMS verification code has been sent to`
+  /// `短信验证码已发送至`
   String get verification_code_sendto {
     return Intl.message(
-      'SMS verification code has been sent to',
+      '短信验证码已发送至',
       name: 'verification_code_sendto',
       desc: '',
       args: [],
     );
   }
 
-  /// `Incorrect verification code`
+  /// `验证码错误`
   String get verification_code_wrong {
     return Intl.message(
-      'Incorrect verification code',
+      '验证码错误',
       name: 'verification_code_wrong',
       desc: '',
       args: [],
     );
   }
 
-  /// `Not receiving the verification code?`
+  /// `收不到验证码?`
   String get unable_to_receive_the_verification_code {
     return Intl.message(
-      'Not receiving the verification code?',
+      '收不到验证码?',
       name: 'unable_to_receive_the_verification_code',
       desc: '',
       args: [],
     );
   }
 
-  /// `Retrieve Again`
+  /// `重新获取`
   String get retrieve_again {
     return Intl.message(
-      'Retrieve Again',
+      '重新获取',
       name: 'retrieve_again',
       desc: '',
       args: [],
     );
   }
 
-  /// `Resend`
+  /// `重发`
   String get resend {
     return Intl.message(
-      'Resend',
+      '重发',
       name: 'resend',
       desc: '',
       args: [],
     );
   }
 
-  /// `Read`
+  /// `请阅读`
   String get read_privacy {
     return Intl.message(
-      'Read',
+      '请阅读',
       name: 'read_privacy',
       desc: '',
       args: [],
     );
   }
 
-  /// `Privacy Policy`
+  /// `隐私政策`
   String get privacy {
     return Intl.message(
-      'Privacy Policy',
+      '隐私政策',
       name: 'privacy',
       desc: '',
       args: [],
     );
   }
 
-  /// `Agree`
+  /// `同意`
   String get agree_privacy {
     return Intl.message(
-      'Agree',
+      '同意',
       name: 'agree_privacy',
       desc: '',
       args: [],
     );
   }
 
-  /// `To expedite your loan process, we need these permissions`
+  /// `为了快速完成您的贷款流程, 我们需要这些权限`
   String get permission_title {
     return Intl.message(
-      'To expedite your loan process, we need these permissions',
+      '为了快速完成您的贷款流程, 我们需要这些权限',
       name: 'permission_title',
       desc: '',
       args: [],
     );
   }
 
-  /// `Contact List`
+  /// `联系人列表`
   String get contact {
     return Intl.message(
-      'Contact List',
+      '联系人列表',
       name: 'contact',
       desc: '',
       args: [],
     );
   }
 
-  /// `Installed Applications`
+  /// `已安装的应用程序`
   String get install_packages {
     return Intl.message(
-      'Installed Applications',
+      '已安装的应用程序',
       name: 'install_packages',
       desc: '',
       args: [],
     );
   }
 
-  /// `SMS`
+  /// `短信`
   String get sms {
     return Intl.message(
-      'SMS',
+      '短信',
       name: 'sms',
       desc: '',
       args: [],
     );
   }
 
-  /// `Camera`
+  /// `相机`
   String get camera {
     return Intl.message(
-      'Camera',
+      '相机',
       name: 'camera',
       desc: '',
       args: [],
     );
   }
 
-  /// `Location`
+  /// `位置`
   String get location {
     return Intl.message(
-      'Location',
+      '位置',
       name: 'location',
       desc: '',
       args: [],
     );
   }
 
-  /// `Notifications`
+  /// `通知`
   String get notification {
     return Intl.message(
-      'Notifications',
+      '通知',
       name: 'notification',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exclusive`
+  /// `优质专享`
   String get high_quality {
     return Intl.message(
-      'Exclusive',
+      '优质专享',
       name: 'high_quality',
       desc: '',
       args: [],
     );
   }
 
-  /// `Concession`
+  /// `费率优惠`
   String get free_concession {
     return Intl.message(
-      'Concession',
+      '费率优惠',
       name: 'free_concession',
       desc: '',
       args: [],
     );
   }
 
-  /// `Fast Transfer`
+  /// `快速到账`
   String get quick_deposit {
     return Intl.message(
-      'Fast Transfer',
+      '快速到账',
       name: 'quick_deposit',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exclusive`
+  /// `优质专享`
   String get exclusive {
     return Intl.message(
-      'Exclusive',
+      '优质专享',
       name: 'exclusive',
       desc: '',
       args: [],
     );
   }
 
-  /// `ID Card Photo`
+  /// `身份证照片`
   String get idcard {
     return Intl.message(
-      'ID Card Photo',
+      '身份证照片',
       name: 'idcard',
       desc: '',
       args: [],
     );
   }
 
-  /// `ID Card Front Photo`
+  /// `身份证正面照片`
   String get idcard_front {
     return Intl.message(
-      'ID Card Front Photo',
+      '身份证正面照片',
       name: 'idcard_front',
       desc: '',
       args: [],
     );
   }
 
-  /// `ID Card Reverse Photo`
+  /// `身份证反面照片`
   String get idcard_reverse {
     return Intl.message(
-      'ID Card Reverse Photo',
+      '身份证反面照片',
       name: 'idcard_reverse',
       desc: '',
       args: [],
@@ -516,9 +516,9 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   List<Locale> get supportedLocales {
     return const <Locale>[
+      Locale.fromSubtags(languageCode: 'zh'),
       Locale.fromSubtags(languageCode: 'en'),
       Locale.fromSubtags(languageCode: 'id'),
-      Locale.fromSubtags(languageCode: 'zh'),
     ];
   }
 

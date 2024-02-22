@@ -1,5 +1,8 @@
 import 'package:flutter_iconly/flutter_iconly.dart';
-import 'package:loanswift/generated/l10n.dart';
+
+import '../core/generated/l10n.dart';
+
+
 
 List<Map<String, dynamic>> bars = [
     {

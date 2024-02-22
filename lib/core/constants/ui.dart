@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:loanswift/common/widgets/space.dart';
 import 'package:loanswift/theme/theme.dart';
 
-import '../presentation/widgets/login_sheet.dart';
-import '../presentation/widgets/verification_code.dart';
+import '../../features/presentation/widgets/login_sheet.dart';
+import '../../features/presentation/widgets/verification_code.dart';
+import '../common/widgets/widgets.dart';
+
+
 
 class UI {
   static AppBar appBar() {

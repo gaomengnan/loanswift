@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,13 +7,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/theme/pallete.dart';
 
-import 'bloc/phone_sender_bloc.dart';
-import 'generated/l10n.dart';
-import 'presentation/board/boarding_page.dart';
+import 'core/generated/l10n.dart';
+import 'features/bloc/phone_sender_bloc.dart';
+import 'features/presentation/board/boarding_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initialize();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp,],);
   runApp(
     const MyApp(),
   );

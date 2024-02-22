@@ -6,4 +6,5 @@ class Assets {
   static const loading = "assets/lottie/loading.json";
   static const idcardFront = "assets/images/idcard_front.png";
   static const idcardReverse = "assets/images/idcard_reverse.png";
+  static const bgIdentifyIdcard = "assets/images/bg_identify_idcard.png";
 }

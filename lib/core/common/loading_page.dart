@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:loanswift/constants/constants.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 
-class PageUnderConstruction extends StatelessWidget {
-  const PageUnderConstruction({super.key});
+import '../core.dart';
+
+class LoadingPage extends StatelessWidget {
+  const LoadingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,9 @@ class PageUnderConstruction extends StatelessWidget {
       child: Center(
         child: SafeArea(
           child: Lottie.asset(
-            Assets.underConstruction,
+            Assets.loading,
+            height: 100.h,
+            width: 100.w,
           ),
         ),
       ),

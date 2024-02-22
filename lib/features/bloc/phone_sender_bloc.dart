@@ -3,7 +3,8 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../data/ticker.dart';
+import '../../data/data.dart';
+
 
 part 'phone_sender_event.dart';
 part 'phone_sender_state.dart';

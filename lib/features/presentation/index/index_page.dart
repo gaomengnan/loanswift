@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:loanswift/data/bottom_bar.dart';
-import 'package:loanswift/presentation/home/home_page.dart';
 import 'package:loanswift/theme/pallete.dart';
 
+import '../../../data/data.dart';
+import '../home/home_page.dart';
 import '../person/person_page.dart';
 
 class IndexPage extends StatefulWidget {

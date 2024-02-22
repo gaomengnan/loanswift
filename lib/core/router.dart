@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:loanswift/common/page_404.dart';
 
-import '../presentation/index/index_page.dart';
-import '../presentation/person/identity.dart';
+import '../features/presentation/index/index_page.dart';
+import '../features/presentation/person/identity.dart';
+import 'common/page_404.dart';
+
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {

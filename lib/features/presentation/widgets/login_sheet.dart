@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
-import 'package:loanswift/common/widgets/app_text.dart';
-import 'package:loanswift/generated/l10n.dart';
 import 'package:loanswift/theme/pallete.dart';
 
+import '../../../core/common/widgets/widgets.dart';
+import '../../../core/core.dart';
+import '../../../core/generated/l10n.dart';
 import '../../bloc/phone_sender_bloc.dart';
-import '../../constants/ui.dart';
 
 class LoginWidget extends StatefulWidget {
   const LoginWidget({

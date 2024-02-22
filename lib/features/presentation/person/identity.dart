@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:loanswift/constants/ui.dart';
-import 'package:loanswift/presentation/widgets/idcard_upload.dart';
 import 'package:loanswift/theme/pallete.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
-import '../../common/widgets/app_text.dart';
+import '../../../core/core.dart';
+import 'idcard_upload.dart';
+
 
 class Identity extends StatefulWidget {
   const Identity({super.key});
@@ -20,29 +20,29 @@ class _IdentityState extends State<Identity> {
   int currentStep = 0;
   @override
   Widget build(BuildContext context) {
-    final List<Step> steps = [
-      Step(
-        isActive: currentStep >= 0,
-        title: const Text(''),
-        content: const IDCardUpload(),
-      ),
-      Step(
-        isActive: currentStep >= 1,
-        title: const Text(''),
-        content: AppText(
-          text: '人脸采集',
-          textAlign: TextAlign.start,
-        ),
-      ),
-      Step(
-        isActive: currentStep >= 2,
-        title: const Text(''),
-        content: AppText(
-          text: '基础资料填写',
-          textAlign: TextAlign.start,
-        ),
-      ),
-    ];
+    // final List<Step> steps = [
+    //   Step(
+    //     isActive: currentStep >= 0,
+    //     title: const Text(''),
+    //     content: const IDCardUpload(),
+    //   ),
+    //   Step(
+    //     isActive: currentStep >= 1,
+    //     title: const Text(''),
+    //     content: AppText(
+    //       text: '人脸采集',
+    //       textAlign: TextAlign.start,
+    //     ),
+    //   ),
+    //   Step(
+    //     isActive: currentStep >= 2,
+    //     title: const Text(''),
+    //     content: AppText(
+    //       text: '基础资料填写',
+    //       textAlign: TextAlign.start,
+    //     ),
+    //   ),
+    // ];
     return Theme(
       data: Theme.of(context).copyWith(
         canvasColor: Pallete.backgroundColor,

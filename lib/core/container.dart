@@ -1,8 +1,8 @@
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../bloc/phone_sender_bloc.dart';
 import '../data/ticker.dart';
+import '../features/bloc/phone_sender_bloc.dart';
 
 final sl = GetIt.instance;
 

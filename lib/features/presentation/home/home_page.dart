@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:loanswift/common/widgets/app_text.dart';
-import 'package:loanswift/common/widgets/slide_cuts_painter.dart';
-import 'package:loanswift/constants/assets.dart';
-import 'package:loanswift/data/home_district.dart';
-import 'package:loanswift/generated/l10n.dart';
+import 'package:loanswift/data/data.dart';
 import 'package:loanswift/theme/pallete.dart';
 
-import '../../constants/ui.dart';
+import '../../../core/common/widgets/widgets.dart';
+import '../../../core/core.dart';
+import '../../../core/generated/l10n.dart';
 import '../person/identity.dart';
 
 class HomePage extends StatefulWidget {

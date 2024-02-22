@@ -59,6 +59,8 @@ dependencies:
   permission_handler: ^11.2.0
   image_picker: ^1.0.7
   step_progress_indicator: ^1.0.2
+  camera: ^0.10.5+9
+  flutter_spinkit: ^5.2.0
 
 dev_dependencies:
   flutter_test:
@@ -114,4 +116,7 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
 flutter_intl:
+  main_locale: zh
   enabled: true
+  arb_dir: lib/core/l10n
+  output_dir: lib/core/generated

@@ -123,14 +123,14 @@ class Utils {
     }
   }
 
-  void pickerImageFromGallery() async {
+  static void pickerImageFromGallery() async {
     final ImagePicker picker = ImagePicker();
     await picker.pickImage(
       source: ImageSource.gallery,
     );
   }
 
-  void pickerImageFromCamera() async {
+  static void pickerImageFromCamera() async {
     final ImagePicker picker = ImagePicker();
     await picker.pickImage(
       source: ImageSource.camera,
