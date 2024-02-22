@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
             ],
             supportedLocales: S.delegate.supportedLocales,
             locale: const Locale("zh"),
-            title: 'Loanswift',
+            title: "loan",
             theme: ThemeData(
               fontFamily: "Roboto",
               colorScheme: ColorScheme.fromSeed(

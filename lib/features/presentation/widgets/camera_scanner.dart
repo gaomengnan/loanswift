@@ -1,9 +1,10 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:loanswift/features/presentation/person/identity.dart';
 import 'package:loanswift/theme/pallete.dart';
 
 class CardScanner extends StatefulWidget {
@@ -25,13 +26,64 @@ class _CardScannerState extends State<CardScanner> {
     // initializeCamera();
   }
 
-  Future<void> initializeCamera() async {
+  Future<void> initializeCamera(BuildContext context) async {
+    // final bool granted = await Utils.checkCameraPermission();
+    // if(!granted) {
+    //
+    //   throw Exception("");
+    //
+    //
+    // }
     // 获取设备上可用的摄像头列表
     List<CameraDescription> cameras = await availableCameras();
     // 使用第一个摄像头
-    _controller = CameraController(cameras[0], ResolutionPreset.medium);
+    _controller = CameraController(
+      cameras[0],
+      ResolutionPreset.medium,
+    );
     // 初始化controller
-    await _controller.initialize();
+    try {
+      await _controller.initialize();
+    } on CameraException catch (e) {
+      if (context.mounted) {
+        switch (e.code) {
+          case "CameraAccessDenied":
+            showDialog(
+              barrierDismissible: false,
+              context: context,
+              builder: (_) {
+                return AlertDialog(
+                  elevation: 0,
+                  title: const Text("授权错误"),
+                  content: const Text(
+                      "权限获取失败"),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Identity(),
+                          ),
+                        );
+                      },
+                      child: const Text("OK"),
+                    )
+                  ],
+                );
+              },
+            );
+            break;
+          default:
+        }
+
+        // Utils.showInfo(
+        //   context,
+        //   "error: $e, code: ${e.code}",
+        // );
+      }
+      rethrow;
+    }
   }
 
   @override
@@ -66,138 +118,144 @@ class _CardScannerState extends State<CardScanner> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: initializeCamera(),
+      future: initializeCamera(context),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          // 如果初始化完成，显示相机预览
-          return Scaffold(
-            body: Stack(
-              children: [
-                Positioned.fill(
-                  bottom: 100.h,
-                  child: AspectRatio(
-                    aspectRatio: _controller.value.aspectRatio,
-                    child: CameraPreview(
-                      _controller,
-                    ),
-                  ),
-                ),
-                Center(
-                  child: CustomPaint(
-                    size: const Size(double.infinity, double.infinity),
-                    painter: HolePainter(),
-                  ),
-                ),
-                Positioned(
-                  left: 10.w,
-                  // top: 20,
-                  child: SafeArea(
-                    child: GestureDetector(
-                      onTap: (){
-                        Navigator.of(context).pop();
-                      },
-                      child: const Icon(
-                        Icons.arrow_back,
+          if (snapshot.hasError) {
+            // Navigator.of(context).pop();
+            return Container();
+          } else {
+            return Scaffold(
+              body: Stack(
+                children: [
+                  Positioned.fill(
+                    bottom: 100.h,
+                    child: AspectRatio(
+                      aspectRatio: _controller.value.aspectRatio,
+                      child: CameraPreview(
+                        _controller,
                       ),
                     ),
                   ),
-                ),
-                Positioned(
-                  bottom: 0,
-                  right: 0,
-                  left: 0,
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      color: Colors.black,
-                    ),
-                    height: 100.h,
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            // crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Container(
-                                height: 40.h,
-                                width: 80.w,
-                                decoration: BoxDecoration(
-                                  color: Colors.transparent,
-                                  shape: BoxShape.rectangle,
-                                  borderRadius: BorderRadius.circular(
-                                    5.r,
-                                  ),
-                                ),
-                                child: _imageFile == null
-                                    ? Container() // 预览图片容器
-                                    : Image.file(
-                                        _imageFile!,
-                                        fit: BoxFit.fitHeight,
-                                      ), // 显示拍照结果
-                              ),
-                              GestureDetector(
-                                onTap: () async {
-                                  try {
-                                    // showSpinner();
-                                    // await initializeCamera();
-
-                                    // 拍照
-                                    XFile file =
-                                        await _controller.takePicture();
-
-                                    // 显示预览
-                                    setState(() {
-                                      _imageFile = File(file.path);
-                                      // hideSpinner();
-                                    });
-                                  } catch (_) {}
-                                },
-                                child: Container(
-                                  // margin: EdgeInsets.only(left: MediaQuery.of(context).size.width / 2 - 140 - 8 - 7),
-                                  alignment: Alignment.center,
-                                  height: 70.h,
-                                  width: 70.w,
-                                  decoration: BoxDecoration(
-                                    color: Colors.transparent,
-                                    shape: BoxShape.circle,
-                                    border: Border.all(
-                                      width: 4,
-                                      color: Pallete.whiteColor,
-                                      style: BorderStyle.solid,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 40.h,
-                                width: 80.w,
-                                child: const Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Icon(
-                                      Icons.close,
-                                      color: Colors.red,
-                                    ),
-                                    Icon(
-                                      Icons.check,
-                                      color: Colors.green,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                  Center(
+                    child: CustomPaint(
+                      size: const Size(double.infinity, double.infinity),
+                      painter: HolePainter(),
                     ),
                   ),
-                ),
-              ],
-            ),
-          );
+                  Positioned(
+                    left: 10.w,
+                    // top: 20,
+                    child: SafeArea(
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: const Icon(
+                          Icons.arrow_back,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    right: 0,
+                    left: 0,
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        color: Colors.black,
+                      ),
+                      height: 100.h,
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              // crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                  height: 40.h,
+                                  width: 80.w,
+                                  decoration: BoxDecoration(
+                                    color: Colors.transparent,
+                                    shape: BoxShape.rectangle,
+                                    borderRadius: BorderRadius.circular(
+                                      5.r,
+                                    ),
+                                  ),
+                                  child: _imageFile == null
+                                      ? Container() // 预览图片容器
+                                      : Image.file(
+                                          _imageFile!,
+                                          fit: BoxFit.fitHeight,
+                                        ), // 显示拍照结果
+                                ),
+                                GestureDetector(
+                                  onTap: () async {
+                                    try {
+                                      // showSpinner();
+                                      // await initializeCamera();
+
+                                      // 拍照
+                                      XFile file =
+                                          await _controller.takePicture();
+
+                                      // 显示预览
+                                      setState(() {
+                                        _imageFile = File(file.path);
+                                        // hideSpinner();
+                                      });
+                                    } catch (_) {}
+                                  },
+                                  child: Container(
+                                    // margin: EdgeInsets.only(left: MediaQuery.of(context).size.width / 2 - 140 - 8 - 7),
+                                    alignment: Alignment.center,
+                                    height: 70.h,
+                                    width: 70.w,
+                                    decoration: BoxDecoration(
+                                      color: Colors.transparent,
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                        width: 4,
+                                        color: Pallete.whiteColor,
+                                        style: BorderStyle.solid,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 40.h,
+                                  width: 80.w,
+                                  child: const Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Icon(
+                                        Icons.close,
+                                        color: Colors.red,
+                                      ),
+                                      Icon(
+                                        Icons.check,
+                                        color: Colors.green,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }
+          // 如果初始化完成，显示相机预览
         } else {
           // 如果尚未完成，显示加载指示器
           return const Center(

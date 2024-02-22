@@ -50,6 +50,16 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `急用钱`
+  String get app_name {
+    return Intl.message(
+      '急用钱',
+      name: 'app_name',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `zh`
   String get lang {
     return Intl.message(

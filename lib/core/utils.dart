@@ -8,7 +8,7 @@ import 'package:permission_handler/permission_handler.dart';
 
 class Utils {
   Utils._();
-  void showSnakebar(BuildContext context, String content) {
+  static void showSnakebar(BuildContext context, String content) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         backgroundColor: Colors.transparent,
@@ -68,7 +68,7 @@ class Utils {
     );
   }
 
-  void showInfo(BuildContext context, String message) {
+  static void showInfo(BuildContext context, String message) {
     Flushbar(
       icon: Icon(
         Icons.info_outline,
@@ -121,6 +121,11 @@ class Utils {
         default:
       }
     }
+  }
+
+  static Future<bool> checkCameraPermission() async {
+    PermissionStatus cameraStatus = await  Permission.camera.status;
+    return cameraStatus == PermissionStatus.granted;
   }
 
   static void pickerImageFromGallery() async {

@@ -23,6 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "agree_privacy": MessageLookupByLibrary.simpleMessage("同意"),
+        "app_name": MessageLookupByLibrary.simpleMessage("急用钱"),
         "camera": MessageLookupByLibrary.simpleMessage("相机"),
         "contact": MessageLookupByLibrary.simpleMessage("联系人列表"),
         "enter_verification_code":
