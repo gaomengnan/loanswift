@@ -194,7 +194,11 @@ class CardPart extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {},
-                  child: AppText(text: "下一步"),
+                  child: AppText(
+                    text: "下一步",
+                    size: 18.sp,
+                    color: Pallete.whiteColor,
+                  ),
                 ),
               ),
             ),

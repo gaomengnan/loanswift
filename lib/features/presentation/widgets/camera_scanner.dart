@@ -4,8 +4,11 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:loanswift/features/presentation/person/identity.dart';
+import 'package:loanswift/core/core.dart';
 import 'package:loanswift/theme/pallete.dart';
+import 'package:permission_handler/permission_handler.dart';
+
+import '../../../core/common/widgets/widgets.dart';
 
 class CardScanner extends StatefulWidget {
   const CardScanner({super.key});
@@ -48,31 +51,31 @@ class _CardScannerState extends State<CardScanner> {
       if (context.mounted) {
         switch (e.code) {
           case "CameraAccessDenied":
-            showDialog(
-              barrierDismissible: false,
-              context: context,
-              builder: (_) {
-                return AlertDialog(
-                  elevation: 0,
-                  title: const Text("授权错误"),
-                  content: const Text(
-                      "权限获取失败"),
-                  actions: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const Identity(),
-                          ),
-                        );
-                      },
-                      child: const Text("OK"),
-                    )
-                  ],
-                );
-              },
-            );
+            // showDialog(
+            //   barrierDismissible: false,
+            //   context: context,
+            //   builder: (_) {
+            //     return AlertDialog(
+            //       elevation: 0,
+            //       title: const Text("授权错误"),
+            //       content: const Text(
+            //           "权限获取失败"),
+            //       actions: [
+            //         TextButton(
+            //           onPressed: () {
+            //             Navigator.pushReplacement(
+            //               context,
+            //               MaterialPageRoute(
+            //                 builder: (context) => const Identity(),
+            //               ),
+            //             );
+            //           },
+            //           child: const Text("OK"),
+            //         )
+            //       ],
+            //     );
+            //   },
+            // );
             break;
           default:
         }
@@ -123,7 +126,56 @@ class _CardScannerState extends State<CardScanner> {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasError) {
             // Navigator.of(context).pop();
-            return Container();
+            return Scaffold(
+              appBar: AppBar(
+                leading: IconButton(
+                  icon: const Icon(
+                    Icons.arrow_back,
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ),
+              body: Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.sentiment_very_dissatisfied,
+                          color: Colors.red,
+                        ),
+                        UI.kWidth10(),
+                        Text(
+                          "相机权限获取失败",
+                          style: TextStyle(
+                            color: Colors.red,
+                            fontSize: 20.sp,
+                          ),
+                        ),
+                      ],
+                    ),
+                    UI.kHeight10(),
+                    OutlinedButton(
+                      onPressed: () async {
+                        await openAppSettings();
+                      },
+                      child: AppText(
+                        text: "点击授权",
+                        color: Pallete.blackColor,
+                        size: 15.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
           } else {
             return Scaffold(
               body: Stack(

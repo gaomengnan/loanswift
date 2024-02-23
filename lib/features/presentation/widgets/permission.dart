@@ -12,6 +12,7 @@ void showPermissionDialog(context) {
       context: context,
       builder: (context) {
         return AlertDialog(
+          elevation: 0,
           backgroundColor: Pallete.whiteColor,
           scrollable: true,
           title: Text(
