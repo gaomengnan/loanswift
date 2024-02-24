@@ -6,8 +6,6 @@ import '../../features/presentation/widgets/login_sheet.dart';
 import '../../features/presentation/widgets/verification_code.dart';
 import '../common/widgets/widgets.dart';
 
-
-
 class UI {
   static AppBar appBar() {
     return AppBar(
@@ -26,17 +24,25 @@ class UI {
       isDismissible: false,
       context: context,
       builder: (_) {
-        return Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(5.r),
-              topRight: Radius.circular(5.r),
+        return Scaffold(
+          resizeToAvoidBottomInset: true,
+          body: SingleChildScrollView(
+            child: Container(
+              padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(5.r),
+                  topRight: Radius.circular(5.r),
+                ),
+                gradient: Pallete.bottomSheetGradient,
+              ),
+              // width: double.infinity,
+              // height: double.infinity,
+              child: const LoginWidget(),
             ),
-            gradient: Pallete.bottomSheetGradient,
           ),
-          width: double.infinity,
-          height: double.infinity,
-          child: const LoginWidget(),
         );
       },
     );

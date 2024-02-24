@@ -6,7 +6,6 @@ import 'package:step_progress_indicator/step_progress_indicator.dart';
 import '../../../core/core.dart';
 import 'idcard_upload.dart';
 
-
 class Identity extends StatefulWidget {
   const Identity({super.key});
 
@@ -61,10 +60,12 @@ class _IdentityState extends State<Identity> {
           title: const Text(
             "实名认证",
           ),
-        ),
-        body: Column(
-          children: [
-            StepProgressIndicator(
+
+          bottom: PreferredSize(
+            preferredSize: Size.fromHeight(
+              10.h,
+            ),
+            child: StepProgressIndicator(
               size: 10,
               totalSteps: 4,
               currentStep: 1,
@@ -72,15 +73,29 @@ class _IdentityState extends State<Identity> {
               roundedEdges: const Radius.circular(10).r,
               unselectedColor: Pallete.greyColor,
             ),
-            UI.kHeight10(),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: 20.w,
-                vertical: 10.h,
+          ),
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              // StepProgressIndicator(
+              //   size: 10,
+              //   totalSteps: 4,
+              //   currentStep: 1,
+              //   selectedColor: Pallete.primaryColor,
+              //   roundedEdges: const Radius.circular(10).r,
+              //   unselectedColor: Pallete.greyColor,
+              // ),
+              UI.kHeight10(),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 20.w,
+                  vertical: 10.h,
+                ),
+                child: const IDCardUpload(),
               ),
-              child: const IDCardUpload(),
-            ),
-          ],
+            ],
+          ),
         ),
         // body: Stepper(
         //
