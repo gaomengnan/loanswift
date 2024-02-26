@@ -28,9 +28,6 @@ class UI {
           resizeToAvoidBottomInset: true,
           body: SingleChildScrollView(
             child: Container(
-              padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).viewInsets.bottom,
-              ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(5.r),
@@ -38,6 +35,7 @@ class UI {
                 ),
                 gradient: Pallete.bottomSheetGradient,
               ),
+              height: MediaQuery.of(context).size.height / 2,
               // width: double.infinity,
               // height: double.infinity,
               child: const LoginWidget(),

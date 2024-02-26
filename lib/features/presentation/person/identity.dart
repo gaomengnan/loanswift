@@ -19,29 +19,6 @@ class _IdentityState extends State<Identity> {
   int currentStep = 0;
   @override
   Widget build(BuildContext context) {
-    // final List<Step> steps = [
-    //   Step(
-    //     isActive: currentStep >= 0,
-    //     title: const Text(''),
-    //     content: const IDCardUpload(),
-    //   ),
-    //   Step(
-    //     isActive: currentStep >= 1,
-    //     title: const Text(''),
-    //     content: AppText(
-    //       text: '人脸采集',
-    //       textAlign: TextAlign.start,
-    //     ),
-    //   ),
-    //   Step(
-    //     isActive: currentStep >= 2,
-    //     title: const Text(''),
-    //     content: AppText(
-    //       text: '基础资料填写',
-    //       textAlign: TextAlign.start,
-    //     ),
-    //   ),
-    // ];
     return Theme(
       data: Theme.of(context).copyWith(
         canvasColor: Pallete.backgroundColor,
@@ -78,14 +55,6 @@ class _IdentityState extends State<Identity> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              // StepProgressIndicator(
-              //   size: 10,
-              //   totalSteps: 4,
-              //   currentStep: 1,
-              //   selectedColor: Pallete.primaryColor,
-              //   roundedEdges: const Radius.circular(10).r,
-              //   unselectedColor: Pallete.greyColor,
-              // ),
               UI.kHeight10(),
               Padding(
                 padding: EdgeInsets.symmetric(

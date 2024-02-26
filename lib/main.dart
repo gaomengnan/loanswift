@@ -13,7 +13,11 @@ import 'features/presentation/board/boarding_page.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initialize();
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp,],);
+  SystemChrome.setPreferredOrientations(
+    [
+      DeviceOrientation.portraitUp,
+    ],
+  );
   runApp(
     const MyApp(),
   );
