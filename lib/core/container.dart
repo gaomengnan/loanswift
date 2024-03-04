@@ -3,7 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../features/data/models/models.dart';
 import '../features/presentation/bloc/bloc.dart';
-
+import 'services/dio_client.dart';
 
 final sl = GetIt.instance;
 
@@ -13,6 +13,10 @@ Future<void> initialize() async {
     () => PhoneSenderBloc(
       ticker: sl(),
     ),
+  );
+
+  sl.registerLazySingleton(
+    () => DioClient(),
   );
 
   sl.registerLazySingleton(

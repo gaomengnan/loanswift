@@ -60,6 +60,7 @@ dependencies:
   step_progress_indicator: ^1.0.2
   camera: ^0.10.5+9
   flutter_spinkit: ^5.2.0
+  dio: ^5.4.1
 
 dev_dependencies:
   flutter_test:
