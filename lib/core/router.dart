@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:loanswift/features/presentation/auth/auth_page.dart';
 
 import '../features/presentation/index/index_page.dart';
 import '../features/presentation/person/identity.dart';
 import 'common/page_404.dart';
-
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
@@ -16,6 +16,12 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case IndexPage.routerName:
       return _pageBuilder(
         (_) => const IndexPage(),
+        settings: settings,
+      );
+
+    case AuthPage.routerName:
+      return _pageBuilder(
+        (_) => const AuthPage(),
         settings: settings,
       );
 

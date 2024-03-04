@@ -2,16 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:loanswift/features/presentation/bloc/bloc.dart';
 import 'package:loanswift/theme/pallete.dart';
 
 import '../../../core/common/widgets/widgets.dart';
 import '../../../core/core.dart';
 import '../../../core/generated/l10n.dart';
-import '../../bloc/bloc.dart';
 
 class LoginWidget extends StatefulWidget {
+  final String sourceName;
   const LoginWidget({
     super.key,
+    this.sourceName = "sheet",
   });
 
   static const routerName = "/verification_code";
@@ -54,15 +56,16 @@ class _LoginWidgetState extends State<LoginWidget> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               // Text("tesx"),
-              GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Icon(
-                  Icons.close,
-                  color: Pallete.primaryColor,
+              if (widget.sourceName == 'sheet')
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Icon(
+                    Icons.close,
+                    color: Pallete.primaryColor,
+                  ),
                 ),
-              ),
             ],
           ),
           // SizedBox(

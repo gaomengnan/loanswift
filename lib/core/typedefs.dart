@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:loanswift/core/core.dart';
+typedef ResultFuture<T> = Future<Either<Failure, T>>;
 
-typedef FutureEither<T> = Future<Either<Failure, T>>;
-typedef FutureEitherVoid = FutureEither<void>;
+typedef ResultVoid = ResultFuture<void>;

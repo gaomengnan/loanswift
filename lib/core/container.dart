@@ -1,8 +1,9 @@
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../data/models/ticker.dart';
-import '../features/bloc/bloc.dart';
+import '../features/data/models/models.dart';
+import '../features/presentation/bloc/bloc.dart';
+
 
 final sl = GetIt.instance;
 

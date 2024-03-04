@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:loanswift/data/entity/entity.dart';
 import 'package:loanswift/theme/pallete.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../../../core/generated/l10n.dart';
+import '../../domain/entity/entity.dart';
 
 
 void showPermissionDialog(context) {
