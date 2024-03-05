@@ -10,9 +10,13 @@ class PersonPage extends StatefulWidget {
 class _PersonPageState extends State<PersonPage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: Text("Person"),
+        child: OutlinedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/auth');
+            },
+            child: const Text("登录/注册")),
       ),
     );
   }

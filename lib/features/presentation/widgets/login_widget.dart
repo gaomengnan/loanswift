@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:loanswift/features/presentation/bloc/auth/auth_bloc.dart';
 import 'package:loanswift/features/presentation/bloc/bloc.dart';
 import 'package:loanswift/theme/pallete.dart';
 
@@ -28,17 +29,22 @@ class _LoginWidgetState extends State<LoginWidget> {
   final List<String> countries = <String>[S.current.phone_code];
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController controller = TextEditingController();
+
+  late FocusNode focusNode;
+
   @override
   void initState() {
     super.initState();
     initialCountry = S.current.phone_code.toUpperCase();
     number = PhoneNumber(isoCode: initialCountry);
+    focusNode = FocusNode();
   }
 
   @override
   void dispose() {
     super.dispose();
     controller.dispose();
+    focusNode.dispose();
   }
 
   @override
@@ -89,11 +95,15 @@ class _LoginWidgetState extends State<LoginWidget> {
             countries: countries,
             controller: controller,
             number: number,
+            focusNode: focusNode,
           ),
+
 
           UI.kHeight20(),
 
-          BuildBottomButton(formKey: formKey),
+          BuildBottomButton(
+            formKey: formKey,
+          ),
           // 协议
         ],
       ),
@@ -108,18 +118,21 @@ class BuildForm extends StatelessWidget {
     required this.countries,
     required this.controller,
     required this.number,
+    required this.focusNode,
   });
 
   final GlobalKey<FormState> formKey;
   final List<String> countries;
   final TextEditingController controller;
   final PhoneNumber number;
+  final FocusNode focusNode;
 
   @override
   Widget build(BuildContext context) {
     return Form(
       key: formKey,
       child: InternationalPhoneNumberInput(
+        focusNode: focusNode,
         autoFocus: false,
         errorMessage: S.current.errorPhone,
         countries: countries,
@@ -152,7 +165,17 @@ class BuildForm extends StatelessWidget {
           ),
         )),
         onFieldSubmitted: (val) {
-          formKey.currentState?.validate();
+          final validator = formKey.currentState?.validate() ?? false;
+          if (validator) {
+            // 解除按钮禁用状态
+            context.read<AuthBloc>().add(
+                  EnabledButtonStateEvent(),
+                );
+          } else {
+            context.read<AuthBloc>().add(
+                  DisabledButtonStateEvent(),
+                );
+          }
           // showInfo(context, "tesxt");
         },
         onInputChanged: (PhoneNumber val) {
@@ -168,7 +191,7 @@ class BuildForm extends StatelessWidget {
                   val.phoneNumber ?? "",
                 ),
               );
-
+      
           Navigator.of(context).pop();
           UI.showVerifyCodeSheet(
             context,
@@ -197,47 +220,66 @@ class BuildBottomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
+    final buttonStateDisabled =
+        context.watch<AuthBloc>().state.buttonState.isForbidden;
+
+    final Color btnColor = buttonStateDisabled
+        ? Pallete.greyColor.withOpacity(0.2)
+        : Pallete.whiteColor; // 设置按钮背景颜色
+    final Color textColor =
+        buttonStateDisabled ? Pallete.greyColor : Pallete.primaryColor;
+
+    return Column(
       children: [
-        ElevatedButton(
-          onPressed: () async {
-            // formKey.currentState?.save();
-            // print(number.phoneNumber);
-            final validator = formKey.currentState?.validate() ?? false;
-            if (validator) {
-              formKey.currentState?.save();
-            }
-          },
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Pallete.whiteColor, // 设置按钮背景颜色
-          ).copyWith(
-            foregroundColor: MaterialStateProperty.all<Color>(
-              Pallete.primaryColor,
-            ), // 设置字体颜色
-          ),
-          child: AppText(
-            text: S.current.jindengluzhuce,
-            fontWeight: FontWeight.bold,
-            color: Pallete.primaryColor,
-            size: 14.sp,
-          ),
-        ),
-        ElevatedButton(
-          onPressed: () {},
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Pallete.primaryColor, // 设置按钮背景颜色
-          ).copyWith(
-            foregroundColor: MaterialStateProperty.all<Color>(
-              Pallete.whiteColor,
-            ), // 设置字体颜色
-          ),
-          child: AppText(
-            text: S.current.lijishengqing,
-            fontWeight: FontWeight.bold,
-            color: Pallete.whiteColor,
-            size: 14.sp,
-          ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            OutlinedButton(
+              onPressed: () async {
+                // formKey.currentState?.save();
+                // print(number.phoneNumber);
+                final validator = formKey.currentState?.validate() ?? false;
+                if (validator) {
+                  formKey.currentState?.save();
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                side: const BorderSide(
+                  width: 0,
+                ),
+                backgroundColor: btnColor, // 设置按钮背景颜色
+              ).copyWith(
+                foregroundColor: MaterialStateProperty.all<Color>(
+                  Pallete.primaryColor,
+                ), // 设置字体颜色
+              ),
+              child: AppText(
+                text: S.current.jindengluzhuce,
+                fontWeight: FontWeight.bold,
+                color: textColor,
+                size: 13.sp,
+              ),
+            ),
+            OutlinedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                side: const BorderSide(
+                  width: 0,
+                ),
+                backgroundColor: btnColor,
+              ).copyWith(
+                foregroundColor: MaterialStateProperty.all<Color>(
+                  Pallete.primaryColor,
+                ), // 设置字体颜色
+              ),
+              child: AppText(
+                text: S.current.lijishengqing,
+                fontWeight: FontWeight.bold,
+                color: textColor,
+                size: 13.sp,
+              ),
+            ),
+          ],
         ),
       ],
     );

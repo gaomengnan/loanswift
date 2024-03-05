@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:loanswift/features/presentation/bloc/auth/auth_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../features/data/models/models.dart';
@@ -13,6 +14,9 @@ Future<void> initialize() async {
     () => PhoneSenderBloc(
       ticker: sl(),
     ),
+  );
+  sl.registerFactory(
+    () => AuthBloc(),
   );
 
   sl.registerLazySingleton(

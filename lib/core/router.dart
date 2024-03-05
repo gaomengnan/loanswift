@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loanswift/features/presentation/auth/auth_page.dart';
+import 'package:loanswift/features/presentation/bloc/auth/auth_bloc.dart';
 
 import '../features/presentation/index/index_page.dart';
 import '../features/presentation/person/identity.dart';
 import 'common/page_404.dart';
+import 'core.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
@@ -21,7 +24,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
 
     case AuthPage.routerName:
       return _pageBuilder(
-        (_) => const AuthPage(),
+        (_) => BlocProvider(
+          create: (_) => sl<AuthBloc>(),
+          child: const AuthPage(),
+        ),
         settings: settings,
       );
 

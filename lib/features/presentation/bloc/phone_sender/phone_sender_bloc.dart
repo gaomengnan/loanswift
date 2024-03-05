@@ -5,9 +5,6 @@ import 'package:equatable/equatable.dart';
 
 import '../../../data/models/models.dart';
 
-
-
-
 part 'phone_sender_event.dart';
 part 'phone_sender_state.dart';
 
@@ -23,6 +20,7 @@ class PhoneSenderBloc extends Bloc<PhoneSenderEvent, PhoneSenderState> {
           const PhoneSenderInitial(
             _duration,
             "",
+            CountdownState.idle,
           ),
         ) {
     on<PhoneSenderStarted>(_onStarted);
@@ -45,6 +43,7 @@ class PhoneSenderBloc extends Bloc<PhoneSenderEvent, PhoneSenderState> {
     emit(PhoneSenderRunInProgress(
       event.duration,
       event.phone,
+      CountdownState.running,
     ));
 
     _tickerSubscription = _ticker.tick(ticks: event.duration).listen(
@@ -68,13 +67,14 @@ class PhoneSenderBloc extends Bloc<PhoneSenderEvent, PhoneSenderState> {
   }
 
   void _onTicked(PhoneSenderTicked event, Emitter<PhoneSenderState> emit) {
-    if (event.duration <= 0 ) {
+    if (event.duration <= 0) {
       _tickerSubscription?.cancel();
     }
     emit(event.duration > 0
         ? PhoneSenderRunInProgress(
             event.duration,
             event.phone,
+            CountdownState.running,
           )
         : PhoneSenderRunComplete(
             state.phone,
@@ -86,6 +86,7 @@ class PhoneSenderBloc extends Bloc<PhoneSenderEvent, PhoneSenderState> {
     emit(PhoneSenderRunPause(
       state.duration,
       state.phone,
+      CountdownState.idle,
     ));
   }
 
@@ -94,6 +95,7 @@ class PhoneSenderBloc extends Bloc<PhoneSenderEvent, PhoneSenderState> {
     emit(PhoneSenderRunInProgress(
       event.duration,
       state.phone,
+      CountdownState.running,
     ));
   }
 
@@ -103,6 +105,7 @@ class PhoneSenderBloc extends Bloc<PhoneSenderEvent, PhoneSenderState> {
       const PhoneSenderInitial(
         _duration,
         "",
+        CountdownState.idle,
       ),
     );
   }

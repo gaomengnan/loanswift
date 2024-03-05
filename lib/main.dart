@@ -5,6 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/features/presentation/auth/auth_page.dart';
+import 'package:loanswift/features/presentation/person/person_page.dart';
 import 'package:loanswift/theme/pallete.dart';
 
 import 'core/generated/l10n.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
         designSize: const Size(360, 690),
         minTextAdapt: true,
         splitScreenMode: true,
-        child: const AuthPage(),
+        child: const PersonPage(),
         builder: (_, child) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
