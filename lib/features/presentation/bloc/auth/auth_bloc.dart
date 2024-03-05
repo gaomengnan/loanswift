@@ -15,14 +15,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   // 解禁按钮状态
   void enabledButton(AuthEvent event, Emitter<AuthState> emit) {
-    print("emit enabled");
     emit(state.copyWith(
       ButtonState.enabled,
     ));
   }
 
   void disabledButton(AuthEvent event, Emitter<AuthState> emit) {
-    print("emit disabled");
     emit(const AuthState(
       buttonState: ButtonState.forbidden,
     ));

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/theme/theme.dart';
 
+import '../../features/presentation/bloc/auth/auth_bloc.dart';
 import '../../features/presentation/widgets/login_widget.dart';
 import '../../features/presentation/widgets/verification_code.dart';
 import '../common/widgets/widgets.dart';
+import '../core.dart';
 
 class UI {
   static AppBar appBar() {
@@ -21,24 +24,29 @@ class UI {
 
   static void showSignInAndUpBootomSheet(context) async {
     await showModalBottomSheet(
+      useSafeArea: true,
+      isScrollControlled: true,
       isDismissible: false,
       context: context,
       builder: (_) {
         return Scaffold(
           resizeToAvoidBottomInset: true,
           body: SingleChildScrollView(
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(5.r),
-                  topRight: Radius.circular(5.r),
+            child: BlocProvider(
+              create: (_) => sl<AuthBloc>(),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(5.r),
+                    topRight: Radius.circular(5.r),
+                  ),
+                  gradient: Pallete.bottomSheetGradient,
                 ),
-                gradient: Pallete.bottomSheetGradient,
+                // height: 500.h,
+                // width: double.infinity,
+                // height: double.infinity,
+                child: const LoginWidget(),
               ),
-              height: MediaQuery.of(context).size.height / 2,
-              // width: double.infinity,
-              // height: double.infinity,
-              child: const LoginWidget(),
             ),
           ),
         );
@@ -50,7 +58,8 @@ class UI {
     BuildContext context,
   ) async {
     await showModalBottomSheet(
-      // isScrollControlled: true,
+      useSafeArea: true,
+      isScrollControlled: true,
       isDismissible: false,
       context: context,
       builder: (_) {

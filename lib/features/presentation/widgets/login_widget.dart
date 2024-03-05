@@ -98,7 +98,6 @@ class _LoginWidgetState extends State<LoginWidget> {
             focusNode: focusNode,
           ),
 
-
           UI.kHeight20(),
 
           BuildBottomButton(
@@ -138,6 +137,14 @@ class BuildForm extends StatelessWidget {
         countries: countries,
         textFieldController: controller,
         inputDecoration: InputDecoration(
+          suffix: BlocBuilder<PhoneSenderBloc, PhoneSenderState>(
+            builder: (context, state) {
+              if (state.countdownState == CountdownState.running) {
+                return Text("${state.duration}(s)");
+              }
+              return const SizedBox();
+            },
+          ),
           labelText: S.current.shurushoujihao,
           labelStyle: const TextStyle(
             color: Pallete.greyColor,
@@ -165,6 +172,11 @@ class BuildForm extends StatelessWidget {
           ),
         )),
         onFieldSubmitted: (val) {
+          final countdownState =
+              context.read<PhoneSenderBloc>().state.countdownState;
+          if (countdownState == CountdownState.running) {
+            return;
+          }
           final validator = formKey.currentState?.validate() ?? false;
           if (validator) {
             // 解除按钮禁用状态
@@ -191,7 +203,7 @@ class BuildForm extends StatelessWidget {
                   val.phoneNumber ?? "",
                 ),
               );
-      
+
           Navigator.of(context).pop();
           UI.showVerifyCodeSheet(
             context,
@@ -220,14 +232,14 @@ class BuildBottomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final buttonStateDisabled =
+    final isButnDisabled =
         context.watch<AuthBloc>().state.buttonState.isForbidden;
 
-    final Color btnColor = buttonStateDisabled
+    final Color btnColor = isButnDisabled
         ? Pallete.greyColor.withOpacity(0.2)
         : Pallete.whiteColor; // 设置按钮背景颜色
     final Color textColor =
-        buttonStateDisabled ? Pallete.greyColor : Pallete.primaryColor;
+        isButnDisabled ? Pallete.greyColor : Pallete.primaryColor;
 
     return Column(
       children: [
@@ -239,7 +251,7 @@ class BuildBottomButton extends StatelessWidget {
                 // formKey.currentState?.save();
                 // print(number.phoneNumber);
                 final validator = formKey.currentState?.validate() ?? false;
-                if (validator) {
+                if (validator && !isButnDisabled) {
                   formKey.currentState?.save();
                 }
               },
@@ -261,7 +273,11 @@ class BuildBottomButton extends StatelessWidget {
               ),
             ),
             OutlinedButton(
-              onPressed: () {},
+              onPressed: () {
+                if (isButnDisabled) {
+                  return;
+                }
+              },
               style: ElevatedButton.styleFrom(
                 side: const BorderSide(
                   width: 0,
