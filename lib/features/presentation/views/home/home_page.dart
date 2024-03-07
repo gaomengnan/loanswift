@@ -3,7 +3,6 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/common/widgets/widgets.dart';
 import 'package:loanswift/core/core.dart';
-import 'package:loanswift/core/generated/l10n.dart';
 import 'package:loanswift/theme/pallete.dart';
 
 import '../person/identity.dart';

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:loanswift/core/generated/l10n.dart';
 import 'package:loanswift/core/utils.dart';
 
 import '../../../../core/common/widgets/widgets.dart';

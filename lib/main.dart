@@ -7,7 +7,6 @@ import 'package:loanswift/core/core.dart';
 import 'package:loanswift/features/presentation/views/board/boarding_page.dart';
 import 'package:loanswift/theme/pallete.dart';
 
-import 'core/generated/l10n.dart';
 import 'features/presentation/bloc/bloc.dart';
 
 Future<void> main() async {
