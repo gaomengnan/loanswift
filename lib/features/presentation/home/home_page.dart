@@ -19,9 +19,9 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      UI.showSignInAndUpBootomSheet(context);
-    });
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   UI.showSignInAndUpBootomSheet(context);
+    // });
   }
 
   @override
@@ -473,17 +473,17 @@ class BuildSliverAppBar extends StatelessWidget {
           ),
         ),
       ),
-      leading: Row(
-        children: [
-          UI.kWidth20(),
-          const CircleAvatar(
-            backgroundImage: AssetImage(
-              Assets.userAvatar,
-            ),
-            // backgroundColor: Pallete.redColor,
-          ),
-        ],
-      ),
+      // leading: Row(
+      //   children: [
+      //     UI.kWidth20(),
+      //     const CircleAvatar(
+      //       backgroundImage: AssetImage(
+      //         Assets.userAvatar,
+      //       ),
+      //       // backgroundColor: Pallete.redColor,
+      //     ),
+      //   ],
+      // ),
     );
   }
 }

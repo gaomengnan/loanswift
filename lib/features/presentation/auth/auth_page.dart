@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/features/presentation/widgets/login_widget.dart';
+import 'package:loanswift/theme/theme.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
@@ -15,6 +16,7 @@ class _AuthPageState extends State<AuthPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Pallete.primaryColor,
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back,
