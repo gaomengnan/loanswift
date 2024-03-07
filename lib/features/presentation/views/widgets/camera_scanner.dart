@@ -8,7 +8,8 @@ import 'package:loanswift/core/core.dart';
 import 'package:loanswift/theme/pallete.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import '../../../core/common/widgets/widgets.dart';
+import '../../../../core/common/widgets/widgets.dart';
+
 
 class CardScanner extends StatefulWidget {
   const CardScanner({super.key});

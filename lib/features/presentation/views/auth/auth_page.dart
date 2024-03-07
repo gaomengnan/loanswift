@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:loanswift/features/presentation/widgets/login_widget.dart';
 import 'package:loanswift/theme/theme.dart';
+
+import '../widgets/login_widget.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});

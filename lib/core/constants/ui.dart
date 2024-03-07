@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:loanswift/features/presentation/views/widgets/login_widget.dart';
+import 'package:loanswift/features/presentation/views/widgets/verification_code.dart';
 import 'package:loanswift/theme/theme.dart';
 
 import '../../features/presentation/bloc/auth/auth_bloc.dart';
-import '../../features/presentation/widgets/login_widget.dart';
-import '../../features/presentation/widgets/verification_code.dart';
 import '../common/widgets/widgets.dart';
 import '../core.dart';
 
@@ -33,7 +33,10 @@ class UI {
           resizeToAvoidBottomInset: true,
           body: SingleChildScrollView(
             child: BlocProvider(
-              create: (_) => sl<AuthBloc>(),
+              create: (_) => sl<AuthBloc>()
+                ..add(
+                  LoadAuthTokenEvent(),
+                ),
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(

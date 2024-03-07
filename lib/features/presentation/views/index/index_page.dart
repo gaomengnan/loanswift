@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:loanswift/core/generated/l10n.dart';
 import 'package:loanswift/theme/pallete.dart';
 
-import '../../../core/generated/l10n.dart';
 import '../home/home_page.dart';
 import '../person/person_page.dart';
 
@@ -19,6 +19,7 @@ class IndexPage extends StatefulWidget {
 class _IndexPageState extends State<IndexPage> {
   List pages = [
     const HomePage(),
+    // const PersonPage(),
     const PersonPage(),
   ];
 

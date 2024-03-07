@@ -7,4 +7,6 @@ class AppContant {
   static const Duration receiveTimeout = Duration(
     milliseconds: 5000,
   );
+
+  static const String token = "<KEY>";
 }

@@ -10,4 +10,6 @@ abstract class AuthRepo {
   ResultFuture<void> achievePhoneCode({
     required String phone,
   });
+
+  String getAuthToken();
 }

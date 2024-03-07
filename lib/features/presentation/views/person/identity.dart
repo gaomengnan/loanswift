@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/theme/pallete.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
-import '../../../core/core.dart';
+import '../../../../core/core.dart';
 import 'idcard_upload.dart';
 
 class Identity extends StatefulWidget {

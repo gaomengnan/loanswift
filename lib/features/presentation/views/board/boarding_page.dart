@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:loanswift/core/constants/constants.dart';
 
-import '../../../core/core.dart';
 
 class BoardingPage extends StatefulWidget {
   const BoardingPage({super.key});
