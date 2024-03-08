@@ -20,7 +20,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   // 加载token
-
   void loadToken(AuthEvent event, Emitter<AuthState> emit) {
     final token = _authRepo.getAuthToken();
     final LoginState loginState;

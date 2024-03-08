@@ -8,12 +8,18 @@ class DioClient {
     receiveTimeout: AppContant.receiveTimeout,
   );
 
+  late Dio _dio;
+
   DioClient() {
     var dioInstance = Dio(options);
     dioInstance.interceptors.add(
       DioInterceptor(),
     );
+
+    _dio = dioInstance;
   }
+
+  Dio get dio => _dio;
 }
 
 class DioInterceptor extends Interceptor {

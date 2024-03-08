@@ -30,3 +30,12 @@ class ServerFailure extends Failure {
   ServerFailure.fromException(ServerException exception)
       : this(message: exception.message, statusCode: exception.statusCode);
 }
+
+class ConnectionFailure extends Failure {
+  // 直接给message 为 网络错误 和 statusCode 为 -1 初始化
+  const ConnectionFailure()
+      : super(
+          message: "网络连接异常",
+          statusCode: 0,
+        );
+}
