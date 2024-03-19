@@ -61,21 +61,17 @@ class MyApp extends StatelessWidget {
             title: "loan",
             theme: ThemeData(
               fontFamily: "Roboto",
+              scaffoldBackgroundColor: Pallete.backgroundColor,
               colorScheme: ColorScheme.fromSeed(
                 seedColor: Pallete.whiteColor,
               ),
-              // textTheme: GoogleFonts.robotoTextTheme(textTheme).copyWith(
-              //   bodyMedium: GoogleFonts.roboto(
-              //     textStyle: textTheme.bodyMedium,
-              //   ),
-              // ),
+              appBarTheme: const AppBarTheme(
+                backgroundColor: Pallete.backgroundColor,
+              ),
               useMaterial3: true,
             ),
             onGenerateRoute: generateRoute,
             home: child,
-            // home: const Center(
-            //   child: Text("test"),
-            // ),
           );
         },
       ),

@@ -2,22 +2,29 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:loanswift/core/failure.dart';
 
+import '../../../data/models/error.dart';
 import '../../../data/models/models.dart';
+import '../../../domain/repos/auth.dart';
 
 part 'phone_sender_event.dart';
 part 'phone_sender_state.dart';
 
 class PhoneSenderBloc extends Bloc<PhoneSenderEvent, PhoneSenderState> {
   final Ticker _ticker;
+  final AuthRepo _authRepo;
   static const _duration = 0;
 
   StreamSubscription<int>? _tickerSubscription;
 
-  PhoneSenderBloc({required Ticker ticker})
-      : _ticker = ticker,
+  PhoneSenderBloc({
+    required Ticker ticker,
+    required AuthRepo authRepo,
+  })  : _ticker = ticker,
+        _authRepo = authRepo,
         super(
-          const PhoneSenderInitial(
+          PhoneSenderInitial(
             _duration,
             "",
             CountdownState.idle,
@@ -37,23 +44,47 @@ class PhoneSenderBloc extends Bloc<PhoneSenderEvent, PhoneSenderState> {
     return super.close();
   }
 
-  void _onStarted(PhoneSenderStarted event, Emitter<PhoneSenderState> emit) {
-    _tickerSubscription?.cancel();
 
-    emit(PhoneSenderRunInProgress(
-      event.duration,
-      event.phone,
-      CountdownState.running,
-    ));
+  void _onStarted(
+    PhoneSenderStarted event,
+    Emitter<PhoneSenderState> emit,
+  ) async {
+    final res = await _authRepo.achievePhoneCode(
+      phone: event.phone,
+    );
+    res.fold(
+      (l) {
+        switch (l.runtimeType) {
+          case ConnectionFailure:
+            emit(
+              PhoneSenderErrorState("网络连接异常"),
+            );
+            break;
+          case ServerFailure:
+            emit(
+              PhoneSenderErrorState("服务请求错误"),
+            );
+            break;
+          case ApiFailure:
+            break;
+        }
+      },
+      (r) {
+        _tickerSubscription?.cancel();
 
-    _tickerSubscription = _ticker.tick(ticks: event.duration).listen(
-          (duration) => add(
-            PhoneSenderTicked(
-              duration,
-              event.phone,
-            ),
-          ),
-        );
+        emit(PhoneSenderRunInProgress(
+          event.duration,
+          event.phone,
+          CountdownState.running,
+        ));
+
+        _tickerSubscription = _ticker.tick(ticks: event.duration).listen(
+              (duration) => add(
+                PhoneSenderTicked(duration, event.phone),
+              ),
+            );
+      },
+    );
   }
 
   void _onReStarted(
@@ -102,7 +133,7 @@ class PhoneSenderBloc extends Bloc<PhoneSenderEvent, PhoneSenderState> {
   void _onReset(PhoneSenderReset event, Emitter<PhoneSenderState> emit) {
     _tickerSubscription?.cancel();
     emit(
-      const PhoneSenderInitial(
+      PhoneSenderInitial(
         _duration,
         "",
         CountdownState.idle,

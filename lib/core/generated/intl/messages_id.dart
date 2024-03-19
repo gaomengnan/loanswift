@@ -25,6 +25,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "agree_privacy": MessageLookupByLibrary.simpleMessage("Setuju"),
         "app_name": MessageLookupByLibrary.simpleMessage("Butuh uang"),
         "camera": MessageLookupByLibrary.simpleMessage("Kamera"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Batal"),
+        "click_to_access":
+            MessageLookupByLibrary.simpleMessage("Klik untuk mengakses"),
         "contact": MessageLookupByLibrary.simpleMessage("Daftar Kontak"),
         "enter_verification_code":
             MessageLookupByLibrary.simpleMessage("Masukkan Kode Verifikasi"),
@@ -62,16 +65,25 @@ class MessageLookup extends MessageLookupByLibrary {
         "permission_title": MessageLookupByLibrary.simpleMessage(
             "Untuk mempercepat proses pinjaman Anda, kami memerlukan izin-izin ini"),
         "person_button": MessageLookupByLibrary.simpleMessage("Saya"),
+        "personal_info":
+            MessageLookupByLibrary.simpleMessage("Informasi Pribadi"),
         "phone_code": MessageLookupByLibrary.simpleMessage("ID"),
+        "photo_permission_missing":
+            MessageLookupByLibrary.simpleMessage("Gagal mengakses izin kamera"),
         "privacy": MessageLookupByLibrary.simpleMessage("Kebijakan Privasi"),
         "quick_deposit": MessageLookupByLibrary.simpleMessage("Fast Transfer"),
         "read_privacy": MessageLookupByLibrary.simpleMessage("Baca"),
+        "real_authentication":
+            MessageLookupByLibrary.simpleMessage("Verifikasi nama asli"),
         "resend": MessageLookupByLibrary.simpleMessage("Kirim Ulang"),
         "retrieve_again":
             MessageLookupByLibrary.simpleMessage("Dapatkan Kembali"),
         "shurushoujihao": MessageLookupByLibrary.simpleMessage(
             "Masukkan nomor ponsel yang terverifikasi"),
         "sms": MessageLookupByLibrary.simpleMessage("SMS"),
+        "take_photo": MessageLookupByLibrary.simpleMessage("Ambil Foto"),
+        "take_photo_from_gallery":
+            MessageLookupByLibrary.simpleMessage("Pilih dari Galeri"),
         "title100": MessageLookupByLibrary.simpleMessage(
             "Setelah mendapatkan batas, hadiah dapat diperoleh."),
         "title200":

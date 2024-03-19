@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:loanswift/theme/theme.dart';
 
+import '../../../../theme/theme.dart';
 import '../widgets/login_widget.dart';
 
 class AuthPage extends StatefulWidget {
@@ -17,23 +16,19 @@ class _AuthPageState extends State<AuthPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Pallete.primaryColor,
+        backgroundColor: Pallete.backgroundColor,
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back,
+            color: Colors.grey,
           ),
           onPressed: () {
             Navigator.of(context).pop();
           },
         ),
       ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: 50.sp,
-        ),
-        child: const LoginWidget(
-          sourceName: "login",
-        ),
+      body: const LoginWidget(
+        sourceName: "login",
       ),
     );
   }

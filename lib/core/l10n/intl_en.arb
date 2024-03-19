@@ -49,6 +49,14 @@
   "exclusive":"Exclusive",
   "idcard": "ID Card Photo",
   "idcard_front": "ID Card Front Photo",
-  "idcard_reverse": "ID Card Reverse Photo"
+  "idcard_reverse": "ID Card Reverse Photo",
+  "personal_info": "Personal Information",
+  "login_register": "Sign In/Register",
+  "real_authentication": "Real Name Authentication",
+  "take_photo": "Take Photo",
+  "take_photo_from_gallery": "Choose from Gallery",
+  "cancel": "Cancel",
+  "photo_permission_missing": "Failed to access camera permission",
+  "click_to_access": "Click to access"
 }
 

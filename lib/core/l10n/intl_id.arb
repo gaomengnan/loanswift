@@ -48,5 +48,13 @@
   "exclusive":"Eksklusif",
   "idcard": "Foto Kartu Identitas",
   "idcard_front": "Foto Depan Kartu Identitas",
-  "idcard_reverse": "Foto Belakang Kartu Identitas"
+  "idcard_reverse": "Foto Belakang Kartu Identitas",
+  "personal_info": "Informasi Pribadi",
+  "logig_register": "Masuk/Daftar",
+  "real_authentication": "Verifikasi nama asli",
+  "take_photo": "Ambil Foto",
+  "take_photo_from_gallery": "Pilih dari Galeri",
+  "cancel": "Batal",
+  "photo_permission_missing": "Gagal mengakses izin kamera",
+  "click_to_access": "Klik untuk mengakses"
 }

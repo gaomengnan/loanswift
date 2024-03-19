@@ -34,8 +34,8 @@ class _IdentityState extends State<Identity> {
           // elevation: 1,
           backgroundColor: Pallete.backgroundColor,
 
-          title: const Text(
-            "实名认证",
+          title: Text(
+            S.current.real_authentication,
           ),
 
           bottom: PreferredSize(

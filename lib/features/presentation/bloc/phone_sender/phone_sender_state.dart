@@ -1,10 +1,14 @@
 part of 'phone_sender_bloc.dart';
+
 enum CountdownState {
   idle,
   running,
 }
 
 abstract class PhoneSenderState extends Equatable {
+  final CustomError error;
+  // final String error;
+
   final int duration;
 
   final String phone;
@@ -15,24 +19,30 @@ abstract class PhoneSenderState extends Equatable {
     this.duration,
     this.phone,
     this.countdownState,
+    this.error,
   );
-  @override
 
-  /// state instants compare each other by duration
-  List<Object> get props => [phone, duration, countdownState,];
+  @override
+  List<Object> get props => [
+        phone,
+        duration,
+        countdownState,
+        error,
+      ];
 }
 
 class PhoneSenderInitial extends PhoneSenderState {
-  const PhoneSenderInitial(duration, phone, countdownState)
+  PhoneSenderInitial(duration, phone, countdownState)
       : super(
           duration,
           phone,
           countdownState,
+          CustomError(error: ""),
         );
 }
 
 class PhoneSenderRunInProgress extends PhoneSenderState {
-  const PhoneSenderRunInProgress(
+  PhoneSenderRunInProgress(
     int duration,
     String phone,
     CountdownState countdownState,
@@ -40,11 +50,12 @@ class PhoneSenderRunInProgress extends PhoneSenderState {
           duration,
           phone,
           countdownState,
+          CustomError(error: ""),
         );
 }
 
 class PhoneSenderRunPause extends PhoneSenderState {
-  const PhoneSenderRunPause(
+  PhoneSenderRunPause(
     int duration,
     String phone,
     CountdownState countdownState,
@@ -52,16 +63,28 @@ class PhoneSenderRunPause extends PhoneSenderState {
           duration,
           phone,
           countdownState,
+          CustomError(error: "")
         );
 }
 
 class PhoneSenderRunComplete extends PhoneSenderState {
   /// at this state, PhoneSender's value is 0
-  const PhoneSenderRunComplete(
+  PhoneSenderRunComplete(
     String phone,
   ) : super(
           0,
           phone,
           CountdownState.idle,
+          CustomError(error: ""),
+        );
+}
+
+class PhoneSenderErrorState extends PhoneSenderState {
+  PhoneSenderErrorState(String error)
+      : super(
+          0,
+          "",
+          CountdownState.idle,
+          CustomError(error: error),
         );
 }

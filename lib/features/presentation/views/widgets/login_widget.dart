@@ -3,12 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:loanswift/core/generated/l10n.dart';
+import 'package:loanswift/core/utils.dart';
 import 'package:loanswift/features/presentation/bloc/bloc.dart';
 import 'package:loanswift/theme/pallete.dart';
 
 import '../../../../core/common/widgets/widgets.dart';
 import '../../../../core/constants/constants.dart';
-
 
 class LoginWidget extends StatefulWidget {
   final String sourceName;
@@ -128,94 +128,103 @@ class BuildForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: formKey,
-      child: InternationalPhoneNumberInput(
-        focusNode: focusNode,
-        autoFocus: false,
-        errorMessage: S.current.errorPhone,
-        countries: countries,
-        textFieldController: controller,
-        inputDecoration: InputDecoration(
-          suffix: BlocBuilder<PhoneSenderBloc, PhoneSenderState>(
-            builder: (context, state) {
-              if (state.countdownState == CountdownState.running) {
-                return Text("${state.duration}(s)");
-              }
-              return const SizedBox();
-            },
-          ),
-          labelText: S.current.shurushoujihao,
-          labelStyle: const TextStyle(
-            color: Pallete.greyColor,
-          ),
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.grey.withOpacity(0.3),
-            ),
-          ),
-          focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.grey.withOpacity(0.3),
-            ),
-          ),
-        ),
-        formatInput: false,
-        keyboardType: const TextInputType.numberWithOptions(
-          signed: true,
-          decimal: true,
-        ),
-        inputBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-          color: Colors.grey.withOpacity(
-            0.3,
-          ),
-        )),
-        onFieldSubmitted: (val) {
-          final countdownState =
-              context.read<PhoneSenderBloc>().state.countdownState;
-          if (countdownState == CountdownState.running) {
-            return;
-          }
-          final validator = formKey.currentState?.validate() ?? false;
-          if (validator) {
-            // 解除按钮禁用状态
-            context.read<AuthBloc>().add(
-                  EnabledButtonStateEvent(),
-                );
-          } else {
-            context.read<AuthBloc>().add(
-                  DisabledButtonStateEvent(),
-                );
-          }
-          // showInfo(context, "tesxt");
-        },
-        onInputChanged: (PhoneNumber val) {
-          // setState(() {
-          //   number = val;
-          // });
-        },
-        onInputValidated: (bool value) {},
-        onSaved: (PhoneNumber val) {
-          context.read<PhoneSenderBloc>().add(
-                PhoneSenderStarted(
-                  60,
-                  val.phoneNumber ?? "",
-                ),
-              );
-
-          Navigator.of(context).pop();
-          UI.showVerifyCodeSheet(
+    return BlocListener<PhoneSenderBloc, PhoneSenderState>(
+      listener: (context, state) {
+        if (state is PhoneSenderErrorState) {
+          Utils.showInfo(
             context,
+            state.error.error,
           );
-          // final ph = context.read<PhoneSenderBloc>().state.phone;
-          // print("state val${ph}");
-        },
-        initialValue: number,
-        // locale: Locale("id"),
-        selectorConfig: const SelectorConfig(
-          selectorType: PhoneInputSelectorType.DROPDOWN,
-          useBottomSheetSafeArea: true,
+        } else {
+          if (state.countdownState == CountdownState.running) {
+            UI.showVerifyCodeSheet(
+              context,
+            );
+          }
+        }
+      },
+      child: Form(
+        key: formKey,
+        child: InternationalPhoneNumberInput(
+          focusNode: focusNode,
+          autoFocus: false,
+          errorMessage: S.current.errorPhone,
+          countries: countries,
+          textFieldController: controller,
+          inputDecoration: InputDecoration(
+            suffix: BlocBuilder<PhoneSenderBloc, PhoneSenderState>(
+              builder: (context, state) {
+                if (state.countdownState == CountdownState.running) {
+                  return Text("${state.duration}(s)");
+                }
+                return const SizedBox();
+              },
+            ),
+            labelText: S.current.shurushoujihao,
+            labelStyle: const TextStyle(
+              color: Pallete.greyColor,
+            ),
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: Colors.grey.withOpacity(0.3),
+              ),
+            ),
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: Colors.grey.withOpacity(0.3),
+              ),
+            ),
+          ),
+          formatInput: false,
+          keyboardType: const TextInputType.numberWithOptions(
+            signed: true,
+            decimal: true,
+          ),
+          inputBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+            color: Colors.grey.withOpacity(
+              0.3,
+            ),
+          )),
+          onFieldSubmitted: (val) {
+            final countdownState =
+                context.read<PhoneSenderBloc>().state.countdownState;
+            if (countdownState == CountdownState.running) {
+              return;
+            }
+            final validator = formKey.currentState?.validate() ?? false;
+            if (validator) {
+              // 解除按钮禁用状态
+              context.read<AuthBloc>().add(
+                    EnabledButtonStateEvent(),
+                  );
+            } else {
+              context.read<AuthBloc>().add(
+                    DisabledButtonStateEvent(),
+                  );
+            }
+            // showInfo(context, "tesxt");
+          },
+          onInputChanged: (PhoneNumber val) {
+            // setState(() {
+            //   number = val;
+            // });
+          },
+          onInputValidated: (bool value) {},
+          onSaved: (PhoneNumber val) {
+            context.read<PhoneSenderBloc>().add(
+                  PhoneSenderStarted(
+                    60,
+                    val.phoneNumber ?? "",
+                  ),
+                );
+          },
+          initialValue: number,
+          // locale: Locale("id"),
+          selectorConfig: const SelectorConfig(
+            selectorType: PhoneInputSelectorType.DROPDOWN,
+            useBottomSheetSafeArea: true,
+          ),
         ),
       ),
     );
@@ -246,7 +255,7 @@ class BuildBottomButton extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            OutlinedButton(
+            ElevatedButton(
               onPressed: () async {
                 // formKey.currentState?.save();
                 // print(number.phoneNumber);
@@ -256,8 +265,12 @@ class BuildBottomButton extends StatelessWidget {
                 }
               },
               style: ElevatedButton.styleFrom(
-                side: const BorderSide(
-                  width: 0,
+                elevation: 0,
+                side: BorderSide(
+                  width: 1,
+                  color: Colors.black.withOpacity(
+                    0.1,
+                  ),
                 ),
                 backgroundColor: btnColor, // 设置按钮背景颜色
               ).copyWith(
@@ -272,15 +285,19 @@ class BuildBottomButton extends StatelessWidget {
                 size: 13.sp,
               ),
             ),
-            OutlinedButton(
+            ElevatedButton(
               onPressed: () {
                 if (isButnDisabled) {
                   return;
                 }
               },
               style: ElevatedButton.styleFrom(
-                side: const BorderSide(
-                  width: 0,
+                elevation: 0,
+                side: BorderSide(
+                  width: 1,
+                  color: Colors.black.withOpacity(
+                    0.1,
+                  ),
                 ),
                 backgroundColor: btnColor,
               ).copyWith(

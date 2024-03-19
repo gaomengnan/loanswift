@@ -28,6 +28,7 @@ Future<void> initialize() async {
   sl.registerFactory(
     () => PhoneSenderBloc(
       ticker: sl(),
+      authRepo: sl(),
     ),
   );
 

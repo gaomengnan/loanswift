@@ -25,6 +25,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "agree_privacy": MessageLookupByLibrary.simpleMessage("同意"),
         "app_name": MessageLookupByLibrary.simpleMessage("急用钱"),
         "camera": MessageLookupByLibrary.simpleMessage("相机"),
+        "cancel": MessageLookupByLibrary.simpleMessage("取消"),
+        "click_to_access": MessageLookupByLibrary.simpleMessage("点击授权"),
         "contact": MessageLookupByLibrary.simpleMessage("联系人列表"),
         "enter_verification_code":
             MessageLookupByLibrary.simpleMessage("请输入验证码"),
@@ -43,6 +45,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lang": MessageLookupByLibrary.simpleMessage("zh"),
         "lijishengqing": MessageLookupByLibrary.simpleMessage("立即申请"),
         "location": MessageLookupByLibrary.simpleMessage("位置"),
+        "login_register": MessageLookupByLibrary.simpleMessage("登录/注册"),
         "maximun_load_sub_text": MessageLookupByLibrary.simpleMessage(
             "1千元借12个月,日费用6分起,年化利率(单利) 3.6%起"),
         "maximun_load_text": MessageLookupByLibrary.simpleMessage("最高可借额度"),
@@ -52,14 +55,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "permission_title":
             MessageLookupByLibrary.simpleMessage("为了快速完成您的贷款流程, 我们需要这些权限"),
         "person_button": MessageLookupByLibrary.simpleMessage("我的"),
+        "personal_info": MessageLookupByLibrary.simpleMessage("个人信息"),
         "phone_code": MessageLookupByLibrary.simpleMessage("CN"),
+        "photo_permission_missing":
+            MessageLookupByLibrary.simpleMessage("相机权限获取失败"),
         "privacy": MessageLookupByLibrary.simpleMessage("隐私政策"),
         "quick_deposit": MessageLookupByLibrary.simpleMessage("快速到账"),
         "read_privacy": MessageLookupByLibrary.simpleMessage("请阅读"),
+        "real_authentication": MessageLookupByLibrary.simpleMessage("实名认证"),
         "resend": MessageLookupByLibrary.simpleMessage("重发"),
         "retrieve_again": MessageLookupByLibrary.simpleMessage("重新获取"),
         "shurushoujihao": MessageLookupByLibrary.simpleMessage("请输入本人实名认证手机号"),
         "sms": MessageLookupByLibrary.simpleMessage("短信"),
+        "take_photo": MessageLookupByLibrary.simpleMessage("拍摄"),
+        "take_photo_from_gallery":
+            MessageLookupByLibrary.simpleMessage("从相册选择"),
         "title100": MessageLookupByLibrary.simpleMessage("获取额度之后可获取奖励"),
         "title200": MessageLookupByLibrary.simpleMessage("最长30天免息"),
         "title300": MessageLookupByLibrary.simpleMessage("最低年化3.6%"),

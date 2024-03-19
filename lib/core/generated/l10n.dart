@@ -519,6 +519,86 @@ class S {
       args: [],
     );
   }
+
+  /// `个人信息`
+  String get personal_info {
+    return Intl.message(
+      '个人信息',
+      name: 'personal_info',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `登录/注册`
+  String get login_register {
+    return Intl.message(
+      '登录/注册',
+      name: 'login_register',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `实名认证`
+  String get real_authentication {
+    return Intl.message(
+      '实名认证',
+      name: 'real_authentication',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `拍摄`
+  String get take_photo {
+    return Intl.message(
+      '拍摄',
+      name: 'take_photo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `从相册选择`
+  String get take_photo_from_gallery {
+    return Intl.message(
+      '从相册选择',
+      name: 'take_photo_from_gallery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `取消`
+  String get cancel {
+    return Intl.message(
+      '取消',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `相机权限获取失败`
+  String get photo_permission_missing {
+    return Intl.message(
+      '相机权限获取失败',
+      name: 'photo_permission_missing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `点击授权`
+  String get click_to_access {
+    return Intl.message(
+      '点击授权',
+      name: 'click_to_access',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

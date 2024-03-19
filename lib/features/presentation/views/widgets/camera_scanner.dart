@@ -132,6 +132,7 @@ class _CardScannerState extends State<CardScanner> {
                 leading: IconButton(
                   icon: const Icon(
                     Icons.arrow_back,
+                    color: Colors.white,
                   ),
                   onPressed: () {
                     Navigator.of(context).pop();
@@ -153,7 +154,7 @@ class _CardScannerState extends State<CardScanner> {
                         ),
                         UI.kWidth10(),
                         Text(
-                          "相机权限获取失败",
+                          S.current.photo_permission_missing,
                           style: TextStyle(
                             color: Colors.red,
                             fontSize: 20.sp,
@@ -167,7 +168,7 @@ class _CardScannerState extends State<CardScanner> {
                         await openAppSettings();
                       },
                       child: AppText(
-                        text: "点击授权",
+                        text: S.current.click_to_access,
                         color: Pallete.blackColor,
                         size: 15.sp,
                         fontWeight: FontWeight.bold,

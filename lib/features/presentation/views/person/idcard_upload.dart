@@ -141,7 +141,7 @@ class CardPart extends StatelessWidget {
                     ),
                     child: Center(
                       child: AppText(
-                        text: "拍摄",
+                        text: S.current.take_photo,
                         size: 17.sp,
                       ),
                     ),
@@ -167,7 +167,7 @@ class CardPart extends StatelessWidget {
                     ),
                     child: Center(
                       child: AppText(
-                        text: "从相册选择",
+                        text: S.current.take_photo_from_gallery,
                         size: 17.sp,
                       ),
                     ),
@@ -190,7 +190,7 @@ class CardPart extends StatelessWidget {
                     width: double.infinity,
                     child: Center(
                       child: AppText(
-                        text: "取消",
+                        text: S.current.cancel,
                         size: 17.sp,
                       ),
                     ),

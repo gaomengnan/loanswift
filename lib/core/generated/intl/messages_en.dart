@@ -25,6 +25,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "agree_privacy": MessageLookupByLibrary.simpleMessage("Agree"),
         "app_name": MessageLookupByLibrary.simpleMessage("Loan Swift"),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "click_to_access":
+            MessageLookupByLibrary.simpleMessage("Click to access"),
         "contact": MessageLookupByLibrary.simpleMessage("Contact List"),
         "enter_verification_code":
             MessageLookupByLibrary.simpleMessage("Enter Verification Code"),
@@ -49,6 +52,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "lang": MessageLookupByLibrary.simpleMessage("en"),
         "lijishengqing": MessageLookupByLibrary.simpleMessage("Apply now"),
         "location": MessageLookupByLibrary.simpleMessage("Location"),
+        "login_register":
+            MessageLookupByLibrary.simpleMessage("Sign In/Register"),
         "maximun_load_sub_text": MessageLookupByLibrary.simpleMessage(
             "Borrow up to 1,000 yuan for 12 months, starting from 6% daily fee, annual interest rate (simple interest) starting from 3.6%"),
         "maximun_load_text":
@@ -59,16 +64,25 @@ class MessageLookup extends MessageLookupByLibrary {
         "permission_title": MessageLookupByLibrary.simpleMessage(
             "To expedite your loan process, we need these permissions"),
         "person_button": MessageLookupByLibrary.simpleMessage("Profile"),
+        "personal_info":
+            MessageLookupByLibrary.simpleMessage("Personal Information"),
         "phone_code": MessageLookupByLibrary.simpleMessage("US"),
+        "photo_permission_missing": MessageLookupByLibrary.simpleMessage(
+            "Failed to access camera permission"),
         "privacy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "quick_deposit": MessageLookupByLibrary.simpleMessage("Fast Transfer"),
         "read_privacy": MessageLookupByLibrary.simpleMessage("Read"),
+        "real_authentication":
+            MessageLookupByLibrary.simpleMessage("Real Name Authentication"),
         "resend": MessageLookupByLibrary.simpleMessage("Resend"),
         "retrieve_again":
             MessageLookupByLibrary.simpleMessage("Retrieve Again"),
         "shurushoujihao": MessageLookupByLibrary.simpleMessage(
             "Please enter your real-name authenticated mobile number"),
         "sms": MessageLookupByLibrary.simpleMessage("SMS"),
+        "take_photo": MessageLookupByLibrary.simpleMessage("Take Photo"),
+        "take_photo_from_gallery":
+            MessageLookupByLibrary.simpleMessage("Choose from Gallery"),
         "title100": MessageLookupByLibrary.simpleMessage(
             "After obtaining the limit, rewards can be acquired."),
         "title200":

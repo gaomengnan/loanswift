@@ -5,6 +5,8 @@ import 'package:loanswift/core/common/widgets/widgets.dart';
 import 'package:loanswift/features/presentation/bloc/auth/auth_bloc.dart';
 import 'package:loanswift/theme/theme.dart';
 
+import '../../../../core/generated/l10n.dart';
+
 class PersonPage extends StatefulWidget {
   const PersonPage({super.key});
 
@@ -17,9 +19,13 @@ class _PersonPageState extends State<PersonPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("个人信息"),
+        title: AppText(
+          text: S.current.personal_info,
+          size: 17.sp,
+          // color: Pallete.whiteColor,
+        ),
         centerTitle: true,
-        backgroundColor: Pallete.primaryColor,
+        // backgroundColor: Pallete.backgroundColor,
       ),
       body: BlocBuilder<AuthBloc, AuthState>(
         builder: (context, state) {
@@ -62,11 +68,25 @@ class _PersonPageState extends State<PersonPage> {
   Widget loginStateIdelWidget(BuildContext context) {
     return Center(
       child: OutlinedButton(
+        style: ElevatedButton.styleFrom(
+          elevation: 0,
+          side: BorderSide(
+            width: 1,
+            color: Colors.black.withOpacity(
+              0.1,
+            ),
+          ),
+          backgroundColor: Pallete.whiteColor,
+        ).copyWith(
+          foregroundColor: MaterialStateProperty.all<Color>(
+            Pallete.primaryColor,
+          ), // 设置字体颜色
+        ),
         onPressed: () {
           Navigator.pushNamed(context, '/auth');
         },
         child: AppText(
-          text: "登录/注册",
+          text: S.current.login_register,
           color: Pallete.primaryColor,
         ),
       ),

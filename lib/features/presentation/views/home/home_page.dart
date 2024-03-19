@@ -430,12 +430,12 @@ class BuildCheckLimitedSliver extends StatelessWidget {
                         ),
 
                         // 声明
-                        Center(
-                          child: AppText(
-                            text: "贷款额度由小金小贷提供",
-                            color: Pallete.greyColor,
-                          ),
-                        ),
+                        // Center(
+                        //   child: AppText(
+                        //     text: "贷款额度由小金小贷提供",
+                        //     color: Pallete.greyColor,
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),

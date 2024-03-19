@@ -27,7 +27,7 @@ class AuthRepository implements AuthRepo {
         return left(
           ServerFailure(
             message: e.message ?? "",
-            statusCode: e.response!.statusCode ?? 0,
+            statusCode: e.response?.statusCode ?? 0,
           ),
         );
       }

@@ -50,5 +50,13 @@
   "exclusive":"优质专享",
   "idcard":"身份证照片",
   "idcard_front":"身份证正面照片",
-  "idcard_reverse":"身份证反面照片"
+  "idcard_reverse":"身份证反面照片",
+  "personal_info":"个人信息",
+  "login_register": "登录/注册",
+  "real_authentication": "实名认证",
+  "take_photo": "拍摄",
+  "take_photo_from_gallery": "从相册选择",
+  "cancel": "取消",
+  "photo_permission_missing": "相机权限获取失败",
+  "click_to_access": "点击授权"
 }
