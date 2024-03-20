@@ -6,6 +6,10 @@ abstract class AuthDataSource {
   const AuthDataSource();
   String getAuthToken();
   Future<void> achievePhoneCode({required String phone});
+  Future<void> login({
+    required String phone,
+    required String code,
+  });
 }
 
 class AuthDataSourceImpl extends AuthDataSource {
@@ -31,5 +35,9 @@ class AuthDataSourceImpl extends AuthDataSource {
     await _dioClient.dio.post(
       "/middle/user/code",
     );
+  }
+
+  @override
+  Future<void> login({required String phone, required String code}) async {
   }
 }

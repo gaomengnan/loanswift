@@ -57,6 +57,8 @@
   "take_photo_from_gallery": "Choose from Gallery",
   "cancel": "Cancel",
   "photo_permission_missing": "Failed to access camera permission",
-  "click_to_access": "Click to access"
+  "click_to_access": "Click to access",
+  "network_error": "Network connection abnormal",
+  "service_error": "Service request error"
 }
 

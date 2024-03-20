@@ -61,6 +61,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "maximun_load_text_unit":
             MessageLookupByLibrary.simpleMessage("(Rupiah)"),
         "name": MessageLookupByLibrary.simpleMessage("Halo"),
+        "network_error":
+            MessageLookupByLibrary.simpleMessage("Kesalahan koneksi jaringan"),
         "notification": MessageLookupByLibrary.simpleMessage("Pemberitahuan"),
         "permission_title": MessageLookupByLibrary.simpleMessage(
             "Untuk mempercepat proses pinjaman Anda, kami memerlukan izin-izin ini"),
@@ -78,6 +80,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "resend": MessageLookupByLibrary.simpleMessage("Kirim Ulang"),
         "retrieve_again":
             MessageLookupByLibrary.simpleMessage("Dapatkan Kembali"),
+        "service_error": MessageLookupByLibrary.simpleMessage(
+            "Kesalahan permintaan layanan"),
         "shurushoujihao": MessageLookupByLibrary.simpleMessage(
             "Masukkan nomor ponsel yang terverifikasi"),
         "sms": MessageLookupByLibrary.simpleMessage("SMS"),

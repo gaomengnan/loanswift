@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:loanswift/core/failure.dart';
+import 'package:loanswift/core/generated/l10n.dart';
 
 import '../../../data/models/error.dart';
 import '../../../data/models/models.dart';
@@ -57,12 +58,12 @@ class PhoneSenderBloc extends Bloc<PhoneSenderEvent, PhoneSenderState> {
         switch (l.runtimeType) {
           case ConnectionFailure:
             emit(
-              PhoneSenderErrorState("网络连接异常"),
+              PhoneSenderErrorState(S.current.network_error),
             );
             break;
           case ServerFailure:
             emit(
-              PhoneSenderErrorState("服务请求错误"),
+              PhoneSenderErrorState(S.current.service_error),
             );
             break;
           case ApiFailure:

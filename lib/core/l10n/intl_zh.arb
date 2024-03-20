@@ -58,5 +58,7 @@
   "take_photo_from_gallery": "从相册选择",
   "cancel": "取消",
   "photo_permission_missing": "相机权限获取失败",
-  "click_to_access": "点击授权"
+  "click_to_access": "点击授权",
+  "network_error": "网络连接异常",
+  "service_error": "服务请求错误"
 }

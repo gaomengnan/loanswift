@@ -51,6 +51,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "maximun_load_text": MessageLookupByLibrary.simpleMessage("最高可借额度"),
         "maximun_load_text_unit": MessageLookupByLibrary.simpleMessage("(元)"),
         "name": MessageLookupByLibrary.simpleMessage("Flutter localization"),
+        "network_error": MessageLookupByLibrary.simpleMessage("网络连接异常"),
         "notification": MessageLookupByLibrary.simpleMessage("通知"),
         "permission_title":
             MessageLookupByLibrary.simpleMessage("为了快速完成您的贷款流程, 我们需要这些权限"),
@@ -65,6 +66,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "real_authentication": MessageLookupByLibrary.simpleMessage("实名认证"),
         "resend": MessageLookupByLibrary.simpleMessage("重发"),
         "retrieve_again": MessageLookupByLibrary.simpleMessage("重新获取"),
+        "service_error": MessageLookupByLibrary.simpleMessage("服务请求错误"),
         "shurushoujihao": MessageLookupByLibrary.simpleMessage("请输入本人实名认证手机号"),
         "sms": MessageLookupByLibrary.simpleMessage("短信"),
         "take_photo": MessageLookupByLibrary.simpleMessage("拍摄"),

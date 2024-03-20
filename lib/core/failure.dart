@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:loanswift/core/exceptions.dart';
 
+
 abstract class Failure extends Equatable {
   const Failure({
     required this.message,

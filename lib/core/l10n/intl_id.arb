@@ -56,5 +56,7 @@
   "take_photo_from_gallery": "Pilih dari Galeri",
   "cancel": "Batal",
   "photo_permission_missing": "Gagal mengakses izin kamera",
-  "click_to_access": "Klik untuk mengakses"
+  "click_to_access": "Klik untuk mengakses",
+  "network_error": "Kesalahan koneksi jaringan",
+  "service_error": "Kesalahan permintaan layanan"
 }

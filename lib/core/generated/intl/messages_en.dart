@@ -60,6 +60,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Maximum Loan Amount"),
         "maximun_load_text_unit": MessageLookupByLibrary.simpleMessage("(CNY)"),
         "name": MessageLookupByLibrary.simpleMessage("Flutter localization"),
+        "network_error":
+            MessageLookupByLibrary.simpleMessage("Network connection abnormal"),
         "notification": MessageLookupByLibrary.simpleMessage("Notifications"),
         "permission_title": MessageLookupByLibrary.simpleMessage(
             "To expedite your loan process, we need these permissions"),
@@ -77,6 +79,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "resend": MessageLookupByLibrary.simpleMessage("Resend"),
         "retrieve_again":
             MessageLookupByLibrary.simpleMessage("Retrieve Again"),
+        "service_error":
+            MessageLookupByLibrary.simpleMessage("Service request error"),
         "shurushoujihao": MessageLookupByLibrary.simpleMessage(
             "Please enter your real-name authenticated mobile number"),
         "sms": MessageLookupByLibrary.simpleMessage("SMS"),

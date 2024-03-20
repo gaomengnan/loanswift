@@ -599,6 +599,26 @@ class S {
       args: [],
     );
   }
+
+  /// `网络连接异常`
+  String get network_error {
+    return Intl.message(
+      '网络连接异常',
+      name: 'network_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `服务请求错误`
+  String get service_error {
+    return Intl.message(
+      '服务请求错误',
+      name: 'service_error',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
