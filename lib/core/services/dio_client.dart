@@ -1,5 +1,8 @@
+import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:loanswift/core/constants/app.dart';
+import 'package:loanswift/core/core.dart';
 
 class DioClient {
   BaseOptions options = BaseOptions(
@@ -10,7 +13,11 @@ class DioClient {
 
   late Dio _dio;
 
-  DioClient() {
+  final InternetConnectionChecker connectionChecker;
+
+  DioClient({
+    required this.connectionChecker,
+  }) {
     var dioInstance = Dio(options);
     dioInstance.interceptors.add(
       DioInterceptor(),
@@ -20,6 +27,31 @@ class DioClient {
   }
 
   Dio get dio => _dio;
+
+  ResultFuture<Response> post(
+    String path,
+    Map<String, dynamic>? data,
+  ) async {
+    final InternetConnectionStatus connected =
+        await connectionChecker.connectionStatus;
+    if (connected == InternetConnectionStatus.connected) {
+      try {
+        final resp = await _dio.post(path, data: data);
+        return right(resp);
+      } on DioException catch (e) {
+        return left(
+          ServerFailure(
+            message: e.message ?? "",
+            statusCode: e.response?.statusCode ?? 0,
+          ),
+        );
+      }
+    } else {
+      return left(
+        const ConnectionFailure(),
+      );
+    }
+  }
 }
 
 class DioInterceptor extends Interceptor {

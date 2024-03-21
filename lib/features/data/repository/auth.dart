@@ -4,6 +4,7 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:loanswift/core/failure.dart';
 import 'package:loanswift/core/typedefs.dart';
 import 'package:loanswift/features/data/datasource/auth.dart';
+import 'package:loanswift/features/data/models/auth_token.dart';
 import 'package:loanswift/features/domain/repos/auth.dart';
 
 class AuthRepository implements AuthRepo {
@@ -16,7 +17,8 @@ class AuthRepository implements AuthRepo {
 
   @override
   ResultVoid achievePhoneCode({required String phone}) async {
-    final InternetConnectionStatus connected = await _connectionChecker.connectionStatus;
+    final InternetConnectionStatus connected =
+        await _connectionChecker.connectionStatus;
     if (connected == InternetConnectionStatus.connected) {
       try {
         await _authDataSource.achievePhoneCode(
@@ -44,7 +46,15 @@ class AuthRepository implements AuthRepo {
   }
 
   @override
-  ResultFuture<void> login({required String phone, required String code}) {
-    throw UnimplementedError();
+  ResultFuture<AuthTokenModel?> login(
+      {required String phone, required String code}) async {
+    final resp = await _authDataSource.login(phone: phone, code: code);
+    return resp.fold((l) {
+      return left(l);
+    }, (r) {
+      return right(
+        r.data,
+      );
+    });
   }
 }

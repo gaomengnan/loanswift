@@ -1,12 +1,18 @@
+import 'package:dartz/dartz.dart';
+import 'package:loanswift/core/api_response.dart';
 import 'package:loanswift/core/constants/app.dart';
 import 'package:loanswift/core/services/dio_client.dart';
+import 'package:loanswift/core/typedefs.dart';
+import 'package:loanswift/features/data/models/auth_token.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../core/core.dart';
 
 abstract class AuthDataSource {
   const AuthDataSource();
   String getAuthToken();
   Future<void> achievePhoneCode({required String phone});
-  Future<void> login({
+  ResultFuture<ApiResponse<AuthTokenModel>> login({
     required String phone,
     required String code,
   });
@@ -38,6 +44,24 @@ class AuthDataSourceImpl extends AuthDataSource {
   }
 
   @override
-  Future<void> login({required String phone, required String code}) async {
+  ResultFuture<ApiResponse<AuthTokenModel>> login(
+      {required String phone, required String code}) async {
+    Map<String, dynamic> postData = {
+      'phone': phone,
+      'code': code,
+    };
+    final response = await _dioClient.post(
+      "/middle/user/login",
+      postData,
+    );
+
+    return response.fold((l) {
+      return left(l);
+    }, (r) {
+      return right(ApiResponse.fromJson(
+        r.data,
+        (json) => AuthTokenModel.fromJson(json),
+      ));
+    });
   }
 }

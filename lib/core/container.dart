@@ -58,7 +58,9 @@ Future<void> initialize() async {
   // auth-bloc
 
   sl.registerLazySingleton(
-    () => DioClient(),
+    () => DioClient(
+      connectionChecker: sl(),
+    ),
   );
   sl.registerLazySingleton(
     () => const Ticker(),
