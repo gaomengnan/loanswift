@@ -50,7 +50,7 @@ class PhoneSenderBloc extends Bloc<PhoneSenderEvent, PhoneSenderState> {
     PhoneSenderStarted event,
     Emitter<PhoneSenderState> emit,
   ) async {
-    final res = await _authRepo.achievePhoneCode(
+    final res = await _authRepo.sendPhoneCode(
       phone: event.phone,
     );
     res.fold(

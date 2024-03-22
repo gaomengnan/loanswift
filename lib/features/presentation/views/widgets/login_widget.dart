@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:loanswift/core/generated/l10n.dart';
-import 'package:loanswift/core/utils.dart';
 import 'package:loanswift/features/presentation/bloc/bloc.dart';
 import 'package:loanswift/theme/pallete.dart';
 
@@ -131,7 +130,7 @@ class BuildForm extends StatelessWidget {
     return BlocListener<PhoneSenderBloc, PhoneSenderState>(
       listener: (context, state) {
         if (state is PhoneSenderErrorState) {
-          Utils.showInfo(
+          UI.showInfo(
             context,
             state.error.error,
           );

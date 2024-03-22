@@ -46,7 +46,6 @@ Future<void> initialize() async {
   sl.registerLazySingleton<AuthRepo>(
     () => AuthRepository(
       sl(),
-      sl(),
     ),
   );
 

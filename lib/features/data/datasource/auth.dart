@@ -4,18 +4,27 @@ import 'package:loanswift/core/constants/app.dart';
 import 'package:loanswift/core/services/dio_client.dart';
 import 'package:loanswift/core/typedefs.dart';
 import 'package:loanswift/features/data/models/auth_token.dart';
+import 'package:loanswift/features/data/models/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/core.dart';
 
 abstract class AuthDataSource {
   const AuthDataSource();
+  // 获取  token
   String getAuthToken();
-  Future<void> achievePhoneCode({required String phone});
+
+  // 发送验证码
+  ResultVoid sendPhoneCode({required String phone});
+
+  // 登录接口
   ResultFuture<ApiResponse<AuthTokenModel>> login({
     required String phone,
     required String code,
   });
+
+  // 获取用户个人信息
+  ResultFuture<ApiResponse<UserModel>> getUserInfo();
 }
 
 class AuthDataSourceImpl extends AuthDataSource {
@@ -37,9 +46,13 @@ class AuthDataSourceImpl extends AuthDataSource {
   }
 
   @override
-  Future<void> achievePhoneCode({required String phone}) async {
-    await _dioClient.dio.post(
-      "/middle/user/code",
+  ResultVoid sendPhoneCode({required String phone}) async {
+    final resp = await _dioClient.post(
+      path: "/middle/user/code",
+    );
+    return resp.fold(
+      (l) => left(l),
+      (r) => right(null),
     );
   }
 
@@ -51,8 +64,8 @@ class AuthDataSourceImpl extends AuthDataSource {
       'code': code,
     };
     final response = await _dioClient.post(
-      "/middle/user/login",
-      postData,
+      path: "/middle/user/login",
+      data: postData,
     );
 
     return response.fold((l) {
@@ -61,6 +74,21 @@ class AuthDataSourceImpl extends AuthDataSource {
       return right(ApiResponse.fromJson(
         r.data,
         (json) => AuthTokenModel.fromJson(json),
+      ));
+    });
+  }
+
+  @override
+  ResultFuture<ApiResponse<UserModel>> getUserInfo() async {
+    final resp = await _dioClient.get(
+      path: "/middle/identity/personal",
+    );
+    return resp.fold((l) {
+      return left(l);
+    }, (r) {
+      return right(ApiResponse.fromJson(
+        r.data,
+        (json) => UserModel.fromJson(json),
       ));
     });
   }

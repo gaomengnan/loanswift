@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/common/widgets/widgets.dart';
 import 'package:loanswift/features/presentation/bloc/auth/auth_bloc.dart';
+import 'package:loanswift/features/presentation/views/person/logined_page.dart';
 import 'package:loanswift/theme/theme.dart';
 
 import '../../../../core/generated/l10n.dart';
@@ -30,7 +31,7 @@ class _PersonPageState extends State<PersonPage> {
       body: BlocBuilder<AuthBloc, AuthState>(
         builder: (context, state) {
           if (state.loginState.isLogined) {
-            return loginedStateWidget();
+            return const LoginedPage();
           } else {
             return loginStateIdelWidget(context);
           }
@@ -40,30 +41,6 @@ class _PersonPageState extends State<PersonPage> {
   }
 
   // 已经登陆
-  Widget loginedStateWidget() {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: 15.sp,
-      ),
-      child: SafeArea(
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          child: const Column(
-            children: [
-              ListTile(
-                leading: Icon(
-                  Icons.av_timer_sharp,
-                ),
-                title: Text("您好 15077832398"),
-                subtitle: Text("asdadasd"),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
 
   Widget loginStateIdelWidget(BuildContext context) {
     return Center(

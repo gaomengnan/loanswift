@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:loanswift/theme/theme.dart';
@@ -68,20 +67,6 @@ class Utils {
     );
   }
 
-  static void showInfo(BuildContext context, String message) {
-    Flushbar(
-      icon: Icon(
-        Icons.info_outline,
-        size: 28.0,
-        color: Colors.blue[300],
-      ),
-      flushbarStyle: FlushbarStyle.GROUNDED,
-      borderRadius: BorderRadius.circular(20),
-      flushbarPosition: FlushbarPosition.TOP,
-      message: message,
-      duration: const Duration(seconds: 4),
-    ).show(context);
-  }
 
   void checkPermission() async {
     final needPermissions = Permission.values

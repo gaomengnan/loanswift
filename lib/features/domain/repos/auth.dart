@@ -7,7 +7,7 @@ abstract class AuthRepo {
     required String code,
   });
 
-  ResultFuture<void> achievePhoneCode({
+  ResultFuture<void> sendPhoneCode({
     required String phone,
   });
 

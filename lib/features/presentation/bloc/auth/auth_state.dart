@@ -40,7 +40,7 @@ class AuthState extends Equatable {
   factory AuthState.initial() {
     return const AuthState(
       buttonState: ButtonState.forbidden,
-      loginState: LoginState.idel,
+      loginState: LoginState.logined,
     );
   }
 

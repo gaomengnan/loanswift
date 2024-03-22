@@ -28,15 +28,39 @@ class DioClient {
 
   Dio get dio => _dio;
 
-  ResultFuture<Response> post(
-    String path,
+  ResultFuture<Response> post({
+    required String path,
     Map<String, dynamic>? data,
-  ) async {
+  }) async {
     final InternetConnectionStatus connected =
         await connectionChecker.connectionStatus;
     if (connected == InternetConnectionStatus.connected) {
       try {
         final resp = await _dio.post(path, data: data);
+        return right(resp);
+      } on DioException catch (e) {
+        return left(
+          ServerFailure(
+            message: e.message ?? "",
+            statusCode: e.response?.statusCode ?? 0,
+          ),
+        );
+      }
+    } else {
+      return left(
+        const ConnectionFailure(),
+      );
+    }
+  }
+
+  ResultFuture<Response> get({
+    required String path,
+  }) async {
+    final InternetConnectionStatus connected =
+        await connectionChecker.connectionStatus;
+    if (connected == InternetConnectionStatus.connected) {
+      try {
+        final resp = await _dio.get(path);
         return right(resp);
       } on DioException catch (e) {
         return left(

@@ -1,3 +1,4 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,6 +21,21 @@ class UI {
     return Text(
       text,
     );
+  }
+
+  static void showInfo(BuildContext context, String message) {
+    Flushbar(
+      icon: Icon(
+        Icons.info_outline,
+        size: 28.0,
+        color: Colors.blue[300],
+      ),
+      flushbarStyle: FlushbarStyle.GROUNDED,
+      borderRadius: BorderRadius.circular(20),
+      flushbarPosition: FlushbarPosition.TOP,
+      message: message,
+      duration: const Duration(seconds: 4),
+    ).show(context);
   }
 
   static void showSignInAndUpBootomSheet(context) async {

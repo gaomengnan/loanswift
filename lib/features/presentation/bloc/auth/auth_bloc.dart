@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loanswift/features/domain/repos/auth.dart';
 
+
 part 'auth_event.dart';
 part 'auth_state.dart';
 
@@ -26,7 +27,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     if (token.isNotEmpty) {
       loginState = LoginState.logined;
     } else {
-      loginState = LoginState.idel;
+      // TODO 修改回idel状态
+      loginState = LoginState.logined;
     }
     emit(state.copyWith(
       loginState: loginState,
