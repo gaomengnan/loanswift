@@ -2,7 +2,6 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loanswift/features/domain/repos/auth.dart';
 
-
 part 'auth_event.dart';
 part 'auth_state.dart';
 

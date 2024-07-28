@@ -34,6 +34,7 @@ class _LoginedPageState extends State<LoginedPage> {
                 title: Text("hi~ 15077832398"),
                 subtitle: Text("asdadasd"),
               ),
+              Divider(),
             ],
           ),
         ),
