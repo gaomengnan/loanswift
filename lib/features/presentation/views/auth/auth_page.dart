@@ -15,16 +15,31 @@ class _AuthPageState extends State<AuthPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Pallete.backgroundColor,
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.grey,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(kToolbarHeight) * 2,
+        child: AppBar(
+          elevation: 0,
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+                gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color.fromRGBO(167, 233, 241,1),
+                Pallete.backgroundColor,
+              ],
+            )),
           ),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+          //backgroundColor: Pallete.backgroundColor,
+          leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
         ),
       ),
       body: const LoginWidget(

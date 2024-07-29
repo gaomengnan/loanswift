@@ -65,6 +65,7 @@ class _PersonPageState extends State<PersonPage> {
         child: AppText(
           text: S.current.login_register,
           color: Pallete.primaryColor,
+          size: 16.sp,
         ),
       ),
     );

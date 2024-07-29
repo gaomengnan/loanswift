@@ -221,8 +221,9 @@ class BuildForm extends StatelessWidget {
           initialValue: number,
           // locale: Locale("id"),
           selectorConfig: const SelectorConfig(
-            selectorType: PhoneInputSelectorType.DROPDOWN,
+            selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
             useBottomSheetSafeArea: true,
+            showFlags: false,
           ),
         ),
       ),
@@ -245,9 +246,9 @@ class BuildBottomButton extends StatelessWidget {
 
     final Color btnColor = isButnDisabled
         ? Pallete.greyColor.withOpacity(0.2)
-        : Pallete.whiteColor; // 设置按钮背景颜色
+        : Pallete.primaryColor; // 设置按钮背景颜色
     final Color textColor =
-        isButnDisabled ? Pallete.greyColor : Pallete.primaryColor;
+        isButnDisabled ? Pallete.greyColor : Pallete.whiteColor;
 
     return Column(
       children: [
@@ -281,7 +282,7 @@ class BuildBottomButton extends StatelessWidget {
                 text: S.current.jindengluzhuce,
                 fontWeight: FontWeight.bold,
                 color: textColor,
-                size: 13.sp,
+                size: 12.sp,
               ),
             ),
             ElevatedButton(
@@ -308,7 +309,7 @@ class BuildBottomButton extends StatelessWidget {
                 text: S.current.lijishengqing,
                 fontWeight: FontWeight.bold,
                 color: textColor,
-                size: 13.sp,
+                size: 12.sp,
               ),
             ),
           ],

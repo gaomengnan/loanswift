@@ -54,24 +54,22 @@ class PhoneSenderBloc extends Bloc<PhoneSenderEvent, PhoneSenderState> {
     );
     res.fold(
       (l) {
-        switch (l.runtimeType) {
-          case ConnectionFailure _:
-            emit(
-              PhoneSenderErrorState(S.current.network_error),
-            );
-            break;
-          case ServerFailure _:
-            emit(
-              PhoneSenderErrorState(S.current.service_error),
-            );
-            break;
-          case ApiFailure _:
-            break;
+        if (l is ConnectionFailure) {
+          emit(
+            PhoneSenderErrorState(S.current.network_error),
+          );
         }
+
+        if (l is ServerFailure) {
+          emit(
+            PhoneSenderErrorState(S.current.service_error),
+          );
+        }
+
+        if (l is ApiFailure) {}
       },
       (r) {
         _tickerSubscription?.cancel();
-
         emit(PhoneSenderRunInProgress(
           event.duration,
           event.phone,

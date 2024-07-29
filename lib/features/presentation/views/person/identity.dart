@@ -31,24 +31,38 @@ class _IdentityState extends State<Identity> {
         backgroundColor: Pallete.backgroundColor,
         appBar: AppBar(
           centerTitle: false,
-          // elevation: 1,
-          backgroundColor: Pallete.backgroundColor,
-
+          //backgroundColor: Pallete.primaryColor,
           title: Text(
             S.current.real_authentication,
+            style: const TextStyle(
+                //color: Pallete.whiteColor,
+                ),
           ),
-
           bottom: PreferredSize(
             preferredSize: Size.fromHeight(
               10.h,
+              //kToolbarHeight,
             ),
-            child: StepProgressIndicator(
+            child: const StepProgressIndicator(
               size: 10,
               totalSteps: 4,
               currentStep: 1,
               selectedColor: Pallete.primaryColor,
-              roundedEdges: const Radius.circular(10).r,
+              //roundedEdges: const Radius.circular(10).r,
               unselectedColor: Pallete.greyColor,
+              //selectedColor: Colors.yellow,
+              //unselectedColor: Colors.cyan,
+              //roundedEdges: Radius.circular(10),
+              //selectedGradientColor: LinearGradient(
+              //  begin: Alignment.topLeft,
+              //  end: Alignment.bottomRight,
+              //  colors: [Colors.yellowAccent, Colors.deepOrange],
+              //),
+              //unselectedGradientColor: LinearGradient(
+              //  begin: Alignment.topLeft,
+              //  end: Alignment.bottomRight,
+              //  colors: [Colors.black, Colors.blue],
+              //),
             ),
           ),
         ),

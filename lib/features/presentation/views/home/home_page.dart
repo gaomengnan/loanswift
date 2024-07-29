@@ -430,7 +430,7 @@ class BuildCheckLimitedSliver extends StatelessWidget {
                                             height: 50,
                                             width: double.infinity,
                                             decoration: BoxDecoration(
-                                              color: Colors.green,
+                                              color: Pallete.primaryColor,
                                               borderRadius:
                                                   BorderRadius.circular(20),
                                             ),

@@ -610,10 +610,10 @@ class S {
     );
   }
 
-  /// `服务请求错误`
+  /// `服务异常`
   String get service_error {
     return Intl.message(
-      '服务请求错误',
+      '服务异常',
       name: 'service_error',
       desc: '',
       args: [],

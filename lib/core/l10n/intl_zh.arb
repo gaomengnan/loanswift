@@ -13,8 +13,7 @@
   "title100":"获取额度之后可获取奖励",
   "title200": "最长30天免息",
   "title300": "最低年化3.6%",
-  "title400": "最快五分钟放款",
-  "title500": "查看额度",
+  "title400": "最快五分钟放款", "title500": "查看额度",
   "title600": "借钱攻略",
 
   "title700": "3分钟申请",
@@ -60,5 +59,5 @@
   "photo_permission_missing": "相机权限获取失败",
   "click_to_access": "点击授权",
   "network_error": "网络连接异常",
-  "service_error": "服务请求错误"
+  "service_error": "服务异常"
 }

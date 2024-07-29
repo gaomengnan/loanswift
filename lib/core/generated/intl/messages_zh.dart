@@ -66,7 +66,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "real_authentication": MessageLookupByLibrary.simpleMessage("实名认证"),
         "resend": MessageLookupByLibrary.simpleMessage("重发"),
         "retrieve_again": MessageLookupByLibrary.simpleMessage("重新获取"),
-        "service_error": MessageLookupByLibrary.simpleMessage("服务请求错误"),
+        "service_error": MessageLookupByLibrary.simpleMessage("服务异常"),
         "shurushoujihao": MessageLookupByLibrary.simpleMessage("请输入本人实名认证手机号"),
         "sms": MessageLookupByLibrary.simpleMessage("短信"),
         "take_photo": MessageLookupByLibrary.simpleMessage("拍摄"),

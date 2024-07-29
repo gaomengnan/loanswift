@@ -27,7 +27,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       loginState = LoginState.logined;
     } else {
       // TODO 修改回idel状态
-      loginState = LoginState.logined;
+      loginState = LoginState.idel;
     }
     emit(state.copyWith(
       loginState: loginState,
