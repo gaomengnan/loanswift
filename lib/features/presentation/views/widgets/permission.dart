@@ -39,13 +39,13 @@ void showPermissionDialog(context) {
                       permission: e,
                     );
                   },
-                ).toList(),
+                ),
                 Row(
                   children: [
                     Checkbox(
-                      fillColor: MaterialStateProperty.resolveWith<Color>(
-                          (Set<MaterialState> states) {
-                        if (states.contains(MaterialState.disabled)) {
+                      fillColor: WidgetStateProperty.resolveWith<Color>(
+                          (Set<WidgetState> states) {
+                        if (states.contains(WidgetState.disabled)) {
                           return Pallete.primaryColor.withOpacity(.32);
                         }
                         return Pallete.primaryColor;

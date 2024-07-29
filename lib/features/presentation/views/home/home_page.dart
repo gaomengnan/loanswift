@@ -26,21 +26,44 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Pallete.backgroundColor,
       resizeToAvoidBottomInset: true,
-      backgroundColor: Pallete.primaryColor,
-      body: SizedBox(
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Pallete.primaryColor,
+                Pallete.primaryColor,
+                Pallete.backgroundColor,
+              ]),
+        ),
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        child: const CustomScrollView(
-          slivers: [
-            // Appbar
-            BuildSliverAppBar(),
-            // 查看额度
-            BuildCheckLimitedSliver(),
-            // 借钱攻略
-            BuildLoanSliver(),
-          ],
-        ),
+        child: LayoutBuilder(
+            builder: (BuildContext context, BoxConstraints constraints) {
+          // Calculate the total height of the content
+          double screenHeight = constraints.maxHeight;
+          double contentHeight =
+              200.0 + 56.0 * 5; // SliverAppBar height + SliverList height
+
+          // If the content height is less than the screen height, disable scrolling
+          bool isScrollable = contentHeight > screenHeight;
+          return CustomScrollView(
+            physics: isScrollable
+                ? const AlwaysScrollableScrollPhysics()
+                : const NeverScrollableScrollPhysics(),
+            slivers: const [
+              // Appbar
+              BuildSliverAppBar(),
+              // 查看额度
+              BuildCheckLimitedSliver(),
+              // 借钱攻略
+              BuildLoanSliver(),
+            ],
+          );
+        }),
       ),
     );
   }

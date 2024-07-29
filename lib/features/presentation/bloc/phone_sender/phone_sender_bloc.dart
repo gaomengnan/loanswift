@@ -45,7 +45,6 @@ class PhoneSenderBloc extends Bloc<PhoneSenderEvent, PhoneSenderState> {
     return super.close();
   }
 
-
   void _onStarted(
     PhoneSenderStarted event,
     Emitter<PhoneSenderState> emit,
@@ -56,17 +55,17 @@ class PhoneSenderBloc extends Bloc<PhoneSenderEvent, PhoneSenderState> {
     res.fold(
       (l) {
         switch (l.runtimeType) {
-          case ConnectionFailure:
+          case ConnectionFailure _:
             emit(
               PhoneSenderErrorState(S.current.network_error),
             );
             break;
-          case ServerFailure:
+          case ServerFailure _:
             emit(
               PhoneSenderErrorState(S.current.service_error),
             );
             break;
-          case ApiFailure:
+          case ApiFailure _:
             break;
         }
       },

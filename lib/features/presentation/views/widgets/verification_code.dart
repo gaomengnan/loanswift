@@ -13,9 +13,9 @@ import '../../../../core/constants/constants.dart';
 class VerificationCode extends StatefulWidget {
   // final String? phoneNumber;
   const VerificationCode({
-    Key? key,
+    super.key,
     // required this.phoneNumber,
-  }) : super(key: key);
+  });
 
   @override
   State<VerificationCode> createState() => _VerificationCodeState();

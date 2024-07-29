@@ -273,7 +273,7 @@ class BuildBottomButton extends StatelessWidget {
                 ),
                 backgroundColor: btnColor, // 设置按钮背景颜色
               ).copyWith(
-                foregroundColor: MaterialStateProperty.all<Color>(
+                foregroundColor: WidgetStateProperty.all<Color>(
                   Pallete.primaryColor,
                 ), // 设置字体颜色
               ),
@@ -300,7 +300,7 @@ class BuildBottomButton extends StatelessWidget {
                 ),
                 backgroundColor: btnColor,
               ).copyWith(
-                foregroundColor: MaterialStateProperty.all<Color>(
+                foregroundColor: WidgetStateProperty.all<Color>(
                   Pallete.primaryColor,
                 ), // 设置字体颜色
               ),

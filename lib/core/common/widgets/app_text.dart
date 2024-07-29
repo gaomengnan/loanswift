@@ -20,7 +20,7 @@ class AppText extends StatelessWidget {
   TextAlign? textAlign;
 
   AppText({
-    Key? key,
+    super.key,
     required this.text,
     this.color = Pallete.blackColor,
     this.size = 12,
@@ -28,7 +28,7 @@ class AppText extends StatelessWidget {
     this.height = 1.2,
     this.fontWeight = FontWeight.normal,
     this.textAlign = TextAlign.center,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

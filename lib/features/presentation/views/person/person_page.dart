@@ -55,7 +55,7 @@ class _PersonPageState extends State<PersonPage> {
           ),
           backgroundColor: Pallete.whiteColor,
         ).copyWith(
-          foregroundColor: MaterialStateProperty.all<Color>(
+          foregroundColor: WidgetStateProperty.all<Color>(
             Pallete.primaryColor,
           ), // 设置字体颜色
         ),
