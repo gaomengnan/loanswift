@@ -89,7 +89,7 @@ class _LoginWidgetState extends State<LoginWidget> {
 
           UI.kHeight20(),
 
-          BuildForm(
+          BuildVerifyCode(
             formKey: formKey,
             countries: countries,
             controller: controller,
@@ -109,8 +109,8 @@ class _LoginWidgetState extends State<LoginWidget> {
   }
 }
 
-class BuildForm extends StatelessWidget {
-  const BuildForm({
+class BuildVerifyCode extends StatelessWidget {
+  const BuildVerifyCode({
     super.key,
     required this.formKey,
     required this.countries,
@@ -135,11 +135,9 @@ class BuildForm extends StatelessWidget {
             state.error.error,
           );
         } else if (state is PhoneSenderVerifyState) {
-          if (state.countdownState == CountdownState.running) {
-            UI.showVerifyCodeSheet(
-              context,
-            );
-          }
+          UI.showVerifyCodeSheet(
+            context,
+          );
         } else if (state is PhoneSenderRunInProgress) {
           context.read<AuthBloc>().add(
                 DisabledButtonStateEvent(),
@@ -161,7 +159,7 @@ class BuildForm extends StatelessWidget {
           inputDecoration: InputDecoration(
             suffix: BlocBuilder<PhoneSenderBloc, PhoneSenderState>(
               builder: (context, state) {
-                if (state.countdownState == CountdownState.running) {
+                if (state.countdownState.isRunning) {
                   return Text("${state.duration}(s)");
                 }
                 return const SizedBox();
@@ -265,10 +263,13 @@ class BuildBottomButton extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: () async {
+                if (isButnDisabled) {
+                  return;
+                }
                 // formKey.currentState?.save();
                 // print(number.phoneNumber);
                 final validator = formKey.currentState?.validate() ?? false;
-                if (validator && !isButnDisabled) {
+                if (validator) {
                   formKey.currentState?.save();
                 }
               },

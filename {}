@@ -1,0 +1,9 @@
+HTTP/1.1 415 UNSUPPORTED MEDIA TYPE
+Content-Length: 215
+Connection: keep-alive
+Content-Type: text/html; charset=utf-8
+Date: Tue, 30 Jul 2024 12:00:36 GMT
+Keep-Alive: timeout=4
+Proxy-Connection: keep-alive
+Server: Werkzeug/3.0.3 Python/3.12.4
+

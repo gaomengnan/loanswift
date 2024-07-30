@@ -5,6 +5,10 @@ enum CountdownState {
   running,
 }
 
+extension CountdownStateEnum on CountdownState {
+  bool get isRunning => this == CountdownState.running;
+}
+
 abstract class PhoneSenderState extends Equatable {
   final CustomError error;
   // final String error;
@@ -59,12 +63,7 @@ class PhoneSenderRunPause extends PhoneSenderState {
     int duration,
     String phone,
     CountdownState countdownState,
-  ) : super(
-          duration,
-          phone,
-          countdownState,
-          CustomError(error: "")
-        );
+  ) : super(duration, phone, countdownState, CustomError(error: ""));
 }
 
 class PhoneSenderRunComplete extends PhoneSenderState {
@@ -92,8 +91,9 @@ class PhoneSenderErrorState extends PhoneSenderState {
 class PhoneSenderVerifyState extends PhoneSenderState {
   PhoneSenderVerifyState()
       : super(
-    0,
-    "",
-    CountdownState.running,
-      CustomError(error: ""),
-  );}
+          0,
+          "",
+          CountdownState.running,
+          CustomError(error: ""),
+        );
+}
