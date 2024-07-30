@@ -6,10 +6,12 @@ import 'package:loanswift/core/core.dart';
 
 class DioClient {
   BaseOptions options = BaseOptions(
-    baseUrl: Environment.baseUrl, // 设置基本URL
-    connectTimeout: AppContant.connectTimeout, // 连接超时时间，单位毫秒
-    receiveTimeout: AppContant.receiveTimeout,
-  );
+      baseUrl: Environment.baseUrl, // 设置基本URL
+      connectTimeout: AppContant.connectTimeout, // 连接超时时间，单位毫秒
+      receiveTimeout: AppContant.receiveTimeout,
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      });
 
   late Dio _dio;
 
@@ -36,6 +38,7 @@ class DioClient {
         await connectionChecker.connectionStatus;
     if (connected == InternetConnectionStatus.connected) {
       try {
+        print(data);
         final resp = await _dio.post(path, data: data);
         return right(resp);
       } on DioException catch (e) {
@@ -83,6 +86,7 @@ class DioInterceptor extends Interceptor {
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+    print("before send requestobject");
     options.headers.addAll({
       "Content-Type": "application/json",
       "Authorization": "Bearer $token",

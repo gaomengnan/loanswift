@@ -75,8 +75,8 @@ class UI {
 
   static void showVerifyCodeSheet(
     BuildContext context,
-  ) async {
-    await showModalBottomSheet(
+  ) {
+    showModalBottomSheet(
       useSafeArea: true,
       isScrollControlled: true,
       isDismissible: false,

@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:loanswift/core/api_response.dart';
-import 'package:loanswift/core/services/dio_client.dart';
 import 'package:loanswift/core/typedefs.dart';
 import 'package:loanswift/features/data/models/auth_token.dart';
 import 'package:loanswift/features/data/models/user_model.dart';
 
 import '../../../core/core.dart';
+import '../../../core/dio_client.dart';
 
 abstract class AuthDataSource {
   const AuthDataSource();
@@ -45,6 +45,9 @@ class AuthDataSourceImpl extends AuthDataSource {
   ResultVoid sendPhoneCode({required String phone}) async {
     final resp = await _dioClient.post(
       path: "/middle/user/code",
+      data: {
+        'phone': phone,
+      },
     );
     return resp.fold(
       (l) => left(l),

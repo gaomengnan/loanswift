@@ -1,6 +1,9 @@
+import 'package:flutter/rendering.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:loanswift/core/device_info.dart';
+import 'package:loanswift/core/dio_client.dart';
 import 'package:loanswift/core/environment.dart';
 import 'package:loanswift/features/data/datasource/auth.dart';
 import 'package:loanswift/features/data/repository/auth.dart';
@@ -8,12 +11,17 @@ import 'package:loanswift/features/domain/repos/auth.dart';
 
 import '../features/data/models/models.dart';
 import '../features/presentation/bloc/bloc.dart';
-import 'services/dio_client.dart';
 import 'package:get_storage/get_storage.dart';
 
 final sl = GetIt.instance;
 
 Future<void> initialize() async {
+  // 获取设备信息
+  final device = DeviceInfo();
+  final deviceInfo = await device.getDeviceDetails();
+
+  debugPrint('Device info: $deviceInfo');
+
   await dotenv.load(
     fileName: Environment.fileName,
   );
