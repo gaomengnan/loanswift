@@ -1,11 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:loanswift/core/api_response.dart';
-import 'package:loanswift/core/constants/app.dart';
 import 'package:loanswift/core/services/dio_client.dart';
 import 'package:loanswift/core/typedefs.dart';
 import 'package:loanswift/features/data/models/auth_token.dart';
 import 'package:loanswift/features/data/models/user_model.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/core.dart';
 
@@ -28,21 +26,19 @@ abstract class AuthDataSource {
 }
 
 class AuthDataSourceImpl extends AuthDataSource {
-  final SharedPreferences _sharedPreferences;
+  //final SharedPreferences _sharedPreferences;
   final DioClient _dioClient;
 
   const AuthDataSourceImpl({
-    required SharedPreferences sharedPreferences,
     required DioClient dioClient,
-  })  : _sharedPreferences = sharedPreferences,
-        _dioClient = dioClient;
+  }) : _dioClient = dioClient;
 
   @override
   String getAuthToken() {
-    final token = _sharedPreferences.getString(
-      AppContant.token,
-    );
-    return token ?? "";
+    //final token = _sharedPreferences.getString(
+    //  AppContant.token,
+    //);
+    return "";
   }
 
   @override

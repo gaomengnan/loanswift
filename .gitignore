@@ -43,3 +43,5 @@ app.*.map.json
 /android/app/release
 
 .vim
+.env.dev
+.env.prod

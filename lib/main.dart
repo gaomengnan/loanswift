@@ -5,6 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/features/presentation/views/board/boarding_page.dart';
+import 'package:loanswift/features/presentation/views/index/index_page.dart';
 import 'package:loanswift/theme/pallete.dart';
 
 import 'features/presentation/bloc/bloc.dart';
@@ -45,7 +46,7 @@ class MyApp extends StatelessWidget {
         designSize: const Size(360, 690),
         minTextAdapt: true,
         splitScreenMode: true,
-        child: const BoardingPage(),
+        child: const IndexPage(),
         builder: (_, child) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,

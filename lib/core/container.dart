@@ -1,19 +1,24 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:loanswift/core/environment.dart';
 import 'package:loanswift/features/data/datasource/auth.dart';
 import 'package:loanswift/features/data/repository/auth.dart';
 import 'package:loanswift/features/domain/repos/auth.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../features/data/models/models.dart';
 import '../features/presentation/bloc/bloc.dart';
 import 'services/dio_client.dart';
+import 'package:get_storage/get_storage.dart';
 
 final sl = GetIt.instance;
 
 Future<void> initialize() async {
+  await dotenv.load(
+    fileName: Environment.fileName,
+  );
   // 本地存储
-  final refs = await SharedPreferences.getInstance();
+  await GetStorage.init();
   // 网络检查
   final InternetConnectionChecker networkCheck =
       InternetConnectionChecker.createInstance(
@@ -37,7 +42,6 @@ Future<void> initialize() async {
   // datasource
   sl.registerLazySingleton<AuthDataSource>(
     () => AuthDataSourceImpl(
-      sharedPreferences: sl(),
       dioClient: sl(),
     ),
   );
@@ -64,9 +68,9 @@ Future<void> initialize() async {
   sl.registerLazySingleton(
     () => const Ticker(),
   );
-  sl.registerLazySingleton(
-    () => refs,
-  );
+  //sl.registerLazySingleton(
+  //  () => refs,
+  //);
 
   sl.registerLazySingleton(
     () => networkCheck,
