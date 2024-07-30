@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../theme/theme.dart';
 import '../widgets/login_widget.dart';
 
 class AuthPage extends StatefulWidget {
@@ -14,48 +16,40 @@ class _AuthPageState extends State<AuthPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(kToolbarHeight),
-        child: AppBar(
-          elevation: 0,
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                stops: [1.0],
-                colors: [
-                  Color.fromRGBO(167, 233, 241, 0.2),
-                ],
-              ),
-            ),
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.black,
           ),
-          //backgroundColor: const Color.fromRGBO(167, 233, 241, 0.1),
-          leading: IconButton(
-            icon: const Icon(
-              Icons.arrow_back,
-              color: Colors.black,
-            ),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
         ),
       ),
       body: Container(
+        height: ScreenUtil().screenHeight,
+        padding: const EdgeInsets.only(top: kToolbarHeight * 3),
         decoration: const BoxDecoration(
+          //color: Colors.grey.shade200,
+          //borderRadius: BorderRadius.circular(10.sp),
           gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            //stops: [0.0, 0.5],
-            colors: [
-              Color.fromRGBO(167, 233, 241, 0.2),
-              Color.fromRGBO(167, 233, 241, 0.1),
-            ],
+           begin: Alignment.topRight,
+           end: Alignment.bottomLeft,
+           stops: [0.1, 0.4],
+           colors: [
+             Color(0xff2cdeee),
+             Pallete.backgroundColor
+           ],
           ),
         ),
-        child: const LoginWidget(
-          sourceName: "login",
+        child: const SingleChildScrollView(
+          child: LoginWidget(
+            sourceName: "login",
+          ),
         ),
       ),
     );

@@ -6,7 +6,7 @@ import 'package:loanswift/core/core.dart';
 
 class DioClient {
   BaseOptions options = BaseOptions(
-    baseUrl: AppContant.baseURI, // 设置基本URL
+    baseUrl: Environment.baseUrl, // 设置基本URL
     connectTimeout: AppContant.connectTimeout, // 连接超时时间，单位毫秒
     receiveTimeout: AppContant.receiveTimeout,
   );

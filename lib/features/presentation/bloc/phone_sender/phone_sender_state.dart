@@ -88,3 +88,12 @@ class PhoneSenderErrorState extends PhoneSenderState {
           CustomError(error: error),
         );
 }
+
+class PhoneSenderVerifyState extends PhoneSenderState {
+  PhoneSenderVerifyState()
+      : super(
+    0,
+    "",
+    CountdownState.running,
+      CustomError(error: ""),
+  );}

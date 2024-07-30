@@ -51,7 +51,7 @@ class _LoginWidgetState extends State<LoginWidget> {
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: 20.w,
-        vertical: 10.h,
+        // vertical: 10.h,
       ),
       child: Column(
         // mainAxisSize: MainAxisSize.min,
@@ -134,12 +134,20 @@ class BuildForm extends StatelessWidget {
             context,
             state.error.error,
           );
-        } else {
+        } else if (state is PhoneSenderVerifyState) {
           if (state.countdownState == CountdownState.running) {
             UI.showVerifyCodeSheet(
               context,
             );
           }
+        } else if (state is PhoneSenderRunInProgress) {
+          context.read<AuthBloc>().add(
+                DisabledButtonStateEvent(),
+              );
+        } else if (state is PhoneSenderRunComplete) {
+          context.read<AuthBloc>().add(
+                EnabledButtonStateEvent(),
+              );
         }
       },
       child: Form(

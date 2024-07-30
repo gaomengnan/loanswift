@@ -70,6 +70,9 @@ class PhoneSenderBloc extends Bloc<PhoneSenderEvent, PhoneSenderState> {
       },
       (r) {
         _tickerSubscription?.cancel();
+        // 验证框
+        emit(PhoneSenderVerifyState());
+        // 触发倒计时
         emit(PhoneSenderRunInProgress(
           event.duration,
           event.phone,
