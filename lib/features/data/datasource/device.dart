@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:loanswift/core/typedefs.dart';
 
 import '../../../core/core.dart';
@@ -20,6 +21,14 @@ class DeviceDataSourceImpl extends DeviceDataSource {
 
   @override
   ResultVoid postDeviceInfo({required Map<String, dynamic> data}) async {
-    return ResultVoid.value(null);
+    print(data);
+    _dioClient.post(
+      path: "/middle/data/report",
+      data: data,
+      pt: "form",
+    );
+    return right(
+      {},
+    );
   }
 }

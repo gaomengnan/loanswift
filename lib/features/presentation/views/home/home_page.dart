@@ -98,16 +98,18 @@ class _HomePageState extends State<HomePage> {
                           spacing: 10,
                           children: [
                             ...List.generate(Assets.banners.length, (index) {
-                              return Container(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 30.h, vertical: 40.h),
-                                height: 10,
-                                width: 10,
+                              return AnimatedContainer(
+                                duration: const Duration(
+                                  milliseconds: 150,
+                                ),
+                                height: 8.h,
+                                width: _currentIndex == index ? 15.w : 8.w,
                                 decoration: BoxDecoration(
                                   color: _currentIndex == index
                                       ? Colors.orangeAccent
                                       : Colors.grey,
-                                  shape: BoxShape.circle,
+                                  borderRadius: BorderRadius.circular(5),
+                                  //shape: BoxShape.circle,
                                 ),
                               );
                             })

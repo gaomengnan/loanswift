@@ -6,12 +6,10 @@ import 'package:loanswift/core/core.dart';
 
 class DioClient {
   BaseOptions options = BaseOptions(
-      baseUrl: Environment.baseUrl, // 设置基本URL
-      connectTimeout: AppContant.connectTimeout, // 连接超时时间，单位毫秒
-      receiveTimeout: AppContant.receiveTimeout,
-      headers: {
-        "Content-Type": "application/json; charset=utf-8",
-      });
+    baseUrl: Environment.baseUrl, // 设置基本URL
+    connectTimeout: AppContant.connectTimeout, // 连接超时时间，单位毫秒
+    receiveTimeout: AppContant.receiveTimeout,
+  );
 
   late Dio _dio;
 
@@ -33,13 +31,30 @@ class DioClient {
   ResultFuture<Response> post({
     required String path,
     Map<String, dynamic>? data,
+    String pt = "json",
   }) async {
     final InternetConnectionStatus connected =
         await connectionChecker.connectionStatus;
     if (connected == InternetConnectionStatus.connected) {
       try {
-        print(data);
-        final resp = await _dio.post(path, data: data);
+        Object? poster;
+        Map<String, dynamic>? headers = {};
+        switch (pt) {
+          case "form":
+            poster = FormData.fromMap(data!);
+            break;
+          default:
+            poster = data;
+            headers['Content-Type'] = "application/json";
+            break;
+        }
+        final resp = await _dio.post(
+          path,
+          data: poster ?? {},
+          options: Options(
+            headers: headers,
+          ),
+        );
         return right(resp);
       } on DioException catch (e) {
         return left(
@@ -88,13 +103,13 @@ class DioInterceptor extends Interceptor {
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     print("before send requestobject");
     options.headers.addAll({
-      "Content-Type": "application/json",
+      //"Content-Type": "application/json",
       "Authorization": "Bearer $token",
     });
     // get token from the storage
-    options.headers.addAll({
-      "Authorization": "Bearer $token",
-    });
+    //options.headers.addAll({
+    //  "Authorization": "Bearer $token",
+    //});
     return super.onRequest(options, handler);
   }
 

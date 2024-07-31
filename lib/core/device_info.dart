@@ -1,9 +1,22 @@
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:loanswift/features/domain/repos/device.dart';
 
 class DeviceInfo {
+  final DeviceRepo deviceRepo;
+
+  DeviceInfo({
+    required this.deviceRepo,
+  });
+
   final DeviceInfoPlugin deviceInfoPlg = DeviceInfoPlugin();
+  void postDeviceInfo() async {
+    final details = await getDeviceDetails();
+    deviceRepo.postDeviceInfo(
+      data: details,
+    );
+  }
 
   Future<Map<String, dynamic>> getDeviceDetails() async {
     var deviceData = <String, dynamic>{};
@@ -14,9 +27,7 @@ class DeviceInfo {
         deviceData = switch (defaultTargetPlatform) {
           TargetPlatform.android =>
             _readAndroidBuildData(await deviceInfoPlg.androidInfo),
-          TargetPlatform.iOS => <String, dynamic>{
-              'Error:': 'Fuchsia platform isn\'t supported'
-            },
+          TargetPlatform.iOS => _readIosDeviceInfo(await deviceInfoPlg.iosInfo),
           TargetPlatform.linux => <String, dynamic>{
               'Error:': 'Fuchsia platform isn\'t supported'
             },
@@ -89,6 +100,23 @@ class DeviceInfo {
       'vendorSub': data.vendorSub,
       'hardwareConcurrency': data.hardwareConcurrency,
       'maxTouchPoints': data.maxTouchPoints,
+    };
+  }
+
+  Map<String, dynamic> _readIosDeviceInfo(IosDeviceInfo data) {
+    return <String, dynamic>{
+      'name': data.name,
+      'systemName': data.systemName,
+      'systemVersion': data.systemVersion,
+      'model': data.model,
+      'localizedModel': data.localizedModel,
+      'identifierForVendor': data.identifierForVendor,
+      'isPhysicalDevice': data.isPhysicalDevice,
+      'utsname.sysname:': data.utsname.sysname,
+      'utsname.nodename:': data.utsname.nodename,
+      'utsname.release:': data.utsname.release,
+      'utsname.version:': data.utsname.version,
+      'utsname.machine:': data.utsname.machine,
     };
   }
 }
