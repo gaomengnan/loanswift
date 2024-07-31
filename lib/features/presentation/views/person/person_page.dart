@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/common/widgets/widgets.dart';
 import 'package:loanswift/core/core.dart';
+import 'package:loanswift/features/presentation/views/auth/auth_page.dart';
 import 'package:loanswift/theme/pallete.dart';
 
 class PersonPage extends StatefulWidget {
@@ -58,7 +59,7 @@ class _PersonPageState extends State<PersonPage> {
                       ),
                       //tileColor: Colors.orange,
                       onTap: () {
-                        Navigator.of(context).pushNamed("/auth");
+                        Navigator.of(context).pushNamed(AuthPage.routerName);
                       },
                       title: Row(
                         children: [
