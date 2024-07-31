@@ -17,6 +17,51 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppTheme.theme.scaffoldBackgroundColor,
+      resizeToAvoidBottomInset: true,
+      body: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Pallete.primaryColor,
+                  Pallete.primaryColor,
+                  Pallete.backgroundColor,
+                ]),
+          ),
+          //height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: const CustomScrollView(
+            slivers: [
+              // Appbar
+              BuildSliverAppBar(),
+              // banner
+              BuildBannber(),
+              // 查看额度
+              BuildCheckLimitedSliver(),
+              // 借钱攻略
+              BuildLoanSliver(),
+              //SliverFillRemaining(
+              //  child: Text("asdsad"),
+              //),
+            ],
+          )),
+    );
+  }
+}
+
+class BuildBannber extends StatefulWidget {
+  const BuildBannber({super.key});
+
+  @override
+  State<BuildBannber> createState() => _BuildBannberState();
+}
+
+class _BuildBannberState extends State<BuildBannber> {
   late PageController _pageController;
   int _currentIndex = 0;
   @override
@@ -51,81 +96,53 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppTheme.theme.scaffoldBackgroundColor,
-      resizeToAvoidBottomInset: true,
-      body: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Pallete.primaryColor,
-                  Pallete.primaryColor,
-                  Pallete.backgroundColor,
-                ]),
-          ),
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          child: CustomScrollView(
-            slivers: [
-              // Appbar
-              const BuildSliverAppBar(),
-              // banner
-              SliverPadding(
-                padding: EdgeInsets.only(
-                  left: 10.h,
-                  right: 10.h,
-                  bottom: 5.h,
-                ),
-                sliver: SliverToBoxAdapter(
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: ScreenUtil().screenHeight * 0.2,
-                        child: PageView.builder(
-                          controller: _pageController,
-                          itemCount: Assets.banners.length,
-                          itemBuilder: (context, index) {
-                            return _buildBanner(index);
-                          },
-                        ),
-                      ),
-                      Space(height: 5.h, width: 0),
-                      SizedBox(
-                        height: 10,
-                        child: Wrap(
-                          spacing: 10,
-                          children: [
-                            ...List.generate(Assets.banners.length, (index) {
-                              return AnimatedContainer(
-                                duration: const Duration(
-                                  milliseconds: 150,
-                                ),
-                                height: 8.h,
-                                width: _currentIndex == index ? 15.w : 8.w,
-                                decoration: BoxDecoration(
-                                  color: _currentIndex == index
-                                      ? Colors.orangeAccent
-                                      : Colors.grey,
-                                  borderRadius: BorderRadius.circular(5),
-                                  //shape: BoxShape.circle,
-                                ),
-                              );
-                            })
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+    return SliverPadding(
+      padding: EdgeInsets.only(
+        left: 10.h,
+        right: 10.h,
+        bottom: 5.h,
+      ),
+      sliver: SliverToBoxAdapter(
+        child: Column(
+          children: [
+            SizedBox(
+              height: ScreenUtil().screenHeight * 0.2,
+              child: PageView.builder(
+                controller: _pageController,
+                itemCount: Assets.banners.length,
+                itemBuilder: (context, index) {
+                  return _buildBanner(index);
+                },
               ),
-              // 查看额度
-              const BuildCheckLimitedSliver(),
-              // 借钱攻略
-              const BuildLoanSliver(),
-            ],
-          )),
+            ),
+            Space(height: 5.h, width: 0),
+            SizedBox(
+              height: 10,
+              child: Wrap(
+                spacing: 10,
+                children: [
+                  ...List.generate(Assets.banners.length, (index) {
+                    return AnimatedContainer(
+                      duration: const Duration(
+                        milliseconds: 150,
+                      ),
+                      height: 8.h,
+                      width: _currentIndex == index ? 15.w : 8.w,
+                      decoration: BoxDecoration(
+                        color: _currentIndex == index
+                            ? Colors.orangeAccent
+                            : Colors.grey,
+                        borderRadius: BorderRadius.circular(5),
+                        //shape: BoxShape.circle,
+                      ),
+                    );
+                  })
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -154,7 +171,7 @@ class BuildLoanSliver extends StatelessWidget {
     return SliverToBoxAdapter(
       child: Container(
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
+        //height: MediaQuery.of(context).size.height,
         decoration: const BoxDecoration(
           color: Pallete.backgroundColor,
         ),

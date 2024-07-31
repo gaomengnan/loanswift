@@ -18,7 +18,7 @@ class _AuthPageState extends State<AuthPage> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Pallete.primaryColor,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(
@@ -36,15 +36,15 @@ class _AuthPageState extends State<AuthPage> {
         decoration: const BoxDecoration(
           //color: Colors.grey.shade200,
           //borderRadius: BorderRadius.circular(10.sp),
-          gradient: LinearGradient(
-           begin: Alignment.topRight,
-           end: Alignment.bottomLeft,
-           stops: [0.1, 0.4],
-           colors: [
-             Color(0xff2cdeee),
-             Pallete.backgroundColor
-           ],
-          ),
+          //gradient: LinearGradient(
+          // begin: Alignment.topRight,
+          // end: Alignment.bottomLeft,
+          // stops: [0.1, 0.4],
+          // colors: [
+          //   Color(0xff2cdeee),
+          //   Pallete.backgroundColor
+          // ],
+          //),
         ),
         child: const SingleChildScrollView(
           child: LoginWidget(

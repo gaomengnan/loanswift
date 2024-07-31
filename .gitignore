@@ -46,4 +46,4 @@ app.*.map.json
 .env.dev
 .env.prod
 
-flutter_.*json
+flutter*json
