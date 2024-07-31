@@ -1,8 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/common/widgets/widgets.dart';
 import 'package:loanswift/core/core.dart';
+import 'package:loanswift/theme/app_theme.dart';
 import 'package:loanswift/theme/pallete.dart';
 
 import '../person/identity.dart';
@@ -15,56 +17,113 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late PageController _pageController;
+  int _currentIndex = 0;
   @override
   void initState() {
+    _pageController = PageController(initialPage: 0);
+    _pageController.addListener(
+      () {
+        final p = _pageController.page!;
+        setState(() {
+          _currentIndex = p.round();
+        });
+      },
+    );
     super.initState();
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
-    //   UI.showSignInAndUpBootomSheet(context);
-    // });
+  }
+
+  Widget _buildBanner(int index) {
+    final imageUrl = Assets.banners[index];
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 10.h),
+      //height: ScreenUtil().screenHeight * 0.2,
+      decoration: BoxDecoration(
+        color: Colors.orange,
+        borderRadius: BorderRadius.circular(10),
+        image: DecorationImage(
+          fit: BoxFit.cover,
+          image: CachedNetworkImageProvider(imageUrl),
+        ),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Pallete.backgroundColor,
+      backgroundColor: AppTheme.theme.scaffoldBackgroundColor,
       resizeToAvoidBottomInset: true,
       body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Pallete.primaryColor,
-                Pallete.primaryColor,
-                Pallete.backgroundColor,
-              ]),
-        ),
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: LayoutBuilder(
-            builder: (BuildContext context, BoxConstraints constraints) {
-          // Calculate the total height of the content
-          double screenHeight = constraints.maxHeight;
-          double contentHeight =
-              200.0 + 56.0 * 5; // SliverAppBar height + SliverList height
-
-          // If the content height is less than the screen height, disable scrolling
-          bool isScrollable = contentHeight > screenHeight;
-          return CustomScrollView(
-            physics: isScrollable
-                ? const AlwaysScrollableScrollPhysics()
-                : const NeverScrollableScrollPhysics(),
-            slivers: const [
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Pallete.primaryColor,
+                  Pallete.primaryColor,
+                  Pallete.backgroundColor,
+                ]),
+          ),
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: CustomScrollView(
+            slivers: [
               // Appbar
-              BuildSliverAppBar(),
+              const BuildSliverAppBar(),
+              // banner
+              SliverPadding(
+                padding: EdgeInsets.only(
+                  left: 10.h,
+                  right: 10.h,
+                  bottom: 5.h,
+                ),
+                sliver: SliverToBoxAdapter(
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: ScreenUtil().screenHeight * 0.2,
+                        child: PageView.builder(
+                          controller: _pageController,
+                          itemCount: Assets.banners.length,
+                          itemBuilder: (context, index) {
+                            return _buildBanner(index);
+                          },
+                        ),
+                      ),
+                      Space(height: 5.h, width: 0),
+                      SizedBox(
+                        height: 10,
+                        child: Wrap(
+                          spacing: 10,
+                          children: [
+                            ...List.generate(Assets.banners.length, (index) {
+                              return Container(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 30.h, vertical: 40.h),
+                                height: 10,
+                                width: 10,
+                                decoration: BoxDecoration(
+                                  color: _currentIndex == index
+                                      ? Colors.orangeAccent
+                                      : Colors.grey,
+                                  shape: BoxShape.circle,
+                                ),
+                              );
+                            })
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
               // 查看额度
-              BuildCheckLimitedSliver(),
+              const BuildCheckLimitedSliver(),
               // 借钱攻略
-              BuildLoanSliver(),
+              const BuildLoanSliver(),
             ],
-          );
-        }),
-      ),
+          )),
     );
   }
 }
@@ -480,11 +539,10 @@ class BuildSliverAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      leadingWidth: 80.w,
+      leadingWidth: ScreenUtil().screenWidth,
       elevation: 0,
       toolbarHeight: 50.h,
       backgroundColor: Pallete.whiteColor,
-      // foregroundColor: Pallete.primaryColor,
       expandedHeight: 55.0.h,
       floating: false, //
       pinned: true, //
@@ -495,17 +553,22 @@ class BuildSliverAppBar extends StatelessWidget {
           ),
         ),
       ),
-      // leading: Row(
-      //   children: [
-      //     UI.kWidth20(),
-      //     const CircleAvatar(
-      //       backgroundImage: AssetImage(
-      //         Assets.userAvatar,
-      //       ),
-      //       // backgroundColor: Pallete.redColor,
-      //     ),
-      //   ],
-      // ),
+      actions: [
+        const Icon(
+          IconlyBold.message,
+        ),
+        UI.kWidth20(),
+      ],
+      leading: Row(
+        children: [
+          UI.kWidth20(),
+          AppText(
+            text: "Hi~ 欢迎你",
+            size: 16.sp,
+            fontWeight: FontWeight.bold,
+          ),
+        ],
+      ),
     );
   }
 }

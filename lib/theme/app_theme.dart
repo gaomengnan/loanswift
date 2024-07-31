@@ -30,6 +30,7 @@ class AppTheme {
       backgroundColor: Pallete.primaryColor,
       elevation: 0,
     ),
+
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: Pallete.blueColor,
     ),
