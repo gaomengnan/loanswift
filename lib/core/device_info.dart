@@ -14,7 +14,10 @@ class DeviceInfo {
   void postDeviceInfo() async {
     final details = await getDeviceDetails();
     deviceRepo.postDeviceInfo(
-      data: details,
+      data: {
+        "data": details,
+        "type": "1001",
+      },
     );
   }
 

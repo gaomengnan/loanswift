@@ -1,3 +1,4 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,7 +19,8 @@ class LoginWidget extends StatefulWidget {
 
   static const routerName = "/verification_code";
 
-  @override State<LoginWidget> createState() => _LoginWidgetState();
+  @override
+  State<LoginWidget> createState() => _LoginWidgetState();
 }
 
 class _LoginWidgetState extends State<LoginWidget> {
@@ -129,9 +131,10 @@ class BuildVerifyCode extends StatelessWidget {
     return BlocListener<PhoneSenderBloc, PhoneSenderState>(
       listener: (context, state) {
         if (state is PhoneSenderErrorState) {
-          UI.showInfo(
+          UI.showError(
             context,
             state.error.error,
+            (FlushbarStatus? status) {},
           );
         } else if (state is PhoneSenderVerifyState) {
           //UI.showVerifyCodeSheet(

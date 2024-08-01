@@ -23,13 +23,15 @@ class UI {
     );
   }
 
-  static void showInfo(BuildContext context, String message) {
+  static void showError(BuildContext context, String message, FlushbarStatusCallback? callback ) {
     Flushbar(
+      onStatusChanged: callback,
       icon: Icon(
         Icons.info_outline,
         size: 28.0,
-        color: Colors.blue[300],
+        color: Colors.red[300],
       ),
+      //backgroundColor: Pallete.primaryColor,
       flushbarStyle: FlushbarStyle.GROUNDED,
       borderRadius: BorderRadius.circular(20),
       flushbarPosition: FlushbarPosition.TOP,
