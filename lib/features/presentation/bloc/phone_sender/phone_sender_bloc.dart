@@ -49,43 +49,47 @@ class PhoneSenderBloc extends Bloc<PhoneSenderEvent, PhoneSenderState> {
     PhoneSenderStarted event,
     Emitter<PhoneSenderState> emit,
   ) async {
-    final res = await _authRepo.sendPhoneCode(
-      phone: event.phone,
-    );
-    res.fold(
-      (l) {
-        if (l is ConnectionFailure) {
-          emit(
-            PhoneSenderErrorState(S.current.network_error),
-          );
-        }
-
-        if (l is ServerFailure) {
-          emit(
-            PhoneSenderErrorState(S.current.service_error),
-          );
-        }
-
-        if (l is ApiFailure) {}
-      },
-      (r) {
-        _tickerSubscription?.cancel();
-        // 验证框
-        emit(PhoneSenderVerifyState());
-        // 触发倒计时
-        emit(PhoneSenderRunInProgress(
-          event.duration,
-          event.phone,
-          CountdownState.running,
-        ));
-
-        _tickerSubscription = _ticker.tick(ticks: event.duration).listen(
-              (duration) => add(
-                PhoneSenderTicked(duration, event.phone),
-              ),
+    if (state.countdownState.isRunning) {
+      //emit(PhoneSenderVerifyState());
+    } else {
+      final res = await _authRepo.sendPhoneCode(
+        phone: event.phone,
+      );
+      res.fold(
+        (l) {
+          if (l is ConnectionFailure) {
+            emit(
+              PhoneSenderErrorState(S.current.network_error),
             );
-      },
-    );
+          }
+
+          if (l is ServerFailure) {
+            emit(
+              PhoneSenderErrorState(S.current.service_error),
+            );
+          }
+
+          if (l is ApiFailure) {}
+        },
+        (r) {
+          _tickerSubscription?.cancel();
+          // 验证框
+          //emit(PhoneSenderVerifyState());
+          // 触发倒计时
+          emit(PhoneSenderRunInProgress(
+            event.duration,
+            event.phone,
+            CountdownState.running,
+          ));
+
+          _tickerSubscription = _ticker.tick(ticks: event.duration).listen(
+                (duration) => add(
+                  PhoneSenderTicked(duration, event.phone),
+                ),
+              );
+        },
+      );
+    }
   }
 
   void _onReStarted(

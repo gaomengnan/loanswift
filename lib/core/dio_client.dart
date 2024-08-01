@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:loanswift/core/constants/app.dart';
 import 'package:loanswift/core/core.dart';
@@ -101,7 +102,7 @@ class DioInterceptor extends Interceptor {
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    print("before send requestobject");
+    debugPrint("before send requestobject");
     options.headers.addAll({
       //"Content-Type": "application/json",
       "Authorization": "Bearer $token",
@@ -115,7 +116,7 @@ class DioInterceptor extends Interceptor {
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    print("onResponse");
+    debugPrint("onResponse");
     super.onResponse(response, handler);
   }
 

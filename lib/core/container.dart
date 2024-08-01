@@ -1,6 +1,6 @@
-import 'package:flutter/rendering.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:loanswift/core/device_info.dart';
 import 'package:loanswift/core/dio_client.dart';
@@ -14,7 +14,6 @@ import 'package:loanswift/features/domain/repos/device.dart';
 
 import '../features/data/models/models.dart';
 import '../features/presentation/bloc/bloc.dart';
-import 'package:get_storage/get_storage.dart';
 
 final sl = GetIt.instance;
 

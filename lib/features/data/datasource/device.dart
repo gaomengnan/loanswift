@@ -21,14 +21,13 @@ class DeviceDataSourceImpl extends DeviceDataSource {
 
   @override
   ResultVoid postDeviceInfo({required Map<String, dynamic> data}) async {
-    print(data);
     _dioClient.post(
       path: "/middle/data/report",
       data: data,
       pt: "form",
     );
     return right(
-      {},
+      null,
     );
   }
 }

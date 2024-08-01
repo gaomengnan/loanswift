@@ -135,17 +135,17 @@ class BuildVerifyCode extends StatelessWidget {
             state.error.error,
           );
         } else if (state is PhoneSenderVerifyState) {
-          UI.showVerifyCodeSheet(
-            context,
-          );
+          //UI.showVerifyCodeSheet(
+          //  context,
+          //);
         } else if (state is PhoneSenderRunInProgress) {
-          context.read<AuthBloc>().add(
-                DisabledButtonStateEvent(),
-              );
+          //context.read<AuthBloc>().add(
+          //      DisabledButtonStateEvent(),
+          //    );
         } else if (state is PhoneSenderRunComplete) {
-          context.read<AuthBloc>().add(
-                EnabledButtonStateEvent(),
-              );
+          //context.read<AuthBloc>().add(
+          //      EnabledButtonStateEvent(),
+          //    );
         }
       },
       child: Form(
@@ -192,11 +192,11 @@ class BuildVerifyCode extends StatelessWidget {
             ),
           )),
           onFieldSubmitted: (val) {
-            final countdownState =
-                context.read<PhoneSenderBloc>().state.countdownState;
-            if (countdownState == CountdownState.running) {
-              return;
-            }
+            //final countdownState =
+            //    context.read<PhoneSenderBloc>().state.countdownState;
+            //if (countdownState == CountdownState.running) {
+            //  return;
+            //}
             final validator = formKey.currentState?.validate() ?? false;
             if (validator) {
               // 解除按钮禁用状态
@@ -223,6 +223,10 @@ class BuildVerifyCode extends StatelessWidget {
                     val.phoneNumber ?? "",
                   ),
                 );
+
+            UI.showVerifyCodeSheet(
+              context,
+            );
           },
           initialValue: number,
           // locale: Locale("id"),
@@ -263,9 +267,9 @@ class BuildBottomButton extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: () async {
-                if (isButnDisabled) {
-                  return;
-                }
+                //if (isButnDisabled) {login
+                //  return;
+                //}
                 // formKey.currentState?.save();
                 // print(number.phoneNumber);
                 final validator = formKey.currentState?.validate() ?? false;
