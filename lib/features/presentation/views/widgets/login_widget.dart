@@ -18,8 +18,7 @@ class LoginWidget extends StatefulWidget {
 
   static const routerName = "/verification_code";
 
-  @override
-  State<LoginWidget> createState() => _LoginWidgetState();
+  @override State<LoginWidget> createState() => _LoginWidgetState();
 }
 
 class _LoginWidgetState extends State<LoginWidget> {
