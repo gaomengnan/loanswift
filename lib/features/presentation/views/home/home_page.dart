@@ -25,21 +25,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    //_anicontroller = AnimationController(
-    //    vsync: this, duration: const Duration(milliseconds: 2000));
-    //
-    //_scaleController =
-    //    AnimationController(value: 0.0, vsync: this, upperBound: 1.0);
-    //
-    //_refreshController.headerMode?.addListener(() {
-    //  if (_refreshController.headerStatus == RefreshStatus.idle) {
-    //    _scaleController.value = 0.0;
-    //    _anicontroller.reset();
-    //  } else if (_refreshController.headerStatus == RefreshStatus.refreshing) {
-    //    _anicontroller.repeat();
-    //  }
-    //});
-
     super.initState();
   }
 
