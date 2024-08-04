@@ -1,3 +1,4 @@
+
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:get_storage/get_storage.dart';
@@ -99,4 +100,5 @@ Future<void> initialize() async {
     deviceRepo: sl(),
   );
   device.postDeviceInfo();
+
 }
