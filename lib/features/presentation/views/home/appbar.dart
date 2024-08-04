@@ -38,7 +38,7 @@ class BuildAppBar extends StatelessWidget {
         children: [
           UI.kWidth20(),
           AppText(
-            text: "Hi~ 欢迎你",
+            text: "Hi~ ${S.current.welcome_you}",
             size: 16.sp,
             fontWeight: FontWeight.bold,
           ),

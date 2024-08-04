@@ -59,6 +59,7 @@
   "photo_permission_missing": "Failed to access camera permission",
   "click_to_access": "Click to access",
   "network_error": "Network connection abnormal",
-  "service_error": "Service request error"
+  "service_error": "Service request error",
+  "welcome_you": "You Welcome"
 }
 

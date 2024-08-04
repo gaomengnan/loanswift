@@ -85,6 +85,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("收不到验证码?"),
         "verification_code_sendto":
             MessageLookupByLibrary.simpleMessage("短信验证码已发送至"),
-        "verification_code_wrong": MessageLookupByLibrary.simpleMessage("验证码错误")
+        "verification_code_wrong":
+            MessageLookupByLibrary.simpleMessage("验证码错误"),
+        "welcome_you": MessageLookupByLibrary.simpleMessage("欢迎你")
       };
 }

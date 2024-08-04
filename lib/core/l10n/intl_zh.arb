@@ -59,5 +59,6 @@
   "photo_permission_missing": "相机权限获取失败",
   "click_to_access": "点击授权",
   "network_error": "网络连接异常",
-  "service_error": "服务异常"
+  "service_error": "服务异常",
+  "welcome_you": "欢迎你"
 }

@@ -10,6 +10,7 @@ import 'package:loanswift/theme/pallete.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../core/common/widgets/widgets.dart';
+import '../../../../core/generated/l10n.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -20,7 +21,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   late AnimationController _anicontroller, _scaleController;
-  late AnimationController _footerController;
+  //late AnimationController _footerController;
   final RefreshController _refreshController = RefreshController();
   int count = 20;
 
@@ -48,7 +49,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   void dispose() {
     _refreshController.dispose();
     _scaleController.dispose();
-    _footerController.dispose();
+    //_footerController.dispose();
     _anicontroller.dispose();
     super.dispose();
   }
@@ -78,7 +79,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           children: [
             UI.kWidth20(),
             AppText(
-              text: "Hi~ 欢迎你",
+              text: "Hi~ ${S.current.welcome_you}",
               size: 16.sp,
               fontWeight: FontWeight.bold,
             ),

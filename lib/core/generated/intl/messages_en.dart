@@ -109,6 +109,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "verification_code_sendto": MessageLookupByLibrary.simpleMessage(
             "SMS verification code has been sent to"),
         "verification_code_wrong":
-            MessageLookupByLibrary.simpleMessage("Incorrect verification code")
+            MessageLookupByLibrary.simpleMessage("Incorrect verification code"),
+        "welcome_you": MessageLookupByLibrary.simpleMessage("You Welcome")
       };
 }

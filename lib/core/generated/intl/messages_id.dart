@@ -110,6 +110,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "verification_code_sendto": MessageLookupByLibrary.simpleMessage(
             "Kode verifikasi SMS telah dikirim ke"),
         "verification_code_wrong":
-            MessageLookupByLibrary.simpleMessage("Kode verifikasi salah")
+            MessageLookupByLibrary.simpleMessage("Kode verifikasi salah"),
+        "welcome_you": MessageLookupByLibrary.simpleMessage("Selamat datang")
       };
 }

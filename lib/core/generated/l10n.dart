@@ -619,6 +619,16 @@ class S {
       args: [],
     );
   }
+
+  /// `欢迎你`
+  String get welcome_you {
+    return Intl.message(
+      '欢迎你',
+      name: 'welcome_you',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

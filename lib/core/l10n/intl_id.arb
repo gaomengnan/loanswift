@@ -58,5 +58,6 @@
   "photo_permission_missing": "Gagal mengakses izin kamera",
   "click_to_access": "Klik untuk mengakses",
   "network_error": "Kesalahan koneksi jaringan",
-  "service_error": "Kesalahan permintaan layanan"
+  "service_error": "Kesalahan permintaan layanan",
+  "welcome_you": "Selamat datang"
 }
