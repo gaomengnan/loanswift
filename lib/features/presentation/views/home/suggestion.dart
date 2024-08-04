@@ -32,7 +32,7 @@ class BuildSuggestion extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         //height: MediaQuery.of(context).size.height,
         decoration: const BoxDecoration(
-          color: Pallete.backgroundColor,
+          //color: Pallete.backgroundColor,
         ),
         child: Column(
           children: [

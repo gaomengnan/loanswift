@@ -31,11 +31,11 @@ class BuildQuota extends StatelessWidget {
       child: Container(
         width: MediaQuery.of(context).size.width,
         decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: Pallete.gradientColors,
-          ),
+          //gradient: LinearGradient(
+          //  begin: Alignment.topCenter,
+          //  end: Alignment.bottomCenter,
+          //  colors: Pallete.gradientColors,
+          //),
         ),
         child: Padding(
           padding: EdgeInsets.symmetric(

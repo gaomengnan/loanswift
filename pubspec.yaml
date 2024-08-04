@@ -66,6 +66,7 @@ dependencies:
   flutter_native_splash: ^2.4.1
   device_info_plus: ^10.1.1
   cached_network_image: ^3.3.1
+  pull_to_refresh: ^2.0.0
 
 dev_dependencies:
   flutter_test:
