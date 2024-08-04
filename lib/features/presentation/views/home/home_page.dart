@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:loanswift/core/constants/ui.dart';
-import 'package:loanswift/features/presentation/views/home/appbar.dart';
 import 'package:loanswift/features/presentation/views/home/banner.dart';
 import 'package:loanswift/features/presentation/views/home/bill.dart';
 import 'package:loanswift/features/presentation/views/home/quota.dart';
@@ -104,9 +102,17 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           //height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: SmartRefresher(
-            header: const ClassicHeader(
-              textStyle: TextStyle(
+            header: ClassicHeader(
+              textStyle: const TextStyle(
                 color: Colors.black,
+              ),
+              refreshStyle: RefreshStyle.Follow,
+              refreshingIcon: SizedBox(
+                width: 10.w,
+                height:  10.h,
+                child: const CircularProgressIndicator(
+                  strokeWidth: 4,
+                ),
               ),
             ),
             enablePullDown: true,
