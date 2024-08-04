@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class Refresher extends StatefulWidget {
   final Widget child;
@@ -18,6 +19,8 @@ class _RefresherState extends State<Refresher> with TickerProviderStateMixin {
   late AnimationController _anicontroller, _scaleController;
   //late AnimationController _footerController;
   final RefreshController _refreshController = RefreshController();
+
+  late bool _isLoading = false;
 
   @override
   void initState() {
@@ -68,15 +71,26 @@ class _RefresherState extends State<Refresher> with TickerProviderStateMixin {
       enablePullUp: false,
       controller: _refreshController,
       onRefresh: () async {
-        await Future.delayed(const Duration(milliseconds: 1000));
+        setState(() {
+          _isLoading = true;
+        });
+        await Future.delayed(const Duration(milliseconds: 3000));
         _refreshController.refreshCompleted();
+        setState(() {
+          _isLoading = false;
+        });
       },
-      onLoading: () async {
-        await Future.delayed(const Duration(milliseconds: 1000));
-        setState(() {});
-        _refreshController.loadComplete();
-      },
-      child: widget.child,
+      //onLoading: () async {
+      //  await Future.delayed(const Duration(milliseconds: 1000));
+      //  setState(() {});
+      //  _refreshController.loadComplete();
+      //},
+      child: _isLoading
+          ? Skeletonizer(
+              enabled: true,
+              child: widget.child,
+            )
+          : widget.child,
     );
   }
 }
