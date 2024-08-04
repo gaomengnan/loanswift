@@ -6,7 +6,6 @@ import 'package:loanswift/core/constants/ui.dart';
 import 'package:loanswift/features/presentation/views/home/banner.dart';
 import 'package:loanswift/features/presentation/views/home/bill.dart';
 import 'package:loanswift/features/presentation/views/home/quota.dart';
-import 'package:loanswift/features/presentation/views/home/suggestion.dart';
 import 'package:loanswift/theme/pallete.dart';
 
 import '../../../../core/common/widgets/widgets.dart';
@@ -113,7 +112,7 @@ class _HomePageState extends State<HomePage> {
 
                 BuildBill(),
                 // 借钱攻略
-                BuildSuggestion(),
+                //BuildSuggestion(),
               ],
             ),
           )),
