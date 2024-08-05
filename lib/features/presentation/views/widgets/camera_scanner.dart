@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
@@ -197,7 +198,7 @@ class _CardScannerState extends State<CardScanner> {
                     ),
                   ),
                   Positioned(
-                    top: ScreenUtil().screenHeight / 2,
+                    top: ScreenUtil().screenHeight / 2 - 10.h,
                     right: 0,
                     left: 0,
                     child: const Center(
@@ -299,14 +300,14 @@ class _CardScannerState extends State<CardScanner> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Icon(
-                                        Icons.close,
-                                        color: Colors.red,
-                                      ),
-                                      Icon(
-                                        Icons.check,
-                                        color: Colors.green,
-                                      ),
+                                      //Icon(
+                                      //  Icons.close,
+                                      //  color: Colors.red,
+                                      //),
+                                      //Icon(
+                                      //  Icons.check,
+                                      //  color: Colors.green,
+                                      //),
                                     ],
                                   ),
                                 ),
@@ -361,6 +362,27 @@ class HolePainter extends CustomPainter {
     // 镂空处理
     var rectPath = Path()..addRRect(rRect);
     canvas.drawPath(rectPath, Paint()..blendMode = BlendMode.clear);
+    _drawDashedRect(canvas, rRect, size);
+  }
+
+  void _drawDashedRect(Canvas canvas, RRect rRect, Size size) {
+    double dashWidth = 5, dashSpace = 5;
+    final paint = Paint()
+      ..color = Pallete.primaryColor
+      ..strokeWidth = 2
+      ..style = PaintingStyle.stroke;
+
+    Path path = Path()..addRRect(rRect);
+
+    for (PathMetric pathMetric in path.computeMetrics()) {
+      double distance = 0.0;
+      while (distance < pathMetric.length) {
+        final extractPath =
+            pathMetric.extractPath(distance, distance + dashWidth);
+        canvas.drawPath(extractPath, paint);
+        distance += dashWidth + dashSpace;
+      }
+    }
   }
 
   @override
