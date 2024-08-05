@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/utils.dart';
+import 'package:loanswift/features/presentation/views/widgets/camera_scanner.dart';
 
 import '../../../../core/common/widgets/widgets.dart';
 import '../../../../core/core.dart';
-import '../widgets/camera_scanner.dart';
 
 class IDCardUpload extends StatefulWidget {
   const IDCardUpload({super.key});
