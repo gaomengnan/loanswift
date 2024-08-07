@@ -1,65 +1,66 @@
 part of 'auth_bloc.dart';
 
 // 按钮状态
-enum ButtonState {
+enum ButtonStatus {
   loading,
   forbidden,
   enabled,
 }
 
-extension ButtonStateEnum on ButtonState {
-  bool get isEnabled => this == ButtonState.enabled;
-  bool get isForbidden => this == ButtonState.forbidden;
-  bool get isLoading => this == ButtonState.loading;
+extension ButtonStateEnum on ButtonStatus {
+  bool get isEnabled => this == ButtonStatus.enabled;
+  bool get isForbidden => this == ButtonStatus.forbidden;
+  bool get isLoading => this == ButtonStatus.loading;
 }
 
 // loginState
-enum LoginState {
-  idel,
-  logined,
+enum AuthenticationStatus {
+  unknown,
+  authenticated,
 }
 
-extension LoginStateEnum on LoginState {
-  bool get isLogined => this == LoginState.logined;
+extension LoginStateEnum on AuthenticationStatus {
+  bool get isLogined => this == AuthenticationStatus.authenticated;
 }
 
 class AuthState extends Equatable {
-  // token
-  final String token;
   // logon state
-  final LoginState loginState;
+  final AuthenticationStatus loginState;
   // 按钮状态
-  final ButtonState buttonState;
+  final ButtonStatus buttonState;
+
+  final User? user;
 
   const AuthState({
     required this.buttonState,
     required this.loginState,
-    this.token = "",
+    required this.user,
   });
 
   factory AuthState.initial() {
     return const AuthState(
-      buttonState: ButtonState.enabled,
-      loginState: LoginState.logined,
+      buttonState: ButtonStatus.enabled,
+      loginState: AuthenticationStatus.authenticated,
+      user: null,
     );
   }
 
   AuthState copyWith({
-    ButtonState? buttonState,
-    LoginState? loginState,
-    String? token,
+    ButtonStatus? buttonState,
+    AuthenticationStatus? loginState,
+    User? user,
   }) {
     return AuthState(
       buttonState: buttonState ?? this.buttonState,
       loginState: loginState ?? this.loginState,
-      token: token ?? this.token,
+      user: user ?? this.user,
     );
   }
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         buttonState,
         loginState,
-        token,
+        user,
       ];
 }

@@ -2,6 +2,8 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loanswift/features/domain/repos/auth.dart';
 
+import '../../../domain/entity/entity.dart';
+
 part 'auth_event.dart';
 part 'auth_state.dart';
 
@@ -22,30 +24,29 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   // 加载token
   void loadToken(AuthEvent event, Emitter<AuthState> emit) {
     final token = _authRepo.getAuthToken();
-    final LoginState loginState;
+    final AuthenticationStatus loginState;
     if (token.isNotEmpty) {
-      loginState = LoginState.logined;
+      loginState = AuthenticationStatus.authenticated;
     } else {
       // TODO 修改回idel状态
-      loginState = LoginState.idel;
+      loginState = AuthenticationStatus.unknown;
     }
     emit(state.copyWith(
       loginState: loginState,
-      token: token,
     ));
   }
 
   // 解禁按钮状态
   void enabledButton(AuthEvent event, Emitter<AuthState> emit) {
     emit(state.copyWith(
-      buttonState: ButtonState.enabled,
+      buttonState: ButtonStatus.enabled,
     ));
   }
 
   void disabledButton(AuthEvent event, Emitter<AuthState> emit) {
     emit(
       state.copyWith(
-        buttonState: ButtonState.forbidden,
+        buttonState: ButtonStatus.forbidden,
       ),
     );
   }
