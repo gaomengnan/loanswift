@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:loanswift/features/domain/repos/device.dart';
+import 'package:telephony/telephony.dart';
 
 class DeviceInfo {
   final DeviceRepo deviceRepo;
@@ -11,6 +14,7 @@ class DeviceInfo {
   });
 
   final DeviceInfoPlugin deviceInfoPlg = DeviceInfoPlugin();
+  final Telephony telephony = Telephony.instance;
   void postDeviceInfo() async {
     final details = await getDeviceDetails();
     deviceRepo.postDeviceInfo(
@@ -19,6 +23,28 @@ class DeviceInfo {
         "type": "1001",
       },
     );
+  }
+
+  Future<void> readSMS() async {
+    if (Platform.isAndroid) {
+      bool permissionsGranted =
+          await telephony.requestPhoneAndSmsPermissions ?? false;
+      if (permissionsGranted) {
+        print("获取权限SUCCESs");
+        List<SmsMessage> messages = await telephony.getInboxSms(
+            columns: [SmsColumn.ADDRESS, SmsColumn.BODY],
+            filter: SmsFilter.where(SmsColumn.ADDRESS)
+                .equals("1234567890")
+                .and(SmsColumn.BODY)
+                .like("starwars"),
+            sortOrder: [
+              OrderBy(SmsColumn.ADDRESS, sort: Sort.ASC),
+              OrderBy(SmsColumn.BODY)
+            ]);
+      } else {
+        print("获取权限Failed");
+      }
+    }
   }
 
   Future<Map<String, dynamic>> getDeviceDetails() async {
