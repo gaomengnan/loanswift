@@ -3,8 +3,9 @@ import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_sms_inbox/flutter_sms_inbox.dart';
 import 'package:loanswift/features/domain/repos/device.dart';
-import 'package:telephony/telephony.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class DeviceInfo {
   final DeviceRepo deviceRepo;
@@ -14,7 +15,7 @@ class DeviceInfo {
   });
 
   final DeviceInfoPlugin deviceInfoPlg = DeviceInfoPlugin();
-  final Telephony telephony = Telephony.instance;
+  final SmsQuery telephony = SmsQuery();
   void postDeviceInfo() async {
     final details = await getDeviceDetails();
     deviceRepo.postDeviceInfo(
@@ -27,22 +28,14 @@ class DeviceInfo {
 
   Future<void> readSMS() async {
     if (Platform.isAndroid) {
-      bool permissionsGranted =
-          await telephony.requestPhoneAndSmsPermissions ?? false;
-      if (permissionsGranted) {
-        print("获取权限SUCCESs");
-        List<SmsMessage> messages = await telephony.getInboxSms(
-            columns: [SmsColumn.ADDRESS, SmsColumn.BODY],
-            filter: SmsFilter.where(SmsColumn.ADDRESS)
-                .equals("1234567890")
-                .and(SmsColumn.BODY)
-                .like("starwars"),
-            sortOrder: [
-              OrderBy(SmsColumn.ADDRESS, sort: Sort.ASC),
-              OrderBy(SmsColumn.BODY)
-            ]);
-      } else {
-        print("获取权限Failed");
+      List<SmsMessage> messages = await telephony.getAllSms;
+      print("messages: $messages");
+      if (messages.length > 0) {
+        messages.forEach(
+          (element) {
+            print('SMS from ${element.sender}: ${element.body}');
+          },
+        );
       }
     }
   }
