@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:loanswift/core/constants/ui.dart';
 
 class BuildBill extends StatelessWidget {
   const BuildBill({super.key});
@@ -33,7 +32,8 @@ class BuildBill extends StatelessWidget {
             children: [
               const Flexible(
                 child: ListTile(
-                  contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+                  contentPadding:
+                      EdgeInsets.symmetric(vertical: 0, horizontal: 0),
                   leading: Icon(Icons.payment),
                   title: Text('请尽快付款'),
                   trailing: Icon(Icons.arrow_right_alt),
@@ -43,8 +43,13 @@ class BuildBill extends StatelessWidget {
               Flexible(
                 flex: 4,
                 child: Container(
-                  margin: EdgeInsets.symmetric(vertical: 10.h,),
-                  padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.h,),
+                  margin: EdgeInsets.symmetric(
+                    vertical: 10.h,
+                  ),
+                  padding: EdgeInsets.symmetric(
+                    vertical: 10.h,
+                    horizontal: 10.h,
+                  ),
                   width: ScreenUtil().screenWidth,
                   height: double.infinity,
                   decoration: const BoxDecoration(

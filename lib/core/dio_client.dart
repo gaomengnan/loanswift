@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:loanswift/core/constants/app.dart';
 import 'package:loanswift/core/core.dart';
@@ -98,7 +99,8 @@ class DioClient {
 }
 
 class DioInterceptor extends Interceptor {
-  final String token = "";
+  final String token =
+      GetStorage().read<String>(AppContant.token) ?? 'API_TEST';
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {

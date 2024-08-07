@@ -23,6 +23,7 @@ def sendcode():
 
 @app.route('/middle/data/report', methods=['POST'])
 def datgareport():
+    print(request.headers)
     print(request.content_type)
     print(request.content_encoding)
     print(request.form)

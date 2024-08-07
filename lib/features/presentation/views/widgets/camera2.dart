@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:ui';
 
 import 'package:camera/camera.dart';
@@ -20,7 +19,6 @@ class CardScanner2 extends StatefulWidget {
 
 class _CardScanner2State extends State<CardScanner2> {
   late CameraController _controller;
-  File? _imageFile;
   OverlayEntry? _overlayEntry;
   // late Future<void> _initializeControllerFuture;
 
