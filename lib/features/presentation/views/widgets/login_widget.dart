@@ -253,14 +253,9 @@ class BuildBottomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isButnDisabled =
-        false;
 
-    final Color btnColor = isButnDisabled
-        ? Pallete.greyColor.withOpacity(0.2)
-        : Pallete.primaryColor; // 设置按钮背景颜色
-    final Color textColor =
-        isButnDisabled ? Pallete.greyColor : Pallete.whiteColor;
+    const Color btnColor = Pallete.primaryColor; // 设置按钮背景颜色
+    const Color textColor = Pallete.whiteColor;
 
     return Column(
       children: [
