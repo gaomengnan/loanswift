@@ -23,7 +23,8 @@ class UI {
     );
   }
 
-  static void showError(BuildContext context, String message, FlushbarStatusCallback? callback ) {
+  static void showError(
+      BuildContext context, String message, FlushbarStatusCallback? callback) {
     Flushbar(
       onStatusChanged: callback,
       icon: Icon(
@@ -51,10 +52,7 @@ class UI {
           resizeToAvoidBottomInset: true,
           body: SingleChildScrollView(
             child: BlocProvider(
-              create: (_) => sl<AuthBloc>()
-                ..add(
-                  LoadAuthTokenEvent(),
-                ),
+              create: (_) => sl<AuthBloc>(),
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(

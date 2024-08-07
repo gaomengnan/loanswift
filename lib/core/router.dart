@@ -25,10 +25,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case AuthPage.routerName:
       return _pageBuilder(
         (_) => BlocProvider(
-          create: (_) => sl<AuthBloc>()
-            ..add(
-              LoadAuthTokenEvent(),
-            ),
+          create: (_) => sl<AuthBloc>(),
           child: const AuthPage(),
         ),
         settings: settings,

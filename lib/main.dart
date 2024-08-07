@@ -35,10 +35,7 @@ class MyApp extends StatelessWidget {
           create: (_) => sl<PhoneSenderBloc>(),
         ),
         BlocProvider(
-          create: (_) => sl<AuthBloc>()
-            ..add(
-              LoadAuthTokenEvent(),
-            ),
+          create: (_) => sl<AuthBloc>(),
         ),
       ],
       // create: (_) => sl<PhoneSenderBloc>(),

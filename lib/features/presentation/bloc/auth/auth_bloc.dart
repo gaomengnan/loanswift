@@ -18,23 +18,23 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         ) {
     //on<EnabledButtonStateEvent>(enabledButton);
     //on<DisabledButtonStateEvent>(disabledButton);
-    on<LoadAuthTokenEvent>(loadToken);
+    // on<LoadAuthTokenEvent>(loadToken);
   }
 
   // 加载token
-  void loadToken(AuthEvent event, Emitter<AuthState> emit) {
-    final token = _authRepo.getAuthToken();
-    final AuthenticationStatus loginState;
-    if (token.isNotEmpty) {
-      loginState = AuthenticationStatus.authenticated;
-    } else {
-      // TODO 修改回idel状态
-      loginState = AuthenticationStatus.unknown;
-    }
-    emit(state.copyWith(
-      loginState: loginState,
-    ));
-  }
+  // void loadToken(AuthEvent event, Emitter<AuthState> emit) {
+  //   final token = _authRepo.getAuthToken();
+  //   final AuthenticationStatus loginState;
+  //   if (token.isNotEmpty) {
+  //     loginState = AuthenticationStatus.authenticated;
+  //   } else {
+  //     // TODO 修改回idel状态
+  //     loginState = AuthenticationStatus.unknown;
+  //   }
+  //   emit(state.copyWith(
+  //     loginState: loginState,
+  //   ));
+  // }
 
   // 解禁按钮状态
   //void enabledButton(AuthEvent event, Emitter<AuthState> emit) {
