@@ -5,7 +5,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_sms_inbox/flutter_sms_inbox.dart';
 import 'package:loanswift/features/domain/repos/device.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 class DeviceInfo {
   final DeviceRepo deviceRepo;
