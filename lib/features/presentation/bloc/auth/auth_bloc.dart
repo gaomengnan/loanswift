@@ -16,8 +16,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         super(
           AuthState.initial(),
         ) {
-    on<EnabledButtonStateEvent>(enabledButton);
-    on<DisabledButtonStateEvent>(disabledButton);
+    //on<EnabledButtonStateEvent>(enabledButton);
+    //on<DisabledButtonStateEvent>(disabledButton);
     on<LoadAuthTokenEvent>(loadToken);
   }
 
@@ -37,17 +37,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   // 解禁按钮状态
-  void enabledButton(AuthEvent event, Emitter<AuthState> emit) {
-    emit(state.copyWith(
-      buttonState: ButtonStatus.enabled,
-    ));
-  }
+  //void enabledButton(AuthEvent event, Emitter<AuthState> emit) {
+  //  emit(state.copyWith(
+  //    buttonState: ButtonStatus.enabled,
+  //  ));
+  //}
 
-  void disabledButton(AuthEvent event, Emitter<AuthState> emit) {
-    emit(
-      state.copyWith(
-        buttonState: ButtonStatus.forbidden,
-      ),
-    );
-  }
+  //void disabledButton(AuthEvent event, Emitter<AuthState> emit) {
+  //  emit(
+  //    state.copyWith(
+  //      buttonState: ButtonStatus.forbidden,
+  //    ),
+  //  );
+  //}
 }

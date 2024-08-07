@@ -199,17 +199,17 @@ class BuildVerifyCode extends StatelessWidget {
             //if (countdownState == CountdownState.running) {
             //  return;
             //}
-            final validator = formKey.currentState?.validate() ?? false;
-            if (validator) {
-              // 解除按钮禁用状态
-              context.read<AuthBloc>().add(
-                    EnabledButtonStateEvent(),
-                  );
-            } else {
-              context.read<AuthBloc>().add(
-                    DisabledButtonStateEvent(),
-                  );
-            }
+            formKey.currentState?.validate();
+            //if (validator) {
+            //  // 解除按钮禁用状态
+            //  context.read<AuthBloc>().add(
+            //        EnabledButtonStateEvent(),
+            //      );
+            //} else {
+            //  context.read<AuthBloc>().add(
+            //        DisabledButtonStateEvent(),
+            //      );
+            //}
             // showInfo(context, "tesxt");
           },
           onInputChanged: (PhoneNumber val) {
@@ -254,7 +254,7 @@ class BuildBottomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isButnDisabled =
-        context.watch<AuthBloc>().state.buttonState.isForbidden;
+        false;
 
     final Color btnColor = isButnDisabled
         ? Pallete.greyColor.withOpacity(0.2)
@@ -302,9 +302,9 @@ class BuildBottomButton extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                if (isButnDisabled) {
-                  return;
-                }
+                //if (isButnDisabled) {
+                //  return;
+                //}
               },
               style: ElevatedButton.styleFrom(
                 elevation: 0,

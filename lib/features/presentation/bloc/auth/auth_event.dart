@@ -7,6 +7,6 @@ class AuthEvent extends Equatable {
 
 class LoadAuthTokenEvent extends AuthEvent {}
 
-class EnabledButtonStateEvent extends AuthEvent {}
-
-class DisabledButtonStateEvent extends AuthEvent {}
+//class EnabledButtonStateEvent extends AuthEvent {}
+//
+//class DisabledButtonStateEvent extends AuthEvent {}
