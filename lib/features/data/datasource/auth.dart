@@ -90,7 +90,7 @@ class AuthDataSourceImpl extends AuthDataSource {
     }, (r) {
       return right(ApiResponse.fromJson(
         r.data,
-        (json) => UserModel.fromJson(json),
+        (json) => UserModel.fromMap(json),
       ));
     });
   }

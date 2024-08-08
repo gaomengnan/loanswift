@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:loanswift/core/typedefs.dart';
+import 'package:loanswift/core/core.dart';
+import 'package:loanswift/core/exceptions.dart';
 import 'package:loanswift/features/data/datasource/auth.dart';
 import 'package:loanswift/features/data/models/auth_token.dart';
 import 'package:loanswift/features/domain/repos/auth.dart';
@@ -12,9 +13,19 @@ class AuthRepository implements AuthRepo {
 
   @override
   ResultVoid sendPhoneCode({required String phone}) async {
-    return await _authDataSource.sendPhoneCode(
-      phone: phone,
-    );
+    try {
+      await _authDataSource.sendPhoneCode(
+        phone: phone,
+      );
+      return const Right(null);
+    } on ServerException catch (e) {
+      return Left(
+        ServerFailure(
+          message: e.message,
+          statusCode: e.statusCode,
+        ),
+      );
+    }
   }
 
   @override

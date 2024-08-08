@@ -1,3 +1,4 @@
+import 'package:loanswift/core/core.dart';
 import 'package:loanswift/features/domain/entity/entity.dart';
 
 class UserModel extends User {
@@ -17,8 +18,8 @@ class UserModel extends User {
 
   const UserModel.empty()
       : this(
-          id: 1,
-          userId: 1,
+          id: 0,
+          userId: 0,
           appForm: 'unknown.appForm',
           idCardFront: 'unknown.idCardFront',
           idCardBack: 'unknown.idCardBack',
@@ -30,15 +31,15 @@ class UserModel extends User {
           updatedAt: 'unknown.updatedAt',
         );
 
-  factory UserModel.fromJson(Map<String, dynamic> json) {
+  factory UserModel.fromMap(DataMap json) {
     return UserModel(
-      id: (json['id'] as num).toInt(),
-      userId: (json['user_id'] as num).toInt(),
+      id: json['id'] as int,
+      userId: json['user_id'] as int,
       appForm: json['app_form'],
       idCardFront: json['id_card_front'],
       idCardBack: json['id_card_back'],
-      sex: (json['sex'] as num).toInt(),
-      education: (json['education'] as num).toInt(),
+      sex: json['sex'] as int,
+      education: json['education'] as int,
       homePhone: json['home_phone'],
       homeCity: json['home_city'],
       createdAt: json['created_at'],
@@ -74,8 +75,8 @@ class UserModel extends User {
     );
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
+  DataMap toJson() {
+    final DataMap data = {};
     data['id'] = id;
     data['user_id'] = userId;
     data['app_form'] = appForm;
@@ -88,5 +89,22 @@ class UserModel extends User {
     data['created_at'] = createdAt;
     data['updated_at'] = updatedAt;
     return data;
+  }
+
+  // toMap method
+  DataMap toMap() {
+    return {
+      'id': id,
+      'user_id': userId,
+      'app_form': appForm,
+      'id_card_front': idCardFront,
+      'id_card_back': idCardBack,
+      'sex': sex,
+      'education': education,
+      'home_phone': homePhone,
+      'home_city': homeCity,
+      'created_at': createdAt,
+      'updated_at': updatedAt,
+    };
   }
 }
