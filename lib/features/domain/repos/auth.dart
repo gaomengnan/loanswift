@@ -1,13 +1,14 @@
 import 'package:loanswift/core/core.dart';
+import 'package:loanswift/features/domain/entity/user/auth_token.dart';
 
 abstract class AuthRepo {
   const AuthRepo();
-  ResultFuture<void> login({
+  ResultFuture<AuthToken> login({
     required String phone,
     required String code,
   });
 
-  ResultFuture<void> sendPhoneCode({
+  ResultVoid sendPhoneCode({
     required String phone,
   });
 

@@ -23,14 +23,14 @@ class AuthRepository implements AuthRepo {
   }
 
   @override
-  ResultFuture<AuthTokenModel?> login(
+  ResultFuture<AuthTokenModel> login(
       {required String phone, required String code}) async {
     final resp = await _authDataSource.login(phone: phone, code: code);
     return resp.fold((l) {
       return left(l);
     }, (r) {
       return right(
-        r.data,
+        r.data!,
       );
     });
   }

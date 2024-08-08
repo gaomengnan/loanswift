@@ -29,12 +29,10 @@ class DeviceInfo {
     if (Platform.isAndroid) {
       List<SmsMessage> messages = await telephony.getAllSms;
       print("messages: $messages");
-      if (messages.length > 0) {
-        messages.forEach(
-          (element) {
+      if (messages.isNotEmpty) {
+        for (var element in messages) {
             print('SMS from ${element.sender}: ${element.body}');
-          },
-        );
+          }
       }
     }
   }

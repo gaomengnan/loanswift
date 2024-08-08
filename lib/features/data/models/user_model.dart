@@ -1,20 +1,34 @@
 import 'package:loanswift/features/domain/entity/entity.dart';
 
 class UserModel extends User {
-  UserModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    userId = json['user_id'];
-    appForm = json['app_form'];
-    idCardFront = json['id_card_front'];
-    idCardBack = json['id_card_back'];
-    // faceRecognition = json['face_recognition'];
-    sex = json['sex'];
-    education = json['education'];
-    homePhone = json['home_phone'];
-    homeCity = json['home_city'];
-    // livenessId = json['liveness_id'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
+  const UserModel({
+    required super.id,
+    required super.userId,
+    required super.appForm,
+    required super.idCardFront,
+    required super.idCardBack,
+    required super.sex,
+    required super.education,
+    required super.homePhone,
+    required super.homeCity,
+    required super.createdAt,
+    required super.updatedAt,
+  });
+
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(
+      id: (json['id'] as num).toInt(),
+      userId: (json['user_id'] as num).toInt(),
+      appForm: json['app_form'],
+      idCardFront: json['id_card_front'],
+      idCardBack: json['id_card_back'],
+      sex: (json['sex'] as num).toInt(),
+      education: (json['education'] as num).toInt(),
+      homePhone: json['home_phone'],
+      homeCity: json['home_city'],
+      createdAt: json['created_at'],
+      updatedAt: json['updated_at'],
+    );
   }
 
   Map<String, dynamic> toJson() {
