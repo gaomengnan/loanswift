@@ -1,0 +1,62 @@
+[
+  {
+    "createdAt": "2024-08-08T03:43:50.995Z",
+    "userId": "compartmentalise",
+    "appForm": "amongst",
+    "idCardFront": "compress",
+    "idCardBack": "driver",
+    "sex": 59,
+    "edcation": 23,
+    "homePhone": "homePhone 1",
+    "homeCity": "orchestrate",
+    "id": "1"
+  },
+  {
+    "createdAt": "2024-08-07T21:19:55.738Z",
+    "userId": "HTTP",
+    "appForm": "male",
+    "idCardFront": "Draper",
+    "idCardBack": "Loan",
+    "sex": 32,
+    "edcation": 41,
+    "homePhone": "homePhone 2",
+    "homeCity": "Promethium",
+    "id": "2"
+  },
+  {
+    "createdAt": "2024-08-07T19:21:25.360Z",
+    "userId": "repurpose",
+    "appForm": "Gasoline",
+    "idCardFront": "Exclusive",
+    "idCardBack": "Music",
+    "sex": 57,
+    "edcation": 72,
+    "homePhone": "homePhone 3",
+    "homeCity": "synergies",
+    "id": "3"
+  },
+  {
+    "createdAt": "2024-08-07T15:33:58.925Z",
+    "userId": "World",
+    "appForm": "sensor",
+    "idCardFront": "Vilma",
+    "idCardBack": "Dodge",
+    "sex": 74,
+    "edcation": 34,
+    "homePhone": "homePhone 4",
+    "homeCity": "connect",
+    "id": "4"
+  },
+  {
+    "createdAt": "2024-08-08T00:20:56.041Z",
+    "userId": "majestically",
+    "appForm": "Supervisor",
+    "idCardFront": "magenta",
+    "idCardBack": "SMS",
+    "sex": 79,
+    "edcation": 2,
+    "homePhone": "homePhone 5",
+    "homeCity": "Account",
+    "id": "5"
+  }
+]
