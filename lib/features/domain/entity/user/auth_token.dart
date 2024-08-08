@@ -1,4 +1,6 @@
-class AuthToken {
+import 'package:equatable/equatable.dart';
+
+class AuthToken extends Equatable {
   final String token;
   final int expire;
 
@@ -11,4 +13,10 @@ class AuthToken {
     required this.token,
     required this.expire,
   });
+
+  @override
+  List<Object?> get props => [
+        token,
+        expire,
+      ];
 }

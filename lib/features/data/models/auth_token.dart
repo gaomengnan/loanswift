@@ -2,10 +2,16 @@ import 'package:loanswift/core/core.dart';
 import 'package:loanswift/features/domain/entity/user/auth_token.dart';
 
 class AuthTokenModel extends AuthToken {
-  AuthTokenModel({
+  const AuthTokenModel({
     required super.token,
     required super.expire,
   });
+
+  const AuthTokenModel.empty()
+      : this(
+          token: 'unknown',
+          expire: 0,
+        );
 
   factory AuthTokenModel.fromMap(DataMap map) {
     return AuthTokenModel(
@@ -14,7 +20,22 @@ class AuthTokenModel extends AuthToken {
     );
   }
 
+  AuthTokenModel copyWith({String? token, int? expire}) {
+    return AuthTokenModel(
+      token: token ?? this.token,
+      expire: expire ?? this.expire,
+    );
+  }
+
   DataMap toJson() {
+    return {
+      'token': token,
+      'expire': expire,
+    };
+  }
+
+  // toMap method
+  DataMap toMap() {
     return {
       'token': token,
       'expire': expire,

@@ -25,7 +25,7 @@ void main() {
     statusCode: 500,
   );
 
-  /*      Unit case       */
+  /*      Unit case  * sendPhonCode      */
 
   group("sendPhoneCode", () {
     /*  
@@ -33,8 +33,7 @@ void main() {
       
     */
 
-    test(
-        'should call the [RemoteDataSource.sendPhoneCode] '
+    test( 'should call the [RemoteDataSource.sendPhoneCode] '
         'and completre successfully  when the call ato the remote source is successful',
         () async {
       /* arrange */
@@ -117,4 +116,8 @@ void main() {
       );
     });
   });
+
+
+  /*      Unit case  * verifyCode      */
+
 }
