@@ -15,6 +15,21 @@ class UserModel extends User {
     required super.updatedAt,
   });
 
+  const UserModel.empty()
+      : this(
+          id: 1,
+          userId: 1,
+          appForm: 'unknown.appForm',
+          idCardFront: 'unknown.idCardFront',
+          idCardBack: 'unknown.idCardBack',
+          sex: -1,
+          education: -1,
+          homePhone: 'unknown.homePhone',
+          homeCity: 'unknown.homeCity',
+          createdAt: 'unknown.createdAt',
+          updatedAt: 'unknown.updatedAt',
+        );
+
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
       id: (json['id'] as num).toInt(),
@@ -28,6 +43,34 @@ class UserModel extends User {
       homeCity: json['home_city'],
       createdAt: json['created_at'],
       updatedAt: json['updated_at'],
+    );
+  }
+
+  UserModel copyWith({
+    int? id,
+    int? userId,
+    String? appForm,
+    String? idCardFront,
+    String? idCardBack,
+    int? sex,
+    int? education,
+    String? homePhone,
+    String? homeCity,
+    String? createdAt,
+    String? updatedAt,
+  }) {
+    return UserModel(
+      id: id ?? this.id,
+      userId: userId ?? this.userId,
+      appForm: appForm ?? this.appForm,
+      idCardFront: idCardFront ?? this.idCardFront,
+      idCardBack: idCardBack ?? this.idCardBack,
+      sex: sex ?? this.sex,
+      education: education ?? this.education,
+      homePhone: homePhone ?? this.homePhone,
+      homeCity: homeCity ?? this.homeCity,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
     );
   }
 
