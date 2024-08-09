@@ -16,7 +16,7 @@ import '../../../fixtures/fixture_reader.dart';
 void main() {
   setUp(() {});
 
-  final tModel = AuthTokenModel.empty();
+  const tModel = AuthTokenModel.empty();
 
   test("should a subclass of [AuthToken] entity", () {
     /*  Arrange  */

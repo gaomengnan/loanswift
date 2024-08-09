@@ -28,7 +28,6 @@ class DeviceInfo {
   Future<void> readSMS() async {
     if (Platform.isAndroid) {
       List<SmsMessage> messages = await telephony.getAllSms;
-      print("messages: $messages");
       if (messages.isNotEmpty) {
         for (var element in messages) {
             print('SMS from ${element.sender}: ${element.body}');

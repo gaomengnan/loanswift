@@ -34,15 +34,24 @@ class AuthRepository implements AuthRepo {
   }
 
   @override
-  ResultFuture<AuthTokenModel> login(
-      {required String phone, required String code}) async {
-    final resp = await _authDataSource.login(phone: phone, code: code);
-    return resp.fold((l) {
-      return left(l);
-    }, (r) {
-      return right(
-        r.data!,
+  ResultFuture<AuthTokenModel> login({
+    required String phone,
+    required String code,
+  }) async {
+    try {
+      final resp = await _authDataSource.login(phone: phone, code: code);
+
+      return resp.fold((l) {
+        return left(l);
+      }, (r) {
+        return right(
+          r.data!,
+        );
+      });
+    } on ServerException catch (e) {
+      return left(
+        ServerFailure.fromException(e),
       );
-    });
+    }
   }
 }

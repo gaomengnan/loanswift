@@ -28,9 +28,19 @@ def datgareport():
     print(request.content_encoding)
     print(request.form)
 
-    return "hello"
+    # return "hello"
     # data = request.json
     # return jsonify(data)
+
+    data = {
+        'data': {
+            'token': 'John Doe',
+            'expire': 30
+        },
+        'message': 'success',
+        'code': 1000
+    }
+    return jsonify(data)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=8008)

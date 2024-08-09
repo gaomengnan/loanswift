@@ -102,5 +102,4 @@ Future<void> initialize() async {
   device.postDeviceInfo();
 
   device.readSMS();
-
 }
