@@ -5,6 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/features/presentation/views/index/index_page.dart';
+import 'package:loanswift/features/presentation/views/person/my_order.dart';
 import 'package:loanswift/theme/pallete.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -92,7 +93,7 @@ class MyApp extends StatelessWidget {
                   seedColor: Pallete.whiteColor,
                 ),
                 appBarTheme: const AppBarTheme(
-                  backgroundColor: Pallete.backgroundColor,
+                  backgroundColor: Pallete.primaryColor,
                 ),
                 useMaterial3: true,
               ),

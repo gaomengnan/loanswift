@@ -30,6 +30,7 @@ class _IdentityState extends State<Identity> {
       child: Scaffold(
         backgroundColor: Pallete.backgroundColor,
         appBar: AppBar(
+
           centerTitle: false,
           //backgroundColor: Pallete.primaryColor,
           title: Text(
@@ -44,12 +45,12 @@ class _IdentityState extends State<Identity> {
               //kToolbarHeight,
             ),
             child: const StepProgressIndicator(
-              size: 10,
+              size: 6,
               totalSteps: 4,
               currentStep: 1,
-              selectedColor: Pallete.primaryColor,
+              selectedColor: Pallete.redDeepColor,
               //roundedEdges: const Radius.circular(10).r,
-              unselectedColor: Pallete.greyColor,
+              unselectedColor: Pallete.greyColor
               //selectedColor: Colors.yellow,
               //unselectedColor: Colors.cyan,
               //roundedEdges: Radius.circular(10),
