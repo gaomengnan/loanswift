@@ -60,5 +60,8 @@
   "click_to_access": "点击授权",
   "network_error": "网络连接异常",
   "service_error": "服务异常",
-  "welcome_you": "欢迎你"
+  "welcome_you": "欢迎你",
+  "soon_pay": "请尽快付款",
+  "due_date": "到期日",
+  "bill_amount": "账单金额"
 }

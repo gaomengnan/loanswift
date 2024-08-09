@@ -24,11 +24,13 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "agree_privacy": MessageLookupByLibrary.simpleMessage("Agree"),
         "app_name": MessageLookupByLibrary.simpleMessage("Loan Swift"),
+        "bill_amount": MessageLookupByLibrary.simpleMessage("Bill Amount"),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "click_to_access":
             MessageLookupByLibrary.simpleMessage("Click to access"),
         "contact": MessageLookupByLibrary.simpleMessage("Contact List"),
+        "due_date": MessageLookupByLibrary.simpleMessage("Due Date"),
         "enter_verification_code":
             MessageLookupByLibrary.simpleMessage("Enter Verification Code"),
         "errorPhone":
@@ -84,6 +86,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "shurushoujihao": MessageLookupByLibrary.simpleMessage(
             "Please enter your real-name authenticated mobile number"),
         "sms": MessageLookupByLibrary.simpleMessage("SMS"),
+        "soon_pay": MessageLookupByLibrary.simpleMessage("Please pay soon"),
         "take_photo": MessageLookupByLibrary.simpleMessage("Take Photo"),
         "take_photo_from_gallery":
             MessageLookupByLibrary.simpleMessage("Choose from Gallery"),

@@ -629,6 +629,36 @@ class S {
       args: [],
     );
   }
+
+  /// `请尽快付款`
+  String get soon_pay {
+    return Intl.message(
+      '请尽快付款',
+      name: 'soon_pay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `到期日`
+  String get due_date {
+    return Intl.message(
+      '到期日',
+      name: 'due_date',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `账单金额`
+  String get bill_amount {
+    return Intl.message(
+      '账单金额',
+      name: 'bill_amount',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -24,10 +24,12 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "agree_privacy": MessageLookupByLibrary.simpleMessage("同意"),
         "app_name": MessageLookupByLibrary.simpleMessage("急用钱"),
+        "bill_amount": MessageLookupByLibrary.simpleMessage("账单金额"),
         "camera": MessageLookupByLibrary.simpleMessage("相机"),
         "cancel": MessageLookupByLibrary.simpleMessage("取消"),
         "click_to_access": MessageLookupByLibrary.simpleMessage("点击授权"),
         "contact": MessageLookupByLibrary.simpleMessage("联系人列表"),
+        "due_date": MessageLookupByLibrary.simpleMessage("到期日"),
         "enter_verification_code":
             MessageLookupByLibrary.simpleMessage("请输入验证码"),
         "errorPhone": MessageLookupByLibrary.simpleMessage("请输入正确手机号码"),
@@ -69,6 +71,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "service_error": MessageLookupByLibrary.simpleMessage("服务异常"),
         "shurushoujihao": MessageLookupByLibrary.simpleMessage("请输入本人实名认证手机号"),
         "sms": MessageLookupByLibrary.simpleMessage("短信"),
+        "soon_pay": MessageLookupByLibrary.simpleMessage("请尽快付款"),
         "take_photo": MessageLookupByLibrary.simpleMessage("拍摄"),
         "take_photo_from_gallery":
             MessageLookupByLibrary.simpleMessage("从相册选择"),

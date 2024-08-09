@@ -24,11 +24,13 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "agree_privacy": MessageLookupByLibrary.simpleMessage("Setuju"),
         "app_name": MessageLookupByLibrary.simpleMessage("Butuh uang"),
+        "bill_amount": MessageLookupByLibrary.simpleMessage("Jumlah Tagihan"),
         "camera": MessageLookupByLibrary.simpleMessage("Kamera"),
         "cancel": MessageLookupByLibrary.simpleMessage("Batal"),
         "click_to_access":
             MessageLookupByLibrary.simpleMessage("Klik untuk mengakses"),
         "contact": MessageLookupByLibrary.simpleMessage("Daftar Kontak"),
+        "due_date": MessageLookupByLibrary.simpleMessage("Tanggal Jatuh Tempo"),
         "enter_verification_code":
             MessageLookupByLibrary.simpleMessage("Masukkan Kode Verifikasi"),
         "errorPhone": MessageLookupByLibrary.simpleMessage(
@@ -85,6 +87,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "shurushoujihao": MessageLookupByLibrary.simpleMessage(
             "Masukkan nomor ponsel yang terverifikasi"),
         "sms": MessageLookupByLibrary.simpleMessage("SMS"),
+        "soon_pay": MessageLookupByLibrary.simpleMessage("Harap segera bayar"),
         "take_photo": MessageLookupByLibrary.simpleMessage("Ambil Foto"),
         "take_photo_from_gallery":
             MessageLookupByLibrary.simpleMessage("Pilih dari Galeri"),

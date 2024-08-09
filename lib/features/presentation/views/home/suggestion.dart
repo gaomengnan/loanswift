@@ -13,104 +13,136 @@ class BuildSuggestion extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Map<String, dynamic>> loanGuide = [
-      {
-        "title": S.current.title700,
-        "icon": IconlyBold.tickSquare,
-      },
-      {
-        "title": S.current.title800,
-        "icon": IconlyBold.activity,
-      },
-      {
-        "title": S.current.title900,
-        "icon": IconlyBold.wallet,
-      },
-    ];
-    return SliverToBoxAdapter(
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        //height: MediaQuery.of(context).size.height,
-        decoration: const BoxDecoration(
-          //color: Pallete.backgroundColor,
-        ),
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(
-                vertical: 10.h,
-                horizontal: 20.w,
+    return SliverList(
+      delegate: SliverChildBuilderDelegate(childCount: 3, (context, index) {
+        if (index == 0) {
+          return Container(
+            margin: EdgeInsets.symmetric(
+              horizontal: 15.w,
+              vertical: 0.h,
+            ),
+            child: ListTile(
+              title: AppText(
+                text: "建议",
+                textAlign: TextAlign.left,
+                fontWeight: FontWeight.w600,
+                size: 18.sp,
               ),
-              child: Container(
-                decoration: const BoxDecoration(
-                    // color: Pallete.backgroundColor,
-                    // color: Colors.orange,
-                    // borderRadius: BorderRadius.circular(5),
+              trailing: const Icon(
+                IconlyBold.moreCircle,
+                //color: Pallete.whiteColor,
+              ),
+            ),
+          );
+        }
+        return Container(
+          margin: EdgeInsets.symmetric(
+            horizontal: 20.w,
+            vertical: index == 1 ? 0 : 5.h,
+          ),
+          //padding: EdgeInsets.symmetric(horizontal: 20.w,),
+          //height: 100,
+          decoration: BoxDecoration(
+            color: Pallete.backgroundColor,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Column(
+            children: [
+              /*        Application Name row        */
+              Container(
+                //padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
+                decoration: BoxDecoration(
+                  color: Pallete.primaryColor.withOpacity(0.2),
+                ),
+                child: ListTile(
+                  contentPadding: EdgeInsets.symmetric(
+                    horizontal: 10.w,
+                    vertical: 0,
+                  ),
+                  leading: const CircleAvatar(
+                    child: Icon(Icons.trip_origin),
+                  ),
+                  title: const Text("应用程序mingchengt"),
+                  //subtitle: const Text(""),
+                  trailing: ElevatedButton(
+                    onPressed: () {
+                      //if (isButnDisabled) {
+                      //  return;
+                      //}
+                    },
+                    style: ElevatedButton.styleFrom(
+                      elevation: 0,
+                      side: BorderSide(
+                        width: 1,
+                        color: Colors.black.withOpacity(
+                          0.1,
+                        ),
+                      ),
+                      backgroundColor: Pallete.primaryColor,
+                    ).copyWith(
+                      foregroundColor: WidgetStateProperty.all<Color>(
+                        Pallete.primaryColor,
+                      ), // 设置字体颜色
                     ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                    child: AppText(
+                      text: S.current.lijishengqing,
+                      fontWeight: FontWeight.bold,
+                      color: Pallete.whiteColor,
+                      size: 11.sp,
+                    ),
+                  ),
+                ),
+              ),
+
+              /*  Application Desc    */
+
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 10.w,
+                  vertical: 15.h,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    AppText(
-                      text: S.current.title600,
-                      size: 16.sp,
+                    Column(
+                      children: [
+                        AppText(
+                          text: "60,000",
+                          size: 20.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        Space(
+                          height: 5.h,
+                          width: 0,
+                        ),
+                        AppText(text: "最高贷款额"),
+                      ],
                     ),
-                    UI.kHeight10(),
-                    Container(
-                      width: double.infinity,
-                      // height: 200,
-                      decoration: BoxDecoration(
-                        gradient: Pallete.loanGradient,
-                        color: Pallete.whiteColor,
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          vertical: 20.h,
+                    Column(
+                      children: [
+                        AppText(
+                          text: "91天贷款",
+                          fontWeight: FontWeight.w800,
+                          size: 14.sp,
                         ),
-                        child: Row(
-                          // crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            UI.kWidth10(),
-                            ...List.generate(loanGuide.length, (index) {
-                              final item = loanGuide[index];
-
-                              return Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    // icon
-                                    Icon(
-                                      item["icon"],
-                                      color: Pallete.primaryColor,
-                                    ),
-
-                                    SizedBox(
-                                      height: 5.h,
-                                    ),
-
-                                    AppText(
-                                      text: item["title"],
-                                      size: 12.sp,
-                                    ),
-                                    // title
-                                  ],
-                                ),
-                              );
-                            }),
-                          ],
+                        Space(
+                          height: 5.h,
+                          width: 0,
                         ),
-                      ),
+                        AppText(
+                          text: "中间损失率0.08%/天",
+                          size: 14.sp,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ],
                     )
                   ],
                 ),
-              ),
-            ),
-
-            //  other
-          ],
-        ),
-      ),
+              )
+            ],
+          ),
+        );
+      }),
     );
   }
 }

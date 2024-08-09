@@ -60,6 +60,9 @@
   "click_to_access": "Click to access",
   "network_error": "Network connection abnormal",
   "service_error": "Service request error",
-  "welcome_you": "You Welcome"
+  "welcome_you": "You Welcome",
+  "soon_pay": "Please pay soon",
+  "due_date": "Due Date",
+  "bill_amount": "Bill Amount"
 }
 

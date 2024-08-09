@@ -59,5 +59,8 @@
   "click_to_access": "Klik untuk mengakses",
   "network_error": "Kesalahan koneksi jaringan",
   "service_error": "Kesalahan permintaan layanan",
-  "welcome_you": "Selamat datang"
+  "welcome_you": "Selamat datang",
+  "soon_pay": "Harap segera bayar",
+  "due_date": "Tanggal Jatuh Tempo",
+  "bill_amount": "Jumlah Tagihan"
 }
