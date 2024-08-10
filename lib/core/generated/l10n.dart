@@ -659,6 +659,16 @@ class S {
       args: [],
     );
   }
+
+  /// `贷款记录`
+  String get load_amount {
+    return Intl.message(
+      '贷款记录',
+      name: 'load_amount',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

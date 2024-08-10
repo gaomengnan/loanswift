@@ -63,5 +63,6 @@
   "welcome_you": "欢迎你",
   "soon_pay": "请尽快付款",
   "due_date": "到期日",
-  "bill_amount": "账单金额"
+  "bill_amount": "账单金额",
+  "load_amount": "贷款记录"
 }

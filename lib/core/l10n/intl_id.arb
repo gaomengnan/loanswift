@@ -62,5 +62,6 @@
   "welcome_you": "Selamat datang",
   "soon_pay": "Harap segera bayar",
   "due_date": "Tanggal Jatuh Tempo",
-  "bill_amount": "Jumlah Tagihan"
+  "bill_amount": "Jumlah Tagihan",
+  "load_amount": "Catatan Pinjaman"
 }

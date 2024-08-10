@@ -53,6 +53,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Login or register only"),
         "lang": MessageLookupByLibrary.simpleMessage("en"),
         "lijishengqing": MessageLookupByLibrary.simpleMessage("Apply now"),
+        "load_amount": MessageLookupByLibrary.simpleMessage("Loan Records"),
         "location": MessageLookupByLibrary.simpleMessage("Location"),
         "login_register":
             MessageLookupByLibrary.simpleMessage("Sign In/Register"),

@@ -28,8 +28,9 @@ class BuildBill extends StatelessWidget {
             //color: Colors.redAccent,
             gradient: LinearGradient(
               colors: [
-                Pallete.redColor,
+                Color(0xffFF4500),
                 Colors.white,
+                //Pallete.redColor,
               ],
               begin: Alignment.bottomCenter,
               end: Alignment.topCenter,
@@ -49,20 +50,20 @@ class BuildBill extends StatelessWidget {
                       const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
                   leading: Icon(
                     IconlyBold.wallet,
-                    color: Pallete.redColor,
+                    color: Pallete.color3,
                     size: 20.sp,
                   ),
                   title: AppText(
                     textAlign: TextAlign.start,
                     text: S.current.soon_pay,
-                    color: Pallete.redColor,
+                    color: Pallete.color3,
                     size: 13.sp,
                     fontWeight: FontWeight.w600,
                   ),
                   //subtitle: Text(''),
                   trailing: const Icon(
                     IconlyBold.arrowRightCircle,
-                    color: Pallete.redColor,
+                    color: Pallete.color3,
                   ),
                 ),
               ),

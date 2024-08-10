@@ -46,6 +46,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "jindengluzhuce": MessageLookupByLibrary.simpleMessage("仅登录或者注册"),
         "lang": MessageLookupByLibrary.simpleMessage("zh"),
         "lijishengqing": MessageLookupByLibrary.simpleMessage("立即申请"),
+        "load_amount": MessageLookupByLibrary.simpleMessage("贷款记录"),
         "location": MessageLookupByLibrary.simpleMessage("位置"),
         "login_register": MessageLookupByLibrary.simpleMessage("登录/注册"),
         "maximun_load_sub_text": MessageLookupByLibrary.simpleMessage(

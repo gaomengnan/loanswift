@@ -55,6 +55,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lang": MessageLookupByLibrary.simpleMessage("id"),
         "lijishengqing":
             MessageLookupByLibrary.simpleMessage("Ajukan sekarang"),
+        "load_amount": MessageLookupByLibrary.simpleMessage("Catatan Pinjaman"),
         "location": MessageLookupByLibrary.simpleMessage("Lokasi"),
         "maximun_load_sub_text": MessageLookupByLibrary.simpleMessage(
             "Peminjaman 1.000 yuan selama 12 bulan, biaya harian mulai dari 6 persen, suku bunga tahunan (bunga sederhana) mulai dari 3.6 persen"),

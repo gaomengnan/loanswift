@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loanswift/features/presentation/bloc/auth/auth_bloc.dart';
 import 'package:loanswift/features/presentation/views/auth/auth_page.dart';
 import 'package:loanswift/features/presentation/views/index/index_page.dart';
+import 'package:loanswift/features/presentation/views/order/my_order.dart';
 import 'package:loanswift/features/presentation/views/person/identity.dart';
-import 'package:loanswift/features/presentation/views/person/my_order.dart';
 
 import 'common/page_404.dart';
 import 'core.dart';
@@ -34,10 +34,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
 
     case MyOrder.routerName:
       return _pageBuilder(
-        (_) => BlocProvider(
-          create: (_) => sl<AuthBloc>(),
-          child: const AuthPage(),
-        ),
+        (_) => const MyOrder(),
         settings: settings,
       );
 

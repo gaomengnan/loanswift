@@ -113,6 +113,10 @@ class _HomePageState extends State<HomePage> {
                 /*  Apps  */
 
                 //BuildAppList(),
+
+                SliverToBoxAdapter(child: FilledButton(onPressed: (){
+                  Navigator.of(context).pushNamed('/my_order');
+                }, child: Text("my_order"),),),
               ],
             ),
           )),
