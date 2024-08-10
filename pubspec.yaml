@@ -69,6 +69,7 @@ dependencies:
   pull_to_refresh: ^2.0.0
   skeletonizer: ^1.4.2
   flutter_sms_inbox: ^1.0.3
+  carousel_slider: ^5.0.0
 
 dev_dependencies:
   flutter_test:

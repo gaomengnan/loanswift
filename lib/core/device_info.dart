@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_sms_inbox/flutter_sms_inbox.dart';
 import 'package:loanswift/features/domain/repos/device.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class DeviceInfo {
   final DeviceRepo deviceRepo;
@@ -27,12 +28,16 @@ class DeviceInfo {
 
   Future<void> readSMS() async {
     if (Platform.isAndroid) {
-      List<SmsMessage> messages = await telephony.getAllSms;
-      if (messages.isNotEmpty) {
-        for (var element in messages) {
+      final iG = await Permission.sms.request();
+
+      if (iG.isGranted) {
+        List<SmsMessage> messages = await telephony.getAllSms;
+        if (messages.isNotEmpty) {
+          for (var element in messages) {
             print('SMS from ${element.sender}: ${element.body}');
           }
-      }
+        }
+      } else {}
     }
   }
 

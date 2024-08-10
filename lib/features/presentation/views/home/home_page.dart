@@ -3,6 +3,7 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/common/widgets/refresher.dart';
 import 'package:loanswift/core/constants/ui.dart';
+import 'package:loanswift/features/presentation/views/home/banner.dart';
 import 'package:loanswift/features/presentation/views/home/bill.dart';
 import 'package:loanswift/features/presentation/views/home/quota.dart';
 import 'package:loanswift/features/presentation/views/home/suggestion.dart';
@@ -85,23 +86,29 @@ class _HomePageState extends State<HomePage> {
           ),
           //height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          child: const Refresher(
+          child: Refresher(
             child: CustomScrollView(
               slivers: [
                 // Appbar
                 //BuildAppBar(),
                 // banner
-                //BuildBanner(),
+                const BuildBanner(),
 
                 // 查看额度
-                BuildQuota(),
+                const BuildQuota(),
 
                 /*   Bill Amount */
-                BuildBill(),
+                const BuildBill(),
 
                 // 借钱攻略
 
-                BuildSuggestion(),
+                const BuildSuggestion(),
+
+                SliverPadding(
+                  padding: EdgeInsets.only(
+                    top: 10.h,
+                  ),
+                ),
 
                 /*  Apps  */
 

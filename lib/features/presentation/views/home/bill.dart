@@ -42,31 +42,37 @@ class BuildBill extends StatelessWidget {
             children: [
               Flexible(
                 child: ListTile(
+                  titleTextStyle: const TextStyle(
+                    height: 1.2,
+                  ),
                   contentPadding:
                       const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
-                  leading: const Icon(
-                    Icons.payment,
+                  leading: Icon(
+                    IconlyBold.wallet,
                     color: Pallete.redColor,
+                    size: 20.sp,
                   ),
                   title: AppText(
+                    textAlign: TextAlign.start,
                     text: S.current.soon_pay,
                     color: Pallete.redColor,
                     size: 13.sp,
-                    textAlign: TextAlign.start,
                     fontWeight: FontWeight.w600,
                   ),
+                  //subtitle: Text(''),
                   trailing: const Icon(
                     IconlyBold.arrowRightCircle,
                     color: Pallete.redColor,
                   ),
                 ),
               ),
-              UI.kHeight10(),
+              //UI.kHeight10(),
               Flexible(
                 flex: 4,
                 child: Container(
-                  margin: EdgeInsets.symmetric(
-                    vertical: 10.h,
+                  margin: EdgeInsets.only(
+                    top: 5.h,
+                    bottom: 10.h,
                   ),
                   padding: EdgeInsets.symmetric(
                     vertical: 10.h,

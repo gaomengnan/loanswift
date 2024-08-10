@@ -34,7 +34,6 @@ void main() {
        should return a USerModel
 
     */
-
     test("shoud return a [UserModel]  with the  right data", () {
       /* Arrange */
 

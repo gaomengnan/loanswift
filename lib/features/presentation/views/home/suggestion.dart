@@ -18,15 +18,19 @@ class BuildSuggestion extends StatelessWidget {
         if (index == 0) {
           return Container(
             margin: EdgeInsets.symmetric(
-              horizontal: 15.w,
+              horizontal: 20.w,
               vertical: 0.h,
             ),
             child: ListTile(
+              contentPadding: EdgeInsets.symmetric(
+                horizontal: 20.w,
+                vertical: 0,
+              ),
               title: AppText(
                 text: "建议",
                 textAlign: TextAlign.left,
                 fontWeight: FontWeight.w600,
-                size: 18.sp,
+                size: 16.sp,
               ),
               trailing: const Icon(
                 IconlyBold.moreCircle,
@@ -38,7 +42,7 @@ class BuildSuggestion extends StatelessWidget {
         return Container(
           margin: EdgeInsets.symmetric(
             horizontal: 20.w,
-            vertical: index == 1 ? 0 : 5.h,
+            vertical: index == 1 ? 0 : 10.h,
           ),
           //padding: EdgeInsets.symmetric(horizontal: 20.w,),
           //height: 100,
@@ -60,9 +64,16 @@ class BuildSuggestion extends StatelessWidget {
                     vertical: 0,
                   ),
                   leading: const CircleAvatar(
-                    child: Icon(Icons.trip_origin),
+                    child: Icon(
+                      IconlyBold.activity,
+                    ),
                   ),
-                  title: const Text("应用程序mingchengt"),
+                  title: AppText(
+                    textAlign: TextAlign.start,
+                    text: "应用程序1",
+                    fontWeight: FontWeight.w700,
+                    size: 11.sp,
+                  ),
                   //subtitle: const Text(""),
                   trailing: ElevatedButton(
                     onPressed: () {
@@ -71,6 +82,7 @@ class BuildSuggestion extends StatelessWidget {
                       //}
                     },
                     style: ElevatedButton.styleFrom(
+                      minimumSize: Size(0.w, 20.h),
                       elevation: 0,
                       side: BorderSide(
                         width: 1,
@@ -88,7 +100,7 @@ class BuildSuggestion extends StatelessWidget {
                       text: S.current.lijishengqing,
                       fontWeight: FontWeight.bold,
                       color: Pallete.whiteColor,
-                      size: 11.sp,
+                      //size: 8.sp,
                     ),
                   ),
                 ),
