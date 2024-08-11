@@ -31,12 +31,12 @@ class BuildQuota extends StatelessWidget {
       child: Container(
         width: MediaQuery.of(context).size.width,
         decoration: const BoxDecoration(
-          //gradient: LinearGradient(
-          //  begin: Alignment.topCenter,
-          //  end: Alignment.bottomCenter,
-          //  colors: Pallete.gradientColors,
-          //),
-        ),
+            //gradient: LinearGradient(
+            //  begin: Alignment.topCenter,
+            //  end: Alignment.bottomCenter,
+            //  colors: Pallete.gradientColors,
+            //),
+            ),
         child: Padding(
           padding: EdgeInsets.symmetric(
             horizontal: 20.w,
@@ -153,9 +153,10 @@ class BuildQuota extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 15.w,
-                            vertical: 10.h,
+                          padding: EdgeInsets.only(
+                            left: 15.w,
+                            right: 15.w,
+                            top: 10.h,
                           ).w,
                           child: Container(
                             decoration: BoxDecoration(
@@ -245,32 +246,46 @@ class BuildQuota extends StatelessWidget {
                                           height: 14.h,
                                         ),
                                         // 按钮
-                                        GestureDetector(
-                                          onTap: () {
+                                        ElevatedButton(
+                                          onPressed: () {
                                             Navigator.of(context).pushNamed(
                                               Identity.routerName,
                                             );
-                                            // showPermissionDialog(
-                                            //   context,
-                                            // );
                                           },
-                                          child: Container(
-                                            height: 50,
-                                            width: double.infinity,
-                                            decoration: BoxDecoration(
-                                              color: Pallete.primaryColor,
-                                              borderRadius:
-                                                  BorderRadius.circular(20),
-                                            ),
-                                            child: Center(
-                                              child: AppText(
-                                                text: S.current.title500,
-                                                color: Pallete.whiteColor,
-                                                size: 18.sp,
-                                              ),
+                                          child: Center(
+                                            child: AppText(
+                                              text: S.current.title500,
+                                              color: Pallete.whiteColor,
+                                              size: 18.sp,
                                             ),
                                           ),
                                         ),
+                                        //GestureDetector(
+                                        //  onTap: () {
+                                        //    Navigator.of(context).pushNamed(
+                                        //      Identity.routerName,
+                                        //    );
+                                        //    // showPermissionDialog(
+                                        //    //   context,
+                                        //    // );
+                                        //  },
+                                        //  child: Container(
+                                        //    height: 50,
+                                        //    width: double.infinity,
+                                        //    decoration: BoxDecoration(
+                                        //      color: Pallete.primaryColor,
+                                        //      borderRadius:
+                                        //          BorderRadius.circular(20),
+                                        //    ),
+                                        //    child: Center(
+                                        //      child: AppText(
+                                        //        text: S.current.title500,
+                                        //        color: Pallete.whiteColor,
+                                        //        size: 18.sp,
+                                        //      ),
+                                        //    ),
+                                        //  ),
+                                        //),
                                       ],
                                     ),
                                   ),
