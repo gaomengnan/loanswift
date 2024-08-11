@@ -20,7 +20,7 @@ class _RefresherState extends State<Refresher> with TickerProviderStateMixin {
   //late AnimationController _footerController;
   final RefreshController _refreshController = RefreshController();
 
-  late bool _isLoading = false;
+  // late bool _isLoading = false;
 
   @override
   void initState() {
@@ -71,26 +71,21 @@ class _RefresherState extends State<Refresher> with TickerProviderStateMixin {
       enablePullUp: false,
       controller: _refreshController,
       onRefresh: () async {
-        setState(() {
-          _isLoading = true;
-        });
-        await Future.delayed(const Duration(milliseconds: 3000));
+        // setState(() {
+        // _isLoading = true;
+        // });
+        await Future.delayed(const Duration(milliseconds: 2000));
         _refreshController.refreshCompleted();
-        setState(() {
-          _isLoading = false;
-        });
+        // setState(() {
+        // _isLoading = false;
+        // });
       },
       //onLoading: () async {
       //  await Future.delayed(const Duration(milliseconds: 1000));
       //  setState(() {});
       //  _refreshController.loadComplete();
       //},
-      child: _isLoading
-          ? Skeletonizer(
-              enabled: true,
-              child: widget.child,
-            )
-          : widget.child,
+      child: widget.child,
     );
   }
 }
