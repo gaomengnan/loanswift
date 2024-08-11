@@ -15,6 +15,14 @@ class BuildBanner extends StatefulWidget {
 class _BuildBannerState extends State<BuildBanner> {
   late PageController _pageController;
   int _currentIndex = 0;
+
+
+  @override
+    void dispose() {
+      super.dispose();
+      _pageController.dispose();
+    }
+
   @override
   void initState() {
     _pageController = PageController(initialPage: 0);
@@ -28,6 +36,8 @@ class _BuildBannerState extends State<BuildBanner> {
     );
     super.initState();
   }
+
+
 
   Widget _buildBanner(int index) {
     final imageUrl = Assets.banners[index];
