@@ -139,19 +139,9 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
                       ),
                       child: Center(
                         child: ListTile(
-                          leading: Container(
-                            padding: EdgeInsets.all(15.sp),
-                            decoration: BoxDecoration(
-                              color: Colors.white30,
-                              borderRadius:
-                                  BorderRadius.circular(8.0.sp), // 圆角半径
-                            ),
-                            child: ClipRRect(
-                              borderRadius:
-                                  BorderRadius.circular(8.0.sp), // 设置圆角
-                              child: const Icon(
-                                IconlyBold.play,
-                              ),
+                          leading: UI.squareContainer(
+                            const Icon(
+                              IconlyBold.play,
                             ),
                           ),
                           title: AppText(

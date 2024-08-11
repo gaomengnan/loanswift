@@ -108,6 +108,13 @@ class UI {
     // NotificationView(),
   ];
 
+  static Widget kHeight5() {
+    return Space(
+      height: 5.h,
+      width: 0,
+    );
+  }
+
   static Widget kHeight10() {
     return Space(
       height: 10.h,
@@ -133,6 +140,20 @@ class UI {
     return Space(
       height: 0,
       width: 20.w,
+    );
+  }
+
+  static Widget squareContainer(Widget child) {
+    return Container(
+      padding: EdgeInsets.all(15.sp),
+      decoration: BoxDecoration(
+        color: Colors.white30,
+        borderRadius: BorderRadius.circular(8.0.sp), // 圆角半径
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8.0.sp), // 设置圆角
+        child: child,
+      ),
     );
   }
 }
