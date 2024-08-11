@@ -28,10 +28,10 @@ class _BuildSuggestionState extends State<BuildSuggestion>
   }
 
   @override
-    void dispose() {
-      super.dispose();
-      _pageController.dispose();
-    }
+  void dispose() {
+    super.dispose();
+    _pageController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -112,18 +112,6 @@ class _BuildSuggestionState extends State<BuildSuggestion>
                           },
                           style: ElevatedButton.styleFrom(
                             minimumSize: Size(0.w, 20.h),
-                            elevation: 0,
-                            side: BorderSide(
-                              width: 1,
-                              color: Colors.black.withOpacity(
-                                0.1,
-                              ),
-                            ),
-                            backgroundColor: Pallete.primaryColor,
-                          ).copyWith(
-                            foregroundColor: WidgetStateProperty.all<Color>(
-                              Pallete.primaryColor,
-                            ), // 设置字体颜色
                           ),
                           child: AppText(
                             text: S.current.lijishengqing,

@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/features/presentation/views/board/boarding_page.dart';
 import 'package:loanswift/theme/pallete.dart';
+import 'package:loanswift/theme/theme.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import 'features/presentation/bloc/bloc.dart';
@@ -85,17 +86,8 @@ class MyApp extends StatelessWidget {
               },
               locale: const Locale("zh"),
               title: "loan",
-              theme: ThemeData(
-                fontFamily: "Roboto",
-                scaffoldBackgroundColor: Pallete.backgroundColor,
-                colorScheme: ColorScheme.fromSeed(
-                  seedColor: Pallete.whiteColor,
-                ),
-                appBarTheme: const AppBarTheme(
-                  backgroundColor: Pallete.primaryColor,
-                ),
-                useMaterial3: true,
-              ),
+              theme: AppTheme.theme,
+              darkTheme: AppTheme.theme,
               onGenerateRoute: generateRoute,
               home: child,
             ),

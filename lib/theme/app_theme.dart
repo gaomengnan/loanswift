@@ -13,7 +13,26 @@ class AppTheme {
         borderRadius: BorderRadius.circular(10),
       );
 
-  static ThemeData theme = ThemeData.dark().copyWith(
+  static ThemeData theme = ThemeData(
+    primaryColor: Pallete.primaryColor,
+    brightness: Brightness.light,
+    fontFamily: "Roboto",
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        elevation: 0,
+        side: BorderSide(
+          width: 1,
+          color: Colors.black.withOpacity(
+            0.1,
+          ),
+        ),
+        backgroundColor: Pallete.primaryColor,
+      ).copyWith(
+        foregroundColor: WidgetStateProperty.all<Color>(
+          Pallete.primaryColor,
+        ), // 设置字体颜色
+      ),
+    ),
     inputDecorationTheme: InputDecorationTheme(
       enabledBorder: _border(
         Pallete.greyColor,
@@ -30,7 +49,7 @@ class AppTheme {
       backgroundColor: Pallete.primaryColor,
       elevation: 0,
     ),
-
+    useMaterial3: true,
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: Pallete.blueColor,
     ),
