@@ -104,11 +104,11 @@ class _HomePageState extends State<HomePage> {
 
                 const BuildSuggestion(),
 
-                SliverPadding(
-                  padding: EdgeInsets.only(
-                    top: 10.h,
-                  ),
-                ),
+                //SliverPadding(
+                //  padding: EdgeInsets.only(
+                //    top: 10.h,
+                //  ),
+                //),
 
                 /*  Apps  */
 

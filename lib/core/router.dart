@@ -4,6 +4,7 @@ import 'package:loanswift/features/presentation/bloc/auth/auth_bloc.dart';
 import 'package:loanswift/features/presentation/views/auth/auth_page.dart';
 import 'package:loanswift/features/presentation/views/index/index_page.dart';
 import 'package:loanswift/features/presentation/views/order/my_order.dart';
+import 'package:loanswift/features/presentation/views/order/order_detail.dart';
 import 'package:loanswift/features/presentation/views/person/identity.dart';
 
 import 'common/page_404.dart';
@@ -38,6 +39,11 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         settings: settings,
       );
 
+    case OrderDetail.routerName:
+      return _pageBuilder(
+        (_) => const OrderDetail(),
+        settings: settings,
+      );
     default:
       return _pageBuilder(
         (_) => const PageUnderConstruction(),

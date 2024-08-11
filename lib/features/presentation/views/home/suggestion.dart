@@ -63,7 +63,7 @@ class _BuildSuggestionState extends State<BuildSuggestion>
         }
 
         return SizedBox(
-          height: 110.h,
+          height: 150,
           child: PageView.builder(
             controller: _pageController,
             itemBuilder: (context, index) {
@@ -122,50 +122,52 @@ class _BuildSuggestionState extends State<BuildSuggestion>
                         ),
                       ),
                     ),
-
+        
                     /*  Application Desc    */
-
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 10.w,
-                        vertical: 15.h,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            children: [
-                              AppText(
-                                text: "60,000",
-                                size: 20.sp,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              Space(
-                                height: 5.h,
-                                width: 0,
-                              ),
-                              AppText(text: "最高贷款额"),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              AppText(
-                                text: "91天贷款",
-                                fontWeight: FontWeight.w800,
-                                size: 14.sp,
-                              ),
-                              Space(
-                                height: 5.h,
-                                width: 0,
-                              ),
-                              AppText(
-                                text: "中间损失率0.08%/天",
-                                size: 14.sp,
-                                fontWeight: FontWeight.w800,
-                              ),
-                            ],
-                          )
-                        ],
+        
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 10.w,
+                          vertical: 15.h,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              children: [
+                                AppText(
+                                  text: "60,000",
+                                  size: 20.sp,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                Space(
+                                  height: 5.h,
+                                  width: 0,
+                                ),
+                                AppText(text: "最高贷款额"),
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                AppText(
+                                  text: "91天贷款",
+                                  fontWeight: FontWeight.w800,
+                                  size: 14.sp,
+                                ),
+                                Space(
+                                  height: 5.h,
+                                  width: 0,
+                                ),
+                                AppText(
+                                  text: "中间损失率0.08%/天",
+                                  size: 14.sp,
+                                  fontWeight: FontWeight.w800,
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
                       ),
                     )
                   ],

@@ -82,117 +82,126 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
     return Refresher(
       child: ListView.builder(
         itemBuilder: (context, index) {
-          return Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: 10.w,
-            ),
-            margin: const EdgeInsets.all(10),
-            height: 120.h,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.all(
-                Radius.circular(10.sp),
+          return InkWell(
+            onTap: () {
+              Navigator.of(context).pushNamed(
+                '/order_detail',
+              );
+            },
+            child: Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: 10.w,
               ),
-            ),
-            child: Column(
-              children: [
-                Expanded(
-                  child: Container(
-                    decoration: const BoxDecoration(
-                        //color: Colors.blue,
-                        ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        AppText(
-                          text: "应用程序",
-                          size: 16.sp,
-                          fontWeight: FontWeight.w700,
-                        ),
-                        AppText(
-                          text: "过期",
-                          color: Pallete.redDeepColor,
-                          size: 13.sp,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ],
-                    ),
-                  ),
+              margin: const EdgeInsets.all(10),
+              height: 120.h,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(10.sp),
                 ),
-                Expanded(
-                  flex: 2,
-                  child: Container(
-                    margin: EdgeInsets.only(
-                      bottom: 10.h,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.blue.withOpacity(0.1),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10.sp),
+              ),
+              child: Column(
+                children: [
+                  Expanded(
+                    child: Container(
+                      decoration: const BoxDecoration(
+                          //color: Colors.blue,
+                          ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          AppText(
+                            text: "应用程序",
+                            size: 16.sp,
+                            fontWeight: FontWeight.w700,
+                          ),
+                          AppText(
+                            text: "过期",
+                            color: Pallete.redDeepColor,
+                            size: 13.sp,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ],
                       ),
                     ),
-                    child: Center(
-                      child: ListTile(
-                        leading: Container(
-                          padding: EdgeInsets.all(15.sp),
-                          decoration: BoxDecoration(
-                            color: Colors.white30,
-                            borderRadius: BorderRadius.circular(8.0.sp), // 圆角半径
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8.0.sp), // 设置圆角
-                            child: const Icon(
-                              IconlyBold.play,
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Container(
+                      margin: EdgeInsets.only(
+                        bottom: 10.h,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.blue.withOpacity(0.1),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.sp),
+                        ),
+                      ),
+                      child: Center(
+                        child: ListTile(
+                          leading: Container(
+                            padding: EdgeInsets.all(15.sp),
+                            decoration: BoxDecoration(
+                              color: Colors.white30,
+                              borderRadius:
+                                  BorderRadius.circular(8.0.sp), // 圆角半径
+                            ),
+                            child: ClipRRect(
+                              borderRadius:
+                                  BorderRadius.circular(8.0.sp), // 设置圆角
+                              child: const Icon(
+                                IconlyBold.play,
+                              ),
                             ),
                           ),
-                        ),
-                        title: AppText(
-                          textAlign: TextAlign.left,
-                          text: "60,0000",
-                          size: 16.sp,
-                        ),
-                        subtitle: AppText(
-                          textAlign: TextAlign.left,
-                          //size: 16.sp,
-                          text: "贷款",
-                        ),
-                        trailing: Column(
-                          children: [
-                            Expanded(
-                              child: RichText(
-                                text: TextSpan(
-                                  style: const TextStyle(
-                                    color: Pallete.blackColor,
-                                  ),
-                                  text: "Due Date",
-                                  children: [
-                                    WidgetSpan(
-                                      child: SizedBox(
-                                        width: 3.w,
+                          title: AppText(
+                            textAlign: TextAlign.left,
+                            text: "60,0000",
+                            size: 16.sp,
+                          ),
+                          subtitle: AppText(
+                            textAlign: TextAlign.left,
+                            //size: 16.sp,
+                            text: "贷款",
+                          ),
+                          trailing: Column(
+                            children: [
+                              Expanded(
+                                child: RichText(
+                                  text: TextSpan(
+                                    style: const TextStyle(
+                                      color: Pallete.blackColor,
+                                    ),
+                                    text: "Due Date",
+                                    children: [
+                                      WidgetSpan(
+                                        child: SizedBox(
+                                          width: 3.w,
+                                        ),
                                       ),
-                                    ),
-                                    const TextSpan(
-                                      text: "14-09-2024",
-                                    ),
-                                  ],
+                                      const TextSpan(
+                                        text: "14-09-2024",
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                            Expanded(
-                              child: FilledButton(
-                                onPressed: () {},
-                                child: const Text(
-                                  "立即还款",
+                              Expanded(
+                                child: FilledButton(
+                                  onPressed: () {},
+                                  child: const Text(
+                                    "立即还款",
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         },
