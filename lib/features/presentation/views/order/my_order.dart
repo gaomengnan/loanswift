@@ -90,8 +90,7 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
             },
             child: Container(
               padding: EdgeInsets.symmetric(
-                horizontal: 10.w,
-              ),
+                horizontal: 10.w,),
               margin: const EdgeInsets.all(10),
               height: 120.h,
               decoration: BoxDecoration(

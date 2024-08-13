@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class Pallete {
   //static const Color primaryColor = Color(0xFF00A2B2);
-   static const Color primaryColor = Colors.blueAccent;
-  //static const Color primaryColor = Color(0xFF006874);
+   //static const Color primaryColor = Colors.blueAccent;
+   //static const Color primaryColor = Colors.purple;
+  static const Color primaryColor = Color(0xFF006874);
 
   static const Color backgroundColor = Color(0xffF4F4F8);
   static const Color searchBarColor = Color.fromRGBO(32, 35, 39, 1);
@@ -17,6 +18,8 @@ class Pallete {
   static const Color orangeColor = Color(0xFFFEA417);
 
   static const Color  color3 = Colors.orange;
+
+  static final timelineNo = const Color(0xFF006874).withOpacity(0.5);
 
   static const List<Color> gradientColors = [
     Pallete.primaryColor,
