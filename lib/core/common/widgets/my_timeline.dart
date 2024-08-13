@@ -19,7 +19,7 @@ class MyTimeline extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 130.h,
+      height: 150.h,
       child: TimelineTile(
         isFirst: isFirst,
         isLast: isLast,
@@ -35,7 +35,7 @@ class MyTimeline extends StatelessWidget {
           width: 20,
           color: isPast ? Pallete.primaryColor : Pallete.timelineNo,
           iconStyle: IconStyle(
-            iconData: Icons.done,
+            iconData: Icons.check_circle,
             color: isPast ? Colors.white : Pallete.timelineNo,
           ),
         ),

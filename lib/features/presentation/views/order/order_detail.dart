@@ -191,8 +191,26 @@ class _OrderDetailState extends State<OrderDetail> {
                     isPast: true,
                     enchild: EventCard(
                       isPast: true,
-                      child: AppText(
-                        text: "order place",
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: ListTile(
+                              contentPadding: EdgeInsets.all(0),
+                              title: AppText(
+                                text: "本期贷款",
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 4,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Pallete.primaryColor,
+                              ),
+                            ),
+                          )
+                        ],
                       ),
                     ),
                   ),
@@ -202,8 +220,12 @@ class _OrderDetailState extends State<OrderDetail> {
                     isPast: true,
                     enchild: EventCard(
                       isPast: true,
-                      child: AppText(
-                        text: "order approve",
+                      child: Column(
+                        children: [
+                          AppText(
+                            text: "order approve",
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -213,15 +235,21 @@ class _OrderDetailState extends State<OrderDetail> {
                     isPast: false,
                     enchild: EventCard(
                       isPast: false,
-                      child: AppText(
-                        text: "order approve",
+                      child: Column(
+                        children: [
+                          AppText(
+                            text: "order approve",
+                          ),
+                        ],
                       ),
                     ),
                   ),
+                  UI.kHeight10(),
                 ],
               ),
             ),
-          )
+          ),
+          UI.kHeight10(),
         ],
       ),
     );
