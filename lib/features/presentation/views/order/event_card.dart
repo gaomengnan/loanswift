@@ -7,13 +7,15 @@ import 'package:loanswift/theme/theme.dart';
 class EventCard extends StatelessWidget {
   final Widget asset;
   final String title;
-  final String message;
+  final String status;
+  final String amount;
 
   const EventCard({
     super.key,
     required this.asset,
     required this.title,
-    required this.message,
+    required this.status, required this.amount,
+
   });
 
   @override
@@ -80,9 +82,9 @@ class EventCard extends StatelessWidget {
                           IconlyBold.lock,
                           size: 17.sp,
                         ),
-                        SizedBox(width: 8),
-                        Text(
-                          "已锁定",
+                        const SizedBox(width: 8),
+                        const Text(
+                          status,
                         ),
                       ],
                     ),
@@ -105,7 +107,7 @@ class EventCard extends StatelessWidget {
                             fontWeight: FontWeight.w700,
                           ),
                           AppText(
-                            text: "60,000",
+                            text: amount,
                             size: 16.sp,
                           ),
                         ],
