@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/common/widgets/my_timeline.dart';
 import 'package:loanswift/core/common/widgets/widgets.dart';
 import 'package:loanswift/core/constants/constants.dart';
-import 'package:loanswift/features/presentation/views/widgets/event_card.dart';
+import 'package:loanswift/features/presentation/views/order/event_card.dart';
 import 'package:loanswift/theme/theme.dart';
 
 class OrderDetail extends StatefulWidget {
@@ -58,6 +58,7 @@ class _OrderDetailState extends State<OrderDetail> {
         ),
       ),
       body: ListView(
+        shrinkWrap: true,
         padding: EdgeInsets.symmetric(
           horizontal: 10.w,
         ),
@@ -87,7 +88,7 @@ class _OrderDetailState extends State<OrderDetail> {
             ),
           ),
           Card(
-            color: Colors.white,
+            color: Pallete.whiteColor,
             elevation: 1,
             child: Column(
               children: [
@@ -176,80 +177,82 @@ class _OrderDetailState extends State<OrderDetail> {
           /*   BUILD TIME LINE  */
 
           Card(
-            //margin: EdgeInsets.symmetric(horizontal: 10.w),
-            color: Colors.white,
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: 10.w,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  MyTimeline(
-                    isFirst: true,
-                    isLast: false,
-                    isPast: true,
-                    enchild: EventCard(
-                      isPast: true,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: ListTile(
-                              contentPadding: EdgeInsets.all(0),
-                              title: AppText(
-                                text: "本期贷款",
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            flex: 4,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Pallete.primaryColor,
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
+            color: Pallete.whiteColor,
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(
+                    top: 8.h,
+                    left: 8.h,
                   ),
-                  MyTimeline(
-                    isFirst: false,
-                    isLast: false,
-                    isPast: true,
-                    enchild: EventCard(
-                      isPast: true,
-                      child: Column(
-                        children: [
-                          AppText(
-                            text: "order approve",
-                          ),
-                        ],
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: 30.h,
+                        child: const VerticalDivider(
+                          thickness: 5,
+                          color: Pallete.color3,
+                        ),
                       ),
-                    ),
-                  ),
-                  MyTimeline(
-                    isFirst: false,
-                    isLast: true,
-                    isPast: false,
-                    enchild: EventCard(
-                      isPast: false,
-                      child: Column(
-                        children: [
-                          AppText(
-                            text: "order approve",
-                          ),
-                        ],
+                      AppText(
+                        text: "按时还款可以获取更高信用",
+                        textAlign: TextAlign.start,
+                        size: 14.sp,
+                        fontWeight: FontWeight.w700,
                       ),
-                    ),
+                    ],
                   ),
-                  UI.kHeight10(),
-                ],
-              ),
+                ),
+                Container(
+                  padding: EdgeInsets.only(
+                    top: 5.h,
+                    left: 8.h,
+                    right: 8.h,
+                  ),
+                  child: const Divider(
+                    color: Colors.black12,
+                  ),
+                ),
+                const MyTimeline(
+                  isLast: false,
+                  isPast: true,
+                  isFirst: true,
+                  endchild: EventCard(
+                    asset: Icon(
+                      Icons.assignment_return,
+                    ),
+                    title: '本期贷款',
+                    message: 'We are preparing your order.',
+                  ),
+                ),
+                const MyTimeline(
+                  isLast: false,
+                  isPast: true,
+                  isFirst: false,
+                  endchild: EventCard(
+                    asset: Icon(
+                      Icons.next_plan,
+                    ),
+                    title: '下一期贷款',
+                    message: 'We are preparing your order.',
+                  ),
+                ),
+                const MyTimeline(
+                  isFirst: false,
+                  isPast: false,
+                  isLast: true,
+                  endchild: EventCard(
+                    asset: Icon(
+                      Icons.money,
+                    ),
+                    title: '贷款后整齐',
+                    message: 'We are preparing your order.',
+                  ),
+                ),
+              ],
             ),
           ),
-          UI.kHeight10(),
         ],
       ),
     );
