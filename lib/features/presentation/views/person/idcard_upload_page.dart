@@ -6,35 +6,20 @@ import 'package:loanswift/features/presentation/views/widgets/camera_scanner.dar
 import '../../../../core/common/widgets/widgets.dart';
 import '../../../../core/core.dart';
 
-class IDCardUpload extends StatefulWidget {
-  const IDCardUpload({super.key});
-
-  @override
-  State<IDCardUpload> createState() => _IDCardUploadState();
-}
-
-class _IDCardUploadState extends State<IDCardUpload> {
-  @override
-  Widget build(BuildContext context) {
-    return const BuildUploadCardPart();
-  }
-}
-
-class BuildUploadCardPart extends StatelessWidget {
-  const BuildUploadCardPart({
+class IDCardUploadPage extends StatefulWidget {
+  const IDCardUploadPage({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
-    return const CardPart();
-  }
+  State<IDCardUploadPage> createState() => _IDCardUploadPageState();
 }
 
-class CardPart extends StatelessWidget {
-  const CardPart({
-    super.key,
-  });
+class _IDCardUploadPageState extends State<IDCardUploadPage> {
+  late String imagez = Assets.idcardFront;
+  late String imagef = Assets.idcardReverse;
+
+  int tapIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -79,14 +64,16 @@ class CardPart extends StatelessWidget {
       children: [
         buildExpandedItem(
           context,
-          Assets.idcardFront,
+          imagez,
           S.current.idcard_front,
+          1,
         ),
         UI.kWidth10(),
         buildExpandedItem(
           context,
-          Assets.idcardReverse,
+          imagef,
           S.current.idcard_reverse,
+          2,
         ),
       ],
     );
@@ -148,9 +135,18 @@ class CardPart extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () {
+                  onTap: () async {
                     Navigator.of(context).pop();
-                    Utils.pickerImageFromGallery();
+                    final resp = await Utils.pickerImageFromGallery();
+                    if (resp != null && resp.path != "") {
+                      setState(() {
+                        if (tapIndex == 1) {
+                          imagez = resp.path;
+                        } else if (tapIndex == 2) {
+                          imagef = resp.path;
+                        }
+                      });
+                    }
                   },
                   child: Container(
                     height: 50.h,
@@ -203,11 +199,11 @@ class CardPart extends StatelessWidget {
         });
   }
 
-  Widget buildExpandedItem(BuildContext context, String image, String text) {
+  Widget buildExpandedItem(
+      BuildContext context, String image, String text, int index) {
     return Expanded(
       child: Container(
-        // width: double.infinity,
-        // height: 140.h,
+        //height: 140.h,
         decoration: BoxDecoration(
           // color: Color(0xffFAFAFA),
           color: Colors.grey.withOpacity(0.1),
@@ -222,10 +218,16 @@ class CardPart extends StatelessWidget {
               ),
               child: GestureDetector(
                 onTap: () {
+                  setState(() {
+                    tapIndex = index;
+                  });
                   showUploadTypeBottomSheet(context);
                 },
                 child: Center(
                   child: Image(
+                    width: 100.w,
+                    height: 100.h,
+                    fit: BoxFit.cover,
                     image: AssetImage(
                       image,
                     ),

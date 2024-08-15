@@ -121,11 +121,14 @@ class _HomePageState extends State<HomePage> {
                 ),
 
                 SliverToBoxAdapter(
-                  child: FilledButton(
-                    onPressed: () {
-                      Navigator.of(context).pushNamed('/repayment');
-                    },
-                    child: const Text("repaymentPage"),
+                  child: Semantics(
+                    label: "repayment",
+                    child: FilledButton(
+                      onPressed: () {
+                        Navigator.of(context).pushNamed('/repayment');
+                      },
+                      child: const Text("repaymentPage"),
+                    ),
                   ),
                 ),
               ],

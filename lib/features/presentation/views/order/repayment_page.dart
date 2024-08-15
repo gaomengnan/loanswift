@@ -83,8 +83,8 @@ class RepaymentPage extends StatelessWidget {
 
             /*   BUILD TOTAL AMOUNT  */
 
-            UI.kHeight10(),
-            const BottomAmount(),
+            //UI.kHeight10(),
+            //const BottomAmount(),
 
             /*  BUILD RETURNED BTN */
           ],

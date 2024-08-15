@@ -113,11 +113,13 @@ class Utils {
     return cameraStatus == PermissionStatus.granted;
   }
 
-  static void pickerImageFromGallery() async {
+  static Future<XFile?> pickerImageFromGallery() async {
     final ImagePicker picker = ImagePicker();
-    await picker.pickImage(
+    final resp = await picker.pickImage(
       source: ImageSource.gallery,
     );
+
+    return resp;
   }
 
   static void pickerImageFromCamera() async {

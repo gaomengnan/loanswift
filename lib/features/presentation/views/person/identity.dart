@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:loanswift/features/presentation/views/person/basic_information.dart';
+import 'package:loanswift/features/presentation/views/person/idcard_upload_page.dart';
 import 'package:loanswift/theme/pallete.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 import '../../../../core/core.dart';
-import 'idcard_upload.dart';
 
 class Identity extends StatefulWidget {
   const Identity({super.key});
@@ -16,6 +17,13 @@ class Identity extends StatefulWidget {
 }
 
 class _IdentityState extends State<Identity> {
+
+  final List<Widget> stepers = [
+    const IDCardUploadPage(),
+    const BasicInformation()
+  ];
+
+
   int currentStep = 0;
   @override
   Widget build(BuildContext context) {
@@ -48,7 +56,7 @@ class _IdentityState extends State<Identity> {
               size: 6,
               totalSteps: 4,
               currentStep: 1,
-              selectedColor: Pallete.redDeepColor,
+              selectedColor: Pallete.primaryColor,
               //roundedEdges: const Radius.circular(10).r,
               unselectedColor: Pallete.greyColor
               //selectedColor: Colors.yellow,
@@ -76,7 +84,7 @@ class _IdentityState extends State<Identity> {
                   horizontal: 20.w,
                   vertical: 10.h,
                 ),
-                child: const IDCardUpload(),
+                child: const IDCardUploadPage(),
               ),
             ],
           ),
