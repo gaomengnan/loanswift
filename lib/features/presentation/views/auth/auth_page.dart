@@ -18,7 +18,7 @@ class _AuthPageState extends State<AuthPage> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: Pallete.primaryColor,
+        backgroundColor: Pallete.whiteColor,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(

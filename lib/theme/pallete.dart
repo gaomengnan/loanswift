@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 class Pallete {
   //static const Color primaryColor = Color(0xFF00A2B2);
-   //static const Color primaryColor = Colors.blueAccent;
-   //static const Color primaryColor = Colors.purple;
+  //static const Color primaryColor = Colors.blueAccent;
+  //static const Color primaryColor = Colors.purple;
   static const Color primaryColor = Color(0xFF006874);
 
-  static Color secondaryColor = Color(0xFF006874).withOpacity(0.8);
+  static Color secondaryColor = const Color(0xFF006874).withOpacity(0.8);
 
   static const Color backgroundColor = Color(0xffF4F4F8);
   static const Color searchBarColor = Color.fromRGBO(32, 35, 39, 1);
@@ -19,7 +19,9 @@ class Pallete {
   static const Color secColor = Color(0xFFFEF7EB);
   static const Color orangeColor = Color(0xFFFEA417);
 
-  static const Color  color3 = Colors.orange;
+  static Color color3 = const Color(0xff8FBC8F);
+
+  static Color color4 = Pallete.primaryColor.withOpacity(0.3);
 
   static final timelineNo = const Color(0xFF006874).withOpacity(0.5);
 

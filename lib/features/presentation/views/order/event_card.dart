@@ -14,7 +14,8 @@ class EventCard extends StatelessWidget {
     super.key,
     required this.asset,
     required this.title,
-    required this.status, required this.amount,
+    required this.status, 
+    required this.amount,
 
   });
 
@@ -83,7 +84,7 @@ class EventCard extends StatelessWidget {
                           size: 17.sp,
                         ),
                         const SizedBox(width: 8),
-                        const Text(
+                        Text(
                           status,
                         ),
                       ],

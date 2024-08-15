@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:loanswift/core/common/widgets/refresher.dart';
 import 'package:loanswift/core/constants/ui.dart';
 import 'package:loanswift/features/presentation/views/home/banner.dart';
 import 'package:loanswift/features/presentation/views/home/bill.dart';
 import 'package:loanswift/features/presentation/views/home/quota.dart';
 import 'package:loanswift/features/presentation/views/home/suggestion.dart';
-import 'package:loanswift/theme/pallete.dart';
 
 import '../../../../core/common/widgets/widgets.dart';
 import '../../../../core/generated/l10n.dart';
@@ -42,14 +40,13 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Pallete.primaryColor,
         leadingWidth: ScreenUtil().screenWidth,
         elevation: 0,
         toolbarHeight: 50.h,
         flexibleSpace: FlexibleSpaceBar(
           background: Container(
-            decoration: const BoxDecoration(
-              color: Pallete.primaryColor,
+            decoration: BoxDecoration(
+              color: Theme.of(context).appBarTheme.backgroundColor,
             ),
           ),
         ),
@@ -70,20 +67,20 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      //backgroundColor: Pallete.backgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       resizeToAvoidBottomInset: true,
       body: Container(
           decoration: const BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                //stops: [0.0, 0.3, 0.6],
-                colors: [
-                  Pallete.primaryColor,
-                  Pallete.primaryColor,
-                  Pallete.backgroundColor,
-                ]),
-          ),
+              //gradient: LinearGradient(
+              //    begin: Alignment.topCenter,
+              //    end: Alignment.bottomCenter,
+              //    //stops: [0.0, 0.3, 0.6],
+              //    colors: [
+              //      Pallete.primaryColor,
+              //      Pallete.primaryColor,
+              //      Pallete.backgroundColor,
+              //    ]),
+              ),
           //height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: Refresher(
@@ -114,9 +111,23 @@ class _HomePageState extends State<HomePage> {
 
                 //BuildAppList(),
 
-                SliverToBoxAdapter(child: FilledButton(onPressed: (){
-                  Navigator.of(context).pushNamed('/my_order');
-                }, child: Text("my_order"),),),
+                SliverToBoxAdapter(
+                  child: FilledButton(
+                    onPressed: () {
+                      Navigator.of(context).pushNamed('/my_order');
+                    },
+                    child: const Text("orderPage"),
+                  ),
+                ),
+
+                SliverToBoxAdapter(
+                  child: FilledButton(
+                    onPressed: () {
+                      Navigator.of(context).pushNamed('/repayment');
+                    },
+                    child: const Text("repaymentPage"),
+                  ),
+                ),
               ],
             ),
           )),

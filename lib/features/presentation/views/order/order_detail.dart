@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:loanswift/core/common/widgets/my_timeline.dart';
 import 'package:loanswift/core/common/widgets/widgets.dart';
 import 'package:loanswift/core/constants/constants.dart';
 import 'package:loanswift/features/presentation/views/order/event_card.dart';
@@ -50,6 +49,22 @@ class _OrderDetailState extends State<OrderDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () {},
+              child: const Text(
+                "再次借用",
+                style: TextStyle(
+                  color: Pallete.whiteColor,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
       backgroundColor: const Color(0xffF0F0F0),
       appBar: AppBar(
         backgroundColor: Pallete.backgroundColor,
@@ -66,25 +81,43 @@ class _OrderDetailState extends State<OrderDetail> {
           Card(
             color: Colors.white,
             elevation: 1,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ListTile(
-                leading: const Icon(
-                  IconlyBold.play,
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ListTile(
+                    leading: const Icon(
+                      IconlyBold.play,
+                    ),
+                    title: AppText(
+                      text: "审查中",
+                      textAlign: TextAlign.start,
+                      size: 14.sp,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.red,
+                    ),
+                    subtitle: AppText(
+                      text: "您的订单正在审查中，请注意短信或者油箱查收！",
+                      textAlign: TextAlign.start,
+                      color: Colors.black45,
+                    ),
+                  ),
                 ),
-                title: AppText(
-                  text: "审查中",
-                  textAlign: TextAlign.start,
-                  size: 14.sp,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.red,
+
+                /*  再次申请按钮 */
+                Center(
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: const Text(
+                      "再次申请",
+                      style: TextStyle(
+                        color: Pallete.whiteColor,
+                      ),
+                    ),
+                  ),
                 ),
-                subtitle: AppText(
-                  text: "您的订单正在审查中，请注意短信或者油箱查收！",
-                  textAlign: TextAlign.start,
-                  color: Colors.black45,
-                ),
-              ),
+                UI.kHeight5(),
+              ],
             ),
           ),
           Card(
@@ -190,7 +223,7 @@ class _OrderDetailState extends State<OrderDetail> {
                     children: [
                       SizedBox(
                         height: 30.h,
-                        child: const VerticalDivider(
+                        child: VerticalDivider(
                           thickness: 5,
                           color: Pallete.color3,
                         ),

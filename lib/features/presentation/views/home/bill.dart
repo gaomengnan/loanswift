@@ -28,7 +28,7 @@ class BuildBill extends StatelessWidget {
             //color: Colors.redAccent,
             gradient: LinearGradient(
               colors: [
-                Color(0xffFF4500),
+                Colors.white,
                 Colors.white,
                 //Pallete.redColor,
               ],
@@ -61,7 +61,7 @@ class BuildBill extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                   ),
                   //subtitle: Text(''),
-                  trailing: const Icon(
+                  trailing: Icon(
                     IconlyBold.arrowRightCircle,
                     color: Pallete.color3,
                   ),

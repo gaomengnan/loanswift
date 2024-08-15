@@ -46,7 +46,7 @@ class AppTheme {
     ),
     scaffoldBackgroundColor: Pallete.backgroundColor,
     appBarTheme: const AppBarTheme(
-      backgroundColor: Pallete.primaryColor,
+      backgroundColor: Pallete.whiteColor,
       elevation: 0,
     ),
     useMaterial3: true,

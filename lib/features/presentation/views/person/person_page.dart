@@ -33,7 +33,7 @@ class _PersonPageState extends State<PersonPage> {
         controller: _scrollController,
         slivers: [
           SliverAppBar(
-            backgroundColor: Pallete.primaryColor,
+            backgroundColor: Pallete.whiteColor,
             floating: true,
             snap: true,
             pinned: true,
