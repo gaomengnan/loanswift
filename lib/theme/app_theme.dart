@@ -8,7 +8,7 @@ class AppTheme {
       OutlineInputBorder(
         borderSide: BorderSide(
           color: color,
-          width: 2,
+          width: 1,
         ),
         borderRadius: BorderRadius.circular(10),
       );
@@ -19,9 +19,9 @@ class AppTheme {
     fontFamily: "Roboto",
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        elevation: 0,
+        elevation: 2,
         side: BorderSide(
-          width: 1,
+          width: 2,
           color: Colors.black.withOpacity(
             0.1,
           ),
@@ -35,7 +35,7 @@ class AppTheme {
     ),
     inputDecorationTheme: InputDecorationTheme(
       enabledBorder: _border(
-        Pallete.greyColor,
+        Pallete.blackColor,
       ),
       focusedBorder: _border(
         Pallete.primaryColor,

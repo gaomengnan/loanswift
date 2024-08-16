@@ -14,22 +14,22 @@ class _BasicInformationState extends State<BasicInformation> {
 
   /*  FormField Controller  */
 
-  late TextEditingController _eduController;
-  late TextEditingController _emailController;
-  late TextEditingController _marController;
-  late TextEditingController _cityController;
-  late TextEditingController _loctController;
+  late Map<String, TextEditingController> _controllers = {};
 
   late List<Widget> formFields = [];
+
+
+
+  TextEditingController generateController(String name) {
+
+    final controller = TextEditingController();
+    _controllers[name] = controller;
+    return controller;
+  }
 
   @override
   void initState() {
     super.initState();
-    _eduController = TextEditingController();
-    _emailController = TextEditingController();
-    _marController = TextEditingController();
-    _cityController = TextEditingController();
-    _loctController = TextEditingController();
 
     formFields = [
       /*  BASIC INFO TITLE */
@@ -48,7 +48,7 @@ class _BasicInformationState extends State<BasicInformation> {
       /*  BUILD EMAIL FIELD  */
 
       BuildFormItem(
-        controller: _emailController,
+        controller: generateController("email"),
         label: '电子邮箱',
         validator: (p0) {
           if (p0 == null || p0.isEmpty) {
@@ -61,7 +61,7 @@ class _BasicInformationState extends State<BasicInformation> {
       /*  BUILD EDU FIELD  */
 
       BuildFormItem(
-        controller: _eduController,
+        controller: generateController("edu"),
         label: '学历',
         validator: (p0) {
           if (p0 == null || p0.isEmpty) {
@@ -74,7 +74,7 @@ class _BasicInformationState extends State<BasicInformation> {
       /*  BUILD marriage**/
 
       BuildFormItem(
-        controller: _marController,
+        controller: generateController("marriage"),
         label: '婚姻',
         validator: (p0) {
           if (p0 == null || p0.isEmpty) {
@@ -84,7 +84,7 @@ class _BasicInformationState extends State<BasicInformation> {
         },
       ),
       BuildFormItem(
-        controller: _cityController,
+        controller: generateController("address"),
         label: '家庭住址',
         validator: (p0) {
           if (p0 == null || p0.isEmpty) {
@@ -94,11 +94,72 @@ class _BasicInformationState extends State<BasicInformation> {
         },
       ),
       BuildFormItem(
-        controller: _loctController,
+        controller: generateController("address_type"),
         label: '居住类型',
         validator: (p0) {
           if (p0 == null || p0.isEmpty) {
             return '请输入居住类型';
+          }
+          return null;
+        },
+      ),
+
+
+      /*  WORK INFO  */
+
+      Row(
+        children: [
+          AppText(
+            size: 20.sp,
+            fontWeight: FontWeight.w900,
+            text: "工作信息",
+            textAlign: TextAlign.start,
+          ),
+        ],
+      ),
+
+      /* WORK TYPE*/
+
+      BuildFormItem(
+        controller: generateController("work_type"),
+        label: '工作类型',
+        validator: (p0) {
+          if (p0 == null || p0.isEmpty) {
+            return '请输入工作类型';
+          }
+          return null;
+        },
+      ),
+
+      /* DIS */
+      BuildFormItem(
+        controller: generateController("industry"),
+        label: '行业',
+        validator: (p0) {
+          if (p0 == null || p0.isEmpty) {
+            return '请输入行业';
+          }
+          return null;
+        },
+      ),
+
+      BuildFormItem(
+        controller: generateController("work_year"),
+        label: '工作年份',
+        validator: (p0) {
+          if (p0 == null || p0.isEmpty) {
+            return '请输入工作年份';
+          }
+          return null;
+        },
+      ),
+
+      BuildFormItem(
+        controller: generateController("company_addr"),
+        label: '公司地址',
+        validator: (p0) {
+          if (p0 == null || p0.isEmpty) {
+            return '请输入公司地址';
           }
           return null;
         },
