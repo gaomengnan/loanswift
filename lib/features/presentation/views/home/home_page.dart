@@ -83,54 +83,31 @@ class _HomePageState extends State<HomePage> {
               ),
           //height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          child: Refresher(
+          child: const Refresher(
             child: CustomScrollView(
               slivers: [
                 // Appbar
                 //BuildAppBar(),
                 // banner
-                const BuildBanner(),
+                BuildBanner(),
 
                 // 查看额度
-                const BuildQuota(),
+                BuildQuota(),
 
                 /*   Bill Amount */
-                const BuildBill(),
+                BuildBill(),
 
                 // 借钱攻略
 
-                const BuildSuggestion(),
+                BuildSuggestion(),
 
                 //SliverPadding(
                 //  padding: EdgeInsets.only(
                 //    top: 10.h,
                 //  ),
                 //),
-
                 /*  Apps  */
-
                 //BuildAppList(),
-
-                SliverToBoxAdapter(
-                  child: FilledButton(
-                    onPressed: () {
-                      Navigator.of(context).pushNamed('/my_order');
-                    },
-                    child: const Text("orderPage"),
-                  ),
-                ),
-
-                SliverToBoxAdapter(
-                  child: Semantics(
-                    label: "repayment",
-                    child: FilledButton(
-                      onPressed: () {
-                        Navigator.of(context).pushNamed('/repayment');
-                      },
-                      child: const Text("repaymentPage"),
-                    ),
-                  ),
-                ),
               ],
             ),
           )),

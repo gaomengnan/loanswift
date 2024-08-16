@@ -14,17 +14,24 @@ class _BasicInformationState extends State<BasicInformation> {
 
   /*  FormField Controller  */
 
-  late Map<String, TextEditingController> _controllers = {};
+  final Map<String, TextEditingController> _controllers = {};
 
   late List<Widget> formFields = [];
 
-
-
   TextEditingController generateController(String name) {
-
     final controller = TextEditingController();
     _controllers[name] = controller;
     return controller;
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controllers.forEach(
+      (key, value) {
+        value.dispose();
+      },
+    );
   }
 
   @override
@@ -104,7 +111,6 @@ class _BasicInformationState extends State<BasicInformation> {
         },
       ),
 
-
       /*  WORK INFO  */
 
       Row(
@@ -142,7 +148,6 @@ class _BasicInformationState extends State<BasicInformation> {
           return null;
         },
       ),
-
       BuildFormItem(
         controller: generateController("work_year"),
         label: '工作年份',
@@ -153,7 +158,6 @@ class _BasicInformationState extends State<BasicInformation> {
           return null;
         },
       ),
-
       BuildFormItem(
         controller: generateController("company_addr"),
         label: '公司地址',
@@ -192,21 +196,39 @@ class BuildFormItem extends StatelessWidget {
   final String? Function(String?)? validator;
   final TextEditingController controller;
 
+  final bool isSelect;
+
+  final List<Map<String, dynamic>>? items;
+
   const BuildFormItem({
     super.key,
     required this.label,
     this.validator,
     required this.controller,
+    this.isSelect = false,
+    this.items,
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: controller,
-      decoration: InputDecoration(
-        labelText: label,
-      ),
-      validator: validator,
-    );
+    return isSelect
+        ? DropdownButtonFormField(
+            items: items?.map(
+              (val) {
+                return DropdownMenuItem<String>(
+                  value: val["value"].toString(),
+                  child: Text(val["label"].toString()),
+                );
+              },
+            ).toList(),
+            onChanged: (_) {},
+          )
+        : TextFormField(
+            controller: controller,
+            decoration: InputDecoration(
+              labelText: label,
+            ),
+            validator: validator,
+          );
   }
 }

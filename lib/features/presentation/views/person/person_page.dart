@@ -26,6 +26,21 @@ class _PersonPageState extends State<PersonPage> {
     });
   }
 
+  Widget _buildIconButton(IconData icon, String label) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(
+          icon,
+          size: 30,
+          color: Pallete.primaryColor,
+        ),
+        const SizedBox(height: 5),
+        Text(label),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,6 +92,115 @@ class _PersonPageState extends State<PersonPage> {
                     ),
             ),
           ),
+
+          SliverToBoxAdapter(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 20.w,
+                    vertical: 20.h,
+                  ),
+                  child: AppText(
+                    text: "我的还款",
+                    size: 18.sp,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.symmetric(
+                    horizontal: 20.w,
+                  ),
+                  padding: EdgeInsets.symmetric(
+                    vertical: 10.h,
+                    horizontal: 20.w,
+                  ),
+                  //height: 200,
+                  width: ScreenUtil().screenWidth,
+                  decoration: BoxDecoration(
+                    color: Pallete.whiteColor,
+                    borderRadius: BorderRadius.circular(
+                      8,
+                    ),
+                  ),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          AppText(
+                            text: "暂未获取额度，无账单",
+                            size: 14.sp,
+                          ),
+                          OutlinedButton(
+                            onPressed: () {
+                              Navigator.of(context).pushNamed(
+                                "/get_ed",
+                              );
+                            },
+                            child: const Text(
+                              "获取额度",
+                              style: TextStyle(
+                                color: Pallete.blackColor,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const Divider(
+                        color: Colors.black12,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          vertical: 20.w,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                Navigator.of(context).pushNamed(
+                                  "/my_order",
+                                );
+                              },
+                              child: _buildIconButton(
+                                Icons.home,
+                                '借还记录',
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                Navigator.of(context).pushNamed(
+                                  "/repayment",
+                                );
+                              },
+                              child: _buildIconButton(
+                                Icons.search,
+                                '自动还款',
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                Navigator.of(context).pushNamed(
+                                  "/order_detail",
+                                );
+                              },
+                              child: _buildIconButton(
+                                Icons.person,
+                                '账单证明',
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          )
           //SliverList(
           //  delegate: SliverChildBuilderDelegate(
           //    (BuildContext context, int index) {
