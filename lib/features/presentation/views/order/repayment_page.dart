@@ -313,45 +313,40 @@ class BuildKindTips extends StatelessWidget {
     return Card(
       color: Pallete.whiteColor,
       child: SizedBox(
-        height: 300.h,
+        //height: 300.h,
         child: Column(
           children: [
-            Expanded(
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: Pallete.primaryColor,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(
-                      10,
-                    ),
+            Container(
+              decoration: const BoxDecoration(
+                color: Pallete.primaryColor,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  topRight: Radius.circular(
+                    10,
                   ),
-                ),
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.lightbulb,
-                    ),
-                    AppText(text: "温馨提示"),
-                  ],
                 ),
               ),
-            ),
-            Expanded(
-              flex: 5,
-              child: Column(
+              child: Row(
                 children: [
-                  buildKindTip(
-                    "一般情况下，我们会按照您的申请申请的还款日来进行还款",
+                  const Icon(
+                    Icons.lightbulb,
                   ),
-                  buildKindTip(
-                    "您可以随时通过刷新App获取最新信息",
-                  ),
-                  buildKindTip(
-                    "成功还款后，您的还款申请将被标记为“已还款”",
-                  ),
+                  AppText(text: "温馨提示"),
                 ],
               ),
+            ),
+            Column(
+              children: [
+                buildKindTip(
+                  "一般情况下，我们会按照您的申请申请的还款日来进行还款",
+                ),
+                buildKindTip(
+                  "您可以随时通过刷新App获取最新信息",
+                ),
+                buildKindTip(
+                  "成功还款后，您的还款申请将被标记为“已还款”",
+                ),
+              ],
             ),
           ],
         ),
