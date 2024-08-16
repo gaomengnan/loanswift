@@ -313,7 +313,7 @@ class BuildKindTips extends StatelessWidget {
     return Card(
       color: Pallete.whiteColor,
       child: SizedBox(
-        height: 200.h,
+        height: 300.h,
         child: Column(
           children: [
             Expanded(
