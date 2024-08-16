@@ -6,16 +6,16 @@ import 'package:loanswift/features/presentation/views/index/index_page.dart';
 import 'package:loanswift/features/presentation/views/order/my_order.dart';
 import 'package:loanswift/features/presentation/views/order/order_detail.dart';
 import 'package:loanswift/features/presentation/views/order/repayment_page.dart';
-import 'package:loanswift/features/presentation/views/person/identity.dart';
+import 'package:loanswift/features/presentation/views/person/identity_page.dart';
 
 import 'common/page_404.dart';
 import 'core.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
-    case Identity.routerName:
+    case IdentityPage.routerName:
       return _pageBuilder(
-        (_) => const Identity(),
+        (_) => const IdentityPage(),
         settings: settings,
       );
 

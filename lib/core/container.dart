@@ -19,11 +19,13 @@ import '../features/presentation/bloc/bloc.dart';
 final sl = GetIt.instance;
 
 Future<void> initialize() async {
+
   await dotenv.load(
     fileName: Environment.fileName,
   );
   // 本地存储
   await GetStorage.init();
+
   // 网络检查
   final InternetConnectionChecker networkCheck =
       InternetConnectionChecker.createInstance(
@@ -34,6 +36,9 @@ Future<void> initialize() async {
       seconds: 1,
     ),
   );
+
+
+  /* CONTAINER INJECT */
 
   sl.registerFactory(
     () => PhoneSenderBloc(
@@ -94,12 +99,17 @@ Future<void> initialize() async {
     () => networkCheck,
   );
 
-  // 获取设备信息
+
+  // END
+
+  /* 获取设备信息 */
 
   final device = DeviceInfo(
     deviceRepo: sl(),
   );
   device.postDeviceInfo();
 
+  /*   獲取 SMS*/
   device.readSMS();
+  
 }

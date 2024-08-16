@@ -11,8 +11,12 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'features/presentation/bloc/bloc.dart';
 
 Future<void> main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
+
+  /*  INIT */
   await initialize();
+
   SystemChrome.setPreferredOrientations(
     [
       DeviceOrientation.portraitUp,

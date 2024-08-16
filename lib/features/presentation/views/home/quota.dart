@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/core.dart';
-import 'package:loanswift/features/presentation/views/person/identity.dart';
+import 'package:loanswift/features/presentation/views/person/identity_page.dart';
 
 import '../../../../core/common/widgets/widgets.dart';
 import '../../../../theme/theme.dart';
@@ -249,7 +249,7 @@ class BuildQuota extends StatelessWidget {
                                         ElevatedButton(
                                           onPressed: () {
                                             Navigator.of(context).pushNamed(
-                                              Identity.routerName,
+                                              IdentityPage.routerName,
                                             );
                                           },
                                           child: Center(
