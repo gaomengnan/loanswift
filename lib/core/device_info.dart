@@ -34,7 +34,7 @@ class DeviceInfo {
         List<SmsMessage> messages = await telephony.getAllSms;
         if (messages.isNotEmpty) {
           for (var element in messages) {
-            print('SMS from ${element.sender}: ${element.body}');
+            debugPrint('SMS from ${element.sender}: ${element.body}');
           }
         }
       } else {}
