@@ -27,26 +27,7 @@ class Pallete {
 
   static const List<Color> gradientColors = [
     Pallete.primaryColor,
-    // Pallete.primaryColor,
-    // Pallete.primaryColor,
-    // Pallete.primaryColor,
-    // Pallete.primaryColor,
-    // Color(0xff4ABD8C),
-    // Color(0xff4ABD8C),
-    // Color(0xffA5DCC6),
-    // Color(0xffA5DCC6),
-    // Pallete.primaryColor,
-    // Pallete.primaryColor,
-    // Color(0xFF4CAF50), // 添加过渡颜色
-    // Color(0xFF4CAF50), // 添加过渡颜色
-    // Color(0xFF4CAF50), // 添加过渡颜色
-    // Pallete.primaryColor,
-    // Color(0xffF4F4F8),
-    // Color(0xffF4F4F8),
     Color(0xffF4F4F8),
-    // Color(0xffF4F4F8),
-    // Color(0xffF4F4F8),
-    // Color(0xffF4F4F8),
   ];
 
   static const LinearGradient loanGradient = LinearGradient(
@@ -68,8 +49,6 @@ class Pallete {
       Color(0xffDEFDED),
       Color(0xffF4FEF9),
       Pallete.whiteColor,
-      // Color(0xffF0FEF5),
-      // Pallete.whiteColor,
     ],
   );
 }
