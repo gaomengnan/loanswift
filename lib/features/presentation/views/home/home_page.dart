@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:loanswift/core/constants/ui.dart';
+import 'package:loanswift/core/common/widgets/widgets.dart';
+import 'package:loanswift/core/core.dart';
 import 'package:loanswift/features/presentation/views/home/banner.dart';
 import 'package:loanswift/features/presentation/views/home/bill.dart';
 import 'package:loanswift/features/presentation/views/home/quota.dart';
 import 'package:loanswift/features/presentation/views/home/suggestion.dart';
 
-import '../../../../core/common/widgets/widgets.dart';
-import '../../../../core/generated/l10n.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
