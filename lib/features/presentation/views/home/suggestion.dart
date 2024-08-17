@@ -38,26 +38,20 @@ class _BuildSuggestionState extends State<BuildSuggestion>
     return SliverList(
       delegate: SliverChildBuilderDelegate(childCount: 2, (context, index) {
         if (index == 0) {
-          return Container(
-            margin: EdgeInsets.symmetric(
+          return ListTile(
+            contentPadding: EdgeInsets.symmetric(
               horizontal: 20.w,
-              vertical: 0.h,
+              vertical: 0,
             ),
-            child: ListTile(
-              contentPadding: EdgeInsets.symmetric(
-                horizontal: 20.w,
-                vertical: 0,
-              ),
-              title: AppText(
-                text: "建议",
-                textAlign: TextAlign.left,
-                fontWeight: FontWeight.w600,
-                size: 16.sp,
-              ),
-              trailing: const Icon(
-                IconlyBold.moreCircle,
-                //color: Pallete.whiteColor,
-              ),
+            title: AppText(
+              text: "建议",
+              textAlign: TextAlign.left,
+              fontWeight: FontWeight.w600,
+              size: 16.sp,
+            ),
+            trailing: const Icon(
+              IconlyBold.moreCircle,
+              //color: Pallete.whiteColor,
             ),
           );
         }

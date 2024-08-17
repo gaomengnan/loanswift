@@ -67,7 +67,7 @@ class BuildBill extends StatelessWidget {
                   ),
                 ),
               ),
-              //UI.kHeight10(),
+              UI.kHeight5(),
               Flexible(
                 flex: 4,
                 child: Container(
