@@ -70,7 +70,7 @@ class RepaymentLine extends StatelessWidget {
               ),
               UI.kWidth10(),
               Icon(
-                color: Pallete.primaryColor,
+                color: isPost ? Pallete.primaryColor : Colors.grey,
                 isPost
                     ? Icons.check_circle_outline_rounded
                     : Icons.highlight_off_rounded,

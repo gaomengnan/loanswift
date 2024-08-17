@@ -14,6 +14,7 @@ class RepaymentPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
+        height: 60.h,
         color: Colors.transparent,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
@@ -24,7 +25,7 @@ class RepaymentPage extends StatelessWidget {
             "即刻还款",
             style: TextStyle(
               color: Pallete.whiteColor,
-              fontSize: 20.sp,
+              fontSize: 18.sp,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -331,7 +332,10 @@ class BuildKindTips extends StatelessWidget {
                   const Icon(
                     Icons.lightbulb,
                   ),
-                  AppText(text: "温馨提示"),
+                  AppText(
+                    text: "温馨提示",
+                    color: Pallete.whiteColor,
+                  ),
                 ],
               ),
             ),
