@@ -83,48 +83,73 @@ class _HomePageState extends State<HomePage> {
               ),
           //height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          child: Refresher(
+          child: const Refresher(
             child: CustomScrollView(
               slivers: [
                 // Appbar
                 //BuildAppBar(),
                 // banner
-                const BuildBanner(),
+                BuildBanner(),
 
                 // 查看额度
-                const BuildQuota(),
+                BuildQuota(),
 
                 /*   Bill Amount */
-                const BuildBill(),
+                BuildBill(),
 
                 // 借钱攻略
 
-                const BuildSuggestion(),
+                BuildSuggestion(),
 
                 SliverPadding(
-                  padding: const EdgeInsets.only(
-                    bottom: 10,
-                  ),
+                  padding: EdgeInsets.all(8.0),
                   sliver: SliverToBoxAdapter(
-                    child: Center(
-                      child: SizedBox(
-                        width: 100.w,
-                        height: 30.h,
-                        child: OutlinedButton(
-                          onPressed: () {},
-                          child: AppText(
-                            text: '联系我们',
-                          ),
-                        ),
-                      ),
+                    child: Divider(
+                      color: Colors.black12,
                     ),
                   ),
                 ),
+
+                BuildContactUS(),
                 /*  Apps  */
                 //BuildAppList(),
               ],
             ),
           )),
+    );
+  }
+}
+
+class BuildContactUS extends StatelessWidget {
+  const BuildContactUS({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverPadding(
+      padding: const EdgeInsets.only(
+        bottom: 10,
+      ),
+      sliver: SliverToBoxAdapter(
+        child: Center(
+          child: SizedBox(
+            width: 100.w,
+            height: 30.h,
+            child: OutlinedButton(
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  "/contact_us",
+                );
+              },
+              child: AppText(
+                text: '联系我们',
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
