@@ -10,6 +10,9 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import 'features/presentation/bloc/bloc.dart';
 
+
+final navigatorKey = GlobalKey<NavigatorState>();
+
 Future<void> main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
@@ -72,6 +75,7 @@ class MyApp extends StatelessWidget {
                 false, // Disable pull-up to load more functionality when Viewport is less than one screen
             enableBallisticLoad: true, //
             child: MaterialApp(
+              navigatorKey: navigatorKey,
               debugShowCheckedModeBanner: false,
               // 设置国际化语言包
               localizationsDelegates: const [

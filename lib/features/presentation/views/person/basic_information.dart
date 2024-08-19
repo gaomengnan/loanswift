@@ -44,7 +44,7 @@ class _BasicInformationState extends State<BasicInformation> {
       Row(
         children: [
           AppText(
-            size: 20.sp,
+            size: 16.sp,
             fontWeight: FontWeight.w900,
             text: "基础信息",
             textAlign: TextAlign.start,
@@ -116,7 +116,7 @@ class _BasicInformationState extends State<BasicInformation> {
       Row(
         children: [
           AppText(
-            size: 20.sp,
+            size: 16.sp,
             fontWeight: FontWeight.w900,
             text: "工作信息",
             textAlign: TextAlign.start,
@@ -223,12 +223,15 @@ class BuildFormItem extends StatelessWidget {
             ).toList(),
             onChanged: (_) {},
           )
-        : TextFormField(
-            controller: controller,
-            decoration: InputDecoration(
-              labelText: label,
+        : Container(
+          height: 40,
+          child: TextFormField(
+              controller: controller,
+              decoration: InputDecoration(
+                labelText: label,
+              ),
+              validator: validator,
             ),
-            validator: validator,
-          );
+        );
   }
 }

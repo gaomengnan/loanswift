@@ -70,7 +70,7 @@ class _BuildSuggestionState extends State<BuildSuggestion>
                 //padding: EdgeInsets.symmetric(horizontal: 20.w,),
                 //height: 100,
                 decoration: BoxDecoration(
-                  color: Pallete.backgroundColor,
+                  color: Pallete.whiteColor,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Column(
