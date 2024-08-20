@@ -45,7 +45,7 @@ Future<void> initialize() async {
     ..registerFactory(
       () => PhoneSenderBloc(
         ticker: sl(),
-        authRepo: sl(),
+        sender: sl(),
       ),
     )
     ..registerLazySingleton(

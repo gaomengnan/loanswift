@@ -4,26 +4,27 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:loanswift/core/failure.dart';
 import 'package:loanswift/core/generated/l10n.dart';
+import 'package:loanswift/features/domain/usecases/authenticated/send_phone_code.dart';
 
 import '../../../data/models/error.dart';
 import '../../../data/models/models.dart';
-import '../../../domain/repos/auth.dart';
 
 part 'phone_sender_event.dart';
 part 'phone_sender_state.dart';
 
 class PhoneSenderBloc extends Bloc<PhoneSenderEvent, PhoneSenderState> {
   final Ticker _ticker;
-  final AuthRepo _authRepo;
+  final SendPhoneCodeUsecase _sender;
+
   static const _duration = 0;
 
   StreamSubscription<int>? _tickerSubscription;
 
   PhoneSenderBloc({
     required Ticker ticker,
-    required AuthRepo authRepo,
+    required SendPhoneCodeUsecase sender,
   })  : _ticker = ticker,
-        _authRepo = authRepo,
+        _sender = sender,
         super(
           PhoneSenderInitial(
             _duration,
@@ -52,8 +53,8 @@ class PhoneSenderBloc extends Bloc<PhoneSenderEvent, PhoneSenderState> {
     if (state.countdownState.isRunning) {
       //emit(PhoneSenderVerifyState());
     } else {
-      final res = await _authRepo.sendPhoneCode(
-        phone: event.phone,
+      final res = await _sender(
+        SendPhoneCodeRequest(phone: event.phone)
       );
       res.fold(
         (l) {
