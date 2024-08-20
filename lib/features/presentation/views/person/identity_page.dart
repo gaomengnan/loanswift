@@ -51,7 +51,7 @@ class _IdentityPageState extends State<IdentityPage> {
             _currentStep++;
           });
         },
-        elevation: 3,
+        elevation: 0,
         type: StepperType.horizontal,
         steps: [
           Step(
