@@ -3,10 +3,10 @@ import 'package:loanswift/core/typedefs.dart';
 import 'package:loanswift/core/usecase.dart';
 import 'package:loanswift/features/domain/repos/auth.dart';
 
-class SendPhoneCode extends UsecaseParams<void, SendPhoneCodeRequest> {
+class SendPhoneCodeUsecase extends UsecaseParams<void, SendPhoneCodeRequest> {
   final AuthRepo _authRepo;
 
-  const SendPhoneCode(this._authRepo);
+  const SendPhoneCodeUsecase(this._authRepo);
 
   @override
   ResultVoid call(SendPhoneCodeRequest params) async => _authRepo.sendPhoneCode(

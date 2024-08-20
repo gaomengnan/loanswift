@@ -21,11 +21,11 @@ import 'repositroy.mock.dart';
 //class MockAuthRepo extends Mock implements AuthRepo {}
 
 void main() {
-  late SendPhoneCode usecase;
+  late SendPhoneCodeUsecase usecase;
   late AuthRepo repository;
   setUpAll(() {
     repository = MockAuthRepo();
-    usecase = SendPhoneCode(repository);
+    usecase = SendPhoneCodeUsecase(repository);
   });
   const params = SendPhoneCodeRequest.empty();
   test(

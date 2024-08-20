@@ -13,6 +13,7 @@ import 'package:loanswift/features/data/repository/auth.dart';
 import 'package:loanswift/features/data/repository/device.dart';
 import 'package:loanswift/features/domain/repos/auth.dart';
 import 'package:loanswift/features/domain/repos/device.dart';
+import 'package:loanswift/features/domain/usecases/authenticated/send_phone_code.dart';
 import 'package:loanswift/firebase_options.dart';
 
 import '../features/data/models/models.dart';
@@ -40,65 +41,66 @@ Future<void> initialize() async {
 
   /* CONTAINER INJECT */
 
-  sl.registerFactory(
-    () => PhoneSenderBloc(
-      ticker: sl(),
-      authRepo: sl(),
-    ),
-  );
+  sl
+    ..registerFactory(
+      () => PhoneSenderBloc(
+        ticker: sl(),
+        authRepo: sl(),
+      ),
+    )
+    ..registerLazySingleton(
+      () => SendPhoneCodeUsecase(
+        sl(),
+      ),
+    );
 
   // bloc
 
-  // datasource
   // 注册登录相关
-  sl.registerLazySingleton<AuthDataSource>(
-    () => AuthDataSourceImpl(
-      dioClient: sl(),
-    ),
-  );
+  sl
+    ..registerFactory(
+      () => AuthBloc(
+        authRepo: sl(),
+      ),
+    )
+    ..registerLazySingleton<AuthDataSource>(
+      () => AuthDataSourceImpl(
+        dioClient: sl(),
+      ),
+    )
+    ..registerLazySingleton<AuthRepo>(
+      () => AuthRepository(
+        sl(),
+      ),
+    );
+
+  sl
+    ..registerLazySingleton<DeviceRepo>(
+      () => DeviceRepository(
+        sl(),
+      ),
+    )
+    ..registerLazySingleton<DeviceDataSource>(
+      () => DeviceDataSourceImpl(
+        dioClient: sl(),
+      ),
+    );
 
   // 设备上传
-  sl.registerLazySingleton<DeviceDataSource>(
-    () => DeviceDataSourceImpl(
-      dioClient: sl(),
-    ),
-  );
-
-  // repo
-  sl.registerLazySingleton<AuthRepo>(
-    () => AuthRepository(
-      sl(),
-    ),
-  );
-
-  sl.registerLazySingleton<DeviceRepo>(
-    () => DeviceRepository(
-      sl(),
-    ),
-  );
-
-  sl.registerFactory(
-    () => AuthBloc(
-      authRepo: sl(),
-    ),
-  );
   // auth-bloc
 
-  sl.registerLazySingleton(
-    () => DioClient(
-      connectionChecker: sl(),
-    ),
-  );
-  sl.registerLazySingleton(
-    () => const Ticker(),
-  );
-  //sl.registerLazySingleton(
-  //  () => refs,
-  //);
-
-  sl.registerLazySingleton(
-    () => networkCheck,
-  );
+  sl
+    ..registerLazySingleton(
+      () => DioClient(
+        connectionChecker: sl(),
+      ),
+    )
+    ..registerLazySingleton(
+      () => const Ticker(),
+    )
+    ..registerLazySingleton(
+      () => networkCheck,
+    );
 
   // END
 
