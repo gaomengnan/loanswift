@@ -33,14 +33,14 @@ class AppTheme {
         ), // 设置字体颜色
       ),
     ),
-    inputDecorationTheme: InputDecorationTheme(
-      enabledBorder: _border(
-        Pallete.blackColor,
-      ),
-      focusedBorder: _border(
-        Pallete.primaryColor,
-      ),
-    ),
+    //inputDecorationTheme: InputDecorationTheme(
+    //  //enabledBorder: _border(
+    //  //  Pallete.blackColor,
+    //  //),
+    //  //focusedBorder: _border(
+    //  //  Pallete.primaryColor,
+    //  //),
+    //),
     colorScheme: ColorScheme.fromSeed(
       seedColor: Pallete.whiteColor,
     ),
