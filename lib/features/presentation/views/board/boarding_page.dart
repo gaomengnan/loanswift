@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loanswift/core/constants/constants.dart';
+import 'package:loanswift/main.dart';
 
 
 class BoardingPage extends StatefulWidget {
@@ -30,7 +31,8 @@ class _BoardingPageState extends State<BoardingPage> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 1), () {
-      Navigator.pushReplacementNamed(context, "/index");
+      navigatorKey.currentState?.pushReplacementNamed('/index');
+      //Navigator.pushReplacementNamed(context, "/index");
     });
   }
 }
