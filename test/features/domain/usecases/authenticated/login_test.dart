@@ -16,11 +16,11 @@ import 'repositroy.mock.dart';
 void main() {
   late AuthRepo repositroy;
 
-  late Login usecase;
+  late LoginUsecase usecase;
 
   setUp(() {
     repositroy = MockAuthRepo();
-    usecase = Login(repositroy);
+    usecase = LoginUsecase(repositroy);
   });
 
   const param = LoginRequest.empty();

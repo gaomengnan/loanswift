@@ -4,10 +4,10 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:loanswift/core/failure.dart';
 import 'package:loanswift/core/generated/l10n.dart';
+import 'package:loanswift/features/data/models/error.dart';
+import 'package:loanswift/features/data/models/ticker.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/send_phone_code.dart';
 
-import '../../../data/models/error.dart';
-import '../../../data/models/models.dart';
 
 part 'phone_sender_event.dart';
 part 'phone_sender_state.dart';

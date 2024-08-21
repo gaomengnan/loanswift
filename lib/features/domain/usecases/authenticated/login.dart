@@ -4,9 +4,9 @@ import 'package:loanswift/core/usecase.dart';
 import 'package:loanswift/features/domain/entity/user/auth_token.dart';
 import 'package:loanswift/features/domain/repos/auth.dart';
 
-class Login extends UsecaseParams<AuthToken, LoginRequest> {
+class LoginUsecase extends UsecaseParams<AuthToken, LoginRequest> {
   final AuthRepo repositroy;
-  const Login(this.repositroy);
+  const LoginUsecase(this.repositroy);
   @override
   ResultFuture<AuthToken> call(params) => repositroy.login(
         phone: params.phone,

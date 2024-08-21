@@ -223,7 +223,7 @@ class BuildFormItem extends StatelessWidget {
             ).toList(),
             onChanged: (_) {},
           )
-        : Container(
+        : SizedBox(
           height: 40,
           child: TextFormField(
               controller: controller,

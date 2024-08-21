@@ -14,10 +14,13 @@ class AuthRepository implements AuthRepo {
   @override
   ResultVoid sendPhoneCode({required String phone}) async {
     try {
-      await _authDataSource.sendPhoneCode(
+      final res = await _authDataSource.sendPhoneCode(
         phone: phone,
       );
-      return const Right(null);
+      return res.fold(
+        (l) => left(l),
+        (r) => right(r),
+      );
     } on ServerException catch (e) {
       return Left(
         ServerFailure(

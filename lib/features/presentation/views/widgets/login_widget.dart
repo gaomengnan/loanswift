@@ -295,33 +295,33 @@ class BuildBottomButton extends StatelessWidget {
                 size: 12.sp,
               ),
             ),
-            ElevatedButton(
-              onPressed: () {
-                //if (isButnDisabled) {
-                //  return;
-                //}
-              },
-              style: ElevatedButton.styleFrom(
-                elevation: 0,
-                side: BorderSide(
-                  width: 1,
-                  color: Colors.black.withOpacity(
-                    0.1,
-                  ),
-                ),
-                backgroundColor: btnColor,
-              ).copyWith(
-                foregroundColor: WidgetStateProperty.all<Color>(
-                  Pallete.primaryColor,
-                ), // 设置字体颜色
-              ),
-              child: AppText(
-                text: S.current.lijishengqing,
-                fontWeight: FontWeight.bold,
-                color: textColor,
-                size: 12.sp,
-              ),
-            ),
+            //ElevatedButton(
+            //  onPressed: () {
+            //    //if (isButnDisabled) {
+            //    //  return;
+            //    //}
+            //  },
+            //  style: ElevatedButton.styleFrom(
+            //    elevation: 0,
+            //    side: BorderSide(
+            //      width: 1,
+            //      color: Colors.black.withOpacity(
+            //        0.1,
+            //      ),
+            //    ),
+            //    backgroundColor: btnColor,
+            //  ).copyWith(
+            //    foregroundColor: WidgetStateProperty.all<Color>(
+            //      Pallete.primaryColor,
+            //    ), // 设置字体颜色
+            //  ),
+            //  child: AppText(
+            //    text: S.current.lijishengqing,
+            //    fontWeight: FontWeight.bold,
+            //    color: textColor,
+            //    size: 12.sp,
+            //  ),
+            //),
           ],
         ),
       ],

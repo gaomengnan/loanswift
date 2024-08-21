@@ -3,7 +3,6 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:loanswift/core/device_info.dart';
 import 'package:loanswift/core/dio_client.dart';
 import 'package:loanswift/core/environment.dart';
 import 'package:loanswift/core/firebase_api.dart';
@@ -13,6 +12,7 @@ import 'package:loanswift/features/data/repository/auth.dart';
 import 'package:loanswift/features/data/repository/device.dart';
 import 'package:loanswift/features/domain/repos/auth.dart';
 import 'package:loanswift/features/domain/repos/device.dart';
+import 'package:loanswift/features/domain/usecases/authenticated/login.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/send_phone_code.dart';
 import 'package:loanswift/firebase_options.dart';
 
@@ -60,7 +60,7 @@ Future<void> initialize() async {
   sl
     ..registerFactory(
       () => AuthBloc(
-        authRepo: sl(),
+        loginer: sl(),
       ),
     )
     ..registerLazySingleton<AuthDataSource>(
@@ -70,6 +70,11 @@ Future<void> initialize() async {
     )
     ..registerLazySingleton<AuthRepo>(
       () => AuthRepository(
+        sl(),
+      ),
+    )
+    ..registerLazySingleton(
+      () => LoginUsecase(
         sl(),
       ),
     );
@@ -106,13 +111,13 @@ Future<void> initialize() async {
 
   /* 获取设备信息 */
 
-  final device = DeviceInfo(
-    deviceRepo: sl(),
-  );
-  device.postDeviceInfo();
+  //final device = DeviceInfo(
+  //  deviceRepo: sl(),
+  //);
+  //device.postDeviceInfo();
 
   /*   獲取 SMS*/
-  device.readSMS();
+  //device.readSMS();
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,

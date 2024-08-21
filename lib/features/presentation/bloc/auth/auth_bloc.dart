@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loanswift/features/domain/repos/auth.dart';
+import 'package:loanswift/features/domain/usecases/authenticated/login.dart';
 
 import '../../../domain/entity/entity.dart';
 
@@ -8,11 +8,11 @@ part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  final AuthRepo _authRepo;
+  final LoginUsecase _loginer;
 
   AuthBloc({
-    required AuthRepo authRepo,
-  })  : _authRepo = authRepo,
+    required LoginUsecase loginer,
+  })  : _loginer = loginer,
         super(
           AuthState.initial(),
         ) {
