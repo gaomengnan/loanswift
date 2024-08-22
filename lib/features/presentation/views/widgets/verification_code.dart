@@ -54,7 +54,8 @@ class _VerificationCodeState extends State<VerificationCode> {
       ),
     );
 
-    return BlocBuilder<PhoneSenderBloc, PhoneSenderState>(builder: (context, state) {
+    return BlocBuilder<PhoneSenderBloc, PhoneSenderState>(
+        builder: (context, state) {
       final isDurationed = state.duration > 0;
       return Padding(
         padding: EdgeInsets.symmetric(
@@ -129,7 +130,7 @@ class _VerificationCodeState extends State<VerificationCode> {
                     textDirection: TextDirection.ltr,
                     child: Pinput(
                       autofocus: true,
-                      length: 6,
+                      length: 5,
                       controller: pinController,
                       focusNode: focusNode,
                       //androidSmsAutofillMethod:
@@ -137,10 +138,10 @@ class _VerificationCodeState extends State<VerificationCode> {
                       //listenForMultipleSmsOnAndroid: true,
                       defaultPinTheme: defaultPinTheme,
                       separatorBuilder: (index) => const SizedBox(width: 8),
-                      validator: (value) {
-                        return null;
-                        // return S.current.verification_code_wrong;
-                      },
+                      // validator: (value) {
+                      // return null;
+                      // return S.current.verification_code_wrong;
+                      // },
                       // onClipboardFound: (value) {
                       //   debugPrint('onClipboardFound: $value');
                       //   pinController.setText(value);
@@ -148,6 +149,12 @@ class _VerificationCodeState extends State<VerificationCode> {
                       hapticFeedbackType: HapticFeedbackType.lightImpact,
                       onCompleted: (pin) {
                         debugPrint('onCompleted: $pin');
+                        context.read<AuthBloc>().add(
+                              UserLoginEvent(
+                                phone: state.phone.trim(),
+                                code: pin.trim(),
+                              ),
+                            );
                       },
                       onChanged: (value) {},
                       cursor: Column(
@@ -229,8 +236,7 @@ class _VerificationCodeState extends State<VerificationCode> {
                                     style: const TextStyle(
                                       color: Pallete.redColor,
                                     ),
-                                    text:
-                                        "(${state.duration})s",
+                                    text: "(${state.duration})s",
                                   )
                                 ]),
                           ),

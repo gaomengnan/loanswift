@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:loanswift/core/api_response.dart';
 import 'package:loanswift/core/constants/app.dart';
 import 'package:loanswift/core/core.dart';
 
@@ -57,6 +58,22 @@ class DioClient {
             headers: headers,
           ),
         );
+        print("response code : ${resp.data['code']}");
+
+        final int apiCode =
+            int.tryParse(resp.data['count']?.toString() ?? '') ?? 10000;
+
+        final errMessage = resp.data['message'].toString();
+
+        if (apiCode != 10000) {
+          return left(
+            ApiFailure(
+              message: errMessage,
+              statusCode: apiCode,
+            ),
+          );
+        }
+
         return right(resp);
       } on DioException catch (e) {
         return left(
@@ -104,7 +121,7 @@ class DioInterceptor extends Interceptor {
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    debugPrint("before send requestobject");
+    debugPrint("onRequest");
     options.headers.addAll({
       //"Content-Type": "application/json",
       "Authorization": "Bearer $token",
@@ -119,6 +136,7 @@ class DioInterceptor extends Interceptor {
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
     debugPrint("onResponse");
+    debugPrint(response.toString());
     super.onResponse(response, handler);
   }
 

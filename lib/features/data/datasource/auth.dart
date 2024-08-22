@@ -52,7 +52,6 @@ class AuthDataSourceImpl extends AuthDataSource {
       },
       pt: "form",
     );
-    print(resp);
     return resp.fold(
       (l) => left(l),
       (r) => right(null),

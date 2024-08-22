@@ -10,11 +10,9 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import 'features/presentation/bloc/bloc.dart';
 
-
 final navigatorKey = GlobalKey<NavigatorState>();
 
 Future<void> main() async {
-
   WidgetsFlutterBinding.ensureInitialized();
 
   /*  INIT */
@@ -91,7 +89,7 @@ class MyApp extends StatelessWidget {
                     "locale $locale, supported locales: $supportedLocales");
                 return locale;
               },
-              locale: const Locale("en"),
+              locale: const Locale("id"),
               title: "loan",
               theme: AppTheme.theme,
               darkTheme: AppTheme.theme,
