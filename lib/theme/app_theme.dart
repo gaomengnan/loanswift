@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:loanswift/theme/pallete.dart';
 
+const font = 'Lato'; // 字体名称
+
 class AppTheme {
   static _border([
     Color color = Pallete.greyColor,
@@ -14,9 +16,17 @@ class AppTheme {
       );
 
   static ThemeData theme = ThemeData(
+    listTileTheme: const ListTileThemeData(
+      titleTextStyle: TextStyle(
+        fontFamily: font, // 设置字体
+      ),
+      subtitleTextStyle: TextStyle(
+        fontFamily: font, // 设置字体
+      ),
+    ),
     primaryColor: Pallete.primaryColor,
     brightness: Brightness.light,
-    fontFamily: "Roboto",
+    fontFamily: font,
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         elevation: 2,

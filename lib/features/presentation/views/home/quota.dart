@@ -60,17 +60,19 @@ class BuildQuota extends StatelessWidget {
                     ),
                   ),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      UI.kWidth20(),
+                      //UI.kWidth20(),
                       RichText(
+                        overflow: TextOverflow.ellipsis,
                         text: TextSpan(
                           text: S.current.exclusive,
                           style: TextStyle(
                             color: const Color(0xff882E13),
-                            fontSize: 14.sp,
+                            fontSize: 12.sp,
                             fontWeight: FontWeight.bold,
+                            fontFamily: Theme.of(context).textTheme.bodySmall?.fontFamily,
                           ),
                           children: [
                             WidgetSpan(

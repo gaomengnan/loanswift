@@ -43,9 +43,10 @@ class BuildBill extends StatelessWidget {
             children: [
               Flexible(
                 child: ListTile(
-                  titleTextStyle: const TextStyle(
-                    height: 1.2,
-                  ),
+                  titleTextStyle: Theme.of(context)
+                      .listTileTheme
+                      .titleTextStyle
+                      ?.copyWith(height: 1.2),
                   contentPadding:
                       const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
                   leading: Icon(
@@ -58,7 +59,7 @@ class BuildBill extends StatelessWidget {
                     text: S.current.soon_pay,
                     color: Pallete.color3,
                     size: 13.sp,
-                    fontWeight: FontWeight.w600,
+                    //fontWeight: FontWeight.w600,
                   ),
                   //subtitle: Text(''),
                   trailing: Icon(

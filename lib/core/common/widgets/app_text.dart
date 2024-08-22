@@ -49,7 +49,7 @@ class AppText extends StatelessWidget {
           // fontFamily: "Roboto"
           fontSize: size,
           height: height,
-          fontFamily: "Roboto",
+          //fontFamily: "Roboto",
         ),
       ),
     );

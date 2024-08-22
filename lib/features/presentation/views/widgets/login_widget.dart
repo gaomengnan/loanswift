@@ -253,7 +253,6 @@ class BuildBottomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     const Color btnColor = Pallete.primaryColor; // 设置按钮背景颜色
     const Color textColor = Pallete.whiteColor;
 

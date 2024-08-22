@@ -120,6 +120,13 @@ flutter:
         - asset: assets/google_fonts/Roboto-Regular.ttf
         - asset: assets/google_fonts/Roboto-Italic.ttf
           style: italic
+
+    - family: Lato
+      fonts:
+        - asset: assets/google_fonts/Lato-Regular.ttf
+        - asset: assets/google_fonts/Lato-Italic.ttf
+          style: italic
+
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
