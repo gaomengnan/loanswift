@@ -12,29 +12,36 @@ extension LoginStateEnum on AuthenticationStatus {
 
 @immutable
 sealed class AuthState extends Equatable {
-  const AuthState();
+  final AuthenticationStatus authenticationStatus;
+
+  const AuthState({required this.authenticationStatus});
+
+  @override
+  List<Object?> get props => [];
 }
 
 final class AuthInitial extends AuthState {
-  @override
-  List<Object?> get props => [];
+
+  const AuthInitial()
+      : super(authenticationStatus: AuthenticationStatus.unknown);
 }
 
 final class AuthSuccess extends AuthState {
-  @override
-  List<Object?> get props => [];
+  const AuthSuccess()
+      : super(authenticationStatus: AuthenticationStatus.authenticated);
 }
 
 final class AuthLoading extends AuthState {
-  @override
-  List<Object?> get props => [];
+  const AuthLoading()
+      : super(authenticationStatus: AuthenticationStatus.unknown);
 }
 
 final class AuthFailure extends AuthState {
-  final String message;
+  final CustomError error;
 
-  const AuthFailure({required this.message});
+  const AuthFailure({required this.error})
+      : super(authenticationStatus: AuthenticationStatus.unknown);
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [error];
 }

@@ -1,11 +1,9 @@
 import 'package:dartz/dartz.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:loanswift/core/api_response.dart';
 import 'package:loanswift/core/typedefs.dart';
 import 'package:loanswift/features/data/models/auth_token.dart';
 import 'package:loanswift/features/data/models/user_model.dart';
 
-import '../../../core/constants/app.dart';
 import '../../../core/core.dart';
 import '../../../core/dio_client.dart';
 
@@ -37,10 +35,10 @@ class AuthDataSourceImpl extends AuthDataSource {
 
   @override
   String getAuthToken() {
-    final token = GetStorage().read<String>(
-      AppContant.token,
-    );
-    return token ?? "";
+    //final token = GetStorage().read<AuthToken>(
+    //  AppContant.tokenKey,
+    //);
+    return "";
   }
 
   @override

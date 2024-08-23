@@ -4,16 +4,16 @@ import 'package:loanswift/theme/pallete.dart';
 const font = 'Lato'; // 字体名称
 
 class AppTheme {
-  static _border([
-    Color color = Pallete.greyColor,
-  ]) =>
-      OutlineInputBorder(
-        borderSide: BorderSide(
-          color: color,
-          width: 1,
-        ),
-        borderRadius: BorderRadius.circular(10),
-      );
+  //static _border([
+  //  Color color = Pallete.greyColor,
+  //]) =>
+  //    OutlineInputBorder(
+  //      borderSide: BorderSide(
+  //        color: color,
+  //        width: 1,
+  //      ),
+  //      borderRadius: BorderRadius.circular(10),
+  //    );
 
   static ThemeData theme = ThemeData(
     listTileTheme: const ListTileThemeData(

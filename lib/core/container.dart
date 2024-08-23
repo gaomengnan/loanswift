@@ -119,11 +119,11 @@ Future<void> initialize() async {
   /*   獲取 SMS*/
   //device.readSMS();
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
 
   try {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
     FirebaseApi().initNotifications();
   } catch (_) {}
 }

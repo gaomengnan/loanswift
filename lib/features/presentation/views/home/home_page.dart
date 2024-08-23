@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/common/widgets/widgets.dart';
 import 'package:loanswift/core/core.dart';
+import 'package:loanswift/features/presentation/bloc/auth/auth_bloc.dart';
 import 'package:loanswift/features/presentation/views/home/banner.dart';
 import 'package:loanswift/features/presentation/views/home/bill.dart';
 import 'package:loanswift/features/presentation/views/home/quota.dart';
 import 'package:loanswift/features/presentation/views/home/suggestion.dart';
-
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,10 +18,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  //late AnimationController _anicontroller, _scaleController;
-  //final RefreshController _refreshController = RefreshController();
-  //int count = 20;
-
   @override
   void initState() {
     super.initState();
@@ -28,15 +25,16 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void dispose() {
-    //_refreshController.dispose();
-    //_scaleController.dispose();
-    //_footerController.dispose();
-    //_anicontroller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final isLogined = context
+        .select((AuthBloc auth) => auth.state.authenticationStatus.isLogined);
+
+    print( 'isLogined: $isLogined');
+
     return Scaffold(
       appBar: AppBar(
         leadingWidth: ScreenUtil().screenWidth,
@@ -68,19 +66,7 @@ class _HomePageState extends State<HomePage> {
       ),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       resizeToAvoidBottomInset: true,
-      body: Container(
-          decoration: const BoxDecoration(
-              //gradient: LinearGradient(
-              //    begin: Alignment.topCenter,
-              //    end: Alignment.bottomCenter,
-              //    //stops: [0.0, 0.3, 0.6],
-              //    colors: [
-              //      Pallete.primaryColor,
-              //      Pallete.primaryColor,
-              //      Pallete.backgroundColor,
-              //    ]),
-              ),
-          //height: MediaQuery.of(context).size.height,
+      body: SizedBox(
           width: MediaQuery.of(context).size.width,
           child: const Refresher(
             child: CustomScrollView(

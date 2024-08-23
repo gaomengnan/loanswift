@@ -200,6 +200,7 @@ class BuildVerifyCode extends StatelessWidget {
             //  return;
             //}
             formKey.currentState?.validate();
+
             //if (validator) {
             //  // 解除按钮禁用状态
             //  context.read<AuthBloc>().add(
@@ -222,7 +223,7 @@ class BuildVerifyCode extends StatelessWidget {
             context.read<PhoneSenderBloc>().add(
                   PhoneSenderStarted(
                     60,
-                    val.phoneNumber ?? "",
+                    val.parseNumber(),
                   ),
                 );
 

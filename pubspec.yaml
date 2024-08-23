@@ -73,6 +73,7 @@ dependencies:
   firebase_messaging: ^14.7.10
 
 dev_dependencies:
+  # flutter_launcher_icons: "^0.13.1"
   flutter_test:
     sdk: flutter
 
@@ -140,3 +141,9 @@ flutter_intl:
   enabled: true
   arb_dir: lib/core/l10n
   output_dir: lib/core/generated
+
+# flutter_launcher_icons:
+#   android: "launcher_icon"
+#   ios: true
+#   image_path: "assets/images/logo.jpg"
+#   min_sdk_android: 16 # android min sdk min:16, default 21

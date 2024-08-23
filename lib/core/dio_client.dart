@@ -3,7 +3,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:loanswift/core/api_response.dart';
 import 'package:loanswift/core/constants/app.dart';
 import 'package:loanswift/core/core.dart';
 
@@ -58,10 +57,10 @@ class DioClient {
             headers: headers,
           ),
         );
-        print("response code : ${resp.data['code']}");
+        debugPrint("response code : ${resp.data['code']}");
 
         final int apiCode =
-            int.tryParse(resp.data['count']?.toString() ?? '') ?? 10000;
+            int.tryParse(resp.data['code']?.toString() ?? '') ?? 10000;
 
         final errMessage = resp.data['message'].toString();
 
@@ -116,15 +115,17 @@ class DioClient {
 }
 
 class DioInterceptor extends Interceptor {
-  final String token =
-      GetStorage().read<String>(AppContant.token) ?? 'API_TEST';
+  final token =
+      GetStorage().read<DataMap>(AppContant.tokenKey);
+
+
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     debugPrint("onRequest");
     options.headers.addAll({
       //"Content-Type": "application/json",
-      "Authorization": "Bearer $token",
+      "Authorization": "Bearer ${token?['token'].toString()}",
     });
     // get token from the storage
     //options.headers.addAll({

@@ -6,6 +6,7 @@
 */
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:loanswift/features/data/models/auth_token.dart';
 import 'package:loanswift/features/domain/entity/user/auth_token.dart';
 import 'package:loanswift/features/domain/repos/auth.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/login.dart';
@@ -25,7 +26,7 @@ void main() {
 
   const param = LoginRequest.empty();
 
-  const response = AuthToken.empty();
+  const response = AuthTokenModel.empty();
 
   test("should call the [Repo.login] and return authToken", () async {
     /*    Arrange */

@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
           create: (_) => sl<PhoneSenderBloc>(),
         ),
         BlocProvider(
-          create: (_) => sl<AuthBloc>(),
+          create: (_) => sl<AuthBloc>()..add(AppStarupEvent()),
         ),
       ],
       // create: (_) => sl<PhoneSenderBloc>(),
@@ -90,7 +90,7 @@ class MyApp extends StatelessWidget {
                 return locale;
               },
               locale: const Locale("id"),
-              title: "loan",
+              title: "pintek",
               theme: AppTheme.theme,
               darkTheme: AppTheme.theme,
               onGenerateRoute: generateRoute,

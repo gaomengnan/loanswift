@@ -70,7 +70,11 @@ class PhoneSenderBloc extends Bloc<PhoneSenderEvent, PhoneSenderState> {
             );
           }
 
-          if (l is ApiFailure) {}
+          if (l is ApiFailure) {
+            emit(
+              PhoneSenderErrorState(l.message),
+            );
+          }
         },
         (r) {
           _tickerSubscription?.cancel();

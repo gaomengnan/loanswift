@@ -13,7 +13,10 @@ class AuthTokenModel extends AuthToken {
           expire: 0,
         );
 
-  factory AuthTokenModel.fromMap(DataMap map) {
+  factory AuthTokenModel.fromMap(DataMap? map) {
+    if (map == null) {
+      return const AuthTokenModel.empty();
+    }
     return AuthTokenModel(
       token: map['token'] as String,
       expire: map['expire'] as int,

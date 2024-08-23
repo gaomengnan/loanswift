@@ -15,3 +15,5 @@ class UserLoginEvent extends AuthEvent {
 
   UserLoginEvent({required this.phone, required this.code});
 }
+
+class AppStarupEvent extends AuthEvent {}

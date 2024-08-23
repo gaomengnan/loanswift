@@ -11,7 +11,6 @@ class LoginedPage extends StatefulWidget {
 class _LoginedPageState extends State<LoginedPage> {
   @override
   initState() {
-    // TODO 获取个人信息接口
     super.initState();
   }
 
