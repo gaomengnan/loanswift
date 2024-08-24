@@ -75,7 +75,7 @@ class MyApp extends StatelessWidget {
             child: MaterialApp(
               navigatorKey: navigatorKey,
               debugShowCheckedModeBanner: false,
-              // 设置国际化语言包
+              // 设置国际化语言loan包
               localizationsDelegates: const [
                 S.delegate,
                 RefreshLocalizations.delegate,
@@ -89,7 +89,7 @@ class MyApp extends StatelessWidget {
                     "locale $locale, supported locales: $supportedLocales");
                 return locale;
               },
-              locale: const Locale("id"),
+              locale: const Locale("zh"),
               title: "pintek",
               theme: AppTheme.theme,
               darkTheme: AppTheme.theme,

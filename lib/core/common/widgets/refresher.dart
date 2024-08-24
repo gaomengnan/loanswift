@@ -61,7 +61,8 @@ class _RefresherState extends State<Refresher> with TickerProviderStateMixin {
         refreshingIcon: SizedBox(
           width: 10.w,
           height: 10.h,
-          child: const CircularProgressIndicator(
+          child: CircularProgressIndicator(
+            color: Theme.of(context).primaryColor,
             strokeWidth: 4,
           ),
         ),

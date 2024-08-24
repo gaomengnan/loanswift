@@ -52,7 +52,9 @@ class AppTheme {
     //  //),
     //),
     colorScheme: ColorScheme.fromSeed(
-      seedColor: Pallete.whiteColor,
+      primary: Pallete.primaryColor,
+      secondary: Pallete.secondaryColor,
+      seedColor: Pallete.primaryColor,
     ),
     scaffoldBackgroundColor: Pallete.backgroundColor,
     appBarTheme: const AppBarTheme(

@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/core.dart';
+import 'package:loanswift/theme/theme.dart';
 
 import '../../../../core/common/widgets/widgets.dart';
 
@@ -45,7 +46,7 @@ class _BuildBannerState extends State<BuildBanner> {
       margin: EdgeInsets.symmetric(horizontal: 10.h),
       //height: ScreenUtil().screenHeight * 0.2,
       decoration: BoxDecoration(
-        color: Colors.orange,
+        color: Theme.of(context).primaryColor,
         borderRadius: BorderRadius.circular(10),
         image: DecorationImage(
           fit: BoxFit.cover,
@@ -91,7 +92,7 @@ class _BuildBannerState extends State<BuildBanner> {
                       width: _currentIndex == index ? 15.w : 8.w,
                       decoration: BoxDecoration(
                         color: _currentIndex == index
-                            ? Colors.orangeAccent
+                            ? Pallete.secondaryColor
                             : Colors.grey,
                         borderRadius: BorderRadius.circular(5),
                         //shape: BoxShape.circle,

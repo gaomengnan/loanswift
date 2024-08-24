@@ -43,20 +43,21 @@ class BuildQuota extends StatelessWidget {
           ),
           child: Container(
             decoration: BoxDecoration(
-              color: const Color(
-                0xffFFE9CE,
-              ),
+              //color: Theme.of(context).primaryColor,
               borderRadius: BorderRadius.circular(8).r,
             ),
             child: Column(
               children: [
                 Container(
+                  margin: EdgeInsets.symmetric(
+                    horizontal: 10.w,
+                  ),
                   height: 40.h,
                   decoration: BoxDecoration(
-                    // color: Colors.red,
+                    color: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(20.r),
-                      topLeft: Radius.circular(20.r),
+                      topRight: Radius.circular(10.r),
+                      topLeft: Radius.circular(10.r),
                     ),
                   ),
                   child: Row(
@@ -69,10 +70,12 @@ class BuildQuota extends StatelessWidget {
                         text: TextSpan(
                           text: S.current.exclusive,
                           style: TextStyle(
-                            color: const Color(0xff882E13),
                             fontSize: 12.sp,
                             fontWeight: FontWeight.bold,
-                            fontFamily: Theme.of(context).textTheme.bodySmall?.fontFamily,
+                            fontFamily: Theme.of(context)
+                                .textTheme
+                                .bodySmall
+                                ?.fontFamily,
                           ),
                           children: [
                             WidgetSpan(
@@ -138,9 +141,9 @@ class BuildQuota extends StatelessWidget {
                         ),
                         AppText(
                           text: "200,000",
-                          size: 35.sp,
-                          color: Pallete.blackColor,
-                          fontWeight: FontWeight.bold,
+                          size: 33.sp,
+                          color: Theme.of(context).primaryColor,
+                          fontWeight: FontWeight.w900,
                         ),
                         SizedBox(
                           height: 5.h,
@@ -255,10 +258,14 @@ class BuildQuota extends StatelessWidget {
                                             );
                                           },
                                           child: Center(
-                                            child: AppText(
-                                              text: S.current.title500,
-                                              color: Pallete.whiteColor,
-                                              size: 18.sp,
+                                            child: Text(
+                                              S.current.title500,
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 15.sp,
+                                              ),
+                                              //color: Pallete.whiteColor,
+                                              //size: 16.sp,
                                             ),
                                           ),
                                         ),
