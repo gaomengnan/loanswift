@@ -450,11 +450,11 @@ class S {
     );
   }
 
-  /// `优质专享`
-  String get high_quality {
+  /// `随用随取`
+  String get grab_go {
     return Intl.message(
-      '优质专享',
-      name: 'high_quality',
+      '随用随取',
+      name: 'grab_go',
       desc: '',
       args: [],
     );

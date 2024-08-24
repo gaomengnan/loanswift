@@ -37,9 +37,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Masukkan nomor telepon yang benar"),
         "exclusive": MessageLookupByLibrary.simpleMessage("Eksklusif"),
         "free_concession": MessageLookupByLibrary.simpleMessage("Discount"),
+        "grab_go": MessageLookupByLibrary.simpleMessage("Ambil dan Pergi"),
         "hello_world":
             MessageLookupByLibrary.simpleMessage("Hitungannya bertambah"),
-        "high_quality": MessageLookupByLibrary.simpleMessage("Premium"),
         "home_button": MessageLookupByLibrary.simpleMessage("Rumah"),
         "huanying":
             MessageLookupByLibrary.simpleMessage("Selamat datang masuk/daftar"),

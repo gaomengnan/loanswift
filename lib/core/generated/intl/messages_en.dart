@@ -37,8 +37,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Invalid phone number"),
         "exclusive": MessageLookupByLibrary.simpleMessage("Exclusive"),
         "free_concession": MessageLookupByLibrary.simpleMessage("Concession"),
+        "grab_go": MessageLookupByLibrary.simpleMessage("Grab and Go"),
         "hello_world": MessageLookupByLibrary.simpleMessage("Hello World"),
-        "high_quality": MessageLookupByLibrary.simpleMessage("Exclusive"),
         "home_button": MessageLookupByLibrary.simpleMessage("Home"),
         "huanying":
             MessageLookupByLibrary.simpleMessage("Welcome to Login/Register"),
