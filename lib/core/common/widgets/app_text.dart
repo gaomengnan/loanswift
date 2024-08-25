@@ -19,6 +19,8 @@ class AppText extends StatelessWidget {
 
   TextAlign? textAlign;
 
+  int? maxLines;
+
   AppText({
     super.key,
     required this.text,
@@ -28,6 +30,7 @@ class AppText extends StatelessWidget {
     this.height = 1.2,
     this.fontWeight = FontWeight.normal,
     this.textAlign = TextAlign.center,
+    this.maxLines = 2,
   });
 
   @override
@@ -41,12 +44,12 @@ class AppText extends StatelessWidget {
       child: AutoSizeText(
         text,
         textAlign: textAlign,
-        maxLines: 2,
+        maxLines: maxLines,
         overflow: overflow,
         style: TextStyle(
           color: color,
           fontWeight: fontWeight,
-          // fontFamily: "Roboto"
+          // fontFamily: "Lato",
           fontSize: size,
           height: height,
           //fontFamily: "Roboto",

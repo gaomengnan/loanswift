@@ -103,6 +103,7 @@ class BuildQuota extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 10.w),
               child: AppText(
+                maxLines: 10,
                 text: S.current.maximun_load_sub_text,
                 size: 10.sp,
                 color: Pallete.greyColor,
@@ -220,7 +221,8 @@ class BuildQuota extends StatelessWidget {
                                             decoration: BoxDecoration(
                                               boxShadow: [
                                                 BoxShadow(
-                                                  color: Pallete.thirdColor, // 阴影颜色
+                                                  color: Pallete
+                                                      .thirdColor, // 阴影颜色
                                                   offset: Offset(5.w,
                                                       2.h), // 阴影偏移量 (x方向5, y方向0)
                                                   blurRadius: 2, // 模糊半径

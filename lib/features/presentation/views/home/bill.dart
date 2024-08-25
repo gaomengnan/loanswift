@@ -51,20 +51,20 @@ class BuildBill extends StatelessWidget {
                       const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
                   leading: Icon(
                     IconlyBold.wallet,
-                    color: Pallete.color3,
+                    color: Theme.of(context).primaryColor,
                     size: 20.sp,
                   ),
                   title: AppText(
                     textAlign: TextAlign.start,
                     text: S.current.soon_pay,
-                    color: Pallete.color3,
+                    color: Pallete.blackColor,
                     size: 13.sp,
-                    //fontWeight: FontWeight.w600,
+                    fontWeight: FontWeight.w700,
                   ),
                   //subtitle: Text(''),
                   trailing: Icon(
                     IconlyBold.arrowRightCircle,
-                    color: Pallete.color3,
+                    color: Theme.of(context).primaryColor,
                   ),
                 ),
               ),
@@ -93,25 +93,27 @@ class BuildBill extends StatelessWidget {
                       /*   left amount */
 
                       Expanded(
-                          child: Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center, // 垂直居中
-                          crossAxisAlignment: CrossAxisAlignment.center, // 水平居中
-                          children: [
-                            AppText(
-                              text: "R20，000",
-                              size: 18.sp,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            UI.kHeight10(),
-                            AppText(
-                              text: S.current.bill_amount,
-                              size: 13.sp,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ],
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center, // 垂直居中
+                            crossAxisAlignment:
+                                CrossAxisAlignment.center, // 水平居中
+                            children: [
+                              AppText(
+                                text: "R20，000",
+                                size: 18.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              UI.kHeight10(),
+                              AppText(
+                                text: S.current.bill_amount,
+                                size: 12.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ],
+                          ),
                         ),
-                      )),
+                      ),
 
                       /*  Divider */
 
@@ -134,8 +136,9 @@ class BuildBill extends StatelessWidget {
                             ),
                             UI.kHeight10(),
                             AppText(
+                              maxLines: 1,
                               text: S.current.due_date,
-                              size: 13.sp,
+                              size: 12.sp,
                               fontWeight: FontWeight.bold,
                             ),
                           ],
