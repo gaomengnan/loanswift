@@ -129,6 +129,12 @@ class UI {
     );
   }
 
+  static Widget kWidth5() {
+    return Space(
+      height: 0,
+      width: 5.w,
+    );
+  }
   static Widget kHeight20() {
     return Space(
       height: 20.h,

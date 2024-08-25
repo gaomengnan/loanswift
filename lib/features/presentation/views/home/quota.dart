@@ -58,276 +58,351 @@ class BuildQuota extends StatelessWidget {
     );
   }
 
-  Widget buildBody(BuildContext context, List<Map<String, dynamic>> districtFirst) {
+  Widget buildBody(
+      BuildContext context, List<Map<String, dynamic>> districtFirst) {
     return Container(
+      decoration: BoxDecoration(
+        color: Pallete.whiteColor,
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(5.r),
+          topLeft: Radius.circular(5.r),
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: 15,
+        ).h,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            AppText(
+              text:
+                  "${S.current.maximun_load_text}${S.current.maximun_load_text_unit}",
+              // color: Pallete.whiteColor,
+              size: 13.sp,
+            ),
+            UI.kHeight5(),
+            //Padding(
+            //  padding: EdgeInsets.symmetric(
+            //    horizontal: 50.w,
+            //  ),
+            //  child: Divider(
+            //    color: Colors.grey.withOpacity(0.2),
+            //  ),
+            //),
+            AppText(
+              text: "200,000",
+              size: 33.sp,
+              color: Theme.of(context).primaryColor,
+              fontWeight: FontWeight.w900,
+            ),
+            SizedBox(
+              height: 5.h,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.w),
+              child: AppText(
+                text: S.current.maximun_load_sub_text,
+                size: 10.sp,
+                color: Pallete.greyColor,
+                // fontWeight: FontWeight.bold,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                left: 15.w,
+                right: 15.w,
+                top: 10.h,
+              ).w,
+              child: Container(
                 decoration: BoxDecoration(
-                  color: Pallete.whiteColor,
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(5.r),
-                    topLeft: Radius.circular(5.r),
+                  gradient: Pallete.quotaGradien,
+                  borderRadius: BorderRadius.circular(
+                    10.r,
                   ),
+                  //color: Pallete.secColor,
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 15,
-                  ).h,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      AppText(
-                        text:
-                            "${S.current.maximun_load_text}${S.current.maximun_load_text_unit}",
-                        // color: Pallete.whiteColor,
-                        size: 13.sp,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 50.w,
-                        ),
-                        child: Divider(
-                          color: Colors.grey.withOpacity(0.2),
-                        ),
-                      ),
-                      AppText(
-                        text: "200,000",
-                        size: 33.sp,
-                        color: Theme.of(context).primaryColor,
-                        fontWeight: FontWeight.w900,
-                      ),
-                      SizedBox(
-                        height: 5.h,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10.w),
-                        child: AppText(
-                          text: S.current.maximun_load_sub_text,
-                          size: 10.sp,
-                          color: Pallete.greyColor,
-                          // fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                          left: 15.w,
-                          right: 15.w,
-                          top: 10.h,
-                        ).w,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(
-                              10.r,
-                            ),
-                            color: Pallete.secColor,
-                          ),
-                          width: double.infinity,
-                          // height: 300,
-                          // color: Pallete.secColor,
-                          child: Stack(
-                            children: [
-                              CustomPaint(
-                                painter: SlideCutsPainter(),
-                                // clipper: AppClipper(),
-                                child: SizedBox(
-                                  width: double.infinity,
-                                  // height: 100.h,
-                                  // decoration: const BoxDecoration(
-                                  //   color: Colors.orange,
-                                  // ),
-                                  child: Column(
-                                    children: [
-                                      UI.kHeight10(),
-                                      Center(
-                                        child: AppText(
-                                          text: S.current.title100,
-                                          color: Pallete.greyColor,
-                                        ),
-                                      ),
-                                      UI.kHeight10(),
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 20.w),
-                                        child: Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: List.generate(
-                                              districtFirst.length, (index) {
-                                            final item = districtFirst[index];
-                                            return Expanded(
-                                              child: Column(
-                                                children: [
-                                                  Container(
-                                                    height: 20.h,
-                                                    width: 25.w,
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius
-                                                              .circular(
-                                                        5.r,
-                                                      ),
-                                                      color:
-                                                          Pallete.orangeColor,
-                                                    ),
-                                                    child: Center(
-                                                      child: AppText(
-                                                        text:
-                                                            item["icon_text"],
-                                                        fontWeight:
-                                                            FontWeight.w900,
-                                                        color: Pallete
-                                                            .whiteColor,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    height: 5.h,
-                                                  ),
-                                                  // Text(S.current.title200, textAlign: TextAlign.center,),
-                                                  AppText(
-                                                    text: item["title"],
-                                                    fontWeight:
-                                                        FontWeight.w500,
-                                                  ),
-                                                ],
-                                              ),
-                                            );
-                                          }),
-                                        ),
-                                      ),
-
-                                      SizedBox(
-                                        height: 14.h,
-                                      ),
-                                      // 按钮
-                                      ElevatedButton(
-                                        onPressed: () {
-                                          Navigator.of(context).pushNamed(
-                                            IdentityPage.routerName,
-                                          );
-                                        },
-                                        child: Center(
-                                          child: Text(
-                                            S.current.title500,
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 15.sp,
-                                            ),
-                                            //color: Pallete.whiteColor,
-                                            //size: 16.sp,
-                                          ),
-                                        ),
-                                      ),
-                                      //GestureDetector(
-                                      //  onTap: () {
-                                      //    Navigator.of(context).pushNamed(
-                                      //      Identity.routerName,
-                                      //    );
-                                      //    // showPermissionDialog(
-                                      //    //   context,
-                                      //    // );
-                                      //  },
-                                      //  child: Container(
-                                      //    height: 50,
-                                      //    width: double.infinity,
-                                      //    decoration: BoxDecoration(
-                                      //      color: Pallete.primaryColor,
-                                      //      borderRadius:
-                                      //          BorderRadius.circular(20),
-                                      //    ),
-                                      //    child: Center(
-                                      //      child: AppText(
-                                      //        text: S.current.title500,
-                                      //        color: Pallete.whiteColor,
-                                      //        size: 18.sp,
-                                      //      ),
-                                      //    ),
-                                      //  ),
-                                      //),
-                                    ],
-                                  ),
+                width: double.infinity,
+                // height: 300,
+                // color: Pallete.secColor,
+                child: Stack(
+                  children: [
+                    CustomPaint(
+                      painter: SlideCutsPainter(),
+                      // clipper: AppClipper(),
+                      child: SizedBox(
+                        width: double.infinity,
+                        // height: 100.h,
+                        // decoration: const BoxDecoration(
+                        //   color: Colors.orange,
+                        // ),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(
+                                top: 10.h,
+                                bottom: 5.h,
+                              ),
+                              child: Center(
+                                child: AppText(
+                                  text: S.current.title100,
+                                  color: Pallete.blackColor,
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 10.w,
+                                //vertical: 10.h
+                              ),
+                              child: const Divider(),
+                            ),
+
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 20.w, vertical: 10.h),
+                              child: Column(
+                                //crossAxisAlignment: CrossAxisAlignment.start,
+                                //mainAxisAlignment: MainAxisAlignment.start,
+                                children: List.generate(districtFirst.length,
+                                    (index) {
+                                  final item = districtFirst[index];
+                                  //return Center(
+                                  //  child: Container(
+                                  //    child: ListTile(
+                                  //      contentPadding: EdgeInsets.symmetric(
+                                  //        horizontal: 0,
+                                  //        vertical: 0,
+                                  //      ),
+                                  //      title: Text(
+                                  //        item["icon_text"],
+                                  //        style: TextStyle(color: Colors.red),
+                                  //      ),
+                                  //      leading: Container(
+                                  //        height: 20.h,
+                                  //        width: 25.w,
+                                  //        decoration: BoxDecoration(
+                                  //          borderRadius: BorderRadius.circular(
+                                  //            5.r,
+                                  //          ),
+                                  //          color:
+                                  //              Theme.of(context).primaryColor,
+                                  //        ),
+                                  //        child: Center(
+                                  //          child: AppText(
+                                  //            text: item["icon_text"],
+                                  //            fontWeight: FontWeight.w900,
+                                  //            color: Pallete.whiteColor,
+                                  //          ),
+                                  //        ),
+                                  //      ),
+                                  //    ),
+                                  //  ),
+                                  //);
+                                  return Container(
+                                    margin: EdgeInsets.only(
+                                      bottom: 5.h,
+                                    ),
+                                    padding: EdgeInsets.only(
+                                      left: 20.w,
+                                    ),
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Flexible(
+                                          child: Container(
+                                            height: 20.h,
+                                            width: 25.w,
+                                            decoration: BoxDecoration(
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Pallete.thirdColor, // 阴影颜色
+                                                  offset: Offset(5.w,
+                                                      2.h), // 阴影偏移量 (x方向5, y方向0)
+                                                  blurRadius: 2, // 模糊半径
+                                                  spreadRadius: 1, // 扩散半径
+                                                ),
+                                              ],
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                5.r,
+                                              ),
+                                              color: Theme.of(context)
+                                                  .primaryColor,
+                                            ),
+                                            child: Center(
+                                              child: AppText(
+                                                text: item["icon_text"],
+                                                fontWeight: FontWeight.w900,
+                                                color: Pallete.whiteColor,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        UI.kWidth20(),
+                                        AppText(
+                                          text: item["title"],
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                }),
+                              ),
+                            ),
+
+                            // 按钮
+                            ElevatedButton(
+                              onPressed: () {
+                                Navigator.of(context).pushNamed(
+                                  IdentityPage.routerName,
+                                );
+                              },
+                              child: Center(
+                                child: Text(
+                                  S.current.title500,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 15.sp,
+                                  ),
+                                  //color: Pallete.whiteColor,
+                                  //size: 16.sp,
+                                ),
+                              ),
+                            ),
+                            //GestureDetector(
+                            //  onTap: () {
+                            //    Navigator.of(context).pushNamed(
+                            //      Identity.routerName,
+                            //    );
+                            //    // showPermissionDialog(
+                            //    //   context,
+                            //    // );
+                            //  },
+                            //  child: Container(
+                            //    height: 50,
+                            //    width: double.infinity,
+                            //    decoration: BoxDecoration(
+                            //      color: Pallete.primaryColor,
+                            //      borderRadius:
+                            //          BorderRadius.circular(20),
+                            //    ),
+                            //    child: Center(
+                            //      child: AppText(
+                            //        text: S.current.title500,
+                            //        color: Pallete.whiteColor,
+                            //        size: 18.sp,
+                            //      ),
+                            //    ),
+                            //  ),
+                            //),
+                          ],
                         ),
                       ),
-
-                      // 声明
-                      // Center(
-                      //   child: AppText(
-                      //     text: "贷款额度由小金小贷提供",
-                      //     color: Pallete.greyColor,
-                      //   ),
-                      // ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              );
+              ),
+            ),
+
+            // 声明
+            // Center(
+            //   child: AppText(
+            //     text: "贷款额度由小金小贷提供",
+            //     color: Pallete.greyColor,
+            //   ),
+            // ),
+          ],
+        ),
+      ),
+    );
   }
 
   Widget buildBanner(BuildContext context) {
     return Container(
-                margin: EdgeInsets.symmetric(
-                  horizontal: 10.w,
+      margin: EdgeInsets.symmetric(
+        horizontal: 10.w,
+      ),
+      height: 40.h,
+      decoration: BoxDecoration(
+        color: Theme.of(context).primaryColor,
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(10.r),
+          topLeft: Radius.circular(10.r),
+        ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Expanded(
+            child: Image(
+              width: 25.w,
+              height: 25.h,
+              image: const AssetImage(
+                Assets.money,
+              ),
+            ),
+          ),
+          //UI.kWidth20(),
+          Expanded(
+            flex: 4,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                AppText(
+                  text: S.current.exclusive,
+                  color: Pallete.whiteColor,
+                  fontWeight: FontWeight.w900,
+                  size: 13.sp,
+                  //fontFamily: Theme.of(context).textTheme.bodySmall?.fontFamily,
                 ),
-                height: 40.h,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor,
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(10.r),
-                    topLeft: Radius.circular(10.r),
-                  ),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    //UI.kWidth20(),
-                    RichText(
-                      overflow: TextOverflow.ellipsis,
-                      text: TextSpan(
-                        text: S.current.exclusive,
-                        style: TextStyle(
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: Theme.of(context)
-                              .textTheme
-                              .bodySmall
-                              ?.fontFamily,
-                        ),
+                //),
+                RichText(
+                  overflow: TextOverflow.ellipsis,
+                  text: TextSpan(
+                    text: "${S.current.grab_go} · ",
+                    style: TextStyle(
+                      fontSize: 10.sp,
+                      fontWeight: FontWeight.w400,
+                      fontFamily:
+                          Theme.of(context).textTheme.bodySmall?.fontFamily,
+                    ),
+                    children: [
+                      //WidgetSpan(
+                      //child: UI.kWidth5(),
+                      //),
+                      TextSpan(
+                        text: "${S.current.free_concession} · ",
                         children: [
-                          WidgetSpan(
-                            child: UI.kWidth10(),
-                          ),
                           TextSpan(
-                            text: "${S.current.grab_go} · ",
-                            style: TextStyle(
-                              fontSize: 12.sp,
-                              fontWeight: FontWeight.normal,
-                            ),
-                            children: [
-                              TextSpan(
-                                text: "${S.current.free_concession} · ",
-                              ),
-                              TextSpan(
-                                text: S.current.quick_deposit,
-                              ),
-                            ],
+                            text: S.current.quick_deposit,
                           ),
+                          //TextSpan(
+                          //  text: S.current.quick_deposit,
+                          //),
                         ],
                       ),
-                    ),
-                    // Icon(
-                    //   Icons.arrow_right,
-                    //   size: 14.sp,
-                    //   color: const Color(
-                    //     0xff882E13,
-                    //   ),
-                    // ),
-                  ],
+                    ],
+                  ),
                 ),
-              );
+              ],
+            ),
+          ),
+          // Icon(
+          //   Icons.arrow_right,
+          //   size: 14.sp,
+          //   color: const Color(
+          //     0xff882E13,
+          //   ),
+          // ),
+        ],
+      ),
+    );
   }
 }

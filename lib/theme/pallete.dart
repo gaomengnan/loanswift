@@ -7,6 +7,7 @@ class Pallete {
   static const Color primaryColor = Color(0xFF4F53CD);
 //#B1C1F0
   static Color secondaryColor = const Color(0xFFB1C1F0);
+  static Color thirdColor = const Color(0xffA7ACE6);
 
   static const Color backgroundColor = Color(0xffF4F4F8);
   static const Color searchBarColor = Color.fromRGBO(32, 35, 39, 1);
@@ -29,6 +30,19 @@ class Pallete {
     Pallete.primaryColor,
     Color(0xffF4F4F8),
   ];
+
+  static const LinearGradient quotaGradien = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    //stops: [0.5, 0.6, 1],
+    colors: [
+      Color(0xffDEE5F7),
+      Color(0xffDFE6F5),
+      //Color(0xffE7EDF9),
+      Color(0xffF5F5FE),
+      Pallete.whiteColor
+    ],
+  );
 
   static const LinearGradient loanGradient = LinearGradient(
     begin: Alignment.topCenter,
