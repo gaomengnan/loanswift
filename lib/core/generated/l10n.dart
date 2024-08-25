@@ -531,10 +531,10 @@ class S {
   }
 
   /// `登录/注册`
-  String get login_register {
+  String get login_or_register {
     return Intl.message(
       '登录/注册',
-      name: 'login_register',
+      name: 'login_or_register',
       desc: '',
       args: [],
     );
@@ -665,6 +665,76 @@ class S {
     return Intl.message(
       '贷款记录',
       name: 'load_amount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `推荐`
+  String get recommend {
+    return Intl.message(
+      '推荐',
+      name: 'recommend',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `我的还款`
+  String get my_repayment {
+    return Intl.message(
+      '我的还款',
+      name: 'my_repayment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `暂未获取额度，无账单`
+  String get no_credit_limit {
+    return Intl.message(
+      '暂未获取额度，无账单',
+      name: 'no_credit_limit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `借还记录`
+  String get loan_return {
+    return Intl.message(
+      '借还记录',
+      name: 'loan_return',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `自动还款`
+  String get auto_repayment {
+    return Intl.message(
+      '自动还款',
+      name: 'auto_repayment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `账单证明`
+  String get bill_state {
+    return Intl.message(
+      '账单证明',
+      name: 'bill_state',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `获取额度`
+  String get get_credit_limit {
+    return Intl.message(
+      '获取额度',
+      name: 'get_credit_limit',
       desc: '',
       args: [],
     );

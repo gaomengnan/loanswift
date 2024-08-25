@@ -24,7 +24,11 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "agree_privacy": MessageLookupByLibrary.simpleMessage("Setuju"),
         "app_name": MessageLookupByLibrary.simpleMessage("Butuh uang"),
+        "auto_repayment":
+            MessageLookupByLibrary.simpleMessage("Pembayaran Otomatis"),
         "bill_amount": MessageLookupByLibrary.simpleMessage("Jumlah Tagihan"),
+        "bill_state":
+            MessageLookupByLibrary.simpleMessage("Pernyataan Tagihan"),
         "camera": MessageLookupByLibrary.simpleMessage("Kamera"),
         "cancel": MessageLookupByLibrary.simpleMessage("Batal"),
         "click_to_access":
@@ -37,6 +41,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Masukkan nomor telepon yang benar"),
         "exclusive": MessageLookupByLibrary.simpleMessage("Eksklusif"),
         "free_concession": MessageLookupByLibrary.simpleMessage("Discount"),
+        "get_credit_limit":
+            MessageLookupByLibrary.simpleMessage("Dapatkan Limit Kredit"),
         "grab_go": MessageLookupByLibrary.simpleMessage("Ambil dan Pergi"),
         "hello_world":
             MessageLookupByLibrary.simpleMessage("Hitungannya bertambah"),
@@ -56,16 +62,23 @@ class MessageLookup extends MessageLookupByLibrary {
         "lijishengqing":
             MessageLookupByLibrary.simpleMessage("Ajukan sekarang"),
         "load_amount": MessageLookupByLibrary.simpleMessage("Catatan Pinjaman"),
+        "loan_return": MessageLookupByLibrary.simpleMessage(
+            "Riwayat Pinjaman dan Pembayaran"),
         "location": MessageLookupByLibrary.simpleMessage("Lokasi"),
+        "login_or_register":
+            MessageLookupByLibrary.simpleMessage("Masuk/Daftar"),
         "maximun_load_sub_text": MessageLookupByLibrary.simpleMessage(
             "Peminjaman 1.000 yuan selama 12 bulan, biaya harian mulai dari 6 persen, suku bunga tahunan (bunga sederhana) mulai dari 3.6 persen"),
         "maximun_load_text":
             MessageLookupByLibrary.simpleMessage("Jumlah Pinjaman Maksimum"),
         "maximun_load_text_unit":
             MessageLookupByLibrary.simpleMessage("(Rupiah)"),
+        "my_repayment": MessageLookupByLibrary.simpleMessage("Pembayaran Saya"),
         "name": MessageLookupByLibrary.simpleMessage("Halo"),
         "network_error":
             MessageLookupByLibrary.simpleMessage("Kesalahan koneksi jaringan"),
+        "no_credit_limit": MessageLookupByLibrary.simpleMessage(
+            "Belum Mendapatkan Limit, Tidak Ada Tagihan"),
         "notification": MessageLookupByLibrary.simpleMessage("Pemberitahuan"),
         "permission_title": MessageLookupByLibrary.simpleMessage(
             "Untuk mempercepat proses pinjaman Anda, kami memerlukan izin-izin ini"),
@@ -80,6 +93,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "read_privacy": MessageLookupByLibrary.simpleMessage("Baca"),
         "real_authentication":
             MessageLookupByLibrary.simpleMessage("Verifikasi nama asli"),
+        "recommend": MessageLookupByLibrary.simpleMessage("Rekomendasi"),
         "resend": MessageLookupByLibrary.simpleMessage("Kirim Ulang"),
         "retrieve_again":
             MessageLookupByLibrary.simpleMessage("Dapatkan Kembali"),

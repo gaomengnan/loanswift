@@ -26,17 +26,19 @@ class _PersonPageState extends State<PersonPage> {
     });
   }
 
-  Widget _buildIconButton(IconData icon, String label) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
+  Widget _buildIconButton(IconData icon, String label, Color color) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
+      //mainAxisSize: MainAxisSize.min,
       children: [
         Icon(
           icon,
           size: 30,
-          color: Pallete.primaryColor,
-        ),
+          color: color,),
+        UI.kWidth10(),
         const SizedBox(height: 5),
-        Text(label),
+        AppText(text: label, size: 13.sp,),
       ],
     );
   }
@@ -79,7 +81,7 @@ class _PersonPageState extends State<PersonPage> {
                       title: Row(
                         children: [
                           AppText(
-                            text: S.current.login_register,
+                            text: S.current.login_or_register,
                             size: 12.sp,
                             textAlign: TextAlign.start,
                             fontWeight: FontWeight.w600,
@@ -103,7 +105,7 @@ class _PersonPageState extends State<PersonPage> {
                     vertical: 20.h,
                   ),
                   child: AppText(
-                    text: "我的还款",
+                    text: S.current.my_repayment,
                     size: 18.sp,
                     fontWeight: FontWeight.w600,
                   ),
@@ -126,75 +128,95 @@ class _PersonPageState extends State<PersonPage> {
                   ),
                   child: Column(
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          AppText(
-                            text: "暂未获取额度，无账单",
-                            size: 14.sp,
-                          ),
-                          OutlinedButton(
-                            onPressed: () {
-                              Navigator.of(context).pushNamed(
-                                "/get_ed",
-                              );
-                            },
-                            child: const Text(
-                              "获取额度",
-                              style: TextStyle(
-                                color: Pallete.blackColor,
-                              ),
-                            ),
-                          ),
-                        ],
+                      AppText(
+                        text: S.current.no_credit_limit,
+                        size: 14.sp,
                       ),
-                      const Divider(
-                        color: Colors.black12,
+                      UI.kHeight5(),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).pushNamed(
+                            "/get_ed",
+                          );
+                        },
+                        child: Text(
+                          S.current.get_credit_limit,
+                          style: const TextStyle(
+                            color: Pallete.whiteColor,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                Container(
+                  margin: EdgeInsets.symmetric(
+                    horizontal: 20.w,
+                    vertical: 20.h,
+                  ),
+                  padding: EdgeInsets.symmetric(
+                    vertical: 10.h,
+                    horizontal: 20.w,
+                  ),
+                  //height: 200,
+                  width: ScreenUtil().screenWidth,
+                  decoration: BoxDecoration(
+                    color: Pallete.whiteColor,
+                    borderRadius: BorderRadius.circular(
+                      8,
+                    ),
+                  ),
+                  child: Column(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).pushNamed(
+                            "/my_order",
+                          );
+                        },
+                        child: _buildIconButton(
+                          Icons.home,
+                          S.current.loan_return,
+                          const Color(0xffEE7C7A),
+                        ),
                       ),
                       Padding(
-                        padding: EdgeInsets.symmetric(
-                          vertical: 20.w,
+                        padding: EdgeInsets.only(
+                          left: 27.w,
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                Navigator.of(context).pushNamed(
-                                  "/my_order",
-                                );
-                              },
-                              child: _buildIconButton(
-                                Icons.home,
-                                '借还记录',
-                              ),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                Navigator.of(context).pushNamed(
-                                  "/repayment",
-                                );
-                              },
-                              child: _buildIconButton(
-                                Icons.search,
-                                '自动还款',
-                              ),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                Navigator.of(context).pushNamed(
-                                  "/order_detail",
-                                );
-                              },
-                              child: _buildIconButton(
-                                Icons.person,
-                                '账单证明',
-                              ),
-                            ),
-                          ],
+                        child: const Divider(),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).pushNamed(
+                            "/repayment",
+                          );
+                        },
+                        child: _buildIconButton(
+                          Icons.search,
+                          S.current.auto_repayment,
+                          const Color(0xff8BCC0C),
                         ),
-                      )
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                          left: 27.w,
+                        ),
+                        child: const Divider(),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).pushNamed(
+                            "/order_detail",
+                          );
+                        },
+                        child: _buildIconButton(
+                          Icons.person,
+                          S.current.bill_state,
+                          const Color(0xffE8E67D),
+                        ),
+                      ),
                     ],
                   ),
                 ),

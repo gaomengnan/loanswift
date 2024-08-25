@@ -37,6 +37,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Invalid phone number"),
         "exclusive": MessageLookupByLibrary.simpleMessage("Exclusive"),
         "free_concession": MessageLookupByLibrary.simpleMessage("Concession"),
+        "get_credit_limit":
+            MessageLookupByLibrary.simpleMessage("Get Credit Limit"),
         "grab_go": MessageLookupByLibrary.simpleMessage("Grab and Go"),
         "hello_world": MessageLookupByLibrary.simpleMessage("Hello World"),
         "home_button": MessageLookupByLibrary.simpleMessage("Home"),
@@ -55,16 +57,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "lijishengqing": MessageLookupByLibrary.simpleMessage("Apply now"),
         "load_amount": MessageLookupByLibrary.simpleMessage("Loan Records"),
         "location": MessageLookupByLibrary.simpleMessage("Location"),
-        "login_register":
+        "login_or_register":
             MessageLookupByLibrary.simpleMessage("Sign In/Register"),
         "maximun_load_sub_text": MessageLookupByLibrary.simpleMessage(
             "Borrow up to 1,000 yuan for 12 months, starting from 6% daily fee, annual interest rate (simple interest) starting from 3.6%"),
         "maximun_load_text":
             MessageLookupByLibrary.simpleMessage("Maximum Loan Amount"),
         "maximun_load_text_unit": MessageLookupByLibrary.simpleMessage("(CNY)"),
+        "my_repayment": MessageLookupByLibrary.simpleMessage("My Repayment"),
         "name": MessageLookupByLibrary.simpleMessage("Flutter localization"),
         "network_error":
             MessageLookupByLibrary.simpleMessage("Network connection abnormal"),
+        "no_credit_limit": MessageLookupByLibrary.simpleMessage(
+            "No Credit Limit Available, No Bill"),
         "notification": MessageLookupByLibrary.simpleMessage("Notifications"),
         "permission_title": MessageLookupByLibrary.simpleMessage(
             "To expedite your loan process, we need these permissions"),
@@ -79,6 +84,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "read_privacy": MessageLookupByLibrary.simpleMessage("Read"),
         "real_authentication":
             MessageLookupByLibrary.simpleMessage("Real Name Authentication"),
+        "recommend": MessageLookupByLibrary.simpleMessage("RECOMMEND"),
         "resend": MessageLookupByLibrary.simpleMessage("Resend"),
         "retrieve_again":
             MessageLookupByLibrary.simpleMessage("Retrieve Again"),

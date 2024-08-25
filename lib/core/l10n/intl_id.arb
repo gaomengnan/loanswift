@@ -50,7 +50,7 @@
   "idcard_front": "Foto Depan Kartu Identitas",
   "idcard_reverse": "Foto Belakang Kartu Identitas",
   "personal_info": "Informasi Pribadi",
-  "logig_register": "Masuk/Daftar",
+  "login_or_register": "Masuk/Daftar",
   "real_authentication": "Verifikasi nama asli",
   "take_photo": "Ambil Foto",
   "take_photo_from_gallery": "Pilih dari Galeri",
@@ -63,5 +63,12 @@
   "soon_pay": "Harap segera bayar",
   "due_date": "Tanggal Jatuh Tempo",
   "bill_amount": "Jumlah Tagihan",
-  "load_amount": "Catatan Pinjaman"
+  "load_amount": "Catatan Pinjaman",
+  "recommend": "Rekomendasi",
+  "my_repayment": "Pembayaran Saya",
+  "no_credit_limit": "Belum Mendapatkan Limit, Tidak Ada Tagihan",
+  "loan_return": "Riwayat Pinjaman dan Pembayaran",
+  "auto_repayment": "Pembayaran Otomatis",
+  "bill_state": "Pernyataan Tagihan",
+  "get_credit_limit": "Dapatkan Limit Kredit"
 }

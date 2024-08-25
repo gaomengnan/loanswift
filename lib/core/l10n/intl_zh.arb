@@ -51,7 +51,7 @@
   "idcard_front":"身份证正面照片",
   "idcard_reverse":"身份证反面照片",
   "personal_info":"个人信息",
-  "login_register": "登录/注册",
+  "login_or_register": "登录/注册",
   "real_authentication": "实名认证",
   "take_photo": "拍摄",
   "take_photo_from_gallery": "从相册选择",
@@ -64,5 +64,12 @@
   "soon_pay": "请尽快付款",
   "due_date": "到期日",
   "bill_amount": "账单金额",
-  "load_amount": "贷款记录"
+  "load_amount": "贷款记录",
+  "recommend": "推荐",
+  "my_repayment": "我的还款",
+  "no_credit_limit": "暂未获取额度，无账单",
+  "loan_return": "借还记录",
+  "auto_repayment": "自动还款",
+  "bill_state" : "账单证明",
+  "get_credit_limit": "获取额度"
 }

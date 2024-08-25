@@ -44,7 +44,7 @@ class _BuildSuggestionState extends State<BuildSuggestion>
               vertical: 0,
             ),
             title: AppText(
-              text: "建议",
+              text: S.current.recommend,
               textAlign: TextAlign.left,
               fontWeight: FontWeight.w600,
               size: 16.sp,
