@@ -341,8 +341,8 @@ class BuildQuota extends StatelessWidget {
         children: [
           Expanded(
             child: Image(
-              width: 25.w,
-              height: 25.h,
+              width: 30.w,
+              height: 30.h,
               image: const AssetImage(
                 Assets.money,
               ),
