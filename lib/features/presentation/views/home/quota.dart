@@ -134,16 +134,14 @@ class BuildQuota extends StatelessWidget {
                       // clipper: AppClipper(),
                       child: SizedBox(
                         width: double.infinity,
-                        // height: 100.h,
-                        // decoration: const BoxDecoration(
-                        //   color: Colors.orange,
-                        // ),
                         child: Column(
                           children: [
                             Padding(
                               padding: EdgeInsets.only(
                                 top: 10.h,
                                 bottom: 5.h,
+                                left: 5.h,
+                                right: 5.h
                               ),
                               child: Center(
                                 child: AppText(
@@ -164,49 +162,16 @@ class BuildQuota extends StatelessWidget {
                               padding: EdgeInsets.symmetric(
                                   horizontal: 20.w, vertical: 10.h),
                               child: Column(
-                                //crossAxisAlignment: CrossAxisAlignment.start,
-                                //mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: List.generate(districtFirst.length,
                                     (index) {
                                   final item = districtFirst[index];
-                                  //return Center(
-                                  //  child: Container(
-                                  //    child: ListTile(
-                                  //      contentPadding: EdgeInsets.symmetric(
-                                  //        horizontal: 0,
-                                  //        vertical: 0,
-                                  //      ),
-                                  //      title: Text(
-                                  //        item["icon_text"],
-                                  //        style: TextStyle(color: Colors.red),
-                                  //      ),
-                                  //      leading: Container(
-                                  //        height: 20.h,
-                                  //        width: 25.w,
-                                  //        decoration: BoxDecoration(
-                                  //          borderRadius: BorderRadius.circular(
-                                  //            5.r,
-                                  //          ),
-                                  //          color:
-                                  //              Theme.of(context).primaryColor,
-                                  //        ),
-                                  //        child: Center(
-                                  //          child: AppText(
-                                  //            text: item["icon_text"],
-                                  //            fontWeight: FontWeight.w900,
-                                  //            color: Pallete.whiteColor,
-                                  //          ),
-                                  //        ),
-                                  //      ),
-                                  //    ),
-                                  //  ),
-                                  //);
                                   return Container(
                                     margin: EdgeInsets.only(
                                       bottom: 5.h,
                                     ),
                                     padding: EdgeInsets.only(
-                                      left: 10.w,
+                                      left: 20.w,
                                     ),
                                     child: Row(
                                       crossAxisAlignment:
@@ -244,8 +209,9 @@ class BuildQuota extends StatelessWidget {
                                           ),
                                         ),
                                         UI.kWidth10(),
-                                        Center(
+                                        Expanded(
                                           child: AppText(
+                                            textAlign: TextAlign.start,
                                             text: item["title"],
                                             fontWeight: FontWeight.w500,
                                           ),
@@ -276,32 +242,6 @@ class BuildQuota extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            //GestureDetector(
-                            //  onTap: () {
-                            //    Navigator.of(context).pushNamed(
-                            //      Identity.routerName,
-                            //    );
-                            //    // showPermissionDialog(
-                            //    //   context,
-                            //    // );
-                            //  },
-                            //  child: Container(
-                            //    height: 50,
-                            //    width: double.infinity,
-                            //    decoration: BoxDecoration(
-                            //      color: Pallete.primaryColor,
-                            //      borderRadius:
-                            //          BorderRadius.circular(20),
-                            //    ),
-                            //    child: Center(
-                            //      child: AppText(
-                            //        text: S.current.title500,
-                            //        color: Pallete.whiteColor,
-                            //        size: 18.sp,
-                            //      ),
-                            //    ),
-                            //  ),
-                            //),
                           ],
                         ),
                       ),

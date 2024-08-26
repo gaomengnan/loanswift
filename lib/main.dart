@@ -91,7 +91,7 @@ class MyApp extends StatelessWidget {
                     "locale $locale, supported locales: $supportedLocales");
                 return locale;
               },
-              locale: const Locale("zh"),
+              locale: const Locale("id"),
               title: "pintek",
               theme: AppTheme.theme,
               darkTheme: AppTheme.theme,
