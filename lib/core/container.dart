@@ -119,11 +119,12 @@ Future<void> initialize() async {
   /*   獲取 SMS*/
   //device.readSMS();
 
-
   try {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
     FirebaseApi().initNotifications();
   } catch (_) {}
+
+  //EasyLoading.instance.displayDuration = const Duration(milliseconds: 1000000000000000000);
 }

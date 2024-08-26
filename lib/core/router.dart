@@ -8,6 +8,7 @@ import 'package:loanswift/features/presentation/views/order/my_order.dart';
 import 'package:loanswift/features/presentation/views/order/order_detail.dart';
 import 'package:loanswift/features/presentation/views/order/repayment_page.dart';
 import 'package:loanswift/features/presentation/views/person/identity_page.dart';
+import 'package:loanswift/features/presentation/views/widgets/verification_code.dart';
 
 import 'core.dart';
 
@@ -48,6 +49,11 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case RepaymentPage.routerName:
       return _pageBuilder(
         (_) => const RepaymentPage(),
+        settings: settings,
+      );
+    case VerificationCodePage.routerName:
+      return _pageBuilder(
+        (_) => const VerificationCodePage(),
         settings: settings,
       );
     default:

@@ -1,10 +1,10 @@
-import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:loanswift/core/generated/l10n.dart';
 import 'package:loanswift/features/presentation/bloc/bloc.dart';
+import 'package:loanswift/features/presentation/views/widgets/verification_code.dart';
 import 'package:loanswift/theme/pallete.dart';
 
 import '../../../../core/common/widgets/widgets.dart';
@@ -128,116 +128,97 @@ class BuildVerifyCode extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<PhoneSenderBloc, PhoneSenderState>(
-      listener: (context, state) {
-        if (state is PhoneSenderErrorState) {
-          UI.showError(
-            context,
-            state.error.error,
-            (FlushbarStatus? status) {},
+    return Form(
+      key: formKey,
+      child: InternationalPhoneNumberInput(
+        focusNode: focusNode,
+        autoFocus: false,
+        errorMessage: S.current.errorPhone,
+        countries: countries,
+        textFieldController: controller,
+        inputDecoration: InputDecoration(
+          suffix: BlocBuilder<PhoneSenderBloc, PhoneSenderState>(
+            builder: (context, state) {
+              if (state.countdownState.isRunning) {
+                return Text("${state.duration}(s)");
+              }
+              return const SizedBox();
+            },
+          ),
+          labelText: S.current.shurushoujihao,
+          labelStyle: const TextStyle(
+            color: Pallete.greyColor,
+          ),
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.grey.withOpacity(0.3),
+            ),
+          ),
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.grey.withOpacity(0.3),
+            ),
+          ),
+        ),
+        formatInput: false,
+        keyboardType: const TextInputType.numberWithOptions(
+          signed: true,
+          decimal: true,
+        ),
+        inputBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+          color: Colors.grey.withOpacity(
+            0.3,
+          ),
+        )),
+        onFieldSubmitted: (val) {
+          //final countdownState =
+          //    context.read<PhoneSenderBloc>().state.countdownState;
+          //if (countdownState == CountdownState.running) {
+          //  return;
+          //}
+          formKey.currentState?.validate();
+    
+          //if (validator) {
+          //  // 解除按钮禁用状态
+          //  context.read<AuthBloc>().add(
+          //        EnabledButtonStateEvent(),
+          //      );
+          //} else {
+          //  context.read<AuthBloc>().add(
+          //        DisabledButtonStateEvent(),
+          //      );
+          //}
+          // showInfo(context, "tesxt");
+        },
+        onInputChanged: (PhoneNumber val) {
+          // setState(() {
+          //   number = val;
+          // });
+        },
+        onInputValidated: (bool value) {},
+        onSaved: (PhoneNumber val) {
+          context.read<PhoneSenderBloc>().add(
+                PhoneSenderStarted(
+                  60,
+                  val.parseNumber(),
+                ),
+              );
+    
+          Navigator.of(context).pushNamed(
+            VerificationCodePage.routerName,
           );
-        } else if (state is PhoneSenderVerifyState) {
+    
           //UI.showVerifyCodeSheet(
           //  context,
           //);
-        } else if (state is PhoneSenderRunInProgress) {
-          //context.read<AuthBloc>().add(
-          //      DisabledButtonStateEvent(),
-          //    );
-        } else if (state is PhoneSenderRunComplete) {
-          //context.read<AuthBloc>().add(
-          //      EnabledButtonStateEvent(),
-          //    );
-        }
-      },
-      child: Form(
-        key: formKey,
-        child: InternationalPhoneNumberInput(
-          focusNode: focusNode,
-          autoFocus: false,
-          errorMessage: S.current.errorPhone,
-          countries: countries,
-          textFieldController: controller,
-          inputDecoration: InputDecoration(
-            suffix: BlocBuilder<PhoneSenderBloc, PhoneSenderState>(
-              builder: (context, state) {
-                if (state.countdownState.isRunning) {
-                  return Text("${state.duration}(s)");
-                }
-                return const SizedBox();
-              },
-            ),
-            labelText: S.current.shurushoujihao,
-            labelStyle: const TextStyle(
-              color: Pallete.greyColor,
-            ),
-            enabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(
-                color: Colors.grey.withOpacity(0.3),
-              ),
-            ),
-            focusedBorder: UnderlineInputBorder(
-              borderSide: BorderSide(
-                color: Colors.grey.withOpacity(0.3),
-              ),
-            ),
-          ),
-          formatInput: false,
-          keyboardType: const TextInputType.numberWithOptions(
-            signed: true,
-            decimal: true,
-          ),
-          inputBorder: UnderlineInputBorder(
-              borderSide: BorderSide(
-            color: Colors.grey.withOpacity(
-              0.3,
-            ),
-          )),
-          onFieldSubmitted: (val) {
-            //final countdownState =
-            //    context.read<PhoneSenderBloc>().state.countdownState;
-            //if (countdownState == CountdownState.running) {
-            //  return;
-            //}
-            formKey.currentState?.validate();
-
-            //if (validator) {
-            //  // 解除按钮禁用状态
-            //  context.read<AuthBloc>().add(
-            //        EnabledButtonStateEvent(),
-            //      );
-            //} else {
-            //  context.read<AuthBloc>().add(
-            //        DisabledButtonStateEvent(),
-            //      );
-            //}
-            // showInfo(context, "tesxt");
-          },
-          onInputChanged: (PhoneNumber val) {
-            // setState(() {
-            //   number = val;
-            // });
-          },
-          onInputValidated: (bool value) {},
-          onSaved: (PhoneNumber val) {
-            context.read<PhoneSenderBloc>().add(
-                  PhoneSenderStarted(
-                    60,
-                    val.parseNumber(),
-                  ),
-                );
-
-            UI.showVerifyCodeSheet(
-              context,
-            );
-          },
-          initialValue: number,
-          // locale: Locale("id"),
-          selectorConfig: const SelectorConfig(
-            selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
-            useBottomSheetSafeArea: true,
-            showFlags: false,
-          ),
+        },
+        initialValue: number,
+        // locale: Locale("id"),
+        selectorConfig: const SelectorConfig(
+          selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
+          useBottomSheetSafeArea: true,
+          showFlags: false,
         ),
       ),
     );

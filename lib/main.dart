@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/core.dart';
@@ -73,6 +74,7 @@ class MyApp extends StatelessWidget {
                 false, // Disable pull-up to load more functionality when Viewport is less than one screen
             enableBallisticLoad: true, //
             child: MaterialApp(
+              builder: EasyLoading.init(),
               navigatorKey: navigatorKey,
               debugShowCheckedModeBanner: false,
               // 设置国际化语言loan包

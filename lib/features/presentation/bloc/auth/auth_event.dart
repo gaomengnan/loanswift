@@ -17,3 +17,5 @@ class UserLoginEvent extends AuthEvent {
 }
 
 class AppStarupEvent extends AuthEvent {}
+
+class UserLogoutEvent extends AuthEvent {}

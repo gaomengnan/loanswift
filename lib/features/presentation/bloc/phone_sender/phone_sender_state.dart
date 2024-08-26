@@ -79,10 +79,10 @@ class PhoneSenderRunComplete extends PhoneSenderState {
 }
 
 class PhoneSenderErrorState extends PhoneSenderState {
-  PhoneSenderErrorState(String error)
+  PhoneSenderErrorState(String error, String phone)
       : super(
           0,
-          "",
+          phone,
           CountdownState.idle,
           CustomError(error: error),
         );

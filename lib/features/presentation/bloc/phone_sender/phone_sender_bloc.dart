@@ -8,7 +8,6 @@ import 'package:loanswift/features/data/models/error.dart';
 import 'package:loanswift/features/data/models/ticker.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/send_phone_code.dart';
 
-
 part 'phone_sender_event.dart';
 part 'phone_sender_state.dart';
 
@@ -53,29 +52,27 @@ class PhoneSenderBloc extends Bloc<PhoneSenderEvent, PhoneSenderState> {
     if (state.countdownState.isRunning) {
       //emit(PhoneSenderVerifyState());
     } else {
-      final res = await _sender(
-        SendPhoneCodeRequest(phone: event.phone)
-      );
+      final res = await _sender(SendPhoneCodeRequest(phone: event.phone));
       res.fold(
         (l) {
+          var msg = "";
           if (l is ConnectionFailure) {
-            emit(
-              PhoneSenderErrorState(S.current.network_error),
-            );
+            msg = S.current.network_error;
           }
-
           if (l is ServerFailure) {
-            emit(
-              PhoneSenderErrorState(S.current.service_error),
-            );
+            msg = S.current.service_error;
           }
 
           if (l is ApiFailure) {
+            msg = l.message;
+          }
+          if (msg.isNotEmpty) {
             emit(
-              PhoneSenderErrorState(l.message),
+              PhoneSenderErrorState(msg, event.phone),
             );
           }
         },
+
         (r) {
           _tickerSubscription?.cancel();
           // 验证框

@@ -1,6 +1,6 @@
-import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/features/presentation/views/widgets/login_widget.dart';
 import 'package:loanswift/features/presentation/views/widgets/verification_code.dart';
@@ -23,22 +23,43 @@ class UI {
     );
   }
 
-  static void showError(
-      BuildContext context, String message, FlushbarStatusCallback? callback) {
-    Flushbar(
-      onStatusChanged: callback,
-      icon: Icon(
-        Icons.info_outline,
-        size: 28.0,
-        color: Colors.red[300],
-      ),
-      //backgroundColor: Pallete.primaryColor,
-      flushbarStyle: FlushbarStyle.GROUNDED,
-      borderRadius: BorderRadius.circular(20),
-      flushbarPosition: FlushbarPosition.TOP,
-      message: message,
-      duration: const Duration(seconds: 4),
-    ).show(context);
+  // 弹出对话框
+  static Future<bool?> showLogoutConfirmDialog(
+      context, String title, String desc, void Function()? callback) {
+    return showDialog<bool>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(title),
+          content: Text(desc),
+          actions: <Widget>[
+            TextButton(
+              child: const Text("取消"),
+              onPressed: () => Navigator.of(context).pop(), // 关闭对话框
+            ),
+            TextButton(
+              child: const Text("确定"),
+              onPressed: () {
+                callback!();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  static void showError(BuildContext context, String message) {
+    EasyLoading.showError(
+      message,
+      duration: const Duration(seconds: 3),
+    );
+  }
+
+  static Future<void> showLoading() async {
+    await EasyLoading.show(
+      status: "加载中...",
+    );
   }
 
   static void showSignInAndUpBootomSheet(context) async {
@@ -94,7 +115,7 @@ class UI {
                 gradient: Pallete.bottomSheetGradient,
               ),
               // height: 100,
-              child: const VerificationCode(),
+              child: const VerificationCodePage(),
             ),
           ),
         );
@@ -135,6 +156,7 @@ class UI {
       width: 5.w,
     );
   }
+
   static Widget kHeight20() {
     return Space(
       height: 20.h,

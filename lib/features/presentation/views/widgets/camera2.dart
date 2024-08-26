@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/theme/pallete.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -95,21 +94,21 @@ class _CardScanner2State extends State<CardScanner2> {
     super.dispose();
   }
 
-  void showSpinner() {
-    OverlayState overlay = Overlay.of(context);
-    _overlayEntry = OverlayEntry(
-      builder: (context) => Positioned(
-        top: MediaQuery.of(context).size.height / 2 - 25,
-        left: MediaQuery.of(context).size.width / 2 - 25,
-        child: const SpinKitRotatingPlain(
-          color: Colors.blue,
-          size: 50.0,
-        ),
-      ),
-    );
-
-    overlay.insert(_overlayEntry!);
-  }
+  //void showSpinner() {
+  //  OverlayState overlay = Overlay.of(context);
+  //  _overlayEntry = OverlayEntry(
+  //    builder: (context) => Positioned(
+  //      top: MediaQuery.of(context).size.height / 2 - 25,
+  //      left: MediaQuery.of(context).size.width / 2 - 25,
+  //      child: const SpinKitRotatingPlain(
+  //        color: Colors.blue,
+  //        size: 50.0,
+  //      ),
+  //    ),
+  //  );
+  //
+  //  overlay.insert(_overlayEntry!);
+  //}
 
   // 取消加载动画
   void hideSpinner() {
@@ -223,9 +222,8 @@ class _CardScanner2State extends State<CardScanner2> {
         } else {
           // 如果尚未完成，显示加载指示器
           return const Center(
-            child: SpinKitRotatingPlain(
+            child: CircularProgressIndicator(
               color: Colors.blue,
-              size: 50.0,
             ),
           );
         }

@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
     final isLogined = context
         .select((AuthBloc auth) => auth.state.authenticationStatus.isLogined);
 
-    print( 'isLogined: $isLogined');
+    debugPrint( 'isLogined: $isLogined');
 
     return Scaffold(
       appBar: AppBar(

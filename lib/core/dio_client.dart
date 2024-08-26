@@ -115,13 +115,16 @@ class DioClient {
 }
 
 class DioInterceptor extends Interceptor {
-  final token =
-      GetStorage().read<DataMap>(AppContant.tokenKey);
-
-
+  final token = GetStorage().read<DataMap>(AppContant.tokenKey);
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+    print('请求路径: ${options.path}');
+    print('请求方法: ${options.method}');
+    print('请求头: ${options.headers}');
+    print('请求参数: ${options.queryParameters}');
+    print('请求数据: ${options.data}');
+
     debugPrint("onRequest");
     options.headers.addAll({
       //"Content-Type": "application/json",
