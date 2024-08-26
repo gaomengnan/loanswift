@@ -49,20 +49,27 @@ class UI {
     );
   }
 
+  static void showSuccess(BuildContext context, String message) {
+    EasyLoading.showSuccess(
+      message,
+      duration: const Duration(seconds: 1),
+    );
+  }
+
   static void showError(BuildContext context, String message) {
     EasyLoading.showError(
       message,
-      duration: const Duration(seconds: 3),
+      duration: const Duration(seconds: 1),
     );
   }
 
   static Future<void> showLoading() async {
     await EasyLoading.show(
-      status: "加载中...",
+      status: "${S.current.loading}...",
     );
   }
 
-  static void showSignInAndUpBootomSheet(context) async {
+  static void showSignInAndUpBottomSheet(context) async {
     await showModalBottomSheet(
       useSafeArea: true,
       isScrollControlled: true,

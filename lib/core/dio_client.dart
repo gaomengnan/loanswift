@@ -84,7 +84,7 @@ class DioClient {
       }
     } else {
       return left(
-        const ConnectionFailure(),
+         ConnectionFailure(),
       );
     }
   }
@@ -116,39 +116,35 @@ class DioClient {
       } on DioException catch (e) {
         return left(
           ServerFailure(
-            message: e.message ?? "",
+            message: S.current.service_error,
             statusCode: e.response?.statusCode ?? 0,
           ),
         );
       }
     } else {
       return left(
-        const ConnectionFailure(),
+         ConnectionFailure(),
       );
     }
   }
 }
 
 class DioInterceptor extends Interceptor {
-  final token = GetStorage().read<DataMap>(AppContant.tokenKey);
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+    final token = GetStorage().read<DataMap>(AppContant.tokenKey);
+
+    options.headers.addAll({
+      //"Content-Type": "application/json",
+      "Authorization": "${token?['token'].toString()}",
+    });
+
     print('请求路径: ${options.path}');
     print('请求方法: ${options.method}');
     print('请求头: ${options.headers}');
     print('请求参数: ${options.queryParameters}');
     print('请求数据: ${options.data}');
-
-    debugPrint("onRequest");
-    options.headers.addAll({
-      //"Content-Type": "application/json",
-      "Authorization": "Bearer ${token?['token'].toString()}",
-    });
-    // get token from the storage
-    //options.headers.addAll({
-    //  "Authorization": "Bearer $token",
-    //});
     return super.onRequest(options, handler);
   }
 

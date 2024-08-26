@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:loanswift/core/core.dart';
 import 'package:loanswift/core/exceptions.dart';
 
 
@@ -34,9 +35,9 @@ class ServerFailure extends Failure {
 
 class ConnectionFailure extends Failure {
   // 直接给message 为 网络错误 和 statusCode 为 -1 初始化
-  const ConnectionFailure()
+   ConnectionFailure()
       : super(
-          message: "网络连接异常",
+          message: S.current.network_error,
           statusCode: 0,
         );
 }

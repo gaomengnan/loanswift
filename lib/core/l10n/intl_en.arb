@@ -71,7 +71,7 @@
   "loan_return_en": "Loan and Repayment History",
   "auto_repayment_en": "Auto Repayment",
   "bill_state_en": "Bill Statement",
-  "get_credit_limit": "Get Credit Limit"
-
+  "get_credit_limit": "Get Credit Limit",
+  "loading": "Loading"
 }
 

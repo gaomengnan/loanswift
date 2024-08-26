@@ -13,7 +13,7 @@ part 'phone_sender_state.dart';
 
 class PhoneSenderBloc extends Bloc<PhoneSenderEvent, PhoneSenderState> {
   final Ticker _ticker;
-  final SendPhoneCodeUsecase _sender;
+  final SendPhoneCodeUseCase _sender;
 
   static const _duration = 0;
 
@@ -21,7 +21,7 @@ class PhoneSenderBloc extends Bloc<PhoneSenderEvent, PhoneSenderState> {
 
   PhoneSenderBloc({
     required Ticker ticker,
-    required SendPhoneCodeUsecase sender,
+    required SendPhoneCodeUseCase sender,
   })  : _ticker = ticker,
         _sender = sender,
         super(
@@ -55,22 +55,9 @@ class PhoneSenderBloc extends Bloc<PhoneSenderEvent, PhoneSenderState> {
       final res = await _sender(SendPhoneCodeRequest(phone: event.phone));
       res.fold(
         (l) {
-          var msg = "";
-          if (l is ConnectionFailure) {
-            msg = S.current.network_error;
-          }
-          if (l is ServerFailure) {
-            msg = S.current.service_error;
-          }
-
-          if (l is ApiFailure) {
-            msg = l.message;
-          }
-          if (msg.isNotEmpty) {
-            emit(
-              PhoneSenderErrorState(msg, event.phone),
-            );
-          }
+          emit(
+            PhoneSenderErrorState(l.message, event.phone),
+          );
         },
 
         (r) {

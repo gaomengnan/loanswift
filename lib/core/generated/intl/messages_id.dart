@@ -62,6 +62,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lijishengqing":
             MessageLookupByLibrary.simpleMessage("Ajukan sekarang"),
         "load_amount": MessageLookupByLibrary.simpleMessage("Catatan Pinjaman"),
+        "loading": MessageLookupByLibrary.simpleMessage("Memuat"),
         "loan_return": MessageLookupByLibrary.simpleMessage(
             "Riwayat Pinjaman dan Pembayaran"),
         "location": MessageLookupByLibrary.simpleMessage("Lokasi"),

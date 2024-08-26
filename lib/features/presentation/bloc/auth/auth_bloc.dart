@@ -6,16 +6,19 @@ import 'package:loanswift/core/constants/app.dart';
 import 'package:loanswift/core/typedefs.dart';
 import 'package:loanswift/features/data/models/error.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/login.dart';
+import 'package:loanswift/features/domain/usecases/authenticated/logout.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  final LoginUsecase _loginer;
+  final LoginUseCase _useCase;
+  final LogoutUseCase _logoutUseCase;
 
-  AuthBloc({
-    required LoginUsecase loginer,
-  })  : _loginer = loginer,
+  AuthBloc(
+      {required LoginUseCase useCase, required LogoutUseCase logoutUseCase})
+      : _useCase = useCase,
+        _logoutUseCase = logoutUseCase,
         super(
           const AuthInitial(),
         ) {
@@ -24,14 +27,32 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<UserLogoutEvent>(_userLogoutHandler);
   }
 
-  void _userLogoutHandler(UserLogoutEvent event, Emitter<AuthState> emit) {
-    GetStorage().remove(
-      AppContant.tokenKey,
+  void _userLogoutHandler(
+      UserLogoutEvent event, Emitter<AuthState> emit) async {
+    emit(
+      LogoutLoading(
+        authenticationStatus: state.authenticationStatus,
+      ),
     );
 
-    emit(
-      const AuthInitial(),
-    );
+    final res = await _logoutUseCase();
+
+    res.fold((l) {
+      emit(LogoutFailure(
+        error: CustomError(
+          error: l.message,
+        ),
+        authStatus: state.authenticationStatus,
+      ));
+    }, (r) {
+      GetStorage().remove(
+        AppContant.tokenKey,
+      );
+
+      emit(
+        const LogoutSuccess(),
+      );
+    });
   }
 
   void _appStartUpHandler(AppStarupEvent event, Emitter<AuthState> emit) {
@@ -52,7 +73,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
     /**/
 
-    final res = await _loginer(
+    final res = await _useCase(
       LoginRequest(
         phone: event.phone,
         code: event.code,
@@ -66,21 +87,21 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           ),
         ),
       ),
-      (r) {
-        /*  设置登陆状态 */
-        emit(
-          const AuthSuccess(),
-        );
+      (r)  {
 
         final box = r.toMap();
 
         box['phone'] = event.phone;
 
         /*保存token 信息 本地*/
-        GetStorage().write(
+         GetStorage().write(
           AppContant.tokenKey,
           box,
         );
+
+print('asdasds ${        GetStorage().read(AppContant.tokenKey)}');
+        emit(const AuthSuccess());
+
       },
     );
   }

@@ -206,7 +206,7 @@ class BuildQuota extends StatelessWidget {
                                       bottom: 5.h,
                                     ),
                                     padding: EdgeInsets.only(
-                                      left: 20.w,
+                                      left: 10.w,
                                     ),
                                     child: Row(
                                       crossAxisAlignment:
@@ -214,41 +214,41 @@ class BuildQuota extends StatelessWidget {
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
                                       children: [
-                                        Flexible(
-                                          child: Container(
-                                            height: 20.h,
-                                            width: 25.w,
-                                            decoration: BoxDecoration(
-                                              boxShadow: [
-                                                BoxShadow(
-                                                  color: Pallete
-                                                      .thirdColor, // 阴影颜色
-                                                  offset: Offset(5.w,
-                                                      2.h), // 阴影偏移量 (x方向5, y方向0)
-                                                  blurRadius: 2, // 模糊半径
-                                                  spreadRadius: 1, // 扩散半径
-                                                ),
-                                              ],
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                5.r,
+                                        Container(
+                                          height: 20.h,
+                                          width: 25.w,
+                                          decoration: BoxDecoration(
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Pallete
+                                                    .thirdColor, // 阴影颜色
+                                                offset: Offset(5.w,
+                                                    2.h), // 阴影偏移量 (x方向5, y方向0)
+                                                blurRadius: 2, // 模糊半径
+                                                spreadRadius: 1, // 扩散半径
                                               ),
-                                              color: Theme.of(context)
-                                                  .primaryColor,
+                                            ],
+                                            borderRadius:
+                                                BorderRadius.circular(
+                                              5.r,
                                             ),
-                                            child: Center(
-                                              child: AppText(
-                                                text: item["icon_text"],
-                                                fontWeight: FontWeight.w900,
-                                                color: Pallete.whiteColor,
-                                              ),
+                                            color: Theme.of(context)
+                                                .primaryColor,
+                                          ),
+                                          child: Center(
+                                            child: AppText(
+                                              text: item["icon_text"],
+                                              fontWeight: FontWeight.w900,
+                                              color: Pallete.whiteColor,
                                             ),
                                           ),
                                         ),
-                                        UI.kWidth20(),
-                                        AppText(
-                                          text: item["title"],
-                                          fontWeight: FontWeight.w500,
+                                        UI.kWidth10(),
+                                        Center(
+                                          child: AppText(
+                                            text: item["title"],
+                                            fontWeight: FontWeight.w500,
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -269,7 +269,7 @@ class BuildQuota extends StatelessWidget {
                                   S.current.title500,
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 15.sp,
+                                    fontSize: 14.sp,
                                   ),
                                   //color: Pallete.whiteColor,
                                   //size: 16.sp,

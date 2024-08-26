@@ -50,7 +50,7 @@ Future<void> initialize() async {
       ),
     )
     ..registerLazySingleton(
-      () => SendPhoneCodeUsecase(
+      () => SendPhoneCodeUseCase(
         sl(),
       ),
     );
@@ -61,7 +61,8 @@ Future<void> initialize() async {
   sl
     ..registerFactory(
       () => AuthBloc(
-        loginer: sl(),
+        useCase: sl(),
+        logoutUseCase: sl(),
       ),
     )
     ..registerLazySingleton<AuthDataSource>(
@@ -75,12 +76,12 @@ Future<void> initialize() async {
       ),
     )
     ..registerLazySingleton(
-      () => LoginUsecase(
+      () => LoginUseCase(
         sl(),
       ),
     )
     ..registerLazySingleton(
-      () => LogoutUsecase(
+      () => LogoutUseCase(
         sl(),
       ),
     );

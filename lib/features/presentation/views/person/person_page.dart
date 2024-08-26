@@ -54,7 +54,22 @@ class _PersonPageState extends State<PersonPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocBuilder<AuthBloc, AuthState>(builder: (
+      body: BlocConsumer<AuthBloc, AuthState>(
+        listener: (context, state) {
+          if (state is LogoutFailure) {
+            UI.showError(context, state.error.error);
+          }
+
+          if (state is LogoutLoading) {
+            UI.showLoading();
+          }
+
+          if(state is LogoutSuccess) {
+            UI.showSuccess(context, "退出成功");
+          }
+
+        },
+          builder: (
         context,
         state,
       ) {

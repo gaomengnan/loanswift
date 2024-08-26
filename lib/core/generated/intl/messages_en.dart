@@ -56,6 +56,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lang": MessageLookupByLibrary.simpleMessage("en"),
         "lijishengqing": MessageLookupByLibrary.simpleMessage("Apply now"),
         "load_amount": MessageLookupByLibrary.simpleMessage("Loan Records"),
+        "loading": MessageLookupByLibrary.simpleMessage("Loading"),
         "location": MessageLookupByLibrary.simpleMessage("Location"),
         "login_or_register":
             MessageLookupByLibrary.simpleMessage("Sign In/Register"),

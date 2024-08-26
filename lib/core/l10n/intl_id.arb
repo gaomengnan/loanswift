@@ -70,5 +70,6 @@
   "loan_return": "Riwayat Pinjaman dan Pembayaran",
   "auto_repayment": "Pembayaran Otomatis",
   "bill_state": "Pernyataan Tagihan",
-  "get_credit_limit": "Dapatkan Limit Kredit"
+  "get_credit_limit": "Dapatkan Limit Kredit",
+  "loading": "Memuat"
 }

@@ -71,5 +71,6 @@
   "loan_return": "借还记录",
   "auto_repayment": "自动还款",
   "bill_state" : "账单证明",
-  "get_credit_limit": "获取额度"
+  "get_credit_limit": "获取额度",
+  "loading": "加载中"
 }

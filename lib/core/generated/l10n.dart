@@ -739,6 +739,16 @@ class S {
       args: [],
     );
   }
+
+  /// `加载中`
+  String get loading {
+    return Intl.message(
+      '加载中',
+      name: 'loading',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
