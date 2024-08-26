@@ -97,6 +97,21 @@ class DioClient {
     if (connected == InternetConnectionStatus.connected) {
       try {
         final resp = await _dio.get(path);
+
+        final int apiCode =
+            int.tryParse(resp.data['code']?.toString() ?? '') ?? 10000;
+
+        final errMessage = resp.data['message'].toString();
+
+        if (apiCode != 10000) {
+          return left(
+            ApiFailure(
+              message: errMessage,
+              statusCode: apiCode,
+            ),
+          );
+        }
+
         return right(resp);
       } on DioException catch (e) {
         return left(

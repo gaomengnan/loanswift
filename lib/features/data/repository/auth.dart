@@ -57,4 +57,9 @@ class AuthRepository implements AuthRepo {
       );
     }
   }
+
+  @override
+  ResultVoid logout() async {
+    return await _authDataSource.logout();
+  }
 }

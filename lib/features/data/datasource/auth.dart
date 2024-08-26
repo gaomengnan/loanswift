@@ -23,15 +23,19 @@ abstract class AuthDataSource {
 
   // 获取用户个人信息
   ResultFuture<ApiResponse<UserModel>> getUserInfo();
+
+  // 退出登陆
+
+  ResultVoid logout();
 }
 
 class AuthDataSourceImpl extends AuthDataSource {
   //final SharedPreferences _sharedPreferences;
-  final DioClient _dioClient;
+  final DioClient _ht;
 
   const AuthDataSourceImpl({
     required DioClient dioClient,
-  }) : _dioClient = dioClient;
+  }) : _ht = dioClient;
 
   @override
   String getAuthToken() {
@@ -43,7 +47,7 @@ class AuthDataSourceImpl extends AuthDataSource {
 
   @override
   ResultVoid sendPhoneCode({required String phone}) async {
-    final resp = await _dioClient.post(
+    final resp = await _ht.post(
       path: "/middle/user/code",
       data: {
         'phone': phone,
@@ -63,7 +67,7 @@ class AuthDataSourceImpl extends AuthDataSource {
       'phone': phone,
       'code': code,
     };
-    final response = await _dioClient.post(
+    final response = await _ht.post(
       path: "/middle/user/login",
       data: postData,
     );
@@ -80,7 +84,7 @@ class AuthDataSourceImpl extends AuthDataSource {
 
   @override
   ResultFuture<ApiResponse<UserModel>> getUserInfo() async {
-    final resp = await _dioClient.get(
+    final resp = await _ht.get(
       path: "/middle/identity/personal",
     );
     return resp.fold((l) {
@@ -91,5 +95,11 @@ class AuthDataSourceImpl extends AuthDataSource {
         (json) => UserModel.fromMap(json),
       ));
     });
+  }
+
+  @override
+  ResultVoid logout() async {
+    final resp = await _ht.get(path: '/middle/user/login-out');
+    return resp;
   }
 }

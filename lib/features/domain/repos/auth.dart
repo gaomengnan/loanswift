@@ -1,4 +1,5 @@
 import 'package:loanswift/core/core.dart';
+import 'package:loanswift/core/typedefs.dart';
 import 'package:loanswift/features/data/models/auth_token.dart';
 
 abstract class AuthRepo {
@@ -11,6 +12,9 @@ abstract class AuthRepo {
   ResultVoid sendPhoneCode({
     required String phone,
   });
+
+  /* 退出 */
+  ResultVoid logout();
 
   String getAuthToken();
 }

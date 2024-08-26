@@ -13,6 +13,7 @@ import 'package:loanswift/features/data/repository/device.dart';
 import 'package:loanswift/features/domain/repos/auth.dart';
 import 'package:loanswift/features/domain/repos/device.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/login.dart';
+import 'package:loanswift/features/domain/usecases/authenticated/logout.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/send_phone_code.dart';
 import 'package:loanswift/firebase_options.dart';
 
@@ -75,6 +76,11 @@ Future<void> initialize() async {
     )
     ..registerLazySingleton(
       () => LoginUsecase(
+        sl(),
+      ),
+    )
+    ..registerLazySingleton(
+      () => LogoutUsecase(
         sl(),
       ),
     );
