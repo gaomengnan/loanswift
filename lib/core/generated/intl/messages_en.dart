@@ -29,6 +29,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "click_to_access":
             MessageLookupByLibrary.simpleMessage("Click to access"),
+        "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "contact": MessageLookupByLibrary.simpleMessage("Contact List"),
         "due_date": MessageLookupByLibrary.simpleMessage("Due Date"),
         "enter_verification_code":
@@ -60,6 +61,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "location": MessageLookupByLibrary.simpleMessage("Location"),
         "login_or_register":
             MessageLookupByLibrary.simpleMessage("Sign In/Register"),
+        "logout": MessageLookupByLibrary.simpleMessage("Logout"),
+        "logoutConfirmation": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to log out?"),
         "maximun_load_sub_text": MessageLookupByLibrary.simpleMessage(
             "Borrow up to 1,000 yuan for 12 months, starting from 6% daily fee, annual interest rate (simple interest) starting from 3.6%"),
         "maximun_load_text":

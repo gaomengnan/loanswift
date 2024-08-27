@@ -40,7 +40,7 @@ class _BuildSuggestionState extends State<BuildSuggestion>
         if (index == 0) {
           return ListTile(
             contentPadding: EdgeInsets.symmetric(
-              horizontal: 20.w,
+              horizontal: 30.w,
               vertical: 0,
             ),
             title: AppText(
@@ -111,6 +111,7 @@ class _BuildSuggestionState extends State<BuildSuggestion>
                             text: S.current.lijishengqing,
                             fontWeight: FontWeight.bold,
                             color: Pallete.whiteColor,
+                            size: 13.sp,
                             //size: 8.sp,
                           ),
                         ),

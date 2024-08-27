@@ -30,15 +30,18 @@ class UI {
       context: context,
       builder: (context) {
         return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.r), // 设置圆角率
+          ),
           title: Text(title),
           content: Text(desc),
           actions: <Widget>[
             TextButton(
-              child: const Text("取消"),
+              child:  Text(S.current.cancel),
               onPressed: () => Navigator.of(context).pop(), // 关闭对话框
             ),
             TextButton(
-              child: const Text("确定"),
+              child:  Text(S.current.confirm),
               onPressed: () {
                 callback!();
               },

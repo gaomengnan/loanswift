@@ -30,6 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "camera": MessageLookupByLibrary.simpleMessage("相机"),
         "cancel": MessageLookupByLibrary.simpleMessage("取消"),
         "click_to_access": MessageLookupByLibrary.simpleMessage("点击授权"),
+        "confirm": MessageLookupByLibrary.simpleMessage("确定"),
         "contact": MessageLookupByLibrary.simpleMessage("联系人列表"),
         "due_date": MessageLookupByLibrary.simpleMessage("到期日"),
         "enter_verification_code":
@@ -54,6 +55,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "loan_return": MessageLookupByLibrary.simpleMessage("借还记录"),
         "location": MessageLookupByLibrary.simpleMessage("位置"),
         "login_or_register": MessageLookupByLibrary.simpleMessage("登录/注册"),
+        "logout": MessageLookupByLibrary.simpleMessage("注销"),
+        "logoutConfirmation":
+            MessageLookupByLibrary.simpleMessage("你确定要退出登录吗？"),
         "maximun_load_sub_text": MessageLookupByLibrary.simpleMessage(
             "1千元借12个月,日费用6分起,年化利率(单利) 3.6%起"),
         "maximun_load_text": MessageLookupByLibrary.simpleMessage("最高可借额度"),

@@ -33,6 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancel": MessageLookupByLibrary.simpleMessage("Batal"),
         "click_to_access":
             MessageLookupByLibrary.simpleMessage("Klik untuk mengakses"),
+        "confirm": MessageLookupByLibrary.simpleMessage("Konfirmasi"),
         "contact": MessageLookupByLibrary.simpleMessage("Daftar Kontak"),
         "due_date": MessageLookupByLibrary.simpleMessage("Tanggal Jatuh Tempo"),
         "enter_verification_code":
@@ -68,6 +69,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "location": MessageLookupByLibrary.simpleMessage("Lokasi"),
         "login_or_register":
             MessageLookupByLibrary.simpleMessage("Masuk/Daftar"),
+        "logout": MessageLookupByLibrary.simpleMessage("Keluar"),
+        "logoutConfirmation": MessageLookupByLibrary.simpleMessage(
+            "Apakah Anda yakin ingin keluar?"),
         "maximun_load_sub_text": MessageLookupByLibrary.simpleMessage(
             "Peminjaman 1.000 yuan selama 12 bulan, biaya harian mulai dari 6 persen, suku bunga tahunan (bunga sederhana) mulai dari 3.6 persen"),
         "maximun_load_text":

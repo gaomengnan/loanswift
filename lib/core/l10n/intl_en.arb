@@ -72,6 +72,9 @@
   "auto_repayment_en": "Auto Repayment",
   "bill_state_en": "Bill Statement",
   "get_credit_limit": "Get Credit Limit",
-  "loading": "Loading"
+  "loading": "Loading",
+  "logout": "Logout",
+  "logoutConfirmation": "Are you sure you want to log out?",
+  "confirm": "Confirm"
 }
 

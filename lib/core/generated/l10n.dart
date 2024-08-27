@@ -570,16 +570,6 @@ class S {
     );
   }
 
-  /// `取消`
-  String get cancel {
-    return Intl.message(
-      '取消',
-      name: 'cancel',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `相机权限获取失败`
   String get photo_permission_missing {
     return Intl.message(
@@ -745,6 +735,46 @@ class S {
     return Intl.message(
       '加载中',
       name: 'loading',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `注销`
+  String get logout {
+    return Intl.message(
+      '注销',
+      name: 'logout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `你确定要退出登录吗？`
+  String get logoutConfirmation {
+    return Intl.message(
+      '你确定要退出登录吗？',
+      name: 'logoutConfirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `确定`
+  String get confirm {
+    return Intl.message(
+      '确定',
+      name: 'confirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `取消`
+  String get cancel {
+    return Intl.message(
+      '取消',
+      name: 'cancel',
       desc: '',
       args: [],
     );

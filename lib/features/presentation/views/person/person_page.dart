@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:loanswift/core/common/widgets/widgets.dart';
@@ -65,7 +66,7 @@ class _PersonPageState extends State<PersonPage> {
           }
 
           if(state is LogoutSuccess) {
-            UI.showSuccess(context, "退出成功");
+            EasyLoading.dismiss();
           }
 
         },
@@ -120,7 +121,7 @@ class _PersonPageState extends State<PersonPage> {
                             );
                           } else {
                             UI.showLogoutConfirmDialog(
-                                context, '注销', '你确定要退出登陆吗？', () {
+                                context, S.current.logout, S.current.logoutConfirmation, () {
                               context.read<AuthBloc>().add(UserLogoutEvent());
 
                               Navigator.of(context).pop();
@@ -272,16 +273,16 @@ class _PersonPageState extends State<PersonPage> {
                 ],
               ),
             ),
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (BuildContext context, int index) {
-                  return ListTile(
-                    title: Text('Item #$index'),
-                  );
-                },
-                childCount: 50, // 列表项的数量
-              ),
-            ),
+            // SliverList(
+            //   delegate: SliverChildBuilderDelegate(
+            //     (BuildContext context, int index) {
+            //       return ListTile(
+            //         title: Text('Item #$index'),
+            //       );
+            //     },
+            //     childCount: 50, // 列表项的数量
+            //   ),
+            // ),
           ],
         );
       }),
