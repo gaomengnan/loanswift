@@ -19,6 +19,7 @@ import 'package:loanswift/features/domain/usecases/authenticated/login.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/logout.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/send_phone_code.dart';
 import 'package:loanswift/features/domain/usecases/home/data.dart';
+import 'package:loanswift/features/presentation/bloc/home/home_bloc.dart';
 import 'package:loanswift/firebase_options.dart';
 
 import '../features/data/models/models.dart';
@@ -119,9 +120,16 @@ Future<void> initialize() async {
       () => networkCheck,
     );
 
-  /*   BUILD HOMEDDATA RELATE INSTANCE */
+  /*
+  BUILD HOMEDDATA RELATE INSTANCE
+  */
 
   // BLOC
+  sl.registerFactory(
+    () => HomeBloc(
+      useCase: sl(),
+    ),
+  );
 
   // REPO DATASOURCE USERCASE
 
@@ -137,7 +145,7 @@ Future<void> initialize() async {
       ),
     )
     ..registerLazySingleton(
-      () => HomeDataUseCase(
+      () => GetHomeDataUseCase(
         repo: sl(),
       ),
     );
