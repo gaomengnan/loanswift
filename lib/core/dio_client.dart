@@ -1,10 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:loanswift/core/constants/app.dart';
 import 'package:loanswift/core/core.dart';
+import 'package:loanswift/core/storage.dart';
+import 'package:loanswift/core/subscription.dart';
 
 class DioClient {
   BaseOptions options = BaseOptions(
@@ -17,12 +18,15 @@ class DioClient {
 
   final InternetConnectionChecker connectionChecker;
 
+  final DioInterceptor interceptor;
+
   DioClient({
     required this.connectionChecker,
+    required this.interceptor,
   }) {
     var dioInstance = Dio(options);
     dioInstance.interceptors.add(
-      DioInterceptor(),
+      interceptor,
     );
 
     _dio = dioInstance;
@@ -84,7 +88,7 @@ class DioClient {
       }
     } else {
       return left(
-         ConnectionFailure(),
+        ConnectionFailure(),
       );
     }
   }
@@ -123,17 +127,16 @@ class DioClient {
       }
     } else {
       return left(
-         ConnectionFailure(),
+        ConnectionFailure(),
       );
     }
   }
 }
 
 class DioInterceptor extends Interceptor {
-
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    final token = GetStorage().read<DataMap>(AppContant.tokenKey);
+    final token = Storage.token;
 
     options.headers.addAll({
       //"Content-Type": "application/json",
@@ -145,6 +148,7 @@ class DioInterceptor extends Interceptor {
     print('请求头: ${options.headers}');
     print('请求参数: ${options.queryParameters}');
     print('请求数据: ${options.data}');
+
     return super.onRequest(options, handler);
   }
 
@@ -152,6 +156,20 @@ class DioInterceptor extends Interceptor {
   void onResponse(Response response, ResponseInterceptorHandler handler) {
     debugPrint("onResponse");
     debugPrint(response.toString());
+
+    final int apiCode =
+        int.tryParse(response.data['code']?.toString() ?? '') ?? 10000;
+
+    //final errMessage = response.data['message'].toString();
+
+    if (apiCode == AppContant.tokenExpireCode) {
+      tokenExpireStreamController.add(null);
+    }
+    //if(apiCode != AppContant.apiSuccessCode) {
+    //
+    //
+    //}
+
     super.onResponse(response, handler);
   }
 

@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:loanswift/core/common/widgets/widgets.dart';
-import 'package:loanswift/core/constants/app.dart';
 import 'package:loanswift/core/core.dart';
+import 'package:loanswift/core/storage.dart';
 import 'package:loanswift/features/presentation/bloc/auth/auth_bloc.dart';
 import 'package:loanswift/features/presentation/views/auth/auth_page.dart';
 import 'package:loanswift/theme/pallete.dart';
@@ -77,8 +76,8 @@ class _PersonPageState extends State<PersonPage> {
         final isLogin = state.authenticationStatus.isLogined;
         debugPrint('login state $isLogin');
 
-        final logined =
-            GetStorage().read<DataMap>(AppContant.tokenKey) ?? DataMap();
+        final logined = Storage.token ?? DataMap();
+
         final loginPhone = logined['phone'].toString();
 
         return CustomScrollView(

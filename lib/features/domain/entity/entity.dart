@@ -1,2 +1,14 @@
 export "./permission/permission.dart";
 export "./user/user.dart";
+export './home/home.dart';
+export './home/banner.dart';
+export './home/button.dart';
+export './home/main_products_copywriter_info.dart';
+export './home/credit_info.dart';
+export './home/main_products.dart';
+export './home/product_desc.dart';
+export './home/product_limit.dart';
+export './home/relation_product.dart';
+export './home/repayment_info.dart';
+export './home/user_order.dart';
+export './home/rules.dart';

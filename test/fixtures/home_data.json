@@ -1,0 +1,72 @@
+{
+  "banners": [
+    {
+      "path": "http://8.215.17.71:8099/files/uploads/banners/be9c41cba5ec1b021f8db92272ef63ec.png",
+      "is_click": 0,
+      "jump_url": ""
+    }
+  ],
+  "main_products": {
+    "product_name": "Pintek",
+    "product_company": "锦上中国",
+    "product_amount": "1,000,000.00",
+    "is_fake_amount": true,
+    "product_limit": {
+      "service_rate": "0.4000",
+      "product_form": 1,
+      "rate_min": "1000000",
+      "loan_rate": "0.1200",
+      "term": "7",
+      "new_max_amount": "1,000,000.00",
+      "old_max_amount": "1,000,000.00"
+    },
+    "copywriter_info": {
+      "button": {
+        "text": "Mulai melamar",
+        "is_click": true
+      },
+      "product_desc": {
+        "main_position_desc": "Setelah mendapatkan kwota,pahala dapat diperoleh",
+        "logo": "http://8.215.17.71:8099/files/uploads/product_logo/e33c900294b4a47df71af92bb5e5d094.png",
+        "product_desc": "Pinjaman cepat, segera dapatkan rekening Anda\r\nPintek menawarkan pinjaman tunai cepat dan nyaman. Tidak perlu prosedur yang rumit, cukup ajukan permohonan, dan Anda bisa mendapatkan dana yang Anda butuhkan dalam waktu singkat untuk memenuhi kebutuhan mend",
+        "title": "Pintek: Pinjaman instan, mudah ditangani!",
+        "label": "",
+        "tags": "Diskonto Eksklusif · Diskonto Kadar · Pembayaran Cepat"
+      }
+    },
+    "credit_info": {
+      "credit_status": -1,
+      "source_order_no": ""
+    }
+  },
+  "api_products": [],
+  "user_orders": [
+    {
+      "order_no": "24080616373173657117",
+      "relation_product": {
+        "product_name": "Samakita",
+        "product_amount": "1,000,000.00",
+        "product_logo": "http://8.215.17.71:8099/files/uploads/product_logo/67f1b597842853ba3dfd7c7d6247526f.png"
+      },
+      "copywriter_info": {
+        "order_status_text": "Menunggu pembayaran",
+        "date_text": "Waktu kedaluwarsa",
+        "money_text": "Pinjaman"
+      },
+      "show_time": "18/08/2024",
+      "order_amount": "Rp 1.000.000",
+      "service_money": "0.00",
+      "term": "7 Hari",
+      "repayment_info": {
+        "loan_interest": "0.00",
+        "last_repay_time": null,
+        "overdue": 0,
+        "overdue_days": 0,
+        "actual_total_money": "0.00"
+      }
+    }
+  ],
+  "rules": {
+    "certify_completed": false
+  }
+}

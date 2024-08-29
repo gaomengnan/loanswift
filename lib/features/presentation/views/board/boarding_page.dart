@@ -1,18 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:loanswift/core/constants/constants.dart';
-import 'package:loanswift/main.dart';
+import 'package:loanswift/core/storage.dart';
+import 'package:loanswift/features/presentation/views/auth/auth_page.dart';
+import 'package:loanswift/features/presentation/views/index/index_page.dart';
 
-
-class BoardingPage extends StatefulWidget {
+class BoardingPage extends StatelessWidget {
   const BoardingPage({super.key});
 
   @override
-  State<BoardingPage> createState() => _BoardingPageState();
-}
-
-class _BoardingPageState extends State<BoardingPage> {
-  @override
   Widget build(BuildContext context) {
+
+    final token  = Storage.token;
+      Future.delayed(const Duration(seconds: 2), () {
+        if(token != null) {
+          Navigator.pushReplacementNamed(
+            context,
+            IndexPage.routerName,
+          );
+        }else{
+          Navigator.pushReplacementNamed(
+            context,
+            AuthPage.routerName,
+          );
+        }
+      });
+
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -25,14 +37,5 @@ class _BoardingPageState extends State<BoardingPage> {
         ),
       ),
     );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    Future.delayed(const Duration(seconds: 1), () {
-      navigatorKey.currentState?.pushReplacementNamed('/index');
-      //Navigator.pushReplacementNamed(context, "/index");
-    });
   }
 }

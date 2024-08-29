@@ -1,8 +1,12 @@
+import 'dart:async';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:loanswift/core/constants/app.dart';
+import 'package:loanswift/core/storage.dart';
+import 'package:loanswift/core/subscription.dart';
 import 'package:loanswift/core/typedefs.dart';
 import 'package:loanswift/features/data/models/error.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/login.dart';
@@ -15,9 +19,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final LoginUseCase _useCase;
   final LogoutUseCase _logoutUseCase;
 
-  AuthBloc(
-      {required LoginUseCase useCase, required LogoutUseCase logoutUseCase})
-      : _useCase = useCase,
+  late final StreamSubscription<void> _subscription;
+
+  AuthBloc({
+    required LoginUseCase useCase,
+    required LogoutUseCase logoutUseCase,
+  })  : _useCase = useCase,
         _logoutUseCase = logoutUseCase,
         super(
           const AuthInitial(),
@@ -25,6 +32,20 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<UserLoginEvent>(_userLoginHandler);
     on<AppStarupEvent>(_appStartUpHandler);
     on<UserLogoutEvent>(_userLogoutHandler);
+    on<UserTokenExpiredEvent>(_userTokenExpiredHandler);
+
+    _subscription = tokenExpireStreamController.stream.listen((_) {
+      add(UserTokenExpiredEvent());
+    });
+  }
+
+  void _userTokenExpiredHandler(
+      UserTokenExpiredEvent event, Emitter<AuthState> emit) {
+    Storage.removeToekn();
+
+    emit(
+      const LogoutSuccess(),
+    );
   }
 
   void _userLogoutHandler(
@@ -45,9 +66,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         authStatus: state.authenticationStatus,
       ));
     }, (r) {
-      GetStorage().remove(
-        AppContant.tokenKey,
-      );
+      Storage.removeToekn();
+      //GetStorage().remove(
+      //  AppContant.tokenKey,
+      //);
 
       emit(
         const LogoutSuccess(),
@@ -87,22 +109,25 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           ),
         ),
       ),
-      (r)  {
-
+      (r) {
         final box = r.toMap();
 
         box['phone'] = event.phone;
 
         /*保存token 信息 本地*/
-         GetStorage().write(
+        GetStorage().write(
           AppContant.tokenKey,
           box,
         );
 
-print('asdasds ${        GetStorage().read(AppContant.tokenKey)}');
         emit(const AuthSuccess());
-
       },
     );
+  }
+
+  @override
+  Future<void> close() {
+    _subscription.cancel();
+    return super.close();
   }
 }

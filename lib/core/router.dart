@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loanswift/core/common/widgets/page_404.dart';
-import 'package:loanswift/features/presentation/bloc/auth/auth_bloc.dart';
 import 'package:loanswift/features/presentation/views/auth/auth_page.dart';
 import 'package:loanswift/features/presentation/views/index/index_page.dart';
 import 'package:loanswift/features/presentation/views/order/my_order.dart';
@@ -10,7 +8,6 @@ import 'package:loanswift/features/presentation/views/order/repayment_page.dart'
 import 'package:loanswift/features/presentation/views/person/identity_page.dart';
 import 'package:loanswift/features/presentation/views/widgets/verification_code.dart';
 
-import 'core.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
@@ -28,10 +25,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
 
     case AuthPage.routerName:
       return _pageBuilder(
-        (_) => BlocProvider(
-          create: (_) => sl<AuthBloc>(),
-          child: const AuthPage(),
-        ),
+        (_) => const AuthPage(),
         settings: settings,
       );
 

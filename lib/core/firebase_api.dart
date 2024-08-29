@@ -20,7 +20,7 @@ class FirebaseApi {
 
     // print token
 
-    debugPrint(fcmToken);
+    debugPrint(" fcmToken $fcmToken");
 
     initPushNotifications();
   }

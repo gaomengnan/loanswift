@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:loanswift/core/generated/l10n.dart';
 import 'package:loanswift/features/presentation/bloc/bloc.dart';
+import 'package:loanswift/features/presentation/views/index/index_page.dart';
 import 'package:loanswift/features/presentation/views/widgets/verification_code.dart';
 import 'package:loanswift/theme/pallete.dart';
 
@@ -38,6 +39,15 @@ class _LoginWidgetState extends State<LoginWidget> {
     initialCountry = S.current.phone_code.toUpperCase();
     number = PhoneNumber(isoCode: initialCountry);
     focusNode = FocusNode();
+
+    final loginState =
+        context.read<AuthBloc>().state.authenticationStatus.isLogined;
+
+    if (loginState) {
+      Navigator.of(context).pushReplacementNamed(
+        IndexPage.routerName,
+      );
+    }
   }
 
   @override
@@ -178,7 +188,7 @@ class BuildVerifyCode extends StatelessWidget {
           //  return;
           //}
           formKey.currentState?.validate();
-    
+
           //if (validator) {
           //  // 解除按钮禁用状态
           //  context.read<AuthBloc>().add(
@@ -204,11 +214,11 @@ class BuildVerifyCode extends StatelessWidget {
                   val.parseNumber(),
                 ),
               );
-    
+
           Navigator.of(context).pushNamed(
             VerificationCodePage.routerName,
           );
-    
+
           //UI.showVerifyCodeSheet(
           //  context,
           //);
