@@ -93,7 +93,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         }
       }, builder: (context, state) {
         if (state is HomeLoading) {
-          return CustomScrollView(slivers: [
+          return const CustomScrollView(slivers: [
             HomeShimmer(),
           ]);
         }
@@ -122,11 +122,15 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   ),
 
                   /*   Bill Amount */
-                  const BuildBill(),
+                  BuildBill(
+                    userOrder: state.homeData.userOrders,
+                  ),
 
                   // 借钱攻略
 
-                  const BuildSuggestion(),
+                  BuildSuggestion(
+                    apiProducts: state.homeData.apiProducts,
+                  ),
 
                   const SliverPadding(
                     padding: EdgeInsets.all(8.0),
@@ -137,7 +141,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     ),
                   ),
 
-                  const BuildContactUS(),
+                  //const BuildContactUS(),
                   /*  Apps  */
                   //BuildAppList(),
                 ],

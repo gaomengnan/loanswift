@@ -3,6 +3,7 @@ import 'package:loanswift/core/constants/constants.dart';
 import 'package:loanswift/core/storage.dart';
 import 'package:loanswift/features/presentation/views/auth/auth_page.dart';
 import 'package:loanswift/features/presentation/views/index/index_page.dart';
+import 'package:loanswift/main.dart';
 
 class BoardingPage extends StatelessWidget {
   const BoardingPage({super.key});
@@ -13,15 +14,9 @@ class BoardingPage extends StatelessWidget {
     final token  = Storage.token;
       Future.delayed(const Duration(seconds: 2), () {
         if(token != null) {
-          Navigator.pushReplacementNamed(
-            context,
-            IndexPage.routerName,
-          );
+          navigatorKey.currentState?.pushReplacementNamed(IndexPage.routerName);
         }else{
-          Navigator.pushReplacementNamed(
-            context,
-            AuthPage.routerName,
-          );
+          navigatorKey.currentState?.pushReplacementNamed(AuthPage.routerName);
         }
       });
 
