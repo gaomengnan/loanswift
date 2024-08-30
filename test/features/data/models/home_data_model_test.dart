@@ -67,7 +67,7 @@ void main() {
     */
 
     test("should return a new [HomeDataModel] with updated data", () {
-      final banners = [Banner.empty()];
+      final banners = [BannerEntity.empty()];
       /* Arrange */
       final res = tModel.copyWith(
         banners: banners,

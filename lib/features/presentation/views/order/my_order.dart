@@ -5,6 +5,7 @@ import 'package:loanswift/core/core.dart';
 import 'package:loanswift/theme/theme.dart';
 
 import 'package:loanswift/core/common/widgets/widgets.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class MyOrder extends StatefulWidget {
   const MyOrder({super.key});
@@ -17,11 +18,27 @@ class MyOrder extends StatefulWidget {
 class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
   late TabController _tabController;
 
+  final RefreshController _refreshController = RefreshController();
+  late AnimationController _anicontroller, _scaleController;
+
   @override
   void initState() {
+    _anicontroller = AnimationController(
+      vsync: this, duration: const Duration(milliseconds: 2000));
+
+    _scaleController =
+        AnimationController(value: 0.0, vsync: this, upperBound: 1.0);
     _tabController = TabController(vsync: this, length: 4);
     super.initState();
   }
+
+  @override
+    void dispose() {
+      _refreshController.dispose();
+      _anicontroller.dispose();
+      _scaleController.dispose();
+      super.dispose();
+    }
 
   @override
   Widget build(BuildContext context) {
@@ -79,6 +96,10 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
 
   Widget _buildListItems() {
     return Refresher(
+      anicontroller: _anicontroller,
+      scaleController: _scaleController,
+      refresh: _refreshController,
+      onRefresh: (_) {},
       child: ListView.builder(
         itemBuilder: (context, index) {
           return InkWell(

@@ -181,6 +181,12 @@ class UI {
     );
   }
 
+  static Widget kWidth50() {
+    return Space(
+      height: 0,
+      width: 50.w,
+    );
+  }
   static Widget squareContainer(Widget child) {
     return Container(
       padding: EdgeInsets.all(15.sp),

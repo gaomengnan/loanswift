@@ -1,13 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:loanswift/core/core.dart';
+import 'package:loanswift/core/common/widgets/widgets.dart';
+import 'package:loanswift/features/domain/entity/entity.dart';
 import 'package:loanswift/theme/theme.dart';
 
-import '../../../../core/common/widgets/widgets.dart';
 
 class BuildBanner extends StatefulWidget {
-  const BuildBanner({super.key});
+  final List<BannerEntity> banners;
+  const BuildBanner({super.key, required this.banners});
 
   @override
   State<BuildBanner> createState() => _BuildBannerState();
@@ -41,7 +42,7 @@ class _BuildBannerState extends State<BuildBanner> {
 
 
   Widget _buildBanner(int index) {
-    final imageUrl = Assets.banners[index];
+    final banner = widget.banners[index];
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 10.h),
       //height: ScreenUtil().screenHeight * 0.2,
@@ -50,7 +51,7 @@ class _BuildBannerState extends State<BuildBanner> {
         borderRadius: BorderRadius.circular(10),
         image: DecorationImage(
           fit: BoxFit.cover,
-          image: CachedNetworkImageProvider(imageUrl),
+          image: CachedNetworkImageProvider(banner.path),
         ),
       ),
     );
@@ -71,7 +72,7 @@ class _BuildBannerState extends State<BuildBanner> {
               height: ScreenUtil().screenHeight * 0.2,
               child: PageView.builder(
                 controller: _pageController,
-                itemCount: Assets.banners.length,
+                itemCount: widget.banners.length,
                 itemBuilder: (context, index) {
                   return _buildBanner(index);
                 },
@@ -83,7 +84,7 @@ class _BuildBannerState extends State<BuildBanner> {
               child: Wrap(
                 spacing: 10,
                 children: [
-                  ...List.generate(Assets.banners.length, (index) {
+                  ...List.generate(widget.banners.length, (index) {
                     return AnimatedContainer(
                       duration: const Duration(
                         milliseconds: 150,

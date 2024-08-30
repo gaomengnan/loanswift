@@ -4,7 +4,7 @@ import 'package:loanswift/features/domain/entity/home/rules.dart';
 import 'package:loanswift/features/domain/entity/home/user_order.dart';
 
 class HomeData {
-  final List<Banner> banners;
+  final List<BannerEntity> banners;
   final MainProducts mainProducts;
   final List<MainProducts> apiProducts;
   final List<UserOrder> userOrders;
@@ -20,7 +20,7 @@ class HomeData {
 
   HomeData.empty()
       : this(
-          banners: List<Banner>.empty(),
+          banners: List<BannerEntity>.empty(),
           mainProducts: MainProducts.empty(),
           apiProducts: List<MainProducts>.empty(),
           userOrders: List<UserOrder>.empty(),

@@ -5,29 +5,39 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 class Refresher extends StatefulWidget {
   final Widget child;
 
+  final RefreshController refresh;
+
+  final AnimationController anicontroller, scaleController;
+
+  final void Function(RefreshController controller) onRefresh;
+
   const Refresher({
     super.key,
     required this.child,
+    required this.onRefresh,
+    required this.refresh,
+    required this.anicontroller,
+    required this.scaleController,
   });
 
   @override
   State<Refresher> createState() => _RefresherState();
 }
 
-class _RefresherState extends State<Refresher> with TickerProviderStateMixin {
+class _RefresherState extends State<Refresher> {
   late AnimationController _anicontroller, _scaleController;
   //late AnimationController _footerController;
-  final RefreshController _refreshController = RefreshController();
+  late RefreshController _refreshController;
 
   // late bool _isLoading = false;
 
   @override
   void initState() {
-    _anicontroller = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 2000));
+    _refreshController = widget.refresh;
 
-    _scaleController =
-        AnimationController(value: 0.0, vsync: this, upperBound: 1.0);
+    _anicontroller = widget.anicontroller;
+
+    _scaleController = widget.scaleController;
 
     _refreshController.headerMode?.addListener(() {
       if (_refreshController.headerStatus == RefreshStatus.idle) {
@@ -43,10 +53,10 @@ class _RefresherState extends State<Refresher> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    _refreshController.dispose();
-    _scaleController.dispose();
+    //_refreshController.dispose();
+    //_scaleController.dispose();
     //_footerController.dispose();
-    _anicontroller.dispose();
+    //_anicontroller.dispose();
     super.dispose();
   }
 
@@ -71,11 +81,9 @@ class _RefresherState extends State<Refresher> with TickerProviderStateMixin {
       enablePullUp: false,
       controller: _refreshController,
       onRefresh: () async {
-        // setState(() {
-        // _isLoading = true;
-        // });
-        await Future.delayed(const Duration(milliseconds: 2000));
-        _refreshController.refreshCompleted();
+        widget.onRefresh(_refreshController);
+        //await Future.delayed(const Duration(milliseconds: 2000));
+        //_refreshController.refreshCompleted();
         // setState(() {
         // _isLoading = false;
         // });

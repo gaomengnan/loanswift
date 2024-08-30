@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/core.dart';
+import 'package:loanswift/features/domain/entity/home/main_products.dart';
 import 'package:loanswift/features/presentation/views/person/identity_page.dart';
 
 import '../../../../core/common/widgets/widgets.dart';
 import '../../../../theme/theme.dart';
 
 class BuildQuota extends StatelessWidget {
+  final MainProducts mainProducts;
   const BuildQuota({
     super.key,
+    required this.mainProducts,
   });
 
   @override
@@ -17,26 +20,24 @@ class BuildQuota extends StatelessWidget {
       {
         "title": S.current.title200,
         "icon_text": "30",
+        "subtitle": "",
       },
       {
         "title": S.current.title300,
         "icon_text": "%",
+        "subtitle": mainProducts.productLimit.serviceRate,
       },
       {
         "title": S.current.title400,
         "icon_text": "5",
+        "subtitle": "",
       },
     ];
+
     return SliverToBoxAdapter(
       child: Container(
         width: MediaQuery.of(context).size.width,
-        decoration: const BoxDecoration(
-            //gradient: LinearGradient(
-            //  begin: Alignment.topCenter,
-            //  end: Alignment.bottomCenter,
-            //  colors: Pallete.gradientColors,
-            //),
-            ),
+        decoration: const BoxDecoration(),
         child: Padding(
           padding: EdgeInsets.symmetric(
             horizontal: 20.w,
@@ -60,6 +61,12 @@ class BuildQuota extends StatelessWidget {
 
   Widget buildBody(
       BuildContext context, List<Map<String, dynamic>> districtFirst) {
+    final serviceRate = mainProducts.productLimit.serviceRate;
+    final desc = S.current.maximun_load_sub_text;
+    final String fullText = desc.replaceAll('#rate#', serviceRate);
+
+    final int countIndex = fullText.indexOf(serviceRate);
+
     return Container(
       decoration: BoxDecoration(
         color: Pallete.whiteColor,
@@ -77,22 +84,13 @@ class BuildQuota extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             AppText(
-              text:
-                  "${S.current.maximun_load_text}${S.current.maximun_load_text_unit}",
+              text: mainProducts.copywriterInfo.productDesc.title,
               // color: Pallete.whiteColor,
               size: 13.sp,
             ),
             UI.kHeight5(),
-            //Padding(
-            //  padding: EdgeInsets.symmetric(
-            //    horizontal: 50.w,
-            //  ),
-            //  child: Divider(
-            //    color: Colors.grey.withOpacity(0.2),
-            //  ),
-            //),
             AppText(
-              text: "200,000",
+              text: mainProducts.productAmount,
               size: 33.sp,
               color: Theme.of(context).primaryColor,
               fontWeight: FontWeight.w900,
@@ -102,13 +100,31 @@ class BuildQuota extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 10.w),
-              child: AppText(
-                maxLines: 10,
-                text: S.current.maximun_load_sub_text,
-                size: 10.sp,
-                color: Pallete.greyColor,
-                // fontWeight: FontWeight.bold,
+
+              child: RichText(
+                text: TextSpan(
+                    text: fullText.substring(0, countIndex),
+                    style: const TextStyle(
+                      color: Pallete.greyColor,
+                    ),
+                    children: [
+                      TextSpan(
+                        text: serviceRate,
+                        style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    ]),
               ),
+              //child: AppText(
+              //
+              //  maxLines: 10,
+              //  text: S.current.maximun_load_sub_text,
+              //  size: 10.sp,
+              //  color: Pallete.greyColor,
+              //  // fontWeight: FontWeight.bold,
+              //),
             ),
             Padding(
               padding: EdgeInsets.only(
@@ -138,14 +154,15 @@ class BuildQuota extends StatelessWidget {
                           children: [
                             Padding(
                               padding: EdgeInsets.only(
-                                top: 10.h,
-                                bottom: 5.h,
-                                left: 5.h,
-                                right: 5.h
-                              ),
+                                  top: 10.h,
+                                  bottom: 5.h,
+                                  left: 5.h,
+                                  right: 5.h),
                               child: Center(
                                 child: AppText(
-                                  text: S.current.title100,
+                                  text: mainProducts.copywriterInfo.productDesc
+                                      .mainPositionDesc,
+                                  size: 13.sp,
                                   color: Pallete.blackColor,
                                 ),
                               ),
@@ -185,20 +202,19 @@ class BuildQuota extends StatelessWidget {
                                           decoration: BoxDecoration(
                                             boxShadow: [
                                               BoxShadow(
-                                                color: Pallete
-                                                    .thirdColor, // 阴影颜色
+                                                color:
+                                                    Pallete.thirdColor, // 阴影颜色
                                                 offset: Offset(5.w,
                                                     2.h), // 阴影偏移量 (x方向5, y方向0)
                                                 blurRadius: 2, // 模糊半径
                                                 spreadRadius: 1, // 扩散半径
                                               ),
                                             ],
-                                            borderRadius:
-                                                BorderRadius.circular(
+                                            borderRadius: BorderRadius.circular(
                                               5.r,
                                             ),
-                                            color: Theme.of(context)
-                                                .primaryColor,
+                                            color:
+                                                Theme.of(context).primaryColor,
                                           ),
                                           child: Center(
                                             child: AppText(
@@ -210,11 +226,29 @@ class BuildQuota extends StatelessWidget {
                                         ),
                                         UI.kWidth10(),
                                         Expanded(
-                                          child: AppText(
-                                            textAlign: TextAlign.start,
-                                            text: item["title"],
-                                            fontWeight: FontWeight.w500,
-                                          ),
+                                          child: RichText(
+                                              text: TextSpan(
+                                                  text: item['title'],
+                                                  style: TextStyle(
+                                                    color: Pallete.blackColor,
+                                                    fontSize: 10.sp,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                  children: [
+                                                TextSpan(
+                                                  text: " ${item['subtitle']}",
+                                                  style: TextStyle(
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
+                                                    fontSize: 10.sp,
+                                                  ),
+                                                ),
+                                              ])),
+                                          //child: AppText(
+                                          //  textAlign: TextAlign.start,
+                                          //  text: item["title"],
+                                          //  fontWeight: FontWeight.w500,
+                                          //),
                                         ),
                                       ],
                                     ),
@@ -232,7 +266,7 @@ class BuildQuota extends StatelessWidget {
                               },
                               child: Center(
                                 child: Text(
-                                  S.current.title500,
+                                  mainProducts.copywriterInfo.button.text,
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 14.sp,
@@ -250,14 +284,6 @@ class BuildQuota extends StatelessWidget {
                 ),
               ),
             ),
-
-            // 声明
-            // Center(
-            //   child: AppText(
-            //     text: "贷款额度由小金小贷提供",
-            //     color: Pallete.greyColor,
-            //   ),
-            // ),
           ],
         ),
       ),
@@ -298,7 +324,7 @@ class BuildQuota extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 AppText(
-                  text: S.current.exclusive,
+                  text: mainProducts.productName,
                   color: Pallete.whiteColor,
                   fontWeight: FontWeight.w900,
                   size: 13.sp,
@@ -308,29 +334,29 @@ class BuildQuota extends StatelessWidget {
                 RichText(
                   overflow: TextOverflow.ellipsis,
                   text: TextSpan(
-                    text: "${S.current.grab_go} · ",
+                    text: mainProducts.copywriterInfo.productDesc.tags,
                     style: TextStyle(
                       fontSize: 10.sp,
                       fontWeight: FontWeight.w400,
                       fontFamily:
                           Theme.of(context).textTheme.bodySmall?.fontFamily,
                     ),
-                    children: [
-                      //WidgetSpan(
-                      //child: UI.kWidth5(),
-                      //),
-                      TextSpan(
-                        text: "${S.current.free_concession} · ",
-                        children: [
-                          TextSpan(
-                            text: S.current.quick_deposit,
-                          ),
-                          //TextSpan(
-                          //  text: S.current.quick_deposit,
-                          //),
-                        ],
-                      ),
-                    ],
+                    //children: [
+                    //  //WidgetSpan(
+                    //  //child: UI.kWidth5(),
+                    //  //),
+                    //  TextSpan(
+                    //    text: "${S.current.free_concession} · ",
+                    //    children: [
+                    //      TextSpan(
+                    //        text: S.current.quick_deposit,
+                    //      ),
+                    //      //TextSpan(
+                    //      //  text: S.current.quick_deposit,
+                    //      //),
+                    //    ],
+                    //  ),
+                    //],
                   ),
                 ),
               ],

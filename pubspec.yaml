@@ -64,12 +64,12 @@ dependencies:
   device_info_plus: ^10.1.1
   cached_network_image: ^3.3.1
   pull_to_refresh: ^2.0.0
-  skeletonizer: ^1.4.2
   flutter_sms_inbox: ^1.0.3
   timeline_tile: ^2.0.0
   firebase_core: ^2.24.2
   firebase_messaging: ^14.7.10
   flutter_easyloading: ^3.0.5
+  shimmer: ^3.0.0
 
 dev_dependencies:
   # flutter_launcher_icons: "^0.13.1"

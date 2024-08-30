@@ -1,22 +1,22 @@
-class Banner {
+class BannerEntity {
   final String path;
   final int isClick;
   final String jumpUrl;
 
-  Banner({
+  BannerEntity({
     required this.path,
     required this.isClick,
     required this.jumpUrl,
   });
 
-  Banner.empty()
+  BannerEntity.empty()
       : this(
           path: "",
           isClick: 0,
           jumpUrl: "",
         );
 
-  factory Banner.fromMap(Map<String, dynamic> json) => Banner(
+  factory BannerEntity.fromMap(Map<String, dynamic> json) => BannerEntity(
         path: json["path"],
         isClick: json["is_click"],
         jumpUrl: json["jump_url"],

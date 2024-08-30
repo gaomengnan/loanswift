@@ -18,7 +18,7 @@ class HomeDataModel extends HomeData {
 
   HomeDataModel.empty()
       : this(
-          banners: List<Banner>.empty(),
+          banners: List<BannerEntity>.empty(),
           mainProducts: MainProducts.empty(),
           apiProducts: List<MainProducts>.empty(),
           userOrders: List<UserOrder>.empty(),
@@ -27,7 +27,7 @@ class HomeDataModel extends HomeData {
 
   factory HomeDataModel.fromMap(Map<String, dynamic> json) => HomeDataModel(
         banners:
-            List<Banner>.from(json["banners"].map((x) => Banner.fromMap(x))),
+            List<BannerEntity>.from(json["banners"].map((x) => BannerEntity.fromMap(x))),
         mainProducts: MainProducts.fromMap(json["main_products"]),
         apiProducts: List<MainProducts>.from(
             json["api_products"].map((x) => MainProducts.fromMap(x))),
@@ -45,7 +45,7 @@ class HomeDataModel extends HomeData {
       };
 
   HomeData copyWith({
-    List<Banner>? banners,
+    List<BannerEntity>? banners,
     MainProducts? mainProducts,
     List<MainProducts>? apiProducts,
     List<UserOrder>? userOrders,

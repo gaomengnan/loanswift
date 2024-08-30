@@ -73,7 +73,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "logoutConfirmation": MessageLookupByLibrary.simpleMessage(
             "Apakah Anda yakin ingin keluar?"),
         "maximun_load_sub_text": MessageLookupByLibrary.simpleMessage(
-            "Peminjaman 1.000 yuan selama 12 bulan, biaya harian mulai dari 6 persen, suku bunga tahunan (bunga sederhana) mulai dari 3.6 persen"),
+            "Peminjaman 1000 selama 1 bulan, biaya harian mulai dari 6 sen, suku bunga tahunan (bunga sederhana) mulai dari #rate#"),
         "maximun_load_text":
             MessageLookupByLibrary.simpleMessage("Jumlah Pinjaman Maksimum"),
         "maximun_load_text_unit":
@@ -115,8 +115,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Setelah mendapatkan batas, hadiah dapat diperoleh."),
         "title200":
             MessageLookupByLibrary.simpleMessage("Hingga 30 hari bebas bunga"),
-        "title300": MessageLookupByLibrary.simpleMessage(
-            "Suku bunga tahunan minimum 3.6%"),
+        "title300":
+            MessageLookupByLibrary.simpleMessage("Suku bunga tahunan minimum "),
         "title400":
             MessageLookupByLibrary.simpleMessage("Pencairan  lima menit"),
         "title500": MessageLookupByLibrary.simpleMessage("Periksa batasmu"),

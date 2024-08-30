@@ -29,11 +29,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         super(
           const AuthInitial(),
         ) {
+
     on<UserLoginEvent>(_userLoginHandler);
     on<AppStarupEvent>(_appStartUpHandler);
     on<UserLogoutEvent>(_userLogoutHandler);
     on<UserTokenExpiredEvent>(_userTokenExpiredHandler);
-
     _subscription = tokenExpireStreamController.stream.listen((_) {
       add(UserTokenExpiredEvent());
     });
@@ -78,6 +78,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   void _appStartUpHandler(AppStarupEvent event, Emitter<AuthState> emit) {
+    print("app startup");
     final token = GetStorage()
         .read<DataMap>(AppContant.tokenKey); /* 假设本地有token，如果没有，使用初始值 */
     debugPrint('本地token：$token');

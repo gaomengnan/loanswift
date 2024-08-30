@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:loanswift/core/common/widgets/shimmer.dart';
 import 'package:loanswift/core/common/widgets/widgets.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/features/presentation/bloc/auth/auth_bloc.dart';
+import 'package:loanswift/features/presentation/bloc/home/home_bloc.dart';
 import 'package:loanswift/features/presentation/views/home/banner.dart';
 import 'package:loanswift/features/presentation/views/home/bill.dart';
 import 'package:loanswift/features/presentation/views/home/quota.dart';
 import 'package:loanswift/features/presentation/views/home/suggestion.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,14 +19,26 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+  final RefreshController _refreshController = RefreshController();
+
+  late AnimationController _anicontroller, _scaleController;
+
   @override
   void initState() {
+    _anicontroller = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 2000));
+
+    _scaleController =
+        AnimationController(value: 0.0, vsync: this, upperBound: 1.0);
     super.initState();
   }
 
   @override
   void dispose() {
+    _refreshController.dispose();
+    _anicontroller.dispose();
+    _scaleController.dispose();
     super.dispose();
   }
 
@@ -33,7 +47,7 @@ class _HomePageState extends State<HomePage> {
     final isLogined = context
         .select((AuthBloc auth) => auth.state.authenticationStatus.isLogined);
 
-    debugPrint( 'isLogined: $isLogined');
+    debugPrint('isLogined: $isLogined');
 
     return Scaffold(
       appBar: AppBar(
@@ -47,12 +61,12 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
-        actions: [
-          const Icon(
-            IconlyBold.message,
-          ),
-          UI.kWidth20(),
-        ],
+        //actions: [
+        //  const Icon(
+        //    IconlyBold.message,
+        //  ),
+        //  UI.kWidth20(),
+        //],
         leading: Row(
           children: [
             UI.kWidth20(),
@@ -66,41 +80,70 @@ class _HomePageState extends State<HomePage> {
       ),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       resizeToAvoidBottomInset: true,
-      body: SizedBox(
-          width: MediaQuery.of(context).size.width,
-          child: const Refresher(
-            child: CustomScrollView(
-              slivers: [
-                // Appbar
-                //BuildAppBar(),
-                // banner
-                BuildBanner(),
+      body: BlocConsumer<HomeBloc, HomeState>(listener: (context, state) {
+        if (state is HomeLoadFailure) {
+          UI.showError(
+            context,
+            state.error.error,
+          );
+        }
 
-                // 查看额度
-                BuildQuota(),
+        if (state is HomeLoadSuccess) {
+          _refreshController.refreshCompleted();
+        }
+      }, builder: (context, state) {
+        if (state is HomeLoading) {
+          return CustomScrollView(slivers: [
+            HomeShimmer(),
+          ]);
+        }
 
-                /*   Bill Amount */
-                BuildBill(),
+        return SizedBox(
+            width: MediaQuery.of(context).size.width,
+            child: Refresher(
+              anicontroller: _anicontroller,
+              scaleController: _scaleController,
+              refresh: _refreshController,
+              onRefresh: (ctrl) {
+                context.read<HomeBloc>().add(HomeRefreshEvent());
+              },
+              child: CustomScrollView(
+                slivers: [
+                  // Appbar
+                  //BuildAppBar(),
+                  // banner
+                  BuildBanner(
+                    banners: state.homeData.banners,
+                  ),
 
-                // 借钱攻略
+                  // 查看额度
+                  BuildQuota(
+                    mainProducts: state.homeData.mainProducts,
+                  ),
 
-                BuildSuggestion(),
+                  /*   Bill Amount */
+                  const BuildBill(),
 
-                SliverPadding(
-                  padding: EdgeInsets.all(8.0),
-                  sliver: SliverToBoxAdapter(
-                    child: Divider(
-                      color: Colors.black12,
+                  // 借钱攻略
+
+                  const BuildSuggestion(),
+
+                  const SliverPadding(
+                    padding: EdgeInsets.all(8.0),
+                    sliver: SliverToBoxAdapter(
+                      child: Divider(
+                        color: Colors.black12,
+                      ),
                     ),
                   ),
-                ),
 
-                BuildContactUS(),
-                /*  Apps  */
-                //BuildAppList(),
-              ],
-            ),
-          )),
+                  const BuildContactUS(),
+                  /*  Apps  */
+                  //BuildAppList(),
+                ],
+              ),
+            ));
+      }),
     );
   }
 }

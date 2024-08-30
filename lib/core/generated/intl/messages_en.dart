@@ -65,7 +65,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "logoutConfirmation": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to log out?"),
         "maximun_load_sub_text": MessageLookupByLibrary.simpleMessage(
-            "Borrow up to 1,000 yuan for 12 months, starting from 6% daily fee, annual interest rate (simple interest) starting from 3.6%"),
+            "Borrow up to 1,000 yuan for 12 months, starting from 6% daily fee, annual interest rate (simple interest) starting from #rate#"),
         "maximun_load_text":
             MessageLookupByLibrary.simpleMessage("Maximum Loan Amount"),
         "maximun_load_text_unit": MessageLookupByLibrary.simpleMessage("(CNY)"),
@@ -107,7 +107,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "title200":
             MessageLookupByLibrary.simpleMessage("Up to 30 days interest-free"),
         "title300": MessageLookupByLibrary.simpleMessage(
-            "Minimum annual interest rate of 3.6%"),
+            "Minimum annual interest rate of "),
         "title400": MessageLookupByLibrary.simpleMessage(
             "Fastest loan disbursement in five minutes"),
         "title500": MessageLookupByLibrary.simpleMessage("Check your limit"),

@@ -130,10 +130,10 @@ class S {
     );
   }
 
-  /// `1千元借12个月,日费用6分起,年化利率(单利) 3.6%起`
+  /// `1千元借12个月,日费用6分起,年化利率(单利) #rate#`
   String get maximun_load_sub_text {
     return Intl.message(
-      '1千元借12个月,日费用6分起,年化利率(单利) 3.6%起',
+      '1千元借12个月,日费用6分起,年化利率(单利) #rate#',
       name: 'maximun_load_sub_text',
       desc: '',
       args: [],
@@ -170,10 +170,10 @@ class S {
     );
   }
 
-  /// `最低年化3.6%`
+  /// `最低年化`
   String get title300 {
     return Intl.message(
-      '最低年化3.6%',
+      '最低年化',
       name: 'title300',
       desc: '',
       args: [],

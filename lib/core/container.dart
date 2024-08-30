@@ -47,6 +47,28 @@ Future<void> initialize() async {
 
   /* CONTAINER INJECT */
 
+  // BLOC
+  // REPO DATASOURCE USERCASE
+  sl
+    ..registerFactory(
+      () => HomeBloc(sl()),
+    )
+    ..registerLazySingleton<HomeDataSource>(
+      () => HomeDataImpl(
+        dio: sl(),
+      ),
+    )
+    ..registerLazySingleton<IHomeRepo>(
+      () => HomeRepository(
+        homeDataSource: sl(),
+      ),
+    )
+    ..registerLazySingleton(
+      () => GetHomeDataUseCase(
+        repo: sl(),
+      ),
+    );
+
   sl
     ..registerFactory(
       () => PhoneSenderBloc(
@@ -123,32 +145,6 @@ Future<void> initialize() async {
   /*
   BUILD HOMEDDATA RELATE INSTANCE
   */
-
-  // BLOC
-  sl.registerFactory(
-    () => HomeBloc(
-      useCase: sl(),
-    ),
-  );
-
-  // REPO DATASOURCE USERCASE
-
-  sl
-    ..registerLazySingleton<HomeDataSource>(
-      () => HomeDataImpl(
-        dio: sl(),
-      ),
-    )
-    ..registerLazySingleton<IHomeRepo>(
-      () => HomeRepository(
-        homeDataSource: sl(),
-      ),
-    )
-    ..registerLazySingleton(
-      () => GetHomeDataUseCase(
-        repo: sl(),
-      ),
-    );
 
   /*   BUILD HOMEDDATA RELATE INSTANCE */
 
