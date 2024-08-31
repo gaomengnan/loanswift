@@ -5,6 +5,7 @@ class Assets {
   static const onboardingBackground = "assets/images/board.png";
   static const underConstruction = "assets/lottie/underconstruction.json";
   static const loading = "assets/lottie/loading.json";
+  static const placeholder = "assets/lottie/placeholder.json";
   static const idcardFront = "assets/images/idcard_front.png";
   static const idcardReverse = "assets/images/idcard_reverse.png";
   static const bgIdentifyIdcard = "assets/images/bg_identify_idcard.png";

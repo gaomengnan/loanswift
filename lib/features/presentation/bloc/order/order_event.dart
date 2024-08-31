@@ -6,7 +6,9 @@ sealed class OrderEvent extends Equatable {}
 class OrderLoadEvent extends OrderEvent {
   final OrderStatus orderStatus;
 
-  OrderLoadEvent({required this.orderStatus});
+  final bool isRefresh;
+
+  OrderLoadEvent({required this.orderStatus, this.isRefresh = false});
 
   @override
   List<Object?> get props => [orderStatus];

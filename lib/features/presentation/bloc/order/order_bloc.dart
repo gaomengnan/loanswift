@@ -18,7 +18,11 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
   }
 
   void _orderLoadHandler(OrderLoadEvent event, Emitter<OrderState> emit) async {
-    emit(OrderLoading());
+    if (event.isRefresh) {
+      emit(OrderRefresh(orders: state.orders));
+    } else {
+      emit(OrderLoading(orders: state.orders));
+    }
 
     final res = await queryOrderUseCase(
       QueryOrdersParams(status: event.orderStatus),
@@ -26,6 +30,6 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
 
     res.fold(
         (l) => emit(OrderLoadFailure(error: CustomError(message: l.message))),
-        (r) => emit(OrderLoadSuccess()));
+        (r) => emit(OrderLoadSuccess(orders: r)));
   }
 }
