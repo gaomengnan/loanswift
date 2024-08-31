@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/core.dart';
+import 'package:loanswift/features/data/models/models.dart';
 import 'package:loanswift/theme/theme.dart';
 
 import 'package:loanswift/core/common/widgets/widgets.dart';
@@ -18,27 +19,42 @@ class MyOrder extends StatefulWidget {
 class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
   late TabController _tabController;
 
-  final RefreshController _refreshController = RefreshController();
+  //final RefreshController _refreshController = RefreshController();
+
   late AnimationController _anicontroller, _scaleController;
+
+  late List<DataMap> tabs = [];
 
   @override
   void initState() {
+    tabs = OrderStatus.values.map((e) {
+      final refreshController = RefreshController();
+      return {
+        "tab": Tab(
+          text: e.desc,
+        ),
+        'controller': refreshController,
+        'origin': e,
+      };
+    }).toList();
+
     _anicontroller = AnimationController(
-      vsync: this, duration: const Duration(milliseconds: 2000));
+        vsync: this, duration: const Duration(milliseconds: 2000));
 
     _scaleController =
         AnimationController(value: 0.0, vsync: this, upperBound: 1.0);
-    _tabController = TabController(vsync: this, length: 4);
+    _tabController = TabController(vsync: this, length: tabs.length);
     super.initState();
   }
 
   @override
-    void dispose() {
-      _refreshController.dispose();
-      _anicontroller.dispose();
-      _scaleController.dispose();
-      super.dispose();
-    }
+  void dispose() {
+    tabs.map((e) => e['controller'].dispose(recursive: true));
+    //_refreshController.dispose();
+    _anicontroller.dispose();
+    _scaleController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +68,8 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
           S.current.load_amount,
         ),
         bottom: TabBar(
+          tabAlignment: TabAlignment.start,
+          //labelPadding: EdgeInsets.all(0),
           dividerColor: Colors.transparent,
           indicatorColor: Colors.transparent,
           indicator: null,
@@ -66,39 +84,32 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
             fontSize: 14.sp,
           ),
           controller: _tabController,
-          tabs: const [
-            Tab(
-              text: "全部",
-            ),
-            Tab(
-              text: "未偿还",
-            ),
-            Tab(
-              text: "申请中",
-            ),
-            Tab(
-              text: "已偿还",
-            ),
-          ],
+          isScrollable: true,
+          tabs: tabs.map((data) => data['tab'] as Tab).toList(),
         ),
       ),
       body: TabBarView(
         controller: _tabController,
-        children: [
-          _buildListItems(),
-          _buildListItems(),
-          _buildListItems(),
-          _buildListItems(),
-        ],
+        children: tabs
+            .map((data) => _buildListItems(
+                  data['origin'] as OrderStatus,
+                  data['controller'] as RefreshController,
+                ))
+            .toList(),
+        //children: List.generate(tabs.length, (index) {
+        //  final tab = tabs[index];
+        //  return _buildListItems(tab['origin'] as OrderStatus,
+        //      tab['controller'] as RefreshController);
+        //}),
       ),
     );
   }
 
-  Widget _buildListItems() {
+  Widget _buildListItems(OrderStatus orderStatus, RefreshController refresh) {
     return Refresher(
       anicontroller: _anicontroller,
       scaleController: _scaleController,
-      refresh: _refreshController,
+      refresh: refresh,
       onRefresh: (_) {},
       child: ListView.builder(
         itemBuilder: (context, index) {
@@ -110,7 +121,8 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
             },
             child: Container(
               padding: EdgeInsets.symmetric(
-                horizontal: 10.w,),
+                horizontal: 10.w,
+              ),
               margin: const EdgeInsets.all(10),
               height: 120.h,
               decoration: BoxDecoration(

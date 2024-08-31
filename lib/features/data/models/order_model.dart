@@ -1,10 +1,54 @@
 import 'dart:convert';
 
-import 'package:loanswift/core/core.dart';
 import 'package:loanswift/features/domain/entity/orders/order.dart';
 import 'package:loanswift/features/domain/entity/orders/repayment_info.dart';
 import 'package:loanswift/features/domain/entity/orders/user_order_copywriter_info.dart';
 import 'package:loanswift/features/domain/entity/products/relation_product.dart';
+
+enum OrderStatus {
+  all,
+  unserReview,
+  awaitingRepayment,
+  auditFailure,
+  overdue,
+  completed
+}
+
+extension OrderStatusExtension on OrderStatus {
+  String get desc {
+    switch (this) {
+      case OrderStatus.all:
+        return '所有';
+      case OrderStatus.unserReview:
+        return '审核中';
+      case OrderStatus.awaitingRepayment:
+        return '待还款';
+      case OrderStatus.auditFailure:
+        return '审核失败';
+      case OrderStatus.overdue:
+        return '已逾期';
+      case OrderStatus.completed:
+        return '已完成';
+    }
+  }
+
+  String get text {
+    switch (this) {
+      case OrderStatus.all:
+        return 'ALL';
+      case OrderStatus.unserReview:
+        return 'UNDER_REVIEW';
+      case OrderStatus.awaitingRepayment:
+        return 'AWAITING_REPAYMENT';
+      case OrderStatus.auditFailure:
+        return 'AUDIT_FAILURE';
+      case OrderStatus.overdue:
+        return 'OVERDUE';
+      case OrderStatus.completed:
+        return 'COMPLETED';
+    }
+  }
+}
 
 OrderModel orderModelFromMap(String str) =>
     OrderModel.fromMap(json.decode(str));

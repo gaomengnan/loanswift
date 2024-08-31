@@ -95,12 +95,16 @@ class DioClient {
 
   ResultFuture<Response> get({
     required String path,
+    Map<String, dynamic>? queryParameters,
   }) async {
     final InternetConnectionStatus connected =
         await connectionChecker.connectionStatus;
     if (connected == InternetConnectionStatus.connected) {
       try {
-        final resp = await _dio.get(path);
+        final resp = await _dio.get(
+          path,
+          queryParameters: queryParameters,
+        );
 
         final int apiCode =
             int.tryParse(resp.data['code']?.toString() ?? '') ?? 10000;

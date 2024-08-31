@@ -61,7 +61,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     res.fold((l) {
       emit(LogoutFailure(
         error: CustomError(
-          error: l.message,
+          message: l.message,
         ),
         authStatus: state.authenticationStatus,
       ));
@@ -105,7 +105,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       (l) => emit(
         AuthFailure(
           error: CustomError(
-            error: l.message,
+            message: l.message,
           ),
         ),
       ),

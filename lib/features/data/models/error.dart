@@ -4,8 +4,8 @@ class CustomError extends Equatable {
   final DateTime _time;
   final String _error;
   CustomError({
-    required String error,
-  })  : _error = error,
+    required String message,
+  })  : _error = message,
         _time = DateTime.now();
 
   String get error => _error;

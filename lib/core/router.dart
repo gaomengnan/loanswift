@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loanswift/core/common/widgets/page_404.dart';
+import 'package:loanswift/core/core.dart';
+import 'package:loanswift/features/data/models/order_model.dart';
+import 'package:loanswift/features/presentation/bloc/order/order_bloc.dart';
 import 'package:loanswift/features/presentation/views/auth/auth_page.dart';
 import 'package:loanswift/features/presentation/views/index/index_page.dart';
 import 'package:loanswift/features/presentation/views/order/my_order.dart';
@@ -7,7 +11,6 @@ import 'package:loanswift/features/presentation/views/order/order_detail.dart';
 import 'package:loanswift/features/presentation/views/order/repayment_page.dart';
 import 'package:loanswift/features/presentation/views/person/identity_page.dart';
 import 'package:loanswift/features/presentation/views/widgets/verification_code.dart';
-
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
@@ -31,7 +34,13 @@ Route<dynamic> generateRoute(RouteSettings settings) {
 
     case MyOrder.routerName:
       return _pageBuilder(
-        (_) => const MyOrder(),
+        (_) => BlocProvider(
+          create: (context) => sl<OrderBloc>()
+            ..add(OrderLoadEvent(
+              orderStatus: OrderStatus.all,
+            )),
+          child: const MyOrder(),
+        ),
         settings: settings,
       );
 

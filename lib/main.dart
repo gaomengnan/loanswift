@@ -5,7 +5,6 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/core.dart';
-import 'package:loanswift/features/presentation/bloc/home/home_bloc.dart';
 import 'package:loanswift/features/presentation/views/board/boarding_page.dart';
 import 'package:loanswift/theme/theme.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -32,10 +31,6 @@ Future<void> main() async {
       ),
       BlocProvider(
         create: (_) => sl<AuthBloc>()..add(AppStarupEvent()),
-      ),
-      
-      BlocProvider(
-        create: (_) => sl<HomeBloc>()..add(HomeStarupEvent()),
       ),
     ],
     child: const MyApp(),

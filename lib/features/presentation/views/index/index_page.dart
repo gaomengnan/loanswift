@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/core.dart';
+import 'package:loanswift/features/presentation/bloc/home/home_bloc.dart';
 import 'package:loanswift/theme/pallete.dart';
 
 import '../home/home_page.dart';
@@ -18,7 +20,11 @@ class IndexPage extends StatefulWidget {
 
 class _IndexPageState extends State<IndexPage> {
   List pages = [
-    const HomePage(),
+    BlocProvider(
+      create: (context) => sl<HomeBloc>()..add(HomeStarupEvent()),
+      child: const HomePage(),
+    ),
+    //const HomePage(),
     const PersonPage(),
   ];
 

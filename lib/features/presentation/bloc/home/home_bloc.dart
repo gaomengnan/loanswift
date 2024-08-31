@@ -22,7 +22,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     final resp = await getHomeDataUseCase();
 
     resp.fold((l) {
-      emit(HomeLoadFailure(CustomError(error: l.message)));
+      emit(HomeLoadFailure(CustomError(message: l.message)));
     }, (r) {
       emit(
         HomeLoadSuccess(homeData: r),
@@ -35,7 +35,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     final resp = await getHomeDataUseCase();
 
     resp.fold((l) {
-      emit(HomeLoadFailure(CustomError(error: l.message)));
+      emit(HomeLoadFailure(CustomError(message: l.message)));
     }, (r) {
       emit(
         HomeLoadSuccess(homeData: r),

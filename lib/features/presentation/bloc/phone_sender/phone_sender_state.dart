@@ -41,7 +41,7 @@ class PhoneSenderInitial extends PhoneSenderState {
           duration,
           phone,
           countdownState,
-          CustomError(error: ""),
+          CustomError(message: ""),
         );
 }
 
@@ -54,7 +54,7 @@ class PhoneSenderRunInProgress extends PhoneSenderState {
           duration,
           phone,
           countdownState,
-          CustomError(error: ""),
+          CustomError(message: ""),
         );
 }
 
@@ -63,7 +63,7 @@ class PhoneSenderRunPause extends PhoneSenderState {
     int duration,
     String phone,
     CountdownState countdownState,
-  ) : super(duration, phone, countdownState, CustomError(error: ""));
+  ) : super(duration, phone, countdownState, CustomError(message: ""));
 }
 
 class PhoneSenderRunComplete extends PhoneSenderState {
@@ -74,7 +74,7 @@ class PhoneSenderRunComplete extends PhoneSenderState {
           0,
           phone,
           CountdownState.idle,
-          CustomError(error: ""),
+          CustomError(message: ""),
         );
 }
 
@@ -84,7 +84,7 @@ class PhoneSenderErrorState extends PhoneSenderState {
           0,
           phone,
           CountdownState.idle,
-          CustomError(error: error),
+          CustomError(message: error),
         );
 }
 
@@ -94,6 +94,6 @@ class PhoneSenderVerifyState extends PhoneSenderState {
           0,
           "",
           CountdownState.running,
-          CustomError(error: ""),
+          CustomError(message: ""),
         );
 }
