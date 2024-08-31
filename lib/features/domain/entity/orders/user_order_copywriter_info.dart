@@ -9,6 +9,13 @@ class UserOrderCopywriterInfo {
     required this.moneyText,
   });
 
+  UserOrderCopywriterInfo.empty()
+      : this(
+          orderStatusText: "",
+          dateText: "",
+          moneyText: "",
+        );
+
   factory UserOrderCopywriterInfo.fromMap(Map<String, dynamic> json) =>
       UserOrderCopywriterInfo(
         orderStatusText: json["order_status_text"],

@@ -48,7 +48,7 @@ class _BuildSuggestionState extends State<BuildSuggestion>
               horizontal: 30.w,
               vertical: 0,
             ),
-            title: AppText(
+            title: RText(
               text: S.current.recommend,
               textAlign: TextAlign.left,
               fontWeight: FontWeight.w600,
@@ -125,7 +125,7 @@ class _BuildSuggestionState extends State<BuildSuggestion>
                         ),
                       ),
                       UI.kWidth10(),
-                      AppText(
+                      RText(
                         textAlign: TextAlign.start,
                         text: product.productName,
                         fontWeight: FontWeight.w700,
@@ -144,7 +144,7 @@ class _BuildSuggestionState extends State<BuildSuggestion>
                     style: ElevatedButton.styleFrom(
                       minimumSize: Size(0.w, 20.h),
                     ),
-                    child: AppText(
+                    child: RText(
                       text: S.current.lijishengqing,
                       fontWeight: FontWeight.bold,
                       color: Pallete.whiteColor,
@@ -210,7 +210,7 @@ class _BuildSuggestionState extends State<BuildSuggestion>
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        AppText(
+                        RText(
                           text: product
                               .copywriterInfo.productDesc.mainPositionDesc,
                           size: 30.sp,
@@ -228,13 +228,13 @@ class _BuildSuggestionState extends State<BuildSuggestion>
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        AppText(
+                        RText(
                           text: product.copywriterInfo.productDesc.title,
                           //size: 14.sp,
                           fontWeight: FontWeight.w600,
                         ),
                         UI.kHeight5(),
-                        AppText(
+                        RText(
                           text: product.productAmount,
                           fontWeight: FontWeight.w800,
                           size: 18.sp,

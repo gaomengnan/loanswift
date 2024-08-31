@@ -102,12 +102,12 @@ class EventCard extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          AppText(
+                          RText(
                             text: "贷款金额",
                             size: 16.sp,
                             fontWeight: FontWeight.w700,
                           ),
-                          AppText(
+                          RText(
                             text: amount,
                             size: 16.sp,
                           ),

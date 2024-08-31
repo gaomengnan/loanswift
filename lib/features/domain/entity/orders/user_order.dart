@@ -1,6 +1,6 @@
-import 'package:loanswift/features/domain/entity/home/relation_product.dart';
-import 'package:loanswift/features/domain/entity/home/repayment_info.dart';
-import 'package:loanswift/features/domain/entity/home/user_order_copywriter_info.dart';
+import 'package:loanswift/features/domain/entity/products/relation_product.dart';
+import 'package:loanswift/features/domain/entity/orders/repayment_info.dart';
+import 'package:loanswift/features/domain/entity/orders/user_order_copywriter_info.dart';
 
 class UserOrder {
   final String orderNo;

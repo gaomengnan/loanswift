@@ -9,6 +9,13 @@ class RelationProduct {
     required this.productLogo,
   });
 
+  RelationProduct.empty()
+      : this(
+          productName: "",
+          productAmount: "",
+          productLogo: "",
+        );
+
   factory RelationProduct.fromMap(Map<String, dynamic> json) => RelationProduct(
         productName: json["product_name"],
         productAmount: json["product_amount"],

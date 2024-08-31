@@ -61,7 +61,7 @@ class RepaymentPage extends StatelessWidget {
                 horizontal: 10.w,
                 vertical: 10.h,
               ),
-              child: AppText(
+              child: RText(
                 textAlign: TextAlign.start,
                 text: "还款时间表",
                 size: 20.sp,
@@ -105,13 +105,13 @@ class BottomAmount extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        AppText(
+        RText(
           color: Pallete.blackColor,
           text: "60000",
           size: 18.sp,
         ),
         UI.kWidth10(),
-        AppText(
+        RText(
           color: Pallete.blackColor,
           text: "全额付款",
           size: 18.sp,
@@ -157,11 +157,11 @@ class Timeline2 extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        AppText(
+        RText(
           size: 16.sp,
           text: k,
         ),
-        AppText(
+        RText(
           size: 16.sp,
           text: v,
         ),
@@ -259,7 +259,7 @@ class ReturnAmountComponent extends StatelessWidget {
                     shape: BoxShape.circle,
                   ),
                 ),
-                AppText(
+                RText(
                   text: "付款金额",
                 ),
                 Container(
@@ -273,7 +273,7 @@ class ReturnAmountComponent extends StatelessWidget {
               ],
             ),
             UI.kHeight10(),
-            AppText(
+            RText(
               size: 24.sp,
               fontWeight: FontWeight.w900,
               text: "600000",
@@ -332,7 +332,7 @@ class BuildKindTips extends StatelessWidget {
                   const Icon(
                     Icons.lightbulb,
                   ),
-                  AppText(
+                  RText(
                     text: "温馨提示",
                     color: Pallete.whiteColor,
                   ),

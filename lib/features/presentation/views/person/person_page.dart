@@ -43,7 +43,7 @@ class _PersonPageState extends State<PersonPage> {
         ),
         UI.kWidth10(),
         const SizedBox(height: 5),
-        AppText(
+        RText(
           text: label,
           size: 13.sp,
         ),
@@ -98,7 +98,7 @@ class _PersonPageState extends State<PersonPage> {
                   bottom: 15,
                 ),
                 title: scrolled
-                    ? AppText(
+                    ? RText(
                         text: "Welcome ~ ${isLogin ? loginPhone : ''}",
                         size: 18.sp,
                       )
@@ -129,7 +129,7 @@ class _PersonPageState extends State<PersonPage> {
                         },
                         title: Row(
                           children: [
-                            AppText(
+                            RText(
                               text: isLogin
                                   ? loginPhone
                                   : S.current.login_or_register,
@@ -154,7 +154,7 @@ class _PersonPageState extends State<PersonPage> {
                       horizontal: 20.w,
                       vertical: 20.h,
                     ),
-                    child: AppText(
+                    child: RText(
                       text: S.current.my_repayment,
                       size: 18.sp,
                       fontWeight: FontWeight.w600,
@@ -178,7 +178,7 @@ class _PersonPageState extends State<PersonPage> {
                     ),
                     child: Column(
                       children: [
-                        AppText(
+                        RText(
                           text: S.current.no_credit_limit,
                           size: 14.sp,
                         ),

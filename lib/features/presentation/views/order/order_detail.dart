@@ -30,13 +30,13 @@ class _OrderDetailState extends State<OrderDetail> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AppText(
+          RText(
             //size: 12.sp,
             //fontWeight: FontWeight.w700,
             textAlign: TextAlign.start,
             text: k,
           ),
-          AppText(
+          RText(
             //size: 15.sp,
             fontWeight: FontWeight.w600,
             text: v,
@@ -89,14 +89,14 @@ class _OrderDetailState extends State<OrderDetail> {
                     leading: const Icon(
                       IconlyBold.play,
                     ),
-                    title: AppText(
+                    title: RText(
                       text: "审查中",
                       textAlign: TextAlign.start,
                       size: 14.sp,
                       fontWeight: FontWeight.w600,
                       color: Colors.red,
                     ),
-                    subtitle: AppText(
+                    subtitle: RText(
                       text: "您的订单正在审查中，请注意短信或者油箱查收！",
                       textAlign: TextAlign.start,
                       color: Colors.black45,
@@ -148,7 +148,7 @@ class _OrderDetailState extends State<OrderDetail> {
                         IconlyLight.buy,
                       ),
                     ),
-                    title: AppText(
+                    title: RText(
                       textAlign: TextAlign.start,
                       text: "应用程序",
                       fontWeight: FontWeight.w600,
@@ -228,7 +228,7 @@ class _OrderDetailState extends State<OrderDetail> {
                           color: Pallete.color3,
                         ),
                       ),
-                      AppText(
+                      RText(
                         text: "按时还款可以获取更高信用",
                         textAlign: TextAlign.start,
                         size: 14.sp,

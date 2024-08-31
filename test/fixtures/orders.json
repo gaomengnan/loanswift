@@ -1,0 +1,26 @@
+[
+  {
+    "order_no": "24080616373173657117",
+    "relation_product": {
+      "product_name": "Samakita",
+      "product_amount": "1,000,000.00",
+      "product_logo": "http://8.215.17.71:8099/files/uploads/product_logo/67f1b597842853ba3dfd7c7d6247526f.png"
+    },
+    "copywriter_info": {
+      "order_status_text": "待还款",
+      "date_text": "到期时间",
+      "money_text": "借款"
+    },
+    "show_time": "18/08/2024",
+    "order_amount": "Rp 1.000.000",
+    "service_money": "0.00",
+    "term": "7 天",
+    "repayment_info": {
+      "loan_interest": "0.00",
+      "last_repay_time": null,
+      "overdue": 0,
+      "overdue_days": 0,
+      "actual_total_money": "0.00"
+    }
+  }
+]

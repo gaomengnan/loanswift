@@ -129,12 +129,12 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          AppText(
+                          RText(
                             text: "应用程序",
                             size: 16.sp,
                             fontWeight: FontWeight.w700,
                           ),
-                          AppText(
+                          RText(
                             text: "过期",
                             color: Pallete.redDeepColor,
                             size: 13.sp,
@@ -163,12 +163,12 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
                               IconlyBold.play,
                             ),
                           ),
-                          title: AppText(
+                          title: RText(
                             textAlign: TextAlign.left,
                             text: "60,0000",
                             size: 16.sp,
                           ),
-                          subtitle: AppText(
+                          subtitle: RText(
                             textAlign: TextAlign.left,
                             //size: 16.sp,
                             text: "贷款",

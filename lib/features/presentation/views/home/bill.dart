@@ -62,7 +62,7 @@ class BuildBill extends StatelessWidget {
                               ),
                             ),
                             UI.kWidth10(),
-                            AppText(
+                            RText(
                               textAlign: TextAlign.start,
                               text: order.relationProduct.productName,
                               color: Pallete.blackColor,
@@ -112,13 +112,13 @@ class BuildBill extends StatelessWidget {
                               crossAxisAlignment:
                                   CrossAxisAlignment.center, // 水平居中
                               children: [
-                                AppText(
+                                RText(
                                   text: order.orderAmount,
                                   size: 16.sp,
                                   fontWeight: FontWeight.bold,
                                 ),
                                 UI.kHeight10(),
-                                AppText(
+                                RText(
                                   text: order.copywriterInfo.orderStatusText,
                                   size: 12.sp,
                                   fontWeight: FontWeight.bold,
@@ -143,13 +143,13 @@ class BuildBill extends StatelessWidget {
                             crossAxisAlignment:
                                 CrossAxisAlignment.center, // 水平居中
                             children: [
-                              AppText(
+                              RText(
                                 text: order.showTime,
                                 size: 18.sp,
                                 fontWeight: FontWeight.bold,
                               ),
                               UI.kHeight10(),
-                              AppText(
+                              RText(
                                 maxLines: 1,
                                 text: order.copywriterInfo.dateText,
                                 size: 12.sp,

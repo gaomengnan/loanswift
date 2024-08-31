@@ -51,7 +51,7 @@ class _IDCardUploadPageState extends State<IDCardUploadPage> {
   }
 
   Widget buildCardDescription() {
-    return AppText(
+    return RText(
       size: 17.sp,
       fontWeight: FontWeight.bold,
       text: S.current.idcard,
@@ -127,7 +127,7 @@ class _IDCardUploadPageState extends State<IDCardUploadPage> {
                       ),
                     ),
                     child: Center(
-                      child: AppText(
+                      child: RText(
                         text: S.current.take_photo,
                         size: 17.sp,
                       ),
@@ -162,7 +162,7 @@ class _IDCardUploadPageState extends State<IDCardUploadPage> {
                       ),
                     ),
                     child: Center(
-                      child: AppText(
+                      child: RText(
                         text: S.current.take_photo_from_gallery,
                         size: 17.sp,
                       ),
@@ -185,7 +185,7 @@ class _IDCardUploadPageState extends State<IDCardUploadPage> {
                     height: 50.h,
                     width: double.infinity,
                     child: Center(
-                      child: AppText(
+                      child: RText(
                         text: S.current.cancel,
                         size: 17.sp,
                       ),
@@ -236,7 +236,7 @@ class _IDCardUploadPageState extends State<IDCardUploadPage> {
               ),
             ),
             // UI.kHeight10(),
-            AppText(
+            RText(
               size: 15.sp,
               text: text,
               textAlign: TextAlign.center,

@@ -37,7 +37,7 @@ class BuildAppBar extends StatelessWidget {
       leading: Row(
         children: [
           UI.kWidth20(),
-          AppText(
+          RText(
             text: "Hi~ ${S.current.welcome_you}",
             size: 16.sp,
             fontWeight: FontWeight.bold,

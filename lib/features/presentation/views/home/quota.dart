@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/core.dart';
-import 'package:loanswift/features/domain/entity/home/main_products.dart';
+import 'package:loanswift/features/domain/entity/products/main_products.dart';
 import 'package:loanswift/features/presentation/views/person/identity_page.dart';
 
 import '../../../../core/common/widgets/widgets.dart';
@@ -83,13 +83,13 @@ class BuildQuota extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            AppText(
+            RText(
               text: mainProducts.copywriterInfo.productDesc.title,
               // color: Pallete.whiteColor,
               size: 13.sp,
             ),
             UI.kHeight5(),
-            AppText(
+            RText(
               text: mainProducts.productAmount,
               size: 33.sp,
               color: Theme.of(context).primaryColor,
@@ -159,7 +159,7 @@ class BuildQuota extends StatelessWidget {
                                   left: 5.h,
                                   right: 5.h),
                               child: Center(
-                                child: AppText(
+                                child: RText(
                                   text: mainProducts.copywriterInfo.productDesc
                                       .mainPositionDesc,
                                   size: 13.sp,
@@ -217,7 +217,7 @@ class BuildQuota extends StatelessWidget {
                                                 Theme.of(context).primaryColor,
                                           ),
                                           child: Center(
-                                            child: AppText(
+                                            child: RText(
                                               text: item["icon_text"],
                                               fontWeight: FontWeight.w900,
                                               color: Pallete.whiteColor,
@@ -323,7 +323,7 @@ class BuildQuota extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                AppText(
+                RText(
                   text: mainProducts.productName,
                   color: Pallete.whiteColor,
                   fontWeight: FontWeight.w900,

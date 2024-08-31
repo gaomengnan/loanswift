@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/theme/pallete.dart';
 
 // ignore: must_be_immutable
-class AppText extends StatelessWidget {
+class RText extends StatelessWidget {
   // 颜色
   Color? color;
 
@@ -21,7 +21,7 @@ class AppText extends StatelessWidget {
 
   int? maxLines;
 
-  AppText({
+  RText({
     super.key,
     required this.text,
     this.color = Pallete.blackColor,

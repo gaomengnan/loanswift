@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         leading: Row(
           children: [
             UI.kWidth20(),
-            AppText(
+            RText(
               text: "Hi~ ${S.current.welcome_you}",
               size: 16.sp,
               fontWeight: FontWeight.bold,
@@ -128,9 +128,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
                   // 借钱攻略
 
-                  BuildSuggestion(
-                    apiProducts: state.homeData.apiProducts,
-                  ),
+                  if (state.homeData.apiProducts.isNotEmpty)
+                    BuildSuggestion(
+                      apiProducts: state.homeData.apiProducts,
+                    ),
 
                   const SliverPadding(
                     padding: EdgeInsets.all(8.0),
@@ -175,7 +176,7 @@ class BuildContactUS extends StatelessWidget {
                   "/contact_us",
                 );
               },
-              child: AppText(
+              child: RText(
                 text: '联系我们',
               ),
             ),

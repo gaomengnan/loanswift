@@ -111,7 +111,7 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          AppText(
+                          RText(
                             text: S.current.enter_verification_code,
                             size: 16.sp,
                           ),
@@ -216,7 +216,7 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              AppText(
+                              RText(
                                   text:
                                       "${S.current.unable_to_receive_the_verification_code}?"),
 

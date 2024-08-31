@@ -1,6 +1,7 @@
-import 'package:loanswift/features/domain/entity/home/credit_info.dart';
-import 'package:loanswift/features/domain/entity/home/main_products_copywriter_info.dart';
-import 'package:loanswift/features/domain/entity/home/product_limit.dart';
+import 'package:loanswift/features/domain/entity/products/credit_info.dart';
+import 'package:loanswift/features/domain/entity/products/product_limit.dart';
+
+import 'main_products_copywriter_info.dart';
 
 class MainProducts {
   final String productName;

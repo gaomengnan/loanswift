@@ -41,12 +41,12 @@ class RepaymentLine extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              AppText(
+              RText(
                 text: amount,
                 size: 16.sp,
               ),
               UI.kHeight5(),
-              AppText(
+              RText(
                 text: title,
                 size: 14.sp,
               ),
@@ -57,12 +57,12 @@ class RepaymentLine extends StatelessWidget {
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  AppText(
+                  RText(
                     text: dateline,
                     size: 16.sp,
                   ),
                   UI.kHeight5(),
-                  AppText(
+                  RText(
                     text: desc,
                     size: 14.sp,
                   ),

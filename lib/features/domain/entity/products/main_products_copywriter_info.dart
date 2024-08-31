@@ -1,5 +1,5 @@
 import 'package:loanswift/features/domain/entity/home/button.dart';
-import 'package:loanswift/features/domain/entity/home/product_desc.dart';
+import 'package:loanswift/features/domain/entity/products/product_desc.dart';
 
 class MainProductsCopywriterInfo {
   final Button button;

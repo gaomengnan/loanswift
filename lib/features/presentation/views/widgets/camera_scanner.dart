@@ -142,7 +142,7 @@ class _CardScannerState extends State<CardScanner> {
                       onPressed: () async {
                         await openAppSettings();
                       },
-                      child: AppText(
+                      child: RText(
                         text: S.current.click_to_access,
                         color: Pallete.blackColor,
                         size: 15.sp,

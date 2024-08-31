@@ -12,6 +12,14 @@ class RepaymentInfo {
     required this.overdueDays,
     required this.actualTotalMoney,
   });
+  RepaymentInfo.empty()
+      : this(
+          loanInterest: "",
+          lastRepayTime: null,
+          overdue: 0,
+          overdueDays: 0,
+          actualTotalMoney: "",
+        );
 
   factory RepaymentInfo.fromMap(Map<String, dynamic> json) => RepaymentInfo(
         loanInterest: json["loan_interest"],

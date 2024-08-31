@@ -43,7 +43,7 @@ class _BasicInformationState extends State<BasicInformation> {
 
       Row(
         children: [
-          AppText(
+          RText(
             size: 16.sp,
             fontWeight: FontWeight.w900,
             text: "基础信息",
@@ -115,7 +115,7 @@ class _BasicInformationState extends State<BasicInformation> {
 
       Row(
         children: [
-          AppText(
+          RText(
             size: 16.sp,
             fontWeight: FontWeight.w900,
             text: "工作信息",

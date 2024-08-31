@@ -90,7 +90,7 @@ class _LoginWidgetState extends State<LoginWidget> {
           // title / close
           Row(
             children: [
-              AppText(
+              RText(
                 text: S.current.huanying,
                 size: 20.sp,
                 fontWeight: FontWeight.w900,
@@ -279,7 +279,7 @@ class BuildBottomButton extends StatelessWidget {
                   Pallete.primaryColor,
                 ), // 设置字体颜色
               ),
-              child: AppText(
+              child: RText(
                 text: S.current.jindengluzhuce,
                 fontWeight: FontWeight.bold,
                 color: textColor,
