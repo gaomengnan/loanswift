@@ -20,7 +20,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
-  final RefreshController _refreshController = RefreshController();
+  final RefreshController _refreshController = RefreshController(initialRefresh: false);
 
   late AnimationController _anicontroller, _scaleController;
 

@@ -72,6 +72,9 @@ class UI {
     );
   }
 
+  static Future<void> hideLoading() async {
+    await EasyLoading.dismiss();
+  }
   static void showSignInAndUpBottomSheet(context) async {
     await showModalBottomSheet(
       useSafeArea: true,
@@ -189,13 +192,13 @@ class UI {
   }
   static Widget squareContainer(Widget child) {
     return Container(
-      padding: EdgeInsets.all(15.sp),
+      padding: EdgeInsets.all(10.sp),
       decoration: BoxDecoration(
         color: Colors.white30,
         borderRadius: BorderRadius.circular(8.0.sp), // 圆角半径
       ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(8.0.sp), // 设置圆角
+      child: ClipOval(
+        //borderRadius: BorderRadius.circular(8.0.sp), // 设置圆角
         child: child,
       ),
     );

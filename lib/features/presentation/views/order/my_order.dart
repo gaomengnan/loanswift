@@ -1,7 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:loanswift/core/common/widgets/placeholder_page.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/features/data/models/models.dart';
 import 'package:loanswift/features/presentation/bloc/order/order_bloc.dart';
@@ -30,7 +31,7 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
   @override
   void initState() {
     tabs = OrderStatus.values.map((e) {
-      final refreshController = RefreshController();
+      final refreshController = RefreshController(initialRefresh: false);
       return {
         "tab": Tab(
           text: e.desc,
@@ -43,9 +44,22 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
     _anicontroller = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 2000));
 
-    _scaleController =
-        AnimationController(value: 0.0, vsync: this, upperBound: 1.0);
+    _scaleController = AnimationController(
+      value: 0.0,
+      vsync: this,
+      upperBound: 1.0,
+    );
+
     _tabController = TabController(vsync: this, length: tabs.length);
+
+    _tabController.addListener(() {
+      if (_tabController.indexIsChanging) {
+        final DataMap data = tabs[_tabController.index];
+        context
+            .read<OrderBloc>()
+            .add(OrderLoadEvent(orderStatus: data['origin'] as OrderStatus));
+      }
+    });
     super.initState();
   }
 
@@ -91,12 +105,17 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
         ),
       ),
       body: TabBarView(
+        physics: const NeverScrollableScrollPhysics(),
         controller: _tabController,
         children: tabs
-            .map((data) => _buildListItems(
+            .map(
+              (data) => Scrollbar(
+                child: _buildListItems(
                   data['origin'] as OrderStatus,
                   data['controller'] as RefreshController,
-                ))
+                ),
+              ),
+            )
             .toList(),
       ),
     );
@@ -108,14 +127,38 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
       if (state is OrderLoadFailure) {
         UI.showError(context, state.error.error);
       }
+
+      if(state is OrderRefresh) {
+        UI.showLoading();
+      }else{
+        UI.hideLoading();
+      }
+
+      if (state is OrderLoadSuccess) {
+        if (refreshController.isRefresh) {
+          refreshController.refreshCompleted();
+        }
+      }
     }, builder: (context, state) {
+
+      List<OrderModel> data = state.orders;
+
+
       return Refresher(
         anicontroller: _anicontroller,
         scaleController: _scaleController,
         refresh: refreshController,
-        onRefresh: (_) {},
-        child: ListView.builder(
+        onRefresh: (_) {
+          context.read<OrderBloc>().add(
+                OrderLoadEvent(
+                  orderStatus: orderStatus,
+                  isRefresh: true,
+                ),
+              );
+        },
+        child: data.isEmpty ? const PlaceholderPage() : ListView.builder(
           itemBuilder: (context, index) {
+            final order = data[index];
             return InkWell(
               onTap: () {
                 Navigator.of(context).pushNamed(
@@ -145,12 +188,12 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             RText(
-                              text: "应用程序",
+                              text: order.relationProduct.productName,
                               size: 16.sp,
                               fontWeight: FontWeight.w700,
                             ),
                             RText(
-                              text: "过期",
+                              text: order.copywriterInfo.orderStatusText,
                               color: Pallete.redDeepColor,
                               size: 13.sp,
                               fontWeight: FontWeight.w600,
@@ -174,19 +217,38 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
                         child: Center(
                           child: ListTile(
                             leading: UI.squareContainer(
-                              const Icon(
-                                IconlyBold.play,
+                              Image(
+                                //height: 35.h,
+                                //width: 35.w,
+                                fit: BoxFit.cover,
+                                image: CachedNetworkImageProvider(
+                                    order.relationProduct.productLogo),
                               ),
                             ),
                             title: RText(
                               textAlign: TextAlign.left,
-                              text: "60,0000",
+                              text: order.orderAmount,
                               size: 16.sp,
                             ),
-                            subtitle: RText(
-                              textAlign: TextAlign.left,
-                              //size: 16.sp,
-                              text: "贷款",
+                            subtitle: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                RText(
+                                  textAlign: TextAlign.left,
+                                  //size: 16.sp,
+                                  text: order.copywriterInfo.moneyText,
+                                ),
+                                SizedBox(
+                                  height: 10.h,
+                                  child: const VerticalDivider(),
+                                ),
+                                RText(
+                                  textAlign: TextAlign.left,
+                                  //size: 16.sp,
+                                  color: Pallete.redColor,
+                                  text: order.term,
+                                ),
+                              ],
                             ),
                             trailing: Column(
                               children: [
@@ -196,15 +258,15 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
                                       style: const TextStyle(
                                         color: Pallete.blackColor,
                                       ),
-                                      text: "Due Date",
+                                      text: order.copywriterInfo.dateText,
                                       children: [
                                         WidgetSpan(
                                           child: SizedBox(
                                             width: 3.w,
                                           ),
                                         ),
-                                        const TextSpan(
-                                          text: "14-09-2024",
+                                        TextSpan(
+                                          text: order.showTime,
                                         ),
                                       ],
                                     ),
@@ -229,7 +291,7 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
               ),
             );
           },
-          itemCount: 10,
+          itemCount: data.length,
         ),
       );
     });

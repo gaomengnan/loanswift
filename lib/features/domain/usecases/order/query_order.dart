@@ -10,7 +10,7 @@ class QueryOrderUseCase extends UsecaseParams<void, QueryOrdersParams> {
   QueryOrderUseCase({required IOrder order}) : _order = order;
 
   @override
-  ResultFuture<void> call(QueryOrdersParams params) =>
+  ResultFuture<List<OrderModel>> call(QueryOrdersParams params) =>
       _order.queryOrders(status: params.status.text);
 }
 

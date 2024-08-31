@@ -47,7 +47,6 @@ class _RefresherState extends State<Refresher> {
         _anicontroller.repeat();
       }
     });
-
     super.initState();
   }
 
@@ -63,6 +62,7 @@ class _RefresherState extends State<Refresher> {
   @override
   Widget build(BuildContext context) {
     return SmartRefresher(
+      physics: const BouncingScrollPhysics(),
       header: ClassicHeader(
         textStyle: const TextStyle(
           color: Colors.black,
