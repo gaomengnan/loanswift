@@ -14,7 +14,7 @@ class HomeShimmer extends StatelessWidget {
     this.bannerHeight = 200,
     this.quotaHeight = 200.0,
     this.billHeight = 160.0,
-    this.suggestionHeight = 150.0,
+    this.suggestionHeight = 200.0,
   });
 
   @override
