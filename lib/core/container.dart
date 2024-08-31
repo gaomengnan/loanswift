@@ -22,6 +22,7 @@ import 'package:loanswift/features/domain/usecases/authenticated/login.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/logout.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/send_phone_code.dart';
 import 'package:loanswift/features/domain/usecases/home/data.dart';
+import 'package:loanswift/features/domain/usecases/order/get_order_detail.dart';
 import 'package:loanswift/features/domain/usecases/order/query_order.dart';
 import 'package:loanswift/features/presentation/bloc/home/home_bloc.dart';
 import 'package:loanswift/features/presentation/bloc/order/order_bloc.dart';
@@ -140,11 +141,17 @@ Future<void> initialize() async {
   /*  BUILD ORDER BLOC   */
 
   sl
-    ..registerFactory(() => OrderBloc(queryOrderUseCase: sl()))
+    ..registerFactory(
+      () => OrderBloc(
+        queryOrderUseCase: sl(),
+        getOrderDetailUseCase: sl(),
+      ),
+    )
     ..registerLazySingleton<IOrder>(
         () => OrderRepository(orderDataSource: sl()))
     ..registerLazySingleton<IOrderDataSource>(() => OrderDataSource(http: sl()))
-    ..registerLazySingleton(() => QueryOrderUseCase(order: sl()));
+    ..registerLazySingleton(() => QueryOrderUseCase(order: sl()))
+    ..registerLazySingleton(() => GetOrderDetailUseCase(order: sl()));
 
   /*  BUILD ORDER BLOC END */
 

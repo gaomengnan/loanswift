@@ -128,9 +128,9 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
         UI.showError(context, state.error.error);
       }
 
-      if(state is OrderRefresh) {
+      if (state is OrderRefresh) {
         UI.showLoading();
-      }else{
+      } else {
         UI.hideLoading();
       }
 
@@ -140,9 +140,7 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
         }
       }
     }, builder: (context, state) {
-
       List<OrderModel> data = state.orders;
-
 
       return Refresher(
         anicontroller: _anicontroller,
@@ -156,143 +154,150 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
                 ),
               );
         },
-        child: data.isEmpty ? const PlaceholderPage() : ListView.builder(
-          itemBuilder: (context, index) {
-            final order = data[index];
-            return InkWell(
-              onTap: () {
-                Navigator.of(context).pushNamed(
-                  '/order_detail',
-                );
-              },
-              child: Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 10.w,
-                ),
-                margin: const EdgeInsets.all(10),
-                height: 120.h,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(10.sp),
-                  ),
-                ),
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        decoration: const BoxDecoration(
-                            //color: Colors.blue,
-                            ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            RText(
-                              text: order.relationProduct.productName,
-                              size: 16.sp,
-                              fontWeight: FontWeight.w700,
-                            ),
-                            RText(
-                              text: order.copywriterInfo.orderStatusText,
-                              color: Pallete.redDeepColor,
-                              size: 13.sp,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ],
+        child: data.isEmpty
+            ? const PlaceholderPage()
+            : ListView.builder(
+                itemBuilder: (context, index) {
+                  final order = data[index];
+                  return InkWell(
+                    onTap: () {
+                      Navigator.of(context).pushNamed(
+                        '/order_detail',
+                        arguments: {
+                          'order_no': order.orderNo,
+                        },
+                      );
+                    },
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 10.w,
+                      ),
+                      margin: const EdgeInsets.all(10),
+                      height: 120.h,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.sp),
                         ),
                       ),
-                    ),
-                    Expanded(
-                      flex: 2,
-                      child: Container(
-                        margin: EdgeInsets.only(
-                          bottom: 10.h,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.blue.withOpacity(0.1),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10.sp),
-                          ),
-                        ),
-                        child: Center(
-                          child: ListTile(
-                            leading: UI.squareContainer(
-                              Image(
-                                //height: 35.h,
-                                //width: 35.w,
-                                fit: BoxFit.cover,
-                                image: CachedNetworkImageProvider(
-                                    order.relationProduct.productLogo),
+                      child: Column(
+                        children: [
+                          Expanded(
+                            child: Container(
+                              decoration: const BoxDecoration(
+                                  //color: Colors.blue,
+                                  ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  RText(
+                                    text: order.relationProduct.productName,
+                                    size: 16.sp,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                  RText(
+                                    text: order.copywriterInfo.orderStatusText,
+                                    color: Pallete.redDeepColor,
+                                    size: 13.sp,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ],
                               ),
                             ),
-                            title: RText(
-                              textAlign: TextAlign.left,
-                              text: order.orderAmount,
-                              size: 16.sp,
-                            ),
-                            subtitle: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                RText(
-                                  textAlign: TextAlign.left,
-                                  //size: 16.sp,
-                                  text: order.copywriterInfo.moneyText,
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: Container(
+                              margin: EdgeInsets.only(
+                                bottom: 10.h,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.blue.withOpacity(0.1),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.sp),
                                 ),
-                                SizedBox(
-                                  height: 10.h,
-                                  child: const VerticalDivider(),
-                                ),
-                                RText(
-                                  textAlign: TextAlign.left,
-                                  //size: 16.sp,
-                                  color: Pallete.redColor,
-                                  text: order.term,
-                                ),
-                              ],
-                            ),
-                            trailing: Column(
-                              children: [
-                                Expanded(
-                                  child: RichText(
-                                    text: TextSpan(
-                                      style: const TextStyle(
-                                        color: Pallete.blackColor,
+                              ),
+                              child: Center(
+                                child: ListTile(
+                                  leading: UI.squareContainer(
+                                    Image(
+                                      //height: 35.h,
+                                      //width: 35.w,
+                                      fit: BoxFit.cover,
+                                      image: CachedNetworkImageProvider(
+                                          order.relationProduct.productLogo),
+                                    ),
+                                  ),
+                                  title: RText(
+                                    textAlign: TextAlign.left,
+                                    text: order.orderAmount,
+                                    size: 16.sp,
+                                  ),
+                                  subtitle: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      RText(
+                                        textAlign: TextAlign.left,
+                                        //size: 16.sp,
+                                        text: order.copywriterInfo.moneyText,
                                       ),
-                                      text: order.copywriterInfo.dateText,
-                                      children: [
-                                        WidgetSpan(
-                                          child: SizedBox(
-                                            width: 3.w,
+                                      SizedBox(
+                                        height: 10.h,
+                                        child: const VerticalDivider(),
+                                      ),
+                                      RText(
+                                        textAlign: TextAlign.left,
+                                        //size: 16.sp,
+                                        color: Pallete.redColor,
+                                        text: order.term,
+                                      ),
+                                    ],
+                                  ),
+                                  trailing: Column(
+                                    children: [
+                                      Expanded(
+                                        child: RichText(
+                                          text: TextSpan(
+                                            style: const TextStyle(
+                                              color: Pallete.blackColor,
+                                            ),
+                                            text: order.copywriterInfo.dateText,
+                                            children: [
+                                              WidgetSpan(
+                                                child: SizedBox(
+                                                  width: 3.w,
+                                                ),
+                                              ),
+                                              TextSpan(
+                                                text: order.showTime,
+                                              ),
+                                            ],
                                           ),
                                         ),
-                                        TextSpan(
-                                          text: order.showTime,
+                                      ),
+                                      Expanded(
+                                        child: FilledButton(
+                                          onPressed: () {},
+                                          child: const Text(
+                                            "立即还款",
+                                          ),
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                                Expanded(
-                                  child: FilledButton(
-                                    onPressed: () {},
-                                    child: const Text(
-                                      "立即还款",
-                                    ),
-                                  ),
-                                ),
-                              ],
+                              ),
                             ),
                           ),
-                        ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
+                  );
+                },
+                itemCount: data.length,
               ),
-            );
-          },
-          itemCount: data.length,
-        ),
       );
     });
   }

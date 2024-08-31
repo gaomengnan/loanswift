@@ -45,8 +45,16 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       );
 
     case OrderDetail.routerName:
+      final args = settings.arguments as Map<String, dynamic>;
       return _pageBuilder(
-        (_) => const OrderDetail(),
+        (_) => BlocProvider(
+          create: (context) => sl<OrderBloc>()
+            ..add(
+              OrderLoadDetailEvent(
+                  orderNo: args['order_no']),
+            ),
+          child: const OrderDetail(),
+        ),
         settings: settings,
       );
     case RepaymentPage.routerName:

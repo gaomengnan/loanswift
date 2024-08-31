@@ -1,0 +1,25 @@
+{
+  "order_status": 180,
+  "notice_status_text": "已逾期",
+  "notice_des_text": "该订单已逾期 2 天。请尽快付款",
+  "v_code": "",
+  "product_name": "Samakita",
+  "product_logo": "http://8.215.17.71:8099/files/uploads/product_logo/67f1b597842853ba3dfd7c7d6247526f.png",
+  "is_delay": 1,
+  "user_order_detail": {
+    "detail": [
+      {
+        "text": "贷款金额",
+        "value": "Rp 1.000.000"
+      },
+      {
+        "text": "本期应还金额",
+        "value": "Rp 1.100.000"
+      },
+      {
+        "text": "第一期还款时间",
+        "value": "01-01-1970"
+      }
+    ]
+  }
+}

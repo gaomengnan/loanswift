@@ -13,3 +13,12 @@ class OrderLoadEvent extends OrderEvent {
   @override
   List<Object?> get props => [orderStatus];
 }
+
+class OrderLoadDetailEvent extends OrderEvent {
+  final String orderNo;
+
+  OrderLoadDetailEvent({required this.orderNo});
+
+  @override
+  List<Object?> get props => [orderNo];
+}
