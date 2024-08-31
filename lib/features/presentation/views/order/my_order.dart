@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/features/data/models/models.dart';
+import 'package:loanswift/features/presentation/bloc/order/order_bloc.dart';
 import 'package:loanswift/theme/theme.dart';
 
 import 'package:loanswift/core/common/widgets/widgets.dart';
@@ -96,138 +98,140 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
                   data['controller'] as RefreshController,
                 ))
             .toList(),
-        //children: List.generate(tabs.length, (index) {
-        //  final tab = tabs[index];
-        //  return _buildListItems(tab['origin'] as OrderStatus,
-        //      tab['controller'] as RefreshController);
-        //}),
       ),
     );
   }
 
-  Widget _buildListItems(OrderStatus orderStatus, RefreshController refresh) {
-    return Refresher(
-      anicontroller: _anicontroller,
-      scaleController: _scaleController,
-      refresh: refresh,
-      onRefresh: (_) {},
-      child: ListView.builder(
-        itemBuilder: (context, index) {
-          return InkWell(
-            onTap: () {
-              Navigator.of(context).pushNamed(
-                '/order_detail',
-              );
-            },
-            child: Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: 10.w,
-              ),
-              margin: const EdgeInsets.all(10),
-              height: 120.h,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(10.sp),
+  Widget _buildListItems(
+      OrderStatus orderStatus, RefreshController refreshController) {
+    return BlocConsumer<OrderBloc, OrderState>(listener: (context, state) {
+      if (state is OrderLoadFailure) {
+        UI.showError(context, state.error.error);
+      }
+    }, builder: (context, state) {
+      return Refresher(
+        anicontroller: _anicontroller,
+        scaleController: _scaleController,
+        refresh: refreshController,
+        onRefresh: (_) {},
+        child: ListView.builder(
+          itemBuilder: (context, index) {
+            return InkWell(
+              onTap: () {
+                Navigator.of(context).pushNamed(
+                  '/order_detail',
+                );
+              },
+              child: Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 10.w,
                 ),
-              ),
-              child: Column(
-                children: [
-                  Expanded(
-                    child: Container(
-                      decoration: const BoxDecoration(
-                          //color: Colors.blue,
-                          ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          RText(
-                            text: "应用程序",
-                            size: 16.sp,
-                            fontWeight: FontWeight.w700,
-                          ),
-                          RText(
-                            text: "过期",
-                            color: Pallete.redDeepColor,
-                            size: 13.sp,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ],
-                      ),
-                    ),
+                margin: const EdgeInsets.all(10),
+                height: 120.h,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10.sp),
                   ),
-                  Expanded(
-                    flex: 2,
-                    child: Container(
-                      margin: EdgeInsets.only(
-                        bottom: 10.h,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.blue.withOpacity(0.1),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10.sp),
+                ),
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        decoration: const BoxDecoration(
+                            //color: Colors.blue,
+                            ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            RText(
+                              text: "应用程序",
+                              size: 16.sp,
+                              fontWeight: FontWeight.w700,
+                            ),
+                            RText(
+                              text: "过期",
+                              color: Pallete.redDeepColor,
+                              size: 13.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ],
                         ),
                       ),
-                      child: Center(
-                        child: ListTile(
-                          leading: UI.squareContainer(
-                            const Icon(
-                              IconlyBold.play,
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Container(
+                        margin: EdgeInsets.only(
+                          bottom: 10.h,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.blue.withOpacity(0.1),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10.sp),
+                          ),
+                        ),
+                        child: Center(
+                          child: ListTile(
+                            leading: UI.squareContainer(
+                              const Icon(
+                                IconlyBold.play,
+                              ),
+                            ),
+                            title: RText(
+                              textAlign: TextAlign.left,
+                              text: "60,0000",
+                              size: 16.sp,
+                            ),
+                            subtitle: RText(
+                              textAlign: TextAlign.left,
+                              //size: 16.sp,
+                              text: "贷款",
+                            ),
+                            trailing: Column(
+                              children: [
+                                Expanded(
+                                  child: RichText(
+                                    text: TextSpan(
+                                      style: const TextStyle(
+                                        color: Pallete.blackColor,
+                                      ),
+                                      text: "Due Date",
+                                      children: [
+                                        WidgetSpan(
+                                          child: SizedBox(
+                                            width: 3.w,
+                                          ),
+                                        ),
+                                        const TextSpan(
+                                          text: "14-09-2024",
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: FilledButton(
+                                    onPressed: () {},
+                                    child: const Text(
+                                      "立即还款",
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                          title: RText(
-                            textAlign: TextAlign.left,
-                            text: "60,0000",
-                            size: 16.sp,
-                          ),
-                          subtitle: RText(
-                            textAlign: TextAlign.left,
-                            //size: 16.sp,
-                            text: "贷款",
-                          ),
-                          trailing: Column(
-                            children: [
-                              Expanded(
-                                child: RichText(
-                                  text: TextSpan(
-                                    style: const TextStyle(
-                                      color: Pallete.blackColor,
-                                    ),
-                                    text: "Due Date",
-                                    children: [
-                                      WidgetSpan(
-                                        child: SizedBox(
-                                          width: 3.w,
-                                        ),
-                                      ),
-                                      const TextSpan(
-                                        text: "14-09-2024",
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                child: FilledButton(
-                                  onPressed: () {},
-                                  child: const Text(
-                                    "立即还款",
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          );
-        },
-        itemCount: 10,
-      ),
-    );
+            );
+          },
+          itemCount: 10,
+        ),
+      );
+    });
   }
 }
