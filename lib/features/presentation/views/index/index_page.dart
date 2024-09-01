@@ -20,11 +20,7 @@ class IndexPage extends StatefulWidget {
 
 class _IndexPageState extends State<IndexPage> {
   List pages = [
-    BlocProvider(
-      create: (context) => sl<HomeBloc>()..add(HomeStarupEvent()),
-      child: const HomePage(),
-    ),
-    //const HomePage(),
+    const HomePage(),
     const PersonPage(),
   ];
 
@@ -71,7 +67,11 @@ class _IndexPageState extends State<IndexPage> {
           },
         ),
       ),
-      body: pages[currentIndex],
+      body: MultiBlocProvider(providers: [
+        BlocProvider(
+          create: (context) => sl<HomeBloc>()..add(HomeStarupEvent()),
+        ),
+      ], child: pages[currentIndex]),
     );
   }
 }

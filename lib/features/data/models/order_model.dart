@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:loanswift/core/core.dart';
 import 'package:loanswift/features/domain/entity/orders/order.dart';
 import 'package:loanswift/features/domain/entity/orders/repayment_info.dart';
 import 'package:loanswift/features/domain/entity/orders/user_order_copywriter_info.dart';
@@ -18,17 +19,17 @@ extension OrderStatusExtension on OrderStatus {
   String get desc {
     switch (this) {
       case OrderStatus.all:
-        return '所有';
+        return S.current.all;
       case OrderStatus.unserReview:
-        return '审核中';
+        return S.current.underReview;
       case OrderStatus.awaitingRepayment:
-        return '待还款';
+        return S.current.awaitingRepayment;
       case OrderStatus.auditFailure:
-        return '审核失败';
+        return S.current.auditFailure;
       case OrderStatus.overdue:
-        return '已逾期';
+        return S.current.overdue;
       case OrderStatus.completed:
-        return '已完成';
+        return S.current.completed;
     }
   }
 

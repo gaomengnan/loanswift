@@ -74,5 +74,12 @@
   "loading": "Memuat",
   "logout": "Keluar",
   "logoutConfirmation": "Apakah Anda yakin ingin keluar?",
-  "confirm": "Konfirmasi"
+  "confirm": "Konfirmasi",
+  "all": "Semua",
+  "underReview": "Tinjau",
+  "awaitingRepayment": "Tunda",
+  "auditFailure": "Gagal",
+  "overdue": "Telat",
+  "completed": "Selesai",
+  "orderDetails": "Detail Pesanan"
 }

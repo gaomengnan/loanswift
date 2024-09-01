@@ -75,6 +75,13 @@
   "loading": "Loading",
   "logout": "Logout",
   "logoutConfirmation": "Are you sure you want to log out?",
-  "confirm": "Confirm"
+  "confirm": "Confirm",
+  "all": "All",
+  "underReview": "Review",
+  "awaitingRepayment": "Pending",
+  "auditFailure": "Failed",
+  "overdue": "Late",
+  "completed": "Done",
+  "orderDetails": "Order Details"
 }
 

@@ -9,14 +9,18 @@ class EventCard extends StatelessWidget {
   final String title;
   final String status;
   final String amount;
+  final String amountDesc;
+
+  final bool isPast;
 
   const EventCard({
     super.key,
     required this.asset,
     required this.title,
-    required this.status, 
+    required this.status,
     required this.amount,
-
+    required this.amountDesc,
+    required this.isPast,
   });
 
   @override
@@ -35,11 +39,11 @@ class EventCard extends StatelessWidget {
           children: [
             Row(
               children: <Widget>[
-                Opacity(
-                  opacity: 1,
-                  child: asset,
-                ),
-                const SizedBox(width: 16),
+                //Opacity(
+                //  opacity: 1,
+                //  child: asset,
+                //),
+                //const SizedBox(width: 16),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
@@ -59,7 +63,7 @@ class EventCard extends StatelessWidget {
             ),
             Container(
               width: double.maxFinite,
-              height: 75.h,
+              height: 50.h,
               margin: EdgeInsets.only(
                 //horizontal: 10.w,
                 top: 10.h,
@@ -80,18 +84,21 @@ class EventCard extends StatelessWidget {
                     child: Row(
                       children: [
                         Icon(
-                          IconlyBold.lock,
+                          color: isPast ? Pallete.primaryColor : Colors.red,
+                          isPast ? IconlyBold.unlock : IconlyBold.lock,
                           size: 17.sp,
                         ),
                         const SizedBox(width: 8),
-                        Text(
-                          status,
+                        RText(
+                          text: status,
+                          color: isPast ? Pallete.primaryColor : Colors.red,
+                          fontWeight: FontWeight.bold,
                         ),
                       ],
                     ),
                   ),
                   Expanded(
-                    flex: 3,
+                    flex: 2,
                     child: Container(
                       padding: EdgeInsets.symmetric(
                         horizontal: 20.w,
@@ -103,8 +110,8 @@ class EventCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           RText(
-                            text: "贷款金额",
-                            size: 16.sp,
+                            text: amountDesc,
+                            size: 13.sp,
                             fontWeight: FontWeight.w700,
                           ),
                           RText(

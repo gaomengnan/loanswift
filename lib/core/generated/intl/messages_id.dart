@@ -23,9 +23,12 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "agree_privacy": MessageLookupByLibrary.simpleMessage("Setuju"),
+        "all": MessageLookupByLibrary.simpleMessage("Semua"),
         "app_name": MessageLookupByLibrary.simpleMessage("Butuh uang"),
+        "auditFailure": MessageLookupByLibrary.simpleMessage("Gagal"),
         "auto_repayment":
             MessageLookupByLibrary.simpleMessage("Pembayaran Otomatis"),
+        "awaitingRepayment": MessageLookupByLibrary.simpleMessage("Tunda"),
         "bill_amount": MessageLookupByLibrary.simpleMessage("Jumlah Tagihan"),
         "bill_state":
             MessageLookupByLibrary.simpleMessage("Pernyataan Tagihan"),
@@ -33,6 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancel": MessageLookupByLibrary.simpleMessage("Batal"),
         "click_to_access":
             MessageLookupByLibrary.simpleMessage("Klik untuk mengakses"),
+        "completed": MessageLookupByLibrary.simpleMessage("Selesai"),
         "confirm": MessageLookupByLibrary.simpleMessage("Konfirmasi"),
         "contact": MessageLookupByLibrary.simpleMessage("Daftar Kontak"),
         "due_date": MessageLookupByLibrary.simpleMessage("Tanggal Jatuh Tempo"),
@@ -85,6 +89,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "no_credit_limit": MessageLookupByLibrary.simpleMessage(
             "Belum Mendapatkan Limit, Tidak Ada Tagihan"),
         "notification": MessageLookupByLibrary.simpleMessage("Pemberitahuan"),
+        "orderDetails": MessageLookupByLibrary.simpleMessage("Detail Pesanan"),
+        "overdue": MessageLookupByLibrary.simpleMessage("Telat"),
         "permission_title": MessageLookupByLibrary.simpleMessage(
             "Untuk mempercepat proses pinjaman Anda, kami memerlukan izin-izin ini"),
         "person_button": MessageLookupByLibrary.simpleMessage("Saya"),
@@ -130,6 +136,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "unable_to_receive_the_verification_code":
             MessageLookupByLibrary.simpleMessage(
                 "Tidak menerima kode verifikasi?"),
+        "underReview": MessageLookupByLibrary.simpleMessage("Tinjau"),
         "verification_code_sendto": MessageLookupByLibrary.simpleMessage(
             "Kode verifikasi SMS telah dikirim ke"),
         "verification_code_wrong":

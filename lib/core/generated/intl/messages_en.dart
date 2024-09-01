@@ -23,12 +23,16 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "agree_privacy": MessageLookupByLibrary.simpleMessage("Agree"),
+        "all": MessageLookupByLibrary.simpleMessage("All"),
         "app_name": MessageLookupByLibrary.simpleMessage("Loan Swift"),
+        "auditFailure": MessageLookupByLibrary.simpleMessage("Failed"),
+        "awaitingRepayment": MessageLookupByLibrary.simpleMessage("Pending"),
         "bill_amount": MessageLookupByLibrary.simpleMessage("Bill Amount"),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "click_to_access":
             MessageLookupByLibrary.simpleMessage("Click to access"),
+        "completed": MessageLookupByLibrary.simpleMessage("Done"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "contact": MessageLookupByLibrary.simpleMessage("Contact List"),
         "due_date": MessageLookupByLibrary.simpleMessage("Due Date"),
@@ -76,6 +80,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "no_credit_limit": MessageLookupByLibrary.simpleMessage(
             "No Credit Limit Available, No Bill"),
         "notification": MessageLookupByLibrary.simpleMessage("Notifications"),
+        "orderDetails": MessageLookupByLibrary.simpleMessage("Order Details"),
+        "overdue": MessageLookupByLibrary.simpleMessage("Late"),
         "permission_title": MessageLookupByLibrary.simpleMessage(
             "To expedite your loan process, we need these permissions"),
         "person_button": MessageLookupByLibrary.simpleMessage("Profile"),
@@ -121,6 +127,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "unable_to_receive_the_verification_code":
             MessageLookupByLibrary.simpleMessage(
                 "Not receiving the verification code?"),
+        "underReview": MessageLookupByLibrary.simpleMessage("Review"),
         "verification_code_sendto": MessageLookupByLibrary.simpleMessage(
             "SMS verification code has been sent to"),
         "verification_code_wrong":

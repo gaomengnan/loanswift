@@ -7,6 +7,9 @@ class OrderDetail {
   final String productLogo;
   final int isDelay;
   final UserOrderDetail userOrderDetail;
+  final RepayPlanEntity repayPlan;
+
+  final List<BestDesc> bestDesc;
 
   // 构造函数
   OrderDetail({
@@ -18,8 +21,9 @@ class OrderDetail {
     required this.productLogo,
     required this.isDelay,
     required this.userOrderDetail,
+    required this.repayPlan,
+    required this.bestDesc,
   });
-
 
   @override
   String toString() {
@@ -85,5 +89,136 @@ class DetailItem {
   @override
   String toString() {
     return 'DetailItem(text: $text, value: $value)';
+  }
+}
+
+class RepayPlanEntity {
+  final String showDesc;
+  final String title;
+  final List<RepayPlan> repayPlan;
+
+  RepayPlanEntity({
+    required this.showDesc,
+    required this.title,
+    required this.repayPlan,
+  });
+
+  RepayPlanEntity.empty()
+      : this(
+          showDesc: '',
+          title: '',
+          repayPlan: [],
+        );
+
+  // fromMap 方法，用于从 Map 创建 RepayPlanEntity 实例
+  factory RepayPlanEntity.fromMap(Map<String, dynamic> map) {
+    return RepayPlanEntity(
+      showDesc: map['showDesc'] ?? '',
+      title: map['title'] ?? '',
+      repayPlan: List<RepayPlan>.from(
+        map['repayPlan']?.map((x) => RepayPlan.fromMap(x)) ?? [],
+      ),
+    );
+  }
+
+  // toMap 方法，用于将 RepayPlanEntity 实例转换为 Map
+  Map<String, dynamic> toMap() {
+    return {
+      'showDesc': showDesc,
+      'title': title,
+      'repayPlan': repayPlan.map((x) => x.toMap()).toList(),
+    };
+  }
+}
+
+class RepayPlan {
+  final String date;
+  final int periodNo;
+  final String repaymentAmount;
+  final String repaymentAmountDesc;
+  final int status;
+  final String statusDesc;
+  final int canClick;
+
+  RepayPlan({
+    required this.date,
+    required this.periodNo,
+    required this.repaymentAmount,
+    required this.repaymentAmountDesc,
+    required this.status,
+    required this.statusDesc,
+    required this.canClick,
+  });
+
+  // fromMap 方法，用于从 Map 创建 RepayPlan 实例
+  factory RepayPlan.fromMap(Map<String, dynamic> map) {
+    return RepayPlan(
+      date: map['date'] ?? '',
+      periodNo: map['periodNo'] ?? 0,
+      repaymentAmount: map['repaymentAmount'] ?? '',
+      repaymentAmountDesc: map['repaymentAmountDesc'] ?? '',
+      status: map['status'] ?? 0,
+      statusDesc: map['statusDesc'] ?? '',
+      canClick: map['canClick'] ?? 0,
+    );
+  }
+
+  // toMap 方法，用于将 RepayPlan 实例转换为 Map
+  Map<String, dynamic> toMap() {
+    return {
+      'date': date,
+      'periodNo': periodNo,
+      'repaymentAmount': repaymentAmount,
+      'repaymentAmountDesc': repaymentAmountDesc,
+      'status': status,
+      'statusDesc': statusDesc,
+      'canClick': canClick,
+    };
+  }
+}
+
+class BestDesc {
+  final String title;
+  final String status;
+  final int isLock;
+  final String amountDesc;
+  final String amount;
+
+  BestDesc.empty()
+      : this(
+          title: '',
+          status: '',
+          isLock: 0,
+          amountDesc: '',
+          amount: '',
+        );
+
+  BestDesc(
+      {required this.title,
+      required this.status,
+      required this.isLock,
+      required this.amountDesc,
+      required this.amount});
+  // fromMap 方法，用于从 Map 创建 RepayPlan 实例
+
+  factory BestDesc.fromMap(Map<String, dynamic> map) {
+    return BestDesc(
+      title: map['title'] ?? '',
+      status: map['status'] ?? 0,
+      isLock: map['is_lock'] ?? '',
+      amountDesc: map['amount_dec'] ?? '',
+      amount: map['amount'] ?? '',
+    );
+  }
+
+  // toMap 方法，用于将 RepayPlan 实例转换为 Map
+  Map<String, dynamic> toMap() {
+    return {
+      'title': title,
+      'status': status,
+      'is_lock': isLock,
+      'amount_dec': amountDesc,
+      'amount': amount,
+    };
   }
 }

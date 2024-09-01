@@ -133,14 +133,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       apiProducts: state.homeData.apiProducts,
                     ),
 
-                  const SliverPadding(
-                    padding: EdgeInsets.all(8.0),
-                    sliver: SliverToBoxAdapter(
-                      child: Divider(
-                        color: Colors.black12,
-                      ),
-                    ),
-                  ),
+                  //const SliverPadding(
+                  //  padding: EdgeInsets.all(8.0),
+                  //  sliver: SliverToBoxAdapter(
+                  //    child: Divider(
+                  //      color: Colors.black12,
+                  //    ),
+                  //  ),
+                  //),
 
                   //const BuildContactUS(),
                   /*  Apps  */

@@ -75,5 +75,12 @@
   "logout": "注销",
   "logoutConfirmation": "你确定要退出登录吗？",
   "confirm": "确定",
-  "cancel": "取消"
+  "cancel": "取消",
+  "all": "所有",
+  "underReview": "审核中",
+  "awaitingRepayment": "待还款",
+  "auditFailure": "审核失败",
+  "overdue": "已逾期",
+  "completed": "已完成",
+  "orderDetails": "订单详情"
 }

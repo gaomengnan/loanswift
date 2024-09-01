@@ -779,6 +779,76 @@ class S {
       args: [],
     );
   }
+
+  /// `所有`
+  String get all {
+    return Intl.message(
+      '所有',
+      name: 'all',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `审核中`
+  String get underReview {
+    return Intl.message(
+      '审核中',
+      name: 'underReview',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `待还款`
+  String get awaitingRepayment {
+    return Intl.message(
+      '待还款',
+      name: 'awaitingRepayment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `审核失败`
+  String get auditFailure {
+    return Intl.message(
+      '审核失败',
+      name: 'auditFailure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `已逾期`
+  String get overdue {
+    return Intl.message(
+      '已逾期',
+      name: 'overdue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `已完成`
+  String get completed {
+    return Intl.message(
+      '已完成',
+      name: 'completed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `订单详情`
+  String get orderDetails {
+    return Intl.message(
+      '订单详情',
+      name: 'orderDetails',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

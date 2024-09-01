@@ -1,3 +1,4 @@
+import 'package:loanswift/core/core.dart';
 import 'package:loanswift/features/domain/entity/orders/order_detail.dart';
 
 class OrderDetailModel extends OrderDetail {
@@ -10,6 +11,8 @@ class OrderDetailModel extends OrderDetail {
     required super.productLogo,
     required super.isDelay,
     required super.userOrderDetail,
+    required super.repayPlan,
+    required super.bestDesc,
   });
 
   OrderDetailModel.empty()
@@ -22,10 +25,13 @@ class OrderDetailModel extends OrderDetail {
           productLogo: '',
           isDelay: 0,
           userOrderDetail: UserOrderDetail.empty(),
+          repayPlan: RepayPlanEntity.empty(),
+          bestDesc: [],
         );
 
   // 从 Map 创建 OrderInfo 实体
   factory OrderDetailModel.fromMap(Map<String, dynamic> map) {
+    final bestDesc = map.containsKey('best_desc')? map['best_desc'] : [];
     return OrderDetailModel(
       orderStatus: map['order_status'],
       noticeStatusText: map['notice_status_text'],
@@ -35,6 +41,11 @@ class OrderDetailModel extends OrderDetail {
       productLogo: map['product_logo'],
       isDelay: map['is_delay'],
       userOrderDetail: UserOrderDetail.fromMap(map['user_order_detail']),
+      repayPlan: RepayPlanEntity.fromMap(
+        map.containsKey('repay_plan') ? map['repay_plan'] : <String, dynamic>{},
+      ),
+      bestDesc:
+          List<BestDesc>.from(bestDesc.map((x) => BestDesc.fromMap(x))),
     );
   }
 
@@ -49,6 +60,7 @@ class OrderDetailModel extends OrderDetail {
       'product_logo': productLogo,
       'is_delay': isDelay,
       'user_order_detail': userOrderDetail.toMap(),
+      'repay_plan': repayPlan.toMap(),
     };
   }
 }

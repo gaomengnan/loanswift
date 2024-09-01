@@ -23,13 +23,17 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "agree_privacy": MessageLookupByLibrary.simpleMessage("同意"),
+        "all": MessageLookupByLibrary.simpleMessage("所有"),
         "app_name": MessageLookupByLibrary.simpleMessage("急用钱"),
+        "auditFailure": MessageLookupByLibrary.simpleMessage("审核失败"),
         "auto_repayment": MessageLookupByLibrary.simpleMessage("自动还款"),
+        "awaitingRepayment": MessageLookupByLibrary.simpleMessage("待还款"),
         "bill_amount": MessageLookupByLibrary.simpleMessage("账单金额"),
         "bill_state": MessageLookupByLibrary.simpleMessage("账单证明"),
         "camera": MessageLookupByLibrary.simpleMessage("相机"),
         "cancel": MessageLookupByLibrary.simpleMessage("取消"),
         "click_to_access": MessageLookupByLibrary.simpleMessage("点击授权"),
+        "completed": MessageLookupByLibrary.simpleMessage("已完成"),
         "confirm": MessageLookupByLibrary.simpleMessage("确定"),
         "contact": MessageLookupByLibrary.simpleMessage("联系人列表"),
         "due_date": MessageLookupByLibrary.simpleMessage("到期日"),
@@ -67,6 +71,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "network_error": MessageLookupByLibrary.simpleMessage("网络连接异常"),
         "no_credit_limit": MessageLookupByLibrary.simpleMessage("暂未获取额度，无账单"),
         "notification": MessageLookupByLibrary.simpleMessage("通知"),
+        "orderDetails": MessageLookupByLibrary.simpleMessage("订单详情"),
+        "overdue": MessageLookupByLibrary.simpleMessage("已逾期"),
         "permission_title":
             MessageLookupByLibrary.simpleMessage("为了快速完成您的贷款流程, 我们需要这些权限"),
         "person_button": MessageLookupByLibrary.simpleMessage("我的"),
@@ -99,6 +105,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "title900": MessageLookupByLibrary.simpleMessage("灵活借还"),
         "unable_to_receive_the_verification_code":
             MessageLookupByLibrary.simpleMessage("收不到验证码?"),
+        "underReview": MessageLookupByLibrary.simpleMessage("审核中"),
         "verification_code_sendto":
             MessageLookupByLibrary.simpleMessage("短信验证码已发送至"),
         "verification_code_wrong":

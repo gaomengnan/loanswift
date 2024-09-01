@@ -192,7 +192,9 @@ class UI {
   }
   static Widget squareContainer(Widget child) {
     return Container(
-      padding: EdgeInsets.all(10.sp),
+      //height: 50,
+      //width: 50,
+      padding: EdgeInsets.all(5.sp),
       decoration: BoxDecoration(
         color: Colors.white30,
         borderRadius: BorderRadius.circular(8.0.sp), // 圆角半径
