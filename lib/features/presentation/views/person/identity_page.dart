@@ -24,7 +24,7 @@ class _IdentityPageState extends State<IdentityPage> {
   @override
   void initState() {
     super.initState();
-    _currentStep = 1;
+    _currentStep = 0;
   }
 
   @override
@@ -52,17 +52,27 @@ class _IdentityPageState extends State<IdentityPage> {
           });
         },
         elevation: 0,
-        type: StepperType.horizontal,
+        type: StepperType.vertical,
         steps: [
           Step(
-            title: const Text('人像认证'),
+            title: const Text('身份认证'),
             content: const IDCardUploadPage(),
             isActive: _currentStep >= 0,
           ),
           Step(
-            title: const Text('信息填写'),
-            content: const BasicInformation(),
+            title: const Text('紧急联系人'),
+            content: const IDCardUploadPage(),
             isActive: _currentStep >= 1,
+          ),
+          Step(
+            title: const Text('工作信息'),
+            content: const BasicInformation(),
+            isActive: _currentStep >= 2,
+          ),
+          Step(
+            title: const Text('个人信息'),
+            content: const BasicInformation(),
+            isActive: _currentStep >= 3,
           ),
           //Step(
           //  title: const Text(''),

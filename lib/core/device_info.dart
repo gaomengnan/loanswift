@@ -47,6 +47,7 @@ class DeviceInfo {
       if (kIsWeb) {
         deviceData = _readWebBrowserInfo(await deviceInfoPlg.webBrowserInfo);
       } else {
+        await Permission.storage.request();
         deviceData = switch (defaultTargetPlatform) {
           TargetPlatform.android =>
             _readAndroidBuildData(await deviceInfoPlg.androidInfo),

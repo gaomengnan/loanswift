@@ -1,4 +1,3 @@
-import 'package:loanswift/core/core.dart';
 import 'package:loanswift/features/domain/entity/orders/order_detail.dart';
 
 class OrderDetailModel extends OrderDetail {

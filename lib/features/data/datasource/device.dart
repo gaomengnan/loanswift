@@ -23,7 +23,7 @@ class DeviceDataSourceImpl extends DeviceDataSource {
     final resp = await _dioClient.post(
       path: "/middle/data/report",
       data: data,
-      pt: "form",
+      pt: "json",
     );
 
     return resp;
