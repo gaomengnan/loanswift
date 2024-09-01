@@ -62,42 +62,42 @@ class _OrderDetailState extends State<OrderDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.transparent,
-        height: 65.h,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Expanded(
-              child: FilledButton(
-                style: FilledButton.styleFrom(
-                    minimumSize: Size(ScreenUtil().screenWidth * 0.5, 25.h)),
-                onPressed: () {},
-                child: const Text(
-                  "偿还",
-                  style: TextStyle(
-                    color: Pallete.whiteColor,
-                  ),
-                ),
-              ),
-            ),
-            UI.kHeight5(),
-            Expanded(
-              child: OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                  minimumSize: Size.fromWidth(ScreenUtil().screenWidth * 0.5),
-                  //backgroundColor: Colors.redAccent
-                ),
-                onPressed: () {},
-                child: const Text(
-                  "差别分还",
-                  style: TextStyle(color: Pallete.blackColor),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
+      //bottomNavigationBar: BottomAppBar(
+      //  color: Colors.transparent,
+      //  height: 65.h,
+      //  child: Column(
+      //    mainAxisAlignment: MainAxisAlignment.spaceAround,
+      //    children: [
+      //      Expanded(
+      //        child: FilledButton(
+      //          style: FilledButton.styleFrom(
+      //              minimumSize: Size(ScreenUtil().screenWidth * 0.5, 25.h)),
+      //          onPressed: () {},
+      //          child: const Text(
+      //            "偿还",
+      //            style: TextStyle(
+      //              color: Pallete.whiteColor,
+      //            ),
+      //          ),
+      //        ),
+      //      ),
+      //      UI.kHeight5(),
+      //      Expanded(
+      //        child: OutlinedButton(
+      //          style: OutlinedButton.styleFrom(
+      //            minimumSize: Size.fromWidth(ScreenUtil().screenWidth * 0.5),
+      //            //backgroundColor: Colors.redAccent
+      //          ),
+      //          onPressed: () {},
+      //          child: const Text(
+      //            "差别分还",
+      //            style: TextStyle(color: Pallete.blackColor),
+      //          ),
+      //        ),
+      //      ),
+      //    ],
+      //  ),
+      //),
       backgroundColor: const Color(0xffF0F0F0),
       appBar: AppBar(
         backgroundColor: Pallete.backgroundColor,
@@ -121,12 +121,13 @@ class _OrderDetailState extends State<OrderDetail> {
                     color: Colors.white,
                     elevation: 1,
                     child: SizedBox(
-                      height: 80.h,
+                      height: 100.h,
                       child: Padding(
                         padding: EdgeInsets.only(
-                          top: 15.0.h,
+                          top: 10.0.h,
                           left: 10.w,
                           right: 10.w,
+                          bottom: 10.h,
                         ),
                         child: Column(
                           children: [
@@ -145,22 +146,22 @@ class _OrderDetailState extends State<OrderDetail> {
                               ),
                             ),
                             /*  再次申请按钮 */
-                            //Expanded(
-                            //  child: ElevatedButton(
-                            //    style: ElevatedButton.styleFrom(
-                            //        minimumSize: Size(
-                            //      double.maxFinite,
-                            //      100.h,
-                            //    )),
-                            //    onPressed: () {},
-                            //    child: const Text(
-                            //      "再次申请",
-                            //      style: TextStyle(
-                            //        color: Pallete.whiteColor,
-                            //      ),
-                            //    ),
-                            //  ),
-                            //),
+                            Expanded(
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    minimumSize: Size(
+                                  ScreenUtil().screenWidth * 0.5 ,
+                                  0
+                                )),
+                                onPressed: () {},
+                                child: const Text(
+                                  "偿还",
+                                  style: TextStyle(
+                                    color: Pallete.whiteColor,
+                                  ),
+                                ),
+                              ),
+                            ),
                             //UI.kHeight5(),
                           ],
                         ),
@@ -229,23 +230,26 @@ class _OrderDetailState extends State<OrderDetail> {
                         children: [
                           ...List.generate(bestDesc.length, (index) {
                             final data = bestDesc[index];
-                            return MyTimeline(
-                              isFirst: index == 0,
-                              isLast: index == bestDesc.length - 1,
-                              isPast: data.isLock == 1,
-                              enchild: EventCard(
+                            return Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 20.w),
+                              child: MyTimeline(
+                                isFirst: index == 0,
+                                isLast: index == bestDesc.length - 1,
                                 isPast: data.isLock == 1,
-                                asset: const Icon(
-                                  IconlyBold.notification,
+                                enchild: EventCard(
+                                  isPast: data.isLock == 1,
+                                  asset: const Icon(
+                                    IconlyBold.notification,
+                                  ),
+                                  title: data.title,
+                                  status: data.status,
+                                  amount: data.amount,
+                                  amountDesc: data.amountDesc,
                                 ),
-                                title: data.title,
-                                status: data.status,
-                                amount: data.amount,
-                                amountDesc: data.amountDesc,
                               ),
                             );
-                            return const Text("sd");
                           }),
+                          UI.kHeight20(),
                         ],
                       ),
                     ),

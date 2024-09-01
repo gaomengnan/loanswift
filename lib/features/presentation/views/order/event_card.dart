@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/common/widgets/app_text.dart';
+import 'package:loanswift/core/constants/constants.dart';
 import 'package:loanswift/theme/theme.dart';
 
 class EventCard extends StatelessWidget {
@@ -28,7 +29,7 @@ class EventCard extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(
         top: 20.0,
-        left: 10.w,
+        left: 20.w,
       ),
       child: Container(
         width: ScreenUtil().screenWidth,
@@ -52,6 +53,7 @@ class EventCard extends StatelessWidget {
                       title,
                       style: const TextStyle(
                         fontWeight: FontWeight.w600,
+                        color: Colors.black54,
                       ),
                     ),
                     //const SizedBox(
@@ -62,21 +64,22 @@ class EventCard extends StatelessWidget {
               ],
             ),
             Container(
+              padding: const EdgeInsets.all(10),
               width: double.maxFinite,
-              height: 50.h,
+              height: 60.h,
               margin: EdgeInsets.only(
                 //horizontal: 10.w,
                 top: 10.h,
-                bottom: 10.h,
+                //bottom: 10.h,
                 right: 10.w,
               ),
               decoration: BoxDecoration(
-                color: Pallete.timelineNo,
+                color: Colors.grey.shade200,
                 borderRadius: BorderRadius.circular(5.0),
-                border: Border.all(
-                  color: Pallete.timelineNo,
-                  width: 2.0,
-                ),
+                //border: Border.all(
+                //  color: Pallete.timelineNo,
+                  //width: 1,
+                //),
               ),
               child: Column(
                 children: [
@@ -88,35 +91,36 @@ class EventCard extends StatelessWidget {
                           isPast ? IconlyBold.unlock : IconlyBold.lock,
                           size: 17.sp,
                         ),
-                        const SizedBox(width: 8),
+                        UI.kWidth5(),
                         RText(
                           text: status,
-                          color: isPast ? Pallete.primaryColor : Colors.red,
+                          color: isPast ? Colors.blue : Colors.red,
                           fontWeight: FontWeight.bold,
                         ),
                       ],
                     ),
                   ),
+                  Divider(
+                    color: Colors.grey.shade50,
+                    ),
                   Expanded(
                     flex: 2,
                     child: Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 20.w,
-                      ),
                       decoration: const BoxDecoration(
-                        color: Colors.white,
+                        //color: Colors.blueAccent,
                       ),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           RText(
                             text: amountDesc,
-                            size: 13.sp,
+                            //size: 12.sp,
                             fontWeight: FontWeight.w700,
                           ),
+                          UI.kWidth50(),
                           RText(
                             text: amount,
-                            size: 16.sp,
+                            size: 13.sp,
                           ),
                         ],
                       ),

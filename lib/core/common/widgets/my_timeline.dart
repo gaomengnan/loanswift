@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/theme/pallete.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 
