@@ -82,5 +82,9 @@
   "auditFailure": "审核失败",
   "overdue": "已逾期",
   "completed": "已完成",
-  "orderDetails": "订单详情"
+  "orderDetails": "订单详情",
+  "identity_authentication": "身份认证",
+  "emergency_contact": "紧急联系人",
+  "work_information": "工作信息",
+  "personal_information": "个人信息"
 }

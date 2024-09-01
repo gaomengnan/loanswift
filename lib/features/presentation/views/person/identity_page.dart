@@ -43,6 +43,7 @@ class _IdentityPageState extends State<IdentityPage> {
         ),
       ),
       body: Stepper(
+        physics: const ClampingScrollPhysics(),
         controlsBuilder: (context, _) {
           return Container();
         },
@@ -55,22 +56,22 @@ class _IdentityPageState extends State<IdentityPage> {
         type: StepperType.vertical,
         steps: [
           Step(
-            title: const Text('身份认证'),
+            title: Text(S.current.identity_authentication),
             content: const IDCardUploadPage(),
             isActive: _currentStep >= 0,
           ),
           Step(
-            title: const Text('紧急联系人'),
+            title: Text(S.current.emergency_contact),
             content: const IDCardUploadPage(),
             isActive: _currentStep >= 1,
           ),
           Step(
-            title: const Text('工作信息'),
+            title: Text(S.current.work_information),
             content: const BasicInformation(),
             isActive: _currentStep >= 2,
           ),
           Step(
-            title: const Text('个人信息'),
+            title: Text(S.current.personal_information),
             content: const BasicInformation(),
             isActive: _currentStep >= 3,
           ),

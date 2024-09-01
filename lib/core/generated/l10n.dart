@@ -849,6 +849,46 @@ class S {
       args: [],
     );
   }
+
+  /// `身份认证`
+  String get identity_authentication {
+    return Intl.message(
+      '身份认证',
+      name: 'identity_authentication',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `紧急联系人`
+  String get emergency_contact {
+    return Intl.message(
+      '紧急联系人',
+      name: 'emergency_contact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `工作信息`
+  String get work_information {
+    return Intl.message(
+      '工作信息',
+      name: 'work_information',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `个人信息`
+  String get personal_information {
+    return Intl.message(
+      '个人信息',
+      name: 'personal_information',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

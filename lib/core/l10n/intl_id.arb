@@ -81,5 +81,9 @@
   "auditFailure": "Gagal",
   "overdue": "Telat",
   "completed": "Selesai",
-  "orderDetails": "Detail Pesanan"
+  "orderDetails": "Detail Pesanan",
+  "identity_authentication": "Autentikasi Identitas",
+  "emergency_contact": "Kontak Darurat",
+  "work_information": "Informasi Pekerjaan",
+  "personal_information": "Informasi Pribadi"
 }

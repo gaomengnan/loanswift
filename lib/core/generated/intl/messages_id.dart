@@ -40,6 +40,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirm": MessageLookupByLibrary.simpleMessage("Konfirmasi"),
         "contact": MessageLookupByLibrary.simpleMessage("Daftar Kontak"),
         "due_date": MessageLookupByLibrary.simpleMessage("Tanggal Jatuh Tempo"),
+        "emergency_contact":
+            MessageLookupByLibrary.simpleMessage("Kontak Darurat"),
         "enter_verification_code":
             MessageLookupByLibrary.simpleMessage("Masukkan Kode Verifikasi"),
         "errorPhone": MessageLookupByLibrary.simpleMessage(
@@ -59,6 +61,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Foto Depan Kartu Identitas"),
         "idcard_reverse": MessageLookupByLibrary.simpleMessage(
             "Foto Belakang Kartu Identitas"),
+        "identity_authentication":
+            MessageLookupByLibrary.simpleMessage("Autentikasi Identitas"),
         "install_packages":
             MessageLookupByLibrary.simpleMessage("Aplikasi Terinstal"),
         "jindengluzhuce":
@@ -95,6 +99,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Untuk mempercepat proses pinjaman Anda, kami memerlukan izin-izin ini"),
         "person_button": MessageLookupByLibrary.simpleMessage("Saya"),
         "personal_info":
+            MessageLookupByLibrary.simpleMessage("Informasi Pribadi"),
+        "personal_information":
             MessageLookupByLibrary.simpleMessage("Informasi Pribadi"),
         "phone_code": MessageLookupByLibrary.simpleMessage("ID"),
         "photo_permission_missing":
@@ -141,6 +147,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Kode verifikasi SMS telah dikirim ke"),
         "verification_code_wrong":
             MessageLookupByLibrary.simpleMessage("Kode verifikasi salah"),
-        "welcome_you": MessageLookupByLibrary.simpleMessage("Selamat datang")
+        "welcome_you": MessageLookupByLibrary.simpleMessage("Selamat datang"),
+        "work_information":
+            MessageLookupByLibrary.simpleMessage("Informasi Pekerjaan")
       };
 }

@@ -37,6 +37,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirm": MessageLookupByLibrary.simpleMessage("确定"),
         "contact": MessageLookupByLibrary.simpleMessage("联系人列表"),
         "due_date": MessageLookupByLibrary.simpleMessage("到期日"),
+        "emergency_contact": MessageLookupByLibrary.simpleMessage("紧急联系人"),
         "enter_verification_code":
             MessageLookupByLibrary.simpleMessage("请输入验证码"),
         "errorPhone": MessageLookupByLibrary.simpleMessage("请输入正确手机号码"),
@@ -50,6 +51,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "idcard": MessageLookupByLibrary.simpleMessage("身份证照片"),
         "idcard_front": MessageLookupByLibrary.simpleMessage("身份证正面照片"),
         "idcard_reverse": MessageLookupByLibrary.simpleMessage("身份证反面照片"),
+        "identity_authentication": MessageLookupByLibrary.simpleMessage("身份认证"),
         "install_packages": MessageLookupByLibrary.simpleMessage("已安装的应用程序"),
         "jindengluzhuce": MessageLookupByLibrary.simpleMessage("仅登录或者注册"),
         "lang": MessageLookupByLibrary.simpleMessage("zh"),
@@ -77,6 +79,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("为了快速完成您的贷款流程, 我们需要这些权限"),
         "person_button": MessageLookupByLibrary.simpleMessage("我的"),
         "personal_info": MessageLookupByLibrary.simpleMessage("个人信息"),
+        "personal_information": MessageLookupByLibrary.simpleMessage("个人信息"),
         "phone_code": MessageLookupByLibrary.simpleMessage("CN"),
         "photo_permission_missing":
             MessageLookupByLibrary.simpleMessage("相机权限获取失败"),
@@ -110,6 +113,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("短信验证码已发送至"),
         "verification_code_wrong":
             MessageLookupByLibrary.simpleMessage("验证码错误"),
-        "welcome_you": MessageLookupByLibrary.simpleMessage("欢迎你")
+        "welcome_you": MessageLookupByLibrary.simpleMessage("欢迎你"),
+        "work_information": MessageLookupByLibrary.simpleMessage("工作信息")
       };
 }

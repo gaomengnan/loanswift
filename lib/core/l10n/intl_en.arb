@@ -82,6 +82,10 @@
   "auditFailure": "Failed",
   "overdue": "Late",
   "completed": "Done",
-  "orderDetails": "Order Details"
+  "orderDetails": "Order Details",
+  "identity_authentication": "Identity Authentication",
+  "emergency_contact": "Emergency Contact",
+  "work_information": "Work Information",
+  "personal_information": "Personal Information"
 }
 

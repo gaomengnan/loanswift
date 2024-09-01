@@ -36,6 +36,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "contact": MessageLookupByLibrary.simpleMessage("Contact List"),
         "due_date": MessageLookupByLibrary.simpleMessage("Due Date"),
+        "emergency_contact":
+            MessageLookupByLibrary.simpleMessage("Emergency Contact"),
         "enter_verification_code":
             MessageLookupByLibrary.simpleMessage("Enter Verification Code"),
         "errorPhone":
@@ -54,6 +56,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ID Card Front Photo"),
         "idcard_reverse":
             MessageLookupByLibrary.simpleMessage("ID Card Reverse Photo"),
+        "identity_authentication":
+            MessageLookupByLibrary.simpleMessage("Identity Authentication"),
         "install_packages":
             MessageLookupByLibrary.simpleMessage("Installed Applications"),
         "jindengluzhuce":
@@ -86,6 +90,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "To expedite your loan process, we need these permissions"),
         "person_button": MessageLookupByLibrary.simpleMessage("Profile"),
         "personal_info":
+            MessageLookupByLibrary.simpleMessage("Personal Information"),
+        "personal_information":
             MessageLookupByLibrary.simpleMessage("Personal Information"),
         "phone_code": MessageLookupByLibrary.simpleMessage("US"),
         "photo_permission_missing": MessageLookupByLibrary.simpleMessage(
@@ -132,6 +138,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "SMS verification code has been sent to"),
         "verification_code_wrong":
             MessageLookupByLibrary.simpleMessage("Incorrect verification code"),
-        "welcome_you": MessageLookupByLibrary.simpleMessage("You Welcome")
+        "welcome_you": MessageLookupByLibrary.simpleMessage("You Welcome"),
+        "work_information":
+            MessageLookupByLibrary.simpleMessage("Work Information")
       };
 }
