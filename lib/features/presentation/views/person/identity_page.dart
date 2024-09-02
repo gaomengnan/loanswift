@@ -62,7 +62,7 @@ class _IdentityPageState extends State<IdentityPage> {
           ),
           Step(
             title: Text(S.current.emergency_contact),
-            content: const IDCardUploadPage(),
+            content: const BasicInformation(),
             isActive: _currentStep >= 1,
           ),
           Step(

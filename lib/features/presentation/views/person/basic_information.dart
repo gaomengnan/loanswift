@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:loanswift/core/common/widgets/widgets.dart';
+import 'package:loanswift/core/common/widgets/input.dart';
 
 class BasicInformation extends StatefulWidget {
   const BasicInformation({super.key});
@@ -41,22 +41,39 @@ class _BasicInformationState extends State<BasicInformation> {
     formFields = [
       /*  BASIC INFO TITLE */
 
-      Row(
-        children: [
-          RText(
-            size: 16.sp,
-            fontWeight: FontWeight.w900,
-            text: "基础信息",
-            textAlign: TextAlign.start,
-          ),
-        ],
-      ),
+      //Row(
+      //  children: [
+      //    RText(
+      //      size: 16.sp,
+      //      fontWeight: FontWeight.w900,
+      //      text: "基础信息",
+      //      textAlign: TextAlign.start,
+      //    ),
+      //  ],
+      //),
 
       /*  BUILD EMAIL FIELD  */
 
       BuildFormItem(
         controller: generateController("email"),
         label: '电子邮箱',
+        validator: (p0) {
+          if (p0 == null || p0.isEmpty) {
+            return '请输入邮箱';
+          }
+          return null;
+        },
+      ),
+
+      BuildFormItem(
+        controller: generateController("email"),
+        label: '电子邮箱',
+        isSelect: true,
+        items: [
+          {"value": 1, "label": "test"},
+          {"value": 2, "label": "test"},
+          {"value": 3, "label": "test"}
+        ],
         validator: (p0) {
           if (p0 == null || p0.isEmpty) {
             return '请输入邮箱';
@@ -113,16 +130,16 @@ class _BasicInformationState extends State<BasicInformation> {
 
       /*  WORK INFO  */
 
-      Row(
-        children: [
-          RText(
-            size: 16.sp,
-            fontWeight: FontWeight.w900,
-            text: "工作信息",
-            textAlign: TextAlign.start,
-          ),
-        ],
-      ),
+      //Row(
+      //  children: [
+      //    RText(
+      //      size: 16.sp,
+      //      fontWeight: FontWeight.w900,
+      //      text: "工作信息",
+      //      textAlign: TextAlign.start,
+      //    ),
+      //  ],
+      //),
 
       /* WORK TYPE*/
 
@@ -223,15 +240,10 @@ class BuildFormItem extends StatelessWidget {
             ).toList(),
             onChanged: (_) {},
           )
-        : SizedBox(
-          height: 40,
-          child: TextFormField(
-              controller: controller,
-              decoration: InputDecoration(
-                labelText: label,
-              ),
-              validator: validator,
-            ),
-        );
+        : RInput(
+            hitText: label,
+            label: label,
+            controller: controller,
+          );
   }
 }

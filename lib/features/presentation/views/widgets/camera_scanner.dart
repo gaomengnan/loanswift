@@ -28,18 +28,10 @@ class _CardScannerState extends State<CardScanner> {
   }
 
   Future<void> initializeCamera(BuildContext context) async {
-    // final bool granted = await Utils.checkCameraPermission();
-    // if(!granted) {
-    //
-    //   throw Exception("");
-    //
-    //
-    // }
-    // 获取设备上可用的摄像头列表
     List<CameraDescription> cameras = await availableCameras();
     // 使用第一个摄像头
     _controller = CameraController(
-      cameras[0],
+      cameras.first,
       ResolutionPreset.medium,
     );
     // 初始化controller
@@ -49,31 +41,6 @@ class _CardScannerState extends State<CardScanner> {
       if (context.mounted) {
         switch (e.code) {
           case "CameraAccessDenied":
-            // showDialog(
-            //   barrierDismissible: false,
-            //   context: context,
-            //   builder: (_) {
-            //     return AlertDialog(
-            //       elevation: 0,
-            //       title: const Text("授权错误"),
-            //       content: const Text(
-            //           "权限获取失败"),
-            //       actions: [
-            //         TextButton(
-            //           onPressed: () {
-            //             Navigator.pushReplacement(
-            //               context,
-            //               MaterialPageRoute(
-            //                 builder: (context) => const Identity(),
-            //               ),
-            //             );
-            //           },
-            //           child: const Text("OK"),
-            //         )
-            //       ],
-            //     );
-            //   },
-            // );
             break;
           default:
         }
@@ -107,7 +74,7 @@ class _CardScannerState extends State<CardScanner> {
                 leading: IconButton(
                   icon: const Icon(
                     Icons.arrow_back,
-                    color: Colors.white,
+                    //color: Colors.white,
                   ),
                   onPressed: () {
                     Navigator.of(context).pop();

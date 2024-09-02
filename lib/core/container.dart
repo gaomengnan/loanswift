@@ -4,7 +4,6 @@ import 'package:get_it/get_it.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:loanswift/core/core.dart';
-import 'package:loanswift/core/device_info.dart';
 import 'package:loanswift/core/dio_client.dart';
 import 'package:loanswift/core/firebase_api.dart';
 import 'package:loanswift/features/data/datasource/auth.dart';
@@ -131,10 +130,10 @@ Future<void> initialize() async {
 
   /* 获取设备信息 */
 
-  final device = DeviceInfo(
-    deviceRepo: sl(),
-  );
-  device.postDeviceInfo();
+  //final device = DeviceInfo(
+  //  deviceRepo: sl(),
+  //);
+  //device.postDeviceInfo();
 
   /*   獲取 SMS*/
   //device.readSMS();
