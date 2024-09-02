@@ -1,5 +1,6 @@
 class Assets {
   const Assets._();
+  static const uploadPlaceholder = "assets/images/placeholder.png";
   static const money = "assets/images/money.png";
   static const userAvatar = "assets/images/hacker.png";
   static const onboardingBackground = "assets/images/board.png";

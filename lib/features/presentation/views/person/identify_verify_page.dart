@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:loanswift/core/common/widgets/input.dart';
+import 'package:loanswift/core/common/widgets/app_text.dart';
 import 'package:loanswift/core/utils.dart';
 import 'package:loanswift/features/domain/entity/user/certify.dart';
 import 'package:loanswift/features/presentation/views/widgets/camera_scanner.dart';
@@ -20,6 +20,8 @@ class IdentifyVerifyPage extends StatefulWidget {
 }
 
 class _IdentifyVerifyPageState extends State<IdentifyVerifyPage> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   late String imagez = Assets.idcardFront;
   late String imagef = Assets.idcardReverse;
 
@@ -27,46 +29,51 @@ class _IdentifyVerifyPageState extends State<IdentifyVerifyPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 0.2,
-      // color: Pallete.whiteColor,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(5.0).r, // 调整此值以设置圆角的大小
-        side: const BorderSide(
-          color: Colors.white70,
-          // width: 2,
-        ),
+    return Form(
+      key: _formKey,
+      child: const Column(
+        children: [
+          //Padding(
+          //  padding: const EdgeInsets.symmetric(vertical: 10),
+          //  child: BuildFormItem(
+          //      label: "asda", controller: TextEditingController()),
+          //),
+        ],
       ),
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: 10.sp,
-          vertical: 10.sp,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              height: 60.h,
-              child: Column(
-                children: [
-                  Expanded(
-                    child: RText(
-                      size: 13.sp,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.red,
-                      text: "asdsa",
-                    ),
-                  ),
-                ],
+    );
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(
+          height: 60.h,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Expanded(
+                child: RText(
+                  size: 13.sp,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.red,
+                  text: "asdsa",
+                ),
               ),
-            ),
-            //RInput(hitText: "asd", label: ":asdacwww", controller: TextEditingController()),
-            //buildCardDescription(),
-            //UI.kHeight10(),
-            //buildItem(context),
-          ],
+              Expanded(
+                child: RText(
+                  size: 13.sp,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.red,
+                  text: "asdsa",
+                ),
+              ),
+            ],
+          ),
         ),
-      ),
+        //RInput(hitText: "asd", label: ":asdacwww", controller: TextEditingController()),
+        //buildCardDescription(),
+        //UI.kHeight10(),
+        //buildItem(context),
+      ],
     );
   }
 
