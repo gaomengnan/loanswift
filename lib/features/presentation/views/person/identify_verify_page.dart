@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/common/widgets/app_text.dart';
-import 'package:loanswift/core/common/widgets/day_picker.dart';
 import 'package:loanswift/core/utils.dart';
 import 'package:loanswift/features/domain/entity/user/certify.dart';
 import 'package:loanswift/features/presentation/views/person/build_form_item.dart';
@@ -37,10 +36,16 @@ class _IdentifyVerifyPageState extends State<IdentifyVerifyPage> {
         children: [
           //const RDay(label: "厕所协会i"),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
+            padding: const EdgeInsets.all(8.0),
             child: BuildFormItem(
               info: Info.empty(),
                 label: "asda", controller: TextEditingController()),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: BuildFormItem(
+              info: Info.empty(),
+              label: "asda", controller: TextEditingController()),
           ),
         ],
       ),

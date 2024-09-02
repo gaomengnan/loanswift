@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/common/widgets/widgets.dart';
 
-class RDay extends StatelessWidget {
+class FormDayField extends StatelessWidget {
   final String hitText;
   final String label;
   final TextEditingController controller;
 
-  const RDay({
+  const FormDayField({
     super.key,
     required this.hitText,
     required this.label,

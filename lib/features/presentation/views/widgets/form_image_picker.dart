@@ -3,9 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/common/widgets/widgets.dart';
 import 'package:loanswift/core/core.dart';
 
-class RUpload extends StatelessWidget {
+class FormImageFiled extends StatelessWidget {
   final String label;
-  const RUpload({
+  const FormImageFiled({
     super.key,
     required this.label,
   });

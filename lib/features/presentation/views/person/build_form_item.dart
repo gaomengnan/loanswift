@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:loanswift/core/common/widgets/day_picker.dart';
-import 'package:loanswift/core/common/widgets/image_picker.dart';
 import 'package:loanswift/core/common/widgets/input.dart';
 import 'package:loanswift/features/domain/entity/user/certify.dart';
+import 'package:loanswift/features/presentation/views/widgets/form_image_picker.dart';
 
 class BuildFormItem extends StatelessWidget {
   final String label;
@@ -30,7 +30,7 @@ class BuildFormItem extends StatelessWidget {
         );
 
       case "file":
-        return RUpload(label: label);
+        return FormImageFiled(label: label);
 
       case "day":
         return Container();
