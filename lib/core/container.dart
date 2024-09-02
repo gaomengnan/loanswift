@@ -18,12 +18,14 @@ import 'package:loanswift/features/domain/repos/auth.dart';
 import 'package:loanswift/features/domain/repos/device.dart';
 import 'package:loanswift/features/domain/repos/home.dart';
 import 'package:loanswift/features/domain/repos/order.dart';
+import 'package:loanswift/features/domain/usecases/authenticated/get_certifies.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/login.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/logout.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/send_phone_code.dart';
 import 'package:loanswift/features/domain/usecases/home/data.dart';
 import 'package:loanswift/features/domain/usecases/order/get_order_detail.dart';
 import 'package:loanswift/features/domain/usecases/order/query_order.dart';
+import 'package:loanswift/features/presentation/bloc/certify/certifies_bloc.dart';
 import 'package:loanswift/features/presentation/bloc/home/home_bloc.dart';
 import 'package:loanswift/features/presentation/bloc/order/order_bloc.dart';
 import 'package:loanswift/firebase_options.dart';
@@ -80,10 +82,13 @@ Future<void> initialize() async {
   // 注册登录相关
   sl
     ..registerFactory(
-      () => AuthBloc(useCase: sl(), logoutUseCase: sl()),
+      () => AuthBloc(
+        useCase: sl(),
+        logoutUseCase: sl(),
+      ),
     )
     ..registerLazySingleton<AuthDataSource>(
-      () => AuthDataSourceImpl(dioClient: sl()),
+      () => AuthDataSourceImpl(http: sl()),
     )
     ..registerLazySingleton<AuthRepo>(
       () => AuthRepository(sl()),
@@ -154,6 +159,12 @@ Future<void> initialize() async {
     ..registerLazySingleton(() => GetOrderDetailUseCase(order: sl()));
 
   /*  BUILD ORDER BLOC END */
+
+  /*   BUILD CERTIFIES BLOC */
+
+  sl
+    ..registerFactory(() => CertifiesBloc(getCertifies: sl()))
+    ..registerLazySingleton(() => GetCertifies(authRepo: sl()));
 
   try {
     await Firebase.initializeApp(

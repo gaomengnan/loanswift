@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:loanswift/core/api_response.dart';
 import 'package:loanswift/core/typedefs.dart';
 import 'package:loanswift/features/data/models/auth_token.dart';
+import 'package:loanswift/features/data/models/certifies_model.dart';
 import 'package:loanswift/features/data/models/user_model.dart';
 
 import '../../../core/core.dart';
@@ -27,15 +28,18 @@ abstract class AuthDataSource {
   // 退出登陆
 
   ResultVoid logout();
+
+  // 获取认证项
+  ResultFuture<ApiResponse<CertifiesModel>> getCertificates();
 }
 
 class AuthDataSourceImpl extends AuthDataSource {
   //final SharedPreferences _sharedPreferences;
-  final DioClient _ht;
+  final DioClient http;
 
   const AuthDataSourceImpl({
-    required DioClient dioClient,
-  }) : _ht = dioClient;
+    required this.http,
+  });
 
   @override
   String getAuthToken() {
@@ -47,7 +51,7 @@ class AuthDataSourceImpl extends AuthDataSource {
 
   @override
   ResultVoid sendPhoneCode({required String phone}) async {
-    final resp = await _ht.post(
+    final resp = await http.post(
       path: "/middle/user/code",
       data: {
         'phone': phone,
@@ -67,7 +71,7 @@ class AuthDataSourceImpl extends AuthDataSource {
       'phone': phone,
       'code': code,
     };
-    final response = await _ht.post(
+    final response = await http.post(
       path: "/middle/user/login",
       data: postData,
     );
@@ -84,7 +88,7 @@ class AuthDataSourceImpl extends AuthDataSource {
 
   @override
   ResultFuture<ApiResponse<UserModel>> getUserInfo() async {
-    final resp = await _ht.get(
+    final resp = await http.get(
       path: "/middle/identity/personal",
     );
     return resp.fold((l) {
@@ -99,7 +103,30 @@ class AuthDataSourceImpl extends AuthDataSource {
 
   @override
   ResultVoid logout() async {
-    final resp = await _ht.get(path: '/middle/user/login-out');
+    final resp = await http.get(path: '/middle/user/login-out');
     return resp;
+  }
+
+  @override
+  ResultFuture<ApiResponse<CertifiesModel>> getCertificates() async {
+    final resp = await http.get(path: '/middle/certify/list');
+
+    return resp.fold((l) => left(l), (l) {
+      return Right(
+        ApiResponse.fromJson(
+          l.data,
+          (json) {
+            Map<String, dynamic> mergedMap = {};
+            for (var map in json) {
+              if (map.isNotEmpty) {
+                var firstEntry = map.entries.first;
+                mergedMap[firstEntry.key] = firstEntry.value;
+              }
+            }
+            return CertifiesModel.fromMap(mergedMap);
+          },
+        ),
+      );
+    });
   }
 }

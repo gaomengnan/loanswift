@@ -3,6 +3,7 @@ import 'package:loanswift/core/core.dart';
 import 'package:loanswift/core/exceptions.dart';
 import 'package:loanswift/features/data/datasource/auth.dart';
 import 'package:loanswift/features/data/models/auth_token.dart';
+import 'package:loanswift/features/data/models/certifies_model.dart';
 import 'package:loanswift/features/domain/repos/auth.dart';
 
 class AuthRepository implements AuthRepo {
@@ -61,5 +62,15 @@ class AuthRepository implements AuthRepo {
   @override
   ResultVoid logout() async {
     return await _authDataSource.logout();
+  }
+
+  @override
+  ResultFuture<CertifiesModel> getCertifies() async {
+    final resp = await _authDataSource.getCertificates();
+
+    return resp.fold(
+      (l) => left(l),
+      (r) => right(r.data!),
+    );
   }
 }

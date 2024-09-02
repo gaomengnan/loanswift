@@ -1,6 +1,7 @@
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/core/typedefs.dart';
 import 'package:loanswift/features/data/models/auth_token.dart';
+import 'package:loanswift/features/data/models/certifies_model.dart';
 
 abstract class AuthRepo {
   const AuthRepo();
@@ -17,4 +18,8 @@ abstract class AuthRepo {
   ResultVoid logout();
 
   String getAuthToken();
+
+  // 获取认证字段
+
+  ResultFuture<CertifiesModel> getCertifies();
 }

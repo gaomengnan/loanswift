@@ -33,6 +33,7 @@ class RInput extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 color: Colors.grey.shade200,
+                borderRadius: BorderRadius.circular(5),
               ),
               child: TextFormField(
                 controller: controller,

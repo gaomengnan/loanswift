@@ -69,7 +69,7 @@ class _BasicInformationState extends State<BasicInformation> {
         controller: generateController("email"),
         label: '电子邮箱',
         isSelect: true,
-        items: [
+        items: const [
           {"value": 1, "label": "test"},
           {"value": 2, "label": "test"},
           {"value": 3, "label": "test"}

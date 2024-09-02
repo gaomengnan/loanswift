@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:loanswift/core/common/widgets/input.dart';
 import 'package:loanswift/core/utils.dart';
+import 'package:loanswift/features/domain/entity/user/certify.dart';
 import 'package:loanswift/features/presentation/views/widgets/camera_scanner.dart';
 
 import '../../../../core/common/widgets/widgets.dart';
 import '../../../../core/core.dart';
 
-class IDCardUploadPage extends StatefulWidget {
-  const IDCardUploadPage({
+class IdentifyVerifyPage extends StatefulWidget {
+  final List<Info> settings;
+  const IdentifyVerifyPage({
     super.key,
+    required this.settings,
   });
 
   @override
-  State<IDCardUploadPage> createState() => _IDCardUploadPageState();
+  State<IdentifyVerifyPage> createState() => _IdentifyVerifyPageState();
 }
 
-class _IDCardUploadPageState extends State<IDCardUploadPage> {
+class _IdentifyVerifyPageState extends State<IdentifyVerifyPage> {
   late String imagez = Assets.idcardFront;
   late String imagef = Assets.idcardReverse;
 
@@ -41,9 +45,25 @@ class _IDCardUploadPageState extends State<IDCardUploadPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            buildCardDescription(),
-            UI.kHeight10(),
-            buildItem(context),
+            Container(
+              height: 60.h,
+              child: Column(
+                children: [
+                  Expanded(
+                    child: RText(
+                      size: 13.sp,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.red,
+                      text: "asdsa",
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            //RInput(hitText: "asd", label: ":asdacwww", controller: TextEditingController()),
+            //buildCardDescription(),
+            //UI.kHeight10(),
+            //buildItem(context),
           ],
         ),
       ),
