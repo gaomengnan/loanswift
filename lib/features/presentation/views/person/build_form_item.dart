@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loanswift/core/common/widgets/day_picker.dart';
 import 'package:loanswift/core/common/widgets/image_picker.dart';
 import 'package:loanswift/core/common/widgets/input.dart';
 import 'package:loanswift/features/domain/entity/user/certify.dart';
@@ -32,12 +33,14 @@ class BuildFormItem extends StatelessWidget {
         return RUpload(label: label);
 
       case "day":
-
         return Container();
-
 
       default:
-        return Container();
+        return RDay(
+          hitText: label,
+          label: label,
+          controller: controller,
+        );
     }
 
     //return isSelect

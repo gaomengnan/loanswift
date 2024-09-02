@@ -1,10 +1,8 @@
-import 'package:loanswift/core/core.dart';
-
 class Certifies {
   final List<Info> identityInfo;
-  final EmergencyInfo emergencyInfo;
+  final Info emergencyInfo;
   final List<Info> jobInfo;
-  final List<PersonalInfo> personalInfo;
+  final List<Info> personalInfo;
 
   Certifies({
     required this.identityInfo,
@@ -14,65 +12,65 @@ class Certifies {
   });
 }
 
-class EmergencyInfo {
-  final int certifyId;
-  final String certifyCode;
-  final String certifyFieldsCate;
-  final String certifyFieldName;
-  final int certifyIsMust;
-  final String promptSubtitle;
-  final dynamic note;
-  final CertifyResult certifyResult;
-  final int certifyStatus;
-
-  EmergencyInfo({
-    required this.certifyId,
-    required this.certifyCode,
-    required this.certifyFieldsCate,
-    required this.certifyFieldName,
-    required this.certifyIsMust,
-    required this.promptSubtitle,
-    required this.note,
-    required this.certifyResult,
-    required this.certifyStatus,
-  });
-  factory EmergencyInfo.fromMap(Map<String, dynamic> map) {
-    return EmergencyInfo(
-      certifyId: map['certify_id'] ?? 0,
-      certifyCode: map['certify_code'] ?? '',
-      certifyFieldsCate: map['certify_fields_cate'] ?? '',
-      certifyFieldName: map['certify_field_name'] ?? '',
-      certifyIsMust: map['certify_is_must'] ?? 0,
-      promptSubtitle: map['prompt_subtitle'] ?? '',
-      note: map['note'],
-      certifyResult: CertifyResult.fromMap(map['certify_result'] ?? {}),
-      certifyStatus: map['certify_status'] ?? 0,
-    );
-  }
-
-  EmergencyInfo copyWith({
-    int? certifyId,
-    String? certifyCode,
-    String? certifyFieldsCate,
-    String? certifyFieldName,
-    int? certifyIsMust,
-    String? promptSubtitle,
-    dynamic note,
-    CertifyResult? certifyResult,
-    int? certifyStatus,
-  }) =>
-      EmergencyInfo(
-        certifyId: certifyId ?? this.certifyId,
-        certifyCode: certifyCode ?? this.certifyCode,
-        certifyFieldsCate: certifyFieldsCate ?? this.certifyFieldsCate,
-        certifyFieldName: certifyFieldName ?? this.certifyFieldName,
-        certifyIsMust: certifyIsMust ?? this.certifyIsMust,
-        promptSubtitle: promptSubtitle ?? this.promptSubtitle,
-        note: note ?? this.note,
-        certifyResult: certifyResult ?? this.certifyResult,
-        certifyStatus: certifyStatus ?? this.certifyStatus,
-      );
-}
+//class EmergencyInfo {
+//  final int certifyId;
+//  final String certifyCode;
+//  final String certifyFieldsCate;
+//  final String certifyFieldName;
+//  final int certifyIsMust;
+//  final String promptSubtitle;
+//  final dynamic note;
+//  final CertifyResult certifyResult;
+//  final int certifyStatus;
+//
+//  EmergencyInfo({
+//    required this.certifyId,
+//    required this.certifyCode,
+//    required this.certifyFieldsCate,
+//    required this.certifyFieldName,
+//    required this.certifyIsMust,
+//    required this.promptSubtitle,
+//    required this.note,
+//    required this.certifyResult,
+//    required this.certifyStatus,
+//  });
+//  factory EmergencyInfo.fromMap(Map<String, dynamic> map) {
+//    return EmergencyInfo(
+//      certifyId: map['certify_id'] ?? 0,
+//      certifyCode: map['certify_code'] ?? '',
+//      certifyFieldsCate: map['certify_fields_cate'] ?? '',
+//      certifyFieldName: map['certify_field_name'] ?? '',
+//      certifyIsMust: map['certify_is_must'] ?? 0,
+//      promptSubtitle: map['prompt_subtitle'] ?? '',
+//      note: map['note'],
+//      certifyResult: CertifyResult.fromMap(map['certify_result'] ?? {}),
+//      certifyStatus: map['certify_status'] ?? 0,
+//    );
+//  }
+//
+//  EmergencyInfo copyWith({
+//    int? certifyId,
+//    String? certifyCode,
+//    String? certifyFieldsCate,
+//    String? certifyFieldName,
+//    int? certifyIsMust,
+//    String? promptSubtitle,
+//    dynamic note,
+//    CertifyResult? certifyResult,
+//    int? certifyStatus,
+//  }) =>
+//      EmergencyInfo(
+//        certifyId: certifyId ?? this.certifyId,
+//        certifyCode: certifyCode ?? this.certifyCode,
+//        certifyFieldsCate: certifyFieldsCate ?? this.certifyFieldsCate,
+//        certifyFieldName: certifyFieldName ?? this.certifyFieldName,
+//        certifyIsMust: certifyIsMust ?? this.certifyIsMust,
+//        promptSubtitle: promptSubtitle ?? this.promptSubtitle,
+//        note: note ?? this.note,
+//        certifyResult: certifyResult ?? this.certifyResult,
+//        certifyStatus: certifyStatus ?? this.certifyStatus,
+//      );
+//}
 
 class CertifyResult {
   final int firstRelation;
@@ -174,7 +172,7 @@ class Info {
   final int certifyIsMust;
   final String promptSubtitle;
   final dynamic note;
-  final String certifyResult;
+  final List<CertifyResult> certifyResult;
   final int certifyStatus;
 
   Info({
@@ -189,6 +187,19 @@ class Info {
     required this.certifyStatus,
   });
 
+  Info.empty()
+      : this(
+          certifyId: 0,
+          certifyCode: '',
+          certifyFieldsCate: '',
+          certifyFieldName: '',
+          certifyIsMust: 0,
+          promptSubtitle: '',
+          note: null,
+          certifyResult: List<CertifyResult>.empty(),
+          certifyStatus: 0,
+        );
+
   factory Info.fromMap(Map<String, dynamic> map) {
     return Info(
       certifyId: map['certify_id'] ?? 0,
@@ -198,7 +209,9 @@ class Info {
       certifyIsMust: map['certify_is_must'] ?? 0,
       promptSubtitle: map['prompt_subtitle'] ?? '',
       note: map['note'],
-      certifyResult: map['certify_result'] ?? '',
+      //certifyResult: map['certify_result'] ?? '',
+      certifyResult: List<CertifyResult>.from(
+          map['certify_result']?.map((x) => CertifyResult.fromMap(x)) ?? []),
       certifyStatus: map['certify_status'] ?? 0,
     );
   }
@@ -226,7 +239,7 @@ class Info {
     int? certifyIsMust,
     String? promptSubtitle,
     dynamic note,
-    String? certifyResult,
+    List<CertifyResult>? certifyResult,
     int? certifyStatus,
   }) =>
       Info(
@@ -242,82 +255,82 @@ class Info {
       );
 }
 
-class PersonalInfo {
-  final int certifyId;
-  final String certifyCode;
-  final String certifyFieldsCate;
-  final String certifyFieldName;
-  final int certifyIsMust;
-  final String promptSubtitle;
-  final dynamic note;
-  final int certifyResult;
-  final int certifyStatus;
-
-  PersonalInfo({
-    required this.certifyId,
-    required this.certifyCode,
-    required this.certifyFieldsCate,
-    required this.certifyFieldName,
-    required this.certifyIsMust,
-    required this.promptSubtitle,
-    required this.note,
-    required this.certifyResult,
-    required this.certifyStatus,
-  });
-
-  // 从 Map 创建 PersonalInfo 实例
-  factory PersonalInfo.fromMap(Map<String, dynamic> map) {
-    return PersonalInfo(
-      certifyId: map['certify_id'] ?? 0,
-      certifyCode: map['certify_code'] ?? '',
-      certifyFieldsCate:
-          map['certify_fields_cate'] ?? '', // 假设 CertifyFieldsCate 有 fromMap 方法
-
-      certifyFieldName: map['certify_field_name'] ?? '',
-      certifyIsMust: map['certify_is_must'] ?? 0,
-      promptSubtitle: map['prompt_subtitle'] ?? '',
-      note: map['note'], // 根据实际类型处理
-      certifyResult: map['certify_result'] ?? 0,
-      certifyStatus: map['certify_status'] ?? 0,
-    );
-  }
-
-  // 将 PersonalInfo 实例转换为 Map
-  Map<String, dynamic> toMap() {
-    return {
-      'certify_id': certifyId,
-      'certify_code': certifyCode,
-      'certify_fields_cate':
-          certifyFieldsCate, // 假设 CertifyFieldsCate 有 toMap 方法
-      'certify_field_name': certifyFieldName,
-      'certify_is_must': certifyIsMust,
-      'prompt_subtitle': promptSubtitle,
-      'note': note, // 根据实际类型处理
-      'certify_result': certifyResult,
-      'certify_status': certifyStatus,
-    };
-  }
-
-  PersonalInfo copyWith({
-    int? certifyId,
-    String? certifyCode,
-    String? certifyFieldsCate,
-    String? certifyFieldName,
-    int? certifyIsMust,
-    String? promptSubtitle,
-    DataMap? note,
-    int? certifyResult,
-    int? certifyStatus,
-  }) =>
-      PersonalInfo(
-        certifyId: certifyId ?? this.certifyId,
-        certifyCode: certifyCode ?? this.certifyCode,
-        certifyFieldsCate: certifyFieldsCate ?? this.certifyFieldsCate,
-        certifyFieldName: certifyFieldName ?? this.certifyFieldName,
-        certifyIsMust: certifyIsMust ?? this.certifyIsMust,
-        promptSubtitle: promptSubtitle ?? this.promptSubtitle,
-        note: note ?? this.note,
-        certifyResult: certifyResult ?? this.certifyResult,
-        certifyStatus: certifyStatus ?? this.certifyStatus,
-      );
-}
+//class PersonalInfo {
+//  final int certifyId;
+//  final String certifyCode;
+//  final String certifyFieldsCate;
+//  final String certifyFieldName;
+//  final int certifyIsMust;
+//  final String promptSubtitle;
+//  final dynamic note;
+//  final int certifyResult;
+//  final int certifyStatus;
+//
+//  PersonalInfo({
+//    required this.certifyId,
+//    required this.certifyCode,
+//    required this.certifyFieldsCate,
+//    required this.certifyFieldName,
+//    required this.certifyIsMust,
+//    required this.promptSubtitle,
+//    required this.note,
+//    required this.certifyResult,
+//    required this.certifyStatus,
+//  });
+//
+//  // 从 Map 创建 PersonalInfo 实例
+//  factory PersonalInfo.fromMap(Map<String, dynamic> map) {
+//    return PersonalInfo(
+//      certifyId: map['certify_id'] ?? 0,
+//      certifyCode: map['certify_code'] ?? '',
+//      certifyFieldsCate:
+//          map['certify_fields_cate'] ?? '', // 假设 CertifyFieldsCate 有 fromMap 方法
+//
+//      certifyFieldName: map['certify_field_name'] ?? '',
+//      certifyIsMust: map['certify_is_must'] ?? 0,
+//      promptSubtitle: map['prompt_subtitle'] ?? '',
+//      note: map['note'], // 根据实际类型处理
+//      certifyResult: map['certify_result'] ?? 0,
+//      certifyStatus: map['certify_status'] ?? 0,
+//    );
+//  }
+//
+//  // 将 PersonalInfo 实例转换为 Map
+//  Map<String, dynamic> toMap() {
+//    return {
+//      'certify_id': certifyId,
+//      'certify_code': certifyCode,
+//      'certify_fields_cate':
+//          certifyFieldsCate, // 假设 CertifyFieldsCate 有 toMap 方法
+//      'certify_field_name': certifyFieldName,
+//      'certify_is_must': certifyIsMust,
+//      'prompt_subtitle': promptSubtitle,
+//      'note': note, // 根据实际类型处理
+//      'certify_result': certifyResult,
+//      'certify_status': certifyStatus,
+//    };
+//  }
+//
+//  PersonalInfo copyWith({
+//    int? certifyId,
+//    String? certifyCode,
+//    String? certifyFieldsCate,
+//    String? certifyFieldName,
+//    int? certifyIsMust,
+//    String? promptSubtitle,
+//    DataMap? note,
+//    int? certifyResult,
+//    int? certifyStatus,
+//  }) =>
+//      PersonalInfo(
+//        certifyId: certifyId ?? this.certifyId,
+//        certifyCode: certifyCode ?? this.certifyCode,
+//        certifyFieldsCate: certifyFieldsCate ?? this.certifyFieldsCate,
+//        certifyFieldName: certifyFieldName ?? this.certifyFieldName,
+//        certifyIsMust: certifyIsMust ?? this.certifyIsMust,
+//        promptSubtitle: promptSubtitle ?? this.promptSubtitle,
+//        note: note ?? this.note,
+//        certifyResult: certifyResult ?? this.certifyResult,
+//        certifyStatus: certifyStatus ?? this.certifyStatus,
+//      );
+//}

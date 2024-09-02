@@ -8,16 +8,16 @@ import 'package:loanswift/theme/pallete.dart';
 
 import '../../../../core/core.dart';
 
-class IdentityPage extends StatefulWidget {
-  const IdentityPage({super.key});
+class VerifyPage extends StatefulWidget {
+  const VerifyPage({super.key});
 
   static const routerName = "/identity_vefification";
 
   @override
-  State<IdentityPage> createState() => _IdentityPageState();
+  State<VerifyPage> createState() => _VerifyPageState();
 }
 
-class _IdentityPageState extends State<IdentityPage> {
+class _VerifyPageState extends State<VerifyPage> {
   //final List<Widget> stepers = [
   //  const IdentifyVerifyPage(),
   //  const BasicInformation()
@@ -60,9 +60,9 @@ class _IdentityPageState extends State<IdentityPage> {
         if (state is CertifiesSuccess) {
           return Stepper(
             physics: const ClampingScrollPhysics(),
-            controlsBuilder: (context, _) {
-              return Container();
-            },
+            //controlsBuilder: (context, _) {
+            //  return Container();
+            //},
             onStepContinue: () {
               setState(() {
                 _currentStep++;

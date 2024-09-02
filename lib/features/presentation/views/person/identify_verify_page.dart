@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/common/widgets/app_text.dart';
+import 'package:loanswift/core/common/widgets/day_picker.dart';
 import 'package:loanswift/core/utils.dart';
 import 'package:loanswift/features/domain/entity/user/certify.dart';
+import 'package:loanswift/features/presentation/views/person/build_form_item.dart';
 import 'package:loanswift/features/presentation/views/widgets/camera_scanner.dart';
 
 import '../../../../core/common/widgets/widgets.dart';
@@ -31,13 +33,15 @@ class _IdentifyVerifyPageState extends State<IdentifyVerifyPage> {
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
-      child: const Column(
+      child: Column(
         children: [
-          //Padding(
-          //  padding: const EdgeInsets.symmetric(vertical: 10),
-          //  child: BuildFormItem(
-          //      label: "asda", controller: TextEditingController()),
-          //),
+          //const RDay(label: "厕所协会i"),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            child: BuildFormItem(
+              info: Info.empty(),
+                label: "asda", controller: TextEditingController()),
+          ),
         ],
       ),
     );

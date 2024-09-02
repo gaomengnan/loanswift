@@ -13,19 +13,19 @@ class CertifiesModel extends Certifies {
     return CertifiesModel(
       identityInfo: List<Info>.from(
           map['identity_info']?.map((x) => Info.fromMap(x)) ?? []),
-      emergencyInfo: EmergencyInfo.fromMap(map['emergency_info'] ?? {}),
+      emergencyInfo: Info.fromMap(map['emergency_info'] ?? {}),
       jobInfo:
           List<Info>.from(map['job_info']?.map((x) => Info.fromMap(x)) ?? []),
-      personalInfo: List<PersonalInfo>.from(
-          map['personal_info']?.map((x) => PersonalInfo.fromMap(x)) ?? []),
+      personalInfo: List<Info>.from(
+          map['personal_info']?.map((x) => Info.fromMap(x)) ?? []),
     );
   }
 
   CertifiesModel copyWith({
     List<Info>? identityInfo,
-    EmergencyInfo? emergencyInfo,
+    Info? emergencyInfo,
     List<Info>? jobInfo,
-    List<PersonalInfo>? personalInfo,
+    List<Info>? personalInfo,
   }) =>
       CertifiesModel(
         identityInfo: identityInfo ?? this.identityInfo,
