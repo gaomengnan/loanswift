@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:loanswift/core/common/widgets/day_picker.dart';
 import 'package:loanswift/core/common/widgets/input.dart';
 import 'package:loanswift/features/domain/entity/user/certify.dart';
+import 'package:loanswift/features/presentation/views/widgets/form_day.dart';
 import 'package:loanswift/features/presentation/views/widgets/form_image_picker.dart';
 
 class BuildFormItem extends StatelessWidget {
   final String label;
   final String? Function(String?)? validator;
-  final TextEditingController controller;
+  //final TextEditingController controller;
 
   final Info info;
 
@@ -15,7 +15,7 @@ class BuildFormItem extends StatelessWidget {
     super.key,
     required this.label,
     this.validator,
-    required this.controller,
+    //required this.controller,
     required this.info,
   });
 
@@ -26,20 +26,31 @@ class BuildFormItem extends StatelessWidget {
         return RInput(
           hitText: label,
           label: label,
-          controller: controller,
+          //controller: controller,
         );
 
       case "file":
-        return FormImageFiled(label: label);
+        return ImagePickerFormField(
+          label: label,
+          context: context,
+        );
 
       case "day":
-        return Container();
-
-      default:
-        return RDay(
+        return FormDayField(
           hitText: label,
           label: label,
-          controller: controller,
+          onChanged: (val) {
+            print('lis $val');
+          },
+        );
+
+      default:
+        return FormDayField(
+          hitText: label,
+          label: label,
+          onChanged: (val) {
+            print('lis $val');
+          },
         );
     }
 

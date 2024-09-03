@@ -5,12 +5,13 @@ import 'package:loanswift/core/common/widgets/widgets.dart';
 class RInput extends StatelessWidget {
   final String hitText;
   final String label;
-  final TextEditingController controller;
+  //final TextEditingController controller;
 
   const RInput({
     super.key,
     required this.hitText,
-    required this.label, required this.controller,
+    required this.label,
+    //required this.controller,
   });
 
   @override
@@ -36,7 +37,7 @@ class RInput extends StatelessWidget {
                 borderRadius: BorderRadius.circular(5),
               ),
               child: TextFormField(
-                controller: controller,
+                //controller: controller,
                 decoration: const InputDecoration(
                     enabledBorder: InputBorder.none,
                     disabledBorder: InputBorder.none),

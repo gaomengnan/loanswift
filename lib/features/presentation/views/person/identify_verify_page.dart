@@ -35,18 +35,66 @@ class _IdentifyVerifyPageState extends State<IdentifyVerifyPage> {
       child: Column(
         children: [
           //const RDay(label: "厕所协会i"),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: BuildFormItem(
-              info: Info.empty(),
-                label: "asda", controller: TextEditingController()),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: BuildFormItem(
-              info: Info.empty(),
-              label: "asda", controller: TextEditingController()),
-          ),
+
+          ...widget.settings.map((e) {
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  BuildFormItem(label: e.certifyFieldName, info: e),
+                  UI.kHeight10(),
+                  const Divider(
+                    color: Colors.black12,
+                    ),
+                ],
+              ),
+            );
+          }),
+
+          //Padding(
+          //  padding: const EdgeInsets.all(8.0),
+          //  child: BuildFormItem(
+          //      info: Info.empty(),
+          //      label: "asda",
+          //      controller: TextEditingController()),
+          //),
+          //Padding(
+          //  padding: const EdgeInsets.all(8.0),
+          //  child: BuildFormItem(
+          //      info: Info.empty(),
+          //      label: "asda",
+          //      controller: TextEditingController()),
+          //),
+          //
+          //Padding(
+          //  padding: EdgeInsets.all(8.0),
+          //  child: FormSelectField(
+          //    hitText: 'asdsa',
+          //    label: "asda",
+          //    onChanged: (vo) {
+          //      print('select lis $vo');
+          //    },
+          //  ),
+          //),
+          //
+          //Padding(
+          //  padding: EdgeInsets.all(8.0),
+          //  child: FormInputField(
+          //    hitText: 'asdsa',
+          //    label: "asda",
+          //    onChanged: (vo) {
+          //      print('input lis $vo');
+          //    },
+          //  ),
+          //),
+          //
+          //Padding(
+          //  padding: EdgeInsets.all(8.0),
+          //  child: ImagePickerFormField(
+          //    label: "asd",
+          //    onSaved: (context) {},
+          //  ),
+          //),
         ],
       ),
     );

@@ -172,7 +172,7 @@ class Info {
   final int certifyIsMust;
   final String promptSubtitle;
   final dynamic note;
-  final List<CertifyResult> certifyResult;
+  final dynamic certifyResult;
   final int certifyStatus;
 
   Info({
@@ -196,7 +196,7 @@ class Info {
           certifyIsMust: 0,
           promptSubtitle: '',
           note: null,
-          certifyResult: List<CertifyResult>.empty(),
+          certifyResult: null,
           certifyStatus: 0,
         );
 
@@ -210,8 +210,7 @@ class Info {
       promptSubtitle: map['prompt_subtitle'] ?? '',
       note: map['note'],
       //certifyResult: map['certify_result'] ?? '',
-      certifyResult: List<CertifyResult>.from(
-          map['certify_result']?.map((x) => CertifyResult.fromMap(x)) ?? []),
+      certifyResult: map['certify_result'],
       certifyStatus: map['certify_status'] ?? 0,
     );
   }

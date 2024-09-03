@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/common/widgets/widgets.dart';
 
-class FormInputField extends StatefulWidget {
+class FormSelectField extends StatefulWidget {
   final String hitText;
   final String label;
+  //final TextEditingController controller;
+
   final void Function(String)? onChanged;
 
-  const FormInputField({
+  const FormSelectField({
     super.key,
     required this.hitText,
     required this.label,
@@ -16,18 +18,11 @@ class FormInputField extends StatefulWidget {
   });
 
   @override
-  State<FormInputField> createState() => _FormInputFieldState();
+  State<FormSelectField> createState() => _FormSelectFieldState();
 }
 
-class _FormInputFieldState extends State<FormInputField> {
-  //final TextEditingController controller;
-
-  @override
-  void dispose() {
-    //controller.dispose();
-    super.dispose();
-  }
-
+class _FormSelectFieldState extends State<FormSelectField> {
+  final String? _selectedValue = null;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -50,19 +45,23 @@ class _FormInputFieldState extends State<FormInputField> {
                 color: Colors.grey.shade200,
                 borderRadius: BorderRadius.circular(5),
               ),
-              child: TextFormField(
-                onSaved: (val) {
-                  print(22);
-                },
-                onFieldSubmitted: (value) {
+              child: DropdownButtonFormField(
+                value: _selectedValue,
+                items: const [
+                  DropdownMenuItem(
+                    value: 'Option 1',
+                    child: Text('选项 1'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'Option 2',
+                    child: Text('选项 2'),
+                  ),
+                ],
+                onChanged: (val) {
                   if (widget.onChanged != null) {
-                    widget.onChanged!(value);
+                    widget.onChanged!(val ?? '');
                   }
                 },
-                //controller: controller,
-                decoration: const InputDecoration(
-                    enabledBorder: InputBorder.none,
-                    disabledBorder: InputBorder.none),
               ),
             ),
           ),
