@@ -38,6 +38,7 @@ class _IdentifyVerifyPageState extends State<IdentifyVerifyPage> {
             return Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   BuildFormItem(label: e.certifyFieldName, info: e),
                   UI.kHeight10(),

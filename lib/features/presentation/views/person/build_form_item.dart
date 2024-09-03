@@ -40,7 +40,6 @@ class BuildFormItem extends StatelessWidget {
           hitText: label,
           label: label,
           onChanged: (val) {
-            print('lis $val');
           },
         );
 

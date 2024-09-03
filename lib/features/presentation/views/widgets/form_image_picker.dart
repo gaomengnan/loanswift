@@ -1,11 +1,13 @@
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:loanswift/core/common/widgets/widgets.dart';
 import 'package:loanswift/core/core.dart';
+import 'package:loanswift/core/dio_client.dart';
 
 class ImagePickerFormField extends FormField<List<File>> {
   final String label;
@@ -64,8 +66,27 @@ class ImagePickerFormField extends FormField<List<File>> {
                                 maxWidth: 600,
                               );
                               if (pickedFiles != null) {
-                                state.didChange(List.from(state.value ?? [])
-                                  ..addAll([File(pickedFiles.path)]));
+                                UI.showLoading();
+
+                                final resp = await sl<DioClient>().post(
+                                  path: AppContant.uploadUri,
+                                  data: {
+                                    "file": await MultipartFile.fromFile(
+                                      pickedFiles.path,
+                                      filename:
+                                          pickedFiles.path.split('/').last,
+                                    ),
+                                  },
+                                  pt: 'form',
+                                );
+
+                                resp.fold(
+                                    (err) => UI.showError(context, err.message),
+                                    (l) {
+                                  UI.hideLoading();
+                                  state.didChange(List.from(state.value ?? [])
+                                    ..addAll([File(pickedFiles.path)]));
+                                });
                               }
                             },
                             child: Container(
@@ -169,120 +190,93 @@ class ImagePickerFormField extends FormField<List<File>> {
                   Expanded(
                       child: RText(
                     text: label,
-                    maxLines: 2,
                     size: 16.sp,
                     fontWeight: FontWeight.w600,
                   )),
                   UI.kHeight5(),
                   Expanded(
                     flex: 3,
-                    child: Row(
-                      children: [
-                        SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: [
-                              GestureDetector(
-                                onTap: () async {
-                                  showUploadTypeBottomSheet(context);
-                                  //final picker = ImagePicker();
-                                  //final pickedFiles =
-                                  //    await picker.pickMultiImage();
-                                  //if (pickedFiles.isNotEmpty) {
-                                  //  final files = pickedFiles
-                                  //      .map((pickedFile) =>
-                                  //          File(pickedFile.path))
-                                  //      .toList();
-                                  //  state.didChange(List.from(state.value ?? [])
-                                  //    ..addAll(files));
-                                  //}
-                                },
-                                child:
-                                    state.value == null || state.value!.isEmpty
-                                        ? const Image(
-                                            image: AssetImage(
-                                              Assets.uploadPlaceholder,
-                                            ),
-                                          )
-                                        : SingleChildScrollView(
-                                            scrollDirection: Axis.horizontal,
-                                            child: Wrap(
-                                              spacing: 10.w,
-                                              direction: Axis.horizontal,
-                                              children: [
-                                                ...state.value!
-                                                    .map((f) => SizedBox(
-                                                          height: 80.h,
-                                                          child: Column(
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Expanded(
-                                                                flex: 2,
-                                                                child:
-                                                                    Image.file(
-                                                                  f,
-                                                                  height: 50.h,
-                                                                  width: 100.w,
-                                                                  //height: 150,
-                                                                  //width: double.infinity,
-                                                                  fit: BoxFit
-                                                                      .cover,
-                                                                ),
-                                                              ),
-                                                              Expanded(
-                                                                flex: 1,
-                                                                child:
-                                                                    Container(
-                                                                  width: 100.w,
-                                                                  decoration:
-                                                                      const BoxDecoration(
-                                                                    color: Colors
-                                                                        .black12,
-                                                                  ),
-                                                                  child: Center(
-                                                                    child: Wrap(
-                                                                      spacing:
-                                                                          10.w,
-                                                                      crossAxisAlignment:
-                                                                          WrapCrossAlignment
-                                                                              .center,
-                                                                      children: [
-                                                                        InkWell(
-                                                                          onTap:
-                                                                              () {
-                                                                            state.didChange(List.from(state.value!)
-                                                                              ..remove(f));
-                                                                          },
-                                                                          child:
-                                                                              const Icon(IconlyBold.delete),
-                                                                        ),
-                                                                        InkWell(
-                                                                          onTap:
-                                                                              () {
-                                                                            showImagePreview(context,
-                                                                                f);
-                                                                          },
-                                                                          child:
-                                                                              const Icon(Icons.remove_red_eye),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              )
-                                                            ],
-                                                          ),
-                                                        )),
-                                              ],
-                                            ),
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: GestureDetector(
+                        onTap: () async {
+                          showUploadTypeBottomSheet(context);
+                        },
+                        child: state.value == null || state.value!.isEmpty
+                            ? const Image(
+                                image: AssetImage(
+                                  Assets.uploadPlaceholder,
+                                ),
+                              )
+                            : SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Wrap(
+                                  spacing: 10.w,
+                                  direction: Axis.horizontal,
+                                  children: [
+                                    ...state.value!.map((f) => SizedBox(
+                                          height: 80.h,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Expanded(
+                                                flex: 2,
+                                                child: Image.file(
+                                                  f,
+                                                  height: 50.h,
+                                                  width: 100.w,
+                                                  //height: 150,
+                                                  //width: double.infinity,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                              Expanded(
+                                                flex: 1,
+                                                child: Container(
+                                                  width: 100.w,
+                                                  decoration:
+                                                      const BoxDecoration(
+                                                    color: Colors.black12,
+                                                  ),
+                                                  child: Center(
+                                                    child: Wrap(
+                                                      spacing: 10.w,
+                                                      crossAxisAlignment:
+                                                          WrapCrossAlignment
+                                                              .center,
+                                                      children: [
+                                                        InkWell(
+                                                          onTap: () {
+                                                            state.didChange(
+                                                                List.from(state
+                                                                    .value!)
+                                                                  ..remove(f));
+                                                          },
+                                                          child: const Icon(
+                                                              IconlyBold
+                                                                  .delete),
+                                                        ),
+                                                        InkWell(
+                                                          onTap: () {
+                                                            showImagePreview(
+                                                                context, f);
+                                                          },
+                                                          child: const Icon(Icons
+                                                              .remove_red_eye),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                              )
+                                            ],
                                           ),
+                                        )),
+                                  ],
+                                ),
                               ),
-                            ],
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
                   ),
                 ],

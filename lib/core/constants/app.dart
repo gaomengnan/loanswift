@@ -13,4 +13,6 @@ class AppContant {
   static const tokenExpireCode = 10401;
 
   static const apiSuccessCode = 10000;
+
+  static const String uploadUri = '/middle/upload/index';
 }
