@@ -1,6 +1,6 @@
 class Certifies {
   final List<Info> identityInfo;
-  final Info emergencyInfo;
+  final List<Info> emergencyInfo;
   final List<Info> jobInfo;
   final List<Info> personalInfo;
 

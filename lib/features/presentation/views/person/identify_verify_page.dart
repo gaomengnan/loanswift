@@ -34,8 +34,6 @@ class _IdentifyVerifyPageState extends State<IdentifyVerifyPage> {
       key: _formKey,
       child: Column(
         children: [
-          //const RDay(label: "厕所协会i"),
-
           ...widget.settings.map((e) {
             return Padding(
               padding: const EdgeInsets.all(8.0),
@@ -45,92 +43,13 @@ class _IdentifyVerifyPageState extends State<IdentifyVerifyPage> {
                   UI.kHeight10(),
                   const Divider(
                     color: Colors.black12,
-                    ),
+                  ),
                 ],
               ),
             );
           }),
-
-          //Padding(
-          //  padding: const EdgeInsets.all(8.0),
-          //  child: BuildFormItem(
-          //      info: Info.empty(),
-          //      label: "asda",
-          //      controller: TextEditingController()),
-          //),
-          //Padding(
-          //  padding: const EdgeInsets.all(8.0),
-          //  child: BuildFormItem(
-          //      info: Info.empty(),
-          //      label: "asda",
-          //      controller: TextEditingController()),
-          //),
-          //
-          //Padding(
-          //  padding: EdgeInsets.all(8.0),
-          //  child: FormSelectField(
-          //    hitText: 'asdsa',
-          //    label: "asda",
-          //    onChanged: (vo) {
-          //      print('select lis $vo');
-          //    },
-          //  ),
-          //),
-          //
-          //Padding(
-          //  padding: EdgeInsets.all(8.0),
-          //  child: FormInputField(
-          //    hitText: 'asdsa',
-          //    label: "asda",
-          //    onChanged: (vo) {
-          //      print('input lis $vo');
-          //    },
-          //  ),
-          //),
-          //
-          //Padding(
-          //  padding: EdgeInsets.all(8.0),
-          //  child: ImagePickerFormField(
-          //    label: "asd",
-          //    onSaved: (context) {},
-          //  ),
-          //),
         ],
       ),
-    );
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(
-          height: 60.h,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Expanded(
-                child: RText(
-                  size: 13.sp,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.red,
-                  text: "asdsa",
-                ),
-              ),
-              Expanded(
-                child: RText(
-                  size: 13.sp,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.red,
-                  text: "asdsa",
-                ),
-              ),
-            ],
-          ),
-        ),
-        //RInput(hitText: "asd", label: ":asdacwww", controller: TextEditingController()),
-        //buildCardDescription(),
-        //UI.kHeight10(),
-        //buildItem(context),
-      ],
     );
   }
 

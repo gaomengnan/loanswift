@@ -13,7 +13,8 @@ class CertifiesModel extends Certifies {
     return CertifiesModel(
       identityInfo: List<Info>.from(
           map['identity_info']?.map((x) => Info.fromMap(x)) ?? []),
-      emergencyInfo: Info.fromMap(map['emergency_info'] ?? {}),
+      emergencyInfo: List<Info>.from(
+          map['emergency_info']?.map((x) => Info.fromMap(x)) ?? []),
       jobInfo:
           List<Info>.from(map['job_info']?.map((x) => Info.fromMap(x)) ?? []),
       personalInfo: List<Info>.from(
@@ -23,7 +24,7 @@ class CertifiesModel extends Certifies {
 
   CertifiesModel copyWith({
     List<Info>? identityInfo,
-    Info? emergencyInfo,
+    List<Info>? emergencyInfo,
     List<Info>? jobInfo,
     List<Info>? personalInfo,
   }) =>

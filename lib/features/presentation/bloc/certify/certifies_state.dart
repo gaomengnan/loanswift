@@ -1,9 +1,18 @@
 part of 'certifies_bloc.dart';
 
 @immutable
-sealed class CertifiesState extends Equatable {
+class CertifiesState extends Equatable {
+  const CertifiesState();
+
+  const CertifiesState.initial() : this();
+
+
+  CertifiesState.copyWith({}) => CertifiesState();
+
+
   @override
   List<Object?> get props => [];
+
 }
 
 class CertifiesInitial extends CertifiesState {}

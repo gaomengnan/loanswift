@@ -21,7 +21,7 @@ class ImagePickerFormField extends FormField<List<File>> {
         AutovalidateMode.onUserInteraction,
   }) : super(
           builder: (FormFieldState<List<File>> state) {
-            void _showImagePreview(BuildContext context, File file) {
+            void showImagePreview(BuildContext context, File file) {
               showDialog(
                 context: context,
                 builder: (BuildContext context) {
@@ -43,109 +43,113 @@ class ImagePickerFormField extends FormField<List<File>> {
                 children: [
                   Expanded(
                       child: RText(
-                    text: label,
-                    maxLines: 1,
-                    size: 16.sp,
-                    fontWeight: FontWeight.w600,
-                  )),
+                        text: label,
+                        maxLines: 2,
+                        size: 16.sp,
+                        fontWeight: FontWeight.w600,
+                      )),
                   UI.kHeight5(),
                   Expanded(
                     flex: 3,
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [
-                          GestureDetector(
-                            onTap: () async {
-                              final picker = ImagePicker();
-                              final pickedFiles = await picker.pickMultiImage();
-                              if (pickedFiles.isNotEmpty) {
-                                final files = pickedFiles
-                                    .map((pickedFile) => File(pickedFile.path))
-                                    .toList();
-                                state.didChange(List.from(state.value ?? [])
-                                  ..addAll(files));
-                              }
-                            },
-                            child: state.value == null || state.value!.isEmpty
-                                ? const Image(
-                                    image: AssetImage(
-                                      Assets.uploadPlaceholder,
-                                    ),
-                                  )
-                                : SingleChildScrollView(
-                                    scrollDirection: Axis.horizontal,
-                                    child: Wrap(
-                                      spacing: 10.w,
-                                      direction: Axis.horizontal,
-                                      children: [
-                                        ...state.value!.map((f) => SizedBox(
-                                              height: 80.h,
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Expanded(
-                                                    flex: 2,
-                                                    child: Image.file(
-                                                      f,
-                                                      height: 50.h,
-                                                      width: 100.w,
-                                                      //height: 150,
-                                                      //width: double.infinity,
-                                                      fit: BoxFit.cover,
-                                                    ),
-                                                  ),
-                                                  Expanded(
-                                                    flex: 1,
-                                                    child: Container(
-                                                      width: 100.w,
-                                                      decoration:
-                                                          const BoxDecoration(
-                                                        color: Colors.black12,
-                                                      ),
-                                                      child: Center(
-                                                        child: Wrap(
-                                                          spacing: 10.w,
-                                                          crossAxisAlignment:
-                                                              WrapCrossAlignment
-                                                                  .center,
-                                                          children: [
-                                                            InkWell(
-                                                              onTap: () {
-                                                                state.didChange(
-                                                                    List.from(state
-                                                                        .value!)
-                                                                      ..remove(
-                                                                          f));
-                                                              },
-                                                              child: const Icon(
-                                                                  IconlyBold
-                                                                      .delete),
-                                                            ),
-                                                            InkWell(
-                                                              onTap: () {
-                                                                _showImagePreview(
-                                                                    context, f);
-                                                              },
-                                                              child: const Icon(
-                                                                  Icons
-                                                                      .remove_red_eye),
-                                                            ),
-                                                          ],
+                    child: Row(
+                      children: [
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: [
+                              GestureDetector(
+                                onTap: () async {
+                                  final picker = ImagePicker();
+                                  final pickedFiles = await picker.pickMultiImage();
+                                  if (pickedFiles.isNotEmpty) {
+                                    final files = pickedFiles
+                                        .map((pickedFile) => File(pickedFile.path))
+                                        .toList();
+                                    state.didChange(List.from(state.value ?? [])
+                                      ..addAll(files));
+                                  }
+                                },
+                                child: state.value == null || state.value!.isEmpty
+                                    ? const Image(
+                                        image: AssetImage(
+                                          Assets.uploadPlaceholder,
+                                        ),
+                                      )
+                                    : SingleChildScrollView(
+                                        scrollDirection: Axis.horizontal,
+                                        child: Wrap(
+                                          spacing: 10.w,
+                                          direction: Axis.horizontal,
+                                          children: [
+                                            ...state.value!.map((f) => SizedBox(
+                                                  height: 80.h,
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment.start,
+                                                    children: [
+                                                      Expanded(
+                                                        flex: 2,
+                                                        child: Image.file(
+                                                          f,
+                                                          height: 50.h,
+                                                          width: 100.w,
+                                                          //height: 150,
+                                                          //width: double.infinity,
+                                                          fit: BoxFit.cover,
                                                         ),
                                                       ),
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
-                                            )),
-                                      ],
-                                    ),
-                                  ),
+                                                      Expanded(
+                                                        flex: 1,
+                                                        child: Container(
+                                                          width: 100.w,
+                                                          decoration:
+                                                              const BoxDecoration(
+                                                            color: Colors.black12,
+                                                          ),
+                                                          child: Center(
+                                                            child: Wrap(
+                                                              spacing: 10.w,
+                                                              crossAxisAlignment:
+                                                                  WrapCrossAlignment
+                                                                      .center,
+                                                              children: [
+                                                                InkWell(
+                                                                  onTap: () {
+                                                                    state.didChange(
+                                                                        List.from(state
+                                                                            .value!)
+                                                                          ..remove(
+                                                                              f));
+                                                                  },
+                                                                  child: const Icon(
+                                                                      IconlyBold
+                                                                          .delete),
+                                                                ),
+                                                                InkWell(
+                                                                  onTap: () {
+                                                                    showImagePreview(
+                                                                        context, f);
+                                                                  },
+                                                                  child: const Icon(
+                                                                      Icons
+                                                                          .remove_red_eye),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      )
+                                                    ],
+                                                  ),
+                                                )),
+                                          ],
+                                        ),
+                                      ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
