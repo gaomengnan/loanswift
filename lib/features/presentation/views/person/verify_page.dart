@@ -23,11 +23,11 @@ class _VerifyPageState extends State<VerifyPage> {
   //  const BasicInformation()
   //];
 
-  int _currentStep = 0;
+  //int _currentStep = 0;
   @override
   void initState() {
     super.initState();
-    _currentStep = 0;
+    //_currentStep = 0;
   }
 
   @override
@@ -47,7 +47,7 @@ class _VerifyPageState extends State<VerifyPage> {
       ),
       body: BlocConsumer<CertifiesBloc, CertifiesState>(
           listener: (context, state) {
-        if (state is CertifiesFailure) {
+        if (state is CertifiesSettingLoadFailure) {
           UI.showError(
             context,
             state.error.error,
@@ -57,53 +57,49 @@ class _VerifyPageState extends State<VerifyPage> {
         //print(state.data.identityInfo[0].toMap());
         //}
       }, builder: (context, state) {
-        if (state is CertifiesSuccess) {
-          return Stepper(
-            physics: const ClampingScrollPhysics(),
-            //controlsBuilder: (context, _) {
-            //  return Container();
-            //},
-            onStepContinue: () {
-              setState(() {
-                _currentStep++;
-              });
-            },
-            elevation: 0,
-            type: StepperType.vertical,
-            steps: [
-              Step(
-                title: Text(S.current.identity_authentication),
-                content: IdentifyVerifyPage(
-                  settings: state.data.identityInfo,
-                ),
-                isActive: _currentStep >= 0,
+        return Stepper(
+          physics: const ClampingScrollPhysics(),
+          //controlsBuilder: (context, _) {
+          //  return Container();
+          //},
+          onStepContinue: () {
+            //setState(() {
+            //
+            //});
+          },
+          elevation: 0,
+          type: StepperType.vertical,
+          steps: [
+            Step(
+              title: Text(S.current.identity_authentication),
+              content: IdentifyVerifyPage(
+                settings: state.settings.identityInfo,
               ),
-              Step(
-                title: Text(S.current.emergency_contact),
-                content: const BasicInformation(),
-                isActive: _currentStep >= 1,
-              ),
-              Step(
-                title: Text(S.current.work_information),
-                content: const BasicInformation(),
-                isActive: _currentStep >= 2,
-              ),
-              Step(
-                title: Text(S.current.personal_information),
-                content: const BasicInformation(),
-                isActive: _currentStep >= 3,
-              ),
-              //Step(
-              //  title: const Text(''),
-              //  content: const Text('This is the third step.'),
-              //  isActive: _currentStep >= 2,
-              //),
-            ],
-            currentStep: _currentStep,
-          );
-        }
-
-        return const LoadingPage();
+              isActive: state.cerfityStep >= 0,
+            ),
+            Step(
+              title: Text(S.current.emergency_contact),
+              content: const BasicInformation(),
+              isActive: state.cerfityStep >= 1,
+            ),
+            Step(
+              title: Text(S.current.work_information),
+              content: const BasicInformation(),
+              isActive: state.cerfityStep >= 2,
+            ),
+            Step(
+              title: Text(S.current.personal_information),
+              content: const BasicInformation(),
+              isActive: state.cerfityStep >= 3,
+            ),
+            //Step(
+            //  title: const Text(''),
+            //  content: const Text('This is the third step.'),
+            //  isActive: _currentStep >= 2,
+            //),
+          ],
+          currentStep: state.cerfityStep,
+        );
       }),
     );
   }

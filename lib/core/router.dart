@@ -18,7 +18,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case VerifyPage.routerName:
       return _pageBuilder(
         (_) => BlocProvider(
-          create: (context) => sl<CertifiesBloc>()..add(CertifiesLoadEvent()),
+          create: (context) => sl<CertifiesBloc>()..add(CertifiesSettingsLoadEvent()),
           child: const VerifyPage(),
         ),
         settings: settings,

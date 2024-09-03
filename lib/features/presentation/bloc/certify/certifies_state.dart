@@ -1,35 +1,43 @@
 part of 'certifies_bloc.dart';
 
-@immutable
 class CertifiesState extends Equatable {
-  const CertifiesState();
+  final int cerfityStep;
+  final CertifiesModel settings;
 
-  const CertifiesState.initial() : this();
+  const CertifiesState({
+    required this.cerfityStep,
+    required this.settings,
+  });
 
+  CertifiesState.initial()
+      : this(
+          cerfityStep: 0,
+          settings: CertifiesModel.empty(),
+        );
 
-  CertifiesState.copyWith({}) => CertifiesState();
-
+  CertifiesState copyWith({int? step, CertifiesModel? certifies}) =>
+      CertifiesState(
+        cerfityStep: step ?? cerfityStep,
+        settings: certifies ?? settings,
+      );
 
   @override
-  List<Object?> get props => [];
-
+  List<Object?> get props => [cerfityStep];
 }
 
-class CertifiesInitial extends CertifiesState {}
+class CertifiesInitial extends CertifiesState {
+  CertifiesInitial.initial() : super.initial();
+}
 
-class CertifiesFailure extends CertifiesState {
+class CertifiesSettingLoadFailure extends CertifiesState {
   final CustomError error;
 
-  CertifiesFailure({required this.error});
+  CertifiesSettingLoadFailure({required this.error}) : super.initial();
   @override
   List<Object?> get props => [error];
 }
 
-class CertifiesSuccess extends CertifiesState {
-  final CertifiesModel data;
-
-  CertifiesSuccess({required this.data});
-
-  @override
-  List<Object?> get props => [data];
+class CertifiesSettingsLoadSuccess extends CertifiesState {
+  const CertifiesSettingsLoadSuccess(
+      {required super.settings, required super.cerfityStep});
 }

@@ -8,6 +8,14 @@ class CertifiesModel extends Certifies {
     required super.personalInfo,
   });
 
+  CertifiesModel.empty()
+      : super(
+          identityInfo: [],
+          emergencyInfo: [],
+          jobInfo: [],
+          personalInfo: [],
+        );
+
   // 从 Map 创建 Certifies 实例
   factory CertifiesModel.fromMap(Map<String, dynamic> map) {
     return CertifiesModel(
