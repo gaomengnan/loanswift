@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:loanswift/core/common/widgets/app_text.dart';
 import 'package:loanswift/core/common/widgets/loading_page.dart';
 import 'package:loanswift/features/presentation/bloc/certify/certifies_bloc.dart';
 import 'package:loanswift/features/presentation/views/person/basic_information.dart';
@@ -57,12 +59,38 @@ class _VerifyPageState extends State<VerifyPage> {
         //print(state.data.identityInfo[0].toMap());
         //}
       }, builder: (context, state) {
+        if (state is CertifiesSettingsLoading) {
+          return const LoadingPage();
+        }
         return Stepper(
           physics: const ClampingScrollPhysics(),
-          //controlsBuilder: (context, _) {
-          //  return Container();
+          //controlsBuilder: (BuildContext context, ControlsDetails details) {
+          //  return Row(
+          //    mainAxisAlignment: MainAxisAlignment.center,
+          //    children: <Widget>[
+          //      ElevatedButton(
+          //        style: ElevatedButton.styleFrom(
+          //          minimumSize: Size(ScreenUtil().screenWidth * 0.7, 30.h),
+          //        ),
+          //        onPressed: details.onStepContinue,
+          //        child: RText(
+          //          text: '提交',
+          //          color: Colors.white,
+          //        ),
+          //      ),
+          //      //ElevatedButton(
+          //      //  onPressed: details.onStepCancel,
+          //      //  child: const Text('上一步'),
+          //      //),
+          //    ],
+          //  );
           //},
+
+          onStepCancel: () {
+            context.read<CertifiesBloc>().add(CertifyStepBack());
+          },
           onStepContinue: () {
+            context.read<CertifiesBloc>().add(CertifyStepContinue());
             //setState(() {
             //
             //});

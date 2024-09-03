@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loanswift/features/data/models/certifies_model.dart';
 import 'package:loanswift/features/data/models/error.dart';
-import 'package:loanswift/features/domain/entity/user/certify.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/get_certifies.dart';
 
 part 'certifies_event.dart';
@@ -16,10 +15,28 @@ class CertifiesBloc extends Bloc<CertifiesEvent, CertifiesState> {
     required this.getCertifies,
   }) : super(CertifiesState.initial()) {
     on<CertifiesSettingsLoadEvent>(_certifiesLoadHandler);
+    on<CertifyStepContinue>(_stepContinueHandler);
+    on<CertifyStepBack>(_stepBackHander);
+  }
+
+  void _stepBackHander(
+    CertifyStepBack event, Emitter<CertifiesState> emit) {
+    final step = state.cerfityStep;
+    if (step == 0) {
+      return;
+    }
+    emit(state.copyWith(step: step-1));
+  }
+
+  void _stepContinueHandler(
+      CertifyStepContinue event, Emitter<CertifiesState> emit) async {
+    final step = state.cerfityStep;
+    emit(state.copyWith(step: step + 1));
   }
 
   void _certifiesLoadHandler(
       CertifiesEvent event, Emitter<CertifiesState> emit) async {
+    emit(CertifiesSettingsLoading());
     final resp = await getCertifies();
 
     resp.fold(
@@ -29,7 +46,8 @@ class CertifiesBloc extends Bloc<CertifiesEvent, CertifiesState> {
         ),
       ),
       (l) => emit(
-        (state as CertifiesSettingsLoadSuccess).copyWith(certifies: l),
+        CertifiesSettingsLoadSuccess(
+            cerfityStep: state.cerfityStep, settings: l),
       ),
     );
   }

@@ -10,18 +10,22 @@ import 'package:loanswift/features/data/datasource/auth.dart';
 import 'package:loanswift/features/data/datasource/device.dart';
 import 'package:loanswift/features/data/datasource/home.dart';
 import 'package:loanswift/features/data/datasource/order.dart';
+import 'package:loanswift/features/data/datasource/upload.dart';
 import 'package:loanswift/features/data/repository/auth.dart';
 import 'package:loanswift/features/data/repository/device.dart';
 import 'package:loanswift/features/data/repository/home.dart';
 import 'package:loanswift/features/data/repository/order.dart';
+import 'package:loanswift/features/data/repository/upload.dart';
 import 'package:loanswift/features/domain/repos/auth.dart';
 import 'package:loanswift/features/domain/repos/device.dart';
 import 'package:loanswift/features/domain/repos/home.dart';
 import 'package:loanswift/features/domain/repos/order.dart';
+import 'package:loanswift/features/domain/repos/upload.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/get_certifies.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/login.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/logout.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/send_phone_code.dart';
+import 'package:loanswift/features/domain/usecases/common/file_upload.dart';
 import 'package:loanswift/features/domain/usecases/home/data.dart';
 import 'package:loanswift/features/domain/usecases/order/get_order_detail.dart';
 import 'package:loanswift/features/domain/usecases/order/query_order.dart';
@@ -165,6 +169,15 @@ Future<void> initialize() async {
   sl
     ..registerFactory(() => CertifiesBloc(getCertifies: sl()))
     ..registerLazySingleton(() => GetCertifies(authRepo: sl()));
+
+  /*  BUILD UPLOAD  */
+
+  sl
+    ..registerLazySingleton<IUploadDataSource>(
+        () => UploadDataSource(dio: sl()))
+    ..registerLazySingleton<IUpload>(
+        () => UploadRepositry(uploadDataSource: sl()))
+    ..registerLazySingleton(() => FileUpload(uploadRepo: sl()));
 
   try {
     await Firebase.initializeApp(

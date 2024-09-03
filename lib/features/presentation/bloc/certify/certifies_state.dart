@@ -29,6 +29,10 @@ class CertifiesInitial extends CertifiesState {
   CertifiesInitial.initial() : super.initial();
 }
 
+class CertifiesSettingsLoading extends CertifiesState {
+  CertifiesSettingsLoading() : super.initial();
+}
+
 class CertifiesSettingLoadFailure extends CertifiesState {
   final CustomError error;
 

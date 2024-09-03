@@ -4,3 +4,6 @@ part of 'certifies_bloc.dart';
 sealed class CertifiesEvent {}
 
 class CertifiesSettingsLoadEvent extends CertifiesEvent {}
+
+class CertifyStepContinue extends CertifiesEvent {}
+class CertifyStepBack extends CertifiesEvent {}
