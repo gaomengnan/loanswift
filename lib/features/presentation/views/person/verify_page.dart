@@ -88,10 +88,7 @@ class _VerifyPageState extends State<VerifyPage> {
             context.read<CertifiesBloc>().add(CertifyStepBack());
           },
           onStepContinue: () {
-            context.read<CertifiesBloc>().add(CertifyStepContinue());
-            //setState(() {
-            //
-            //});
+            context.read<CertifiesBloc>().add(CertifyStepRequest());
           },
           elevation: 0,
           type: StepperType.vertical,

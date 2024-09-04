@@ -8,7 +8,6 @@ import 'package:loanswift/core/common/widgets/widgets.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/core/utils.dart';
 import 'package:loanswift/features/domain/entity/user/certify.dart';
-import 'package:loanswift/features/presentation/views/widgets/camera_scanner.dart';
 
 class ImagePickEntity {
   final String filePath;
@@ -30,10 +29,15 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
     this.onChanged,
     super.initialValue,
     super.onSaved,
-    super.validator,
     AutovalidateMode super.autovalidateMode =
         AutovalidateMode.onUserInteraction,
   }) : super(
+          validator: (value) {
+            if(info.certifyIsMust != 1) {
+              return null;
+            }
+            return info.promptSubtitle;
+          },
           builder: (FormFieldState<List<ImagePickEntity>> state) {
             void showImagePreview(BuildContext context, ImagePickEntity file) {
               showDialog(
@@ -82,7 +86,6 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
                               );
                               if (pickedFiles != null) {
                                 UI.showLoading();
-
 
                                 final resp = await Utils.uploadImage(
                                   pickedFiles.path,
@@ -138,7 +141,6 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
                           GestureDetector(
                             onTap: () async {
                               Navigator.of(context).pop();
-
 
                               //Utils.pickerImageFromGallery();
                               final picker = ImagePicker();
@@ -325,6 +327,8 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
                       ),
                     ),
                   ),
+                  if(state.hasError)
+                    RText(text: info.promptSubtitle, color: Colors.red,)
                 ],
               ),
             );

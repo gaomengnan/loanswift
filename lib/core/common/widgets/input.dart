@@ -5,6 +5,8 @@ import 'package:loanswift/core/common/widgets/widgets.dart';
 class RInput extends StatelessWidget {
   final String hitText;
   final String label;
+  final bool isMust;
+  final String prompt;
   //final TextEditingController controller;
 
   final void Function(String)? onChanged;
@@ -12,8 +14,10 @@ class RInput extends StatelessWidget {
   const RInput({
     super.key,
     required this.hitText,
-    required this.label, 
+    required this.label,
     this.onChanged,
+    this.isMust = false,
+    this.prompt = '',
     //required this.controller,
   });
 
@@ -40,11 +44,23 @@ class RInput extends StatelessWidget {
                 borderRadius: BorderRadius.circular(5),
               ),
               child: TextFormField(
+                validator: (value) {
+                  if (!isMust) {
+                    return null;
+                  }
 
+                  if (value == null || value.isEmpty) {
+                    return prompt;
+                  }
+                },
                 //controller: controller,
                 onChanged: onChanged,
+
                 decoration: InputDecoration(
-                  contentPadding: EdgeInsets.only(left: 10.w),
+                    focusedErrorBorder: InputBorder.none,
+                    focusedBorder: InputBorder.none,
+                    errorBorder: InputBorder.none,
+                    contentPadding: EdgeInsets.only(left: 10.w, bottom: 5.h),
                     enabledBorder: InputBorder.none,
                     disabledBorder: InputBorder.none),
               ),

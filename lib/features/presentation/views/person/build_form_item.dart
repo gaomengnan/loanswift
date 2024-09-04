@@ -30,6 +30,8 @@ class BuildFormItem extends StatelessWidget {
           hitText: label,
           label: label,
           onChanged: onChanged,
+          isMust: info.certifyIsMust == 1,
+          prompt: info.promptSubtitle,
           //controller: controller,
         );
 
@@ -46,6 +48,8 @@ class BuildFormItem extends StatelessWidget {
           hitText: label,
           label: label,
           onChanged: onChanged,
+          isMust: info.certifyIsMust == 1,
+          prompt: info.promptSubtitle,
         );
 
       default:

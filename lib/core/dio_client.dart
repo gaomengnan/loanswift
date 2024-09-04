@@ -79,7 +79,7 @@ class DioClient {
 
         return right(resp);
       } on DioException catch (e) {
-        print(e.message);
+        print("DIO CLIENT ERROR: $e");
         return left(
           ServerFailure(
             message: e.message ?? "",
@@ -123,6 +123,7 @@ class DioClient {
 
         return right(resp);
       } on DioException catch (e) {
+        print("DIO CLIENT ERROR: $e");
         return left(
           ServerFailure(
             message: S.current.service_error,

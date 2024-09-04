@@ -20,7 +20,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
-  final RefreshController _refreshController = RefreshController(initialRefresh: false);
+  final RefreshController _refreshController =
+      RefreshController(initialRefresh: false);
 
   late AnimationController _anicontroller, _scaleController;
 
@@ -87,8 +88,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             state.error.error,
           );
         }
-
-        if (state is HomeLoadSuccess) {
+        if (_refreshController.isRefresh) {
           _refreshController.refreshCompleted();
         }
       }, builder: (context, state) {

@@ -1,6 +1,6 @@
 part of 'certifies_bloc.dart';
 
-class CertifiesState extends Equatable {
+class CertifiesState {
   final int cerfityStep;
   final CertifiesModel settings;
 
@@ -21,8 +21,8 @@ class CertifiesState extends Equatable {
         settings: certifies ?? settings,
       );
 
-  @override
-  List<Object?> get props => [cerfityStep];
+  //@override
+  //List<Object?> get props => [cerfityStep, settings];
 }
 
 class CertifiesInitial extends CertifiesState {
@@ -37,11 +37,19 @@ class CertifiesSettingLoadFailure extends CertifiesState {
   final CustomError error;
 
   CertifiesSettingLoadFailure({required this.error}) : super.initial();
-  @override
-  List<Object?> get props => [error];
+  //@override
+  //List<Object?> get props => [error];
 }
 
 class CertifiesSettingsLoadSuccess extends CertifiesState {
   const CertifiesSettingsLoadSuccess(
       {required super.settings, required super.cerfityStep});
+}
+
+class CertifiesRequestState extends CertifiesState {
+  const CertifiesRequestState(
+      {required super.cerfityStep, required super.settings});
+
+  //@override
+  //List<Object?> get props => [];
 }

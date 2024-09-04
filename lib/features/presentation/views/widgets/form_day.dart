@@ -5,6 +5,8 @@ import 'package:loanswift/core/common/widgets/widgets.dart';
 class FormDayField extends StatefulWidget {
   final String hitText;
   final String label;
+  final bool isMust;
+  final String prompt;
   //final TextEditingController controller;
 
   final void Function(String)? onChanged;
@@ -14,6 +16,8 @@ class FormDayField extends StatefulWidget {
     required this.hitText,
     required this.label,
     this.onChanged,
+    this.isMust = false,
+    this.prompt = '',
     //required this.controller,
   });
 
@@ -73,16 +77,24 @@ class _FormDayFieldState extends State<FormDayField> {
                   _showDayPicker(context);
                 },
                 validator: (value) {
-                  return value;
+                  if (!widget.isMust) {
+                    return null;
+                  }
+                  if (value == null || value.isEmpty) {
+                    return widget.prompt;
+                  }
+                  return null;
                 },
                 //onChanged: widget.onChanged,
                 readOnly: true,
                 controller: controller,
                 decoration: InputDecoration(
-                    focusColor: Colors.red,
-                    contentPadding: EdgeInsets.only(left: 10.w),
-                    hintText: "请选择",
+                    focusedErrorBorder: InputBorder.none,
                     focusedBorder: InputBorder.none,
+                    errorBorder: InputBorder.none,
+                    //focusColor: Colors.red,
+                    contentPadding: EdgeInsets.only(left: 10.w),
+                    //hintText: ,
                     enabledBorder: InputBorder.none,
                     disabledBorder: InputBorder.none),
               ),

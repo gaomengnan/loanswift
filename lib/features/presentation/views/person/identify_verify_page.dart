@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/common/widgets/app_text.dart';
 import 'package:loanswift/core/utils.dart';
 import 'package:loanswift/features/domain/entity/user/certify.dart';
+import 'package:loanswift/features/presentation/bloc/certify/certifies_bloc.dart';
 import 'package:loanswift/features/presentation/views/person/build_form_item.dart';
 import 'package:loanswift/features/presentation/views/widgets/camera_scanner.dart';
 
@@ -30,26 +32,36 @@ class _IdentifyVerifyPageState extends State<IdentifyVerifyPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        children: [
-          ...widget.settings.map((e) {
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  BuildFormItem(label: e.certifyFieldName, info: e),
-                  UI.kHeight10(),
-                  const Divider(
-                    color: Colors.black12,
-                  ),
-                ],
-              ),
-            );
-          }),
-        ],
+    return BlocListener<CertifiesBloc, CertifiesState>(
+      listener: (context, state) {
+        if (state is CertifiesRequestState) {
+          print("step request");
+          if (_formKey.currentState!.validate()) {
+            print("step validator");
+          }
+        }
+      },
+      child: Form(
+        key: _formKey,
+        child: Column(
+          children: [
+            ...widget.settings.map((e) {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    BuildFormItem(label: e.certifyFieldName, info: e),
+                    UI.kHeight10(),
+                    const Divider(
+                      color: Colors.black12,
+                    ),
+                  ],
+                ),
+              );
+            }),
+          ],
+        ),
       ),
     );
   }

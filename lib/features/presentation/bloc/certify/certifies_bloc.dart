@@ -17,15 +17,21 @@ class CertifiesBloc extends Bloc<CertifiesEvent, CertifiesState> {
     on<CertifiesSettingsLoadEvent>(_certifiesLoadHandler);
     on<CertifyStepContinue>(_stepContinueHandler);
     on<CertifyStepBack>(_stepBackHander);
+    on<CertifyStepRequest>(_stepRequestHander);
   }
 
-  void _stepBackHander(
-    CertifyStepBack event, Emitter<CertifiesState> emit) {
+  void _stepRequestHander(
+      CertifyStepRequest event, Emitter<CertifiesState> emit) {
+    emit(CertifiesRequestState(
+        cerfityStep: state.cerfityStep, settings: state.settings));
+  }
+
+  void _stepBackHander(CertifyStepBack event, Emitter<CertifiesState> emit) {
     final step = state.cerfityStep;
     if (step == 0) {
       return;
     }
-    emit(state.copyWith(step: step-1));
+    emit(state.copyWith(step: step - 1));
   }
 
   void _stepContinueHandler(
