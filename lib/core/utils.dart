@@ -1,7 +1,10 @@
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:loanswift/core/core.dart';
+import 'package:loanswift/core/dio_client.dart';
 import 'package:loanswift/theme/theme.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -67,7 +70,6 @@ class Utils {
     );
   }
 
-
   void checkPermission() async {
     final needPermissions = Permission.values
         .where((permission) {
@@ -109,7 +111,7 @@ class Utils {
   }
 
   static Future<bool> checkCameraPermission() async {
-    PermissionStatus cameraStatus = await  Permission.camera.status;
+    PermissionStatus cameraStatus = await Permission.camera.status;
     return cameraStatus == PermissionStatus.granted;
   }
 
@@ -127,5 +129,21 @@ class Utils {
     await picker.pickImage(
       source: ImageSource.camera,
     );
+  }
+
+  static ResultFuture<Response> uploadImage(String path, String? code) async {
+    final resp = await sl<DioClient>().post(
+      path: AppContant.uploadUri,
+      data: {
+        "file": await MultipartFile.fromFile(
+          path,
+          filename: path.split('/').last,
+        ),
+        'type': code,
+      },
+      pt: 'form',
+    );
+
+    return resp;
   }
 }

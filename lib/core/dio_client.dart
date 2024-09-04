@@ -2,7 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:loanswift/core/constants/app.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/core/storage.dart';
 import 'package:loanswift/core/subscription.dart';
@@ -10,6 +9,7 @@ import 'package:loanswift/core/subscription.dart';
 class DioClient {
   BaseOptions options = BaseOptions(
     baseUrl: Environment.baseUrl, // 设置基本URL
+    sendTimeout: AppContant.sendTimeout,
     connectTimeout: AppContant.connectTimeout, // 连接超时时间，单位毫秒
     receiveTimeout: AppContant.receiveTimeout,
   );
@@ -79,6 +79,7 @@ class DioClient {
 
         return right(resp);
       } on DioException catch (e) {
+        print(e.message);
         return left(
           ServerFailure(
             message: e.message ?? "",
@@ -151,7 +152,7 @@ class DioInterceptor extends Interceptor {
     print('请求方法: ${options.method}');
     print('请求头: ${options.headers}');
     print('请求参数: ${options.queryParameters}');
-    print('请求数据: ${options.data}');
+    print('请求数据: ${options.data.toString()}');
 
     return super.onRequest(options, handler);
   }

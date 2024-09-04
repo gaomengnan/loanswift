@@ -62,7 +62,7 @@ class UI {
   static void showError(BuildContext context, String message) {
     EasyLoading.showError(
       message,
-      duration: const Duration(seconds: 1),
+      duration: const Duration(seconds: 5),
     );
   }
 

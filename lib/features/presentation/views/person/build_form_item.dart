@@ -11,12 +11,15 @@ class BuildFormItem extends StatelessWidget {
 
   final Info info;
 
+  final void Function(String)? onChanged;
+
   const BuildFormItem({
     super.key,
     required this.label,
     this.validator,
     //required this.controller,
     required this.info,
+    this.onChanged,
   });
 
   @override
@@ -26,31 +29,27 @@ class BuildFormItem extends StatelessWidget {
         return RInput(
           hitText: label,
           label: label,
+          onChanged: onChanged,
           //controller: controller,
         );
 
       case "file":
         return ImagePickerFormField(
+          info: info,
           label: label,
           context: context,
+          onChanged: onChanged,
         );
 
       case "day":
         return FormDayField(
           hitText: label,
           label: label,
-          onChanged: (val) {
-          },
+          onChanged: onChanged,
         );
 
       default:
-        return FormDayField(
-          hitText: label,
-          label: label,
-          onChanged: (val) {
-            print('lis $val');
-          },
-        );
+        return const Text('未知类型');
     }
 
     //return isSelect

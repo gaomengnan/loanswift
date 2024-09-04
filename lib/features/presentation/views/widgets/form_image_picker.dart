@@ -1,36 +1,48 @@
 import 'dart:io';
 
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:loanswift/core/common/widgets/widgets.dart';
 import 'package:loanswift/core/core.dart';
-import 'package:loanswift/core/dio_client.dart';
+import 'package:loanswift/core/utils.dart';
+import 'package:loanswift/features/domain/entity/user/certify.dart';
+import 'package:loanswift/features/presentation/views/widgets/camera_scanner.dart';
 
-class ImagePickerFormField extends FormField<List<File>> {
+class ImagePickEntity {
+  final String filePath;
+  final String path;
+
+  ImagePickEntity({required this.filePath, required this.path});
+}
+
+class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
   final String label;
   final BuildContext context;
+  final Info info;
+  final void Function(String)? onChanged;
   ImagePickerFormField({
     super.key,
     required this.label,
     required this.context,
+    required this.info,
+    this.onChanged,
     super.initialValue,
     super.onSaved,
     super.validator,
     AutovalidateMode super.autovalidateMode =
         AutovalidateMode.onUserInteraction,
   }) : super(
-          builder: (FormFieldState<List<File>> state) {
-            void showImagePreview(BuildContext context, File file) {
+          builder: (FormFieldState<List<ImagePickEntity>> state) {
+            void showImagePreview(BuildContext context, ImagePickEntity file) {
               showDialog(
                 context: context,
                 builder: (BuildContext context) {
                   return Dialog(
                     child: InteractiveViewer(
                       // 可以缩放和平移的图片预览
-                      child: Image.file(file),
+                      child: Image.file(File(file.filePath)),
                     ),
                   );
                 },
@@ -40,9 +52,6 @@ class ImagePickerFormField extends FormField<List<File>> {
             void showUploadTypeBottomSheet(context) {
               showModalBottomSheet(
                   isDismissible: false,
-                  // backgroundColor: Colors.grey.withOpacity(
-                  //   0.1,
-                  // ),
                   context: context,
                   builder: (context) {
                     return Container(
@@ -60,6 +69,12 @@ class ImagePickerFormField extends FormField<List<File>> {
                           GestureDetector(
                             onTap: () async {
                               Navigator.of(context).pop();
+                              //Navigator.push(
+                              //  context,
+                              //  MaterialPageRoute(
+                              //    builder: (context) => const CardScanner()),
+                              //);
+
                               final picker = ImagePicker();
                               final pickedFiles = await picker.pickImage(
                                 source: ImageSource.camera,
@@ -68,25 +83,35 @@ class ImagePickerFormField extends FormField<List<File>> {
                               if (pickedFiles != null) {
                                 UI.showLoading();
 
-                                final resp = await sl<DioClient>().post(
-                                  path: AppContant.uploadUri,
-                                  data: {
-                                    "file": await MultipartFile.fromFile(
-                                      pickedFiles.path,
-                                      filename:
-                                          pickedFiles.path.split('/').last,
-                                    ),
-                                  },
-                                  pt: 'form',
+
+                                final resp = await Utils.uploadImage(
+                                  pickedFiles.path,
+                                  info.certifyCode,
                                 );
 
                                 resp.fold(
-                                    (err) => UI.showError(context, err.message),
-                                    (l) {
-                                  UI.hideLoading();
-                                  state.didChange(List.from(state.value ?? [])
-                                    ..addAll([File(pickedFiles.path)]));
-                                });
+                                  (err) => UI.showError(context, err.message),
+                                  (l) {
+                                    UI.hideLoading();
+
+                                    final body = l.data as DataMap?;
+                                    //final path = body?['data']['path'];
+                                    final object = body?['data']['object'];
+
+                                    state.didChange([
+                                      ImagePickEntity(
+                                          filePath: pickedFiles.path,
+                                          path: object)
+                                    ]);
+
+                                    if (onChanged != null) {
+                                      onChanged(object);
+                                    }
+
+                                    //state.didChange(List.from(state.value ?? [])
+                                    //  ..addAll([File(pickedFiles.path)]));
+                                  },
+                                );
                               }
                             },
                             child: Container(
@@ -113,21 +138,42 @@ class ImagePickerFormField extends FormField<List<File>> {
                           GestureDetector(
                             onTap: () async {
                               Navigator.of(context).pop();
+
+
                               //Utils.pickerImageFromGallery();
                               final picker = ImagePicker();
                               final file = await picker.pickImage(
                                 source: ImageSource.gallery,
                               );
-                              //final files = pickedFiles
-                              //    .map((pickedFile) => File(pickedFile.path))
-                              //    .toList();
+
                               if (file != null) {
-                                state.didChange(List.from(state.value ?? [])
-                                  ..addAll([
-                                    File(
-                                      file.path,
-                                    )
-                                  ]));
+                                UI.showLoading();
+                                final resp = await Utils.uploadImage(
+                                  file.path,
+                                  info.certifyCode,
+                                );
+
+                                resp.fold(
+                                  (err) => UI.showError(context, err.message),
+                                  (l) {
+                                    UI.hideLoading();
+
+                                    final body = l.data as DataMap?;
+                                    final object = body?['data']['path'];
+
+                                    state.didChange([
+                                      ImagePickEntity(
+                                          filePath: file.path, path: object)
+                                    ]);
+
+                                    if (onChanged != null) {
+                                      onChanged(object);
+                                    }
+
+                                    //state.didChange(List.from(state.value ?? [])
+                                    //  ..addAll([File(pickedFiles.path)]));
+                                  },
+                                );
                               }
                             },
                             child: Container(
@@ -223,7 +269,7 @@ class ImagePickerFormField extends FormField<List<File>> {
                                               Expanded(
                                                 flex: 2,
                                                 child: Image.file(
-                                                  f,
+                                                  File(f.filePath),
                                                   height: 50.h,
                                                   width: 100.w,
                                                   //height: 150,

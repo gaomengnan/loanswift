@@ -7,10 +7,13 @@ class RInput extends StatelessWidget {
   final String label;
   //final TextEditingController controller;
 
+  final void Function(String)? onChanged;
+
   const RInput({
     super.key,
     required this.hitText,
-    required this.label,
+    required this.label, 
+    this.onChanged,
     //required this.controller,
   });
 
@@ -37,8 +40,11 @@ class RInput extends StatelessWidget {
                 borderRadius: BorderRadius.circular(5),
               ),
               child: TextFormField(
+
                 //controller: controller,
-                decoration: const InputDecoration(
+                onChanged: onChanged,
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.only(left: 10.w),
                     enabledBorder: InputBorder.none,
                     disabledBorder: InputBorder.none),
               ),

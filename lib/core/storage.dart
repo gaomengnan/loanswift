@@ -1,5 +1,4 @@
 import 'package:get_storage/get_storage.dart';
-import 'package:loanswift/core/constants/app.dart';
 import 'package:loanswift/core/core.dart';
 
 class Storage {

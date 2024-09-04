@@ -103,9 +103,6 @@ class _IdentifyVerifyPageState extends State<IdentifyVerifyPage> {
               color: Colors.white,
             ),
             child: Column(
-              // crossAxisAlignment: CrossAxisAlignment.center,
-              // crossAxisAlignment: CrossAxisAlignment.center,
-              // mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 GestureDetector(
                   onTap: () async {

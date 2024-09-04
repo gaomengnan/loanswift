@@ -7,19 +7,19 @@ import 'package:loanswift/core/core.dart';
 import 'package:loanswift/core/dio_client.dart';
 import 'package:loanswift/core/firebase_api.dart';
 import 'package:loanswift/features/data/datasource/auth.dart';
-import 'package:loanswift/features/data/datasource/device.dart';
 import 'package:loanswift/features/data/datasource/home.dart';
 import 'package:loanswift/features/data/datasource/order.dart';
+import 'package:loanswift/features/data/datasource/report.dart';
 import 'package:loanswift/features/data/datasource/upload.dart';
 import 'package:loanswift/features/data/repository/auth.dart';
-import 'package:loanswift/features/data/repository/device.dart';
 import 'package:loanswift/features/data/repository/home.dart';
 import 'package:loanswift/features/data/repository/order.dart';
+import 'package:loanswift/features/data/repository/report.dart';
 import 'package:loanswift/features/data/repository/upload.dart';
 import 'package:loanswift/features/domain/repos/auth.dart';
-import 'package:loanswift/features/domain/repos/device.dart';
 import 'package:loanswift/features/domain/repos/home.dart';
 import 'package:loanswift/features/domain/repos/order.dart';
+import 'package:loanswift/features/domain/repos/report.dart';
 import 'package:loanswift/features/domain/repos/upload.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/get_certifies.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/login.dart';
@@ -105,11 +105,11 @@ Future<void> initialize() async {
     );
 
   sl
-    ..registerLazySingleton<DeviceRepo>(
-      () => DeviceRepository(sl()),
+    ..registerLazySingleton<ReportRepo>(
+      () => ReportRepository(sl()),
     )
-    ..registerLazySingleton<DeviceDataSource>(
-      () => DeviceDataSourceImpl(dioClient: sl()),
+    ..registerLazySingleton<ReportDataSource>(
+      () => ReportDataSourceImpl(dioClient: sl()),
     );
 
   // 设备上传
@@ -183,6 +183,6 @@ Future<void> initialize() async {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
-    FirebaseApi().initNotifications();
+    //FirebaseApi().initNotifications();
   } catch (_) {}
 }

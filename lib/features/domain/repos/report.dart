@@ -1,6 +1,6 @@
 import '../../../core/core.dart';
 
-abstract class DeviceRepo {
+abstract class ReportRepo {
   ResultFuture<void> postDeviceInfo({
     required Map<String, dynamic> data,
   });

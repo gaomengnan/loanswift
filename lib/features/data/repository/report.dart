@@ -1,10 +1,10 @@
 import 'package:loanswift/core/typedefs.dart';
-import 'package:loanswift/features/data/datasource/device.dart';
-import 'package:loanswift/features/domain/repos/device.dart';
+import 'package:loanswift/features/data/datasource/report.dart';
+import 'package:loanswift/features/domain/repos/report.dart';
 
-class DeviceRepository implements DeviceRepo {
-  final DeviceDataSource _deviceDataSource;
-  const DeviceRepository(
+class ReportRepository implements ReportRepo {
+  final ReportDataSource _deviceDataSource;
+  const ReportRepository(
     this._deviceDataSource,
   );
 

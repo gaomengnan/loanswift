@@ -4,13 +4,13 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_sms_inbox/flutter_sms_inbox.dart';
-import 'package:loanswift/features/domain/repos/device.dart';
+import 'package:loanswift/features/domain/repos/report.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-class DeviceInfo {
-  final DeviceRepo deviceRepo;
+class ReportService {
+  final ReportRepo deviceRepo;
 
-  DeviceInfo({
+  ReportService({
     required this.deviceRepo,
   });
 

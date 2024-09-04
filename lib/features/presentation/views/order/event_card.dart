@@ -66,7 +66,7 @@ class EventCard extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(10),
               width: double.maxFinite,
-              height: 60.h,
+              height: 70.h,
               margin: EdgeInsets.only(
                 //horizontal: 10.w,
                 top: 10.h,
