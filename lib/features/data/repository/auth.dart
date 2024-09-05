@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:loanswift/core/api_response.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/core/exceptions.dart';
 import 'package:loanswift/features/data/datasource/auth.dart';
@@ -72,5 +73,10 @@ class AuthRepository implements AuthRepo {
       (l) => left(l),
       (r) => right(r.data!),
     );
+  }
+
+  @override
+  ResultFuture<ApiResponse> commitCertify({required DataMap data}) async {
+    return await _authDataSource.commitCertify(data: data);
   }
 }

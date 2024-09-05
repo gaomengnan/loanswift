@@ -62,28 +62,6 @@ class _VerifyPageState extends State<VerifyPage> {
         }
         return Stepper(
           physics: const ClampingScrollPhysics(),
-          //controlsBuilder: (BuildContext context, ControlsDetails details) {
-          //  return Row(
-          //    mainAxisAlignment: MainAxisAlignment.center,
-          //    children: <Widget>[
-          //      ElevatedButton(
-          //        style: ElevatedButton.styleFrom(
-          //          minimumSize: Size(ScreenUtil().screenWidth * 0.7, 30.h),
-          //        ),
-          //        onPressed: details.onStepContinue,
-          //        child: RText(
-          //          text: '提交',
-          //          color: Colors.white,
-          //        ),
-          //      ),
-          //      //ElevatedButton(
-          //      //  onPressed: details.onStepCancel,
-          //      //  child: const Text('上一步'),
-          //      //),
-          //    ],
-          //  );
-          //},
-
           onStepCancel: () {
             context.read<CertifiesBloc>().add(CertifyStepBack());
           },
@@ -95,9 +73,7 @@ class _VerifyPageState extends State<VerifyPage> {
           steps: [
             Step(
               title: Text(S.current.identity_authentication),
-              content: IdentifyVerifyPage(
-                settings: state.settings.identityInfo,
-              ),
+              content: const IdentifyVerifyPage(),
               isActive: state.cerfityStep >= 0,
             ),
             Step(

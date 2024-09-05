@@ -1,32 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/common/widgets/widgets.dart';
+import 'package:loanswift/core/core.dart';
+import 'package:loanswift/features/domain/entity/user/certify.dart';
 
-class FormInputField extends StatefulWidget {
+class RInput extends StatelessWidget {
   final String hitText;
-  final String label;
+  //final String label;
+  //final bool isMust;
+  //final String prompt;
+  final TextEditingController? controller;
+
+  final Info info;
+
   final void Function(String)? onChanged;
 
-  const FormInputField({
+  const RInput({
     super.key,
     required this.hitText,
-    required this.label,
-    //required this.controller,
     this.onChanged,
+    this.controller,
+    required this.info,
   });
-
-  @override
-  State<FormInputField> createState() => _FormInputFieldState();
-}
-
-class _FormInputFieldState extends State<FormInputField> {
-  //final TextEditingController controller;
-
-  @override
-  void dispose() {
-    //controller.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,31 +30,53 @@ class _FormInputFieldState extends State<FormInputField> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(
-            child: RText(
-              size: 13.sp,
-              fontWeight: FontWeight.w600,
-              text: widget.label,
-            ),
+          Row(
+            children: [
+              Icon(
+                Icons.check_circle,
+                color: info.certifyStatus == 1 ?  Colors.green : Colors.grey,
+              ),
+              UI.kWidth5(),
+              Expanded(
+                child: RText(
+                  textAlign: TextAlign.start,
+                  maxLines: 1,
+                  size: 13.sp,
+                  fontWeight: FontWeight.w600,
+                  text: info.certifyFieldName,
+                ),
+              ),
+            ],
           ),
-          //UI.kHeight5(),
+          UI.kHeight5(),
           Expanded(
-            flex: 2,
             child: Container(
+              padding: EdgeInsets.only(left: 10.w),
               decoration: BoxDecoration(
                 color: Colors.grey.shade200,
                 borderRadius: BorderRadius.circular(5),
               ),
               child: TextFormField(
-                onSaved: (val) {
-                },
-                onFieldSubmitted: (value) {
-                  if (widget.onChanged != null) {
-                    widget.onChanged!(value);
+                textAlignVertical: TextAlignVertical.center,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (value) {
+                  if (info.certifyIsMust == 1) {
+                    return null;
                   }
+
+                  if (value == null || value.isEmpty) {
+                    return info.promptSubtitle;
+                  }
+
+                  return null;
                 },
-                //controller: controller,
+                controller: controller,
+                onChanged: onChanged,
                 decoration: const InputDecoration(
+                    focusedErrorBorder: InputBorder.none,
+                    focusedBorder: InputBorder.none,
+                    errorBorder: InputBorder.none,
+                    //contentPadding: EdgeInsets.only(left: 10.w),
                     enabledBorder: InputBorder.none,
                     disabledBorder: InputBorder.none),
               ),

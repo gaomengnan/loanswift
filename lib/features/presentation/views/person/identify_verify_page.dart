@@ -13,10 +13,10 @@ import '../../../../core/common/widgets/widgets.dart';
 import '../../../../core/core.dart';
 
 class IdentifyVerifyPage extends StatefulWidget {
-  final List<Info> settings;
+  //final List<Info> settings;
   const IdentifyVerifyPage({
     super.key,
-    required this.settings,
+    //required this.settings,
   });
 
   @override
@@ -37,12 +37,18 @@ class _IdentifyVerifyPageState extends State<IdentifyVerifyPage> {
 
   TextEditingController? generateController(Info info) {
     if (ocrFields.contains(info.certifyCode)) {
-      final controller = TextEditingController();
+      var controller = _controllers[info.certifyCode];
+      controller = TextEditingController();
       _controllers[info.certifyCode] = controller;
       return controller;
     }
 
     return null;
+  }
+
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override
@@ -55,33 +61,39 @@ class _IdentifyVerifyPageState extends State<IdentifyVerifyPage> {
     super.dispose();
   }
 
-  void setOcrRelateField(String name, String id, String gender) {
+  void setOcrRelateField(Info info, String name, String id, String gender) {
     final nameController = _controllers['name'];
     final idController = _controllers['id_number'];
     final genderController = _controllers['sex'];
 
     if (nameController != null) {
       nameController.text = name.toString();
+
+      context.read<CertifiesBloc>().add(CertifyCommitEvent(
+          certifyId: info.certifyId, certifyResult: name.toString()));
     }
 
     if (idController != null) {
       idController.text = id.toString();
+      context.read<CertifiesBloc>().add(CertifyCommitEvent(
+          certifyId: info.certifyId, certifyResult: id.toString()));
     }
 
     if (genderController != null) {
       genderController.text = gender.toString();
+      context.read<CertifiesBloc>().add(CertifyCommitEvent(
+          certifyId: info.certifyId, certifyResult: gender.toString()));
     }
   }
 
   void onChanged(Info info, String s) async {
-
     /*  增加 OCR 图片识别逻辑  */
 
     // 使用 认证项 certify_id  = 1
 
     if (info.certifyId == 1) {
       if (s.isEmpty) {
-        setOcrRelateField("", "", "");
+        setOcrRelateField(info, "", "", "");
         return;
       }
 
@@ -99,36 +111,45 @@ class _IdentifyVerifyPageState extends State<IdentifyVerifyPage> {
         final id = entity['id'] ?? '';
         final gender = entity['gender'];
 
-        setOcrRelateField(name, id, gender);
+        setOcrRelateField(info, name, id, gender);
       });
+
+      // 提交数据
+      //sl<AuthRepo>().commitCertify(data: {
+      //  'certify_id': info.certifyId,
+      //  'certify_result': s,
+      //});
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<CertifiesBloc, CertifiesState>(
-      listener: (context, state) {
-        if (state is CertifiesRequestState) {
-          if (_formKey.currentState!.validate()) {}
-        }
-      },
-      child: Form(
+    return BlocConsumer<CertifiesBloc, CertifiesState>(
+        listener: (context, state) {
+      if (state is CertifiesRequestState) {
+        if (_formKey.currentState!.validate()) {}
+      }
+    }, builder: (context, state) {
+      return Form(
         key: _formKey,
         child: Column(
           children: [
-            ...widget.settings.map((e) {
+            ...state.settings.identityInfo.map((e) {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     BuildFormItem(
-                      label: e.certifyFieldName,
                       info: e,
-                      controller: generateController(
-                        e,
-                      ),
-                      onChanged: (s) => onChanged(e, s),
+                      controller: generateController(e),
+                      onChanged: (s) {
+                        onChanged(e, s);
+
+                        print('${e.certifyFieldName} change - $s');
+                        context.read<CertifiesBloc>().add(CertifyCommitEvent(
+                            certifyId: e.certifyId, certifyResult: s));
+                      },
                     ),
                     UI.kHeight10(),
                     const Divider(
@@ -140,8 +161,8 @@ class _IdentifyVerifyPageState extends State<IdentifyVerifyPage> {
             }),
           ],
         ),
-      ),
-    );
+      );
+    });
   }
 
   Widget buildCardDescription() {

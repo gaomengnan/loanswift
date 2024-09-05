@@ -20,6 +20,7 @@ import 'package:loanswift/features/domain/repos/common.dart';
 import 'package:loanswift/features/domain/repos/home.dart';
 import 'package:loanswift/features/domain/repos/order.dart';
 import 'package:loanswift/features/domain/repos/report.dart';
+import 'package:loanswift/features/domain/usecases/authenticated/commit_certify.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/get_certifies.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/login.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/logout.dart';
@@ -167,7 +168,10 @@ Future<void> initialize() async {
   /*   BUILD CERTIFIES BLOC */
 
   sl
-    ..registerFactory(() => CertifiesBloc(getCertifies: sl()))
+    ..registerFactory(() => CertifiesBloc(
+          getCertifies: sl(),
+          commitCertify: sl(),
+        ))
     ..registerLazySingleton(() => GetCertifies(authRepo: sl()));
 
   /*  BUILD UPLOAD  */
@@ -178,7 +182,8 @@ Future<void> initialize() async {
     ..registerLazySingleton<ICommonService>(
         () => CommonRepositry(uploadDataSource: sl()))
     ..registerLazySingleton(() => FileUpload(commonSer: sl()))
-    ..registerLazySingleton(() => Ocr(commonService: sl()));
+    ..registerLazySingleton(() => Ocr(commonService: sl()))
+    ..registerLazySingleton(() => CommitCertify(authRepo: sl()));
 
   try {
     await Firebase.initializeApp(

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:loanswift/core/common/widgets/input.dart';
 import 'package:loanswift/features/domain/entity/user/certify.dart';
 import 'package:loanswift/features/presentation/views/widgets/form_day.dart';
 import 'package:loanswift/features/presentation/views/widgets/form_image_picker.dart';
+import 'package:loanswift/features/presentation/views/widgets/form_input.dart';
 
 class BuildFormItem extends StatelessWidget {
-  final String label;
+  //final String label;
   final String? Function(String?)? validator;
   final TextEditingController? controller;
 
@@ -15,7 +15,7 @@ class BuildFormItem extends StatelessWidget {
 
   const BuildFormItem({
     super.key,
-    required this.label,
+    //required this.label,
     this.validator,
     this.controller,
     required this.info,
@@ -27,28 +27,22 @@ class BuildFormItem extends StatelessWidget {
     switch (info.certifyFieldsCate) {
       case "txt":
         return RInput(
-          hitText: label,
-          label: label,
-          onChanged: onChanged,
-          isMust: info.certifyIsMust == 1,
-          prompt: info.promptSubtitle,
+          hitText: info.certifyFieldName,
+          onChanged: (s) async {
+            if (onChanged != null) {
+              onChanged!(s);
+            }
+          },
           controller: controller,
+          info: info,
         );
 
       case "file":
         return ImagePickerFormField(
           info: info,
-          label: label,
+          label: info.certifyFieldName,
           context: context,
           onChanged: (s) async {
-            //UI.showLoadingWithMessage(context, '开始OCR');
-            //final Ocr ocr = sl<Ocr>();
-            //
-            //final resp  = await ocr.call(OcrParams(objectKey: s));
-            //print('ocr resup $resp');
-            //
-            //
-            //UI.hideLoading();
             if (onChanged != null) {
               onChanged!(s);
             }
@@ -57,11 +51,12 @@ class BuildFormItem extends StatelessWidget {
 
       case "day":
         return FormDayField(
-          hitText: label,
-          label: label,
+          hitText: info.certifyFieldName,
+          //label: label,
           onChanged: onChanged,
-          isMust: info.certifyIsMust == 1,
-          prompt: info.promptSubtitle,
+          info: info,
+          //isMust: info.certifyIsMust == 1,
+          //prompt: info.promptSubtitle,
         );
 
       default:

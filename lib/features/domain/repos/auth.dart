@@ -1,3 +1,4 @@
+import 'package:loanswift/core/api_response.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/core/typedefs.dart';
 import 'package:loanswift/features/data/models/auth_token.dart';
@@ -22,4 +23,8 @@ abstract class AuthRepo {
   // 获取认证字段
 
   ResultFuture<CertifiesModel> getCertifies();
+
+  // 提交认证
+
+  ResultFuture<ApiResponse> commitCertify({required DataMap data});
 }

@@ -245,13 +245,25 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Expanded(
-                      child: RText(
-                    text: label,
-                    size: 16.sp,
-                    fontWeight: FontWeight.w600,
-                  )),
-                  UI.kHeight5(),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.check_circle,
+                        color: info.certifyStatus == 1 ?  Colors.green : Colors.grey,
+                      ),
+                      UI.kWidth5(),
+                      Expanded(
+                        child: RText(
+                          textAlign: TextAlign.start,
+                          maxLines: 1,
+                          text: label,
+                          size: 16.sp,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                  UI.kHeight10(),
                   Expanded(
                     flex: 3,
                     child: SingleChildScrollView(
@@ -311,7 +323,8 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
                                                                     .value!)
                                                                   ..remove(f));
 
-                                                            if (onChanged != null) {
+                                                            if (onChanged !=
+                                                                null) {
                                                               onChanged('');
                                                             }
                                                           },

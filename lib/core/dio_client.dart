@@ -160,7 +160,6 @@ class DioInterceptor extends Interceptor {
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    debugPrint("onResponse");
     debugPrint(response.toString());
 
     final int apiCode =
