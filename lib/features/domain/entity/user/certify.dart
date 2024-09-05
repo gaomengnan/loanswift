@@ -200,6 +200,14 @@ class Info {
           certifyStatus: 0,
         );
 
+
+  bool isCertify() {
+    return certifyStatus == 1;
+  }
+
+
+
+
   factory Info.fromMap(Map<String, dynamic> map) {
     return Info(
       certifyId: map['certify_id'] ?? 0,

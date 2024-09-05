@@ -8,12 +8,15 @@ import 'package:loanswift/core/common/widgets/widgets.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/core/utils.dart';
 import 'package:loanswift/features/domain/entity/user/certify.dart';
+import 'package:loanswift/theme/pallete.dart';
 
 class ImagePickEntity {
   final String filePath;
   final String path;
+  final String url;
 
-  ImagePickEntity({required this.filePath, required this.path});
+  ImagePickEntity(
+      {required this.filePath, required this.path, required this.url});
 }
 
 class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
@@ -27,11 +30,17 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
     required this.context,
     required this.info,
     this.onChanged,
-    super.initialValue,
+    //super.initialValue,
     super.onSaved,
     AutovalidateMode super.autovalidateMode =
         AutovalidateMode.onUserInteraction,
   }) : super(
+          initialValue: info.isCertify()
+              ? [
+                  ImagePickEntity(
+                      filePath: '', path: '', url: info.certifyResult),
+                ]
+              : [],
           validator: (value) {
             if (info.certifyIsMust != 1) {
               return null;
@@ -110,11 +119,13 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
                                     final body = l.data as DataMap?;
                                     //final path = body?['data']['path'];
                                     final object = body?['data']['object'];
+                                    final url = body?['data']['path'];
 
                                     state.didChange([
                                       ImagePickEntity(
                                           filePath: pickedFiles.path,
-                                          path: object)
+                                          path: object,
+                                          url: url)
                                     ]);
 
                                     if (onChanged != null) {
@@ -172,10 +183,13 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
 
                                     final body = l.data as DataMap?;
                                     final object = body?['data']['object'];
+                                    final url = body?['data']['path'];
 
                                     state.didChange([
                                       ImagePickEntity(
-                                          filePath: file.path, path: object)
+                                          filePath: file.path,
+                                          path: object,
+                                          url: url)
                                     ]);
 
                                     if (onChanged != null) {
@@ -249,7 +263,7 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
                     children: [
                       Icon(
                         Icons.check_circle,
-                        color: info.certifyStatus == 1 ?  Colors.green : Colors.grey,
+                        color: info.isCertify() ? Colors.green : Colors.grey,
                       ),
                       UI.kWidth5(),
                       Expanded(
@@ -292,14 +306,19 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
                                             children: [
                                               Expanded(
                                                 flex: 2,
-                                                child: Image.file(
-                                                  File(f.filePath),
-                                                  height: 50.h,
-                                                  width: 100.w,
-                                                  //height: 150,
-                                                  //width: double.infinity,
-                                                  fit: BoxFit.cover,
-                                                ),
+                                                child: info.isCertify()
+                                                    ? Image.network(
+                                                        f.url,
+                                                        height: 50.h,
+                                                        width: 100.w,
+                                                        fit: BoxFit.cover,
+                                                      )
+                                                    : Image.file(
+                                                        File(f.filePath),
+                                                        height: 50.h,
+                                                        width: 100.w,
+                                                        fit: BoxFit.cover,
+                                                      ),
                                               ),
                                               Expanded(
                                                 flex: 1,
@@ -328,7 +347,10 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
                                                               onChanged('');
                                                             }
                                                           },
-                                                          child: const Icon(
+                                                          child: Icon(
+                                                              color: Pallete
+                                                                  .secondaryColor,
+                                                              size: 19.sp,
                                                               IconlyBold
                                                                   .delete),
                                                         ),
@@ -337,8 +359,12 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
                                                             showImagePreview(
                                                                 context, f);
                                                           },
-                                                          child: const Icon(Icons
-                                                              .remove_red_eye),
+                                                          child: Icon(
+                                                              color: Pallete
+                                                                  .secondaryColor,
+                                                              size: 19.sp,
+                                                              Icons
+                                                                  .remove_red_eye),
                                                         ),
                                                       ],
                                                     ),

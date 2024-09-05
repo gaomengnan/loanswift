@@ -89,9 +89,9 @@ class _IdentifyVerifyPageState extends State<IdentifyVerifyPage> {
   void onChanged(Info info, String s) async {
     /*  增加 OCR 图片识别逻辑  */
 
-    // 使用 认证项 certify_id  = 1
+    // 使用 认证项 certify_id  = 2
 
-    if (info.certifyId == 1) {
+    if (info.certifyId == 2){
       if (s.isEmpty) {
         setOcrRelateField(info, "", "", "");
         return;
