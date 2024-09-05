@@ -1,14 +1,14 @@
 import 'package:loanswift/core/typedefs.dart';
 import 'package:loanswift/core/usecase.dart';
-import 'package:loanswift/features/domain/repos/upload.dart';
+import 'package:loanswift/features/domain/repos/common.dart';
 
 class FileUpload extends UsecaseParams<void, FileUploadParams> {
-  final IUpload uploadRepo;
+  final ICommonService commonSer;
 
-  FileUpload({required this.uploadRepo});
+  FileUpload({required this.commonSer});
   @override
   ResultFuture<void> call(FileUploadParams params) =>
-      uploadRepo.fileUpload(path: params.filePath);
+      commonSer.fileUpload(path: params.filePath);
 }
 
 class FileUploadParams {

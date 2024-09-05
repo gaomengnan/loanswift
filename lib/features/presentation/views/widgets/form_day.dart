@@ -68,11 +68,14 @@ class _FormDayFieldState extends State<FormDayField> {
           Expanded(
             flex: 2,
             child: Container(
+              padding: EdgeInsets.only(left: 10.w),
               decoration: BoxDecoration(
                 color: Colors.grey.shade200,
                 borderRadius: BorderRadius.circular(5),
               ),
               child: TextFormField(
+                textAlignVertical: TextAlignVertical.center,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 onTap: () {
                   _showDayPicker(context);
                 },
@@ -88,12 +91,12 @@ class _FormDayFieldState extends State<FormDayField> {
                 //onChanged: widget.onChanged,
                 readOnly: true,
                 controller: controller,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     focusedErrorBorder: InputBorder.none,
                     focusedBorder: InputBorder.none,
                     errorBorder: InputBorder.none,
                     //focusColor: Colors.red,
-                    contentPadding: EdgeInsets.only(left: 10.w),
+                    //contentPadding: EdgeInsets.only(left: 1.w,),
                     //hintText: ,
                     enabledBorder: InputBorder.none,
                     disabledBorder: InputBorder.none),

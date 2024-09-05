@@ -28,6 +28,7 @@ class _CardScannerState extends State<CardScanner> {
   }
 
   Future<void> initializeCamera(BuildContext context) async {
+    await Permission.camera.request();
     List<CameraDescription> cameras = await availableCameras();
     // 使用第一个摄像头
     _controller = CameraController(
@@ -44,11 +45,6 @@ class _CardScannerState extends State<CardScanner> {
             break;
           default:
         }
-
-        // Utils.showInfo(
-        //   context,
-        //   "error: $e, code: ${e.code}",
-        // );
       }
       rethrow;
     }
@@ -68,6 +64,7 @@ class _CardScannerState extends State<CardScanner> {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasError) {
+            UI.showError(context, snapshot.error.toString());
             // Navigator.of(context).pop();
             return Scaffold(
               appBar: AppBar(
@@ -124,34 +121,37 @@ class _CardScannerState extends State<CardScanner> {
             return Scaffold(
               body: Stack(
                 children: [
-                  Positioned.fill(
-                    bottom: 100.h,
-                    child: AspectRatio(
-                      aspectRatio: _controller.value.aspectRatio,
-                      child: CameraPreview(
-                        _controller,
-                      ),
-                    ),
-                  ),
-                  Center(
-                    child: CustomPaint(
-                      size: const Size(double.infinity, double.infinity),
-                      painter: HolePainter(),
-                    ),
-                  ),
-                  Positioned(
-                    top: ScreenUtil().screenHeight / 2 - 10.h,
-                    right: 0,
-                    left: 0,
-                    child: const Center(
-                      child: Text(
-                        "请将身份证放在此区域",
-                        style: TextStyle(
-                          color: Pallete.primaryColor,
+                  if (_imageFile == null)
+                    Positioned.fill(
+                      bottom: 100.h,
+                      child: AspectRatio(
+                        aspectRatio: _controller.value.aspectRatio,
+                        child: CameraPreview(
+                          _controller,
                         ),
                       ),
                     ),
-                  ),
+                  if (_imageFile == null)
+                    Center(
+                      child: CustomPaint(
+                        size: const Size(double.infinity, double.infinity),
+                        painter: HolePainter(),
+                      ),
+                    ),
+                  if (_imageFile == null)
+                    Positioned(
+                      top: ScreenUtil().screenHeight / 2 - 10.h,
+                      right: 0,
+                      left: 0,
+                      child: const Center(
+                        child: Text(
+                          "请将身份证放在此区域",
+                          style: TextStyle(
+                            color: Pallete.primaryColor,
+                          ),
+                        ),
+                      ),
+                    ),
                   Positioned(
                     left: 10.w,
                     // top: 20,
@@ -236,20 +236,21 @@ class _CardScannerState extends State<CardScanner> {
                                 SizedBox(
                                   height: 40.h,
                                   width: 80.w,
-                                  child: const Row(
+                                  child: Row(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      //Icon(
-                                      //  Icons.close,
-                                      //  color: Colors.red,
-                                      //),
-                                      //Icon(
-                                      //  Icons.check,
-                                      //  color: Colors.green,
-                                      //),
+                                      if (_imageFile != null)
+                                        const Icon(
+                                          Icons.close,
+                                          color: Colors.red,
+                                        ),
+                                      const Icon(
+                                        Icons.check,
+                                        color: Colors.green,
+                                      ),
                                     ],
                                   ),
                                 ),

@@ -33,10 +33,14 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
         AutovalidateMode.onUserInteraction,
   }) : super(
           validator: (value) {
-            if(info.certifyIsMust != 1) {
+            if (info.certifyIsMust != 1) {
               return null;
             }
-            return info.promptSubtitle;
+
+            if (value == null || value.isEmpty) {
+              return info.promptSubtitle;
+            }
+            return null;
           },
           builder: (FormFieldState<List<ImagePickEntity>> state) {
             void showImagePreview(BuildContext context, ImagePickEntity file) {
@@ -45,7 +49,6 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
                 builder: (BuildContext context) {
                   return Dialog(
                     child: InteractiveViewer(
-                      // 可以缩放和平移的图片预览
                       child: Image.file(File(file.filePath)),
                     ),
                   );
@@ -80,10 +83,17 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
                               //);
 
                               final picker = ImagePicker();
+
                               final pickedFiles = await picker.pickImage(
                                 source: ImageSource.camera,
                                 maxWidth: 600,
                               );
+
+                              //Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //       builder: (context) => const CardScanner()));
+                              //
                               if (pickedFiles != null) {
                                 UI.showLoading();
 
@@ -161,7 +171,7 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
                                     UI.hideLoading();
 
                                     final body = l.data as DataMap?;
-                                    final object = body?['data']['path'];
+                                    final object = body?['data']['object'];
 
                                     state.didChange([
                                       ImagePickEntity(
@@ -300,6 +310,10 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
                                                                 List.from(state
                                                                     .value!)
                                                                   ..remove(f));
+
+                                                            if (onChanged != null) {
+                                                              onChanged('');
+                                                            }
                                                           },
                                                           child: const Icon(
                                                               IconlyBold
@@ -327,8 +341,12 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
                       ),
                     ),
                   ),
-                  if(state.hasError)
-                    RText(text: info.promptSubtitle, color: Colors.red,)
+                  UI.kHeight5(),
+                  if (state.hasError)
+                    RText(
+                      text: info.promptSubtitle,
+                      color: Colors.red,
+                    )
                 ],
               ),
             );

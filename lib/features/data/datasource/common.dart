@@ -6,14 +6,15 @@ import 'package:loanswift/features/data/models/upload_model.dart';
 
 import '../../../core/typedefs.dart';
 
-abstract class IUploadDataSource {
+abstract class ICommonDataSource {
   ResultFuture<ApiResponse<UploadModel>> fileUpload({required String filePath});
+  ResultFuture<ApiResponse<DataMap>> ocr({required String objectKey});
 }
 
-class UploadDataSource extends IUploadDataSource {
+class CommonDataSource extends ICommonDataSource {
   final DioClient http;
 
-  UploadDataSource({required DioClient dio}) : http = dio;
+  CommonDataSource({required DioClient dio}) : http = dio;
 
   @override
   ResultFuture<ApiResponse<UploadModel>> fileUpload(
@@ -33,6 +34,22 @@ class UploadDataSource extends IUploadDataSource {
         ApiResponse.fromJson(
           r.data,
           (om) => UploadModel.fromMap(om),
+        ),
+      );
+    });
+  }
+
+  @override
+  ResultFuture<ApiResponse<DataMap>> ocr({required String objectKey}) async {
+    final resp = await http.post(path: '/middle/api/ocr', data: {
+      'img_front': objectKey,
+    });
+
+    return resp.fold((l) => left(l), (r) {
+      return right(
+        ApiResponse.fromJson(
+          r.data,
+          (om) => DataMapExtensions.fromMap(om),
         ),
       );
     });

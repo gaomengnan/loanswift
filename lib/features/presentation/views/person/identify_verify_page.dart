@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/common/widgets/app_text.dart';
 import 'package:loanswift/core/utils.dart';
 import 'package:loanswift/features/domain/entity/user/certify.dart';
+import 'package:loanswift/features/domain/usecases/common/ocr.dart';
 import 'package:loanswift/features/presentation/bloc/certify/certifies_bloc.dart';
 import 'package:loanswift/features/presentation/views/person/build_form_item.dart';
 import 'package:loanswift/features/presentation/views/widgets/camera_scanner.dart';
@@ -28,17 +29,87 @@ class _IdentifyVerifyPageState extends State<IdentifyVerifyPage> {
   late String imagez = Assets.idcardFront;
   late String imagef = Assets.idcardReverse;
 
+  List<String> ocrFields = ['name', 'id_number', 'sex'];
+
   int tapIndex = 0;
+
+  final Map<String, TextEditingController> _controllers = {};
+
+  TextEditingController? generateController(Info info) {
+    if (ocrFields.contains(info.certifyCode)) {
+      final controller = TextEditingController();
+      _controllers[info.certifyCode] = controller;
+      return controller;
+    }
+
+    return null;
+  }
+
+  @override
+  void dispose() {
+    _controllers.forEach(
+      (key, value) {
+        value.dispose();
+      },
+    );
+    super.dispose();
+  }
+
+  void setOcrRelateField(String name, String id, String gender) {
+    final nameController = _controllers['name'];
+    final idController = _controllers['id_number'];
+    final genderController = _controllers['sex'];
+
+    if (nameController != null) {
+      nameController.text = name.toString();
+    }
+
+    if (idController != null) {
+      idController.text = id.toString();
+    }
+
+    if (genderController != null) {
+      genderController.text = gender.toString();
+    }
+  }
+
+  void onChanged(Info info, String s) async {
+
+    /*  增加 OCR 图片识别逻辑  */
+
+    // 使用 认证项 certify_id  = 1
+
+    if (info.certifyId == 1) {
+      if (s.isEmpty) {
+        setOcrRelateField("", "", "");
+        return;
+      }
+
+      final ocrUsecase = sl<Ocr>();
+
+      UI.showLoading();
+
+      final resp = await ocrUsecase.call(OcrParams(objectKey: s));
+
+      resp.fold((l) => UI.showError(context, l.message), (r) {
+        UI.hideLoading();
+        final entity = r['message'] ?? {};
+
+        final name = entity['name'] ?? '';
+        final id = entity['id'] ?? '';
+        final gender = entity['gender'];
+
+        setOcrRelateField(name, id, gender);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return BlocListener<CertifiesBloc, CertifiesState>(
       listener: (context, state) {
         if (state is CertifiesRequestState) {
-          print("step request");
-          if (_formKey.currentState!.validate()) {
-            print("step validator");
-          }
+          if (_formKey.currentState!.validate()) {}
         }
       },
       child: Form(
@@ -51,7 +122,14 @@ class _IdentifyVerifyPageState extends State<IdentifyVerifyPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    BuildFormItem(label: e.certifyFieldName, info: e),
+                    BuildFormItem(
+                      label: e.certifyFieldName,
+                      info: e,
+                      controller: generateController(
+                        e,
+                      ),
+                      onChanged: (s) => onChanged(e, s),
+                    ),
                     UI.kHeight10(),
                     const Divider(
                       color: Colors.black12,

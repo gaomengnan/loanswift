@@ -36,7 +36,7 @@ class DioClient {
 
   ResultFuture<Response> post({
     required String path,
-    Map<String, dynamic>? data,
+    Object? data,
     String pt = "json",
   }) async {
     final InternetConnectionStatus connected =
@@ -47,7 +47,7 @@ class DioClient {
         Map<String, dynamic>? headers = {};
         switch (pt) {
           case "form":
-            poster = FormData.fromMap(data!);
+            poster = FormData.fromMap(data! as DataMap);
             break;
           default:
             poster = data;
@@ -56,7 +56,7 @@ class DioClient {
         }
         final resp = await _dio.post(
           path,
-          data: poster ?? {},
+          data: poster,
           options: Options(
             headers: headers,
           ),
@@ -79,7 +79,7 @@ class DioClient {
 
         return right(resp);
       } on DioException catch (e) {
-        print("DIO CLIENT ERROR: $e");
+        //debugprint("DIO CLIENT ERROR: $e");
         return left(
           ServerFailure(
             message: e.message ?? "",
@@ -123,7 +123,7 @@ class DioClient {
 
         return right(resp);
       } on DioException catch (e) {
-        print("DIO CLIENT ERROR: $e");
+        //print("DIO CLIENT ERROR: $e");
         return left(
           ServerFailure(
             message: S.current.service_error,

@@ -7,7 +7,7 @@ import 'package:loanswift/features/presentation/views/widgets/form_image_picker.
 class BuildFormItem extends StatelessWidget {
   final String label;
   final String? Function(String?)? validator;
-  //final TextEditingController controller;
+  final TextEditingController? controller;
 
   final Info info;
 
@@ -17,7 +17,7 @@ class BuildFormItem extends StatelessWidget {
     super.key,
     required this.label,
     this.validator,
-    //required this.controller,
+    this.controller,
     required this.info,
     this.onChanged,
   });
@@ -32,7 +32,7 @@ class BuildFormItem extends StatelessWidget {
           onChanged: onChanged,
           isMust: info.certifyIsMust == 1,
           prompt: info.promptSubtitle,
-          //controller: controller,
+          controller: controller,
         );
 
       case "file":
@@ -40,7 +40,19 @@ class BuildFormItem extends StatelessWidget {
           info: info,
           label: label,
           context: context,
-          onChanged: onChanged,
+          onChanged: (s) async {
+            //UI.showLoadingWithMessage(context, '开始OCR');
+            //final Ocr ocr = sl<Ocr>();
+            //
+            //final resp  = await ocr.call(OcrParams(objectKey: s));
+            //print('ocr resup $resp');
+            //
+            //
+            //UI.hideLoading();
+            if (onChanged != null) {
+              onChanged!(s);
+            }
+          },
         );
 
       case "day":

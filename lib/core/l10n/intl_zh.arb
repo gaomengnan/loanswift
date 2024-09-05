@@ -71,7 +71,7 @@
   "auto_repayment": "自动还款",
   "bill_state" : "账单证明",
   "get_credit_limit": "获取额度",
-  "loading": "加载中",
+  "loading": "请等待",
   "logout": "注销",
   "logoutConfirmation": "你确定要退出登录吗？",
   "confirm": "确定",

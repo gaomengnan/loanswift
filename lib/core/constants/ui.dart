@@ -59,6 +59,12 @@ class UI {
     );
   }
 
+  static void showLoadingWithMessage(BuildContext context, String message) {
+    EasyLoading.show(
+     status: message,
+    );
+  }
+
   static void showError(BuildContext context, String message) {
     EasyLoading.showError(
       message,

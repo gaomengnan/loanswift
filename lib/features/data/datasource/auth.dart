@@ -31,6 +31,10 @@ abstract class AuthDataSource {
 
   // 获取认证项
   ResultFuture<ApiResponse<CertifiesModel>> getCertificates();
+
+  // 提交认证项
+
+  ResultVoid commitCertifies({required List<DataMap> data});
 }
 
 class AuthDataSourceImpl extends AuthDataSource {
@@ -129,4 +133,10 @@ class AuthDataSourceImpl extends AuthDataSource {
       );
     });
   }
+
+  @override
+  ResultVoid commitCertifies({required List<DataMap> data}) async {
+    return await http.post(path: '/middle/certify/add', data: data);
+  }
+
 }

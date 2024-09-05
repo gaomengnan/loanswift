@@ -7,7 +7,7 @@ class RInput extends StatelessWidget {
   final String label;
   final bool isMust;
   final String prompt;
-  //final TextEditingController controller;
+  final TextEditingController? controller;
 
   final void Function(String)? onChanged;
 
@@ -18,7 +18,7 @@ class RInput extends StatelessWidget {
     this.onChanged,
     this.isMust = false,
     this.prompt = '',
-    //required this.controller,
+    this.controller,
   });
 
   @override
@@ -39,11 +39,14 @@ class RInput extends StatelessWidget {
           Expanded(
             flex: 2,
             child: Container(
+              padding: EdgeInsets.only(left: 10.w),
               decoration: BoxDecoration(
                 color: Colors.grey.shade200,
                 borderRadius: BorderRadius.circular(5),
               ),
               child: TextFormField(
+                textAlignVertical: TextAlignVertical.center,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (value) {
                   if (!isMust) {
                     return null;
@@ -52,15 +55,17 @@ class RInput extends StatelessWidget {
                   if (value == null || value.isEmpty) {
                     return prompt;
                   }
+
+                  return null;
                 },
-                //controller: controller,
+                controller: controller,
                 onChanged: onChanged,
 
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     focusedErrorBorder: InputBorder.none,
                     focusedBorder: InputBorder.none,
                     errorBorder: InputBorder.none,
-                    contentPadding: EdgeInsets.only(left: 10.w, bottom: 5.h),
+                    //contentPadding: EdgeInsets.only(left: 10.w),
                     enabledBorder: InputBorder.none,
                     disabledBorder: InputBorder.none),
               ),

@@ -5,27 +5,27 @@ import 'package:get_storage/get_storage.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/core/dio_client.dart';
-import 'package:loanswift/core/firebase_api.dart';
 import 'package:loanswift/features/data/datasource/auth.dart';
+import 'package:loanswift/features/data/datasource/common.dart';
 import 'package:loanswift/features/data/datasource/home.dart';
 import 'package:loanswift/features/data/datasource/order.dart';
 import 'package:loanswift/features/data/datasource/report.dart';
-import 'package:loanswift/features/data/datasource/upload.dart';
 import 'package:loanswift/features/data/repository/auth.dart';
+import 'package:loanswift/features/data/repository/common.dart';
 import 'package:loanswift/features/data/repository/home.dart';
 import 'package:loanswift/features/data/repository/order.dart';
 import 'package:loanswift/features/data/repository/report.dart';
-import 'package:loanswift/features/data/repository/upload.dart';
 import 'package:loanswift/features/domain/repos/auth.dart';
+import 'package:loanswift/features/domain/repos/common.dart';
 import 'package:loanswift/features/domain/repos/home.dart';
 import 'package:loanswift/features/domain/repos/order.dart';
 import 'package:loanswift/features/domain/repos/report.dart';
-import 'package:loanswift/features/domain/repos/upload.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/get_certifies.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/login.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/logout.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/send_phone_code.dart';
 import 'package:loanswift/features/domain/usecases/common/file_upload.dart';
+import 'package:loanswift/features/domain/usecases/common/ocr.dart';
 import 'package:loanswift/features/domain/usecases/home/data.dart';
 import 'package:loanswift/features/domain/usecases/order/get_order_detail.dart';
 import 'package:loanswift/features/domain/usecases/order/query_order.dart';
@@ -173,11 +173,12 @@ Future<void> initialize() async {
   /*  BUILD UPLOAD  */
 
   sl
-    ..registerLazySingleton<IUploadDataSource>(
-        () => UploadDataSource(dio: sl()))
-    ..registerLazySingleton<IUpload>(
-        () => UploadRepositry(uploadDataSource: sl()))
-    ..registerLazySingleton(() => FileUpload(uploadRepo: sl()));
+    ..registerLazySingleton<ICommonDataSource>(
+        () => CommonDataSource(dio: sl()))
+    ..registerLazySingleton<ICommonService>(
+        () => CommonRepositry(uploadDataSource: sl()))
+    ..registerLazySingleton(() => FileUpload(commonSer: sl()))
+    ..registerLazySingleton(() => Ocr(commonService: sl()));
 
   try {
     await Firebase.initializeApp(

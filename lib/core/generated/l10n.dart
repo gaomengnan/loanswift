@@ -730,10 +730,10 @@ class S {
     );
   }
 
-  /// `加载中`
+  /// `请等待`
   String get loading {
     return Intl.message(
-      '加载中',
+      '请等待',
       name: 'loading',
       desc: '',
       args: [],

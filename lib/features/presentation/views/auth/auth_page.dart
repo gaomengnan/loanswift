@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:loanswift/theme/theme.dart';
+import 'package:loanswift/theme/pallete.dart';
 
 import '../widgets/login_widget.dart';
 
@@ -19,7 +19,7 @@ class _AuthPageState extends State<AuthPage> {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         leading: Container(),
-        backgroundColor: Pallete.whiteColor,
+        backgroundColor: Pallete.backgroundColor,
         elevation: 0,
       ),
       body: Container(
