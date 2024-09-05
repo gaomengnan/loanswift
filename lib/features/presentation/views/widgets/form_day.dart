@@ -63,7 +63,7 @@ class _FormDayFieldState extends State<FormDayField> {
             children: [
               Icon(
                 Icons.check_circle,
-                color: widget.info.certifyStatus == 1 ? Colors.green : Colors.grey,
+                color: widget.info.isCertify() ? Colors.green : Colors.grey,
               ),
               UI.kHeight5(),
               Expanded(

@@ -34,7 +34,7 @@ class RInput extends StatelessWidget {
             children: [
               Icon(
                 Icons.check_circle,
-                color: info.certifyStatus == 1 ?  Colors.green : Colors.grey,
+                color: info.isCertify() ?  Colors.green : Colors.grey,
               ),
               UI.kWidth5(),
               Expanded(
