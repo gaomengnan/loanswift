@@ -61,6 +61,7 @@ class CertifiesBloc extends Bloc<CertifiesEvent, CertifiesState> {
       cerfityStep: state.cerfityStep,
       identifyInfo: state.identifyInfo,
       emergencyInfo: state.emergencyInfo,
+      personalInfo: state.personalInfo,
     ));
   }
 
@@ -109,6 +110,7 @@ class CertifiesBloc extends Bloc<CertifiesEvent, CertifiesState> {
             //settings: l,
             identifyInfo: l.identityInfo,
             emergencyInfo: l.emergencyInfo,
+            personalInfo: l.personalInfo,
           ),
         );
       },

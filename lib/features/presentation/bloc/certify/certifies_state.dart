@@ -56,12 +56,14 @@ class CertifiesState {
 
   final List<Info> identifyInfo;
   final List<Info> emergencyInfo;
+  final List<Info> personalInfo;
 
   const CertifiesState({
     required this.cerfityStep,
     //required this.settings,
     required this.identifyInfo,
     required this.emergencyInfo,
+    required this.personalInfo,
   });
 
   CertifiesState.initial()
@@ -70,6 +72,7 @@ class CertifiesState {
           //settings: CertifiesModel.empty(),
           identifyInfo: List<Info>.empty(),
           emergencyInfo: List<Info>.empty(),
+          personalInfo: List<Info>.empty(),
         );
 
   CertifiesState copyWith({
@@ -77,12 +80,14 @@ class CertifiesState {
     //CertifiesModel? certifies,
     List<Info>? identify,
     List<Info>? emerge,
+    List<Info>? personal,
   }) =>
       CertifiesState(
         cerfityStep: step ?? cerfityStep,
         //settings: certifies ?? settings,
         identifyInfo: identify ?? identifyInfo,
         emergencyInfo: emerge ?? emergencyInfo,
+        personalInfo: personal ?? personalInfo,
       );
 
   //@override
@@ -111,6 +116,7 @@ class CertifiesSettingsLoadSuccess extends CertifiesState {
     required super.cerfityStep,
     required super.identifyInfo,
     required super.emergencyInfo,
+    required super.personalInfo,
   });
 }
 
@@ -120,6 +126,7 @@ class CertifiesRequestState extends CertifiesState {
     //required super.settings,
     required super.identifyInfo,
     required super.emergencyInfo,
+    required super.personalInfo,
   });
 
   //@override

@@ -26,6 +26,7 @@ import 'package:loanswift/features/domain/usecases/authenticated/login.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/logout.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/send_phone_code.dart';
 import 'package:loanswift/features/domain/usecases/common/file_upload.dart';
+import 'package:loanswift/features/domain/usecases/common/get_cities.dart';
 import 'package:loanswift/features/domain/usecases/common/ocr.dart';
 import 'package:loanswift/features/domain/usecases/home/data.dart';
 import 'package:loanswift/features/domain/usecases/order/get_order_detail.dart';
@@ -180,10 +181,11 @@ Future<void> initialize() async {
     ..registerLazySingleton<ICommonDataSource>(
         () => CommonDataSource(dio: sl()))
     ..registerLazySingleton<ICommonService>(
-        () => CommonRepositry(uploadDataSource: sl()))
+        () => CommonRepositry(dataSource: sl()))
     ..registerLazySingleton(() => FileUpload(commonSer: sl()))
     ..registerLazySingleton(() => Ocr(commonService: sl()))
-    ..registerLazySingleton(() => CommitCertify(authRepo: sl()));
+    ..registerLazySingleton(() => CommitCertify(authRepo: sl()))
+    ..registerLazySingleton(() => GetCities(commonService: sl()));
 
   try {
     await Firebase.initializeApp(

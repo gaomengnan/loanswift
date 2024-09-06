@@ -2,29 +2,62 @@
   {
     "identity_info": [
       {
-        "certify_id": 1,
+        "certify_id": 2,
+        "certify_code": "id_card_front_img",
+        "certify_fields_cate": "file",
+        "certify_field_name": "KTP bagian depan",
+        "certify_is_must": 1,
+        "prompt_subtitle": "KTP bagian depan",
+        "note": "",
+        "certify_result": "http://ido-mobile-samakitas.oss-ap-southeast-5.aliyuncs.com/user_auth/id_card_front_images/888888888_66daea74d32c5.jpg?Expires=1725713070&OSSAccessKeyId=LTAI5tFyFDf2biacGnGruXHW&Signature=Ij3Vf3bMUbLzSZ5%2Fzs8KTH5CUEI%3D",
+        "certify_status": 1
+      },
+      {
+        "certify_id": 3,
         "certify_code": "name",
         "certify_fields_cate": "txt",
         "certify_field_name": "Nama pertama dan terakhir",
         "certify_is_must": 1,
         "prompt_subtitle": "Nama lengkap Anda",
         "note": null,
-        "certify_result": "testUser",
-        "certify_status": 1
+        "certify_result": null,
+        "certify_status": -1
       },
       {
-        "certify_id": 2,
+        "certify_id": 4,
         "certify_code": "id_number",
         "certify_fields_cate": "txt",
         "certify_field_name": "Nomor CCCD/KTP",
         "certify_is_must": 1,
         "prompt_subtitle": "Nomor kartu identitas atau kartu tanda penduduk",
         "note": null,
-        "certify_result": "3402055004040001",
+        "certify_result": "3",
         "certify_status": 1
       },
       {
-        "certify_id": 3,
+        "certify_id": 5,
+        "certify_code": "sex",
+        "certify_fields_cate": "txt",
+        "certify_field_name": "Seks",
+        "certify_is_must": 1,
+        "prompt_subtitle": "Jenis kelamin Anda",
+        "note": "Pria|Wanita",
+        "certify_result": "2024-01-01-01",
+        "certify_status": 1
+      },
+      {
+        "certify_id": 6,
+        "certify_code": "birthday",
+        "certify_fields_cate": "day",
+        "certify_field_name": "Tanggal lahir",
+        "certify_is_must": 1,
+        "prompt_subtitle": "Tanggal lahirmu",
+        "note": null,
+        "certify_result": "2024-09-06",
+        "certify_status": 1
+      },
+      {
+        "certify_id": 7,
         "certify_code": "face",
         "certify_fields_cate": "file",
         "certify_field_name": "Pengenalan wajah",
@@ -33,36 +66,126 @@
         "note": null,
         "certify_result": null,
         "certify_status": -1
+      }
+    ]
+  },
+  {
+    "personal_info": [
+      {
+        "certify_id": 8,
+        "certify_code": "marriage",
+        "certify_fields_cate": "enum",
+        "certify_field_name": "Pernikahan",
+        "certify_is_must": 1,
+        "prompt_subtitle": "Silakan pilih status perkawinan",
+        "note": {
+          "1": "Lajang",
+          "2": "Menikah",
+          "3": "Bercerai"
+        },
+        "certify_result": null,
+        "certify_status": -1
       },
       {
-        "certify_id": 4,
-        "certify_code": "id_card_obverse_img",
-        "certify_fields_cate": "file",
-        "certify_field_name": "Foto bagian belakang dokumen identitas",
+        "certify_id": 9,
+        "certify_code": "children_number",
+        "certify_fields_cate": "enum",
+        "certify_field_name": "Jumlah anak",
         "certify_is_must": 1,
-        "prompt_subtitle": "Silakan unggah foto bagian belakang KTP Anda",
+        "prompt_subtitle": "Jumlah anak saat ini",
+        "note": {
+          "2": "1",
+          "3": "2",
+          "4": "3",
+          "5": "3+"
+        },
+        "certify_result": null,
+        "certify_status": -1
+      },
+      {
+        "certify_id": 10,
+        "certify_code": "live",
+        "certify_fields_cate": "enum",
+        "certify_field_name": "Jenis akomodasi",
+        "certify_is_must": 1,
+        "prompt_subtitle": "Jenis akomodasi saat ini",
+        "note": {
+          "1": "Milik sendiri",
+          "2": "Rumah sewa",
+          "3": "Lain-lain"
+        },
+        "certify_result": null,
+        "certify_status": -1
+      },
+      {
+        "certify_id": 11,
+        "certify_code": "length_of_stay",
+        "certify_fields_cate": "enum",
+        "certify_field_name": "Waktu di alamat saat ini",
+        "certify_is_must": 1,
+        "prompt_subtitle": "Total waktu Anda berada di alamat ini",
+        "note": {
+          "1": "1 bulan",
+          "2": "3 bulan",
+          "3": "6 bulan",
+          "4": "1 tahun",
+          "5": "2 tahun",
+          "6": "Lebih dari 2 tahun"
+        },
+        "certify_result": null,
+        "certify_status": -1
+      },
+      {
+        "certify_id": 12,
+        "certify_code": "home_city",
+        "certify_fields_cate": "citySelect",
+        "certify_field_name": "Kota tempat tinggal",
+        "certify_is_must": 1,
+        "prompt_subtitle": "Kota tempat Anda tinggal",
         "note": null,
         "certify_result": null,
         "certify_status": -1
       },
       {
-        "certify_id": 28,
-        "certify_code": "id_card_front_img",
-        "certify_fields_cate": "file",
-        "certify_field_name": "Foto bagian belakang dokumen identitas",
+        "certify_id": 13,
+        "certify_code": "residentaddress",
+        "certify_fields_cate": "txt",
+        "certify_field_name": "Alamat lengkap",
         "certify_is_must": 1,
-        "prompt_subtitle": "Silakan unggah foto bagian belakang KTP Anda",
+        "prompt_subtitle": "Alamat persis Anda",
+        "note": "Masukkan alamat tertentu",
+        "certify_result": null,
+        "certify_status": -1
+      },
+      {
+        "certify_id": 14,
+        "certify_code": "email",
+        "certify_fields_cate": "txt",
+        "certify_field_name": "Surel",
+        "certify_is_must": 1,
+        "prompt_subtitle": "Email kontak Anda",
         "note": null,
         "certify_result": null,
         "certify_status": -1
       },
       {
-        "certify_id": 5,
-        "certify_code": "birthday",
-        "certify_fields_cate": "day",
-        "certify_field_name": "Tanggal lahir",
+        "certify_id": 15,
+        "certify_code": "what_apps",
+        "certify_fields_cate": "txt",
+        "certify_field_name": "Zalo",
         "certify_is_must": 1,
-        "prompt_subtitle": "Tanggal lahirmu",
+        "prompt_subtitle": "WhatApps (masukkan teks): Nomor kontak WhatApps",
+        "note": null,
+        "certify_result": null,
+        "certify_status": -1
+      },
+      {
+        "certify_id": 16,
+        "certify_code": "facebook",
+        "certify_fields_cate": "txt",
+        "certify_field_name": "Facebook",
+        "certify_is_must": 1,
+        "prompt_subtitle": "Alamat Facebook Anda",
         "note": null,
         "certify_result": null,
         "certify_status": -1
@@ -70,46 +193,137 @@
     ]
   },
   {
-    "emergency_info": {
-      "certify_id": 6,
-      "certify_code": "emergent",
-      "certify_fields_cate": "map",
-      "certify_field_name": "Kontak person darurat",
-      "certify_is_must": 1,
-      "prompt_subtitle": "Kontak person darurat",
-      "note": {
-        "1": "父亲",
-        "2": "配偶",
-        "3": "母亲",
-        "4": "子女",
-        "11": "兄弟",
-        "12": "姐妹",
-        "101": "其他"
+    "emergency_info": [
+      {
+        "certify_id": 17,
+        "certify_code": "first_name",
+        "certify_fields_cate": "txt",
+        "certify_field_name": "Nama kontak pertama",
+        "certify_is_must": 1,
+        "prompt_subtitle": "Nama kontak pertama: nama kontak",
+        "note": null,
+        "certify_result": null,
+        "certify_status": -1
       },
-      "certify_result": {
-        "first_relation": 1,
-        "first_name": "联系人1",
-        "first_phone": "85727439248",
-        "second_relation": 2,
-        "second_name": "联系人2",
-        "second_phone": "89653412080",
-        "third_relation": 0,
-        "third_name": "",
-        "third_phone": "",
-        "fourth_relation": 0,
-        "fourth_name": "",
-        "fourth_phone": "",
-        "fifth_relation": 0,
-        "fifth_name": "",
-        "fifth_phone": ""
+      {
+        "certify_id": 18,
+        "certify_code": "first_phone",
+        "certify_fields_cate": "txt",
+        "certify_field_name": "Hubungi ponsel terlebih dahulu",
+        "certify_is_must": 1,
+        "prompt_subtitle": "Nomor telepon seluler kontak pertama: Nomor telepon kontak",
+        "note": null,
+        "certify_result": null,
+        "certify_status": -1
       },
-      "certify_status": 1
-    }
+      {
+        "certify_id": 19,
+        "certify_code": "first_relation",
+        "certify_fields_cate": "enum",
+        "certify_field_name": "Hubungan antara contact person pertama dan Anda",
+        "certify_is_must": 1,
+        "prompt_subtitle": "Hubungan antara contact person pertama dan Anda: Silakan pilih",
+        "note": {
+          "1": "Ayah",
+          "2": "Pasangan",
+          "3": "Ibu",
+          "4": "Anak",
+          "5": "Saudara Laki-Laki",
+          "6": "Saudara Perempuan",
+          "7": "Teman",
+          "8": "Lainnya"
+        },
+        "certify_result": null,
+        "certify_status": -1
+      },
+      {
+        "certify_id": 20,
+        "certify_code": "second_name",
+        "certify_fields_cate": "txt",
+        "certify_field_name": "Nama kontak kedua",
+        "certify_is_must": 1,
+        "prompt_subtitle": "Nama kontak kedua: nama kontak",
+        "note": null,
+        "certify_result": null,
+        "certify_status": -1
+      },
+      {
+        "certify_id": 21,
+        "certify_code": "second_phone",
+        "certify_fields_cate": "txt",
+        "certify_field_name": "Ponsel kontak kedua",
+        "certify_is_must": 1,
+        "prompt_subtitle": "Nomor telepon seluler kontak kedua: Nomor telepon kontak",
+        "note": null,
+        "certify_result": null,
+        "certify_status": -1
+      },
+      {
+        "certify_id": 22,
+        "certify_code": "second_relation",
+        "certify_fields_cate": "enum",
+        "certify_field_name": "Hubungan antara kontak kedua dan Anda",
+        "certify_is_must": 1,
+        "prompt_subtitle": "Hubungan antara contact person kedua dan Anda: Silakan pilih",
+        "note": {
+          "1": "Ayah",
+          "2": "Pasangan",
+          "3": "Ibu",
+          "4": "Anak",
+          "5": "Saudara Laki-Laki",
+          "6": "Saudara Perempuan",
+          "7": "Teman",
+          "8": "Lainnya"
+        },
+        "certify_result": null,
+        "certify_status": -1
+      }
+    ]
   },
   {
     "job_info": [
       {
-        "certify_id": 7,
+        "certify_id": 23,
+        "certify_code": "education",
+        "certify_fields_cate": "enum",
+        "certify_field_name": "Tingkatan akademis",
+        "certify_is_must": 1,
+        "prompt_subtitle": "Tingkat pendidikan tertinggi Anda",
+        "note": {
+          "1": "Sekolah dasar ",
+          "2": " SMA ",
+          "3": " SMA ",
+          "4": " Gelar Sarjana Universitas ",
+          "5": " Guru ",
+          "6": " PhD ",
+          "7": " Tidak ada kualifikasi"
+        },
+        "certify_result": null,
+        "certify_status": -1
+      },
+      {
+        "certify_id": 24,
+        "certify_code": "purpose",
+        "certify_fields_cate": "enum",
+        "certify_field_name": "Tujuan Pinjaman",
+        "certify_is_must": 1,
+        "prompt_subtitle": "Tujuan Anda ingin meminjam uang",
+        "note": {
+          "1": "Pengeluaran harian",
+          "2": "Kedokteran",
+          "3": "Perbaikan",
+          "4": "Investasi keuangan",
+          "5": "Pendidikan",
+          "6": "Ekspansi bisnis",
+          "7": "Perjalanan",
+          "8": "Pembayaran hutang",
+          "9": "Lain-lain"
+        },
+        "certify_result": null,
+        "certify_status": -1
+      },
+      {
+        "certify_id": 25,
         "certify_code": "job",
         "certify_fields_cate": "enum",
         "certify_field_name": "Pekerjaan",
@@ -133,40 +347,22 @@
         "certify_status": -1
       },
       {
-        "certify_id": 8,
-        "certify_code": "company_name",
-        "certify_fields_cate": "txt",
-        "certify_field_name": "Nama perusahaan",
+        "certify_id": 26,
+        "certify_code": "work_length",
+        "certify_fields_cate": "enum",
+        "certify_field_name": "Senioritas kerja",
         "certify_is_must": 1,
-        "prompt_subtitle": "Nama perusahaan tempat Anda bekerja",
-        "note": null,
+        "prompt_subtitle": "Senioritas kerja kumulatif",
+        "note": {
+          "1": "Kurang dari 6 bulan ",
+          "2": ". 6 bulan sampai satu tahun ",
+          "3": ". Satu tahun sampai 2 tahun "
+        },
         "certify_result": null,
         "certify_status": -1
       },
       {
-        "certify_id": 9,
-        "certify_code": "company_address",
-        "certify_fields_cate": "citySelect",
-        "certify_field_name": "Alamat perusahaan",
-        "certify_is_must": 1,
-        "prompt_subtitle": "Alamat perusahaan tempat Anda bekerja",
-        "note": null,
-        "certify_result": null,
-        "certify_status": -1
-      },
-      {
-        "certify_id": 10,
-        "certify_code": "company_phone",
-        "certify_fields_cate": "txt",
-        "certify_field_name": "Nomor telepon perusahaan",
-        "certify_is_must": 1,
-        "prompt_subtitle": "Nomor telepon kontak perusahaan",
-        "note": null,
-        "certify_result": null,
-        "certify_status": -1
-      },
-      {
-        "certify_id": 11,
+        "certify_id": 27,
         "certify_code": "payday",
         "certify_fields_cate": "enum",
         "certify_field_name": "Hari bayaran",
@@ -209,33 +405,7 @@
         "certify_status": -1
       },
       {
-        "certify_id": 12,
-        "certify_code": "work_length",
-        "certify_fields_cate": "enum",
-        "certify_field_name": "Senioritas kerja",
-        "certify_is_must": 1,
-        "prompt_subtitle": "Senioritas kerja kumulatif",
-        "note": {
-          "1": "Kurang dari 6 bulan ",
-          "2": ". 6 bulan sampai satu tahun ",
-          "3": ". Satu tahun sampai 2 tahun "
-        },
-        "certify_result": null,
-        "certify_status": -1
-      },
-      {
-        "certify_id": 13,
-        "certify_code": "company_full_address",
-        "certify_fields_cate": "txt",
-        "certify_field_name": "Alamat detail perusahaan",
-        "certify_is_must": 1,
-        "prompt_subtitle": "Alamat persis perusahaan",
-        "note": null,
-        "certify_result": null,
-        "certify_status": -1
-      },
-      {
-        "certify_id": 14,
+        "certify_id": 28,
         "certify_code": "salary_day",
         "certify_fields_cate": "enum",
         "certify_field_name": "Siklus penggajian",
@@ -250,11 +420,11 @@
           "6": "Setengah tahunan",
           "7": "Lainnya"
         },
-        "certify_result": "4",
-        "certify_status": 1
+        "certify_result": null,
+        "certify_status": -1
       },
       {
-        "certify_id": 15,
+        "certify_id": 29,
         "certify_code": "monthly_income",
         "certify_fields_cate": "enum",
         "certify_field_name": "Pendapatan bulanan (juta)",
@@ -269,181 +439,48 @@
         },
         "certify_result": null,
         "certify_status": -1
-      }
-    ]
-  },
-  {
-    "personal_info": [
+      },
       {
-        "certify_id": 16,
-        "certify_code": "education",
-        "certify_fields_cate": "enum",
-        "certify_field_name": "Tingkatan akademis",
+        "certify_id": 30,
+        "certify_code": "company_name",
+        "certify_fields_cate": "txt",
+        "certify_field_name": "Nama perusahaan",
         "certify_is_must": 1,
-        "prompt_subtitle": "Tingkat pendidikan tertinggi Anda",
-        "note": {
-          "1": "Sekolah dasar ",
-          "2": " SMA ",
-          "3": " SMA ",
-          "4": " Gelar Sarjana Universitas ",
-          "5": " Guru ",
-          "6": " PhD ",
-          "7": " Tidak ada kualifikasi"
-        },
+        "prompt_subtitle": "Nama perusahaan tempat Anda bekerja",
+        "note": null,
         "certify_result": null,
         "certify_status": -1
       },
       {
-        "certify_id": 17,
-        "certify_code": "marriage",
-        "certify_fields_cate": "enum",
-        "certify_field_name": "Pernikahan",
-        "certify_is_must": 1,
-        "prompt_subtitle": "Silakan pilih status perkawinan",
-        "note": {
-          "1": "Lajang",
-          "2": "Menikah",
-          "3": "Bercerai"
-        },
-        "certify_result": null,
-        "certify_status": -1
-      },
-      {
-        "certify_id": 18,
-        "certify_code": "purpose",
-        "certify_fields_cate": "enum",
-        "certify_field_name": "Tujuan Pinjaman",
-        "certify_is_must": 1,
-        "prompt_subtitle": "Tujuan Anda ingin meminjam uang",
-        "note": {
-          "1": "Pengeluaran harian",
-          "2": "Kedokteran",
-          "3": "Perbaikan",
-          "4": "Investasi keuangan",
-          "5": "Pendidikan",
-          "6": "Ekspansi bisnis",
-          "7": "Perjalanan",
-          "8": "Pembayaran hutang",
-          "9": "Lain-lain"
-        },
-        "certify_result": null,
-        "certify_status": -1
-      },
-      {
-        "certify_id": 19,
-        "certify_code": "home_city",
+        "certify_id": 31,
+        "certify_code": "company_address",
         "certify_fields_cate": "citySelect",
-        "certify_field_name": "Kota tempat tinggal",
+        "certify_field_name": "Alamat perusahaan",
         "certify_is_must": 1,
-        "prompt_subtitle": "Kota tempat Anda tinggal",
+        "prompt_subtitle": "Alamat perusahaan tempat Anda bekerja",
         "note": null,
         "certify_result": null,
         "certify_status": -1
       },
       {
-        "certify_id": 20,
-        "certify_code": "residentaddress",
+        "certify_id": 32,
+        "certify_code": "company_phone",
         "certify_fields_cate": "txt",
-        "certify_field_name": "Alamat lengkap",
+        "certify_field_name": "Nomor telepon perusahaan",
         "certify_is_must": 1,
-        "prompt_subtitle": "Alamat persis Anda",
-        "note": "Masukkan alamat tertentu",
-        "certify_result": null,
-        "certify_status": -1
-      },
-      {
-        "certify_id": 21,
-        "certify_code": "email",
-        "certify_fields_cate": "txt",
-        "certify_field_name": "Surel",
-        "certify_is_must": 1,
-        "prompt_subtitle": "Email kontak Anda",
+        "prompt_subtitle": "Nomor telepon kontak perusahaan",
         "note": null,
         "certify_result": null,
         "certify_status": -1
       },
       {
-        "certify_id": 22,
-        "certify_code": "sex",
-        "certify_fields_cate": "enum",
-        "certify_field_name": "Seks",
-        "certify_is_must": 1,
-        "prompt_subtitle": "Jenis kelamin Anda",
-        "note": {
-          "1": "Pria",
-          "2": "Wanita"
-        },
-        "certify_result": null,
-        "certify_status": -1
-      },
-      {
-        "certify_id": 23,
-        "certify_code": "children_number",
-        "certify_fields_cate": "enum",
-        "certify_field_name": "Jumlah anak",
-        "certify_is_must": 1,
-        "prompt_subtitle": "Jumlah anak saat ini",
-        "note": {
-          "2": "1",
-          "3": "2",
-          "4": "3",
-          "5": "3+"
-        },
-        "certify_result": 2,
-        "certify_status": 1
-      },
-      {
-        "certify_id": 24,
-        "certify_code": "length_of_stay",
-        "certify_fields_cate": "enum",
-        "certify_field_name": "Waktu di alamat saat ini",
-        "certify_is_must": 1,
-        "prompt_subtitle": "Total waktu Anda berada di alamat ini",
-        "note": {
-          "1": "1 bulan",
-          "2": "3 bulan",
-          "3": "6 bulan",
-          "4": "1 tahun",
-          "5": "2 tahun",
-          "6": "Lebih dari 2 tahun"
-        },
-        "certify_result": null,
-        "certify_status": -1
-      },
-      {
-        "certify_id": 25,
-        "certify_code": "what_apps",
+        "certify_id": 33,
+        "certify_code": "company_full_address",
         "certify_fields_cate": "txt",
-        "certify_field_name": "Zalo",
+        "certify_field_name": "Alamat detail perusahaan",
         "certify_is_must": 1,
-        "prompt_subtitle": "WhatApps (masukkan teks): Nomor kontak WhatApps",
+        "prompt_subtitle": "Alamat persis perusahaan",
         "note": null,
-        "certify_result": null,
-        "certify_status": -1
-      },
-      {
-        "certify_id": 26,
-        "certify_code": "facebook",
-        "certify_fields_cate": "txt",
-        "certify_field_name": "Facebook",
-        "certify_is_must": 1,
-        "prompt_subtitle": "Alamat Facebook Anda",
-        "note": null,
-        "certify_result": null,
-        "certify_status": -1
-      },
-      {
-        "certify_id": 27,
-        "certify_code": "live",
-        "certify_fields_cate": "enum",
-        "certify_field_name": "Jenis akomodasi",
-        "certify_is_must": 1,
-        "prompt_subtitle": "Jenis akomodasi saat ini",
-        "note": {
-          "1": "Milik sendiri",
-          "2": "Rumah sewa",
-          "3": "Lain-lain"
-        },
         "certify_result": null,
         "certify_status": -1
       }

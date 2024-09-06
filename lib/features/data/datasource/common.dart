@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:loanswift/core/api_response.dart';
 import 'package:loanswift/core/dio_client.dart';
+import 'package:loanswift/features/data/models/city_model.dart';
 import 'package:loanswift/features/data/models/upload_model.dart';
 
 import '../../../core/typedefs.dart';
@@ -9,6 +10,7 @@ import '../../../core/typedefs.dart';
 abstract class ICommonDataSource {
   ResultFuture<ApiResponse<UploadModel>> fileUpload({required String filePath});
   ResultFuture<ApiResponse<DataMap>> ocr({required String objectKey});
+  ResultFuture<ApiResponse<List<CityModel>>> getCities();
 }
 
 class CommonDataSource extends ICommonDataSource {
@@ -50,6 +52,20 @@ class CommonDataSource extends ICommonDataSource {
         ApiResponse.fromJson(
           r.data,
           (om) => DataMapExtensions.fromMap(om),
+        ),
+      );
+    });
+  }
+
+  @override
+  ResultFuture<ApiResponse<List<CityModel>>> getCities() async {
+    final resp = await http.get(path: '/middle/identity/get-city');
+
+    return resp.fold((l) => left(l), (r) {
+      return right(
+        ApiResponse.fromJson(
+          r.data,
+          (om) => fetchCities(om),
         ),
       );
     });

@@ -138,6 +138,7 @@ class _IdentifyVerifyPageState extends State<IdentifyVerifyPage> {
         listener: (context, state) {
       if (state is CertifiesRequestState) {
         if (_formKey.currentState!.validate()) {}
+        context.read<CertifiesBloc>().add(CertifyStepContinue());
       }
     }, builder: (context, state) {
       return Form(

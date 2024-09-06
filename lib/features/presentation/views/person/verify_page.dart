@@ -32,7 +32,8 @@ class _VerifyPageState extends State<VerifyPage> {
   @override
   Widget build(BuildContext context) {
     //return StepperExample();
-    final currentStep = context.select((CertifiesBloc bloc) => bloc.state.cerfityStep);
+    final currentStep =
+        context.select((CertifiesBloc bloc) => bloc.state.cerfityStep);
     return Scaffold(
       backgroundColor: Pallete.backgroundColor,
       appBar: AppBar(
@@ -74,7 +75,7 @@ class _VerifyPageState extends State<VerifyPage> {
               isActive: currentStep.value >= 0,
             ),
             Step(
-              title: Text(S.current.emergency_contact),
+              title: Text(S.current.personal_information),
               content: const BasicInformation(),
               isActive: currentStep.value >= 1,
             ),
@@ -84,15 +85,10 @@ class _VerifyPageState extends State<VerifyPage> {
               isActive: currentStep.value >= 2,
             ),
             Step(
-              title: Text(S.current.personal_information),
+              title: Text(S.current.emergency_contact),
               content: const BasicInformation(),
               isActive: currentStep.value >= 3,
             ),
-            //Step(
-            //  title: const Text(''),
-            //  content: const Text('This is the third step.'),
-            //  isActive: _currentStep >= 2,
-            //),
           ],
           currentStep: currentStep.value,
         ),
