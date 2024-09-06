@@ -85,5 +85,6 @@
   "identity_authentication": "Autentikasi Identitas",
   "emergency_contact": "Kontak Darurat",
   "work_information": "Informasi Pekerjaan",
-  "personal_information": "Informasi Pribadi"
+  "personal_information": "Informasi Pribadi",
+  "please_select": "Silakan pilih opsi"
 }

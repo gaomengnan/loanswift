@@ -11,9 +11,9 @@ class CertifyStepBack extends CertifiesEvent {}
 
 class CertifyStepRequest extends CertifiesEvent {}
 
-class IdentifyInfoCertifyCommitEvent extends CertifiesEvent {
+class CertifyCommitEvent extends CertifiesEvent {
   final int certifyId;
   final dynamic certifyResult;
 
-  IdentifyInfoCertifyCommitEvent({required this.certifyId, required this.certifyResult});
+  CertifyCommitEvent({required this.certifyId, required this.certifyResult});
 }

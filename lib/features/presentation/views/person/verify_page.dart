@@ -1,5 +1,7 @@
+import 'package:easy_stepper/easy_stepper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/features/presentation/bloc/certify/certifies_bloc.dart';
 import 'package:loanswift/features/presentation/views/person/basic_information.dart';
 import 'package:loanswift/features/presentation/views/person/identify_verify_page.dart';
@@ -22,11 +24,11 @@ class _VerifyPageState extends State<VerifyPage> {
   //  const BasicInformation()
   //];
 
-  //int _currentStep = 0;
+  int activeStep = 0;
   @override
   void initState() {
     super.initState();
-    //_currentStep = 0;
+    activeStep = 1;
   }
 
   @override
@@ -34,6 +36,125 @@ class _VerifyPageState extends State<VerifyPage> {
     //return StepperExample();
     final currentStep =
         context.select((CertifiesBloc bloc) => bloc.state.cerfityStep);
+
+    return Scaffold(
+      backgroundColor: Pallete.backgroundColor,
+      appBar: AppBar(
+        centerTitle: false,
+        backgroundColor: Pallete.backgroundColor,
+        title: Text(
+          S.current.real_authentication,
+          style: const TextStyle(
+              //color: Pallete.whiteColor,
+              ),
+        ),
+      ),
+      body: SafeArea(
+        child: BlocListener<CertifiesBloc, CertifiesState>(
+          listener: (context, state) {
+            if (state is CertifiesSettingLoadFailure) {
+              UI.showError(
+                context,
+                state.error.error,
+              );
+            }
+          },
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  color: Colors.grey.shade200,
+                  clipBehavior: Clip.none,
+                  child: EasyStepper(
+                    lineStyle: LineStyle(
+                      lineLength: 60.w,
+                      lineType: LineType.normal,
+                      lineThickness: 3,
+                      lineSpace: 1,
+                      lineWidth: 10,
+                      unreachedLineType: LineType.dashed,
+                    ),
+                    activeStep: currentStep.value,
+                    activeStepTextColor: Colors.black87,
+                    finishedStepTextColor: Colors.black87,
+                    //activeStepIconColor: Pallete.primaryColor,
+                    internalPadding: 0,
+                    //showLoadingAnimation: false,
+                    stepRadius: 8,
+                    showStepBorder: false,
+                    steps: [
+                      EasyStep(
+                        customStep: CircleAvatar(
+                          radius: 8,
+                          backgroundColor: Colors.white,
+                          child: CircleAvatar(
+                            radius: 7,
+                            backgroundColor: currentStep.value >= 0
+                                ? Colors.orange
+                                : Colors.white,
+                          ),
+                        ),
+                        title: S.current.identity_authentication,
+                      ),
+                      EasyStep(
+                        customStep: CircleAvatar(
+                          radius: 8,
+                          backgroundColor: Colors.white,
+                          child: CircleAvatar(
+                            radius: 7,
+                            backgroundColor: currentStep.value >= 1
+                                ? Colors.orange
+                                : Colors.white,
+                          ),
+                        ),
+                        title: S.current.personal_information,
+                        topTitle: true,
+                      ),
+                      EasyStep(
+                        customStep: CircleAvatar(
+                          radius: 8,
+                          backgroundColor: Colors.white,
+                          child: CircleAvatar(
+                            radius: 7,
+                            backgroundColor: currentStep.value >= 2
+                                ? Colors.orange
+                                : Colors.white,
+                          ),
+                        ),
+                        title: S.current.work_information,
+                      ),
+                      EasyStep(
+                        customStep: CircleAvatar(
+                          radius: 8,
+                          backgroundColor: Colors.white,
+                          child: CircleAvatar(
+                            radius: 7,
+                            backgroundColor: currentStep.value >= 3
+                                ? Colors.orange
+                                : Colors.white,
+                          ),
+                        ),
+                        title: S.current.emergency_contact,
+                        topTitle: true,
+                      ),
+                    ],
+                    //onStepReached: (index) =>
+                    //    setState(() => activeStep = index),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 20.w,
+                  ),
+                  child: const IdentifyVerifyPage(),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+
     return Scaffold(
       backgroundColor: Pallete.backgroundColor,
       appBar: AppBar(

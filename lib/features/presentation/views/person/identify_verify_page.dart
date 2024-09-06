@@ -81,14 +81,14 @@ class _IdentifyVerifyPageState extends State<IdentifyVerifyPage> {
       final Info nameCertify =
           identifyInfo.firstWhere((item) => item.certifyCode == 'name');
 
-      context.read<CertifiesBloc>().add(IdentifyInfoCertifyCommitEvent(
+      context.read<CertifiesBloc>().add(CertifyCommitEvent(
           certifyId: nameCertify.certifyId, certifyResult: name.toString()));
     }
 
     if (id.isNotEmpty) {
       final Info idCertify =
           identifyInfo.firstWhere((item) => item.certifyCode == 'id_number');
-      context.read<CertifiesBloc>().add(IdentifyInfoCertifyCommitEvent(
+      context.read<CertifiesBloc>().add(CertifyCommitEvent(
           certifyId: idCertify.certifyId, certifyResult: id.toString()));
     }
 
@@ -96,7 +96,7 @@ class _IdentifyVerifyPageState extends State<IdentifyVerifyPage> {
       final Info genderCertify =
           identifyInfo.firstWhere((item) => item.certifyCode == 'sex');
 
-      context.read<CertifiesBloc>().add(IdentifyInfoCertifyCommitEvent(
+      context.read<CertifiesBloc>().add(CertifyCommitEvent(
           certifyId: genderCertify.certifyId,
           certifyResult: gender.toString()));
     }
@@ -158,7 +158,7 @@ class _IdentifyVerifyPageState extends State<IdentifyVerifyPage> {
                         onChanged(state.identifyInfo, e, s);
 
                         context.read<CertifiesBloc>().add(
-                            IdentifyInfoCertifyCommitEvent(
+                            CertifyCommitEvent(
                                 certifyId: e.certifyId, certifyResult: s));
                       },
                     ),

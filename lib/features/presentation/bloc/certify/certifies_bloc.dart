@@ -21,18 +21,31 @@ class CertifiesBloc extends Bloc<CertifiesEvent, CertifiesState> {
     on<CertifyStepContinue>(_stepContinueHandler);
     on<CertifyStepBack>(_stepBackHander);
     on<CertifyStepRequest>(_stepRequestHander);
-    on<IdentifyInfoCertifyCommitEvent>(_indentifyInfoCertifyCommitHandler);
+    on<CertifyCommitEvent>(_certifyCommitHandler);
   }
 
   /*   BUILD IdentifyInfoCertifyCommitEvent   */
-  void _indentifyInfoCertifyCommitHandler(IdentifyInfoCertifyCommitEvent event,
-      Emitter<CertifiesState> emit) async {
+  void _certifyCommitHandler(
+      CertifyCommitEvent event, Emitter<CertifiesState> emit) async {
     final resp = await commitCertify(CommitCertifyRequest(
         certifyId: event.certifyId, certifyResult: event.certifyResult));
 
+    List<Info> currentData = [];
+
+    switch (state.cerfityStep) {
+      case StepperEnum.first:
+        currentData = state.identifyInfo;
+      case StepperEnum.second:
+        currentData = state.personalInfo;
+      case StepperEnum.third:
+        currentData = [];
+      default:
+        currentData = [];
+    }
+
     resp.fold((l) {}, (r) {
       if (r.code == AppContant.apiSuccessCode) {
-        final updated = state.identifyInfo.map((e) {
+        final updated = currentData.map((e) {
           if (e.certifyId == event.certifyId) {
             return e.copyWith(
                 certifyStatus: 1, certifyResult: event.certifyResult);
@@ -40,9 +53,23 @@ class CertifiesBloc extends Bloc<CertifiesEvent, CertifiesState> {
           return e;
         }).toList();
 
-        emit(
-          state.copyWith(identify: updated),
-        );
+        switch (state.cerfityStep) {
+          case StepperEnum.first:
+            emit(
+              state.copyWith(identify: updated),
+            );
+          case StepperEnum.second:
+            emit(
+              state.copyWith(personal: updated),
+            );
+          default:
+            emit(
+              state.copyWith(personal: updated),
+            );
+        }
+        //emit(
+        //  state.copyWith(identify: updated),
+        //);
       }
     });
   }

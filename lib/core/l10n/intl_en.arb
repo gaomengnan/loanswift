@@ -86,6 +86,7 @@
   "identity_authentication": "Identity Authentication",
   "emergency_contact": "Emergency Contact",
   "work_information": "Work Information",
-  "personal_information": "Personal Information"
+  "personal_information": "Personal Information",
+  "please_select": "Please select an option"
 }
 

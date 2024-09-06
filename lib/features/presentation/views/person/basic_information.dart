@@ -60,7 +60,11 @@ class _BasicInformationState extends State<BasicInformation> {
                     BuildFormItem(
                       info: e,
                       //controller: generateController(e),
-                      onChanged: (s) {},
+                      onChanged: (s) {
+                        context.read<CertifiesBloc>().add(
+                            CertifyCommitEvent(
+                                certifyId: e.certifyId, certifyResult: s));
+                      },
                     ),
                     UI.kHeight10(),
                     const Divider(

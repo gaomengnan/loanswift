@@ -86,5 +86,6 @@
   "identity_authentication": "身份认证",
   "emergency_contact": "紧急联系人",
   "work_information": "工作信息",
-  "personal_information": "个人信息"
+  "personal_information": "个人信息",
+  "please_select": "请选择一个选项"
 }

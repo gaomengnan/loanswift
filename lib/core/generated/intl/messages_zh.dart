@@ -83,6 +83,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "phone_code": MessageLookupByLibrary.simpleMessage("CN"),
         "photo_permission_missing":
             MessageLookupByLibrary.simpleMessage("相机权限获取失败"),
+        "please_select": MessageLookupByLibrary.simpleMessage("请选择一个选项"),
         "privacy": MessageLookupByLibrary.simpleMessage("隐私政策"),
         "quick_deposit": MessageLookupByLibrary.simpleMessage("快速到账"),
         "read_privacy": MessageLookupByLibrary.simpleMessage("请阅读"),

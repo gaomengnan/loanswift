@@ -3,6 +3,7 @@ import 'package:loanswift/features/domain/entity/user/certify.dart';
 import 'package:loanswift/features/presentation/views/widgets/form_day.dart';
 import 'package:loanswift/features/presentation/views/widgets/form_image_picker.dart';
 import 'package:loanswift/features/presentation/views/widgets/form_input.dart';
+import 'package:loanswift/features/presentation/views/widgets/form_select.dart';
 
 class BuildFormItem extends StatelessWidget {
   //final String label;
@@ -26,9 +27,9 @@ class BuildFormItem extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (info.certifyFieldsCate) {
       case "txt":
-
-        final cerResult = info.certifyResult == null ? '' : info.certifyResult.toString();
-        if(controller != null) {
+        final cerResult =
+            info.certifyResult == null ? '' : info.certifyResult.toString();
+        if (controller != null) {
           controller!.text = cerResult;
         }
         return RInput(
@@ -62,6 +63,13 @@ class BuildFormItem extends StatelessWidget {
           info: info,
           //isMust: info.certifyIsMust == 1,
           //prompt: info.promptSubtitle,
+        );
+
+      case "enum":
+        return FormSelectField(
+          hitText: info.certifyFieldName,
+          info: info,
+          onChanged: onChanged,
         );
 
       default:

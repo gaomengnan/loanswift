@@ -70,6 +70,7 @@ dependencies:
   firebase_messaging: ^14.7.10
   flutter_easyloading: ^3.0.5
   shimmer: ^3.0.0
+  easy_stepper: ^0.8.5+1
 
 dev_dependencies:
   # flutter_launcher_icons: "^0.13.1"

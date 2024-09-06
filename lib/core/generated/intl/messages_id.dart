@@ -105,6 +105,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "phone_code": MessageLookupByLibrary.simpleMessage("ID"),
         "photo_permission_missing":
             MessageLookupByLibrary.simpleMessage("Gagal mengakses izin kamera"),
+        "please_select":
+            MessageLookupByLibrary.simpleMessage("Silakan pilih opsi"),
         "privacy": MessageLookupByLibrary.simpleMessage("Kebijakan Privasi"),
         "quick_deposit": MessageLookupByLibrary.simpleMessage("Fast Transfer"),
         "read_privacy": MessageLookupByLibrary.simpleMessage("Baca"),

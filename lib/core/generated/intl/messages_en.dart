@@ -96,6 +96,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "phone_code": MessageLookupByLibrary.simpleMessage("US"),
         "photo_permission_missing": MessageLookupByLibrary.simpleMessage(
             "Failed to access camera permission"),
+        "please_select":
+            MessageLookupByLibrary.simpleMessage("Please select an option"),
         "privacy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "quick_deposit": MessageLookupByLibrary.simpleMessage("Fast Transfer"),
         "read_privacy": MessageLookupByLibrary.simpleMessage("Read"),

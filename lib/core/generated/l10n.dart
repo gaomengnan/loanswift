@@ -889,6 +889,16 @@ class S {
       args: [],
     );
   }
+
+  /// `请选择一个选项`
+  String get please_select {
+    return Intl.message(
+      '请选择一个选项',
+      name: 'please_select',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
