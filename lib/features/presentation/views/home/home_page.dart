@@ -112,6 +112,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   // Appbar
                   //BuildAppBar(),
                   // banner
+                  SliverPadding(padding: EdgeInsets.only(top: 5.h)),
                   BuildBanner(
                     banners: state.homeData.banners,
                   ),

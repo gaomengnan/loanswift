@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/common/widgets/widgets.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/features/domain/entity/user/certify.dart';
+import 'package:lottie/lottie.dart';
 
 class RInput extends StatelessWidget {
   final String hitText;
@@ -32,9 +33,19 @@ class RInput extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(
-                Icons.check_circle,
-                color: info.isCertify() ?  Colors.green : Colors.grey,
+              AnimatedSwitcher(
+                duration: const Duration(milliseconds: 300),
+                child: info.isCertify()
+                    ? Lottie.asset(
+                      height: 20.h,
+                      width: 20.w,
+                        Assets.check,
+                        repeat: false,
+                      )
+                    : Icon(
+                        Icons.task_alt,
+                        color: info.isCertify() ? Colors.green : Colors.grey,
+                      ),
               ),
               UI.kWidth5(),
               Expanded(
@@ -57,10 +68,10 @@ class RInput extends StatelessWidget {
                 borderRadius: BorderRadius.circular(5),
               ),
               child: TextFormField(
-                textAlignVertical: TextAlignVertical.center,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
+                //textAlignVertical: TextAlignVertical.center,
+                autovalidateMode: AutovalidateMode.disabled,
                 validator: (value) {
-                  if (info.certifyIsMust == 1) {
+                  if (!info.isMust()) {
                     return null;
                   }
 
@@ -71,7 +82,12 @@ class RInput extends StatelessWidget {
                   return null;
                 },
                 controller: controller,
-                onChanged: onChanged,
+                onFieldSubmitted: (s) {
+                  if (s.isNotEmpty) {
+                    onChanged!(s);
+                  }
+                },
+                //onChanged: onChanged,
                 decoration: const InputDecoration(
                     focusedErrorBorder: InputBorder.none,
                     focusedBorder: InputBorder.none,

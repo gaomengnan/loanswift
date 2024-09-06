@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loanswift/core/common/widgets/loading_page.dart';
 import 'package:loanswift/features/presentation/bloc/certify/certifies_bloc.dart';
 import 'package:loanswift/features/presentation/views/person/basic_information.dart';
 import 'package:loanswift/features/presentation/views/person/identify_verify_page.dart';
@@ -33,6 +32,7 @@ class _VerifyPageState extends State<VerifyPage> {
   @override
   Widget build(BuildContext context) {
     //return StepperExample();
+    final currentStep = context.select((CertifiesBloc bloc) => bloc.state.cerfityStep);
     return Scaffold(
       backgroundColor: Pallete.backgroundColor,
       appBar: AppBar(
@@ -45,22 +45,19 @@ class _VerifyPageState extends State<VerifyPage> {
               ),
         ),
       ),
-      body: BlocConsumer<CertifiesBloc, CertifiesState>(
-          listener: (context, state) {
-        if (state is CertifiesSettingLoadFailure) {
-          UI.showError(
-            context,
-            state.error.error,
-          );
-        }
-        //if (state is CertifiesSuccess) {
-        //print(state.data.identityInfo[0].toMap());
-        //}
-      }, builder: (context, state) {
-        if (state is CertifiesSettingsLoading) {
-          return const LoadingPage();
-        }
-        return Stepper(
+      body: BlocListener<CertifiesBloc, CertifiesState>(
+        listener: (context, state) {
+          if (state is CertifiesSettingLoadFailure) {
+            UI.showError(
+              context,
+              state.error.error,
+            );
+          }
+          //if (state is CertifiesSuccess) {
+          //print(state.data.identityInfo[0].toMap());
+          //}
+        },
+        child: Stepper(
           physics: const ClampingScrollPhysics(),
           onStepCancel: () {
             context.read<CertifiesBloc>().add(CertifyStepBack());
@@ -74,22 +71,22 @@ class _VerifyPageState extends State<VerifyPage> {
             Step(
               title: Text(S.current.identity_authentication),
               content: const IdentifyVerifyPage(),
-              isActive: state.cerfityStep >= 0,
+              isActive: currentStep.value >= 0,
             ),
             Step(
               title: Text(S.current.emergency_contact),
               content: const BasicInformation(),
-              isActive: state.cerfityStep >= 1,
+              isActive: currentStep.value >= 1,
             ),
             Step(
               title: Text(S.current.work_information),
               content: const BasicInformation(),
-              isActive: state.cerfityStep >= 2,
+              isActive: currentStep.value >= 2,
             ),
             Step(
               title: Text(S.current.personal_information),
               content: const BasicInformation(),
-              isActive: state.cerfityStep >= 3,
+              isActive: currentStep.value >= 3,
             ),
             //Step(
             //  title: const Text(''),
@@ -97,9 +94,9 @@ class _VerifyPageState extends State<VerifyPage> {
             //  isActive: _currentStep >= 2,
             //),
           ],
-          currentStep: state.cerfityStep,
-        );
-      }),
+          currentStep: currentStep.value,
+        ),
+      ),
     );
   }
 }

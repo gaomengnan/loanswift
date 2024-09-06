@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/common/widgets/widgets.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/features/domain/entity/user/certify.dart';
+import 'package:lottie/lottie.dart';
 
 class FormDayField extends StatefulWidget {
   final String hitText;
@@ -47,6 +48,16 @@ class _FormDayFieldState extends State<FormDayField> {
   }
 
   @override
+  void initState() {
+    if (widget.info.isCertify()) {
+      controller.text = widget.info.certifyResult == null
+          ? ''
+          : widget.info.certifyResult.toString();
+    }
+    super.initState();
+  }
+
+  @override
   void dispose() {
     controller.dispose();
     super.dispose();
@@ -61,11 +72,23 @@ class _FormDayFieldState extends State<FormDayField> {
         children: [
           Row(
             children: [
-              Icon(
-                Icons.check_circle,
-                color: widget.info.isCertify() ? Colors.green : Colors.grey,
+              AnimatedSwitcher(
+                duration: const Duration(milliseconds: 300),
+                child: widget.info.isCertify()
+                    ? Lottie.asset(
+                        height: 20.h,
+                        width: 20.w,
+                        Assets.check,
+                        repeat: false,
+                      )
+                    : Icon(
+                        Icons.task_alt,
+                        color: widget.info.isCertify()
+                            ? Colors.green
+                            : Colors.grey,
+                      ),
               ),
-              UI.kHeight5(),
+              UI.kWidth5(),
               Expanded(
                 child: RText(
                   maxLines: 1,
@@ -77,7 +100,7 @@ class _FormDayFieldState extends State<FormDayField> {
               ),
             ],
           ),
-          //UI.kHeight5(),
+          UI.kHeight5(),
           Expanded(
             flex: 2,
             child: Container(
@@ -93,7 +116,7 @@ class _FormDayFieldState extends State<FormDayField> {
                   _showDayPicker(context);
                 },
                 validator: (value) {
-                  if (widget.info.certifyIsMust != 1) {
+                  if (!widget.info.isMust()) {
                     return null;
                   }
                   if (value == null || value.isEmpty) {

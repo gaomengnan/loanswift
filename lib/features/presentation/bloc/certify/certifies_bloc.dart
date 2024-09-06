@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loanswift/core/constants/app.dart';
-import 'package:loanswift/features/data/models/certifies_model.dart';
 import 'package:loanswift/features/data/models/error.dart';
+import 'package:loanswift/features/domain/entity/user/certify.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/commit_certify.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/get_certifies.dart';
 
@@ -21,48 +21,64 @@ class CertifiesBloc extends Bloc<CertifiesEvent, CertifiesState> {
     on<CertifyStepContinue>(_stepContinueHandler);
     on<CertifyStepBack>(_stepBackHander);
     on<CertifyStepRequest>(_stepRequestHander);
-    on<CertifyCommitEvent>(_certifyCommitHandler);
+    on<IdentifyInfoCertifyCommitEvent>(_indentifyInfoCertifyCommitHandler);
   }
 
-  void _certifyCommitHandler(
-      CertifyCommitEvent event, Emitter<CertifiesState> emit) async {
+  /*   BUILD IdentifyInfoCertifyCommitEvent   */
+  void _indentifyInfoCertifyCommitHandler(IdentifyInfoCertifyCommitEvent event,
+      Emitter<CertifiesState> emit) async {
     final resp = await commitCertify(CommitCertifyRequest(
         certifyId: event.certifyId, certifyResult: event.certifyResult));
 
     resp.fold((l) {}, (r) {
       if (r.code == AppContant.apiSuccessCode) {
-        //add(CertifiesSettingsLoadEvent());
-        //if (state.cerfityStep == 1) {
-        //  state.settings.identityInfo.map((e) {
-        //    if (e.certifyId == event.certifyId) {
-        //      e.copyWith(certifyStatus: 1);
-        //    }
-        //  });
-        //}
+        final updated = state.identifyInfo.map((e) {
+          if (e.certifyId == event.certifyId) {
+            return e.copyWith(
+                certifyStatus: 1, certifyResult: event.certifyResult);
+          }
+          return e;
+        }).toList();
+
+        emit(
+          state.copyWith(identify: updated),
+        );
       }
     });
   }
 
+  /*  NEST STEP REQUEST  */
+
   void _stepRequestHander(
       CertifyStepRequest event, Emitter<CertifiesState> emit) {
+    // 检查当前是否完成
+
+    //if (state.identifyInfo.any((e) => e.certifyStatus == 1)) {
+    //  return;
+    //}
+
     emit(CertifiesRequestState(
-        cerfityStep: state.cerfityStep, settings: state.settings));
+      cerfityStep: state.cerfityStep,
+      identifyInfo: state.identifyInfo,
+      emergencyInfo: state.emergencyInfo,
+    ));
   }
 
   void _stepBackHander(CertifyStepBack event, Emitter<CertifiesState> emit) {
     final step = state.cerfityStep;
-    if (step == 0) {
+    if (step.isFirstStep) {
       return;
     }
-    emit(state.copyWith(step: step - 1));
+    emit(state.copyWith(step: step.previousStep));
   }
 
   void _stepContinueHandler(
       CertifyStepContinue event, Emitter<CertifiesState> emit) async {
-    final step = state.cerfityStep;
-    emit(state.copyWith(step: step + 1));
+    //final step = state.cerfityStep;
+    emit(state.copyWith(step: state.cerfityStep.nextStep));
   }
 
+  // 加载认证项目
   void _certifiesLoadHandler(
       CertifiesEvent event, Emitter<CertifiesState> emit) async {
     emit(CertifiesSettingsLoading());
@@ -74,10 +90,28 @@ class CertifiesBloc extends Bloc<CertifiesEvent, CertifiesState> {
           error: CustomError(message: l.message),
         ),
       ),
-      (l) => emit(
-        CertifiesSettingsLoadSuccess(
-            cerfityStep: state.cerfityStep, settings: l),
-      ),
+      (l) {
+        StepperEnum currentStep = StepperEnum.first;
+
+        if (l.identityInfo
+            .every((element) => element.isCertify() && element.isMust())) {
+          currentStep = currentStep.nextStep;
+        }
+
+        if (l.emergencyInfo
+            .every((element) => element.isCertify() && element.isMust())) {
+          currentStep = currentStep.nextStep;
+        }
+
+        emit(
+          CertifiesSettingsLoadSuccess(
+            cerfityStep: currentStep,
+            //settings: l,
+            identifyInfo: l.identityInfo,
+            emergencyInfo: l.emergencyInfo,
+          ),
+        );
+      },
     );
   }
 }

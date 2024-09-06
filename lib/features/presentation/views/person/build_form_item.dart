@@ -26,6 +26,9 @@ class BuildFormItem extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (info.certifyFieldsCate) {
       case "txt":
+
+        final cerResult = info.certifyResult == null ? '' : info.certifyResult.toString();
+        controller!.text = cerResult;
         return RInput(
           hitText: info.certifyFieldName,
           onChanged: (s) async {

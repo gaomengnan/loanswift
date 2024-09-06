@@ -205,6 +205,9 @@ class Info {
     return certifyStatus == 1;
   }
 
+  bool isMust() {
+    return certifyIsMust == 1;
+  }
 
 
 
@@ -246,7 +249,7 @@ class Info {
     int? certifyIsMust,
     String? promptSubtitle,
     dynamic note,
-    List<CertifyResult>? certifyResult,
+    dynamic certifyResult,
     int? certifyStatus,
   }) =>
       Info(
