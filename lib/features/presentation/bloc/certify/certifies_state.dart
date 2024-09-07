@@ -30,7 +30,7 @@ extension StepperEnumExt on StepperEnum {
       case StepperEnum.third:
         return StepperEnum.fourth;
       case StepperEnum.fourth:
-        return StepperEnum.first;
+        return StepperEnum.fourth;
     }
   }
 

@@ -16,12 +16,14 @@ class RInput extends StatelessWidget {
 
   final void Function(String)? onChanged;
 
+  final String? initVal;
+
   const RInput({
     super.key,
     required this.hitText,
     this.onChanged,
     this.controller,
-    required this.info,
+    required this.info, this.initVal,
   });
 
   @override
@@ -81,6 +83,7 @@ class RInput extends StatelessWidget {
 
                   return null;
                 },
+                initialValue: initVal,
                 controller: controller,
                 onFieldSubmitted: (s) {
                   if (s.isNotEmpty) {

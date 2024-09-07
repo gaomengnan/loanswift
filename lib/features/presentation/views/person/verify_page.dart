@@ -25,8 +25,8 @@ class _VerifyPageState extends State<VerifyPage> {
   final List<Widget> stepers = [
     const IdentifyVerifyPage(),
     const BasicInformation(),
-    const JobInfo(),
     const EmergencyInfo(),
+    const JobInfo(),
   ];
 
   final ScrollController _scrollController =
@@ -62,7 +62,7 @@ class _VerifyPageState extends State<VerifyPage> {
     return Scaffold(
       backgroundColor: Pallete.backgroundColor,
       appBar: AppBar(
-        //toolbarHeight: 60,
+        toolbarHeight: 60.h,
         centerTitle: false,
         backgroundColor: Pallete.backgroundColor,
         title: Text(
@@ -73,7 +73,7 @@ class _VerifyPageState extends State<VerifyPage> {
         ),
 
         bottom: PreferredSize(
-          preferredSize: Size.fromHeight(100.h),
+          preferredSize: Size.fromHeight(80.h),
           child: buildStepper(
             currentStep,
           ),
@@ -111,7 +111,9 @@ class _VerifyPageState extends State<VerifyPage> {
                       Expanded(
                         child: FilledButton(
                           onPressed: () {
-                            context.read<CertifiesBloc>().add(CertifyStepBack());
+                            context
+                                .read<CertifiesBloc>()
+                                .add(CertifyStepBack());
                             _scrollToTop();
                           },
                           child: RText(
@@ -128,7 +130,7 @@ class _VerifyPageState extends State<VerifyPage> {
                               context
                                   .read<CertifiesBloc>()
                                   .add(CertifyStepRequest());
-                          
+
                               _scrollToTop();
                             },
                             child: RText(
@@ -153,8 +155,9 @@ class _VerifyPageState extends State<VerifyPage> {
       color: Colors.grey.shade200,
       clipBehavior: Clip.none,
       child: EasyStepper(
+        alignment: Alignment.center,
         lineStyle: LineStyle(
-          lineLength: 60.w,
+          lineLength: 70.w,
           lineType: LineType.normal,
           lineThickness: 3,
           lineSpace: 1,
@@ -171,6 +174,8 @@ class _VerifyPageState extends State<VerifyPage> {
         showStepBorder: false,
         steps: [
           EasyStep(
+            customTitle: RText(text: S.current.identity_authentication),
+            
             customStep: CircleAvatar(
               radius: 8,
               backgroundColor: Colors.white,
@@ -180,7 +185,7 @@ class _VerifyPageState extends State<VerifyPage> {
                     currentStep.value >= 0 ? Colors.orange : Colors.white,
               ),
             ),
-            title: S.current.identity_authentication,
+            //title: S.current.identity_authentication,
           ),
           EasyStep(
             customStep: CircleAvatar(
@@ -192,7 +197,7 @@ class _VerifyPageState extends State<VerifyPage> {
                     currentStep.value >= 1 ? Colors.orange : Colors.white,
               ),
             ),
-            title: S.current.personal_information,
+            customTitle: RText(text: S.current.personal_information),
             topTitle: true,
           ),
           EasyStep(
@@ -205,7 +210,8 @@ class _VerifyPageState extends State<VerifyPage> {
                     currentStep.value >= 2 ? Colors.orange : Colors.white,
               ),
             ),
-            title: S.current.work_information,
+            customTitle: RText(text: S.current.emergency_contact),
+            topTitle: true,
           ),
           EasyStep(
             customStep: CircleAvatar(
@@ -217,8 +223,7 @@ class _VerifyPageState extends State<VerifyPage> {
                     currentStep.value >= 3 ? Colors.orange : Colors.white,
               ),
             ),
-            title: S.current.emergency_contact,
-            topTitle: true,
+            customTitle: RText(text: S.current.work_information)
           ),
         ],
         //onStepReached: (index) =>

@@ -58,6 +58,29 @@ class _FormCascadeState extends State<FormCascade> {
       setState(() {
         c1 = r;
       });
+
+      if (widget.info.isCertify()) {
+        List<String> crs = widget.info.certifyResult.split('|');
+        if (crs.isNotEmpty && crs.length == 3) {
+          c1Value = r.firstWhere((c) => c.name == crs[0]);
+
+          if (c1Value == null) {
+            return;
+          }
+
+          c2 = c1Value!.children;
+
+          c2Value = c2.firstWhere((c) => c.name == crs[1]);
+
+          if (c2Value == null) {
+            return;
+          }
+
+          c3 = c2Value!.children;
+
+          c3Value = c3.firstWhere((c) => c.name == crs[2]);
+        }
+      }
     });
   }
 
@@ -222,15 +245,13 @@ class _FormCascadeState extends State<FormCascade> {
                         c3Value = data;
                       });
 
-
                       if (c1Value != null &&
                           c2Value != null &&
                           c3Value != null &&
                           widget.onChanged != null) {
                         // Perform your action here, e.g., save the selected cities.
-                        print(c3Value);
                         widget.onChanged!(
-                            "${c1Value!.code}|${c2Value!.code}|${c3Value!.code}");
+                            "${c1Value!.name}|${c2Value!.name}|${c3Value!.name}");
                       }
                     },
                     dropdownDecoratorProps: DropDownDecoratorProps(

@@ -30,10 +30,16 @@ class BuildFormItem extends StatelessWidget {
       case "txt":
         final cerResult =
             info.certifyResult == null ? '' : info.certifyResult.toString();
+
+        String? initVal = null;
+
         if (controller != null) {
           controller!.text = cerResult;
+        } else {
+          initVal = cerResult.toString();
         }
         return RInput(
+          initVal: initVal,
           hitText: info.certifyFieldName,
           onChanged: (s) async {
             if (onChanged != null) {
