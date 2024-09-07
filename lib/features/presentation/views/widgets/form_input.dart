@@ -68,7 +68,7 @@ class RInput extends StatelessWidget {
                 borderRadius: BorderRadius.circular(5),
               ),
               child: TextFormField(
-                //textAlignVertical: TextAlignVertical.center,
+                textAlignVertical: TextAlignVertical.center,
                 autovalidateMode: AutovalidateMode.disabled,
                 validator: (value) {
                   if (!info.isMust()) {

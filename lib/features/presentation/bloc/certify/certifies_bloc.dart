@@ -2,10 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loanswift/core/constants/app.dart';
+import 'package:loanswift/features/data/models/city_model.dart';
 import 'package:loanswift/features/data/models/error.dart';
 import 'package:loanswift/features/domain/entity/user/certify.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/commit_certify.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/get_certifies.dart';
+import 'package:loanswift/features/domain/usecases/common/get_cities.dart';
 
 part 'certifies_event.dart';
 part 'certifies_state.dart';
@@ -13,15 +15,36 @@ part 'certifies_state.dart';
 class CertifiesBloc extends Bloc<CertifiesEvent, CertifiesState> {
   final CommitCertify commitCertify;
   final GetCertifies getCertifies;
+  final GetCities getCities;
   CertifiesBloc({
     required this.getCertifies,
     required this.commitCertify,
+    required this.getCities,
   }) : super(CertifiesState.initial()) {
     on<CertifiesSettingsLoadEvent>(_certifiesLoadHandler);
     on<CertifyStepContinue>(_stepContinueHandler);
     on<CertifyStepBack>(_stepBackHander);
     on<CertifyStepRequest>(_stepRequestHander);
     on<CertifyCommitEvent>(_certifyCommitHandler);
+    on<LoadCitiesEvent>(_loadCitiesHandler);
+  }
+
+  void _loadCitiesHandler(
+      LoadCitiesEvent event, Emitter<CertifiesState> emit) async {
+    final resp = await getCities();
+
+    resp.fold(
+        (l) => emit(CertifiesSettingLoadFailure(
+            error: CustomError(message: l.message))), (r) {
+      emit(CitiesState(
+        cities: r,
+        cerfityStep: state.cerfityStep,
+        identifyInfo: state.identifyInfo,
+        emergencyInfo: state.emergencyInfo,
+        personalInfo: state.personalInfo,
+        workInfo: state.workInfo,
+      ));
+    });
   }
 
   /*   BUILD IdentifyInfoCertifyCommitEvent   */
@@ -89,6 +112,7 @@ class CertifiesBloc extends Bloc<CertifiesEvent, CertifiesState> {
       identifyInfo: state.identifyInfo,
       emergencyInfo: state.emergencyInfo,
       personalInfo: state.personalInfo,
+      workInfo: state.workInfo,
     ));
   }
 
@@ -138,6 +162,7 @@ class CertifiesBloc extends Bloc<CertifiesEvent, CertifiesState> {
             identifyInfo: l.identityInfo,
             emergencyInfo: l.emergencyInfo,
             personalInfo: l.personalInfo,
+            workInfo: l.jobInfo,
           ),
         );
       },

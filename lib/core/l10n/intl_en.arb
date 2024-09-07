@@ -87,6 +87,8 @@
   "emergency_contact": "Emergency Contact",
   "work_information": "Work Information",
   "personal_information": "Personal Information",
-  "please_select": "Please select an option"
+  "please_select": "Please select an option",
+  "previousStep": "Previous Step",
+  "nextStep": "Next Step"
 }
 

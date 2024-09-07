@@ -17,3 +17,6 @@ class CertifyCommitEvent extends CertifiesEvent {
 
   CertifyCommitEvent({required this.certifyId, required this.certifyResult});
 }
+
+class LoadCitiesEvent extends CertifiesEvent {}
+

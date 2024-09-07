@@ -172,6 +172,7 @@ Future<void> initialize() async {
     ..registerFactory(() => CertifiesBloc(
           getCertifies: sl(),
           commitCertify: sl(),
+          getCities: sl(),
         ))
     ..registerLazySingleton(() => GetCertifies(authRepo: sl()));
 

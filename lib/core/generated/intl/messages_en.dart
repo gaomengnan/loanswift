@@ -81,6 +81,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "name": MessageLookupByLibrary.simpleMessage("Flutter localization"),
         "network_error":
             MessageLookupByLibrary.simpleMessage("Network connection abnormal"),
+        "nextStep": MessageLookupByLibrary.simpleMessage("Next Step"),
         "no_credit_limit": MessageLookupByLibrary.simpleMessage(
             "No Credit Limit Available, No Bill"),
         "notification": MessageLookupByLibrary.simpleMessage("Notifications"),
@@ -98,6 +99,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Failed to access camera permission"),
         "please_select":
             MessageLookupByLibrary.simpleMessage("Please select an option"),
+        "previousStep": MessageLookupByLibrary.simpleMessage("Previous Step"),
         "privacy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "quick_deposit": MessageLookupByLibrary.simpleMessage("Fast Transfer"),
         "read_privacy": MessageLookupByLibrary.simpleMessage("Read"),

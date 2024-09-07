@@ -35,6 +35,7 @@ extension StepperEnumExt on StepperEnum {
   }
 
   bool get isFirstStep => this == StepperEnum.first;
+  bool get isLastStep => this == StepperEnum.fourth;
 
   int get value {
     switch (this) {
@@ -58,12 +59,15 @@ class CertifiesState {
   final List<Info> emergencyInfo;
   final List<Info> personalInfo;
 
+  final List<Info> workInfo;
+
   const CertifiesState({
     required this.cerfityStep,
     //required this.settings,
     required this.identifyInfo,
     required this.emergencyInfo,
     required this.personalInfo,
+    required this.workInfo,
   });
 
   CertifiesState.initial()
@@ -73,6 +77,7 @@ class CertifiesState {
           identifyInfo: List<Info>.empty(),
           emergencyInfo: List<Info>.empty(),
           personalInfo: List<Info>.empty(),
+          workInfo: List<Info>.empty(),
         );
 
   CertifiesState copyWith({
@@ -81,13 +86,15 @@ class CertifiesState {
     List<Info>? identify,
     List<Info>? emerge,
     List<Info>? personal,
+    List<Info>? work,
   }) =>
       CertifiesState(
         cerfityStep: step ?? cerfityStep,
         //settings: certifies ?? settings,
         identifyInfo: identify ?? identifyInfo,
-        emergencyInfo: emerge ?? emergencyInfo,
+        workInfo: work ?? workInfo,
         personalInfo: personal ?? personalInfo,
+        emergencyInfo: emerge ?? emergencyInfo,
       );
 
   //@override
@@ -117,6 +124,7 @@ class CertifiesSettingsLoadSuccess extends CertifiesState {
     required super.identifyInfo,
     required super.emergencyInfo,
     required super.personalInfo,
+    required super.workInfo,
   });
 }
 
@@ -127,8 +135,22 @@ class CertifiesRequestState extends CertifiesState {
     required super.identifyInfo,
     required super.emergencyInfo,
     required super.personalInfo,
+    required super.workInfo,
   });
 
   //@override
   //List<Object?> get props => [];
+}
+
+class CitiesState extends CertifiesState {
+  final List<CityModel> cities;
+
+  CitiesState({
+    required this.cities,
+    required super.cerfityStep,
+    required super.identifyInfo,
+    required super.emergencyInfo,
+    required super.personalInfo,
+    required super.workInfo,
+  });
 }

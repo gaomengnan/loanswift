@@ -5,14 +5,14 @@ import 'package:loanswift/features/domain/entity/user/certify.dart';
 import 'package:loanswift/features/presentation/bloc/certify/certifies_bloc.dart';
 import 'package:loanswift/features/presentation/views/person/build_form_item.dart';
 
-class BasicInformation extends StatefulWidget {
-  const BasicInformation({super.key});
+class JobInfo extends StatefulWidget {
+  const JobInfo({super.key});
 
   @override
-  State<BasicInformation> createState() => _BasicInformationState();
+  State<JobInfo> createState() => _JobInfoState();
 }
 
-class _BasicInformationState extends State<BasicInformation> {
+class _JobInfoState extends State<JobInfo> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final Map<int, TextEditingController> _controllers = {};
@@ -51,7 +51,7 @@ class _BasicInformationState extends State<BasicInformation> {
         key: _formKey,
         child: Column(
           children: [
-            ...state.personalInfo.map((e) {
+            ...state.workInfo.map((e) {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
@@ -61,8 +61,9 @@ class _BasicInformationState extends State<BasicInformation> {
                       info: e,
                       //controller: generateController(e),
                       onChanged: (s) {
-                        context.read<CertifiesBloc>().add(CertifyCommitEvent(
-                            certifyId: e.certifyId, certifyResult: s));
+                        context.read<CertifiesBloc>().add(
+                            CertifyCommitEvent(
+                                certifyId: e.certifyId, certifyResult: s));
                       },
                     ),
                     UI.kHeight10(),

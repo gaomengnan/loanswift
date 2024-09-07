@@ -86,5 +86,7 @@
   "emergency_contact": "Kontak Darurat",
   "work_information": "Informasi Pekerjaan",
   "personal_information": "Informasi Pribadi",
-  "please_select": "Silakan pilih opsi"
+  "please_select": "Silakan pilih opsi",
+  "previousStep": "Langkah Sebelumnya",
+  "nextStep": "Langkah Berikutnya"
 }

@@ -1,0 +1,282 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:loanswift/core/common/widgets/widgets.dart';
+import 'package:loanswift/core/core.dart';
+import 'package:loanswift/features/domain/entity/common/city.dart';
+import 'package:loanswift/features/domain/entity/user/certify.dart';
+import 'package:loanswift/features/domain/usecases/common/get_cities.dart';
+import 'package:lottie/lottie.dart';
+import 'package:dropdown_search/dropdown_search.dart';
+
+class FormCascade extends StatefulWidget {
+  final String hitText;
+  final Info info;
+
+  final void Function(String)? onChanged;
+
+  const FormCascade({
+    super.key,
+    required this.hitText,
+    this.onChanged,
+    required this.info,
+  });
+
+  @override
+  State<FormCascade> createState() => _FormCascadeState();
+}
+
+class _FormCascadeState extends State<FormCascade> {
+  final TextEditingController controller = TextEditingController();
+
+  late List<City> c2 = [];
+  late List<City> c1 = [];
+  late List<City> c3 = [];
+
+  City? c1Value;
+  City? c2Value;
+  City? c3Value;
+
+  @override
+  void initState() {
+    if (widget.info.isCertify()) {
+      controller.text = widget.info.certifyResult == null
+          ? ''
+          : widget.info.certifyResult.toString();
+    }
+
+    loadCities();
+
+    //context.read<CertifiesBloc>().add(LoadCitiesEvent());
+    super.initState();
+  }
+
+  void loadCities() async {
+    final GetCities getCities = sl<GetCities>();
+    final resp = await getCities.call();
+
+    resp.fold((l) {}, (r) {
+      setState(() {
+        c1 = r;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  Future<List<City>> getData(String f) {
+    if (f.isEmpty) {
+      return Future.value(c1);
+    } else {
+      List<City> filteredCities =
+          c1.where((city) => city.name.contains(f)).toList();
+      return Future.value(filteredCities);
+    }
+  }
+
+  Future<List<City>> getLevel2(String f) {
+    if (f.isEmpty) {
+      return Future.value(c2);
+    } else {
+      List<City> filteredCities =
+          c2.where((city) => city.name.contains(f)).toList();
+      return Future.value(filteredCities);
+    }
+  }
+
+  Future<List<City>> getLevel3(String f) {
+    if (f.isEmpty) {
+      return Future.value(c3);
+    } else {
+      List<City> filteredCities =
+          c3.where((city) => city.name.contains(f)).toList();
+      return Future.value(filteredCities);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 60.h,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              AnimatedSwitcher(
+                duration: const Duration(milliseconds: 300),
+                child: widget.info.isCertify()
+                    ? Lottie.asset(
+                        height: 20.h,
+                        width: 20.w,
+                        Assets.check,
+                        repeat: false,
+                      )
+                    : Icon(
+                        Icons.task_alt,
+                        color: widget.info.isCertify()
+                            ? Colors.green
+                            : Colors.grey,
+                      ),
+              ),
+              UI.kWidth5(),
+              Expanded(
+                child: RText(
+                  maxLines: 1,
+                  textAlign: TextAlign.start,
+                  size: 13.sp,
+                  fontWeight: FontWeight.w600,
+                  text: widget.info.certifyFieldName,
+                ),
+              ),
+            ],
+          ),
+          UI.kHeight5(),
+          Expanded(
+            flex: 2,
+            child: Row(
+              children: [
+                Expanded(
+                  child: DropdownSearch<City>(
+                    selectedItem: c1Value,
+                    compareFn: (i, s) => i.code == s.code,
+                    asyncItems: (String filter) => getData(filter),
+                    itemAsString: (City u) => u.name,
+                    onChanged: (City? data) {
+                      if (data != null) {
+                        c2 = data.children;
+                        setState(() {
+                          c1Value = data;
+                          c2Value = null;
+                          c3Value = null;
+                        });
+                      }
+                    },
+                    dropdownDecoratorProps: DropDownDecoratorProps(
+                      dropdownSearchDecoration: InputDecoration(
+                        labelText: S.current.please_select,
+                      ),
+                    ),
+                    popupProps: PopupPropsMultiSelection.modalBottomSheet(
+                      searchFieldProps: const TextFieldProps(
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.search),
+                          //border: InputBorder.none,
+                        ),
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      //isFilterOnline: true,
+                      showSelectedItems: true,
+                      showSearchBox: true,
+                      itemBuilder: _customPopupItemBuilder,
+                    ),
+                  ),
+                ),
+                UI.kWidth10(),
+                Expanded(
+                  child: DropdownSearch<City>(
+                    selectedItem: c2Value,
+                    compareFn: (i, s) => i.code == s.code,
+                    asyncItems: (String filter) => getLevel2(filter),
+                    itemAsString: (City u) => u.name,
+                    onChanged: (City? data) {
+                      if (data != null) {
+                        c3 = data.children;
+                      }
+                      setState(() {
+                        c2Value = data;
+                        c3Value = null;
+                      });
+                    },
+                    dropdownDecoratorProps: DropDownDecoratorProps(
+                      dropdownSearchDecoration:
+                          InputDecoration(labelText: S.current.please_select),
+                    ),
+                    popupProps: PopupPropsMultiSelection.modalBottomSheet(
+                      searchFieldProps: const TextFieldProps(
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.search),
+                          //border: InputBorder.none,
+                        ),
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      //isFilterOnline: true,
+                      //showSelectedItems: true,
+                      showSearchBox: true,
+                      itemBuilder: _customPopupItemBuilder,
+                    ),
+                  ),
+                ),
+                UI.kWidth10(),
+                Expanded(
+                  child: DropdownSearch<City>(
+                    selectedItem: c3Value,
+                    compareFn: (i, s) => i == s,
+                    asyncItems: (String filter) => getLevel3(filter),
+                    itemAsString: (City u) => u.name,
+                    onChanged: (City? data) {
+                      setState(() {
+                        c3Value = data;
+                      });
+
+
+                      if (c1Value != null &&
+                          c2Value != null &&
+                          c3Value != null &&
+                          widget.onChanged != null) {
+                        // Perform your action here, e.g., save the selected cities.
+                        print(c3Value);
+                        widget.onChanged!(
+                            "${c1Value!.code}|${c2Value!.code}|${c3Value!.code}");
+                      }
+                    },
+                    dropdownDecoratorProps: DropDownDecoratorProps(
+                      dropdownSearchDecoration:
+                          InputDecoration(labelText: S.current.please_select),
+                    ),
+                    popupProps: PopupPropsMultiSelection.modalBottomSheet(
+                      searchFieldProps: const TextFieldProps(
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.search),
+                          //border: InputBorder.none,
+                        ),
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      isFilterOnline: true,
+                      showSelectedItems: true,
+                      showSearchBox: true,
+                      itemBuilder: _customPopupItemBuilder,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _customPopupItemBuilder(
+      BuildContext context, City item, bool isSelected) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
+      padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
+      decoration: !isSelected
+          ? null
+          : BoxDecoration(
+              //border: Border.all(color: Theme.of(context).primaryColor),
+              borderRadius: BorderRadius.circular(5),
+              color: Colors.grey.shade200,
+            ),
+      child: RText(
+        text: item.name,
+        color: Colors.black,
+        size: 15.sp,
+      ),
+    );
+  }
+}

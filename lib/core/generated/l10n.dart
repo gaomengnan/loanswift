@@ -899,6 +899,26 @@ class S {
       args: [],
     );
   }
+
+  /// `上一步`
+  String get previousStep {
+    return Intl.message(
+      '上一步',
+      name: 'previousStep',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `下一步`
+  String get nextStep {
+    return Intl.message(
+      '下一步',
+      name: 'nextStep',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

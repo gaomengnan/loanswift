@@ -87,5 +87,7 @@
   "emergency_contact": "紧急联系人",
   "work_information": "工作信息",
   "personal_information": "个人信息",
-  "please_select": "请选择一个选项"
+  "please_select": "请选择一个选项",
+   "previousStep": "上一步",
+  "nextStep": "下一步"
 }

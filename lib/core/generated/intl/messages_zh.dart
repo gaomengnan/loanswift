@@ -71,6 +71,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "my_repayment": MessageLookupByLibrary.simpleMessage("我的还款"),
         "name": MessageLookupByLibrary.simpleMessage("Flutter localization"),
         "network_error": MessageLookupByLibrary.simpleMessage("网络连接异常"),
+        "nextStep": MessageLookupByLibrary.simpleMessage("下一步"),
         "no_credit_limit": MessageLookupByLibrary.simpleMessage("暂未获取额度，无账单"),
         "notification": MessageLookupByLibrary.simpleMessage("通知"),
         "orderDetails": MessageLookupByLibrary.simpleMessage("订单详情"),
@@ -84,6 +85,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "photo_permission_missing":
             MessageLookupByLibrary.simpleMessage("相机权限获取失败"),
         "please_select": MessageLookupByLibrary.simpleMessage("请选择一个选项"),
+        "previousStep": MessageLookupByLibrary.simpleMessage("上一步"),
         "privacy": MessageLookupByLibrary.simpleMessage("隐私政策"),
         "quick_deposit": MessageLookupByLibrary.simpleMessage("快速到账"),
         "read_privacy": MessageLookupByLibrary.simpleMessage("请阅读"),

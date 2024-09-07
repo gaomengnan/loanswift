@@ -1,9 +1,10 @@
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/common/widgets/widgets.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/features/domain/entity/user/certify.dart';
+import 'package:loanswift/theme/pallete.dart';
 import 'package:lottie/lottie.dart';
 
 class FormSelectField extends StatefulWidget {
@@ -29,26 +30,25 @@ class _FormSelectFieldState extends State<FormSelectField> {
 
   @override
   void initState() {
-    if (widget.info.isCertify()) {
-      controller.text = widget.info.certifyResult == null
-          ? ''
-          : widget.info.certifyResult.toString();
-    }
-
     if (widget.info.note is DataMap) {
       widget.info.note.forEach((k, v) {
+
+        if (widget.info.isCertify() && widget.info.certifyResult.toString() == k.toString() ) {
+          controller.text = v.toString();
+        }
+
         optisons.add(
           GestureDetector(
             onTap: () async {
               controller.text = v;
-              if(widget.onChanged != null) {
+              if (widget.onChanged != null) {
                 widget.onChanged!(k);
               }
               Navigator.of(context).pop();
             },
             child: Container(
               width: double.infinity,
-              height: 50.h,
+              height: 80.h,
               decoration: BoxDecoration(
                 border: Border(
                   bottom: BorderSide(
@@ -81,42 +81,22 @@ class _FormSelectFieldState extends State<FormSelectField> {
   }
 
   void showPicker() {
-    showModalBottomSheet(
-        //isDismissible: false,
-        context: context,
-        builder: (context) {
-          return Container(
-            height: 200.h,
-            // width: double.maxFinite,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(10.r),
-                topRight: Radius.circular(10.r),
-              ),
-              color: Colors.white,
-            ),
-            child: ListView(
-              children: [
-                ...optisons,
-                GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: SizedBox(
-                    height: 50.h,
-                    width: double.infinity,
-                    child: Center(
-                      child: RText(
-                        text: S.current.cancel,
-                        size: 17.sp,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          );
-        });
+    showCupertinoModalPopup(
+      context: context,
+      builder: (context) => SizedBox(
+        width: double.infinity,
+        height: 250.h,
+        child: CupertinoPicker(
+          backgroundColor: Pallete.whiteColor,
+          itemExtent: 50,
+          onSelectedItemChanged: (index) {},
+          scrollController: FixedExtentScrollController(
+            initialItem: 1,
+          ),
+          children: [...optisons],
+        ),
+      ),
+    );
   }
 
   @override
@@ -166,6 +146,7 @@ class _FormSelectFieldState extends State<FormSelectField> {
                 borderRadius: BorderRadius.circular(5),
               ),
               child: TextFormField(
+                textAlignVertical: TextAlignVertical.center,
                 autovalidateMode: AutovalidateMode.disabled,
                 onTap: () {
                   showPicker();
@@ -183,12 +164,10 @@ class _FormSelectFieldState extends State<FormSelectField> {
                 readOnly: true,
                 controller: controller,
                 decoration: const InputDecoration(
+                    suffixIcon: Icon(Icons.arrow_drop_down_sharp),
                     focusedErrorBorder: InputBorder.none,
                     focusedBorder: InputBorder.none,
                     errorBorder: InputBorder.none,
-                    //focusColor: Colors.red,
-                    //contentPadding: EdgeInsets.only(left: 1.w,),
-                    //hintText: S.current.please_select,
                     enabledBorder: InputBorder.none,
                     disabledBorder: InputBorder.none),
               ),

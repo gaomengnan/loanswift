@@ -90,6 +90,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "name": MessageLookupByLibrary.simpleMessage("Halo"),
         "network_error":
             MessageLookupByLibrary.simpleMessage("Kesalahan koneksi jaringan"),
+        "nextStep": MessageLookupByLibrary.simpleMessage("Langkah Berikutnya"),
         "no_credit_limit": MessageLookupByLibrary.simpleMessage(
             "Belum Mendapatkan Limit, Tidak Ada Tagihan"),
         "notification": MessageLookupByLibrary.simpleMessage("Pemberitahuan"),
@@ -107,6 +108,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Gagal mengakses izin kamera"),
         "please_select":
             MessageLookupByLibrary.simpleMessage("Silakan pilih opsi"),
+        "previousStep":
+            MessageLookupByLibrary.simpleMessage("Langkah Sebelumnya"),
         "privacy": MessageLookupByLibrary.simpleMessage("Kebijakan Privasi"),
         "quick_deposit": MessageLookupByLibrary.simpleMessage("Fast Transfer"),
         "read_privacy": MessageLookupByLibrary.simpleMessage("Baca"),

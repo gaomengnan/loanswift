@@ -5,14 +5,14 @@ import 'package:loanswift/features/domain/entity/user/certify.dart';
 import 'package:loanswift/features/presentation/bloc/certify/certifies_bloc.dart';
 import 'package:loanswift/features/presentation/views/person/build_form_item.dart';
 
-class BasicInformation extends StatefulWidget {
-  const BasicInformation({super.key});
+class EmergencyInfo extends StatefulWidget {
+  const EmergencyInfo({super.key});
 
   @override
-  State<BasicInformation> createState() => _BasicInformationState();
+  State<EmergencyInfo> createState() => _EmergencyInfoState();
 }
 
-class _BasicInformationState extends State<BasicInformation> {
+class _EmergencyInfoState extends State<EmergencyInfo> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final Map<int, TextEditingController> _controllers = {};
@@ -44,14 +44,13 @@ class _BasicInformationState extends State<BasicInformation> {
         listener: (context, state) {
       if (state is CertifiesRequestState) {
         //if (_formKey.currentState!.validate()) {}
-        context.read<CertifiesBloc>().add(CertifyStepContinue());
       }
     }, builder: (context, state) {
       return Form(
         key: _formKey,
         child: Column(
           children: [
-            ...state.personalInfo.map((e) {
+            ...state.emergencyInfo.map((e) {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
@@ -59,7 +58,6 @@ class _BasicInformationState extends State<BasicInformation> {
                   children: [
                     BuildFormItem(
                       info: e,
-                      //controller: generateController(e),
                       onChanged: (s) {
                         context.read<CertifiesBloc>().add(CertifyCommitEvent(
                             certifyId: e.certifyId, certifyResult: s));

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loanswift/features/domain/entity/user/certify.dart';
+import 'package:loanswift/features/presentation/views/widgets/form_cascade.dart';
 import 'package:loanswift/features/presentation/views/widgets/form_day.dart';
 import 'package:loanswift/features/presentation/views/widgets/form_image_picker.dart';
 import 'package:loanswift/features/presentation/views/widgets/form_input.dart';
@@ -67,6 +68,13 @@ class BuildFormItem extends StatelessWidget {
 
       case "enum":
         return FormSelectField(
+          hitText: info.certifyFieldName,
+          info: info,
+          onChanged: onChanged,
+        );
+
+      case "citySelect":
+        return FormCascade(
           hitText: info.certifyFieldName,
           info: info,
           onChanged: onChanged,

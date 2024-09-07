@@ -311,8 +311,9 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
                               alignment: AlignmentDirectional.center,
                               children: [
                                 Image(
-                                  height: 200.h,
-                                  //width: ScreenUtil().screenWidth,
+                                  //height: 300.h,
+                                  width: 300.w,
+                                  fit: BoxFit.cover,
                                   image: const AssetImage(
                                     Assets.idcardFront,
                                   ),
@@ -340,8 +341,7 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
                                             child: info.isCertify()
                                                 ? CachedNetworkImage(
                                                     height: 200.h,
-                                                    width: ScreenUtil()
-                                                        .screenWidth,
+                                                    width: 300.w,
                                                     fit: BoxFit.cover,
                                                     imageUrl: f.url,
                                                     placeholder:
@@ -371,7 +371,7 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
                                           Expanded(
                                             flex: 2,
                                             child: Container(
-                                              width: ScreenUtil().screenWidth,
+                                              width: 300.w,
                                               decoration: BoxDecoration(
                                                 color: Pallete.primaryColor.withOpacity(0.2),
                                               ),
