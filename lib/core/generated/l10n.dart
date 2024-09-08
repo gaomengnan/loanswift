@@ -919,6 +919,16 @@ class S {
       args: [],
     );
   }
+
+  /// `立即还款`
+  String get immediate_repayment {
+    return Intl.message(
+      '立即还款',
+      name: 'immediate_repayment',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

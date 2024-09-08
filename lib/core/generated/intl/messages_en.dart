@@ -58,6 +58,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ID Card Reverse Photo"),
         "identity_authentication":
             MessageLookupByLibrary.simpleMessage("Identity Authentication"),
+        "immediate_repayment":
+            MessageLookupByLibrary.simpleMessage("Immediate Repayment"),
         "install_packages":
             MessageLookupByLibrary.simpleMessage("Installed Applications"),
         "jindengluzhuce":

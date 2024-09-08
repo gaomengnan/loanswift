@@ -173,7 +173,7 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
                         horizontal: 10.w,
                       ),
                       margin: const EdgeInsets.all(10),
-                      height: 120.h,
+                      height: 170.h,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.all(
@@ -209,84 +209,128 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
                           Expanded(
                             flex: 2,
                             child: Container(
-                              margin: EdgeInsets.only(
-                                bottom: 10.h,
-                              ),
+                              //margin: EdgeInsets.only(
+                              //  //bottom: 10.h,
+                              //),
                               decoration: BoxDecoration(
-                                color: Colors.blue.withOpacity(0.1),
+                                color: Colors.grey.withOpacity(0.1),
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(10.sp),
                                 ),
                               ),
-                              child: Center(
-                                child: ListTile(
-                                  leading: UI.squareContainer(
-                                    Image(
-                                      //height: 35.h,
-                                      //width: 35.w,
-                                      fit: BoxFit.cover,
-                                      image: CachedNetworkImageProvider(
-                                          order.relationProduct.productLogo),
-                                    ),
-                                  ),
-                                  title: RText(
-                                    textAlign: TextAlign.left,
-                                    text: order.orderAmount,
-                                    size: 16.sp,
-                                  ),
-                                  subtitle: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      RText(
-                                        textAlign: TextAlign.left,
-                                        //size: 16.sp,
-                                        text: order.copywriterInfo.moneyText,
-                                      ),
-                                      SizedBox(
-                                        height: 10.h,
-                                        child: const VerticalDivider(),
-                                      ),
-                                      RText(
-                                        textAlign: TextAlign.left,
-                                        //size: 16.sp,
-                                        color: Pallete.redColor,
-                                        text: order.term,
-                                      ),
-                                    ],
-                                  ),
-                                  trailing: Column(
-                                    children: [
-                                      Expanded(
-                                        child: RichText(
-                                          text: TextSpan(
-                                            style: const TextStyle(
-                                              color: Pallete.blackColor,
-                                            ),
-                                            text: order.copywriterInfo.dateText,
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 10.w),
+                                child: Column(
+                                  children: [
+                                    Expanded(
+                                      flex: 2,
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          CircleAvatar(
+                                            child: CachedNetworkImage(
+                                                imageUrl: order
+                                                    .relationProduct.productLogo),
+                                          ),
+                                          UI.kWidth10(),
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
                                             children: [
-                                              WidgetSpan(
-                                                child: SizedBox(
-                                                  width: 3.w,
-                                                ),
+                                              RText(
+                                                textAlign: TextAlign.left,
+                                                text: order.orderAmount,
+                                                size: 15.sp,
                                               ),
-                                              TextSpan(
-                                                text: order.showTime,
+                                              RText(
+                                                textAlign: TextAlign.left,
+                                                text: order
+                                                    .copywriterInfo.moneyText,
+                                                size: 15.sp,
                                               ),
                                             ],
                                           ),
+                                
+                                          //UI.kWidth10(),
+                                          Expanded(
+                                            child: Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 10.w),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.end,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  //Text("asdad"),
+                                                  RText(
+                                                    text: order
+                                                        .copywriterInfo.dateText,
+                                                    size: 14.sp,
+                                                  ),
+                                                  UI.kHeight5(),
+                                                  RText(
+                                                    text: order.showTime,
+                                                    size: 14.sp,
+                                                    color: Colors.red,
+                                                  ),
+                                                  //RichText(
+                                                  //  overflow: TextOverflow.ellipsis,
+                                                  //  text: TextSpan(
+                                                  //    style: const TextStyle(
+                                                  //      color: Pallete.blackColor,
+                                                  //    ),
+                                                  //    text: order.copywriterInfo.dateText,
+                                                  //    children: [
+                                                  //      WidgetSpan(
+                                                  //        child: SizedBox(
+                                                  //          width: 3.w,
+                                                  //        ),
+                                                  //      ),
+                                                  //      TextSpan(
+                                                  //        text: order.showTime,
+                                                  //      ),
+                                                  //    ],
+                                                  //  ),
+                                                  //),
+                                                  //FilledButton(
+                                                  //  onPressed: () {},
+                                                  //  child: const Text(
+                                                  //    "立即还款",
+                                                  //  ),
+                                                  //),
+                                                ],
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    const Divider(
+                                      color: Colors.black12,
+                                    ),
+                                    Expanded(
+                                      child: Padding(
+                                        padding: EdgeInsets.only(right: 8.0.w, bottom: 8.h),
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.end,
+                                          mainAxisAlignment: MainAxisAlignment.end,
+                                          children: [
+                                            OutlinedButton(
+                                                onPressed: () {},
+                                                child: Text(S.current.immediate_repayment)),
+                                          ],
                                         ),
                                       ),
-                                      Expanded(
-                                        child: FilledButton(
-                                          onPressed: () {},
-                                          child: const Text(
-                                            "立即还款",
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                                    ),
+                                    //UI.kHeight5(),
+                                  ],
                                 ),
                               ),
                             ),

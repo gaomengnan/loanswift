@@ -63,6 +63,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Foto Belakang Kartu Identitas"),
         "identity_authentication":
             MessageLookupByLibrary.simpleMessage("Autentikasi Identitas"),
+        "immediate_repayment":
+            MessageLookupByLibrary.simpleMessage("Pembayaran Langsung"),
         "install_packages":
             MessageLookupByLibrary.simpleMessage("Aplikasi Terinstal"),
         "jindengluzhuce":

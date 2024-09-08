@@ -171,6 +171,7 @@ class _FormCascadeState extends State<FormCascade> {
                     onChanged: (City? data) {
                       if (data != null) {
                         c2 = data.children;
+                        c3  = [];
                         setState(() {
                           c1Value = data;
                           c2Value = null;
@@ -178,11 +179,14 @@ class _FormCascadeState extends State<FormCascade> {
                         });
                       }
                     },
-                    dropdownDecoratorProps: DropDownDecoratorProps(
-                      dropdownSearchDecoration: InputDecoration(
-                        labelText: S.current.please_select,
-                      ),
-                    ),
+                    dropdownDecoratorProps: const DropDownDecoratorProps(
+                        dropdownSearchDecoration: InputDecoration(
+                            //labelText: S.current.please_select,
+                            ),
+                        baseStyle: TextStyle(
+                            //color: Colors.red,
+                            //fontSize: 14.sp,
+                            overflow: TextOverflow.ellipsis)),
                     popupProps: PopupPropsMultiSelection.modalBottomSheet(
                       searchFieldProps: const TextFieldProps(
                         decoration: InputDecoration(
@@ -214,10 +218,13 @@ class _FormCascadeState extends State<FormCascade> {
                         c3Value = null;
                       });
                     },
-                    dropdownDecoratorProps: DropDownDecoratorProps(
-                      dropdownSearchDecoration:
-                          InputDecoration(labelText: S.current.please_select),
-                    ),
+                    dropdownDecoratorProps: const DropDownDecoratorProps(
+                        baseStyle: TextStyle(
+                      overflow: TextOverflow.ellipsis,
+                    )
+                        //dropdownSearchDecoration:
+                        //    InputDecoration(labelText: S.current.please_select),
+                        ),
                     popupProps: PopupPropsMultiSelection.modalBottomSheet(
                       searchFieldProps: const TextFieldProps(
                         decoration: InputDecoration(
@@ -254,9 +261,12 @@ class _FormCascadeState extends State<FormCascade> {
                             "${c1Value!.name}|${c2Value!.name}|${c3Value!.name}");
                       }
                     },
-                    dropdownDecoratorProps: DropDownDecoratorProps(
-                      dropdownSearchDecoration:
-                          InputDecoration(labelText: S.current.please_select),
+                    dropdownDecoratorProps: const DropDownDecoratorProps(
+                      baseStyle: TextStyle(overflow: TextOverflow.ellipsis),
+                      dropdownSearchDecoration: InputDecoration(
+                        //suffixIcon: Text("asda") 
+                        //labelText: S.current.please_select,
+                      ),
                     ),
                     popupProps: PopupPropsMultiSelection.modalBottomSheet(
                       searchFieldProps: const TextFieldProps(

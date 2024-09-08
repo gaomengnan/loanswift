@@ -52,6 +52,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "idcard_front": MessageLookupByLibrary.simpleMessage("身份证正面照片"),
         "idcard_reverse": MessageLookupByLibrary.simpleMessage("身份证反面照片"),
         "identity_authentication": MessageLookupByLibrary.simpleMessage("身份认证"),
+        "immediate_repayment": MessageLookupByLibrary.simpleMessage("立即还款"),
         "install_packages": MessageLookupByLibrary.simpleMessage("已安装的应用程序"),
         "jindengluzhuce": MessageLookupByLibrary.simpleMessage("仅登录或者注册"),
         "lang": MessageLookupByLibrary.simpleMessage("zh"),

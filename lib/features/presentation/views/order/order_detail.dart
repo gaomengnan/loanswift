@@ -28,22 +28,27 @@ class _OrderDetailState extends State<OrderDetail> {
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: 10.w,
-        vertical: 5.h,
+        //vertical: 5.h,
       ),
       child: Column(
         children: [
+          UI.kHeight5(),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              RText(
-                size: 12.sp,
-                color: Colors.black54,
-                //fontWeight: FontWeight.w700,
-                textAlign: TextAlign.start,
-                text: k,
+              Expanded(
+                child: RText(
+                  size: 12.sp,
+                  color: Colors.black54,
+                  maxLines: 2,
+                  //fontWeight: FontWeight.w700,
+                  textAlign: TextAlign.start,
+                  text: k,
+                ),
               ),
               RText(
+                maxLines: 2,
                 //size: 15.sp,
                 color: Pallete.blackColor,
                 fontWeight: FontWeight.bold,
@@ -51,6 +56,7 @@ class _OrderDetailState extends State<OrderDetail> {
               )
             ],
           ),
+          UI.kHeight5(),
           Divider(
             color: Colors.grey[100],
           ),

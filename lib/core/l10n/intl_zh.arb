@@ -89,5 +89,7 @@
   "personal_information": "个人信息",
   "please_select": "请选择一个选项",
    "previousStep": "上一步",
-  "nextStep": "下一步"
+  "nextStep": "下一步",
+    "immediate_repayment": "立即还款"
+
 }

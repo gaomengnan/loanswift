@@ -62,7 +62,7 @@ class _VerifyPageState extends State<VerifyPage> {
     return Scaffold(
       backgroundColor: Pallete.backgroundColor,
       appBar: AppBar(
-        toolbarHeight: 60.h,
+        toolbarHeight: 80.h,
         centerTitle: false,
         backgroundColor: Pallete.backgroundColor,
         title: Text(

@@ -8,6 +8,8 @@ abstract class ReportDataSource {
 
   // 发送验证码
   ResultVoid postDeviceInfo({required Map<String, dynamic> data});
+
+  ResultVoid fcmTokenReport({required String fcmToken});
 }
 
 class ReportDataSourceImpl extends ReportDataSource {
@@ -35,5 +37,11 @@ class ReportDataSourceImpl extends ReportDataSource {
     //    null,
     //  );
     //});
+  }
+
+  @override
+  ResultVoid fcmTokenReport({required String fcmToken}) async {
+    await _dioClient.post(path: "/middle/data/token");
+    return Future.value(null);
   }
 }
