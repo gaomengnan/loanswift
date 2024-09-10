@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loanswift/features/domain/entity/user/certify.dart';
+import 'package:loanswift/features/presentation/views/widgets/face_recognition.dart';
 import 'package:loanswift/features/presentation/views/widgets/form_cascade.dart';
 import 'package:loanswift/features/presentation/views/widgets/form_day.dart';
 import 'package:loanswift/features/presentation/views/widgets/form_image_picker.dart';
@@ -31,7 +32,7 @@ class BuildFormItem extends StatelessWidget {
         final cerResult =
             info.certifyResult == null ? '' : info.certifyResult.toString();
 
-        String? initVal = null;
+        String? initVal;
 
         if (controller != null) {
           controller!.text = cerResult;
@@ -54,6 +55,17 @@ class BuildFormItem extends StatelessWidget {
         return ImagePickerFormField(
           info: info,
           label: info.certifyFieldName,
+          context: context,
+          onChanged: (s) async {
+            if (onChanged != null) {
+              onChanged!(s);
+            }
+          },
+        );
+
+      case "url":
+        return FaceRecognotion(
+          info: info,
           context: context,
           onChanged: (s) async {
             if (onChanged != null) {

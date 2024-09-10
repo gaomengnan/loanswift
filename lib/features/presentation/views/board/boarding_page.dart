@@ -5,20 +5,30 @@ import 'package:loanswift/features/presentation/views/auth/auth_page.dart';
 import 'package:loanswift/features/presentation/views/index/index_page.dart';
 import 'package:loanswift/main.dart';
 
-class BoardingPage extends StatelessWidget {
+class BoardingPage extends StatefulWidget {
   const BoardingPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  State<BoardingPage> createState() => _BoardingPageState();
+}
 
-    final token  = Storage.token;
-      Future.delayed(const Duration(seconds: 2), () {
-        if(token != null) {
-          navigatorKey.currentState?.pushReplacementNamed(IndexPage.routerName);
-        }else{
-          navigatorKey.currentState?.pushReplacementNamed(AuthPage.routerName);
-        }
-      });
+class _BoardingPageState extends State<BoardingPage> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+    final token = Storage.token;
+    Future.delayed(const Duration(seconds: 3), () {
+      if (token != null) {
+        navigatorKey.currentState?.pushReplacementNamed(IndexPage.routerName);
+      } else {
+        navigatorKey.currentState?.pushReplacementNamed(AuthPage.routerName);
+      }
+    });
 
     return Scaffold(
       body: Container(

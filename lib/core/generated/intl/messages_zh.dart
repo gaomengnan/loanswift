@@ -28,8 +28,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "auditFailure": MessageLookupByLibrary.simpleMessage("审核失败"),
         "auto_repayment": MessageLookupByLibrary.simpleMessage("自动还款"),
         "awaitingRepayment": MessageLookupByLibrary.simpleMessage("待还款"),
+        "bank_card": MessageLookupByLibrary.simpleMessage("银行卡号"),
         "bill_amount": MessageLookupByLibrary.simpleMessage("账单金额"),
         "bill_state": MessageLookupByLibrary.simpleMessage("账单证明"),
+        "bind_bank_card": MessageLookupByLibrary.simpleMessage("绑定银行卡"),
         "camera": MessageLookupByLibrary.simpleMessage("相机"),
         "cancel": MessageLookupByLibrary.simpleMessage("取消"),
         "click_to_access": MessageLookupByLibrary.simpleMessage("点击授权"),
@@ -48,6 +50,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "hello_world": MessageLookupByLibrary.simpleMessage("Hello World"),
         "home_button": MessageLookupByLibrary.simpleMessage("首页"),
         "huanying": MessageLookupByLibrary.simpleMessage("欢迎登录/注册"),
+        "id_card": MessageLookupByLibrary.simpleMessage("身份证"),
         "idcard": MessageLookupByLibrary.simpleMessage("身份证照片"),
         "idcard_front": MessageLookupByLibrary.simpleMessage("身份证正面照片"),
         "idcard_reverse": MessageLookupByLibrary.simpleMessage("身份证反面照片"),
@@ -83,6 +86,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "personal_info": MessageLookupByLibrary.simpleMessage("个人信息"),
         "personal_information": MessageLookupByLibrary.simpleMessage("个人信息"),
         "phone_code": MessageLookupByLibrary.simpleMessage("CN"),
+        "phone_number": MessageLookupByLibrary.simpleMessage("手机号码"),
         "photo_permission_missing":
             MessageLookupByLibrary.simpleMessage("相机权限获取失败"),
         "please_select": MessageLookupByLibrary.simpleMessage("请选择一个选项"),
@@ -92,12 +96,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "read_privacy": MessageLookupByLibrary.simpleMessage("请阅读"),
         "real_authentication": MessageLookupByLibrary.simpleMessage("实名认证"),
         "recommend": MessageLookupByLibrary.simpleMessage("推荐"),
+        "required_field": MessageLookupByLibrary.simpleMessage("必填项"),
         "resend": MessageLookupByLibrary.simpleMessage("重发"),
         "retrieve_again": MessageLookupByLibrary.simpleMessage("重新获取"),
         "service_error": MessageLookupByLibrary.simpleMessage("服务异常"),
         "shurushoujihao": MessageLookupByLibrary.simpleMessage("请输入本人实名认证手机号"),
         "sms": MessageLookupByLibrary.simpleMessage("短信"),
         "soon_pay": MessageLookupByLibrary.simpleMessage("请尽快付款"),
+        "submit": MessageLookupByLibrary.simpleMessage("提交"),
         "take_photo": MessageLookupByLibrary.simpleMessage("拍摄"),
         "take_photo_from_gallery":
             MessageLookupByLibrary.simpleMessage("从相册选择"),
@@ -113,6 +119,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "unable_to_receive_the_verification_code":
             MessageLookupByLibrary.simpleMessage("收不到验证码?"),
         "underReview": MessageLookupByLibrary.simpleMessage("审核中"),
+        "user_name": MessageLookupByLibrary.simpleMessage("姓名"),
         "verification_code_sendto":
             MessageLookupByLibrary.simpleMessage("短信验证码已发送至"),
         "verification_code_wrong":

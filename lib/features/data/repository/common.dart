@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:loanswift/core/typedefs.dart';
 import 'package:loanswift/features/data/datasource/common.dart';
+import 'package:loanswift/features/data/models/bank_card.dart';
 import 'package:loanswift/features/data/models/city_model.dart';
 import 'package:loanswift/features/data/models/upload_model.dart';
 import 'package:loanswift/features/domain/repos/common.dart';
@@ -33,6 +34,16 @@ class CommonRepositry implements ICommonService {
     final rep = await dataSource.getCities();
 
     return rep.fold(
+      (l) => left(l),
+      (r) => right(r.data!),
+    );
+  }
+
+  @override
+  ResultFuture<List<BankCardModel>> getBanks() async {
+    final rt = await dataSource.getBanks();
+
+    return rt.fold(
       (l) => left(l),
       (r) => right(r.data!),
     );

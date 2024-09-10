@@ -1,5 +1,4 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/material.dart';
 import 'package:loanswift/main.dart';
 
 
@@ -10,17 +9,22 @@ class FirebaseApi {
 
   // to init notifications
 
+  Future<String?> getToken() async {
+    final fcmToken = await _firebaseMessage.getToken();
+    return Future.value(fcmToken);
+  }
+
   Future<void> initNotifications() async {
     // request permission from user
     await _firebaseMessage.requestPermission();
 
     // fetch the FCM TOKEN
 
-    final fcmToken = await _firebaseMessage.getToken();
+    //final fcmToken = await _firebaseMessage.getToken();
 
     // print token
 
-    debugPrint(" fcmToken $fcmToken");
+    //debugPrint(" fcmToken $fcmToken");
 
     initPushNotifications();
   }

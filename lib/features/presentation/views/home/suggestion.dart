@@ -121,6 +121,7 @@ class _BuildSuggestionState extends State<BuildSuggestion>
                           width: 35.w,
                           image: CachedNetworkImageProvider(
                             product.copywriterInfo.productDesc.logo,
+                            errorListener: (p0) {},
                           ),
                         ),
                       ),

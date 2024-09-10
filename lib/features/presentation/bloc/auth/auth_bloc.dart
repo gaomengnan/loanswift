@@ -78,8 +78,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   void _appStartUpHandler(AppStarupEvent event, Emitter<AuthState> emit) {
-    final token = GetStorage()
-        .read<DataMap>(AppContant.tokenKey); /* 假设本地有token，如果没有，使用初始值 */
+    final token = GetStorage().read<DataMap>(AppContant.tokenKey); /* 假设本地有token，如果没有，使用初始值 */
     debugPrint('本地token：$token');
     if (token != null) {
       emit(

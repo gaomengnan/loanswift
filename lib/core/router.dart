@@ -10,15 +10,23 @@ import 'package:loanswift/features/presentation/views/index/index_page.dart';
 import 'package:loanswift/features/presentation/views/order/my_order.dart';
 import 'package:loanswift/features/presentation/views/order/order_detail.dart';
 import 'package:loanswift/features/presentation/views/order/repayment_page.dart';
+import 'package:loanswift/features/presentation/views/person/bind_bank.dart';
 import 'package:loanswift/features/presentation/views/person/verify_page.dart';
 import 'package:loanswift/features/presentation/views/widgets/verification_code.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
+    case BindBank.routerName:
+      return _pageBuilder(
+        (_) => const BindBank(),
+        settings: settings,
+      );
+
     case VerifyPage.routerName:
       return _pageBuilder(
         (_) => BlocProvider(
-          create: (context) => sl<CertifiesBloc>()..add(CertifiesSettingsLoadEvent()),
+          create: (context) =>
+              sl<CertifiesBloc>()..add(CertifiesSettingsLoadEvent()),
           child: const VerifyPage(),
         ),
         settings: settings,

@@ -58,6 +58,7 @@ class BuildBill extends StatelessWidget {
                               child: Image(
                                 image: CachedNetworkImageProvider(
                                   order.relationProduct.productLogo,
+                                  errorListener: (p0) {},
                                 ),
                               ),
                             ),

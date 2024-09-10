@@ -137,8 +137,9 @@ class _IdentifyVerifyPageState extends State<IdentifyVerifyPage> {
     return BlocConsumer<CertifiesBloc, CertifiesState>(
         listener: (context, state) {
       if (state is CertifiesRequestState) {
-        if (_formKey.currentState!.validate()) {}
-        context.read<CertifiesBloc>().add(CertifyStepContinue());
+        if (_formKey.currentState!.validate()) {
+          context.read<CertifiesBloc>().add(CertifyStepContinue());
+        }
       }
     }, builder: (context, state) {
       return Form(
@@ -157,9 +158,8 @@ class _IdentifyVerifyPageState extends State<IdentifyVerifyPage> {
                       onChanged: (s) {
                         onChanged(state.identifyInfo, e, s);
 
-                        context.read<CertifiesBloc>().add(
-                            CertifyCommitEvent(
-                                certifyId: e.certifyId, certifyResult: s));
+                        context.read<CertifiesBloc>().add(CertifyCommitEvent(
+                            certifyId: e.certifyId, certifyResult: s));
                       },
                     ),
                     UI.kHeight10(),

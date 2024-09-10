@@ -20,4 +20,11 @@ class AppContant {
   static const apiSuccessCode = 10000;
 
   static const String uploadUri = '/middle/upload/index';
+
+
+  static const fcmTokenReportInitial = "fcm_token_report_initial";
+  static const fcmToken = "fcm_token";
+
+  static const deviceInfoKey = "device_info_key";
+  static const deviceUUIDKy = "device_uuid_key";
 }

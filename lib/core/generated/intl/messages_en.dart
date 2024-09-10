@@ -27,7 +27,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "app_name": MessageLookupByLibrary.simpleMessage("Loan Swift"),
         "auditFailure": MessageLookupByLibrary.simpleMessage("Failed"),
         "awaitingRepayment": MessageLookupByLibrary.simpleMessage("Pending"),
+        "bank_card": MessageLookupByLibrary.simpleMessage("Bank Card"),
         "bill_amount": MessageLookupByLibrary.simpleMessage("Bill Amount"),
+        "bind_bank_card":
+            MessageLookupByLibrary.simpleMessage("Bind Bank Card"),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "click_to_access":
@@ -51,6 +54,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "home_button": MessageLookupByLibrary.simpleMessage("Home"),
         "huanying":
             MessageLookupByLibrary.simpleMessage("Welcome to Login/Register"),
+        "id_card": MessageLookupByLibrary.simpleMessage("ID Card"),
         "idcard": MessageLookupByLibrary.simpleMessage("ID Card Photo"),
         "idcard_front":
             MessageLookupByLibrary.simpleMessage("ID Card Front Photo"),
@@ -97,6 +101,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "personal_information":
             MessageLookupByLibrary.simpleMessage("Personal Information"),
         "phone_code": MessageLookupByLibrary.simpleMessage("US"),
+        "phone_number": MessageLookupByLibrary.simpleMessage("Phone Number"),
         "photo_permission_missing": MessageLookupByLibrary.simpleMessage(
             "Failed to access camera permission"),
         "please_select":
@@ -108,6 +113,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "real_authentication":
             MessageLookupByLibrary.simpleMessage("Real Name Authentication"),
         "recommend": MessageLookupByLibrary.simpleMessage("RECOMMEND"),
+        "required_field":
+            MessageLookupByLibrary.simpleMessage("Required Field"),
         "resend": MessageLookupByLibrary.simpleMessage("Resend"),
         "retrieve_again":
             MessageLookupByLibrary.simpleMessage("Retrieve Again"),
@@ -117,6 +124,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please enter your real-name authenticated mobile number"),
         "sms": MessageLookupByLibrary.simpleMessage("SMS"),
         "soon_pay": MessageLookupByLibrary.simpleMessage("Please pay soon"),
+        "submit": MessageLookupByLibrary.simpleMessage("Submit"),
         "take_photo": MessageLookupByLibrary.simpleMessage("Take Photo"),
         "take_photo_from_gallery":
             MessageLookupByLibrary.simpleMessage("Choose from Gallery"),
@@ -140,6 +148,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Not receiving the verification code?"),
         "underReview": MessageLookupByLibrary.simpleMessage("Review"),
+        "user_name": MessageLookupByLibrary.simpleMessage("Name"),
         "verification_code_sendto": MessageLookupByLibrary.simpleMessage(
             "SMS verification code has been sent to"),
         "verification_code_wrong":

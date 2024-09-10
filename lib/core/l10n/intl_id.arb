@@ -89,5 +89,12 @@
   "please_select": "Silakan pilih opsi",
   "previousStep": "Langkah Sebelumnya",
   "nextStep": "Langkah Berikutnya",
-  "immediate_repayment": "Pembayaran Langsung"
+  "immediate_repayment": "Pembayaran Langsung",
+  "phone_number": "Nomor Telepon",
+  "user_name": "Nama",
+  "id_card": "Kartu Identitas",
+  "bank_card": "Nomor Kartu Bank",
+  "submit": "Kirim",
+  "required_field": "Wajib Diisi",
+  "bind_bank_card": "Hubungkan Kartu Bank"
 }

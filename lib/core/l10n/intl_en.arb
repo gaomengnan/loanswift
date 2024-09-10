@@ -90,6 +90,14 @@
   "please_select": "Please select an option",
   "previousStep": "Previous Step",
   "nextStep": "Next Step",
-  "immediate_repayment": "Immediate Repayment"
+  "immediate_repayment": "Immediate Repayment",
+  "phone_number": "Phone Number",
+  "user_name": "Name",
+  "id_card": "ID Card",
+  "bank_card": "Bank Card",
+  "submit": "Submit",
+  "required_field": "Required Field",
+  "bind_bank_card": "Bind Bank Card"
+
 }
 

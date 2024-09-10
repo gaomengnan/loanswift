@@ -204,6 +204,7 @@ class _OrderDetailState extends State<OrderDetail> {
                                 fit: BoxFit.cover,
                                 image: CachedNetworkImageProvider(
                                   succeed.orderDetail.productLogo,
+                                  errorListener: (p0) {},
                                 ),
                               ),
                             ),

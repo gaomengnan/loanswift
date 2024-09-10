@@ -13,11 +13,14 @@ import 'features/presentation/bloc/bloc.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   /*  INIT */
   await initialize();
+
+  //Worker().initial();
 
   SystemChrome.setPreferredOrientations(
     [

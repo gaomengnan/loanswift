@@ -4,6 +4,7 @@ import 'package:loanswift/features/domain/entity/products/product_limit.dart';
 import 'main_products_copywriter_info.dart';
 
 class MainProducts {
+  final int productId;
   final String productName;
   final String productCompany;
   final String productAmount;
@@ -20,11 +21,13 @@ class MainProducts {
     required this.productLimit,
     required this.copywriterInfo,
     required this.creditInfo,
+    required this.productId,
   });
 
   MainProducts.empty()
       : this(
           productName: "",
+          productId: 0,
           productCompany: "",
           productAmount: "",
           isFakeAmount: false,
@@ -34,6 +37,7 @@ class MainProducts {
         );
 
   factory MainProducts.fromMap(Map<String, dynamic> json) => MainProducts(
+        productId: json["product_id"] ?? 0,
         productName: json["product_name"],
         productCompany: json["product_company"],
         productAmount: json["product_amount"],
@@ -45,6 +49,7 @@ class MainProducts {
       );
 
   Map<String, dynamic> toMap() => {
+        "product_id": productId,
         "product_name": productName,
         "product_company": productCompany,
         "product_amount": productAmount,

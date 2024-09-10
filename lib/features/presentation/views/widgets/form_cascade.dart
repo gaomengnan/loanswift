@@ -171,7 +171,7 @@ class _FormCascadeState extends State<FormCascade> {
                     onChanged: (City? data) {
                       if (data != null) {
                         c2 = data.children;
-                        c3  = [];
+                        c3 = [];
                         setState(() {
                           c1Value = data;
                           c2Value = null;
@@ -180,13 +180,14 @@ class _FormCascadeState extends State<FormCascade> {
                       }
                     },
                     dropdownDecoratorProps: const DropDownDecoratorProps(
-                        dropdownSearchDecoration: InputDecoration(
-                            //labelText: S.current.please_select,
-                            ),
-                        baseStyle: TextStyle(
-                            //color: Colors.red,
-                            //fontSize: 14.sp,
-                            overflow: TextOverflow.ellipsis)),
+                      dropdownSearchDecoration: InputDecoration(
+                          //labelText: S.current.please_select,
+                          ),
+                      baseStyle: TextStyle(
+                          //color: Colors.red,
+                          //fontSize: 14.sp,
+                          overflow: TextOverflow.ellipsis),
+                    ),
                     popupProps: PopupPropsMultiSelection.modalBottomSheet(
                       searchFieldProps: const TextFieldProps(
                         decoration: InputDecoration(
@@ -219,12 +220,11 @@ class _FormCascadeState extends State<FormCascade> {
                       });
                     },
                     dropdownDecoratorProps: const DropDownDecoratorProps(
-                        baseStyle: TextStyle(
-                      overflow: TextOverflow.ellipsis,
-                    )
-                        //dropdownSearchDecoration:
-                        //    InputDecoration(labelText: S.current.please_select),
-                        ),
+                      baseStyle: TextStyle(
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      dropdownSearchDecoration: InputDecoration(),
+                    ),
                     popupProps: PopupPropsMultiSelection.modalBottomSheet(
                       searchFieldProps: const TextFieldProps(
                         decoration: InputDecoration(
@@ -234,7 +234,7 @@ class _FormCascadeState extends State<FormCascade> {
                         style: TextStyle(fontSize: 16),
                       ),
                       //isFilterOnline: true,
-                      //showSelectedItems: true,
+                      showSelectedItems: true,
                       showSearchBox: true,
                       itemBuilder: _customPopupItemBuilder,
                     ),
@@ -264,9 +264,9 @@ class _FormCascadeState extends State<FormCascade> {
                     dropdownDecoratorProps: const DropDownDecoratorProps(
                       baseStyle: TextStyle(overflow: TextOverflow.ellipsis),
                       dropdownSearchDecoration: InputDecoration(
-                        //suffixIcon: Text("asda") 
-                        //labelText: S.current.please_select,
-                      ),
+                          //suffixIcon: Text("asda")
+                          //labelText: S.current.please_select,
+                          ),
                     ),
                     popupProps: PopupPropsMultiSelection.modalBottomSheet(
                       searchFieldProps: const TextFieldProps(

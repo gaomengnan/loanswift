@@ -1,4 +1,5 @@
 import 'package:loanswift/core/typedefs.dart';
+import 'package:loanswift/features/domain/usecases/common/report_gps.dart';
 
 import '../../../core/core.dart';
 import '../../../core/dio_client.dart';
@@ -9,7 +10,14 @@ abstract class ReportDataSource {
   // 发送验证码
   ResultVoid postDeviceInfo({required Map<String, dynamic> data});
 
-  ResultVoid fcmTokenReport({required String fcmToken});
+  ResultVoid fcmTokenReport({
+    required String fcmToken,
+    required String deviceId,
+  });
+
+  /*  GPS REPORT */
+
+  ResultVoid gpsReport(ReportgpsParams data);
 }
 
 class ReportDataSourceImpl extends ReportDataSource {
@@ -29,19 +37,19 @@ class ReportDataSourceImpl extends ReportDataSource {
     );
 
     return resp;
-
-    //return resp.fold((l) {
-    //  return left(l);
-    //}, (r) {
-    //  return right(
-    //    null,
-    //  );
-    //});
   }
 
   @override
-  ResultVoid fcmTokenReport({required String fcmToken}) async {
-    await _dioClient.post(path: "/middle/data/token");
-    return Future.value(null);
+  ResultVoid fcmTokenReport(
+      {required String fcmToken, required String deviceId}) async {
+    final rep = await _dioClient.post(
+        path: "/middle/data/token",
+        data: {'fcm_token': fcmToken, 'gps_adid': deviceId});
+    return rep;
+  }
+
+  @override
+  ResultVoid gpsReport(ReportgpsParams data) async {
+    return await _dioClient.post(path: "/middle/data/gps", data: data.toMap());
   }
 }

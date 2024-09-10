@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/common/widgets/app_text.dart';
 import 'package:loanswift/features/presentation/bloc/certify/certifies_bloc.dart';
 import 'package:loanswift/features/presentation/views/person/basic_information.dart';
+import 'package:loanswift/features/presentation/views/person/bind_bank.dart';
 import 'package:loanswift/features/presentation/views/person/emergency_info.dart';
 import 'package:loanswift/features/presentation/views/person/identify_verify_page.dart';
 import 'package:loanswift/features/presentation/views/person/job_info.dart';
@@ -53,8 +54,53 @@ class _VerifyPageState extends State<VerifyPage> {
     super.initState();
   }
 
+  Future<void> _showToBankDialog(int? projectId) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('认证成功'),
+          content: const SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('恭喜你已经认证成功.'),
+                Text('即可前往绑定银行卡?'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('前往'),
+              onPressed: () {
+                Navigator.of(context)
+                    .pushNamed(BindBank.routerName, arguments: {
+                  'projectId': projectId,
+                });
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    // 获取参数
+    int? productId = 0;
+
+    final args = ModalRoute.of(context)?.settings.arguments;
+
+    if (args is DataMap) {
+      productId = args['productId'] ?? 0;
+    }
+
+
+    print("args producvt id $productId");
+
+    //debugPrint(pro)
+
     //return StepperExample();
     final currentStep =
         context.select((CertifiesBloc bloc) => bloc.state.cerfityStep);
@@ -71,7 +117,6 @@ class _VerifyPageState extends State<VerifyPage> {
               //color: Pallete.whiteColor,
               ),
         ),
-
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(80.h),
           child: buildStepper(
@@ -123,22 +168,28 @@ class _VerifyPageState extends State<VerifyPage> {
                         ),
                       ),
                       UI.kWidth10(),
-                      if (!currentStep.isLastStep)
-                        Expanded(
-                          child: FilledButton(
-                            onPressed: () {
+                      Expanded(
+                        child: FilledButton(
+                          onPressed: () {
+                            if (!currentStep.isLastStep) {
                               context
                                   .read<CertifiesBloc>()
                                   .add(CertifyStepRequest());
 
                               _scrollToTop();
-                            },
-                            child: RText(
-                              text: S.current.nextStep,
-                              color: Pallete.whiteColor,
-                            ),
+                            } else {
+                              _showToBankDialog(productId);
+
+                              //Navigator.of(context)
+                              //    .pushNamed(BindBank.routerName);
+                            }
+                          },
+                          child: RText(
+                            text: S.current.nextStep,
+                            color: Pallete.whiteColor,
                           ),
                         ),
+                      ),
                     ],
                   ),
                 ],
@@ -175,7 +226,7 @@ class _VerifyPageState extends State<VerifyPage> {
         steps: [
           EasyStep(
             customTitle: RText(text: S.current.identity_authentication),
-            
+
             customStep: CircleAvatar(
               radius: 8,
               backgroundColor: Colors.white,
@@ -214,17 +265,16 @@ class _VerifyPageState extends State<VerifyPage> {
             topTitle: true,
           ),
           EasyStep(
-            customStep: CircleAvatar(
-              radius: 8,
-              backgroundColor: Colors.white,
-              child: CircleAvatar(
-                radius: 7,
-                backgroundColor:
-                    currentStep.value >= 3 ? Colors.orange : Colors.white,
+              customStep: CircleAvatar(
+                radius: 8,
+                backgroundColor: Colors.white,
+                child: CircleAvatar(
+                  radius: 7,
+                  backgroundColor:
+                      currentStep.value >= 3 ? Colors.orange : Colors.white,
+                ),
               ),
-            ),
-            customTitle: RText(text: S.current.work_information)
-          ),
+              customTitle: RText(text: S.current.work_information)),
         ],
         //onStepReached: (index) =>
         //    setState(() => activeStep = index),

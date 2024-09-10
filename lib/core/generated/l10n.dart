@@ -929,6 +929,76 @@ class S {
       args: [],
     );
   }
+
+  /// `手机号码`
+  String get phone_number {
+    return Intl.message(
+      '手机号码',
+      name: 'phone_number',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `姓名`
+  String get user_name {
+    return Intl.message(
+      '姓名',
+      name: 'user_name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `身份证`
+  String get id_card {
+    return Intl.message(
+      '身份证',
+      name: 'id_card',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `银行卡号`
+  String get bank_card {
+    return Intl.message(
+      '银行卡号',
+      name: 'bank_card',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `提交`
+  String get submit {
+    return Intl.message(
+      '提交',
+      name: 'submit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `必填项`
+  String get required_field {
+    return Intl.message(
+      '必填项',
+      name: 'required_field',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `绑定银行卡`
+  String get bind_bank_card {
+    return Intl.message(
+      '绑定银行卡',
+      name: 'bind_bank_card',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -43,8 +43,9 @@ class _EmergencyInfoState extends State<EmergencyInfo> {
     return BlocConsumer<CertifiesBloc, CertifiesState>(
         listener: (context, state) {
       if (state is CertifiesRequestState) {
-        //if (_formKey.currentState!.validate()) {}
-        context.read<CertifiesBloc>().add(CertifyStepContinue());
+        if (_formKey.currentState!.validate()) {
+          context.read<CertifiesBloc>().add(CertifyStepContinue());
+        }
       }
     }, builder: (context, state) {
       return Form(

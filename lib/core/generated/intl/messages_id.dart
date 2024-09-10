@@ -29,9 +29,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "auto_repayment":
             MessageLookupByLibrary.simpleMessage("Pembayaran Otomatis"),
         "awaitingRepayment": MessageLookupByLibrary.simpleMessage("Tunda"),
+        "bank_card": MessageLookupByLibrary.simpleMessage("Nomor Kartu Bank"),
         "bill_amount": MessageLookupByLibrary.simpleMessage("Jumlah Tagihan"),
         "bill_state":
             MessageLookupByLibrary.simpleMessage("Pernyataan Tagihan"),
+        "bind_bank_card":
+            MessageLookupByLibrary.simpleMessage("Hubungkan Kartu Bank"),
         "camera": MessageLookupByLibrary.simpleMessage("Kamera"),
         "cancel": MessageLookupByLibrary.simpleMessage("Batal"),
         "click_to_access":
@@ -56,6 +59,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "home_button": MessageLookupByLibrary.simpleMessage("Rumah"),
         "huanying":
             MessageLookupByLibrary.simpleMessage("Selamat datang masuk/daftar"),
+        "id_card": MessageLookupByLibrary.simpleMessage("Kartu Identitas"),
         "idcard": MessageLookupByLibrary.simpleMessage("Foto Kartu Identitas"),
         "idcard_front":
             MessageLookupByLibrary.simpleMessage("Foto Depan Kartu Identitas"),
@@ -106,6 +110,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "personal_information":
             MessageLookupByLibrary.simpleMessage("Informasi Pribadi"),
         "phone_code": MessageLookupByLibrary.simpleMessage("ID"),
+        "phone_number": MessageLookupByLibrary.simpleMessage("Nomor Telepon"),
         "photo_permission_missing":
             MessageLookupByLibrary.simpleMessage("Gagal mengakses izin kamera"),
         "please_select":
@@ -118,6 +123,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "real_authentication":
             MessageLookupByLibrary.simpleMessage("Verifikasi nama asli"),
         "recommend": MessageLookupByLibrary.simpleMessage("Rekomendasi"),
+        "required_field": MessageLookupByLibrary.simpleMessage("Wajib Diisi"),
         "resend": MessageLookupByLibrary.simpleMessage("Kirim Ulang"),
         "retrieve_again":
             MessageLookupByLibrary.simpleMessage("Dapatkan Kembali"),
@@ -127,6 +133,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Masukkan nomor ponsel yang terverifikasi"),
         "sms": MessageLookupByLibrary.simpleMessage("SMS"),
         "soon_pay": MessageLookupByLibrary.simpleMessage("Harap segera bayar"),
+        "submit": MessageLookupByLibrary.simpleMessage("Kirim"),
         "take_photo": MessageLookupByLibrary.simpleMessage("Ambil Foto"),
         "take_photo_from_gallery":
             MessageLookupByLibrary.simpleMessage("Pilih dari Galeri"),
@@ -150,6 +157,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Tidak menerima kode verifikasi?"),
         "underReview": MessageLookupByLibrary.simpleMessage("Tinjau"),
+        "user_name": MessageLookupByLibrary.simpleMessage("Nama"),
         "verification_code_sendto": MessageLookupByLibrary.simpleMessage(
             "Kode verifikasi SMS telah dikirim ke"),
         "verification_code_wrong":

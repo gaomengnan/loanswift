@@ -35,6 +35,8 @@ abstract class AuthDataSource {
   // 提交认证项
 
   ResultFuture<ApiResponse> commitCertify({required DataMap data});
+
+  ResultVoid bindBank({required DataMap data});
 }
 
 class AuthDataSourceImpl extends AuthDataSource {
@@ -142,5 +144,12 @@ class AuthDataSourceImpl extends AuthDataSource {
       return right(
           ApiResponse.fromJson(r.data, (j) => DataMapExtensions.fromMap(j)));
     });
+  }
+
+  @override
+  ResultVoid bindBank({required DataMap data}) async {
+    final resp =
+        await http.post(path: "/middle/identity/bind-bank", data: data);
+    return resp;
   }
 }

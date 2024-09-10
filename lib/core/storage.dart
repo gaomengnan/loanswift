@@ -5,4 +5,5 @@ class Storage {
   static DataMap? get  token => GetStorage().read(AppContant.tokenKey);
 
   static Future<void> removeToekn() => GetStorage().remove(AppContant.tokenKey);
+
 }

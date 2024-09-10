@@ -35,15 +35,15 @@ class BankCardModel extends BankCard {
 // 从 Map 创建 BankCard 实体
   factory BankCardModel.fromMap(Map<String, dynamic> map) {
     return BankCardModel(
-      bankLogo: map['bank_logo'],
-      bankName: map['bank_name'],
-      bankCode: map['bank_code'],
-      cardNo: map['card_no'],
-      ifsc: map['ifsc'],
-      cardType: map['card_type'],
-      mainCard: map['main_card'],
-      validPeriod: map['valid_period'],
-      creditAmount: map['credit_amount'],
+      bankLogo: map['bank_logo'] ?? '',
+      bankName: map['bank_name'] ?? '',
+      bankCode: map['bank_code'] ?? '',
+      cardNo: map['card_no'] ?? '',
+      ifsc: map['ifsc'] ?? '',
+      cardType: map['card_type'] ?? 0,
+      mainCard: map['main_card'] ?? 0,
+      validPeriod: map['valid_period'] ?? 0,
+      creditAmount: map['credit_amount'] ?? 0,
     );
   }
 

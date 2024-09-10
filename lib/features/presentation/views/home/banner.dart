@@ -5,7 +5,6 @@ import 'package:loanswift/core/common/widgets/widgets.dart';
 import 'package:loanswift/features/domain/entity/entity.dart';
 import 'package:loanswift/theme/theme.dart';
 
-
 class BuildBanner extends StatefulWidget {
   final List<BannerEntity> banners;
   const BuildBanner({super.key, required this.banners});
@@ -18,12 +17,11 @@ class _BuildBannerState extends State<BuildBanner> {
   late PageController _pageController;
   int _currentIndex = 0;
 
-
   @override
-    void dispose() {
-      super.dispose();
-      _pageController.dispose();
-    }
+  void dispose() {
+    super.dispose();
+    _pageController.dispose();
+  }
 
   @override
   void initState() {
@@ -39,8 +37,6 @@ class _BuildBannerState extends State<BuildBanner> {
     super.initState();
   }
 
-
-
   Widget _buildBanner(int index) {
     final banner = widget.banners[index];
     return Container(
@@ -51,7 +47,10 @@ class _BuildBannerState extends State<BuildBanner> {
         borderRadius: BorderRadius.circular(10),
         image: DecorationImage(
           fit: BoxFit.cover,
-          image: CachedNetworkImageProvider(banner.path),
+          image: CachedNetworkImageProvider(
+            banner.path,
+            errorListener: (p0) {},
+          ),
         ),
       ),
     );

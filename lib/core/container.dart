@@ -1,10 +1,10 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/core/dio_client.dart';
+import 'package:loanswift/core/report.dart';
 import 'package:loanswift/features/data/datasource/auth.dart';
 import 'package:loanswift/features/data/datasource/common.dart';
 import 'package:loanswift/features/data/datasource/home.dart';
@@ -26,15 +26,16 @@ import 'package:loanswift/features/domain/usecases/authenticated/login.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/logout.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/send_phone_code.dart';
 import 'package:loanswift/features/domain/usecases/common/file_upload.dart';
+import 'package:loanswift/features/domain/usecases/common/get_banks.dart';
 import 'package:loanswift/features/domain/usecases/common/get_cities.dart';
 import 'package:loanswift/features/domain/usecases/common/ocr.dart';
+import 'package:loanswift/features/domain/usecases/common/report_fcm.dart';
 import 'package:loanswift/features/domain/usecases/home/data.dart';
 import 'package:loanswift/features/domain/usecases/order/get_order_detail.dart';
 import 'package:loanswift/features/domain/usecases/order/query_order.dart';
 import 'package:loanswift/features/presentation/bloc/certify/certifies_bloc.dart';
 import 'package:loanswift/features/presentation/bloc/home/home_bloc.dart';
 import 'package:loanswift/features/presentation/bloc/order/order_bloc.dart';
-import 'package:loanswift/firebase_options.dart';
 
 import '../features/data/models/models.dart';
 import '../features/presentation/bloc/bloc.dart';
@@ -186,12 +187,17 @@ Future<void> initialize() async {
     ..registerLazySingleton(() => FileUpload(commonSer: sl()))
     ..registerLazySingleton(() => Ocr(commonService: sl()))
     ..registerLazySingleton(() => CommitCertify(authRepo: sl()))
-    ..registerLazySingleton(() => GetCities(commonService: sl()));
+    ..registerLazySingleton(() => GetCities(commonService: sl()))
+    ..registerLazySingleton(() => GetBanks(commonService: sl()))
+    //..registerLazySingleton(() => ReportService(reportRepo: sl()))
+    ..registerLazySingleton(() => ReportFcm(reportRepo: sl()));
 
+  /*     获取设备信息         */
   try {
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
-    //FirebaseApi().initNotifications();
+    final ReportService service = sl();
+    service.fcmTokenReport();
   } catch (_) {}
+
+  /*  BUILD TIMER TICK   */
+  //Worker().initial();
 }

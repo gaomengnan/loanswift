@@ -27,4 +27,7 @@ abstract class AuthRepo {
   // 提交认证
 
   ResultFuture<ApiResponse> commitCertify({required DataMap data});
+
+
+  ResultVoid bindBank(DataMap data);
 }

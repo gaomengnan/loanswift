@@ -23,7 +23,8 @@ class RInput extends StatelessWidget {
     required this.hitText,
     this.onChanged,
     this.controller,
-    required this.info, this.initVal,
+    required this.info,
+    this.initVal,
   });
 
   @override
@@ -39,8 +40,8 @@ class RInput extends StatelessWidget {
                 duration: const Duration(milliseconds: 300),
                 child: info.isCertify()
                     ? Lottie.asset(
-                      height: 20.h,
-                      width: 20.w,
+                        height: 20.h,
+                        width: 20.w,
                         Assets.check,
                         repeat: false,
                       )
@@ -92,12 +93,13 @@ class RInput extends StatelessWidget {
                 },
                 //onChanged: onChanged,
                 decoration: const InputDecoration(
-                    focusedErrorBorder: InputBorder.none,
-                    focusedBorder: InputBorder.none,
-                    errorBorder: InputBorder.none,
-                    //contentPadding: EdgeInsets.only(left: 10.w),
-                    enabledBorder: InputBorder.none,
-                    disabledBorder: InputBorder.none),
+                  focusedErrorBorder: InputBorder.none,
+                  focusedBorder: InputBorder.none,
+                  errorBorder: InputBorder.none,
+                  //contentPadding: EdgeInsets.only(left: 10.w),
+                  enabledBorder: InputBorder.none,
+                  disabledBorder: InputBorder.none,
+                ),
               ),
             ),
           ),

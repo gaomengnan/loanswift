@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/core.dart';
@@ -262,6 +263,9 @@ class BuildQuota extends StatelessWidget {
                               onPressed: () {
                                 Navigator.of(context).pushNamed(
                                   VerifyPage.routerName,
+                                  arguments:  {
+                                    'productId': mainProducts.productId,
+                                  }
                                 );
                               },
                               child: Center(
@@ -308,12 +312,10 @@ class BuildQuota extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Expanded(
-            child: Image(
+            child: CachedNetworkImage(
               width: 30.w,
               height: 30.h,
-              image: const AssetImage(
-                Assets.money,
-              ),
+              imageUrl: mainProducts.copywriterInfo.productDesc.logo,
             ),
           ),
           //UI.kWidth20(),

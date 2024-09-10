@@ -79,4 +79,9 @@ class AuthRepository implements AuthRepo {
   ResultFuture<ApiResponse> commitCertify({required DataMap data}) async {
     return await _authDataSource.commitCertify(data: data);
   }
+
+  @override
+  ResultVoid bindBank(DataMap data) async {
+    return await _authDataSource.bindBank(data: data);
+  }
 }
