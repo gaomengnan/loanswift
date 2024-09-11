@@ -1,15 +1,14 @@
 import 'dart:io';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:liveness_detection/liveness_detection.dart';
 import 'package:loanswift/core/common/widgets/widgets.dart';
 import 'package:loanswift/core/core.dart';
+import 'package:loanswift/core/utils.dart';
 import 'package:loanswift/features/domain/entity/user/certify.dart';
-import 'package:loanswift/theme/pallete.dart';
 import 'package:lottie/lottie.dart';
-import 'package:shimmer/shimmer.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class ImagePickEntity {
   final String imgData;
@@ -50,8 +49,9 @@ class FaceRecognotion extends FormField<List<ImagePickEntity>> {
             return null;
           },
           builder: (FormFieldState<List<ImagePickEntity>> state) {
+            final faceRect = LivenessDetection();
             return SizedBox(
-              height: 200.h,
+              //height: 100.h,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -85,120 +85,59 @@ class FaceRecognotion extends FormField<List<ImagePickEntity>> {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
+                      GestureDetector(
+                        onTap: () async {
+                          try {
+                            final status = await Permission.camera.status;
+                            if (status != PermissionStatus.granted) {
+                              await Permission.camera.request();
+                            }
+
+                            final faceData = await faceRect.startFaceRect();
+
+                            File imgFile = await Utils.base64ToFile(
+                                faceData ?? '', "face.png");
+                            final resp = await Utils.uploadImage(
+                                imgFile.path, "living_img");
+
+                            resp.fold(
+                              (err) => UI.showError(context, err.message),
+                              (l) {
+                                UI.hideLoading();
+
+                                final body = l.data as DataMap?;
+                                //final path = body?['data']['path'];
+                                final object = body?['data']['object'];
+                                final url = body?['data']['path'];
+
+                                state.didChange([
+                                  ImagePickEntity(
+                                    imgData: object,
+                                    url: url,
+                                  )
+                                ]);
+
+                                if (onChanged != null) {
+                                  onChanged(object);
+                                }
+
+                                //state.didChange(List.from(state.value ?? [])
+                                //  ..addAll([File(pickedFiles.path)]));
+                              },
+                            );
+                          } catch (_) {}
+                          //showUploadTypeBottomSheet(context);
+                        },
+                        child: info.isCertify()
+                            ? RText(
+                                text: S.current.verified,
+                                color: Colors.green,
+                              )
+                            : RText(text: S.current.go_to_verify),
+                      )
                     ],
                   ),
-                  UI.kHeight10(),
-                  Expanded(
-                    flex: 3,
-                    child: GestureDetector(
-                      onTap: () async {
-                        //showUploadTypeBottomSheet(context);
-                      },
-                      child: state.value == null || state.value!.isEmpty
-                          ? const Image(
-                            //height: 50.h,
-                            //width: 150.w,
-                            fit: BoxFit.cover,
-                            image: AssetImage(
-                              Assets.facePlaceholder,
-                            ),
-                          )
-                          : Wrap(
-                              spacing: 50.w,
-                              direction: Axis.horizontal,
-                              children: [
-                                ...state.value!.map((f) => SizedBox(
-                                      height: 180.h,
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Expanded(
-                                            flex: 7,
-                                            child: info.isCertify()
-                                                ? CachedNetworkImage(
-                                                    height: 200.h,
-                                                    width: 300.w,
-                                                    fit: BoxFit.cover,
-                                                    imageUrl: f.url,
-                                                    placeholder:
-                                                        (context, url) =>
-                                                            Center(
-                                                                child: Shimmer
-                                                                    .fromColors(
-                                                      baseColor:
-                                                          Colors.grey[300]!,
-                                                      highlightColor:
-                                                          Colors.grey[100]!,
-                                                      child: Container(
-                                                        width: double.infinity,
-                                                        height: 200.0,
-                                                        color: Colors.white,
-                                                      ),
-                                                    )),
-                                                  )
-                                                : Image.file(
-                                                    File(f.url),
-                                                    height: 200.h,
-                                                    width: ScreenUtil()
-                                                        .screenWidth,
-                                                    fit: BoxFit.cover,
-                                                  ),
-                                          ),
-                                          Expanded(
-                                            flex: 2,
-                                            child: Container(
-                                              width: 300.w,
-                                              decoration: BoxDecoration(
-                                                color: Pallete.primaryColor
-                                                    .withOpacity(0.2),
-                                              ),
-                                              child: Center(
-                                                child: Wrap(
-                                                  spacing: 50.w,
-                                                  crossAxisAlignment:
-                                                      WrapCrossAlignment.start,
-                                                  children: [
-                                                    InkWell(
-                                                      onTap: () {
-                                                        state.didChange(
-                                                            List.from(
-                                                                state.value!)
-                                                              ..remove(f));
-
-                                                        if (onChanged != null) {
-                                                          onChanged('');
-                                                        }
-                                                      },
-                                                      child: Icon(
-                                                          color: Pallete
-                                                              .whiteColor,
-                                                          size: 24.sp,
-                                                          IconlyBold.delete),
-                                                    ),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        //showImagePreview(
-                                                        //    context, f);
-                                                      },
-                                                      child: Icon(
-                                                          color: Pallete
-                                                              .whiteColor,
-                                                          size: 24.sp,
-                                                          Icons.remove_red_eye),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    )),
-                              ],
-                            ),
-                    ),
-                  ),
+                  //,
                   UI.kHeight5(),
                   if (state.hasError)
                     RText(

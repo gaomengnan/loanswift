@@ -97,7 +97,9 @@
   "bank_card": "银行卡号",
   "submit": "提交",
   "required_field": "必填项",
-  "bind_bank_card": "绑定银行卡"
-
-
+  "bind_bank_card": "绑定银行卡",
+  "congratulations_verified": "恭喜您已经认证成功",
+  "go_bind_bank_card": "去绑定银行卡",
+  "verified": "已认证",
+  "go_to_verify": "前往认证"
 }

@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/core/dio_client.dart';
 import 'package:loanswift/theme/theme.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class Utils {
@@ -145,5 +148,22 @@ class Utils {
     );
 
     return resp;
+  }
+
+  static Future<File> base64ToFile(String base64String, String fileName) async {
+    // 将 Base64 字符串解码为 Uint8List
+    Uint8List bytes = base64Decode(base64String);
+
+    // 获取临时目录
+    Directory tempDir = await getTemporaryDirectory();
+    String tempPath = tempDir.path;
+
+    // 创建文件
+    File file = File('$tempPath/$fileName');
+
+    // 将 Uint8List 写入文件
+    await file.writeAsBytes(bytes);
+
+    return file;
   }
 }

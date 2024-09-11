@@ -37,6 +37,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Click to access"),
         "completed": MessageLookupByLibrary.simpleMessage("Done"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
+        "congratulations_verified": MessageLookupByLibrary.simpleMessage(
+            "Congratulations, you have been successfully verified"),
         "contact": MessageLookupByLibrary.simpleMessage("Contact List"),
         "due_date": MessageLookupByLibrary.simpleMessage("Due Date"),
         "emergency_contact":
@@ -49,6 +51,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "free_concession": MessageLookupByLibrary.simpleMessage("Concession"),
         "get_credit_limit":
             MessageLookupByLibrary.simpleMessage("Get Credit Limit"),
+        "go_bind_bank_card":
+            MessageLookupByLibrary.simpleMessage("Go to bind bank card"),
+        "go_to_verify": MessageLookupByLibrary.simpleMessage("Go to verify"),
         "grab_go": MessageLookupByLibrary.simpleMessage("Grab and Go"),
         "hello_world": MessageLookupByLibrary.simpleMessage("Hello World"),
         "home_button": MessageLookupByLibrary.simpleMessage("Home"),
@@ -153,6 +158,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "SMS verification code has been sent to"),
         "verification_code_wrong":
             MessageLookupByLibrary.simpleMessage("Incorrect verification code"),
+        "verified": MessageLookupByLibrary.simpleMessage("Verified"),
         "welcome_you": MessageLookupByLibrary.simpleMessage("You Welcome"),
         "work_information":
             MessageLookupByLibrary.simpleMessage("Work Information")

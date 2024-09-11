@@ -96,5 +96,9 @@
   "bank_card": "Nomor Kartu Bank",
   "submit": "Kirim",
   "required_field": "Wajib Diisi",
-  "bind_bank_card": "Hubungkan Kartu Bank"
+  "bind_bank_card": "Hubungkan Kartu Bank",
+  "congratulations_verified": "Selamat, Anda telah berhasil diverifikasi",
+  "go_bind_bank_card": "Pergi ke menghubungkan kartu bank",
+  "verified": "Terverifikasi",
+  "go_to_verify": "Pergi ke verifikasi"
 }

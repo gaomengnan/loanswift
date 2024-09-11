@@ -149,11 +149,11 @@ class DioInterceptor extends Interceptor {
       "Authorization": "${token?['token'].toString()}",
     });
 
-    //print('请求路径: ${options.path}');
-    //print('请求方法: ${options.method}');
-    //print('请求头: ${options.headers}');
-    //print('请求参数: ${options.queryParameters}');
-    //print('请求数据: ${options.data.toString()}');
+    print('请求路径: ${options.path}');
+    print('请求方法: ${options.method}');
+    print('请求头: ${options.headers}');
+    print('请求参数: ${options.queryParameters}');
+    print('请求数据: ${options.data.toString()}');
 
     return super.onRequest(options, handler);
   }

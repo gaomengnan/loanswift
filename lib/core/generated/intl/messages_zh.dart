@@ -37,6 +37,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "click_to_access": MessageLookupByLibrary.simpleMessage("点击授权"),
         "completed": MessageLookupByLibrary.simpleMessage("已完成"),
         "confirm": MessageLookupByLibrary.simpleMessage("确定"),
+        "congratulations_verified":
+            MessageLookupByLibrary.simpleMessage("恭喜您已经认证成功"),
         "contact": MessageLookupByLibrary.simpleMessage("联系人列表"),
         "due_date": MessageLookupByLibrary.simpleMessage("到期日"),
         "emergency_contact": MessageLookupByLibrary.simpleMessage("紧急联系人"),
@@ -46,6 +48,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "exclusive": MessageLookupByLibrary.simpleMessage("优质专享"),
         "free_concession": MessageLookupByLibrary.simpleMessage("费率优惠"),
         "get_credit_limit": MessageLookupByLibrary.simpleMessage("获取额度"),
+        "go_bind_bank_card": MessageLookupByLibrary.simpleMessage("去绑定银行卡"),
+        "go_to_verify": MessageLookupByLibrary.simpleMessage("前往认证"),
         "grab_go": MessageLookupByLibrary.simpleMessage("随用随取"),
         "hello_world": MessageLookupByLibrary.simpleMessage("Hello World"),
         "home_button": MessageLookupByLibrary.simpleMessage("首页"),
@@ -124,6 +128,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("短信验证码已发送至"),
         "verification_code_wrong":
             MessageLookupByLibrary.simpleMessage("验证码错误"),
+        "verified": MessageLookupByLibrary.simpleMessage("已认证"),
         "welcome_you": MessageLookupByLibrary.simpleMessage("欢迎你"),
         "work_information": MessageLookupByLibrary.simpleMessage("工作信息")
       };

@@ -41,6 +41,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Klik untuk mengakses"),
         "completed": MessageLookupByLibrary.simpleMessage("Selesai"),
         "confirm": MessageLookupByLibrary.simpleMessage("Konfirmasi"),
+        "congratulations_verified": MessageLookupByLibrary.simpleMessage(
+            "Selamat, Anda telah berhasil diverifikasi"),
         "contact": MessageLookupByLibrary.simpleMessage("Daftar Kontak"),
         "due_date": MessageLookupByLibrary.simpleMessage("Tanggal Jatuh Tempo"),
         "emergency_contact":
@@ -53,6 +55,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "free_concession": MessageLookupByLibrary.simpleMessage("Discount"),
         "get_credit_limit":
             MessageLookupByLibrary.simpleMessage("Dapatkan Limit Kredit"),
+        "go_bind_bank_card": MessageLookupByLibrary.simpleMessage(
+            "Pergi ke menghubungkan kartu bank"),
+        "go_to_verify":
+            MessageLookupByLibrary.simpleMessage("Pergi ke verifikasi"),
         "grab_go": MessageLookupByLibrary.simpleMessage("Ambil dan Pergi"),
         "hello_world":
             MessageLookupByLibrary.simpleMessage("Hitungannya bertambah"),
@@ -162,6 +168,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Kode verifikasi SMS telah dikirim ke"),
         "verification_code_wrong":
             MessageLookupByLibrary.simpleMessage("Kode verifikasi salah"),
+        "verified": MessageLookupByLibrary.simpleMessage("Terverifikasi"),
         "welcome_you": MessageLookupByLibrary.simpleMessage("Selamat datang"),
         "work_information":
             MessageLookupByLibrary.simpleMessage("Informasi Pekerjaan")

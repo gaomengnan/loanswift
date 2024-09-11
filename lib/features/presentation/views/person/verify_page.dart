@@ -22,7 +22,8 @@ class VerifyPage extends StatefulWidget {
   State<VerifyPage> createState() => _VerifyPageState();
 }
 
-class _VerifyPageState extends State<VerifyPage> {
+class _VerifyPageState extends State<VerifyPage>
+    with SingleTickerProviderStateMixin {
   final List<Widget> stepers = [
     const IdentifyVerifyPage(),
     const BasicInformation(),
@@ -32,6 +33,11 @@ class _VerifyPageState extends State<VerifyPage> {
 
   final ScrollController _scrollController =
       ScrollController(); // ScrollController 控制滚动
+
+  late AnimationController _aniController;
+  late Animation<double> _animation;
+
+  late Animation<double> _shadeAnimation;
 
   void _scrollToTop() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -46,11 +52,32 @@ class _VerifyPageState extends State<VerifyPage> {
   @override
   void dispose() {
     _scrollController.dispose();
+    _aniController.dispose();
     super.dispose();
   }
 
   @override
   void initState() {
+    // 初始化 AnimationController，设置时长和重复方式
+    _aniController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 1), // 动画时长
+    )..repeat(reverse: true); // 循环动画，自动反向
+
+    // 使用 Tween 和 CurvedAnimation 定义动画范围和效果
+    _animation = Tween<double>(begin: 1.0, end: 1.1).animate(
+      CurvedAnimation(
+        parent: _aniController,
+        curve: Curves.easeInOut, // 使用缓入缓出的动画曲线
+      ),
+    );
+
+    _shadeAnimation = Tween<double>(begin: -1.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _aniController,
+        curve: Curves.linear, // 线性动画
+      ),
+    );
     super.initState();
   }
 
@@ -60,25 +87,70 @@ class _VerifyPageState extends State<VerifyPage> {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('认证成功'),
+          title: Text(
+            S.current.congratulations_verified,
+          ),
           content: const SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                Text('恭喜你已经认证成功.'),
-                Text('即可前往绑定银行卡?'),
+                Text('.'),
               ],
             ),
           ),
           actions: <Widget>[
-            TextButton(
-              child: const Text('前往'),
-              onPressed: () {
-                Navigator.of(context)
-                    .pushNamed(BindBank.routerName, arguments: {
-                  'projectId': projectId,
-                });
-              },
+            Center(
+              child: AnimatedBuilder(
+                animation: _animation,
+                builder: (context, child) {
+                  return Transform.scale(
+                    scale: _animation.value,
+                    child: ShaderMask(
+                      shaderCallback: (Rect bounds) {
+                        return LinearGradient(
+                          colors: [
+                            Colors.transparent,
+                            Colors.white.withOpacity(0.3),
+                            Colors.transparent
+                          ],
+                          stops: [
+                            (_shadeAnimation.value - 0.1).clamp(0.0, 1.0),
+                            _shadeAnimation.value.clamp(0.0, 1.0),
+                            (_shadeAnimation.value + 0.1).clamp(0.0, 1.0),
+                            //(_aniController.value - 0.1).clamp(0.0, 1.0),
+                            //_aniController.value,
+                            //(_aniController.value + 0.1).clamp(0.0, 1.0),
+                          ],
+                          begin: const Alignment(-0.6428,
+                              -0.7660), // Approximate values for 50° tilt
+                          end: const Alignment(0.6428, 0.7660),
+                        ).createShader(bounds);
+                      },
+                      blendMode: BlendMode.srcATop,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            minimumSize: Size(40.w, 30.h)),
+                        child: Text(
+                          S.current.go_bind_bank_card,
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                          Navigator.of(context)
+                              .pushNamed(BindBank.routerName, arguments: {
+                            'projectId': projectId,
+                          });
+                        },
+                      ),
+                    ),
+                  );
+                },
+              ),
             ),
+            TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text(S.current.cancel)),
           ],
         );
       },
@@ -95,10 +167,6 @@ class _VerifyPageState extends State<VerifyPage> {
     if (args is DataMap) {
       productId = args['productId'] ?? 0;
     }
-
-
-    print("args producvt id $productId");
-
     //debugPrint(pro)
 
     //return StepperExample();
@@ -108,7 +176,7 @@ class _VerifyPageState extends State<VerifyPage> {
     return Scaffold(
       backgroundColor: Pallete.backgroundColor,
       appBar: AppBar(
-        toolbarHeight: 80.h,
+        toolbarHeight: 100.h,
         centerTitle: false,
         backgroundColor: Pallete.backgroundColor,
         title: Text(
@@ -140,6 +208,10 @@ class _VerifyPageState extends State<VerifyPage> {
 
             if (state is CertifiesSettingsLoadSuccess) {
               UI.hideLoading();
+            }
+
+            if (state is CertifyStepContinue) {
+              _scrollToTop();
             }
           },
           child: SingleChildScrollView(
@@ -175,8 +247,7 @@ class _VerifyPageState extends State<VerifyPage> {
                               context
                                   .read<CertifiesBloc>()
                                   .add(CertifyStepRequest());
-
-                              _scrollToTop();
+                              //_scrollToTop();
                             } else {
                               _showToBankDialog(productId);
 
@@ -220,6 +291,7 @@ class _VerifyPageState extends State<VerifyPage> {
         finishedStepTextColor: Colors.black87,
         //activeStepIconColor: Pallete.primaryColor,
         internalPadding: 0,
+        //padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
         showLoadingAnimation: true,
         stepRadius: 8,
         showStepBorder: false,

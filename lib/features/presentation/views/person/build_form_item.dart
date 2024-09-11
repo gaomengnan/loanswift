@@ -99,7 +99,8 @@ class BuildFormItem extends StatelessWidget {
         );
 
       default:
-        return const Text('未知类型');
+        return Container();
+        //return const Text('未知类型');
     }
 
     //return isSelect

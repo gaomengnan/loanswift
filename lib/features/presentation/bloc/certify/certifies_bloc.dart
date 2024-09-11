@@ -61,9 +61,9 @@ class CertifiesBloc extends Bloc<CertifiesEvent, CertifiesState> {
       case StepperEnum.second:
         currentData = state.personalInfo;
       case StepperEnum.third:
-        currentData = [];
+        currentData = state.emergencyInfo;
       default:
-        currentData = [];
+        currentData = state.workInfo;
     }
 
     resp.fold((l) {}, (r) {
@@ -85,6 +85,17 @@ class CertifiesBloc extends Bloc<CertifiesEvent, CertifiesState> {
             emit(
               state.copyWith(personal: updated),
             );
+
+          case StepperEnum.third:
+            emit(
+              state.copyWith(emerge: updated),
+            );
+
+          case StepperEnum.fourth:
+            emit(
+              state.copyWith(work: updated),
+            );
+
           default:
             emit(
               state.copyWith(personal: updated),

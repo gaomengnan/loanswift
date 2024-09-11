@@ -1,9 +1,14 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:liveness_detection/liveness_detection.dart';
+import 'package:loanswift/core/utils.dart';
 import 'package:loanswift/features/domain/entity/user/certify.dart';
 import 'package:loanswift/features/domain/usecases/common/ocr.dart';
 import 'package:loanswift/features/presentation/bloc/certify/certifies_bloc.dart';
 import 'package:loanswift/features/presentation/views/person/build_form_item.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../../../../core/core.dart';
 
@@ -23,6 +28,8 @@ class _IdentifyVerifyPageState extends State<IdentifyVerifyPage> {
 
   //late String imagez = Assets.idcardFront;
   //late String imagef = Assets.idcardReverse;
+
+  final faceRect = LivenessDetection();
 
   List<String> ocrFields = ['name', 'id_number', 'sex'];
 
@@ -135,11 +142,11 @@ class _IdentifyVerifyPageState extends State<IdentifyVerifyPage> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<CertifiesBloc, CertifiesState>(
-        listener: (context, state) {
+        listener: (context, state) async {
       if (state is CertifiesRequestState) {
         if (_formKey.currentState!.validate()) {
-          context.read<CertifiesBloc>().add(CertifyStepContinue());
         }
+        context.read<CertifiesBloc>().add(CertifyStepContinue());
       }
     }, builder: (context, state) {
       return Form(

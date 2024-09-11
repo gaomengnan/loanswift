@@ -97,7 +97,10 @@
   "bank_card": "Bank Card",
   "submit": "Submit",
   "required_field": "Required Field",
-  "bind_bank_card": "Bind Bank Card"
-
+  "bind_bank_card": "Bind Bank Card",
+  "congratulations_verified": "Congratulations, you have been successfully verified",
+  "go_bind_bank_card": "Go to bind bank card",
+  "verified": "Verified",
+  "go_to_verify": "Go to verify"
 }
 

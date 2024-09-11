@@ -69,4 +69,17 @@ flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+    implementation 'com.google.android.material:material:1.9.0'
+//    implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])
+//    implementation files('libs/iziLivenessSDK_2024.aar')
+    implementation fileTree(dir: 'libs', include: ['*.aar'])
+
+    def camerax_version = "1.2.0-alpha04"
+    implementation 'com.google.mlkit:face-detection:16.1.5'
+    implementation("androidx.camera:camera-core:${camerax_version}")
+    implementation("androidx.camera:camera-camera2:${camerax_version}")
+    implementation("androidx.camera:camera-lifecycle:${camerax_version}")
+    implementation("androidx.camera:camera-view:${camerax_version}")
+    implementation("androidx.camera:camera-mlkit-vision:${camerax_version}")
+}

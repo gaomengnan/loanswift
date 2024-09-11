@@ -999,6 +999,46 @@ class S {
       args: [],
     );
   }
+
+  /// `恭喜您已经认证成功`
+  String get congratulations_verified {
+    return Intl.message(
+      '恭喜您已经认证成功',
+      name: 'congratulations_verified',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `去绑定银行卡`
+  String get go_bind_bank_card {
+    return Intl.message(
+      '去绑定银行卡',
+      name: 'go_bind_bank_card',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `已认证`
+  String get verified {
+    return Intl.message(
+      '已认证',
+      name: 'verified',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `前往认证`
+  String get go_to_verify {
+    return Intl.message(
+      '前往认证',
+      name: 'go_to_verify',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
