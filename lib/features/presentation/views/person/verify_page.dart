@@ -37,7 +37,7 @@ class _VerifyPageState extends State<VerifyPage>
   late AnimationController _aniController;
   late Animation<double> _animation;
 
-  late Animation<double> _shadeAnimation;
+  //late Animation<double> _shadeAnimation;
 
   void _scrollToTop() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -72,12 +72,6 @@ class _VerifyPageState extends State<VerifyPage>
       ),
     );
 
-    _shadeAnimation = Tween<double>(begin: -1.0, end: 1.0).animate(
-      CurvedAnimation(
-        parent: _aniController,
-        curve: Curves.linear, // 线性动画
-      ),
-    );
     super.initState();
   }
 
@@ -104,43 +98,20 @@ class _VerifyPageState extends State<VerifyPage>
                 builder: (context, child) {
                   return Transform.scale(
                     scale: _animation.value,
-                    child: ShaderMask(
-                      shaderCallback: (Rect bounds) {
-                        return LinearGradient(
-                          colors: [
-                            Colors.transparent,
-                            Colors.white.withOpacity(0.3),
-                            Colors.transparent
-                          ],
-                          stops: [
-                            (_shadeAnimation.value - 0.1).clamp(0.0, 1.0),
-                            _shadeAnimation.value.clamp(0.0, 1.0),
-                            (_shadeAnimation.value + 0.1).clamp(0.0, 1.0),
-                            //(_aniController.value - 0.1).clamp(0.0, 1.0),
-                            //_aniController.value,
-                            //(_aniController.value + 0.1).clamp(0.0, 1.0),
-                          ],
-                          begin: const Alignment(-0.6428,
-                              -0.7660), // Approximate values for 50° tilt
-                          end: const Alignment(0.6428, 0.7660),
-                        ).createShader(bounds);
-                      },
-                      blendMode: BlendMode.srcATop,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            minimumSize: Size(40.w, 30.h)),
-                        child: Text(
-                          S.current.go_bind_bank_card,
-                          style: const TextStyle(color: Colors.white),
-                        ),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                          Navigator.of(context)
-                              .pushNamed(BindBank.routerName, arguments: {
-                            'projectId': projectId,
-                          });
-                        },
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          minimumSize: Size(80.w, 30.h)),
+                      child: Text(
+                        S.current.go_bind_bank_card,
+                        style: const TextStyle(color: Colors.white),
                       ),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        Navigator.of(context)
+                            .pushNamed(BindBank.routerName, arguments: {
+                          'projectId': projectId,
+                        });
+                      },
                     ),
                   );
                 },
@@ -202,6 +173,10 @@ class _VerifyPageState extends State<VerifyPage>
               );
             }
 
+            if (state is GoToBindBank) {
+              _showToBankDialog(productId);
+            }
+
             if (state is CertifiesSettingsLoading) {
               UI.showLoading();
             }
@@ -210,8 +185,10 @@ class _VerifyPageState extends State<VerifyPage>
               UI.hideLoading();
             }
 
-            if (state is CertifyStepContinue) {
-              _scrollToTop();
+            if (state is CertifiesRequestState) {
+              Future.delayed(const Duration(milliseconds: 20), () {
+                _scrollToTop();
+              });
             }
           },
           child: SingleChildScrollView(
@@ -231,7 +208,7 @@ class _VerifyPageState extends State<VerifyPage>
                             context
                                 .read<CertifiesBloc>()
                                 .add(CertifyStepBack());
-                            _scrollToTop();
+                            //_scrollToTop();
                           },
                           child: RText(
                             text: S.current.previousStep,
@@ -243,17 +220,9 @@ class _VerifyPageState extends State<VerifyPage>
                       Expanded(
                         child: FilledButton(
                           onPressed: () {
-                            if (!currentStep.isLastStep) {
-                              context
-                                  .read<CertifiesBloc>()
-                                  .add(CertifyStepRequest());
-                              //_scrollToTop();
-                            } else {
-                              _showToBankDialog(productId);
-
-                              //Navigator.of(context)
-                              //    .pushNamed(BindBank.routerName);
-                            }
+                            context
+                                .read<CertifiesBloc>()
+                                .add(CertifyStepRequest());
                           },
                           child: RText(
                             text: S.current.nextStep,

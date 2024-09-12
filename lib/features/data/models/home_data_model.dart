@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:loanswift/features/domain/entity/entity.dart';
+import 'package:loanswift/features/domain/entity/home/other.dart';
 
 HomeDataModel homeDataFromMap(String str) =>
     HomeDataModel.fromMap(json.decode(str));
@@ -14,6 +15,7 @@ class HomeDataModel extends HomeData {
     required super.apiProducts,
     required super.userOrders,
     required super.rules,
+    required super.other,
   });
 
   HomeDataModel.empty()
@@ -23,17 +25,19 @@ class HomeDataModel extends HomeData {
           apiProducts: List<MainProducts>.empty(),
           userOrders: List<UserOrder>.empty(),
           rules: Rules.empty(),
+          other: Other.empty(),
         );
 
   factory HomeDataModel.fromMap(Map<String, dynamic> json) => HomeDataModel(
-        banners:
-            List<BannerEntity>.from(json["banners"].map((x) => BannerEntity.fromMap(x))),
-        mainProducts: MainProducts.fromMap(json["main_products"]),
+        banners: List<BannerEntity>.from(
+            json["banners"].map((x) => BannerEntity.fromMap(x))),
+        mainProducts: MainProducts.fromMap(json["main_products"] ?? {}),
         apiProducts: List<MainProducts>.from(
             json["api_products"].map((x) => MainProducts.fromMap(x))),
         userOrders: List<UserOrder>.from(
             json["user_orders"].map((x) => UserOrder.fromMap(x))),
-        rules: Rules.fromMap(json["rules"]),
+        rules: Rules.fromMap(json["rules"] ?? {}),
+        other: Other.fromMap(json["other"] ?? {}),
       );
 
   Map<String, dynamic> toMap() => {
@@ -50,6 +54,7 @@ class HomeDataModel extends HomeData {
     List<MainProducts>? apiProducts,
     List<UserOrder>? userOrders,
     Rules? rules,
+    Other? other,
   }) =>
       HomeData(
         banners: banners ?? this.banners,
@@ -57,5 +62,6 @@ class HomeDataModel extends HomeData {
         apiProducts: apiProducts ?? this.apiProducts,
         userOrders: userOrders ?? this.userOrders,
         rules: rules ?? this.rules,
+        other: other ?? this.other,
       );
 }

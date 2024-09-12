@@ -10,6 +10,7 @@ class CertifyStepContinue extends CertifiesEvent {}
 class CertifyStepBack extends CertifiesEvent {}
 
 class CertifyStepRequest extends CertifiesEvent {}
+class CertifyLastStepRequest extends CertifiesEvent {}
 
 class CertifyCommitEvent extends CertifiesEvent {
   final int certifyId;

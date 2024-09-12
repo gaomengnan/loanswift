@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/common/widgets/shimmer.dart';
+import 'package:loanswift/core/common/widgets/webview.dart';
 import 'package:loanswift/core/common/widgets/widgets.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/features/presentation/bloc/auth/auth_bloc.dart';
@@ -35,7 +36,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     super.initState();
   }
 
-
   @override
   void dispose() {
     _refreshController.dispose();
@@ -48,6 +48,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     final isLogined = context
         .select((AuthBloc auth) => auth.state.authenticationStatus.isLogined);
+
+    final feedbackUrl = context.select((HomeBloc auth) => auth.state.homeData.other.feedbackUrl);
 
     debugPrint('isLogined: $isLogined');
 
@@ -63,12 +65,25 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             ),
           ),
         ),
-        //actions: [
-        //  const Icon(
-        //    IconlyBold.message,
-        //  ),
-        //  UI.kWidth20(),
-        //],
+        actions: [
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => WebViewComponent(
+                    url: feedbackUrl,
+                    title: S.current.feedback,
+                  ),
+                ),
+              );
+            },
+            child: const Icon(
+              Icons.feedback_rounded,
+            ),
+          ),
+          UI.kWidth20(),
+        ],
         leading: Row(
           children: [
             UI.kWidth20(),

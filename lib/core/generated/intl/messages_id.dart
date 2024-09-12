@@ -52,6 +52,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorPhone": MessageLookupByLibrary.simpleMessage(
             "Masukkan nomor telepon yang benar"),
         "exclusive": MessageLookupByLibrary.simpleMessage("Eksklusif"),
+        "feedback": MessageLookupByLibrary.simpleMessage("Umpan Balik"),
         "free_concession": MessageLookupByLibrary.simpleMessage("Discount"),
         "get_credit_limit":
             MessageLookupByLibrary.simpleMessage("Dapatkan Limit Kredit"),
@@ -77,6 +78,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Pembayaran Langsung"),
         "install_packages":
             MessageLookupByLibrary.simpleMessage("Aplikasi Terinstal"),
+        "installment_repayment":
+            MessageLookupByLibrary.simpleMessage("Cicilan"),
         "jindengluzhuce":
             MessageLookupByLibrary.simpleMessage("Hanya masuk atau daftar"),
         "lang": MessageLookupByLibrary.simpleMessage("id"),
@@ -105,6 +108,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "nextStep": MessageLookupByLibrary.simpleMessage("Langkah Berikutnya"),
         "no_credit_limit": MessageLookupByLibrary.simpleMessage(
             "Belum Mendapatkan Limit, Tidak Ada Tagihan"),
+        "normal_repayment": MessageLookupByLibrary.simpleMessage("Bayar"),
         "notification": MessageLookupByLibrary.simpleMessage("Pemberitahuan"),
         "orderDetails": MessageLookupByLibrary.simpleMessage("Detail Pesanan"),
         "overdue": MessageLookupByLibrary.simpleMessage("Telat"),
@@ -169,6 +173,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "verification_code_wrong":
             MessageLookupByLibrary.simpleMessage("Kode verifikasi salah"),
         "verified": MessageLookupByLibrary.simpleMessage("Terverifikasi"),
+        "view_contract": MessageLookupByLibrary.simpleMessage("Kontrak"),
         "welcome_you": MessageLookupByLibrary.simpleMessage("Selamat datang"),
         "work_information":
             MessageLookupByLibrary.simpleMessage("Informasi Pekerjaan")

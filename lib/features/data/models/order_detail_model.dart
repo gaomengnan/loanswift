@@ -12,6 +12,7 @@ class OrderDetailModel extends OrderDetail {
     required super.userOrderDetail,
     required super.repayPlan,
     required super.bestDesc,
+    required super.jumpPath,
   });
 
   OrderDetailModel.empty()
@@ -26,26 +27,28 @@ class OrderDetailModel extends OrderDetail {
           userOrderDetail: UserOrderDetail.empty(),
           repayPlan: RepayPlanEntity.empty(),
           bestDesc: [],
+          jumpPath: JumpPath.empty(),
         );
 
   // 从 Map 创建 OrderInfo 实体
   factory OrderDetailModel.fromMap(Map<String, dynamic> map) {
-    final bestDesc = map.containsKey('best_desc')? map['best_desc'] : [];
+    final bestDesc = map.containsKey('best_desc') ? map['best_desc'] : [];
     return OrderDetailModel(
-      orderStatus: map['order_status'],
-      noticeStatusText: map['notice_status_text'],
-      noticeDesText: map['notice_des_text'],
-      vCode: map['v_code'],
-      productName: map['product_name'],
-      productLogo: map['product_logo'],
-      isDelay: map['is_delay'],
-      userOrderDetail: UserOrderDetail.fromMap(map['user_order_detail']),
-      repayPlan: RepayPlanEntity.fromMap(
-        map.containsKey('repay_plan') ? map['repay_plan'] : <String, dynamic>{},
-      ),
-      bestDesc:
-          List<BestDesc>.from(bestDesc.map((x) => BestDesc.fromMap(x))),
-    );
+        orderStatus: map['order_status'],
+        noticeStatusText: map['notice_status_text'],
+        noticeDesText: map['notice_des_text'],
+        vCode: map['v_code'],
+        productName: map['product_name'],
+        productLogo: map['product_logo'],
+        isDelay: map['is_delay'],
+        userOrderDetail: UserOrderDetail.fromMap(map['user_order_detail']),
+        repayPlan: RepayPlanEntity.fromMap(
+          map.containsKey('repay_plan')
+              ? map['repay_plan']
+              : <String, dynamic>{},
+        ),
+        bestDesc: List<BestDesc>.from(bestDesc.map((x) => BestDesc.fromMap(x))),
+        jumpPath: JumpPath.fromMap(map['jump_path'] ?? {}));
   }
 
   // 将 OrderInfo 实体转换为 Map

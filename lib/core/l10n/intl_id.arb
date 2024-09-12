@@ -100,5 +100,9 @@
   "congratulations_verified": "Selamat, Anda telah berhasil diverifikasi",
   "go_bind_bank_card": "Pergi ke menghubungkan kartu bank",
   "verified": "Terverifikasi",
-  "go_to_verify": "Pergi ke verifikasi"
+  "go_to_verify": "Pergi ke verifikasi",
+  "view_contract": "Kontrak",
+  "installment_repayment": "Cicilan",
+  "normal_repayment": "Bayar",
+  "feedback": "Umpan Balik"
 }

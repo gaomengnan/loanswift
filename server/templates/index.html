@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    hello world
+    <script>
+    function getUrlParams() {
+      // 使用 window.location.href 获取当前页面的完整 URL
+      const url = new URL(window.location.href);
+
+      // 使用 URLSearchParams 对象解析查询参数
+      const params = new URLSearchParams(url.search);
+
+      // 获取单个参数的值
+      const param1 = params.get('token');
+      const param2 = params.get('param2');
+
+      // 将参数显示在页面上
+      document.body.innerHTML += `<p>param1: ${param1}</p>`;
+      document.body.innerHTML += `<p>param2: ${param2}</p>`;
+
+      // 或者将所有参数作为对象返回
+      let allParams = {};
+      params.forEach((value, key) => {
+        allParams[key] = value;
+      });
+
+      console.log(allParams); // 输出所有参数
+
+      alert(window.token);
+    }
+
+    // 页面加载完成后调用 getUrlParams
+    window.onload = getUrlParams;
+    </script>
+  </body>
+  
+</html>
+
+

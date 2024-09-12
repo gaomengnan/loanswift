@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/common/widgets/loading_page.dart';
+import 'package:loanswift/core/common/widgets/webview.dart';
 import 'package:loanswift/core/common/widgets/widgets.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/features/presentation/bloc/order/order_bloc.dart';
@@ -117,150 +118,218 @@ class _OrderDetailState extends State<OrderDetail> {
             if (state is OrderLoadDetailSuccess) {
               final succeed = state;
               final bestDesc = succeed.orderDetail.bestDesc;
-              return ListView(
-                shrinkWrap: true,
-                padding: EdgeInsets.symmetric(
-                  horizontal: 10.w,
-                ),
+              return Stack(
                 children: [
-                  Card(
-                    color: Colors.white,
-                    elevation: 1,
-                    child: SizedBox(
-                      height: 100.h,
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                          top: 10.0.h,
-                          left: 10.w,
-                          right: 10.w,
-                          bottom: 10.h,
+                  ListView(
+                    shrinkWrap: true,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 10.w,
+                    ),
+                    children: [
+                      Card(
+                        color: Colors.white,
+                        elevation: 1,
+                        child: SizedBox(
+                          height: 100.h,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                              top: 10.0.h,
+                              left: 10.w,
+                              right: 10.w,
+                              bottom: 10.h,
+                            ),
+                            child: Column(
+                              children: [
+                                Expanded(
+                                  child: RText(
+                                    color: Colors.red,
+                                    text: succeed.orderDetail.noticeStatusText,
+                                    size: 20.sp,
+                                  ),
+                                ),
+                                Expanded(
+                                  child: RText(
+                                    text: succeed.orderDetail.noticeDesText,
+                                    size: 13.sp,
+                                    color: Pallete.greyColor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
+                      ),
+                      Card(
+                        color: Pallete.whiteColor,
+                        elevation: 1,
                         child: Column(
                           children: [
-                            Expanded(
-                              child: RText(
-                                color: Colors.red,
-                                text: succeed.orderDetail.noticeStatusText,
-                                size: 20.sp,
+                            /*  
+                            Application Logo And Name Desc 
+                        */
+
+                            Container(
+                              margin: const EdgeInsets.all(10),
+                              padding: const EdgeInsets.all(5),
+                              decoration: const BoxDecoration(
+                                color: Colors.black12,
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
                               ),
-                            ),
-                            Expanded(
-                              child: RText(
-                                text: succeed.orderDetail.noticeDesText,
-                                size: 13.sp,
-                                color: Pallete.greyColor,
-                              ),
-                            ),
-                            /*  再次申请按钮 */
-                            Expanded(
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    minimumSize: Size(
-                                  ScreenUtil().screenWidth * 0.5 ,
-                                  0
-                                )),
-                                onPressed: () {},
-                                child: const Text(
-                                  "偿还",
-                                  style: TextStyle(
-                                    color: Pallete.whiteColor,
+                              child: ListTile(
+                                contentPadding: const EdgeInsets.symmetric(
+                                  vertical: 0,
+                                  horizontal: 0,
+                                ),
+                                leading: UI.squareContainer(
+                                  Image(
+                                    height: 40,
+                                    width: 40,
+                                    fit: BoxFit.cover,
+                                    image: CachedNetworkImageProvider(
+                                      succeed.orderDetail.productLogo,
+                                      errorListener: (p0) {},
+                                    ),
                                   ),
+                                ),
+                                title: RText(
+                                  textAlign: TextAlign.start,
+                                  text: succeed.orderDetail.productName,
+                                  fontWeight: FontWeight.w600,
+                                  size: 14.sp,
                                 ),
                               ),
                             ),
-                            //UI.kHeight5(),
+
+                            /*
+                           Application Detail Desc
+                        */
+                            ...succeed.orderDetail.userOrderDetail.detail
+                                .map((e) => buildListTile(e.text, e.value)),
+                            //buildListTile("贷款日期", "asdada"),
                           ],
                         ),
                       ),
-                    ),
-                  ),
-                  Card(
-                    color: Pallete.whiteColor,
-                    elevation: 1,
-                    child: Column(
-                      children: [
-                        /*  
-                        Application Logo And Name Desc 
-                    */
 
-                        Container(
-                          margin: const EdgeInsets.all(10),
-                          padding: const EdgeInsets.all(5),
-                          decoration: const BoxDecoration(
-                            color: Colors.black12,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10),
-                            ),
-                          ),
-                          child: ListTile(
-                            contentPadding: const EdgeInsets.symmetric(
-                              vertical: 0,
-                              horizontal: 0,
-                            ),
-                            leading: UI.squareContainer(
-                              Image(
-                                height: 40,
-                                width: 40,
-                                fit: BoxFit.cover,
-                                image: CachedNetworkImageProvider(
-                                  succeed.orderDetail.productLogo,
-                                  errorListener: (p0) {},
-                                ),
-                              ),
-                            ),
-                            title: RText(
-                              textAlign: TextAlign.start,
-                              text: succeed.orderDetail.productName,
-                              fontWeight: FontWeight.w600,
-                              size: 14.sp,
-                            ),
+                      /*   BUILD TIME LINE  */
+
+                      if (bestDesc.isNotEmpty)
+                        Card(
+                          color: Colors.white,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ...List.generate(bestDesc.length, (index) {
+                                final data = bestDesc[index];
+                                return Padding(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 20.w),
+                                  child: MyTimeline(
+                                    isFirst: index == 0,
+                                    isLast: index == bestDesc.length - 1,
+                                    isPast: data.isLock == 1,
+                                    enchild: EventCard(
+                                      isPast: data.isLock == 1,
+                                      asset: const Icon(
+                                        IconlyBold.notification,
+                                      ),
+                                      title: data.title,
+                                      status: data.status,
+                                      amount: data.amount,
+                                      amountDesc: data.amountDesc,
+                                    ),
+                                  ),
+                                );
+                              }),
+                              UI.kHeight20(),
+                            ],
                           ),
                         ),
-
-                        /*
-                       Application Detail Desc
-                    */
-                        ...succeed.orderDetail.userOrderDetail.detail
-                            .map((e) => buildListTile(e.text, e.value)),
-                        //buildListTile("贷款日期", "asdada"),
-                      ],
-                    ),
+                      //if (bestDesc.isEmpty) Placeholder(),
+                    ],
                   ),
-
-                  /*   BUILD TIME LINE  */
-
-                  if (bestDesc.isNotEmpty)
-                    Card(
-                      color: Colors.white,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 10.w),
+                      decoration: BoxDecoration(color: Colors.grey.shade200),
+                      width: ScreenUtil().screenWidth,
+                      height: 50.h,
+                      child: Wrap(
+                        spacing: 10.w,
+                        alignment: WrapAlignment.end,
                         children: [
-                          ...List.generate(bestDesc.length, (index) {
-                            final data = bestDesc[index];
-                            return Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 20.w),
-                              child: MyTimeline(
-                                isFirst: index == 0,
-                                isLast: index == bestDesc.length - 1,
-                                isPast: data.isLock == 1,
-                                enchild: EventCard(
-                                  isPast: data.isLock == 1,
-                                  asset: const Icon(
-                                    IconlyBold.notification,
+                          if (succeed.orderDetail.orderStatus > 151 &&
+                              succeed.orderDetail.orderStatus != 999)
+                            OutlinedButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => WebViewComponent(
+                                      url: succeed.orderDetail.jumpPath
+                                          .jumpByLoanContact,
+                                      title: S.current.view_contract,
+                                    ),
                                   ),
-                                  title: data.title,
-                                  status: data.status,
-                                  amount: data.amount,
-                                  amountDesc: data.amountDesc,
-                                ),
+                                );
+                              },
+                              child: RText(
+                                text: S.current.view_contract,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black,
                               ),
-                            );
-                          }),
-                          UI.kHeight20(),
+                            ),
+                          if (succeed.orderDetail.orderStatus > 151 &&
+                              succeed.orderDetail.orderStatus != 999 &&
+                              succeed.orderDetail.orderStatus != 200)
+                            OutlinedButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => WebViewComponent(
+                                      url: succeed
+                                          .orderDetail.jumpPath.jumpByDelay,
+                                      title: S.current.installment_repayment,
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: RText(
+                                text: S.current.installment_repayment,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black,
+                              ),
+                            ),
+                          if (succeed.orderDetail.orderStatus > 151 &&
+                              succeed.orderDetail.orderStatus != 999 &&
+                              succeed.orderDetail.orderStatus != 200)
+                            ElevatedButton(
+                              onPressed: () {
+                                // 处理按钮点击事件
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => WebViewComponent(
+                                      url: succeed
+                                          .orderDetail.jumpPath.jumpByNormal,
+                                      title: S.current.normal_repayment,
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: RText(
+                                text: S.current.normal_repayment,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
                         ],
                       ),
                     ),
-                  //if (bestDesc.isEmpty) Placeholder(),
+                  ),
                 ],
               );
             }

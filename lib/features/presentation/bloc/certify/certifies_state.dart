@@ -128,6 +128,17 @@ class CertifiesSettingsLoadSuccess extends CertifiesState {
   });
 }
 
+class GoToBindBank extends CertifiesState {
+  const GoToBindBank ({
+    //required super.settings,
+    required super.cerfityStep,
+    required super.identifyInfo,
+    required super.emergencyInfo,
+    required super.personalInfo,
+    required super.workInfo,
+  });
+}
+
 class CertifiesRequestState extends CertifiesState {
   const CertifiesRequestState({
     required super.cerfityStep,

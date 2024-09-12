@@ -48,6 +48,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorPhone":
             MessageLookupByLibrary.simpleMessage("Invalid phone number"),
         "exclusive": MessageLookupByLibrary.simpleMessage("Exclusive"),
+        "feedback": MessageLookupByLibrary.simpleMessage("Feedback"),
         "free_concession": MessageLookupByLibrary.simpleMessage("Concession"),
         "get_credit_limit":
             MessageLookupByLibrary.simpleMessage("Get Credit Limit"),
@@ -71,6 +72,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Immediate Repayment"),
         "install_packages":
             MessageLookupByLibrary.simpleMessage("Installed Applications"),
+        "installment_repayment":
+            MessageLookupByLibrary.simpleMessage("Installment Repayment"),
         "jindengluzhuce":
             MessageLookupByLibrary.simpleMessage("Login or register only"),
         "lang": MessageLookupByLibrary.simpleMessage("en"),
@@ -95,6 +98,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "nextStep": MessageLookupByLibrary.simpleMessage("Next Step"),
         "no_credit_limit": MessageLookupByLibrary.simpleMessage(
             "No Credit Limit Available, No Bill"),
+        "normal_repayment":
+            MessageLookupByLibrary.simpleMessage("Normal Repayment"),
         "notification": MessageLookupByLibrary.simpleMessage("Notifications"),
         "orderDetails": MessageLookupByLibrary.simpleMessage("Order Details"),
         "overdue": MessageLookupByLibrary.simpleMessage("Late"),
@@ -159,6 +164,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "verification_code_wrong":
             MessageLookupByLibrary.simpleMessage("Incorrect verification code"),
         "verified": MessageLookupByLibrary.simpleMessage("Verified"),
+        "view_contract": MessageLookupByLibrary.simpleMessage("View Contract"),
         "welcome_you": MessageLookupByLibrary.simpleMessage("You Welcome"),
         "work_information":
             MessageLookupByLibrary.simpleMessage("Work Information")

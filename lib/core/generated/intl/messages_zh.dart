@@ -46,6 +46,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("请输入验证码"),
         "errorPhone": MessageLookupByLibrary.simpleMessage("请输入正确手机号码"),
         "exclusive": MessageLookupByLibrary.simpleMessage("优质专享"),
+        "feedback": MessageLookupByLibrary.simpleMessage("意见反馈"),
         "free_concession": MessageLookupByLibrary.simpleMessage("费率优惠"),
         "get_credit_limit": MessageLookupByLibrary.simpleMessage("获取额度"),
         "go_bind_bank_card": MessageLookupByLibrary.simpleMessage("去绑定银行卡"),
@@ -61,6 +62,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "identity_authentication": MessageLookupByLibrary.simpleMessage("身份认证"),
         "immediate_repayment": MessageLookupByLibrary.simpleMessage("立即还款"),
         "install_packages": MessageLookupByLibrary.simpleMessage("已安装的应用程序"),
+        "installment_repayment": MessageLookupByLibrary.simpleMessage("分期还款"),
         "jindengluzhuce": MessageLookupByLibrary.simpleMessage("仅登录或者注册"),
         "lang": MessageLookupByLibrary.simpleMessage("zh"),
         "lijishengqing": MessageLookupByLibrary.simpleMessage("立即申请"),
@@ -81,6 +83,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "network_error": MessageLookupByLibrary.simpleMessage("网络连接异常"),
         "nextStep": MessageLookupByLibrary.simpleMessage("下一步"),
         "no_credit_limit": MessageLookupByLibrary.simpleMessage("暂未获取额度，无账单"),
+        "normal_repayment": MessageLookupByLibrary.simpleMessage("正常还款"),
         "notification": MessageLookupByLibrary.simpleMessage("通知"),
         "orderDetails": MessageLookupByLibrary.simpleMessage("订单详情"),
         "overdue": MessageLookupByLibrary.simpleMessage("已逾期"),
@@ -129,6 +132,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "verification_code_wrong":
             MessageLookupByLibrary.simpleMessage("验证码错误"),
         "verified": MessageLookupByLibrary.simpleMessage("已认证"),
+        "view_contract": MessageLookupByLibrary.simpleMessage("查看合同"),
         "welcome_you": MessageLookupByLibrary.simpleMessage("欢迎你"),
         "work_information": MessageLookupByLibrary.simpleMessage("工作信息")
       };

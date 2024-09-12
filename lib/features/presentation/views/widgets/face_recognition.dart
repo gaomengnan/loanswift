@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -51,7 +51,7 @@ class FaceRecognotion extends FormField<List<ImagePickEntity>> {
           builder: (FormFieldState<List<ImagePickEntity>> state) {
             final faceRect = LivenessDetection();
             return SizedBox(
-              //height: 100.h,
+              //height: 50.h,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -85,60 +85,79 @@ class FaceRecognotion extends FormField<List<ImagePickEntity>> {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      GestureDetector(
-                        onTap: () async {
-                          try {
-                            final status = await Permission.camera.status;
-                            if (status != PermissionStatus.granted) {
-                              await Permission.camera.request();
-                            }
+                      info.isCertify()
+                          ? RText(
+                              text: S.current.verified,
+                              color: Colors.green,
+                            )
+                          : TextButton(
+                            style: TextButton.styleFrom(minimumSize: const Size(100, 30)),
+                              child: RText(text: S.current.go_to_verify),
+                              onPressed: () async {
+                                try {
+                                  final status =
+                                      await Permission.camera.status;
+                                  if (status != PermissionStatus.granted) {
+                                    await Permission.camera.request();
+                                  }
 
-                            final faceData = await faceRect.startFaceRect();
+                                  final faceData =
+                                      await faceRect.startFaceRect();
 
-                            File imgFile = await Utils.base64ToFile(
-                                faceData ?? '', "face.png");
-                            final resp = await Utils.uploadImage(
-                                imgFile.path, "living_img");
+                                  // 清理 Base64 字符串中的换行符和空格
+                                  String? cleanedBase64String = faceData
+                                      ?.replaceAll(RegExp(r'\s+'), '');
 
-                            resp.fold(
-                              (err) => UI.showError(context, err.message),
-                              (l) {
-                                UI.hideLoading();
+                                  if (cleanedBase64String == null ||
+                                      cleanedBase64String.isEmpty) {
+                                    return;
+                                  }
 
-                                final body = l.data as DataMap?;
-                                //final path = body?['data']['path'];
-                                final object = body?['data']['object'];
-                                final url = body?['data']['path'];
+                                  UI.showLoading();
+                                  // 将 Base64 字符串解码为 Uint8List
+                                  var bytes =
+                                      base64Decode(cleanedBase64String);
 
-                                state.didChange([
-                                  ImagePickEntity(
-                                    imgData: object,
-                                    url: url,
-                                  )
-                                ]);
+                                  final resp =
+                                      await Utils.uploadImageFromBytes(
+                                          bytes, "living_img");
 
-                                if (onChanged != null) {
-                                  onChanged(object);
+                                  resp.fold(
+                                    (err) =>
+                                        UI.showError(context, err.message),
+                                    (l) {
+                                      UI.hideLoading();
+
+                                      final body = l.data as DataMap?;
+                                      //final path = body?['data']['path'];
+                                      final object = body?['data']['object'];
+                                      final url = body?['data']['path'];
+
+                                      state.didChange([
+                                        ImagePickEntity(
+                                          imgData: object,
+                                          url: url,
+                                        )
+                                      ]);
+
+                                      if (onChanged != null) {
+                                        onChanged(object);
+                                      }
+
+                                      //state.didChange(List.from(state.value ?? [])
+                                      //  ..addAll([File(pickedFiles.path)]));
+                                    },
+                                  );
+                                } catch (_) {
+                                  UI.hideLoading();
                                 }
-
-                                //state.didChange(List.from(state.value ?? [])
-                                //  ..addAll([File(pickedFiles.path)]));
+                                //showUploadTypeBottomSheet(context);
                               },
-                            );
-                          } catch (_) {}
-                          //showUploadTypeBottomSheet(context);
-                        },
-                        child: info.isCertify()
-                            ? RText(
-                                text: S.current.verified,
-                                color: Colors.green,
-                              )
-                            : RText(text: S.current.go_to_verify),
-                      )
+                            )
                     ],
                   ),
                   //,
-                  UI.kHeight5(),
+                  //UI.kHeight5(),
                   if (state.hasError)
                     RText(
                       text: info.promptSubtitle,

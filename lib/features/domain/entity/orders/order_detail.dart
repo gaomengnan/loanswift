@@ -11,6 +11,8 @@ class OrderDetail {
 
   final List<BestDesc> bestDesc;
 
+  final JumpPath jumpPath;
+
   // 构造函数
   OrderDetail({
     required this.orderStatus,
@@ -23,11 +25,41 @@ class OrderDetail {
     required this.userOrderDetail,
     required this.repayPlan,
     required this.bestDesc,
+    required this.jumpPath,
   });
 
   @override
   String toString() {
     return 'OrderInfo(orderStatus: $orderStatus, noticeStatusText: $noticeStatusText, noticeDesText: $noticeDesText, vCode: $vCode, productName: $productName, productLogo: $productLogo, isDelay: $isDelay, userOrderDetail: $userOrderDetail)';
+  }
+}
+
+class JumpPath {
+  final String jumpByDelay;
+
+  final String jumpByNormal;
+
+  final String jumpByLoanContact;
+
+  JumpPath.empty()
+      : this(
+          jumpByDelay: '',
+          jumpByNormal: '',
+          jumpByLoanContact: ''
+        );
+
+  JumpPath({
+    required this.jumpByDelay,
+    required this.jumpByNormal,
+    required this.jumpByLoanContact,
+  });
+
+  factory JumpPath.fromMap(Map<String, dynamic> map) {
+    return JumpPath(
+      jumpByDelay: map['jump_by_delay'].toString(),
+      jumpByNormal: map['jump_by_normal'].toString(),
+      jumpByLoanContact: map['jump_by_loan_contact'].toString(),
+    );
   }
 }
 

@@ -133,84 +133,94 @@ class _BindBankState extends State<BindBank> {
             return Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
               child: SafeArea(
-                child: Form(
-                  key: formKey,
-                  child: Column(
-                    children: [
-                      _buildBindBankField(S.current.phone_code,
-                          Icons.phone_rounded, 'user_mobile'),
-                      _buildBindBankField(S.current.user_name,
-                          Icons.person_rounded, 'user_name'),
-                      _buildBindBankField(S.current.id_card,
-                          Icons.credit_score_outlined, 'id_card'),
-                      buildBank(snap),
-                      UI.kWidth10(),
-                      Container(
-                        margin: EdgeInsets.symmetric(vertical: 8.h),
-                        decoration: BoxDecoration(
-                          color: Colors.grey[200], // 背景颜色
-                          borderRadius: BorderRadius.circular(12), // 圆角半径
-                        ),
-                        child: TextFormField(
-                          textAlignVertical: TextAlignVertical.center,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly,
-                            LengthLimitingTextInputFormatter(19),
-                            CardNumberInputFormatter(),
-                          ],
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return S.current.required_field;
-                            }
-
-                            return null;
-                          },
-                          onSaved: (s) {
-                            data['card_no'] = s;
-                          },
-                          keyboardType: TextInputType.number,
-                          decoration: InputDecoration(
-                            contentPadding:
-                                EdgeInsets.symmetric(horizontal: 10.w),
-                            enabledBorder: InputBorder.none,
-                            disabledBorder: InputBorder.none,
-                            focusedErrorBorder: InputBorder.none,
-                            focusedBorder: const OutlineInputBorder(),
-                            errorBorder: InputBorder.none,
-                            hintText: S.current.bank_card,
-                            suffixIcon: Padding(
-                              padding: EdgeInsets.symmetric(vertical: 10.h),
-                              child: const Icon(
-                                Icons.credit_card_rounded,
+                child: SingleChildScrollView(
+                  child: Form(
+                    key: formKey,
+                    child: Column(
+                      children: [
+                        _buildBindBankField(S.current.phone_code,
+                            Icons.phone_rounded, 'user_mobile'),
+                        //UI.kHeight10(),
+                        _buildBindBankField(S.current.user_name,
+                            Icons.person_rounded, 'user_name'),
+                        //UI.kHeight10(),
+                        _buildBindBankField(S.current.id_card,
+                            Icons.credit_score_outlined, 'id_card'),
+                        UI.kHeight20(),
+                        buildBank(snap),
+                        UI.kHeight20(),
+                        Container(
+                          margin: EdgeInsets.symmetric(vertical: 8.h),
+                          decoration: BoxDecoration(
+                            color: Colors.grey[200], // 背景颜色
+                            borderRadius: BorderRadius.circular(12), // 圆角半径
+                          ),
+                          child: TextFormField(
+                            textAlignVertical: TextAlignVertical.center,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.digitsOnly,
+                              LengthLimitingTextInputFormatter(19),
+                              CardNumberInputFormatter(),
+                            ],
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return S.current.required_field;
+                              }
+                  
+                              return null;
+                            },
+                            onSaved: (s) {
+                              data['card_no'] = s;
+                            },
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                              contentPadding:
+                                  EdgeInsets.symmetric(horizontal: 10.w),
+                              enabledBorder: InputBorder.none,
+                              disabledBorder: InputBorder.none,
+                              focusedErrorBorder: InputBorder.none,
+                              focusedBorder: const OutlineInputBorder(),
+                              errorBorder: InputBorder.none,
+                              hintText: S.current.bank_card,
+                              suffixIcon: Padding(
+                                padding: EdgeInsets.symmetric(vertical: 10.h),
+                                child: const Icon(
+                                  Icons.credit_card_rounded,
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                      UI.kHeight20(),
-                      OutlinedButton(
-                        onPressed: () async {
-                          final validate =
-                              formKey.currentState?.validate() ?? false;
-
-                          if (validate) {
-                            formKey.currentState?.save();
-
-                            final AuthRepo authRepo = sl();
-                            data['product_id'] = productId;
-                            final resp = await authRepo.bindBank(data);
-                            resp.fold((l) {
-                              UI.showError(context, l.message);
-                            }, (r) {
-
-                            });
-                          }
-                        },
-                        style: OutlinedButton.styleFrom(
-                            minimumSize: Size(200.w, 30.h)),
-                        child: Text(S.current.submit),
-                      ),
-                    ],
+                  
+                  
+                  
+                        SizedBox(height: 100.h,),
+                  
+                  
+                        OutlinedButton(
+                          onPressed: () async {
+                            final validate =
+                                formKey.currentState?.validate() ?? false;
+                  
+                            if (validate) {
+                              formKey.currentState?.save();
+                  
+                              final AuthRepo authRepo = sl();
+                              data['product_id'] = productId;
+                              final resp = await authRepo.bindBank(data);
+                              resp.fold((l) {
+                                UI.showError(context, l.message);
+                              }, (r) {
+                  
+                              });
+                            }
+                          },
+                          style: OutlinedButton.styleFrom(
+                              minimumSize: Size(300.w, 40.h)),
+                          child: Text(S.current.submit),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -254,7 +264,7 @@ class _BindBankState extends State<BindBank> {
 
   Widget _buildBindBankField(String hintText, IconData icon, String fieldName) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 8.h),
+      margin: EdgeInsets.symmetric(vertical: 10.h),
       decoration: BoxDecoration(
         color: Colors.grey[200], // 背景颜色
         borderRadius: BorderRadius.circular(12), // 圆角半径

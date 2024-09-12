@@ -139,6 +139,15 @@ class CertifiesBloc extends Bloc<CertifiesEvent, CertifiesState> {
       CertifyStepContinue event, Emitter<CertifiesState> emit) async {
     //final step = state.cerfityStep;
     emit(state.copyWith(step: state.cerfityStep.nextStep));
+    emit(
+      GoToBindBank(
+        cerfityStep: state.cerfityStep,
+        identifyInfo: state.identifyInfo,
+        emergencyInfo: state.emergencyInfo,
+        personalInfo: state.personalInfo,
+        workInfo: state.workInfo,
+      ),
+    );
   }
 
   // 加载认证项目
@@ -161,10 +170,20 @@ class CertifiesBloc extends Bloc<CertifiesEvent, CertifiesState> {
           currentStep = currentStep.nextStep;
         }
 
-        if (l.emergencyInfo
+        if (l.personalInfo
             .every((element) => element.isCertify() && element.isMust())) {
           currentStep = currentStep.nextStep;
         }
+
+        if (l.emergencyInfo
+          .every((element) => element.isCertify() && element.isMust())) {
+          currentStep = currentStep.nextStep;
+        }
+
+        //if (l.emergencyInfo
+        //  .every((element) => element.isCertify() && element.isMust())) {
+        //  currentStep = currentStep.nextStep;
+        //}
 
         emit(
           CertifiesSettingsLoadSuccess(

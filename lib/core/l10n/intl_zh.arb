@@ -101,5 +101,9 @@
   "congratulations_verified": "恭喜您已经认证成功",
   "go_bind_bank_card": "去绑定银行卡",
   "verified": "已认证",
-  "go_to_verify": "前往认证"
+  "go_to_verify": "前往认证",
+  "view_contract": "查看合同",
+  "installment_repayment": "分期还款",
+  "normal_repayment": "正常还款",
+  "feedback": "意见反馈"
 }

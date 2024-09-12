@@ -1039,6 +1039,46 @@ class S {
       args: [],
     );
   }
+
+  /// `查看合同`
+  String get view_contract {
+    return Intl.message(
+      '查看合同',
+      name: 'view_contract',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `分期还款`
+  String get installment_repayment {
+    return Intl.message(
+      '分期还款',
+      name: 'installment_repayment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `正常还款`
+  String get normal_repayment {
+    return Intl.message(
+      '正常还款',
+      name: 'normal_repayment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `意见反馈`
+  String get feedback {
+    return Intl.message(
+      '意见反馈',
+      name: 'feedback',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
