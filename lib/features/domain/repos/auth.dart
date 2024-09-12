@@ -30,4 +30,6 @@ abstract class AuthRepo {
 
 
   ResultVoid bindBank(DataMap data);
+  
+  ResultFuture<DataMap> getCreditResult();
 }

@@ -2,17 +2,21 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/core.dart';
+import 'package:loanswift/features/domain/entity/home/rules.dart';
 import 'package:loanswift/features/domain/entity/products/main_products.dart';
+import 'package:loanswift/features/presentation/views/person/bind_bank.dart';
 import 'package:loanswift/features/presentation/views/person/verify_page.dart';
 
 import '../../../../core/common/widgets/widgets.dart';
 import '../../../../theme/theme.dart';
 
-class BuildQuota extends StatelessWidget {
+class BuildMainEntry extends StatelessWidget {
   final MainProducts mainProducts;
-  const BuildQuota({
+  final Rules rule;
+  const BuildMainEntry({
     super.key,
     required this.mainProducts,
+    required this.rule,
   });
 
   @override
@@ -261,12 +265,22 @@ class BuildQuota extends StatelessWidget {
                             // 按钮
                             ElevatedButton(
                               onPressed: () {
-                                Navigator.of(context).pushNamed(
-                                  VerifyPage.routerName,
-                                  arguments:  {
-                                    'productId': mainProducts.productId,
-                                  }
-                                );
+                                if (!rule.certifyCompleted) {
+                                  Navigator.of(context).pushNamed(
+                                      VerifyPage.routerName,
+                                      arguments: {
+                                        'productId': mainProducts.productId,
+                                      });
+                                }
+
+                                if (rule.certifyCompleted && !rule.isBindCard) {
+                                  Navigator.of(context).pushNamed(
+                                    BindBank.routerName,
+                                    arguments: {
+                                      'productId': mainProducts.productId,
+                                    },
+                                  );
+                                }
                               },
                               child: Center(
                                 child: Text(

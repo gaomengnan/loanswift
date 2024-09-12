@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +30,9 @@ class _BindBankState extends State<BindBank> {
 
   final DataMap data = {};
 
+  // 创建 StreamSubscription 变量
+  StreamSubscription? subscription;
+
   Future<List<BankCardModel>> getBankds() async {
     final GetBanks getBanks = sl();
     final resp = await getBanks.call();
@@ -41,7 +46,36 @@ class _BindBankState extends State<BindBank> {
   @override
   void dispose() {
     _controller.dispose();
+    if (subscription != null) {
+      subscription?.cancel();
+    }
     super.dispose();
+  }
+
+  void startPolling() {
+    if (subscription != null) return;
+    subscription =
+        Stream.periodic(const Duration(seconds: 2)).listen((event) async {
+      final AuthRepo repo = sl();
+      final creditResult = await repo.getCreditResult();
+
+      creditResult.fold((l) {
+        UI.showError(context, l.message);
+        subscription?.cancel();
+      }, (r) {
+        final creditStatus = r['credit_status'];
+
+        if (creditStatus == 1) {
+          UI.showSuccess(context, "授信成功");
+          subscription?.cancel();
+        }
+
+        if (creditStatus == -2) {
+          UI.showError(context, "授信失败");
+          subscription?.cancel();
+        }
+      });
+    });
   }
 
   void showPicker(List<BankCardModel> optisons) {
@@ -122,7 +156,6 @@ class _BindBankState extends State<BindBank> {
       appBar: AppBar(
         centerTitle: false,
         title: Text(S.current.bind_bank_card),
-        
       ),
       body: FutureBuilder(
           future: getBankds(),
@@ -166,7 +199,7 @@ class _BindBankState extends State<BindBank> {
                               if (value == null || value.isEmpty) {
                                 return S.current.required_field;
                               }
-                  
+
                               return null;
                             },
                             onSaved: (s) {
@@ -191,27 +224,28 @@ class _BindBankState extends State<BindBank> {
                             ),
                           ),
                         ),
-                  
-                  
-                  
-                        SizedBox(height: 100.h,),
-                  
-                  
+
+                        SizedBox(
+                          height: 100.h,
+                        ),
+
                         OutlinedButton(
                           onPressed: () async {
                             final validate =
                                 formKey.currentState?.validate() ?? false;
-                  
+
                             if (validate) {
                               formKey.currentState?.save();
-                  
+
                               final AuthRepo authRepo = sl();
                               data['product_id'] = productId;
                               final resp = await authRepo.bindBank(data);
                               resp.fold((l) {
                                 UI.showError(context, l.message);
                               }, (r) {
-                  
+                                // 轮训结果
+                                UI.showLoadingWithMessage(context, "获取授信结果中");
+                                startPolling();
                               });
                             }
                           },

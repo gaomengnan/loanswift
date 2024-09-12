@@ -134,8 +134,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   ),
 
                   // 查看额度
-                  BuildQuota(
+                  BuildMainEntry(
                     mainProducts: state.homeData.mainProducts,
+                    rule: state.homeData.rules,
                   ),
 
                   /*   Bill Amount */

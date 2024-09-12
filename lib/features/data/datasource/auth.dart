@@ -37,6 +37,8 @@ abstract class AuthDataSource {
   ResultFuture<ApiResponse> commitCertify({required DataMap data});
 
   ResultVoid bindBank({required DataMap data});
+
+  ResultFuture<ApiResponse<DataMap>> getCreditResult();
 }
 
 class AuthDataSourceImpl extends AuthDataSource {
@@ -151,5 +153,14 @@ class AuthDataSourceImpl extends AuthDataSource {
     final resp =
         await http.post(path: "/middle/identity/bind-bank", data: data);
     return resp;
+  }
+
+  @override
+  ResultFuture<ApiResponse<DataMap>> getCreditResult() async{
+    final resp = await http.get(path: "/middle/credit/result");
+    return resp.fold((l) => left(l), (r) {
+      return right(
+        ApiResponse.fromJson(r.data, (j) => DataMapExtensions.fromMap(j)));
+    });
   }
 }

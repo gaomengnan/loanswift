@@ -84,4 +84,13 @@ class AuthRepository implements AuthRepo {
   ResultVoid bindBank(DataMap data) async {
     return await _authDataSource.bindBank(data: data);
   }
+
+  @override
+  ResultFuture<DataMap> getCreditResult() async {
+    final resp  = await _authDataSource.getCreditResult();
+    return resp.fold(
+      (l) => left(l),
+      (r) => right(r.data!),
+    );
+  }
 }
