@@ -86,8 +86,8 @@ class AuthRepository implements AuthRepo {
   }
 
   @override
-  ResultFuture<DataMap> getCreditResult() async {
-    final resp  = await _authDataSource.getCreditResult();
+  ResultFuture<DataMap> getCreditResult({required int productId}) async {
+    final resp  = await _authDataSource.getCreditResult(productId: productId);
     return resp.fold(
       (l) => left(l),
       (r) => right(r.data!),

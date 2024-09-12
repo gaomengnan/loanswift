@@ -57,7 +57,8 @@ class _BindBankState extends State<BindBank> {
     subscription =
         Stream.periodic(const Duration(seconds: 2)).listen((event) async {
       final AuthRepo repo = sl();
-      final creditResult = await repo.getCreditResult();
+      final creditResult =
+          await repo.getCreditResult(productId: getProductId());
 
       creditResult.fold((l) {
         UI.showError(context, l.message);
@@ -140,10 +141,9 @@ class _BindBankState extends State<BindBank> {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
+  int getProductId() {
     // 获取参数
-    int? productId = 0;
+    int productId = 0;
 
     final args = ModalRoute.of(context)?.settings.arguments;
 
@@ -151,6 +151,11 @@ class _BindBankState extends State<BindBank> {
       productId = args['productId'] ?? 0;
     }
 
+    return productId;
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Pallete.whiteColor,
       appBar: AppBar(
@@ -238,7 +243,7 @@ class _BindBankState extends State<BindBank> {
                               formKey.currentState?.save();
 
                               final AuthRepo authRepo = sl();
-                              data['product_id'] = productId;
+                              data['product_id'] = getProductId();
                               final resp = await authRepo.bindBank(data);
                               resp.fold((l) {
                                 UI.showError(context, l.message);
