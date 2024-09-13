@@ -52,7 +52,7 @@ class _BasicInformationState extends State<BasicInformation> {
         key: _formKey,
         child: Column(
           children: [
-            ...state.personalInfo.map((e) {
+            ...state.getCurrentStepData().map((e) {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(

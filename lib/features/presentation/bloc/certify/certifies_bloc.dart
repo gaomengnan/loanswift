@@ -39,10 +39,12 @@ class CertifiesBloc extends Bloc<CertifiesEvent, CertifiesState> {
       emit(CitiesState(
         cities: r,
         cerfityStep: state.cerfityStep,
-        identifyInfo: state.identifyInfo,
-        emergencyInfo: state.emergencyInfo,
-        personalInfo: state.personalInfo,
-        workInfo: state.workInfo,
+        certifies: state.certifies,
+        //identifyInfo: state.identifyInfo,
+        //emergencyInfo: state.emergencyInfo,
+        //personalInfo: state.personalInfo,
+        //workInfo: state.workInfo,
+        isDone: false,
       ));
     });
   }
@@ -55,16 +57,20 @@ class CertifiesBloc extends Bloc<CertifiesEvent, CertifiesState> {
 
     List<Info> currentData = [];
 
-    switch (state.cerfityStep) {
-      case StepperEnum.first:
-        currentData = state.identifyInfo;
-      case StepperEnum.second:
-        currentData = state.personalInfo;
-      case StepperEnum.third:
-        currentData = state.emergencyInfo;
-      default:
-        currentData = state.workInfo;
-    }
+    //switch (state.cerfityStep) {
+    //  case StepperEnum.first:
+    //    currentData = state.identifyInfo;
+    //  case StepperEnum.second:
+    //    currentData = state.personalInfo;
+    //  case StepperEnum.third:
+    //    currentData = state.emergencyInfo;
+    //  default:
+    //    currentData = state.workInfo;
+    //}
+
+    final certifies = state.certifies;
+
+    currentData = certifies[state.cerfityStep.value];
 
     resp.fold((l) {}, (r) {
       if (r.code == AppContant.apiSuccessCode) {
@@ -76,31 +82,37 @@ class CertifiesBloc extends Bloc<CertifiesEvent, CertifiesState> {
           return e;
         }).toList();
 
-        switch (state.cerfityStep) {
-          case StepperEnum.first:
-            emit(
-              state.copyWith(identify: updated),
-            );
-          case StepperEnum.second:
-            emit(
-              state.copyWith(personal: updated),
-            );
+        certifies[state.cerfityStep.value] = updated;
 
-          case StepperEnum.third:
-            emit(
-              state.copyWith(emerge: updated),
-            );
+        emit(
+          state.copyWith(certifies: certifies),
+        );
 
-          case StepperEnum.fourth:
-            emit(
-              state.copyWith(work: updated),
-            );
-
-          default:
-            emit(
-              state.copyWith(personal: updated),
-            );
-        }
+        //switch (state.cerfityStep) {
+        //  case StepperEnum.first:
+        //    emit(
+        //      state.copyWith(identify: updated),
+        //    );
+        //  case StepperEnum.second:
+        //    emit(
+        //      state.copyWith(personal: updated),
+        //    );
+        //
+        //  case StepperEnum.third:
+        //    emit(
+        //      state.copyWith(emerge: updated),
+        //    );
+        //
+        //  case StepperEnum.fourth:
+        //    emit(
+        //      state.copyWith(work: updated),
+        //    );
+        //
+        //  default:
+        //    emit(
+        //      state.copyWith(personal: updated),
+        //    );
+        //}
         //emit(
         //  state.copyWith(identify: updated),
         //);
@@ -120,10 +132,12 @@ class CertifiesBloc extends Bloc<CertifiesEvent, CertifiesState> {
 
     emit(CertifiesRequestState(
       cerfityStep: state.cerfityStep,
-      identifyInfo: state.identifyInfo,
-      emergencyInfo: state.emergencyInfo,
-      personalInfo: state.personalInfo,
-      workInfo: state.workInfo,
+      certifies: state.certifies,
+      //identifyInfo: state.identifyInfo,
+      //emergencyInfo: state.emergencyInfo,
+      //personalInfo: state.personalInfo,
+      //workInfo: state.workInfo,
+      isDone: state.cerfityStep.isLastStep,
     ));
   }
 
@@ -138,16 +152,14 @@ class CertifiesBloc extends Bloc<CertifiesEvent, CertifiesState> {
   void _stepContinueHandler(
       CertifyStepContinue event, Emitter<CertifiesState> emit) async {
     //final step = state.cerfityStep;
-    emit(state.copyWith(step: state.cerfityStep.nextStep));
-    emit(
-      GoToBindBank(
-        cerfityStep: state.cerfityStep,
-        identifyInfo: state.identifyInfo,
-        emergencyInfo: state.emergencyInfo,
-        personalInfo: state.personalInfo,
-        workInfo: state.workInfo,
-      ),
-    );
+    bool isDone = false;
+    if (state.cerfityStep.isLastStep) {
+      isDone = true;
+    }
+    emit(state.copyWith(
+      step: state.cerfityStep.nextStep,
+      isDone: isDone,
+    ));
   }
 
   // 加载认证项目
@@ -165,34 +177,52 @@ class CertifiesBloc extends Bloc<CertifiesEvent, CertifiesState> {
       (l) {
         StepperEnum currentStep = StepperEnum.first;
 
-        if (l.identityInfo
-            .every((element) => element.isCertify() && element.isMust())) {
-          currentStep = currentStep.nextStep;
-        }
-
-        if (l.personalInfo
-            .every((element) => element.isCertify() && element.isMust())) {
-          currentStep = currentStep.nextStep;
-        }
-
-        if (l.emergencyInfo
-          .every((element) => element.isCertify() && element.isMust())) {
-          currentStep = currentStep.nextStep;
-        }
+        //if (l.identityInfo
+        //    .every((element) => element.isCertify() && element.isMust())) {
+        //  currentStep = currentStep.nextStep;
+        //
+        //  if (l.personalInfo
+        //      .every((element) => element.isCertify() && element.isMust())) {
+        //    currentStep = currentStep.nextStep;
+        //
+        //    if (l.emergencyInfo
+        //        .every((element) => element.isCertify() && element.isMust())) {
+        //      currentStep = currentStep.nextStep;
+        //    }
+        //  }
+        //}
 
         //if (l.emergencyInfo
         //  .every((element) => element.isCertify() && element.isMust())) {
         //  currentStep = currentStep.nextStep;
         //}
 
+        List<List<Info>> data = [];
+        data.add(l.identityInfo);
+        data.add(l.personalInfo);
+        data.add(l.emergencyInfo);
+        data.add(l.jobInfo);
+
+        for (var item in data) {
+          if (item
+              .every((element) => element.isCertify() && element.isMust())) {
+            currentStep = currentStep.nextStep;
+
+            continue;
+          }
+          break;
+        }
+
         emit(
           CertifiesSettingsLoadSuccess(
+            isDone: false,
             cerfityStep: currentStep,
+            certifies: data,
             //settings: l,
-            identifyInfo: l.identityInfo,
-            emergencyInfo: l.emergencyInfo,
-            personalInfo: l.personalInfo,
-            workInfo: l.jobInfo,
+            //identifyInfo: l.identityInfo,
+            //emergencyInfo: l.emergencyInfo,
+            //personalInfo: l.personalInfo,
+            //workInfo: l.jobInfo,
           ),
         );
       },

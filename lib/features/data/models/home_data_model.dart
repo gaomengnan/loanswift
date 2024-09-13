@@ -28,6 +28,11 @@ class HomeDataModel extends HomeData {
           other: Other.empty(),
         );
 
+  String toJson() => json.encode(toMap());
+
+  factory HomeDataModel.fromJson(String source) =>
+      HomeDataModel.fromMap(json.decode(source));
+
   factory HomeDataModel.fromMap(Map<String, dynamic> json) => HomeDataModel(
         banners: List<BannerEntity>.from(
             json["banners"].map((x) => BannerEntity.fromMap(x))),
@@ -46,6 +51,7 @@ class HomeDataModel extends HomeData {
         "api_products": List<dynamic>.from(apiProducts.map((x) => x)),
         "user_orders": List<dynamic>.from(userOrders.map((x) => x.toMap())),
         "rules": rules.toMap(),
+        "other": other.toMap()
       };
 
   HomeData copyWith({

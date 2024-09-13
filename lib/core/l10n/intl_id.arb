@@ -104,5 +104,13 @@
   "view_contract": "Kontrak",
   "installment_repayment": "Cicilan",
   "normal_repayment": "Bayar",
-  "feedback": "Umpan Balik"
+  "feedback": "Umpan Balik",
+  "credit_success": "Pemberian kredit berhasil",
+  "credit_failure": "Pemberian kredit gagal",
+  "credit_fetching_result": "Mengambil hasil kredit",
+  "credit_login_expired": "Login kedaluwarsa",
+  "my_account_order_management": "Manajemen Pesanan",
+  "my_account_my_bank_card": "Kartu Bank Saya",
+  "my_account_about_us": "Tentang Kami",
+  "my_account_privacy_policy": "Kebijakan Privasi"
 }

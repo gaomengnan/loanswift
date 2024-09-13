@@ -65,7 +65,7 @@
   "bill_amount": "账单金额",
   "load_amount": "贷款记录",
   "recommend": "推荐",
-  "my_repayment": "我的还款",
+  "my_repayment": "账户总览",
   "no_credit_limit": "暂未获取额度，无账单",
   "loan_return": "借还记录",
   "auto_repayment": "自动还款",
@@ -105,5 +105,13 @@
   "view_contract": "查看合同",
   "installment_repayment": "分期还款",
   "normal_repayment": "正常还款",
-  "feedback": "意见反馈"
+  "feedback": "意见反馈",
+  "credit_success": "授信成功",
+  "credit_failure": "授信失败",
+  "credit_fetching_result": "获取授信结果中",
+  "credit_login_expired": "登录失效",
+  "my_account_order_management": "订单管理",
+  "my_account_my_bank_card": "我的银行卡",
+  "my_account_about_us": "关于我们",
+  "my_account_privacy_policy": "隐私协议"
 }

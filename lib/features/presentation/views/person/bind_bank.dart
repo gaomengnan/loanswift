@@ -53,7 +53,10 @@ class _BindBankState extends State<BindBank> {
   }
 
   void startPolling() {
-    if (subscription != null) return;
+    if (subscription != null) {
+      subscription?.resume();
+      return;
+    }
     subscription =
         Stream.periodic(const Duration(seconds: 2)).listen((event) async {
       final AuthRepo repo = sl();
@@ -62,18 +65,18 @@ class _BindBankState extends State<BindBank> {
 
       creditResult.fold((l) {
         UI.showError(context, l.message);
-        subscription?.cancel();
+        subscription?.pause();
       }, (r) {
         final creditStatus = r['credit_status'];
 
         if (creditStatus == 1) {
-          UI.showSuccess(context, "授信成功");
-          subscription?.cancel();
+          UI.showSuccess(context, S.current.credit_success);
+          subscription?.pause();
         }
 
         if (creditStatus == -2) {
-          UI.showError(context, "授信失败");
-          subscription?.cancel();
+          UI.showError(context, S.current.credit_failure);
+          subscription?.pause();
         }
       });
     });
@@ -198,7 +201,7 @@ class _BindBankState extends State<BindBank> {
                             inputFormatters: [
                               FilteringTextInputFormatter.digitsOnly,
                               LengthLimitingTextInputFormatter(19),
-                              CardNumberInputFormatter(),
+                              //CardNumberInputFormatter(),
                             ],
                             validator: (value) {
                               if (value == null || value.isEmpty) {
@@ -231,7 +234,7 @@ class _BindBankState extends State<BindBank> {
                         ),
 
                         SizedBox(
-                          height: 100.h,
+                          height: 50.h,
                         ),
 
                         OutlinedButton(
@@ -244,12 +247,13 @@ class _BindBankState extends State<BindBank> {
 
                               final AuthRepo authRepo = sl();
                               data['product_id'] = getProductId();
+                              data['main_card'] = 1;
                               final resp = await authRepo.bindBank(data);
                               resp.fold((l) {
                                 UI.showError(context, l.message);
                               }, (r) {
                                 // 轮训结果
-                                UI.showLoadingWithMessage(context, "获取授信结果中");
+                                UI.showLoadingWithMessage(context, S.current.credit_fetching_result);
                                 startPolling();
                               });
                             }
@@ -316,10 +320,7 @@ class _BindBankState extends State<BindBank> {
           return null;
         },
         textAlignVertical: TextAlignVertical.center,
-        inputFormatters: [
-          FilteringTextInputFormatter.digitsOnly,
-          //LengthLimitingTextInputFormatter(19),
-          //CardNumberInputFormatter(),
+        inputFormatters: const [
         ],
         onSaved: (value) {
           data[fieldName] = value;

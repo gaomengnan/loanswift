@@ -44,6 +44,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "congratulations_verified": MessageLookupByLibrary.simpleMessage(
             "Selamat, Anda telah berhasil diverifikasi"),
         "contact": MessageLookupByLibrary.simpleMessage("Daftar Kontak"),
+        "credit_failure":
+            MessageLookupByLibrary.simpleMessage("Pemberian kredit gagal"),
+        "credit_fetching_result":
+            MessageLookupByLibrary.simpleMessage("Mengambil hasil kredit"),
+        "credit_login_expired":
+            MessageLookupByLibrary.simpleMessage("Login kedaluwarsa"),
+        "credit_success":
+            MessageLookupByLibrary.simpleMessage("Pemberian kredit berhasil"),
         "due_date": MessageLookupByLibrary.simpleMessage("Tanggal Jatuh Tempo"),
         "emergency_contact":
             MessageLookupByLibrary.simpleMessage("Kontak Darurat"),
@@ -101,6 +109,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Jumlah Pinjaman Maksimum"),
         "maximun_load_text_unit":
             MessageLookupByLibrary.simpleMessage("(Rupiah)"),
+        "my_account_about_us":
+            MessageLookupByLibrary.simpleMessage("Tentang Kami"),
+        "my_account_my_bank_card":
+            MessageLookupByLibrary.simpleMessage("Kartu Bank Saya"),
+        "my_account_order_management":
+            MessageLookupByLibrary.simpleMessage("Manajemen Pesanan"),
+        "my_account_privacy_policy":
+            MessageLookupByLibrary.simpleMessage("Kebijakan Privasi"),
         "my_repayment": MessageLookupByLibrary.simpleMessage("Pembayaran Saya"),
         "name": MessageLookupByLibrary.simpleMessage("Halo"),
         "network_error":

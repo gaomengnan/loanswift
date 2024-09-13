@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/common/widgets/widgets.dart';
 import 'package:loanswift/features/domain/entity/entity.dart';
 import 'package:loanswift/theme/theme.dart';
+import 'package:shimmer/shimmer.dart';
 
 class BuildBanner extends StatefulWidget {
   final List<BannerEntity> banners;
@@ -39,20 +40,37 @@ class _BuildBannerState extends State<BuildBanner> {
 
   Widget _buildBanner(int index) {
     final banner = widget.banners[index];
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 10.h),
-      //height: ScreenUtil().screenHeight * 0.2,
-      decoration: BoxDecoration(
-        color: Theme.of(context).primaryColor,
-        borderRadius: BorderRadius.circular(10),
-        image: DecorationImage(
-          fit: BoxFit.cover,
-          image: CachedNetworkImageProvider(
-            banner.path,
-            errorListener: (p0) {},
+    return CachedNetworkImage(
+      imageUrl: banner.path,
+      imageBuilder: (context, prov) {
+        return Container(
+          margin: EdgeInsets.symmetric(horizontal: 10.h),
+          //height: ScreenUtil().screenHeight * 0.2,
+          decoration: BoxDecoration(
+            color: Theme.of(context).primaryColor,
+            borderRadius: BorderRadius.circular(10),
+            image: DecorationImage(
+              fit: BoxFit.cover,
+              image: prov,
+            ),
           ),
+        );
+      },
+      placeholder: (context, url) => Center(
+          child: Shimmer.fromColors(
+        baseColor: Colors.grey[300]!,
+        highlightColor: Colors.grey[100]!,
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: Colors.white,
+          ),
+          margin: EdgeInsets.symmetric(horizontal: 10.h),
+          //width: double.infinity,
+          //height: 200.0,
         ),
-      ),
+      )),
+      errorWidget: (context, url, error) => const Icon(Icons.error),
     );
   }
 

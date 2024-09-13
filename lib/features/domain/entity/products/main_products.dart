@@ -23,6 +23,8 @@ class MainProducts {
     required this.creditInfo,
     required this.productId,
   });
+  
+  Map<String, dynamic> toJson() => toMap();
 
   MainProducts.empty()
       : this(

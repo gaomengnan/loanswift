@@ -77,7 +77,11 @@ class MyApp extends StatelessWidget {
           child: BlocListener<AuthBloc, AuthState>(
             listener: (context, state) {
               if (state is LogoutSuccess) {
-                navigatorKey.currentState?.pushReplacementNamed('/auth');
+                //Navigator.of(context).pushNamed('/auth');
+                UI.showError(context, S.current.credit_login_expired);
+                Future.delayed(const Duration(seconds: 3), (){
+                  navigatorKey.currentState?.pushReplacementNamed('/auth');
+                });
               }
             },
             child: MaterialApp(

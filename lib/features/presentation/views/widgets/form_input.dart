@@ -5,7 +5,7 @@ import 'package:loanswift/core/core.dart';
 import 'package:loanswift/features/domain/entity/user/certify.dart';
 import 'package:lottie/lottie.dart';
 
-class RInput extends StatelessWidget {
+class RInput extends StatefulWidget {
   final String hitText;
   //final String label;
   //final bool isMust;
@@ -28,6 +28,54 @@ class RInput extends StatelessWidget {
   });
 
   @override
+  State<RInput> createState() => _RInputState();
+}
+
+class _RInputState extends State<RInput> {
+  late final FocusNode _focusNode = FocusNode();
+
+  late TextEditingController? _controller;
+
+  late bool innerCtrl = false;
+
+  late String? _initVal;
+
+  @override
+  void initState() {
+    if (widget.controller == null) {
+      innerCtrl = true;
+      _controller = TextEditingController(text: widget.initVal ?? '');
+      _initVal = null;
+    } else {
+      _initVal = widget.initVal;
+      _controller = widget.controller;
+    }
+
+    _focusNode.addListener(_onFocusChange);
+    super.initState();
+  }
+
+  void _onFocusChange() {
+    if (!_focusNode.hasFocus) {
+      if (widget.onChanged != null) {
+        if (_controller!.text.isNotEmpty) {
+          widget.onChanged!(_controller!.text);
+        }
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    if(innerCtrl) {
+      _controller!.dispose();
+    }
+    _focusNode.removeListener(_onFocusChange);
+    _focusNode.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 60.h,
@@ -38,7 +86,7 @@ class RInput extends StatelessWidget {
             children: [
               AnimatedSwitcher(
                 duration: const Duration(milliseconds: 300),
-                child: info.isCertify()
+                child: widget.info.isCertify()
                     ? Lottie.asset(
                         height: 20.h,
                         width: 20.w,
@@ -47,7 +95,9 @@ class RInput extends StatelessWidget {
                       )
                     : Icon(
                         Icons.task_alt,
-                        color: info.isCertify() ? Colors.green : Colors.grey,
+                        color: widget.info.isCertify()
+                            ? Colors.green
+                            : Colors.grey,
                       ),
               ),
               UI.kWidth5(),
@@ -57,7 +107,7 @@ class RInput extends StatelessWidget {
                   maxLines: 1,
                   size: 13.sp,
                   fontWeight: FontWeight.w600,
-                  text: info.certifyFieldName,
+                  text: widget.info.certifyFieldName,
                 ),
               ),
             ],
@@ -74,21 +124,22 @@ class RInput extends StatelessWidget {
                 textAlignVertical: TextAlignVertical.center,
                 autovalidateMode: AutovalidateMode.disabled,
                 validator: (value) {
-                  if (!info.isMust()) {
+                  if (!widget.info.isMust()) {
                     return null;
                   }
 
                   if (value == null || value.isEmpty) {
-                    return info.promptSubtitle;
+                    return widget.info.promptSubtitle;
                   }
 
                   return null;
                 },
-                initialValue: initVal,
-                controller: controller,
+                focusNode: _focusNode,
+                initialValue: _initVal,
+                controller: _controller,
                 onFieldSubmitted: (s) {
                   if (s.isNotEmpty) {
-                    onChanged!(s);
+                    widget.onChanged!(s);
                   }
                 },
                 //onChanged: onChanged,

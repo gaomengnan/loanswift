@@ -40,6 +40,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "congratulations_verified": MessageLookupByLibrary.simpleMessage(
             "Congratulations, you have been successfully verified"),
         "contact": MessageLookupByLibrary.simpleMessage("Contact List"),
+        "credit_failure":
+            MessageLookupByLibrary.simpleMessage("Credit granting failed"),
+        "credit_fetching_result":
+            MessageLookupByLibrary.simpleMessage("Fetching credit result"),
+        "credit_login_expired":
+            MessageLookupByLibrary.simpleMessage("Login expired"),
+        "credit_success":
+            MessageLookupByLibrary.simpleMessage("Credit granted successfully"),
         "due_date": MessageLookupByLibrary.simpleMessage("Due Date"),
         "emergency_contact":
             MessageLookupByLibrary.simpleMessage("Emergency Contact"),
@@ -91,6 +99,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "maximun_load_text":
             MessageLookupByLibrary.simpleMessage("Maximum Loan Amount"),
         "maximun_load_text_unit": MessageLookupByLibrary.simpleMessage("(CNY)"),
+        "my_account_about_us": MessageLookupByLibrary.simpleMessage("About Us"),
+        "my_account_my_bank_card":
+            MessageLookupByLibrary.simpleMessage("My Bank Card"),
+        "my_account_order_management":
+            MessageLookupByLibrary.simpleMessage("Order Management"),
+        "my_account_privacy_policy":
+            MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "my_repayment": MessageLookupByLibrary.simpleMessage("My Repayment"),
         "name": MessageLookupByLibrary.simpleMessage("Flutter localization"),
         "network_error":

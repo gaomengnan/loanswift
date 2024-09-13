@@ -670,10 +670,10 @@ class S {
     );
   }
 
-  /// `我的还款`
+  /// `账户总览`
   String get my_repayment {
     return Intl.message(
-      '我的还款',
+      '账户总览',
       name: 'my_repayment',
       desc: '',
       args: [],
@@ -1075,6 +1075,86 @@ class S {
     return Intl.message(
       '意见反馈',
       name: 'feedback',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `授信成功`
+  String get credit_success {
+    return Intl.message(
+      '授信成功',
+      name: 'credit_success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `授信失败`
+  String get credit_failure {
+    return Intl.message(
+      '授信失败',
+      name: 'credit_failure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `获取授信结果中`
+  String get credit_fetching_result {
+    return Intl.message(
+      '获取授信结果中',
+      name: 'credit_fetching_result',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `登录失效`
+  String get credit_login_expired {
+    return Intl.message(
+      '登录失效',
+      name: 'credit_login_expired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `订单管理`
+  String get my_account_order_management {
+    return Intl.message(
+      '订单管理',
+      name: 'my_account_order_management',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `我的银行卡`
+  String get my_account_my_bank_card {
+    return Intl.message(
+      '我的银行卡',
+      name: 'my_account_my_bank_card',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `关于我们`
+  String get my_account_about_us {
+    return Intl.message(
+      '关于我们',
+      name: 'my_account_about_us',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `隐私协议`
+  String get my_account_privacy_policy {
+    return Intl.message(
+      '隐私协议',
+      name: 'my_account_privacy_policy',
       desc: '',
       args: [],
     );

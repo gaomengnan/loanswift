@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:loanswift/core/common/widgets/shimmer.dart';
+import 'package:loanswift/core/common/widgets/loading_page.dart';
 import 'package:loanswift/core/common/widgets/webview.dart';
 import 'package:loanswift/core/common/widgets/widgets.dart';
 import 'package:loanswift/core/core.dart';
@@ -109,9 +109,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         }
       }, builder: (context, state) {
         if (state is HomeLoading) {
-          return const CustomScrollView(slivers: [
-            HomeShimmer(),
-          ]);
+          return const LoadingPage();
         }
 
         return SizedBox(
@@ -167,40 +165,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               ),
             ));
       }),
-    );
-  }
-}
-
-class BuildContactUS extends StatelessWidget {
-  const BuildContactUS({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return SliverPadding(
-      padding: const EdgeInsets.only(
-        bottom: 10,
-      ),
-      sliver: SliverToBoxAdapter(
-        child: Center(
-          child: SizedBox(
-            width: 100.w,
-            height: 30.h,
-            child: OutlinedButton(
-              onPressed: () {
-                Navigator.pushNamed(
-                  context,
-                  "/contact_us",
-                );
-              },
-              child: RText(
-                text: '联系我们',
-              ),
-            ),
-          ),
-        ),
-      ),
     );
   }
 }

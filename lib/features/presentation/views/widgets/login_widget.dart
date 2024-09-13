@@ -215,7 +215,7 @@ class BuildVerifyCode extends StatelessWidget {
                 ),
               );
 
-          Navigator.of(context).pushNamed(
+          Navigator.of(context).pushReplacementNamed(
             VerificationCodePage.routerName,
           );
 

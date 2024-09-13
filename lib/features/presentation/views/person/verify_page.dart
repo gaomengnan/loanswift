@@ -173,10 +173,6 @@ class _VerifyPageState extends State<VerifyPage>
               );
             }
 
-            if (state is GoToBindBank) {
-              _showToBankDialog(productId);
-            }
-
             if (state is CertifiesSettingsLoading) {
               UI.showLoading();
             }
@@ -187,8 +183,14 @@ class _VerifyPageState extends State<VerifyPage>
 
             if (state is CertifiesRequestState) {
               Future.delayed(const Duration(milliseconds: 20), () {
-                _scrollToTop();
+                if(!state.isDone) {
+                  _scrollToTop();
+                }
               });
+              if(state.isDone == true) {
+                _showToBankDialog(productId);
+
+              }
             }
           },
           child: SingleChildScrollView(

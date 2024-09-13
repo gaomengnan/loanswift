@@ -396,7 +396,7 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
                                                           color: Pallete
                                                               .whiteColor,
                                                           size: 24.sp,
-                                                          IconlyBold.delete),
+                                                          Icons.delete_rounded),
                                                     ),
                                                     InkWell(
                                                       onTap: () {

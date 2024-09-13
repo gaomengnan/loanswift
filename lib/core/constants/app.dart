@@ -27,4 +27,6 @@ class AppContant {
 
   static const deviceInfoKey = "device_info_key";
   static const deviceUUIDKy = "device_uuid_key";
+
+  static const homeDataKey = "home_data_key";
 }

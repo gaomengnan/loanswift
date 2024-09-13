@@ -53,48 +53,67 @@ extension StepperEnumExt on StepperEnum {
 
 class CertifiesState {
   final StepperEnum cerfityStep;
+
+  final List<List<Info>> certifies;
+
+  final bool isDone;
   //final CertifiesModel settings;
 
-  final List<Info> identifyInfo;
-  final List<Info> emergencyInfo;
-  final List<Info> personalInfo;
+  //final List<Info> identifyInfo;
+  //final List<Info> emergencyInfo;
+  //final List<Info> personalInfo;
+  //
+  //final List<Info> workInfo;
 
-  final List<Info> workInfo;
+  List<Info> getCurrentStepData() {
+    if(certifies.isEmpty) {
+      return List<Info>.empty();
+    }
+    return certifies[cerfityStep.value];
+  }
 
   const CertifiesState({
     required this.cerfityStep,
     //required this.settings,
-    required this.identifyInfo,
-    required this.emergencyInfo,
-    required this.personalInfo,
-    required this.workInfo,
+    required this.certifies,
+    //required this.identifyInfo,
+    //required this.emergencyInfo,
+    //required this.personalInfo,
+    //required this.workInfo,
+    this.isDone = false,
   });
 
   CertifiesState.initial()
       : this(
           cerfityStep: StepperEnum.first,
+          certifies: List<List<Info>>.empty(),
           //settings: CertifiesModel.empty(),
-          identifyInfo: List<Info>.empty(),
-          emergencyInfo: List<Info>.empty(),
-          personalInfo: List<Info>.empty(),
-          workInfo: List<Info>.empty(),
+          //identifyInfo: List<Info>.empty(),
+          //emergencyInfo: List<Info>.empty(),
+          //personalInfo: List<Info>.empty(),
+          //workInfo: List<Info>.empty(),
+          isDone: false,
         );
 
   CertifiesState copyWith({
     StepperEnum? step,
+    List<List<Info>>? certifies,
     //CertifiesModel? certifies,
-    List<Info>? identify,
-    List<Info>? emerge,
-    List<Info>? personal,
-    List<Info>? work,
+    //List<Info>? identify,
+    //List<Info>? emerge,
+    //List<Info>? personal,
+    //List<Info>? work,
+    bool? isDone,
   }) =>
       CertifiesState(
+        isDone: isDone ?? this.isDone,
         cerfityStep: step ?? cerfityStep,
+        certifies: certifies ?? this.certifies,
         //settings: certifies ?? settings,
-        identifyInfo: identify ?? identifyInfo,
-        workInfo: work ?? workInfo,
-        personalInfo: personal ?? personalInfo,
-        emergencyInfo: emerge ?? emergencyInfo,
+        //identifyInfo: identify ?? identifyInfo,
+        //workInfo: work ?? workInfo,
+        //personalInfo: personal ?? personalInfo,
+        //emergencyInfo: emerge ?? emergencyInfo,
       );
 
   //@override
@@ -121,32 +140,25 @@ class CertifiesSettingsLoadSuccess extends CertifiesState {
   const CertifiesSettingsLoadSuccess({
     //required super.settings,
     required super.cerfityStep,
-    required super.identifyInfo,
-    required super.emergencyInfo,
-    required super.personalInfo,
-    required super.workInfo,
-  });
-}
-
-class GoToBindBank extends CertifiesState {
-  const GoToBindBank ({
-    //required super.settings,
-    required super.cerfityStep,
-    required super.identifyInfo,
-    required super.emergencyInfo,
-    required super.personalInfo,
-    required super.workInfo,
+    required super.certifies,
+    //required super.identifyInfo,
+    //required super.emergencyInfo,
+    //required super.personalInfo,
+    //required super.workInfo,
+    required super.isDone,
   });
 }
 
 class CertifiesRequestState extends CertifiesState {
   const CertifiesRequestState({
     required super.cerfityStep,
+    required super.certifies,
     //required super.settings,
-    required super.identifyInfo,
-    required super.emergencyInfo,
-    required super.personalInfo,
-    required super.workInfo,
+    //required super.identifyInfo,
+    //required super.emergencyInfo,
+    //required super.personalInfo,
+    //required super.workInfo,
+    required super.isDone,
   });
 
   //@override
@@ -159,9 +171,11 @@ class CitiesState extends CertifiesState {
   CitiesState({
     required this.cities,
     required super.cerfityStep,
-    required super.identifyInfo,
-    required super.emergencyInfo,
-    required super.personalInfo,
-    required super.workInfo,
+    required super.certifies,
+    //required super.identifyInfo,
+    //required super.emergencyInfo,
+    //required super.personalInfo,
+    //required super.workInfo,
+    required super.isDone,
   });
 }

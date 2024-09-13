@@ -10,14 +10,6 @@ class BuildMyAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Text(
         title,
       ),
-      //leading: InkWell(
-      //  onTap: () {
-      //    Navigator.pop(context);
-      //  },
-      //  child: const Icon(
-      //    IconlyBold.arrowLeftCircle,
-      //  ),
-      //),
     );
   }
 

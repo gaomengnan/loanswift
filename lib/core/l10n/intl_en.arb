@@ -105,6 +105,14 @@
   "view_contract": "View Contract",
   "installment_repayment": "Installment Repayment",
   "normal_repayment": "Normal Repayment",
-  "feedback": "Feedback"
+  "feedback": "Feedback",
+  "credit_success": "Credit granted successfully",
+  "credit_failure": "Credit granting failed",
+  "credit_fetching_result": "Fetching credit result",
+  "credit_login_expired": "Login expired",
+  "my_account_order_management": "Order Management",
+  "my_account_my_bank_card": "My Bank Card",
+  "my_account_about_us": "About Us",
+  "my_account_privacy_policy": "Privacy Policy"
 }
 

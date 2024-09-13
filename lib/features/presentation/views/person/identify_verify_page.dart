@@ -150,7 +150,7 @@ class _IdentifyVerifyPageState extends State<IdentifyVerifyPage> {
         key: _formKey,
         child: Column(
           children: [
-            ...state.identifyInfo.map((e) {
+            ...state.getCurrentStepData().map((e) {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
@@ -160,7 +160,7 @@ class _IdentifyVerifyPageState extends State<IdentifyVerifyPage> {
                       info: e,
                       controller: generateController(e),
                       onChanged: (s) {
-                        onChanged(state.identifyInfo, e, s);
+                        onChanged(state.getCurrentStepData(), e, s);
 
                         context.read<CertifiesBloc>().add(CertifyCommitEvent(
                             certifyId: e.certifyId, certifyResult: s));

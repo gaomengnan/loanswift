@@ -40,6 +40,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "congratulations_verified":
             MessageLookupByLibrary.simpleMessage("恭喜您已经认证成功"),
         "contact": MessageLookupByLibrary.simpleMessage("联系人列表"),
+        "credit_failure": MessageLookupByLibrary.simpleMessage("授信失败"),
+        "credit_fetching_result":
+            MessageLookupByLibrary.simpleMessage("获取授信结果中"),
+        "credit_login_expired": MessageLookupByLibrary.simpleMessage("登录失效"),
+        "credit_success": MessageLookupByLibrary.simpleMessage("授信成功"),
         "due_date": MessageLookupByLibrary.simpleMessage("到期日"),
         "emergency_contact": MessageLookupByLibrary.simpleMessage("紧急联系人"),
         "enter_verification_code":
@@ -78,7 +83,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "1千元借12个月,日费用6分起,年化利率(单利) #rate#"),
         "maximun_load_text": MessageLookupByLibrary.simpleMessage("最高可借额度"),
         "maximun_load_text_unit": MessageLookupByLibrary.simpleMessage("(元)"),
-        "my_repayment": MessageLookupByLibrary.simpleMessage("我的还款"),
+        "my_account_about_us": MessageLookupByLibrary.simpleMessage("关于我们"),
+        "my_account_my_bank_card":
+            MessageLookupByLibrary.simpleMessage("我的银行卡"),
+        "my_account_order_management":
+            MessageLookupByLibrary.simpleMessage("订单管理"),
+        "my_account_privacy_policy":
+            MessageLookupByLibrary.simpleMessage("隐私协议"),
+        "my_repayment": MessageLookupByLibrary.simpleMessage("账户总览"),
         "name": MessageLookupByLibrary.simpleMessage("Flutter localization"),
         "network_error": MessageLookupByLibrary.simpleMessage("网络连接异常"),
         "nextStep": MessageLookupByLibrary.simpleMessage("下一步"),

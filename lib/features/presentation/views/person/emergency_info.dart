@@ -52,7 +52,7 @@ class _EmergencyInfoState extends State<EmergencyInfo> {
         key: _formKey,
         child: Column(
           children: [
-            ...state.emergencyInfo.map((e) {
+            ...state.getCurrentStepData().map((e) {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
