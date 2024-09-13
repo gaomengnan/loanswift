@@ -35,8 +35,7 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
     this.onChanged,
     //super.initialValue,
     super.onSaved,
-    AutovalidateMode super.autovalidateMode =
-        AutovalidateMode.disabled,
+    AutovalidateMode super.autovalidateMode = AutovalidateMode.disabled,
   }) : super(
           initialValue: info.isCertify()
               ? [
@@ -347,18 +346,19 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
                                                     placeholder:
                                                         (context, url) =>
                                                             Center(
-                                                                child: Shimmer
-                                                                    .fromColors(
-                                                      baseColor:
-                                                          Colors.grey[300]!,
-                                                      highlightColor:
-                                                          Colors.grey[100]!,
-                                                      child: Container(
-                                                        width: double.infinity,
-                                                        height: 200.0,
-                                                        color: Colors.white,
+                                                      child: Shimmer.fromColors(
+                                                        baseColor:
+                                                            Colors.grey[300]!,
+                                                        highlightColor:
+                                                            Colors.grey[100]!,
+                                                        child: Container(
+                                                          width:
+                                                              double.infinity,
+                                                          height: 200.0,
+                                                          color: Colors.white,
+                                                        ),
                                                       ),
-                                                    )),
+                                                    ),
                                                   )
                                                 : Image.file(
                                                     File(f.filePath),
@@ -373,7 +373,8 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
                                             child: Container(
                                               width: 300.w,
                                               decoration: BoxDecoration(
-                                                color: Pallete.primaryColor.withOpacity(0.2),
+                                                color: Pallete.primaryColor
+                                                    .withOpacity(0.2),
                                               ),
                                               child: Center(
                                                 child: Wrap(
