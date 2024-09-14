@@ -180,13 +180,13 @@ class _BindBankState extends State<BindBank> {
                     child: Column(
                       children: [
                         _buildBindBankField(S.current.phone_code,
-                            Icons.phone_rounded, 'user_mobile'),
+                            Icons.phone_rounded, 'user_mobile', true),
                         //UI.kHeight10(),
                         _buildBindBankField(S.current.user_name,
-                            Icons.person_rounded, 'user_name'),
+                            Icons.person_rounded, 'user_name', false),
                         //UI.kHeight10(),
                         _buildBindBankField(S.current.id_card,
-                            Icons.credit_score_outlined, 'id_card'),
+                            Icons.credit_score_outlined, 'id_card', false),
                         UI.kHeight20(),
                         buildBank(snap),
                         UI.kHeight20(),
@@ -201,7 +201,7 @@ class _BindBankState extends State<BindBank> {
                             inputFormatters: [
                               FilteringTextInputFormatter.digitsOnly,
                               LengthLimitingTextInputFormatter(19),
-                              //CardNumberInputFormatter(),
+                              CardNumberInputFormatter(),
                             ],
                             validator: (value) {
                               if (value == null || value.isEmpty) {
@@ -211,7 +211,7 @@ class _BindBankState extends State<BindBank> {
                               return null;
                             },
                             onSaved: (s) {
-                              data['card_no'] = s;
+                              data['card_no'] = s!.replaceAll(' ', '');
                             },
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
@@ -243,6 +243,7 @@ class _BindBankState extends State<BindBank> {
                                 formKey.currentState?.validate() ?? false;
 
                             if (validate) {
+                              UI.showLoading();
                               formKey.currentState?.save();
 
                               final AuthRepo authRepo = sl();
@@ -305,7 +306,7 @@ class _BindBankState extends State<BindBank> {
     );
   }
 
-  Widget _buildBindBankField(String hintText, IconData icon, String fieldName) {
+  Widget _buildBindBankField(String hintText, IconData icon, String fieldName, bool isNum) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10.h),
       decoration: BoxDecoration(
@@ -325,7 +326,7 @@ class _BindBankState extends State<BindBank> {
         onSaved: (value) {
           data[fieldName] = value;
         },
-        keyboardType: TextInputType.number,
+        keyboardType: isNum ?  TextInputType.number : TextInputType.text,
         decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(horizontal: 10.w),
           enabledBorder: InputBorder.none,

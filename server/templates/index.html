@@ -1,14 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
-    <link href="css/style.css" rel="stylesheet">
-  </head>
-  <body>
-    hello world
-    <script>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+  hello world
+  <input type="file" />
+  <button onclick="requestToken()">Get Token from Flutter</button>
+
+  <script>
+
+    function requestToken() {
+      if (window.ANDROID) {
+        window.ANDROID.postMessage("getToken");
+      } else {
+        alert("FlutterChannel is not available.");
+      }
+    }
+
     function getUrlParams() {
       // 使用 window.location.href 获取当前页面的完整 URL
       const url = new URL(window.location.href);
@@ -31,15 +45,11 @@
       });
 
       console.log(allParams); // 输出所有参数
-
-      alert(window.token);
     }
 
     // 页面加载完成后调用 getUrlParams
     window.onload = getUrlParams;
-    </script>
-  </body>
-  
+  </script>
+</body>
+
 </html>
-
-

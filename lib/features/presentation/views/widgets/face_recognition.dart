@@ -159,9 +159,12 @@ class FaceRecognotion extends FormField<List<ImagePickEntity>> {
                   //,
                   //UI.kHeight5(),
                   if (state.hasError)
-                    RText(
-                      text: info.promptSubtitle,
-                      color: Colors.red,
+                    Padding(
+                      padding: EdgeInsets.only(left: 10.w),
+                      child: RText(
+                        text: info.promptSubtitle,
+                        color: Colors.red,
+                      ),
                     )
                 ],
               ),

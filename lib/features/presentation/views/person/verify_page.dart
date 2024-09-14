@@ -1,4 +1,3 @@
-import 'package:easy_stepper/easy_stepper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,6 +9,8 @@ import 'package:loanswift/features/presentation/views/person/emergency_info.dart
 import 'package:loanswift/features/presentation/views/person/identify_verify_page.dart';
 import 'package:loanswift/features/presentation/views/person/job_info.dart';
 import 'package:loanswift/theme/pallete.dart';
+import 'package:lottie/lottie.dart';
+import 'package:timeline_tile/timeline_tile.dart';
 
 import '../../../../core/core.dart';
 
@@ -75,7 +76,7 @@ class _VerifyPageState extends State<VerifyPage>
     super.initState();
   }
 
-  Future<void> _showToBankDialog(int? projectId) async {
+  Future<void> _showToBankDialog(int? productId) async {
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
@@ -109,7 +110,7 @@ class _VerifyPageState extends State<VerifyPage>
                         Navigator.of(context).pop();
                         Navigator.of(context)
                             .pushNamed(BindBank.routerName, arguments: {
-                          'projectId': projectId,
+                          'productId': productId,
                         });
                       },
                     ),
@@ -138,7 +139,6 @@ class _VerifyPageState extends State<VerifyPage>
     if (args is DataMap) {
       productId = args['productId'] ?? 0;
     }
-    //debugPrint(pro)
 
     //return StepperExample();
     final currentStep =
@@ -147,7 +147,7 @@ class _VerifyPageState extends State<VerifyPage>
     return Scaffold(
       backgroundColor: Pallete.backgroundColor,
       appBar: AppBar(
-        toolbarHeight: 100.h,
+        toolbarHeight: 80.h,
         centerTitle: false,
         backgroundColor: Pallete.backgroundColor,
         title: Text(
@@ -157,11 +157,66 @@ class _VerifyPageState extends State<VerifyPage>
               ),
         ),
         bottom: PreferredSize(
-          preferredSize: Size.fromHeight(80.h),
-          child: buildStepper(
-            currentStep,
-          ),
-        ),
+            preferredSize: const Size.fromHeight(kToolbarHeight),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 10.h),
+                child: Row(
+                  //crossAxisAlignment: CrossAxisAlignment.center,
+                  //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //alignment: WrapAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      height: 80,
+                      child: buildStep(
+                          S.current.identity_authentication,
+                          true,
+                          false,
+                          currentStep.value > 0,
+                          currentStep.value == 0,
+                          false),
+                    ),
+
+                    SizedBox(
+                      height: 80,
+                      child: buildStep(
+                          S.current.personal_information,
+                          false,
+                          false,
+                          currentStep.value > 1,
+                          currentStep.value == 1,
+                          true),
+                    ),
+                    SizedBox(
+                      height: 80,
+                      child: buildStep(
+                          S.current.emergency_contact,
+                          false,
+                          false,
+                          currentStep.value > 2,
+                          currentStep.value == 2,
+                          false),
+                    ),
+
+                    SizedBox(
+                      height: 80,
+                      child: buildStep(S.current.work_information, false, true,
+                          currentStep.value > 3, currentStep.value == 3, true),
+                    ),
+                    //buildStep(false, false, false, true),
+                    //buildStep(false, false, false, false),
+                    //buildStep(false, true, false, false),
+                  ],
+                ),
+              ),
+            )),
+        //bottom: PreferredSize(
+        //  preferredSize: Size.fromHeight(80.h),
+        //  child: buildStepper(
+        //    currentStep,
+        //  ),
+        //),
       ),
       body: SafeArea(
         child: BlocListener<CertifiesBloc, CertifiesState>(
@@ -183,13 +238,12 @@ class _VerifyPageState extends State<VerifyPage>
 
             if (state is CertifiesRequestState) {
               Future.delayed(const Duration(milliseconds: 20), () {
-                if(!state.isDone) {
+                if (!state.isDone) {
                   _scrollToTop();
                 }
               });
-              if(state.isDone == true) {
+              if (state.isDone == true) {
                 _showToBankDialog(productId);
-
               }
             }
           },
@@ -243,85 +297,172 @@ class _VerifyPageState extends State<VerifyPage>
     );
   }
 
-  Widget buildStepper(StepperEnum currentStep) {
-    return Container(
-      color: Colors.grey.shade200,
-      clipBehavior: Clip.none,
-      child: EasyStepper(
-        alignment: Alignment.center,
-        lineStyle: LineStyle(
-          lineLength: 70.w,
-          lineType: LineType.normal,
-          lineThickness: 3,
-          lineSpace: 1,
-          lineWidth: 10,
-          unreachedLineType: LineType.dashed,
-        ),
-        activeStep: currentStep.value,
-        activeStepTextColor: Colors.black87,
-        finishedStepTextColor: Colors.black87,
-        //activeStepIconColor: Pallete.primaryColor,
-        internalPadding: 0,
-        //padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
-        showLoadingAnimation: true,
-        stepRadius: 8,
-        showStepBorder: false,
-        steps: [
-          EasyStep(
-            customTitle: RText(text: S.current.identity_authentication),
-
-            customStep: CircleAvatar(
-              radius: 8,
-              backgroundColor: Colors.white,
-              child: CircleAvatar(
-                radius: 7,
-                backgroundColor:
-                    currentStep.value >= 0 ? Colors.orange : Colors.white,
+  Widget buildStep(String title, bool isFirst, bool isLast, bool isPast,
+      bool isCurrent, bool inTop) {
+    return TimelineTile(
+      startChild: inTop
+          ? SizedBox(
+              width: 90.w,
+              child: RText(
+                textAlign: TextAlign.start,
+                text: title,
               ),
-            ),
-            //title: S.current.identity_authentication,
-          ),
-          EasyStep(
-            customStep: CircleAvatar(
-              radius: 8,
-              backgroundColor: Colors.white,
-              child: CircleAvatar(
-                radius: 7,
-                backgroundColor:
-                    currentStep.value >= 1 ? Colors.orange : Colors.white,
+            )
+          : Container(),
+      endChild: !inTop
+          ? SizedBox(
+              width: 80.w,
+              child: RText(
+                textAlign: TextAlign.start,
+                text: title,
               ),
-            ),
-            customTitle: RText(text: S.current.personal_information),
-            topTitle: true,
-          ),
-          EasyStep(
-            customStep: CircleAvatar(
-              radius: 8,
-              backgroundColor: Colors.white,
-              child: CircleAvatar(
-                radius: 7,
-                backgroundColor:
-                    currentStep.value >= 2 ? Colors.orange : Colors.white,
+            )
+          : Container(),
+      axis: TimelineAxis.horizontal,
+      alignment: TimelineAlign.manual,
+      lineXY: 0.5,
+      isFirst: isFirst,
+      isLast: isLast,
+      beforeLineStyle: const LineStyle(
+        thickness: 2,
+        color: Pallete.primaryColor,
+      ),
+      indicatorStyle: IndicatorStyle(
+        indicator: !isCurrent
+            ? (isPast
+                ? Container(
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Pallete.primaryColor,
+                    ),
+                    child: Center(
+                      child: Icon(
+                        Icons.check_outlined,
+                        color: Pallete.whiteColor,
+                        size: 10.sp,
+                      ),
+                    ),
+                  )
+                : Container(
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Color(0xFF2ACA8E),
+                    ),
+                    child: const Center(
+                      child: SizedBox(
+                        height: 15,
+                        width: 15,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 3,
+                          valueColor:
+                              AlwaysStoppedAnimation<Color>(Colors.white),
+                        ),
+                      ),
+                    ),
+                  ))
+            : Container(
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.black,
               ),
-            ),
-            customTitle: RText(text: S.current.emergency_contact),
-            topTitle: true,
-          ),
-          EasyStep(
-              customStep: CircleAvatar(
-                radius: 8,
-                backgroundColor: Colors.white,
-                child: CircleAvatar(
-                  radius: 7,
-                  backgroundColor:
-                      currentStep.value >= 3 ? Colors.orange : Colors.white,
+              child: Center(
+                  child: Lottie.asset(
+                    Assets.stepper,
+                    height: 100.h,
+                    width: 100.w,
+                  ),
                 ),
-              ),
-              customTitle: RText(text: S.current.work_information)),
-        ],
-        //onStepReached: (index) =>
-        //    setState(() => activeStep = index),
+            ),
+        width: 30,
+        //height: 30,
+        color: Pallete.secondaryColor,
+        iconStyle: IconStyle(
+          iconData: Icons.check_circle,
+          color: Pallete.timelineNo,
+        ),
       ),
     );
   }
+
+  //Widget buildStepper(StepperEnum currentStep) {
+  //  return Container(
+  //    color: Colors.grey.shade200,
+  //    clipBehavior: Clip.none,
+  //    child: EasyStepper(
+  //      alignment: Alignment.center,
+  //      lineStyle: LineStyle(
+  //        lineLength: 70.w,
+  //        lineType: LineType.normal,
+  //        lineThickness: 3,
+  //        lineSpace: 1,
+  //        lineWidth: 10,
+  //        unreachedLineType: LineType.dashed,
+  //      ),
+  //      activeStep: currentStep.value,
+  //      activeStepTextColor: Colors.black87,
+  //      finishedStepTextColor: Colors.black87,
+  //      //activeStepIconColor: Pallete.primaryColor,
+  //      internalPadding: 0,
+  //      //padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+  //      showLoadingAnimation: true,
+  //      stepRadius: 8,
+  //      showStepBorder: false,
+  //      steps: [
+  //        EasyStep(
+  //          customTitle: RText(text: S.current.identity_authentication),
+  //
+  //          customStep: CircleAvatar(
+  //            radius: 8,
+  //            backgroundColor: Colors.white,
+  //            child: CircleAvatar(
+  //              radius: 7,
+  //              backgroundColor:
+  //                  currentStep.value >= 0 ? Colors.orange : Colors.white,
+  //            ),
+  //          ),
+  //          //title: S.current.identity_authentication,
+  //        ),
+  //        EasyStep(
+  //          customStep: CircleAvatar(
+  //            radius: 8,
+  //            backgroundColor: Colors.white,
+  //            child: CircleAvatar(
+  //              radius: 7,
+  //              backgroundColor:
+  //                  currentStep.value >= 1 ? Colors.orange : Colors.white,
+  //            ),
+  //          ),
+  //          customTitle: RText(text: S.current.personal_information),
+  //          topTitle: true,
+  //        ),
+  //        EasyStep(
+  //          customStep: CircleAvatar(
+  //            radius: 8,
+  //            backgroundColor: Colors.white,
+  //            child: CircleAvatar(
+  //              radius: 7,
+  //              backgroundColor:
+  //                  currentStep.value >= 2 ? Colors.orange : Colors.white,
+  //            ),
+  //          ),
+  //          customTitle: RText(text: S.current.emergency_contact),
+  //          topTitle: true,
+  //        ),
+  //        EasyStep(
+  //            customStep: CircleAvatar(
+  //              radius: 8,
+  //              backgroundColor: Colors.white,
+  //              child: CircleAvatar(
+  //                radius: 7,
+  //                backgroundColor:
+  //                    currentStep.value >= 3 ? Colors.orange : Colors.white,
+  //              ),
+  //            ),
+  //            customTitle: RText(text: S.current.work_information)),
+  //      ],
+  //      //onStepReached: (index) =>
+  //      //    setState(() => activeStep = index),
+  //    ),
+  //  );
+  //}
 }

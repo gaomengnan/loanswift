@@ -5,7 +5,7 @@ import 'package:loanswift/core/core.dart';
 import 'package:loanswift/features/domain/entity/home/rules.dart';
 import 'package:loanswift/features/domain/entity/products/main_products.dart';
 import 'package:loanswift/features/presentation/views/person/bind_bank.dart';
-import 'package:loanswift/features/presentation/views/person/verify_page.dart';
+import 'package:loanswift/features/presentation/views/widgets/permission.dart';
 
 import '../../../../core/common/widgets/widgets.dart';
 import '../../../../theme/theme.dart';
@@ -265,12 +265,14 @@ class BuildMainEntry extends StatelessWidget {
                             // 按钮
                             ElevatedButton(
                               onPressed: () {
-                                if (!rule.certifyCompleted) {
-                                  Navigator.of(context).pushNamed(
-                                      VerifyPage.routerName,
-                                      arguments: {
-                                        'productId': mainProducts.productId,
-                                      });
+                                if (rule.certifyCompleted) {
+                                  //Navigator.of(context).pushNamed(
+                                  //    VerifyPage.routerName,
+                                  //    arguments: {
+                                  //      'productId': mainProducts.productId,
+                                  //    });
+                                  showPermissionDialog(
+                                      context, mainProducts.productId);
                                 }
 
                                 if (rule.certifyCompleted && !rule.isBindCard) {

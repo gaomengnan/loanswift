@@ -16,6 +16,11 @@ import 'package:loanswift/features/presentation/views/widgets/verification_code.
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
+    //case PermissionPage.routerName:
+    //  return _pageBuilder(
+    //    (_) => const PermissionPage(),
+    //    settings: settings,
+    //  );
     case BindBank.routerName:
       return _pageBuilder(
         (_) => const BindBank(),

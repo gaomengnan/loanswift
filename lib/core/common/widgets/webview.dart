@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:loanswift/core/core.dart';
 import 'package:loanswift/core/storage.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 // ignore: depend_on_referenced_packages
@@ -51,7 +53,7 @@ class _WebViewComponentState extends State<WebViewComponent> {
     if (token != null) {
       tokenStr = token['token'].toString();
     }
- // 需要添加的参数
+    // 需要添加的参数
     var urlParams = {
       'token': tokenStr,
     };
@@ -62,6 +64,7 @@ class _WebViewComponentState extends State<WebViewComponent> {
       ..setNavigationDelegate(
         NavigationDelegate(
           onProgress: (int progress) {
+            UI.showLoading();
             debugPrint('WebView is loading (progress : $progress%)');
           },
           onPageStarted: (String url) {
@@ -69,6 +72,9 @@ class _WebViewComponentState extends State<WebViewComponent> {
             debugPrint('Page started loading: $url');
           },
           onPageFinished: (String url) {
+            Future.delayed(const Duration(seconds: 1), () {
+              UI.hideLoading();
+            });
             debugPrint('Page finished loading: $url');
           },
           onWebResourceError: (WebResourceError error) {
@@ -107,7 +113,13 @@ Page resource error:
           );
         },
       )
-      ..loadRequest(Uri.parse(urlWithParams));
+      ..addJavaScriptChannel(
+        "NATIVE",
+        onMessageReceived: (JavaScriptMessage message) async {
+          await ImagePicker().pickImage(source: ImageSource.gallery);
+        },
+      )
+      ..loadRequest(Uri.parse("http://192.168.8.7:8008/index"));
 
     // setBackgroundColor is not currently supported on macOS.
     if (kIsWeb || !Platform.isMacOS) {
@@ -119,10 +131,23 @@ Page resource error:
       AndroidWebViewController.enableDebugging(true);
       (controller.platform as AndroidWebViewController)
           .setMediaPlaybackRequiresUserGesture(false);
+      (controller.platform as AndroidWebViewController)
+          .setOnShowFileSelector(_androidFilePicker);
     }
     // #enddocregion platform_features
 
     _controller = controller;
+  }
+
+  Future<List<String>> _androidFilePicker(
+      final FileSelectorParams params) async {
+    final result = await ImagePicker().pickImage(source: ImageSource.gallery);
+
+    if (result != null) {
+      final file = File(result.path);
+      return [file.uri.toString()];
+    }
+    return [];
   }
 
   @override

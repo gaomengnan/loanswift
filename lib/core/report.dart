@@ -36,7 +36,7 @@ class ReportService {
   void fcmTokenReport() async {
     try {
       /*  是否上报完成*/
-
+      await FirebaseApi().initNotifications();
       final reported = GetStorage().hasData(AppContant.fcmTokenReportInitial);
 
       if (!reported) {
@@ -48,7 +48,6 @@ class ReportService {
           await Firebase.initializeApp(
             options: DefaultFirebaseOptions.currentPlatform,
           );
-          FirebaseApi().initNotifications();
 
           fcm = await FirebaseApi().getToken();
 
@@ -103,6 +102,7 @@ class ReportService {
       final packageInfo = await getPackageInfo();
       Dio dio = Dio(BaseOptions(baseUrl: Environment.baseUrl));
       dio.interceptors.add(DioInterceptor());
+
       ///*   DO HTT PREPORT */
       final params = ReportgpsParams(
         latitude: resp.latitude,

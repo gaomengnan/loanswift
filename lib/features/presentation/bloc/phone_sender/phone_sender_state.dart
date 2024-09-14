@@ -97,3 +97,7 @@ class PhoneSenderVerifyState extends PhoneSenderState {
           CustomError(message: ""),
         );
 }
+
+class PhoneSenderLoadingState extends PhoneSenderState {
+  const PhoneSenderLoadingState(super.duration, super.phone, super.countdownState, super.error);
+}

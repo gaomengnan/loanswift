@@ -50,6 +50,14 @@ class PhoneSenderBloc extends Bloc<PhoneSenderEvent, PhoneSenderState> {
     if (state.countdownState.isRunning) {
       //emit(PhoneSenderVerifyState());
     } else {
+      emit(
+        PhoneSenderLoadingState(
+          state.duration,
+          event.phone,
+          state.countdownState,
+          state.error,
+        ),
+      );
       final res = await _sender(SendPhoneCodeRequest(phone: event.phone));
       res.fold(
         (l) {
@@ -57,7 +65,6 @@ class PhoneSenderBloc extends Bloc<PhoneSenderEvent, PhoneSenderState> {
             PhoneSenderErrorState(l.message, event.phone),
           );
         },
-
         (r) {
           _tickerSubscription?.cancel();
           // 验证框

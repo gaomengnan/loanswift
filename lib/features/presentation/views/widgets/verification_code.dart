@@ -95,7 +95,7 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
           return Scaffold(
             appBar: AppBar(
               backgroundColor: Pallete.backgroundColor,
-              ),
+            ),
             body: SafeArea(
               child: Padding(
                 padding: EdgeInsets.symmetric(

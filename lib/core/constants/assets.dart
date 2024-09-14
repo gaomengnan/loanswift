@@ -6,6 +6,7 @@ class Assets {
   static const underConstruction = "assets/lottie/underconstruction.json";
   static const loading = "assets/lottie/loading.json";
   static const placeholder = "assets/lottie/placeholder.json";
+  static const stepper = "assets/lottie/stepper.json";
   static const check = "assets/lottie/check.json";
   static const idcardFront = "assets/images/id_front.webp";
   static const facePlaceholder = "assets/images/face.webp";

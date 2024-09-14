@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:loanswift/core/common/widgets/widgets.dart';
@@ -424,9 +423,12 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
                   ),
                   UI.kHeight5(),
                   if (state.hasError)
-                    RText(
-                      text: info.promptSubtitle,
-                      color: Colors.red,
+                    Padding(
+                      padding: EdgeInsets.only(left: 10.0.w),
+                      child: RText(
+                        text: info.promptSubtitle,
+                        color: Colors.red,
+                      ),
                     )
                 ],
               ),
