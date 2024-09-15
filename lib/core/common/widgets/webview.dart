@@ -119,7 +119,7 @@ Page resource error:
           await ImagePicker().pickImage(source: ImageSource.gallery);
         },
       )
-      ..loadRequest(Uri.parse("http://192.168.8.7:8008/index"));
+      ..loadRequest(Uri.parse(urlWithParams));
 
     // setBackgroundColor is not currently supported on macOS.
     if (kIsWeb || !Platform.isMacOS) {

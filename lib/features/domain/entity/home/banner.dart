@@ -1,13 +1,15 @@
 class BannerEntity {
-  final String path;
-  final int isClick;
-  final String jumpUrl;
+  final String? _path;
+  final int? _isClick;
+  final String? _jumpUrl;
 
   BannerEntity({
-    required this.path,
-    required this.isClick,
-    required this.jumpUrl,
-  });
+    String? path,
+    int? isClick,
+    String? jumpUrl,
+  })  : _path = path,
+        _isClick = isClick,
+        _jumpUrl = jumpUrl;
 
   BannerEntity.empty()
       : this(
@@ -17,14 +19,19 @@ class BannerEntity {
         );
 
   factory BannerEntity.fromMap(Map<String, dynamic> json) => BannerEntity(
-        path: json["path"],
-        isClick: json["is_click"],
-        jumpUrl: json["jump_url"],
+        path: json["path"] as String?,
+        isClick: json["is_click"] as int?,
+        jumpUrl: json["jump_url"] as String?,
       );
 
   Map<String, dynamic> toMap() => {
-        "path": path,
-        "is_click": isClick,
-        "jump_url": jumpUrl,
+        "path": _path,
+        "is_click": _isClick,
+        "jump_url": _jumpUrl,
       };
+
+  // Getters with default values
+  String get path => _path ?? "";
+  int get isClick => _isClick ?? 0;
+  String get jumpUrl => _jumpUrl ?? "";
 }

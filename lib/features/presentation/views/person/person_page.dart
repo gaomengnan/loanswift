@@ -267,9 +267,9 @@ class _PersonPageState extends State<PersonPage> {
                         ),
                         InkWell(
                           onTap: () {
-                            Navigator.of(context).pushNamed(
-                              "/order_detail",
-                            );
+                            //Navigator.of(context).pushNamed(
+                            //  "/order_detail",
+                            //);
                           },
                           child: _buildIconButton(
                             Icons.info_rounded,

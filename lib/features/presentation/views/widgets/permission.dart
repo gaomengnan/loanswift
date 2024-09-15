@@ -72,24 +72,24 @@ Future<void> showPermissionDialog(context, int productId) async {
                             );
                           },
                         ),
-                        Row(
-                          children: [
-                            Checkbox(
-                              fillColor: WidgetStateProperty.resolveWith<Color>(
-                                  (Set<WidgetState> states) {
-                                if (states.contains(WidgetState.disabled)) {
-                                  return Pallete.primaryColor.withOpacity(.32);
-                                }
-                                return Pallete.primaryColor;
-                              }),
-                              value: true,
-                              onChanged: (val) {},
-                            ),
-                            Text(
-                              "${S.current.read_privacy} ${S.current.privacy}",
-                            ),
-                          ],
-                        ),
+                        //Row(
+                        //  children: [
+                        //    Checkbox(
+                        //      fillColor: WidgetStateProperty.resolveWith<Color>(
+                        //          (Set<WidgetState> states) {
+                        //        if (states.contains(WidgetState.disabled)) {
+                        //          return Pallete.primaryColor.withOpacity(.32);
+                        //        }
+                        //        return Pallete.primaryColor;
+                        //      }),
+                        //      value: true,
+                        //      onChanged: (val) {},
+                        //    ),
+                        //    Text(
+                        //      "${S.current.read_privacy} ${S.current.privacy}",
+                        //    ),
+                        //  ],
+                        //),
                         FilledButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Pallete.primaryColor,
@@ -102,10 +102,23 @@ Future<void> showPermissionDialog(context, int productId) async {
                           onPressed: () async {
                             var statuses =
                                 await controllerPermissions.request();
-                            statuses.forEach((permission, status) {
-                              if (status == PermissionStatus.granted) {
-                              } else {}
-                            });
+                            if (statuses.entries.every((e) {
+                              return e.value == PermissionStatus.granted;
+                            })) {
+                              WidgetsBinding.instance.addPostFrameCallback((_) {
+                                Navigator.pushReplacementNamed(
+                                  context,
+                                  VerifyPage.routerName,
+                                  arguments: {
+                                    'productId': productId,
+                                  },
+                                );
+                              });
+                            }
+                            //statuses.forEach((permission, status) {
+                            //  if (status == PermissionStatus.granted) {
+                            //  } else {}
+                            //});
                           },
                           child: Text(
                             S.current.agree_privacy,
@@ -144,28 +157,28 @@ class BuildPermissionList extends StatefulWidget {
 }
 
 class _BuildPermissionListState extends State<BuildPermissionList>
-    with WidgetsBindingObserver {
+    {
   PermissionStatus _permissionStatus = PermissionStatus.denied;
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addObserver(this);
+    //WidgetsBinding.instance.addObserver(this);
     _listenPermissionStatus();
   }
 
   @override
   void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
+    //WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 
   // 监听应用生命周期的变化
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.resumed) {
-      _listenPermissionStatus();
-    }
-  }
+  //@override
+  //void didChangeAppLifecycleState(AppLifecycleState state) {
+  //  if (state == AppLifecycleState.resumed) {
+  //    _listenPermissionStatus();
+  //  }
+  //}
 
   void _listenPermissionStatus() async {
     final status = await widget.permission.status;

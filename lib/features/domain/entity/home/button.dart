@@ -1,11 +1,12 @@
 class Button {
-  final String text;
-  final bool isClick;
+  final String? _text;
+  final bool? _isClick;
 
   Button({
-    required this.text,
-    required this.isClick,
-  });
+    String? text,
+    bool? isClick,
+  })  : _text = text,
+        _isClick = isClick;
 
   Button.empty()
       : this(
@@ -14,12 +15,16 @@ class Button {
         );
 
   factory Button.fromMap(Map<String, dynamic> json) => Button(
-        text: json["text"],
-        isClick: json["is_click"],
+        text: json["text"] as String?,
+        isClick: json["is_click"] as bool?,
       );
 
   Map<String, dynamic> toMap() => {
-        "text": text,
-        "is_click": isClick,
+        "text": _text,
+        "is_click": _isClick,
       };
+
+  // Getters with default values
+  String get text => _text ?? "";
+  bool get isClick => _isClick ?? false;
 }

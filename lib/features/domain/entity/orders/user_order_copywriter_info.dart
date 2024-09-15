@@ -1,13 +1,15 @@
 class UserOrderCopywriterInfo {
-  final String orderStatusText;
-  final String dateText;
-  final String moneyText;
+  final String? _orderStatusText;
+  final String? _dateText;
+  final String? _moneyText;
 
   UserOrderCopywriterInfo({
-    required this.orderStatusText,
-    required this.dateText,
-    required this.moneyText,
-  });
+    String? orderStatusText,
+    String? dateText,
+    String? moneyText,
+  })  : _orderStatusText = orderStatusText,
+        _dateText = dateText,
+        _moneyText = moneyText;
 
   UserOrderCopywriterInfo.empty()
       : this(
@@ -18,14 +20,19 @@ class UserOrderCopywriterInfo {
 
   factory UserOrderCopywriterInfo.fromMap(Map<String, dynamic> json) =>
       UserOrderCopywriterInfo(
-        orderStatusText: json["order_status_text"],
-        dateText: json["date_text"],
-        moneyText: json["money_text"],
+        orderStatusText: json["order_status_text"] as String? ?? "",
+        dateText: json["date_text"] as String? ?? "",
+        moneyText: json["money_text"] as String? ?? "",
       );
 
   Map<String, dynamic> toMap() => {
-        "order_status_text": orderStatusText,
-        "date_text": dateText,
-        "money_text": moneyText,
+        "order_status_text": _orderStatusText,
+        "date_text": _dateText,
+        "money_text": _moneyText,
       };
+
+  // Getters with default values
+  String get orderStatusText => _orderStatusText ?? "";
+  String get dateText => _dateText ?? "";
+  String get moneyText => _moneyText ?? "";
 }

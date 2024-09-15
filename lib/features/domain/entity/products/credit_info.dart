@@ -1,6 +1,6 @@
 class CreditInfo {
   final int creditStatus;
-  final String sourceOrderNo;
+  final String? sourceOrderNo;
 
   CreditInfo({
     required this.creditStatus,

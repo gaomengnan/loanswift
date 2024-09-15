@@ -1,12 +1,12 @@
 class Rules {
-  final bool certifyCompleted;
-  final bool isBindCard;
-
+  final bool? _certifyCompleted;
+  final bool? _isBindCard;
 
   Rules({
-    required this.certifyCompleted,
-    required this.isBindCard,
-  });
+    bool? certifyCompleted,
+    bool? isBindCard,
+  })  : _certifyCompleted = certifyCompleted,
+        _isBindCard = isBindCard;
 
   Rules.empty()
       : this(
@@ -15,12 +15,16 @@ class Rules {
         );
 
   factory Rules.fromMap(Map<String, dynamic> json) => Rules(
-        certifyCompleted: json["certify_completed"] ?? false,
-        isBindCard: json["is_bind_card"] ?? false,
+        certifyCompleted: json["certify_completed"] as bool? ?? false,
+        isBindCard: json["is_bind_card"] as bool? ?? false,
       );
 
   Map<String, dynamic> toMap() => {
-        "certify_completed": certifyCompleted,
-        "is_bind_card": isBindCard,
+        "certify_completed": _certifyCompleted,
+        "is_bind_card": _isBindCard,
       };
+
+  // Getters with default values
+  bool get certifyCompleted => _certifyCompleted ?? false;
+  bool get isBindCard => _isBindCard ?? false;
 }

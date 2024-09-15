@@ -117,6 +117,47 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Normal Repayment"),
         "notification": MessageLookupByLibrary.simpleMessage("Notifications"),
         "orderDetails": MessageLookupByLibrary.simpleMessage("Order Details"),
+        "order_confirm_actual_amount":
+            MessageLookupByLibrary.simpleMessage("Actual Amount"),
+        "order_confirm_cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "order_confirm_collapse":
+            MessageLookupByLibrary.simpleMessage("Collapse"),
+        "order_confirm_confirm":
+            MessageLookupByLibrary.simpleMessage("Confirm"),
+        "order_confirm_deduction_fee":
+            MessageLookupByLibrary.simpleMessage("Deduction Fee"),
+        "order_confirm_first_period_fee":
+            MessageLookupByLibrary.simpleMessage("First Period Fee"),
+        "order_confirm_first_period_interest_fee":
+            MessageLookupByLibrary.simpleMessage("First Period Interest Fee"),
+        "order_confirm_first_period_pay_time":
+            MessageLookupByLibrary.simpleMessage("First Period Pay Time"),
+        "order_confirm_gst_fee":
+            MessageLookupByLibrary.simpleMessage("GST Fee"),
+        "order_confirm_interest_fee":
+            MessageLookupByLibrary.simpleMessage("Interest Fee"),
+        "order_confirm_platform_management_fee":
+            MessageLookupByLibrary.simpleMessage("Platform Management Fee"),
+        "order_confirm_processing_fee":
+            MessageLookupByLibrary.simpleMessage("Processing Fee"),
+        "order_confirm_repay_amount":
+            MessageLookupByLibrary.simpleMessage("Repayment Amount"),
+        "order_confirm_repayment_amount":
+            MessageLookupByLibrary.simpleMessage("Repayment Amount"),
+        "order_confirm_repayment_plan":
+            MessageLookupByLibrary.simpleMessage("Repayment Plan"),
+        "order_confirm_risk_service_fee":
+            MessageLookupByLibrary.simpleMessage("Risk Service Fee"),
+        "order_confirm_see_more":
+            MessageLookupByLibrary.simpleMessage("See More"),
+        "order_confirm_service_fee":
+            MessageLookupByLibrary.simpleMessage("Service Fee"),
+        "order_confirm_title":
+            MessageLookupByLibrary.simpleMessage("Order Confirmation"),
+        "order_confirm_total_interest":
+            MessageLookupByLibrary.simpleMessage("Total Interest"),
+        "order_confirm_total_service_fee":
+            MessageLookupByLibrary.simpleMessage("Total Service Fee"),
         "overdue": MessageLookupByLibrary.simpleMessage("Late"),
         "permission_title": MessageLookupByLibrary.simpleMessage(
             "To expedite your loan process, we need these permissions"),

@@ -173,9 +173,9 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
                         horizontal: 10.w,
                       ),
                       margin: const EdgeInsets.all(10),
-                      height: 170.h,
+                      height: 120.h,
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        //color: Colors.white30,
                         borderRadius: BorderRadius.all(
                           Radius.circular(10.sp),
                         ),
@@ -213,7 +213,7 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
                               //  //bottom: 10.h,
                               //),
                               decoration: BoxDecoration(
-                                color: Colors.grey.withOpacity(0.1),
+                                //color: Colors.grey.withOpacity(0.1),
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(10.sp),
                                 ),
@@ -232,8 +232,8 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
                                         children: [
                                           CircleAvatar(
                                             child: CachedNetworkImage(
-                                                imageUrl: order
-                                                    .relationProduct.productLogo),
+                                                imageUrl: order.relationProduct
+                                                    .productLogo),
                                           ),
                                           UI.kWidth10(),
                                           Column(
@@ -255,7 +255,7 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
                                               ),
                                             ],
                                           ),
-                                
+
                                           //UI.kWidth10(),
                                           Expanded(
                                             child: Padding(
@@ -269,8 +269,8 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
                                                 children: [
                                                   //Text("asdad"),
                                                   RText(
-                                                    text: order
-                                                        .copywriterInfo.dateText,
+                                                    text: order.copywriterInfo
+                                                        .dateText,
                                                     size: 14.sp,
                                                   ),
                                                   UI.kHeight5(),
@@ -311,29 +311,32 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
                                         ],
                                       ),
                                     ),
-                                    const Divider(
-                                      color: Colors.black12,
-                                    ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsets.only(right: 8.0.w, bottom: 8.h),
-                                        child: Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.end,
-                                          mainAxisAlignment: MainAxisAlignment.end,
-                                          children: [
-                                            OutlinedButton(
-                                                onPressed: () {},
-                                                child: Text(S.current.immediate_repayment)),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
+                                    //const Divider(
+                                    //  color: Colors.black12,
+                                    //),
+                                    //Expanded(
+                                    //  child: Padding(
+                                    //    padding: EdgeInsets.only(right: 8.0.w, bottom: 8.h),
+                                    //    child: Row(
+                                    //      crossAxisAlignment:
+                                    //          CrossAxisAlignment.end,
+                                    //      mainAxisAlignment: MainAxisAlignment.end,
+                                    //      children: [
+                                    //        OutlinedButton(
+                                    //            onPressed: () {},
+                                    //            child: Text(S.current.immediate_repayment)),
+                                    //      ],
+                                    //    ),
+                                    //  ),
+                                    //),
                                     //UI.kHeight5(),
                                   ],
                                 ),
                               ),
                             ),
+                          ),
+                          Divider(
+                            color: Colors.grey.shade100,
                           ),
                         ],
                       ),

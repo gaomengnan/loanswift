@@ -1,9 +1,17 @@
 import 'package:loanswift/core/core.dart';
 
 class Other {
-  final String feedbackUrl;
-  final String cardListPath;
-  final List<Protocol> protocols;
+  final String? _feedbackUrl;
+  final String? _cardListPath;
+  final List<Protocol>? _protocols;
+
+  Other({
+    String? feedbackUrl,
+    String? cardListPath,
+    List<Protocol>? protocols,
+  })  : _feedbackUrl = feedbackUrl,
+        _cardListPath = cardListPath,
+        _protocols = protocols;
 
   Other.empty()
       : this(
@@ -14,42 +22,49 @@ class Other {
 
   factory Other.fromMap(DataMap map) {
     return Other(
-        cardListPath: map['card_list_path'] ?? '',
-        feedbackUrl: map['feedback_path'] ?? '',
-        protocols: List<Protocol>.from(
-            map["protocol_list"].map((x) => Protocol.fromMap(x))));
+      cardListPath: map['card_list_path'] as String? ?? '',
+      feedbackUrl: map['feedback_path'] as String? ?? '',
+      protocols: List<Protocol>.from(
+        (map["protocol_list"] as List).map((x) => Protocol.fromMap(x)),
+      ),
+    );
   }
+
   Map<String, dynamic> toMap() => {
-        'card_list_path': cardListPath,
-        'feedback_path': feedbackUrl,
-        'protocol_list': protocols
-            .map((x) => x.toMap())
-            .toList() // Convert List<Protocol> to List<Map<String, dynamic>> for serialization.
+        'card_list_path': _cardListPath,
+        'feedback_path': _feedbackUrl,
+        'protocol_list': _protocols?.map((x) => x.toMap()).toList(),
       };
 
-  Other({
-    required this.feedbackUrl,
-    required this.protocols,
-    required this.cardListPath,
-  });
+  // Getters with default values
+  String get feedbackUrl => _feedbackUrl ?? "";
+  String get cardListPath => _cardListPath ?? "";
+  List<Protocol> get protocols => _protocols ?? [];
 }
 
 class Protocol {
-  final String name;
+  final String? _name;
+  final String? _path;
 
-  final String path;
+  Protocol({
+    String? name,
+    String? path,
+  })  : _name = name,
+        _path = path;
 
   factory Protocol.fromMap(DataMap map) {
     return Protocol(
-      name: map['name'] ?? '',
-      path: map['path'] ?? '',
+      name: map['name'] as String? ?? '',
+      path: map['path'] as String? ?? '',
     );
   }
 
   DataMap toMap() => {
-        'name': name,
-        'path': path,
+        'name': _name,
+        'path': _path,
       };
 
-  Protocol({required this.name, required this.path});
+  // Getters with default values
+  String get name => _name ?? "";
+  String get path => _path ?? "";
 }

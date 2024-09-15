@@ -3,31 +3,47 @@ import 'package:loanswift/features/domain/entity/orders/repayment_info.dart';
 import 'package:loanswift/features/domain/entity/orders/user_order_copywriter_info.dart';
 
 class UserOrder {
-  final String orderNo;
-  final RelationProduct relationProduct;
-  final UserOrderCopywriterInfo copywriterInfo;
-  final String showTime;
-  final String orderAmount;
-  final String serviceMoney;
-  final String term;
-  final RepaymentInfo repaymentInfo;
+  final String _orderNo;
+  final RelationProduct _relationProduct;
+  final UserOrderCopywriterInfo _copywriterInfo;
+  final String _showTime;
+  final String _orderAmount;
+  final String _serviceMoney;
+  final String _term;
+  final RepaymentInfo _repaymentInfo;
 
   UserOrder({
-    required this.orderNo,
-    required this.relationProduct,
-    required this.copywriterInfo,
-    required this.showTime,
-    required this.orderAmount,
-    required this.serviceMoney,
-    required this.term,
-    required this.repaymentInfo,
-  });
+    required String orderNo,
+    required RelationProduct relationProduct,
+    required UserOrderCopywriterInfo copywriterInfo,
+    required String showTime,
+    required String orderAmount,
+    required String serviceMoney,
+    required String term,
+    required RepaymentInfo repaymentInfo,
+  })  : _orderNo = orderNo,
+        _relationProduct = relationProduct,
+        _copywriterInfo = copywriterInfo,
+        _showTime = showTime,
+        _orderAmount = orderAmount,
+        _serviceMoney = serviceMoney,
+        _term = term,
+        _repaymentInfo = repaymentInfo;
+
+  // Getters
+  String get orderNo => _orderNo;
+  RelationProduct get relationProduct => _relationProduct;
+  UserOrderCopywriterInfo get copywriterInfo => _copywriterInfo;
+  String get showTime => _showTime;
+  String get orderAmount => _orderAmount;
+  String get serviceMoney => _serviceMoney;
+  String get term => _term;
+  RepaymentInfo get repaymentInfo => _repaymentInfo;
 
   factory UserOrder.fromMap(Map<String, dynamic> json) => UserOrder(
         orderNo: json["order_no"],
         relationProduct: RelationProduct.fromMap(json["relation_product"]),
-        copywriterInfo:
-            UserOrderCopywriterInfo.fromMap(json["copywriter_info"]),
+        copywriterInfo: UserOrderCopywriterInfo.fromMap(json["copywriter_info"]),
         showTime: json["show_time"],
         orderAmount: json["order_amount"],
         serviceMoney: json["service_money"],
@@ -36,13 +52,13 @@ class UserOrder {
       );
 
   Map<String, dynamic> toMap() => {
-        "order_no": orderNo,
-        "relation_product": relationProduct.toMap(),
-        "copywriter_info": copywriterInfo.toMap(),
-        "show_time": showTime,
-        "order_amount": orderAmount,
-        "service_money": serviceMoney,
-        "term": term,
-        "repayment_info": repaymentInfo.toMap(),
+        "order_no": _orderNo,
+        "relation_product": _relationProduct.toMap(),
+        "copywriter_info": _copywriterInfo.toMap(),
+        "show_time": _showTime,
+        "order_amount": _orderAmount,
+        "service_money": _serviceMoney,
+        "term": _term,
+        "repayment_info": _repaymentInfo.toMap(),
       };
 }

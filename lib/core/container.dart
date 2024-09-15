@@ -32,7 +32,9 @@ import 'package:loanswift/features/domain/usecases/common/get_cities.dart';
 import 'package:loanswift/features/domain/usecases/common/ocr.dart';
 import 'package:loanswift/features/domain/usecases/common/report_fcm.dart';
 import 'package:loanswift/features/domain/usecases/home/data.dart';
+import 'package:loanswift/features/domain/usecases/order/check_order.dart';
 import 'package:loanswift/features/domain/usecases/order/get_order_detail.dart';
+import 'package:loanswift/features/domain/usecases/order/order_confirm.dart';
 import 'package:loanswift/features/domain/usecases/order/query_order.dart';
 import 'package:loanswift/features/presentation/bloc/certify/certifies_bloc.dart';
 import 'package:loanswift/features/presentation/bloc/home/home_bloc.dart';
@@ -191,7 +193,9 @@ Future<void> initialize() async {
     ..registerLazySingleton(() => GetCities(commonService: sl()))
     ..registerLazySingleton(() => GetBanks(commonService: sl()))
     //..registerLazySingleton(() => ReportService(reportRepo: sl()))
-    ..registerLazySingleton(() => ReportFcm(reportRepo: sl()));
+    ..registerLazySingleton(() => ReportFcm(reportRepo: sl()))
+    ..registerLazySingleton(() => OrderConfim(order: sl()))
+    ..registerLazySingleton(() => CheckOrder(order: sl()));
 
   /*     获取设备信息         */
   try {

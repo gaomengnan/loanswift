@@ -113,6 +113,27 @@
   "my_account_order_management": "Order Management",
   "my_account_my_bank_card": "My Bank Card",
   "my_account_about_us": "About Us",
-  "my_account_privacy_policy": "Privacy Policy"
+  "my_account_privacy_policy": "Privacy Policy",
+  "order_confirm_title": "Order Confirmation",
+  "order_confirm_service_fee": "Service Fee",
+  "order_confirm_interest_fee": "Interest Fee",
+  "order_confirm_first_period_fee": "First Period Fee",
+  "order_confirm_repay_amount": "Repayment Amount",
+  "order_confirm_total_interest": "Total Interest",
+  "order_confirm_total_service_fee": "Total Service Fee",
+  "order_confirm_deduction_fee": "Deduction Fee",
+  "order_confirm_first_period_interest_fee": "First Period Interest Fee",
+  "order_confirm_platform_management_fee": "Platform Management Fee",
+  "order_confirm_risk_service_fee": "Risk Service Fee",
+  "order_confirm_actual_amount": "Actual Amount",
+  "order_confirm_first_period_pay_time": "First Period Pay Time",
+  "order_confirm_processing_fee": "Processing Fee",
+  "order_confirm_gst_fee": "GST Fee",
+  "order_confirm_repayment_amount": "Repayment Amount",
+  "order_confirm_see_more": "See More",
+  "order_confirm_collapse": "Collapse",
+  "order_confirm_cancel": "Cancel",
+  "order_confirm_confirm": "Confirm",
+  "order_confirm_repayment_plan": "Repayment Plan"
 }
 

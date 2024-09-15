@@ -1,10 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/features/domain/entity/home/rules.dart';
 import 'package:loanswift/features/domain/entity/products/main_products.dart';
+import 'package:loanswift/features/presentation/bloc/home/home_bloc.dart';
 import 'package:loanswift/features/presentation/views/person/bind_bank.dart';
+import 'package:loanswift/features/presentation/views/widgets/order_confirm_dialog.dart';
 import 'package:loanswift/features/presentation/views/widgets/permission.dart';
 
 import '../../../../core/common/widgets/widgets.dart';
@@ -265,7 +268,7 @@ class BuildMainEntry extends StatelessWidget {
                             // 按钮
                             ElevatedButton(
                               onPressed: () {
-                                if (rule.certifyCompleted) {
+                                if (!rule.certifyCompleted) {
                                   //Navigator.of(context).pushNamed(
                                   //    VerifyPage.routerName,
                                   //    arguments: {
@@ -273,13 +276,23 @@ class BuildMainEntry extends StatelessWidget {
                                   //    });
                                   showPermissionDialog(
                                       context, mainProducts.productId);
-                                }
-
-                                if (rule.certifyCompleted && !rule.isBindCard) {
+                                } else if (rule.certifyCompleted &&
+                                    !rule.isBindCard) {
                                   Navigator.of(context).pushNamed(
                                     BindBank.routerName,
                                     arguments: {
                                       'productId': mainProducts.productId,
+                                    },
+                                  );
+                                } else {
+                                  showOrderConfirmDialog(
+                                    context,
+                                    productId: mainProducts.productId,
+                                    ck: (ctx) {
+                                      Navigator.pop(ctx);
+                                      context
+                                          .read<HomeBloc>()
+                                          .add(HomeRefreshEvent());
                                     },
                                   );
                                 }

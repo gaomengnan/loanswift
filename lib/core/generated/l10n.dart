@@ -1159,6 +1159,216 @@ class S {
       args: [],
     );
   }
+
+  /// `订单确认`
+  String get order_confirm_title {
+    return Intl.message(
+      '订单确认',
+      name: 'order_confirm_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `服务费`
+  String get order_confirm_service_fee {
+    return Intl.message(
+      '服务费',
+      name: 'order_confirm_service_fee',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `利息费用`
+  String get order_confirm_interest_fee {
+    return Intl.message(
+      '利息费用',
+      name: 'order_confirm_interest_fee',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `第一期费用`
+  String get order_confirm_first_period_fee {
+    return Intl.message(
+      '第一期费用',
+      name: 'order_confirm_first_period_fee',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `还款金额`
+  String get order_confirm_repay_amount {
+    return Intl.message(
+      '还款金额',
+      name: 'order_confirm_repay_amount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `总利息`
+  String get order_confirm_total_interest {
+    return Intl.message(
+      '总利息',
+      name: 'order_confirm_total_interest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `总服务费`
+  String get order_confirm_total_service_fee {
+    return Intl.message(
+      '总服务费',
+      name: 'order_confirm_total_service_fee',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `扣除费用`
+  String get order_confirm_deduction_fee {
+    return Intl.message(
+      '扣除费用',
+      name: 'order_confirm_deduction_fee',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `第一期利息费`
+  String get order_confirm_first_period_interest_fee {
+    return Intl.message(
+      '第一期利息费',
+      name: 'order_confirm_first_period_interest_fee',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `平台管理费`
+  String get order_confirm_platform_management_fee {
+    return Intl.message(
+      '平台管理费',
+      name: 'order_confirm_platform_management_fee',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `风险服务费`
+  String get order_confirm_risk_service_fee {
+    return Intl.message(
+      '风险服务费',
+      name: 'order_confirm_risk_service_fee',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `实际金额`
+  String get order_confirm_actual_amount {
+    return Intl.message(
+      '实际金额',
+      name: 'order_confirm_actual_amount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `第一期还款时间`
+  String get order_confirm_first_period_pay_time {
+    return Intl.message(
+      '第一期还款时间',
+      name: 'order_confirm_first_period_pay_time',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `手续费`
+  String get order_confirm_processing_fee {
+    return Intl.message(
+      '手续费',
+      name: 'order_confirm_processing_fee',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `GST 费用`
+  String get order_confirm_gst_fee {
+    return Intl.message(
+      'GST 费用',
+      name: 'order_confirm_gst_fee',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `还款总金额`
+  String get order_confirm_repayment_amount {
+    return Intl.message(
+      '还款总金额',
+      name: 'order_confirm_repayment_amount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `查看更多`
+  String get order_confirm_see_more {
+    return Intl.message(
+      '查看更多',
+      name: 'order_confirm_see_more',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `收起`
+  String get order_confirm_collapse {
+    return Intl.message(
+      '收起',
+      name: 'order_confirm_collapse',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `取消`
+  String get order_confirm_cancel {
+    return Intl.message(
+      '取消',
+      name: 'order_confirm_cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `确认`
+  String get order_confirm_confirm {
+    return Intl.message(
+      '确认',
+      name: 'order_confirm_confirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `还款计划`
+  String get order_confirm_repayment_plan {
+    return Intl.message(
+      '还款计划',
+      name: 'order_confirm_repayment_plan',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

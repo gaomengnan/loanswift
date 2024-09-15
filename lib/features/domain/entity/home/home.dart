@@ -5,22 +5,26 @@ import 'package:loanswift/features/domain/entity/home/rules.dart';
 import 'package:loanswift/features/domain/entity/orders/user_order.dart';
 
 class HomeData {
-  final List<BannerEntity> banners;
-  final MainProducts mainProducts;
-  final List<MainProducts> apiProducts;
-  final List<UserOrder> userOrders;
-  final Rules rules;
-
-  final Other other;
+  final List<BannerEntity>? _banners;
+  final MainProducts? _mainProducts;
+  final List<MainProducts>? _apiProducts;
+  final List<UserOrder>? _userOrders;
+  final Rules? _rules;
+  final Other? _other;
 
   HomeData({
-    required this.banners,
-    required this.mainProducts,
-    required this.apiProducts,
-    required this.userOrders,
-    required this.rules,
-    required this.other,
-  });
+    List<BannerEntity>? banners,
+    MainProducts? mainProducts,
+    List<MainProducts>? apiProducts,
+    List<UserOrder>? userOrders,
+    Rules? rules,
+    Other? other,
+  })  : _banners = banners,
+        _mainProducts = mainProducts,
+        _apiProducts = apiProducts,
+        _userOrders = userOrders,
+        _rules = rules,
+        _other = other;
 
   HomeData.empty()
       : this(
@@ -31,4 +35,12 @@ class HomeData {
           rules: Rules.empty(),
           other: Other.empty(),
         );
+
+  // Getters with default values
+  List<BannerEntity> get banners => _banners ?? [];
+  MainProducts get mainProducts => _mainProducts ?? MainProducts.empty();
+  List<MainProducts> get apiProducts => _apiProducts ?? [];
+  List<UserOrder> get userOrders => _userOrders ?? [];
+  Rules get rules => _rules ?? Rules.empty();
+  Other get other => _other ?? Other.empty();
 }

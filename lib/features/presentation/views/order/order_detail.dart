@@ -130,7 +130,7 @@ class _OrderDetailState extends State<OrderDetail> {
                         color: Colors.white,
                         elevation: 1,
                         child: SizedBox(
-                          height: 100.h,
+                          height: 70.h,
                           child: Padding(
                             padding: EdgeInsets.only(
                               top: 10.0.h,
@@ -147,6 +147,7 @@ class _OrderDetailState extends State<OrderDetail> {
                                     size: 20.sp,
                                   ),
                                 ),
+                                UI.kHeight5(),
                                 Expanded(
                                   child: RText(
                                     text: succeed.orderDetail.noticeDesText,
@@ -246,6 +247,11 @@ class _OrderDetailState extends State<OrderDetail> {
                             ],
                           ),
                         ),
+
+                      SizedBox(
+                        height: 50.h,
+                      ),
+
                       //if (bestDesc.isEmpty) Placeholder(),
                     ],
                   ),

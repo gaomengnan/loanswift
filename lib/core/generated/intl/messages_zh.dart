@@ -98,6 +98,42 @@ class MessageLookup extends MessageLookupByLibrary {
         "normal_repayment": MessageLookupByLibrary.simpleMessage("正常还款"),
         "notification": MessageLookupByLibrary.simpleMessage("通知"),
         "orderDetails": MessageLookupByLibrary.simpleMessage("订单详情"),
+        "order_confirm_actual_amount":
+            MessageLookupByLibrary.simpleMessage("实际金额"),
+        "order_confirm_cancel": MessageLookupByLibrary.simpleMessage("取消"),
+        "order_confirm_collapse": MessageLookupByLibrary.simpleMessage("收起"),
+        "order_confirm_confirm": MessageLookupByLibrary.simpleMessage("确认"),
+        "order_confirm_deduction_fee":
+            MessageLookupByLibrary.simpleMessage("扣除费用"),
+        "order_confirm_first_period_fee":
+            MessageLookupByLibrary.simpleMessage("第一期费用"),
+        "order_confirm_first_period_interest_fee":
+            MessageLookupByLibrary.simpleMessage("第一期利息费"),
+        "order_confirm_first_period_pay_time":
+            MessageLookupByLibrary.simpleMessage("第一期还款时间"),
+        "order_confirm_gst_fee": MessageLookupByLibrary.simpleMessage("GST 费用"),
+        "order_confirm_interest_fee":
+            MessageLookupByLibrary.simpleMessage("利息费用"),
+        "order_confirm_platform_management_fee":
+            MessageLookupByLibrary.simpleMessage("平台管理费"),
+        "order_confirm_processing_fee":
+            MessageLookupByLibrary.simpleMessage("手续费"),
+        "order_confirm_repay_amount":
+            MessageLookupByLibrary.simpleMessage("还款金额"),
+        "order_confirm_repayment_amount":
+            MessageLookupByLibrary.simpleMessage("还款总金额"),
+        "order_confirm_repayment_plan":
+            MessageLookupByLibrary.simpleMessage("还款计划"),
+        "order_confirm_risk_service_fee":
+            MessageLookupByLibrary.simpleMessage("风险服务费"),
+        "order_confirm_see_more": MessageLookupByLibrary.simpleMessage("查看更多"),
+        "order_confirm_service_fee":
+            MessageLookupByLibrary.simpleMessage("服务费"),
+        "order_confirm_title": MessageLookupByLibrary.simpleMessage("订单确认"),
+        "order_confirm_total_interest":
+            MessageLookupByLibrary.simpleMessage("总利息"),
+        "order_confirm_total_service_fee":
+            MessageLookupByLibrary.simpleMessage("总服务费"),
         "overdue": MessageLookupByLibrary.simpleMessage("已逾期"),
         "permission_title":
             MessageLookupByLibrary.simpleMessage("为了快速完成您的贷款流程, 我们需要这些权限"),

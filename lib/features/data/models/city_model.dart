@@ -8,7 +8,7 @@ List<CityModel> fetchCities(List<dynamic>? source) => source
     .toList();
 
 class CityModel extends City {
-  const CityModel({
+  CityModel({
     required super.name,
     required super.code,
     required super.children,

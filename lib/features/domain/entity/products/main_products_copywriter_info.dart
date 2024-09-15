@@ -2,27 +2,30 @@ import 'package:loanswift/features/domain/entity/home/button.dart';
 import 'package:loanswift/features/domain/entity/products/product_desc.dart';
 
 class MainProductsCopywriterInfo {
-  final Button button;
-  final ProductDesc productDesc;
+  final Button? _button;
+  final ProductDesc? _productDesc;
 
   MainProductsCopywriterInfo({
-    required this.button,
-    required this.productDesc,
-  });
+    Button? button,
+    ProductDesc? productDesc,
+  })  : _button = button,
+        _productDesc = productDesc;
 
-  MainProductsCopywriterInfo.empty() : this(
-      button: Button.empty(),
-      productDesc: ProductDesc.empty(),
-      );
+  MainProductsCopywriterInfo.empty()
+      : _button = null,
+        _productDesc = null;
+
+  Button get button => _button ?? Button.empty();
+  ProductDesc get productDesc => _productDesc ?? ProductDesc.empty();
 
   factory MainProductsCopywriterInfo.fromMap(Map<String, dynamic> json) =>
       MainProductsCopywriterInfo(
-        button: Button.fromMap(json["button"]),
-        productDesc: ProductDesc.fromMap(json["product_desc"]),
+        button: json["button"] != null ? Button.fromMap(json["button"]) : null,
+        productDesc: json["product_desc"] != null ? ProductDesc.fromMap(json["product_desc"]) : null,
       );
 
   Map<String, dynamic> toMap() => {
-        "button": button.toMap(),
-        "product_desc": productDesc.toMap(),
+        "button": _button?.toMap(),
+        "product_desc": _productDesc?.toMap(),
       };
 }

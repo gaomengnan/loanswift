@@ -127,6 +127,48 @@ class MessageLookup extends MessageLookupByLibrary {
         "normal_repayment": MessageLookupByLibrary.simpleMessage("Bayar"),
         "notification": MessageLookupByLibrary.simpleMessage("Pemberitahuan"),
         "orderDetails": MessageLookupByLibrary.simpleMessage("Detail Pesanan"),
+        "order_confirm_actual_amount":
+            MessageLookupByLibrary.simpleMessage("Jumlah Aktual"),
+        "order_confirm_cancel": MessageLookupByLibrary.simpleMessage("Batal"),
+        "order_confirm_collapse":
+            MessageLookupByLibrary.simpleMessage("Sembunyikan"),
+        "order_confirm_confirm":
+            MessageLookupByLibrary.simpleMessage("Konfirmasi"),
+        "order_confirm_deduction_fee":
+            MessageLookupByLibrary.simpleMessage("Biaya Potongan"),
+        "order_confirm_first_period_fee":
+            MessageLookupByLibrary.simpleMessage("Biaya Periode Pertama"),
+        "order_confirm_first_period_interest_fee":
+            MessageLookupByLibrary.simpleMessage("Biaya Bunga Periode Pertama"),
+        "order_confirm_first_period_pay_time":
+            MessageLookupByLibrary.simpleMessage(
+                "Waktu Pembayaran Periode Pertama"),
+        "order_confirm_gst_fee":
+            MessageLookupByLibrary.simpleMessage("Biaya GST"),
+        "order_confirm_interest_fee":
+            MessageLookupByLibrary.simpleMessage("Biaya Bunga"),
+        "order_confirm_platform_management_fee":
+            MessageLookupByLibrary.simpleMessage("Biaya Manajemen Platform"),
+        "order_confirm_processing_fee":
+            MessageLookupByLibrary.simpleMessage("Biaya Proses"),
+        "order_confirm_repay_amount":
+            MessageLookupByLibrary.simpleMessage("Jumlah Pembayaran"),
+        "order_confirm_repayment_amount":
+            MessageLookupByLibrary.simpleMessage("Jumlah Pembayaran Kembali"),
+        "order_confirm_repayment_plan":
+            MessageLookupByLibrary.simpleMessage("Rencana Pembayaran"),
+        "order_confirm_risk_service_fee":
+            MessageLookupByLibrary.simpleMessage("Biaya Layanan Risiko"),
+        "order_confirm_see_more":
+            MessageLookupByLibrary.simpleMessage("Lihat Selengkapnya"),
+        "order_confirm_service_fee":
+            MessageLookupByLibrary.simpleMessage("Biaya Layanan"),
+        "order_confirm_title":
+            MessageLookupByLibrary.simpleMessage("Konfirmasi Pesanan"),
+        "order_confirm_total_interest":
+            MessageLookupByLibrary.simpleMessage("Total Bunga"),
+        "order_confirm_total_service_fee":
+            MessageLookupByLibrary.simpleMessage("Total Biaya Layanan"),
         "overdue": MessageLookupByLibrary.simpleMessage("Telat"),
         "permission_title": MessageLookupByLibrary.simpleMessage(
             "Untuk mempercepat proses pinjaman Anda, kami memerlukan izin-izin ini"),

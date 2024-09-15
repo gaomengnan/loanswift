@@ -10,6 +10,8 @@ import 'package:loanswift/core/core.dart';
 import 'package:loanswift/features/data/models/bank_card.dart';
 import 'package:loanswift/features/domain/repos/auth.dart';
 import 'package:loanswift/features/domain/usecases/common/get_banks.dart';
+import 'package:loanswift/features/presentation/views/index/index_page.dart';
+import 'package:loanswift/features/presentation/views/widgets/order_confirm_dialog.dart';
 import 'package:loanswift/theme/pallete.dart';
 
 class BindBank extends StatefulWidget {
@@ -72,6 +74,13 @@ class _BindBankState extends State<BindBank> {
         if (creditStatus == 1) {
           UI.showSuccess(context, S.current.credit_success);
           subscription?.pause();
+          showOrderConfirmDialog(
+            context,
+            productId: getProductId(),
+            ck: (context) {
+              Navigator.pushReplacementNamed(context, IndexPage.routerName);
+            },
+          );
         }
 
         if (creditStatus == -2) {
@@ -254,7 +263,8 @@ class _BindBankState extends State<BindBank> {
                                 UI.showError(context, l.message);
                               }, (r) {
                                 // 轮训结果
-                                UI.showLoadingWithMessage(context, S.current.credit_fetching_result);
+                                UI.showLoadingWithMessage(
+                                    context, S.current.credit_fetching_result);
                                 startPolling();
                               });
                             }
@@ -306,7 +316,8 @@ class _BindBankState extends State<BindBank> {
     );
   }
 
-  Widget _buildBindBankField(String hintText, IconData icon, String fieldName, bool isNum) {
+  Widget _buildBindBankField(
+      String hintText, IconData icon, String fieldName, bool isNum) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10.h),
       decoration: BoxDecoration(
@@ -321,12 +332,11 @@ class _BindBankState extends State<BindBank> {
           return null;
         },
         textAlignVertical: TextAlignVertical.center,
-        inputFormatters: const [
-        ],
+        inputFormatters: const [],
         onSaved: (value) {
           data[fieldName] = value;
         },
-        keyboardType: isNum ?  TextInputType.number : TextInputType.text,
+        keyboardType: isNum ? TextInputType.number : TextInputType.text,
         decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(horizontal: 10.w),
           enabledBorder: InputBorder.none,

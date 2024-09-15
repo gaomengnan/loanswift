@@ -1,30 +1,34 @@
 class RelationProduct {
-  final String productName;
-  final String productAmount;
-  final String productLogo;
+  final String? _productName;
+  final String? _productAmount;
+  final String? _productLogo;
 
   RelationProduct({
-    required this.productName,
-    required this.productAmount,
-    required this.productLogo,
-  });
+    String? productName,
+    String? productAmount,
+    String? productLogo,
+  })  : _productName = productName,
+        _productAmount = productAmount,
+        _productLogo = productLogo;
 
   RelationProduct.empty()
-      : this(
-          productName: "",
-          productAmount: "",
-          productLogo: "",
-        );
+      : _productName = null,
+        _productAmount = null,
+        _productLogo = null;
+
+  String get productName => _productName ?? '';
+  String get productAmount => _productAmount ?? '';
+  String get productLogo => _productLogo ?? '';
 
   factory RelationProduct.fromMap(Map<String, dynamic> json) => RelationProduct(
-        productName: json["product_name"],
-        productAmount: json["product_amount"],
-        productLogo: json["product_logo"],
+        productName: json["product_name"] as String?,
+        productAmount: json["product_amount"] as String?,
+        productLogo: json["product_logo"] as String?,
       );
 
   Map<String, dynamic> toMap() => {
-        "product_name": productName,
-        "product_amount": productAmount,
-        "product_logo": productLogo,
+        "product_name": _productName,
+        "product_amount": _productAmount,
+        "product_logo": _productLogo,
       };
 }
