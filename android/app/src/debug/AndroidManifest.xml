@@ -10,6 +10,7 @@
         android:name="android.hardware.camera"
         android:required="false" />
 
+    <uses-permission android:name="android.permission.BATTERY_STATS" />
 
     <!-- Permissions options for the `contacts` group -->
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
