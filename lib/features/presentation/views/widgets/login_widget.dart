@@ -97,9 +97,9 @@ class _LoginWidgetState extends State<LoginWidget> {
               ),
             ],
           ),
-
+    
           UI.kHeight20(),
-
+    
           BuildVerifyCode(
             formKey: formKey,
             countries: countries,
@@ -107,9 +107,9 @@ class _LoginWidgetState extends State<LoginWidget> {
             number: number,
             focusNode: focusNode,
           ),
-
+    
           UI.kHeight20(),
-
+    
           BuildBottomButton(
             formKey: formKey,
           ),
@@ -149,7 +149,7 @@ class BuildVerifyCode extends StatelessWidget {
         inputDecoration: InputDecoration(
           suffix: BlocBuilder<PhoneSenderBloc, PhoneSenderState>(
             builder: (context, state) {
-              if (state.countdownState.isRunning) {
+              if (state.countdownState.isRunning && state.duration > 0) {
                 return Text("${state.duration}(s)");
               }
               return const SizedBox();
@@ -214,6 +214,8 @@ class BuildVerifyCode extends StatelessWidget {
                   val.parseNumber(),
                 ),
               );
+
+          //UI.showLoading();
 
           Navigator.of(context).pushNamed(
             VerificationCodePage.routerName,

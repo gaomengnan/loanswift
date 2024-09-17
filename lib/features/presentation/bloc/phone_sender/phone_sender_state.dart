@@ -79,13 +79,21 @@ class PhoneSenderRunComplete extends PhoneSenderState {
 }
 
 class PhoneSenderErrorState extends PhoneSenderState {
-  PhoneSenderErrorState(String error, String phone)
+  PhoneSenderErrorState(String error, String phone, CountdownState countState)
       : super(
           0,
           phone,
-          CountdownState.idle,
+          countState,
           CustomError(message: error),
         );
+
+  @override
+  List<Object> get props => [
+        phone,
+        //duration,
+        //countdownState,
+        //error,
+      ];
 }
 
 class PhoneSenderVerifyState extends PhoneSenderState {
@@ -99,5 +107,19 @@ class PhoneSenderVerifyState extends PhoneSenderState {
 }
 
 class PhoneSenderLoadingState extends PhoneSenderState {
-  const PhoneSenderLoadingState(super.duration, super.phone, super.countdownState, super.error);
+  const PhoneSenderLoadingState(
+      super.duration, super.phone, super.countdownState, super.error);
+}
+
+class PhoneSenderSuccessState extends PhoneSenderState {
+  const PhoneSenderSuccessState(
+      super.duration, super.phone, super.countdownState, super.error);
+
+  @override
+  List<Object> get props => [
+        phone,
+        //duration,
+        //countdownState,
+        //error,
+      ];
 }

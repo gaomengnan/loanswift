@@ -7,6 +7,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_sms_inbox/flutter_sms_inbox.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:loanswift/core/core.dart';
@@ -15,12 +16,16 @@ import 'package:loanswift/core/firebase_api.dart';
 import 'package:loanswift/features/domain/usecases/common/report_fcm.dart';
 import 'package:loanswift/features/domain/usecases/common/report_gps.dart';
 import 'package:loanswift/firebase_options.dart';
+import 'package:network_info_plus/network_info_plus.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class ReportService {
   final DeviceInfoPlugin deviceInfoPlg = DeviceInfoPlugin();
+
   final SmsQuery telephony = SmsQuery();
+
+  final network = NetworkInfo();
 
   Future<PackageInfo> getPackageInfo() async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
@@ -70,7 +75,7 @@ class ReportService {
     }
   }
 
-  Future<void> gpsReport(Position resp) async {
+  Future<bool> gpsReport() async {
     LocationPermission permission;
     final serviceEnabled = await Geolocator.isLocationServiceEnabled();
 
@@ -92,7 +97,7 @@ class ReportService {
       }
 
       //// 获取当前位置信息
-      //final resp = await Geolocator.getCurrentPosition();
+      final resp = await Geolocator.getCurrentPosition();
 
       // 获取 deviceId
       final deviceInf = await getDeviceDetails();
@@ -103,11 +108,27 @@ class ReportService {
       Dio dio = Dio(BaseOptions(baseUrl: Environment.baseUrl));
       dio.interceptors.add(DioInterceptor());
 
+      /* GEOENCODING */
+      String? address = "";
+      try {
+        final marks =
+            await placemarkFromCoordinates(resp.latitude, resp.longitude);
+        if (marks.isNotEmpty) {
+          Placemark place = marks[0];
+          // 拼接详细地址信息
+          address = '${place.street}, '
+              '${place.locality}, '
+              '${place.administrativeArea}, '
+              '${place.country}, '
+              '${place.postalCode}';
+        }
+      } catch (_) {}
+
       ///*   DO HTT PREPORT */
       final params = ReportgpsParams(
         latitude: resp.latitude,
         longitude: resp.longitude,
-        addressDistinct: "",
+        addressDistinct: address ?? '',
         clientType: "android",
         appVersion: packageInfo.version,
         deviceId: deviceInf['deviceId'] ?? '',
@@ -116,10 +137,19 @@ class ReportService {
         appName: packageInfo.appName,
         packageId: packageInfo.packageName,
       );
-      final response = dio.post("/middle/data/gps", data: params.toMap());
-      print(response.toString());
+      final Reportgps reportgps = sl();
+      final response = await reportgps.call(params);
+
+      return response.fold(
+        (l) {
+          return Future.value(false);
+        },
+        (r) => Future.value(true),
+      );
       //return right(resp);
     }
+
+    return Future.value(false);
 
     //return Future.error(
     //'Location permissions are permanently denied, we cannot request permissions.');

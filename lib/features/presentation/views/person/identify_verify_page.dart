@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:liveness_detection/liveness_detection.dart';
@@ -131,7 +130,11 @@ class _IdentifyVerifyPageState extends State<IdentifyVerifyPage> {
         final gender = entity['gender'] ?? '';
 
         setOcrRelateField(identifyInfo, info, name, id, gender);
+        /*  提交ocr 字段数据  */
         commitCertify(identifyInfo, info, name, id, gender);
+
+        context.read<CertifiesBloc>().add(
+            CertifyCommitEvent(certifyId: info.certifyId, certifyResult: s));
       });
     }
   }
@@ -162,8 +165,10 @@ class _IdentifyVerifyPageState extends State<IdentifyVerifyPage> {
                       onChanged: (s) {
                         onChanged(state.getCurrentStepData(), e, s);
 
-                        context.read<CertifiesBloc>().add(CertifyCommitEvent(
-                            certifyId: e.certifyId, certifyResult: s));
+                        if (e.certifyId != 2) {
+                          context.read<CertifiesBloc>().add(CertifyCommitEvent(
+                              certifyId: e.certifyId, certifyResult: s));
+                        }
                       },
                     ),
                     UI.kHeight10(),

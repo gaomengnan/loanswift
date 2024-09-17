@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:loanswift/core/core.dart';
 import 'package:loanswift/core/storage.dart';
+import 'package:loanswift/theme/pallete.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 // ignore: depend_on_referenced_packages
 import 'package:webview_flutter_android/webview_flutter_android.dart';
@@ -26,10 +26,11 @@ class WebViewComponent extends StatefulWidget {
 
 class _WebViewComponentState extends State<WebViewComponent> {
   late final WebViewController _controller;
+  double loadingPercentage = 0;
 
   @override
   void initState() {
-    super.initState();
+    //loadingPercentage = 0;
 
     // #docregion platform_features
     late final PlatformWebViewControllerCreationParams params;
@@ -64,17 +65,22 @@ class _WebViewComponentState extends State<WebViewComponent> {
       ..setNavigationDelegate(
         NavigationDelegate(
           onProgress: (int progress) {
-            UI.showLoading();
+            setState(() {
+              loadingPercentage = progress / 100;
+            });
             debugPrint('WebView is loading (progress : $progress%)');
           },
           onPageStarted: (String url) {
+            //setState(() {
+            //  loadingPercentage = 0;
+            //});
             _controller.runJavaScript('window.token = $tokenStr');
             debugPrint('Page started loading: $url');
           },
           onPageFinished: (String url) {
-            Future.delayed(const Duration(seconds: 1), () {
-              UI.hideLoading();
-            });
+            //setState(() {
+            //  loadingPercentage = 100;
+            //});
             debugPrint('Page finished loading: $url');
           },
           onWebResourceError: (WebResourceError error) {
@@ -137,6 +143,7 @@ Page resource error:
     // #enddocregion platform_features
 
     _controller = controller;
+    super.initState();
   }
 
   Future<List<String>> _androidFilePicker(
@@ -163,17 +170,58 @@ Page resource error:
     return newUri.toString();
   }
 
+  Future<void> _canPop() async {
+    final NavigatorState navigator = Navigator.of(context);
+    if (await _controller.canGoBack()) {
+      _controller.goBack();
+    } else {
+      navigator.pop();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          widget.title,
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) async {
+        if(didPop) return;
+        await _canPop();
+        //if (await _controller.canGoBack()) {
+        //  _controller.goBack();
+        //  return;
+        //}
+        //return Future.value(true); // 允许返回 Flutter 页面
+      },
+      //onWillPop: () async {
+      //  // 检查是否可以返回到上一网页
+      //  if (await _controller.canGoBack()) {
+      //    _controller.goBack();
+      //    return Future.value(false); // 阻止返回，优先返回网页
+      //  }
+      //  return Future.value(true); // 允许返回 Flutter 页面
+      //
+      //},
+      child: Scaffold(
+        backgroundColor: Pallete.backgroundColor,
+        appBar: AppBar(
+          title: Text(
+            widget.title,
+          ),
         ),
-      ),
-      body: SafeArea(
-        child: WebViewWidget(
-          controller: _controller,
+        body: SafeArea(
+          child: Stack(
+            children: [
+              WebViewWidget(
+                controller: _controller,
+              ),
+              if (loadingPercentage < 1)
+                LinearProgressIndicator(
+                  value: loadingPercentage,
+                  minHeight: 5,
+                  color: Colors.grey,
+                ),
+            ],
+          ),
         ),
       ),
     );

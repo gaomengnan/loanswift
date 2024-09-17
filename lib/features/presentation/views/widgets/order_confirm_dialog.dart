@@ -10,10 +10,13 @@ class StateDialog extends StatefulWidget {
   final int productId;
   final Function(BuildContext context)? callback;
 
+  final VoidCallback? onCancel;
+
   const StateDialog({
     super.key,
     required this.productId,
     this.callback,
+    this.onCancel,
   });
 
   @override
@@ -79,7 +82,10 @@ class _StateDialogState extends State<StateDialog>
             // 添加两个按钮
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop(); // 关闭对话框
+                if (widget.onCancel != null) {
+                  widget.onCancel!();
+                }
+                //Navigator.of(context).pop(); // 关闭对话框
               },
               child: Text(S.current.cancel),
             ),
@@ -115,21 +121,23 @@ class _StateDialogState extends State<StateDialog>
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    buildItem(S.current.order_confirm_service_fee,
+                    buildItem(context, S.current.order_confirm_service_fee,
                         snap.data!.serviceFee.toString(),
                         isDescription: true, desc: snap.data!.serviceFeeDesc),
-                    buildItem(S.current.order_confirm_interest_fee,
+                    buildItem(context, S.current.order_confirm_interest_fee,
                         snap.data!.interestFee.toString()),
-                    buildItem(S.current.order_confirm_first_period_fee,
+                    buildItem(context, S.current.order_confirm_first_period_fee,
                         snap.data!.firstPeriodInterest.toString()),
-                    buildItem(S.current.order_confirm_repay_amount,
+                    buildItem(context, S.current.order_confirm_repay_amount,
                         snap.data!.repayAmount.toString()),
-                    buildItem(S.current.order_confirm_total_interest,
+                    buildItem(context, S.current.order_confirm_total_interest,
                         snap.data!.totalInterest.toString()),
-                    buildItem(S.current.order_confirm_total_service_fee,
+                    buildItem(
+                        context,
+                        S.current.order_confirm_total_service_fee,
                         snap.data!.totalServiceFee.toString()),
-                    buildItem(S.current.order_confirm_deduction_fee,
-                        snap.data!.deductionFee.toString()),
+                    //buildItem(context, S.current.order_confirm_deduction_fee,
+                    //    snap.data!.deductionFee.toString()),
                     AnimatedSize(
                       duration: const Duration(milliseconds: 50),
                       curve: Curves.fastOutSlowIn,
@@ -137,33 +145,45 @@ class _StateDialogState extends State<StateDialog>
                           ? Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                buildItem(S.current.order_confirm_deduction_fee,
+                                buildItem(
+                                    context,
+                                    S.current.order_confirm_deduction_fee,
                                     snap.data!.deductionFee.toString()),
                                 buildItem(
+                                    context,
                                     S.current
                                         .order_confirm_first_period_interest_fee,
                                     snap.data!.firstPeriodInterestFee
                                         .toString()),
+                                //buildItem(
+                                //    context,
+                                //    S.current
+                                //        .order_confirm_platform_management_fee,
+                                //    snap.data!.platformManagementFee
+                                //        .toString()),
+                                //buildItem(
+                                //    context,
+                                //    S.current.order_confirm_risk_service_fee,
+                                //    snap.data!.riskServiceFee.toString()),
                                 buildItem(
-                                    S.current
-                                        .order_confirm_platform_management_fee,
-                                    snap.data!.platformManagementFee
-                                        .toString()),
-                                buildItem(
-                                    S.current.order_confirm_risk_service_fee,
-                                    snap.data!.riskServiceFee.toString()),
-                                buildItem(S.current.order_confirm_actual_amount,
+                                    context,
+                                    S.current.order_confirm_actual_amount,
                                     snap.data!.actualAmount.toString()),
                                 buildItem(
+                                    context,
                                     S.current
                                         .order_confirm_first_period_pay_time,
                                     snap.data!.firstPeriodPayTime.toString()),
                                 buildItem(
+                                    context,
                                     S.current.order_confirm_processing_fee,
                                     snap.data!.processingFee.toString()),
-                                buildItem(S.current.order_confirm_gst_fee,
+                                buildItem(
+                                    context,
+                                    S.current.order_confirm_gst_fee,
                                     snap.data!.gstFee.toString()),
                                 buildItem(
+                                    context,
                                     S.current.order_confirm_repayment_amount,
                                     snap.data!.repaymentAmount.toString()),
                               ],
@@ -251,7 +271,9 @@ Future<OrderConfirmModel> getData(productId) async {
 }
 
 void showOrderConfirmDialog(BuildContext context,
-    {required int productId, Function(BuildContext context)? ck}) {
+    {required int productId,
+    Function(BuildContext context)? ck,
+    VoidCallback? onCancel}) {
   showDialog(
     barrierDismissible: false,
     //useRootNavigator: false,
@@ -261,12 +283,13 @@ void showOrderConfirmDialog(BuildContext context,
       return StateDialog(
         productId: productId,
         callback: ck,
+        onCancel: onCancel,
       );
     },
   );
 }
 
-Widget buildItem(String label, String value,
+Widget buildItem(BuildContext context, String label, String value,
     {bool isDescription = false, String desc = ""}) {
   return Padding(
     padding: EdgeInsets.symmetric(vertical: 5.h),
@@ -275,13 +298,56 @@ Widget buildItem(String label, String value,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Expanded(
-          child: Text(
-            label,
-            style: TextStyle(
-                fontSize: 11.sp,
-                color: Colors.black,
-                fontWeight: FontWeight.w500),
-          ),
+          child: isDescription
+              ? Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  //mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      label,
+                      style: TextStyle(
+                          fontSize: 11.sp,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w500),
+                    ),
+                    UI.kWidth5(),
+                    if (isDescription)
+                      Flexible(
+                        child: GestureDetector(
+                          onTap: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  //title: Text('Tip'),
+                                  content: Text(desc),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      child: Text(S.current.confirm),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          },
+                          child: Icon(
+                            Icons.info_rounded,
+                            size: 11.sp,
+                          ),
+                        ),
+                      ),
+                  ],
+                )
+              : Text(
+                  label,
+                  style: TextStyle(
+                      fontSize: 11.sp,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500),
+                ),
         ),
         Expanded(
           child: Text(

@@ -100,21 +100,20 @@ Future<void> showPermissionDialog(context, int productId) async {
                             // padding: const EdgeInsets.all(10), // 设置内边距
                           ),
                           onPressed: () async {
-                            var statuses =
-                                await controllerPermissions.request();
-                            if (statuses.entries.every((e) {
-                              return e.value == PermissionStatus.granted;
-                            })) {
-                              WidgetsBinding.instance.addPostFrameCallback((_) {
-                                Navigator.pushReplacementNamed(
-                                  context,
-                                  VerifyPage.routerName,
-                                  arguments: {
-                                    'productId': productId,
-                                  },
-                                );
-                              });
-                            }
+                            await controllerPermissions.request();
+                            //if (statuses.entries.every((e) {
+                            //  return e.value == PermissionStatus.granted;
+                            //})) {
+                            //}
+                            WidgetsBinding.instance.addPostFrameCallback((_) {
+                              Navigator.pushReplacementNamed(
+                                context,
+                                VerifyPage.routerName,
+                                arguments: {
+                                  'productId': productId,
+                                },
+                              );
+                            });
                             //statuses.forEach((permission, status) {
                             //  if (status == PermissionStatus.granted) {
                             //  } else {}
@@ -157,28 +156,28 @@ class BuildPermissionList extends StatefulWidget {
 }
 
 class _BuildPermissionListState extends State<BuildPermissionList>
-    {
+    with WidgetsBindingObserver {
   PermissionStatus _permissionStatus = PermissionStatus.denied;
   @override
   void initState() {
     super.initState();
-    //WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
     _listenPermissionStatus();
   }
 
   @override
   void dispose() {
-    //WidgetsBinding.instance.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 
   // 监听应用生命周期的变化
-  //@override
-  //void didChangeAppLifecycleState(AppLifecycleState state) {
-  //  if (state == AppLifecycleState.resumed) {
-  //    _listenPermissionStatus();
-  //  }
-  //}
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      _listenPermissionStatus();
+    }
+  }
 
   void _listenPermissionStatus() async {
     final status = await widget.permission.status;
@@ -192,28 +191,32 @@ class _BuildPermissionListState extends State<BuildPermissionList>
     return Column(
       children: [
         if (widget.permission == Permission.contacts)
-          buildPermItem(widget.permission, S.current.contact),
+          buildPermItem(
+              Icons.contacts_rounded, widget.permission, S.current.contact),
         if (widget.permission == Permission.requestInstallPackages)
-          buildPermItem(widget.permission, S.current.install_packages),
+          buildPermItem(Icons.settings_applications_rounded, widget.permission,
+              S.current.install_packages),
         if (widget.permission == Permission.sms)
-          buildPermItem(widget.permission, S.current.sms),
+          buildPermItem(Icons.sms_rounded, widget.permission, S.current.sms),
         if (widget.permission == Permission.camera)
-          buildPermItem(widget.permission, S.current.camera),
+          buildPermItem(Icons.sms_rounded, widget.permission, S.current.camera),
         if (widget.permission == Permission.location)
-          buildPermItem(widget.permission, S.current.location),
+          buildPermItem(
+              Icons.location_on_rounded, widget.permission, S.current.location),
         if (widget.permission == Permission.notification)
-          buildPermItem(widget.permission, S.current.notification),
+          buildPermItem(Icons.notifications_rounded, widget.permission,
+              S.current.notification),
         const Divider(),
       ],
     );
   }
 
-  Widget buildPermItem(Permission perm, String title) {
+  Widget buildPermItem(IconData icon, Permission perm, String title) {
     return ListTile(
       leading: Icon(
         color: Pallete.primaryColor,
         size: 30.sp,
-        Icons.contact_phone,
+        icon,
       ),
       title: Text(
         style: const TextStyle(

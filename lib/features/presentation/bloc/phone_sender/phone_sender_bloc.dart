@@ -49,6 +49,12 @@ class PhoneSenderBloc extends Bloc<PhoneSenderEvent, PhoneSenderState> {
   ) async {
     if (state.countdownState.isRunning) {
       //emit(PhoneSenderVerifyState());
+      emit(PhoneSenderSuccessState(
+        state.duration,
+        event.phone,
+        state.countdownState,
+        state.error,
+      ));
     } else {
       emit(
         PhoneSenderLoadingState(
@@ -59,10 +65,20 @@ class PhoneSenderBloc extends Bloc<PhoneSenderEvent, PhoneSenderState> {
         ),
       );
       final res = await _sender(SendPhoneCodeRequest(phone: event.phone));
+
       res.fold(
         (l) {
+          CountdownState cs = CountdownState.idle;
+
+          if (l.statusCode == 10405) {
+            cs = CountdownState.running;
+          }
           emit(
-            PhoneSenderErrorState(l.message, event.phone),
+            PhoneSenderErrorState(
+              l.message,
+              event.phone,
+              cs,
+            ),
           );
         },
         (r) {
@@ -76,6 +92,12 @@ class PhoneSenderBloc extends Bloc<PhoneSenderEvent, PhoneSenderState> {
             CountdownState.running,
           ));
 
+          emit(PhoneSenderSuccessState(
+            event.duration,
+            event.phone,
+            CountdownState.running,
+            state.error,
+          ));
           _tickerSubscription = _ticker.tick(ticks: event.duration).listen(
                 (duration) => add(
                   PhoneSenderTicked(duration, event.phone),

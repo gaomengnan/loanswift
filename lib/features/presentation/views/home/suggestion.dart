@@ -1,18 +1,25 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/common/widgets/widgets.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/features/domain/entity/entity.dart';
+import 'package:loanswift/features/presentation/bloc/home/home_bloc.dart';
+import 'package:loanswift/features/presentation/views/person/bind_bank.dart';
+import 'package:loanswift/features/presentation/views/widgets/order_confirm_dialog.dart';
+import 'package:loanswift/features/presentation/views/widgets/permission.dart';
 import 'package:loanswift/theme/theme.dart';
 
 class BuildSuggestion extends StatefulWidget {
   final List<MainProducts> apiProducts;
 
+  final Rules rule;
+
   const BuildSuggestion({
     super.key,
     required this.apiProducts,
+    required this.rule,
   });
 
   @override
@@ -54,10 +61,10 @@ class _BuildSuggestionState extends State<BuildSuggestion>
               fontWeight: FontWeight.w600,
               size: 16.sp,
             ),
-            trailing: const Icon(
-              IconlyBold.moreCircle,
-              //color: Pallete.whiteColor,
-            ),
+            //trailing: const Icon(
+            //  IconlyBold.moreCircle,
+            //  //color: Pallete.whiteColor,
+            //),
           );
         }
 
@@ -138,6 +145,32 @@ class _BuildSuggestionState extends State<BuildSuggestion>
                   /*  BUILD THE PRODUCT BTN */
                   ElevatedButton(
                     onPressed: () {
+                      if (!widget.rule.certifyCompleted) {
+                        //Navigator.of(context).pushNamed(
+                        //    VerifyPage.routerName,
+                        //    arguments: {
+                        //      'productId': mainProducts.productId,
+                        //    });
+                        showPermissionDialog(context, product.productId);
+                      } else if (widget.rule.certifyCompleted &&
+                          !widget.rule.isBindCard) {
+                        Navigator.of(context).pushNamed(
+                          BindBank.routerName,
+                          arguments: {
+                            'productId': product.productId,
+                          },
+                        );
+                      } else {
+                        showOrderConfirmDialog(
+                          context,
+                          productId: product.productId,
+                          ck: (ctx) {
+                            Navigator.pop(ctx);
+                            context.read<HomeBloc>().add(HomeRefreshEvent());
+                          },
+                          onCancel: () => Navigator.pop(context),
+                        );
+                      }
                       //if (isButnDisabled) {
                       //  return;
                       //}

@@ -147,6 +147,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   if (state.homeData.apiProducts.isNotEmpty)
                     BuildSuggestion(
                       apiProducts: state.homeData.apiProducts,
+                      rule: state.homeData.rules,
                     ),
 
                   //const SliverPadding(

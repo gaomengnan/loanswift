@@ -36,7 +36,7 @@ class _OrderDetailState extends State<OrderDetail> {
           UI.kHeight5(),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Expanded(
                 child: RText(

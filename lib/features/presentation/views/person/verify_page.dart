@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/common/widgets/app_text.dart';
+import 'package:loanswift/core/report.dart';
 import 'package:loanswift/features/presentation/bloc/certify/certifies_bloc.dart';
 import 'package:loanswift/features/presentation/views/person/basic_information.dart';
 import 'package:loanswift/features/presentation/views/person/bind_bank.dart';
@@ -38,6 +39,11 @@ class _VerifyPageState extends State<VerifyPage>
   late AnimationController _aniController;
   late Animation<double> _animation;
 
+  Stream<bool> executeReportTask() async* {
+    final ReportService reportService = sl();
+    yield await reportService.gpsReport();
+  }
+
   //late Animation<double> _shadeAnimation;
 
   void _scrollToTop() {
@@ -72,6 +78,11 @@ class _VerifyPageState extends State<VerifyPage>
         curve: Curves.easeInOut, // 使用缓入缓出的动画曲线
       ),
     );
+
+
+    executeReportTask().listen((r){
+      print(r);
+    });
 
     super.initState();
   }
@@ -245,6 +256,10 @@ class _VerifyPageState extends State<VerifyPage>
               if (state.isDone == true) {
                 _showToBankDialog(productId);
               }
+
+              if (state is CertifyFailure) {
+                UI.showError(context, (state as CertifyFailure).error.error);
+              }
             }
           },
           child: SingleChildScrollView(
@@ -361,18 +376,18 @@ class _VerifyPageState extends State<VerifyPage>
                     ),
                   ))
             : Container(
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.black,
-              ),
-              child: Center(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Pallete.thirdColor,
+                ),
+                child: Center(
                   child: Lottie.asset(
                     Assets.stepper,
                     height: 100.h,
                     width: 100.w,
                   ),
                 ),
-            ),
+              ),
         width: 30,
         //height: 30,
         color: Pallete.secondaryColor,

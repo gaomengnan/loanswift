@@ -45,26 +45,32 @@ class Other {
 class Protocol {
   final String? _name;
   final String? _path;
+  final String? _icon;
 
   Protocol({
     String? name,
     String? path,
+    String? icon,
   })  : _name = name,
-        _path = path;
+        _path = path,
+        _icon = icon;
 
   factory Protocol.fromMap(DataMap map) {
     return Protocol(
       name: map['name'] as String? ?? '',
       path: map['path'] as String? ?? '',
+      icon: map['icon'] as String? ?? '',
     );
   }
 
   DataMap toMap() => {
         'name': _name,
         'path': _path,
+        'icon': _icon,
       };
 
   // Getters with default values
   String get name => _name ?? "";
   String get path => _path ?? "";
+  String get icon => _icon ?? "";
 }

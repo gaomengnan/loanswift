@@ -31,6 +31,7 @@ import 'package:loanswift/features/domain/usecases/common/get_banks.dart';
 import 'package:loanswift/features/domain/usecases/common/get_cities.dart';
 import 'package:loanswift/features/domain/usecases/common/ocr.dart';
 import 'package:loanswift/features/domain/usecases/common/report_fcm.dart';
+import 'package:loanswift/features/domain/usecases/common/report_gps.dart';
 import 'package:loanswift/features/domain/usecases/home/data.dart';
 import 'package:loanswift/features/domain/usecases/order/check_order.dart';
 import 'package:loanswift/features/domain/usecases/order/get_order_detail.dart';
@@ -192,8 +193,9 @@ Future<void> initialize() async {
     ..registerLazySingleton(() => CommitCertify(authRepo: sl()))
     ..registerLazySingleton(() => GetCities(commonService: sl()))
     ..registerLazySingleton(() => GetBanks(commonService: sl()))
-    //..registerLazySingleton(() => ReportService(reportRepo: sl()))
+    ..registerLazySingleton(() => ReportService())
     ..registerLazySingleton(() => ReportFcm(reportRepo: sl()))
+    ..registerLazySingleton(() => Reportgps(reportRepo: sl()))
     ..registerLazySingleton(() => OrderConfim(order: sl()))
     ..registerLazySingleton(() => CheckOrder(order: sl()));
 

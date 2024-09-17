@@ -66,7 +66,7 @@ class CertifiesState {
   //final List<Info> workInfo;
 
   List<Info> getCurrentStepData() {
-    if(certifies.isEmpty) {
+    if (certifies.isEmpty) {
       return List<Info>.empty();
     }
     return certifies[cerfityStep.value];
@@ -115,6 +115,8 @@ class CertifiesState {
         //personalInfo: personal ?? personalInfo,
         //emergencyInfo: emerge ?? emergencyInfo,
       );
+
+  //List<Object?> get props => [cerfityStep, certifies];
 
   //@override
   //List<Object?> get props => [cerfityStep, settings];
@@ -168,7 +170,7 @@ class CertifiesRequestState extends CertifiesState {
 class CitiesState extends CertifiesState {
   final List<CityModel> cities;
 
-  CitiesState({
+  const CitiesState({
     required this.cities,
     required super.cerfityStep,
     required super.certifies,
@@ -178,4 +180,10 @@ class CitiesState extends CertifiesState {
     //required super.workInfo,
     required super.isDone,
   });
+}
+
+class CertifyFailure extends CertifiesState {
+  final CustomError error;
+  const CertifyFailure(this.error,
+      {required super.cerfityStep, required super.certifies});
 }

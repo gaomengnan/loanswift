@@ -74,18 +74,18 @@ class _BindBankState extends State<BindBank> {
         if (creditStatus == 1) {
           UI.showSuccess(context, S.current.credit_success);
           subscription?.pause();
-          showOrderConfirmDialog(
-            context,
-            productId: getProductId(),
-            ck: (context) {
-              Navigator.pushReplacementNamed(context, IndexPage.routerName);
-            },
-          );
+          showOrderConfirmDialog(context, productId: getProductId(),
+              ck: (context) {
+            Navigator.pushReplacementNamed(context, IndexPage.routerName);
+          }, onCancel: () {
+            Navigator.pushReplacementNamed(context, IndexPage.routerName);
+          });
         }
 
         if (creditStatus == -2) {
           UI.showError(context, S.current.credit_failure);
           subscription?.pause();
+          Navigator.pushReplacementNamed(context, IndexPage.routerName);
         }
       });
     });

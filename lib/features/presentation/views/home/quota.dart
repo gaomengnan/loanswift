@@ -285,16 +285,16 @@ class BuildMainEntry extends StatelessWidget {
                                     },
                                   );
                                 } else {
-                                  showOrderConfirmDialog(
-                                    context,
-                                    productId: mainProducts.productId,
-                                    ck: (ctx) {
-                                      Navigator.pop(ctx);
-                                      context
-                                          .read<HomeBloc>()
-                                          .add(HomeRefreshEvent());
-                                    },
-                                  );
+                                  showOrderConfirmDialog(context,
+                                      productId: mainProducts.productId,
+                                      ck: (ctx) {
+                                    Navigator.pop(ctx);
+                                    context
+                                        .read<HomeBloc>()
+                                        .add(HomeRefreshEvent());
+                                  }, onCancel: () {
+                                    Navigator.pop(context);
+                                  });
                                 }
                               },
                               child: Center(

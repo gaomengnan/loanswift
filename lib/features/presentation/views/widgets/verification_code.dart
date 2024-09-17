@@ -154,6 +154,7 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
                             // Specify direction if desired
                             textDirection: TextDirection.ltr,
                             child: Pinput(
+                              //enabled: state.countdownState.isRunning,
                               autofocus: true,
                               length: 5,
                               controller: pinController,

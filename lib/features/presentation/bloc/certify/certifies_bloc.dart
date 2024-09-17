@@ -57,22 +57,16 @@ class CertifiesBloc extends Bloc<CertifiesEvent, CertifiesState> {
 
     List<Info> currentData = [];
 
-    //switch (state.cerfityStep) {
-    //  case StepperEnum.first:
-    //    currentData = state.identifyInfo;
-    //  case StepperEnum.second:
-    //    currentData = state.personalInfo;
-    //  case StepperEnum.third:
-    //    currentData = state.emergencyInfo;
-    //  default:
-    //    currentData = state.workInfo;
-    //}
-
     final certifies = state.certifies;
 
     currentData = certifies[state.cerfityStep.value];
 
-    resp.fold((l) {}, (r) {
+    resp.fold((l) {
+      emit(
+        CertifyFailure(CustomError(message: l.message),
+            cerfityStep: state.cerfityStep, certifies: state.certifies),
+      );
+    }, (r) {
       if (r.code == AppContant.apiSuccessCode) {
         final updated = currentData.map((e) {
           if (e.certifyId == event.certifyId) {
@@ -126,9 +120,11 @@ class CertifiesBloc extends Bloc<CertifiesEvent, CertifiesState> {
       CertifyStepRequest event, Emitter<CertifiesState> emit) {
     // 检查当前是否完成
 
-    //if (state.identifyInfo.any((e) => e.certifyStatus == 1)) {
-    //  return;
-    //}
+    final currenStepData = state.getCurrentStepData();
+
+    if (currenStepData.any((e) => e.certifyStatus != 1 && e.isMust())) {
+      return;
+    }
 
     emit(CertifiesRequestState(
       cerfityStep: state.cerfityStep,
