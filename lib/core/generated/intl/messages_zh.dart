@@ -134,6 +134,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("总利息"),
         "order_confirm_total_service_fee":
             MessageLookupByLibrary.simpleMessage("总服务费"),
+        "order_success": MessageLookupByLibrary.simpleMessage("下单成功"),
         "overdue": MessageLookupByLibrary.simpleMessage("已逾期"),
         "permission_title":
             MessageLookupByLibrary.simpleMessage("为了快速完成您的贷款流程, 我们需要这些权限"),
@@ -145,6 +146,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "photo_permission_missing":
             MessageLookupByLibrary.simpleMessage("相机权限获取失败"),
         "please_select": MessageLookupByLibrary.simpleMessage("请选择一个选项"),
+        "please_select_bank": MessageLookupByLibrary.simpleMessage("请选择银行"),
         "previousStep": MessageLookupByLibrary.simpleMessage("上一步"),
         "privacy": MessageLookupByLibrary.simpleMessage("隐私政策"),
         "quick_deposit": MessageLookupByLibrary.simpleMessage("快速到账"),

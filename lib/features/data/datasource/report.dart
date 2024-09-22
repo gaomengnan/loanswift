@@ -8,7 +8,7 @@ abstract class ReportDataSource {
   const ReportDataSource();
 
   // 发送验证码
-  ResultVoid postDeviceInfo({required Map<String, dynamic> data});
+  ResultVoid dataReport({required Map<String, dynamic> data});
 
   ResultVoid fcmTokenReport({
     required String fcmToken,
@@ -29,7 +29,7 @@ class ReportDataSourceImpl extends ReportDataSource {
   }) : _dioClient = dioClient;
 
   @override
-  ResultVoid postDeviceInfo({required Map<String, dynamic> data}) async {
+  ResultVoid dataReport({required Map<String, dynamic> data}) async {
     final resp = await _dioClient.post(
       path: "/middle/data/report",
       data: data,

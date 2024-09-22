@@ -144,9 +144,12 @@ class DioInterceptor extends Interceptor {
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     final token = Storage.token;
 
+    final String deviceId = Storage.deviceID;
+
     options.headers.addAll({
       //"Content-Type": "application/json",
       "Authorization": "${token?['token'].toString()}",
+      "deviceId": deviceId,
     });
 
     print('请求路径: ${options.path}');

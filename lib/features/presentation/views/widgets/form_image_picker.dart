@@ -370,7 +370,7 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
                                           Expanded(
                                             flex: 2,
                                             child: Container(
-                                              width: 300.w,
+                                              //width: 300.w,
                                               decoration: BoxDecoration(
                                                 color: Pallete.primaryColor
                                                     .withOpacity(0.2),

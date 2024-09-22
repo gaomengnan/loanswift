@@ -90,10 +90,11 @@
   "previousStep": "Langkah Sebelumnya",
   "nextStep": "Langkah Berikutnya",
   "immediate_repayment": "Pembayaran Langsung",
-  "phone_number": "Nomor Telepon",
-  "user_name": "Nama",
-  "id_card": "Kartu Identitas",
-  "bank_card": "Nomor Kartu Bank",
+  "phone_number": "No Handphone",
+  "please_select_bank": "Pilih bank yang digunakan",
+  "user_name": "Nama Sesuai No Rekening",
+  "id_card": "Identitas yang dipakai(KTP)",
+  "bank_card": "Masukan No Rekening",
   "submit": "Kirim",
   "required_field": "Wajib Diisi",
   "bind_bank_card": "Hubungkan Kartu Bank",
@@ -133,5 +134,6 @@
   "order_confirm_collapse": "Sembunyikan",
   "order_confirm_cancel": "Batal",
   "order_confirm_confirm": "Konfirmasi",
-  "order_confirm_repayment_plan": "Rencana Pembayaran"
+  "order_confirm_repayment_plan": "Rencana Pembayaran",
+  "order_success": "Order Success"
 }

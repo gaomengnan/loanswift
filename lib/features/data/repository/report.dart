@@ -10,8 +10,8 @@ class ReportRepository implements ReportRepo {
   );
 
   @override
-  ResultVoid postDeviceInfo({required Map<String, dynamic> data}) async {
-    return await _deviceDataSource.postDeviceInfo(
+  ResultVoid dataReport({required Map<String, dynamic> data}) async {
+    return await _deviceDataSource.dataReport(
       data: data,
     );
   }

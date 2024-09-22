@@ -272,7 +272,7 @@ Future<OrderConfirmModel> getData(productId) async {
 
 void showOrderConfirmDialog(BuildContext context,
     {required int productId,
-    Function(BuildContext context)? ck,
+    Function(BuildContext context)? onOK,
     VoidCallback? onCancel}) {
   showDialog(
     barrierDismissible: false,
@@ -282,7 +282,7 @@ void showOrderConfirmDialog(BuildContext context,
     builder: (context) {
       return StateDialog(
         productId: productId,
-        callback: ck,
+        callback: onOK,
         onCancel: onCancel,
       );
     },

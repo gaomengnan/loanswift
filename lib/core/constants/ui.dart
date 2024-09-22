@@ -55,7 +55,7 @@ class UI {
   static void showSuccess(BuildContext context, String message) {
     EasyLoading.showSuccess(
       message,
-      duration: const Duration(seconds: 1),
+      duration: const Duration(seconds: 2),
     );
   }
 
@@ -65,6 +65,12 @@ class UI {
     );
   }
 
+  static void showProgress(BuildContext context, String message) {
+    EasyLoading.showProgress(
+      0,
+     status: message,
+    );
+  }
   static void showError(BuildContext context, String message) {
     EasyLoading.showError(
       message,
@@ -74,6 +80,7 @@ class UI {
 
   static Future<void> showLoading() async {
     await EasyLoading.show(
+      dismissOnTap: false,
       status: "${S.current.loading}...",
     );
   }

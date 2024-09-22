@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/theme/pallete.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:image/image.dart' as img;
 
 import '../../../../core/common/widgets/widgets.dart';
 
@@ -21,10 +22,46 @@ class _CardScannerState extends State<CardScanner> {
   late CameraController _controller;
   File? _imageFile;
 
+  late final Future<void> _initCamera;
+
   @override
   void initState() {
+    _initCamera = initializeCamera(context);
+    //SystemChrome.setPreferredOrientations([
+    //  DeviceOrientation.landscapeLeft,
+    //  DeviceOrientation.landscapeRight,
+    //]);
     super.initState();
     // initializeCamera();
+  }
+
+  Future<File> cropImage(File imageFile) async {
+    final image = img.decodeImage(imageFile.readAsBytesSync());
+
+    if (image == null) {
+      throw Exception('Unable to decode image');
+    }
+
+    //final scaleX = image.width / imageSize.width;
+    //final scaleY = image.height / imageSize.height;
+
+    //final cropLeft = (cropRect.left * scaleX).toInt();
+    //final cropTop = (cropRect.top * scaleY).toInt();
+    //final cropWidth = (cropRect.width * scaleX).toInt();
+    //final cropHeight = (cropRect.height * scaleY).toInt();
+
+    final croppedImage = img.copyCrop(
+      image,
+      x: 40,
+      y: 276,
+      width: 280,
+      height: 184,
+    );
+
+    final croppedFile = File('${imageFile.path}_cropped.jpg')
+      ..writeAsBytesSync(img.encodeJpg(croppedImage));
+
+    return croppedFile;
   }
 
   Future<void> initializeCamera(BuildContext context) async {
@@ -33,11 +70,12 @@ class _CardScannerState extends State<CardScanner> {
     // 使用第一个摄像头
     _controller = CameraController(
       cameras.first,
-      ResolutionPreset.medium,
+      ResolutionPreset.veryHigh,
     );
     // 初始化controller
     try {
       await _controller.initialize();
+      await _controller.setFocusMode(FocusMode.auto);
     } on CameraException catch (e) {
       if (context.mounted) {
         switch (e.code) {
@@ -57,10 +95,22 @@ class _CardScannerState extends State<CardScanner> {
     super.dispose();
   }
 
+  // 计算对准框在相机预览中的位置
+  Rect getCropRect(Size screenSize) {
+    double horizontalMargin = 40.0;
+    double rectWidth = screenSize.width - 2 * horizontalMargin;
+    double rectHeight = screenSize.height / 4;
+
+    double left = (screenSize.width - rectWidth) / 2;
+    double top = (screenSize.height - rectHeight) / 2;
+
+    return Rect.fromLTWH(left, top, rectWidth, rectHeight);
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: initializeCamera(context),
+      future: _initCamera,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasError) {
@@ -121,6 +171,14 @@ class _CardScannerState extends State<CardScanner> {
             return Scaffold(
               body: Stack(
                 children: [
+                  if (_imageFile != null)
+                    Positioned.fill(
+                      bottom: 100.h,
+                      child: Image.file(
+                        _imageFile!,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   if (_imageFile == null)
                     Positioned.fill(
                       bottom: 100.h,
@@ -195,10 +253,7 @@ class _CardScannerState extends State<CardScanner> {
                                   ),
                                   child: _imageFile == null
                                       ? Container() // 预览图片容器
-                                      : Image.file(
-                                          _imageFile!,
-                                          fit: BoxFit.fitHeight,
-                                        ), // 显示拍照结果
+                                      : Container(), // 显示拍照结果
                                 ),
                                 GestureDetector(
                                   onTap: () async {
@@ -210,9 +265,12 @@ class _CardScannerState extends State<CardScanner> {
                                       XFile file =
                                           await _controller.takePicture();
 
+                                      final cropedImage =
+                                          await cropImage(File(file.path));
+
                                       // 显示预览
                                       setState(() {
-                                        _imageFile = File(file.path);
+                                        _imageFile = cropedImage;
                                         // hideSpinner();
                                       });
                                     } catch (_) {}
@@ -243,14 +301,22 @@ class _CardScannerState extends State<CardScanner> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       if (_imageFile != null)
-                                        const Icon(
-                                          Icons.close,
-                                          color: Colors.red,
+                                        GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              _imageFile = null;
+                                            });
+                                          },
+                                          child: const Icon(
+                                            Icons.close,
+                                            color: Colors.red,
+                                          ),
                                         ),
-                                      const Icon(
-                                        Icons.check,
-                                        color: Colors.green,
-                                      ),
+                                      if (_imageFile != null)
+                                        const Icon(
+                                          Icons.check,
+                                          color: Colors.green,
+                                        ),
                                     ],
                                   ),
                                 ),
@@ -270,7 +336,7 @@ class _CardScannerState extends State<CardScanner> {
           // 如果尚未完成，显示加载指示器
           return const Center(
             child: CircularProgressIndicator(
-              color: Colors.blue,
+              color: Colors.grey,
             ),
           );
         }
@@ -300,7 +366,14 @@ class HolePainter extends CustomPainter {
       ),
       const Radius.circular(10), // 圆角大小
     );
+    // 打印或处理对焦区域的坐标和大小
+    double x = rRect.left;
+    double y = rRect.top;
+    double width = rRect.width;
+    double height = rRect.height;
 
+    print('裁剪区域的左上角坐标: x = $x, y = $y');
+    print('裁剪区域的大小: width = $width, height = $height');
     // 镂空处理
     var rectPath = Path()..addRRect(rRect);
     canvas.drawPath(rectPath, Paint()..blendMode = BlendMode.clear);
@@ -310,7 +383,7 @@ class HolePainter extends CustomPainter {
   void _drawDashedRect(Canvas canvas, RRect rRect, Size size) {
     double dashWidth = 5, dashSpace = 5;
     final paint = Paint()
-      ..color = Pallete.primaryColor
+      ..color = Colors.grey.withOpacity(0.3)
       ..strokeWidth = 2
       ..style = PaintingStyle.stroke;
 

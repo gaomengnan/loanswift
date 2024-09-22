@@ -158,6 +158,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Total Interest"),
         "order_confirm_total_service_fee":
             MessageLookupByLibrary.simpleMessage("Total Service Fee"),
+        "order_success": MessageLookupByLibrary.simpleMessage("Order Success"),
         "overdue": MessageLookupByLibrary.simpleMessage("Late"),
         "permission_title": MessageLookupByLibrary.simpleMessage(
             "To expedite your loan process, we need these permissions"),
@@ -172,6 +173,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Failed to access camera permission"),
         "please_select":
             MessageLookupByLibrary.simpleMessage("Please select an option"),
+        "please_select_bank":
+            MessageLookupByLibrary.simpleMessage("Please select bank"),
         "previousStep": MessageLookupByLibrary.simpleMessage("Previous Step"),
         "privacy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "quick_deposit": MessageLookupByLibrary.simpleMessage("Fast Transfer"),

@@ -164,7 +164,7 @@ class _BuildSuggestionState extends State<BuildSuggestion>
                         showOrderConfirmDialog(
                           context,
                           productId: product.productId,
-                          ck: (ctx) {
+                          onOK: (ctx) {
                             Navigator.pop(ctx);
                             context.read<HomeBloc>().add(HomeRefreshEvent());
                           },

@@ -1,10 +1,11 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get_it/get_it.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/core/dio_client.dart';
+import 'package:loanswift/core/firebase_api.dart';
 import 'package:loanswift/core/report.dart';
 import 'package:loanswift/features/data/datasource/auth.dart';
 import 'package:loanswift/features/data/datasource/common.dart';
@@ -26,6 +27,7 @@ import 'package:loanswift/features/domain/usecases/authenticated/get_certifies.d
 import 'package:loanswift/features/domain/usecases/authenticated/login.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/logout.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/send_phone_code.dart';
+import 'package:loanswift/features/domain/usecases/common/data_report.dart';
 import 'package:loanswift/features/domain/usecases/common/file_upload.dart';
 import 'package:loanswift/features/domain/usecases/common/get_banks.dart';
 import 'package:loanswift/features/domain/usecases/common/get_cities.dart';
@@ -40,6 +42,7 @@ import 'package:loanswift/features/domain/usecases/order/query_order.dart';
 import 'package:loanswift/features/presentation/bloc/certify/certifies_bloc.dart';
 import 'package:loanswift/features/presentation/bloc/home/home_bloc.dart';
 import 'package:loanswift/features/presentation/bloc/order/order_bloc.dart';
+import 'package:loanswift/firebase_options.dart';
 
 import '../features/data/models/models.dart';
 import '../features/presentation/bloc/bloc.dart';
@@ -197,18 +200,30 @@ Future<void> initialize() async {
     ..registerLazySingleton(() => ReportFcm(reportRepo: sl()))
     ..registerLazySingleton(() => Reportgps(reportRepo: sl()))
     ..registerLazySingleton(() => OrderConfim(order: sl()))
-    ..registerLazySingleton(() => CheckOrder(order: sl()));
+    ..registerLazySingleton(() => CheckOrder(order: sl()))
+    ..registerLazySingleton(() => DataReport(reportRepo: sl()));
 
   /*     获取设备信息         */
   try {
+
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+
+    await FirebaseApi().initNotifications();
+
     final ReportService service = sl();
+
     service.fcmTokenReport();
+    
+    await service.getDeviceId();
+
+    //service.gpsReport();
   } catch (_) {}
 
-  /*  BUILD TIMER TICK   */
-  //Worker().initial();
-
-  EasyLoading.instance
-    ..userInteractions = true
-    ..dismissOnTap = false;
+  // Geolocator.getCurrentPosition().then((e){
+  //
+  //   print(e);
+  //
+  // });
 }

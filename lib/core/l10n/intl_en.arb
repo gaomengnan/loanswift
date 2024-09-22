@@ -95,6 +95,7 @@
   "user_name": "Name",
   "id_card": "ID Card",
   "bank_card": "Bank Card",
+  "please_select_bank": "Please select bank",
   "submit": "Submit",
   "required_field": "Required Field",
   "bind_bank_card": "Bind Bank Card",
@@ -134,6 +135,7 @@
   "order_confirm_collapse": "Collapse",
   "order_confirm_cancel": "Cancel",
   "order_confirm_confirm": "Confirm",
-  "order_confirm_repayment_plan": "Repayment Plan"
+  "order_confirm_repayment_plan": "Repayment Plan",
+  "order_success": "Order Success"
 }
 

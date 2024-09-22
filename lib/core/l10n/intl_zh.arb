@@ -95,6 +95,7 @@
   "user_name": "姓名",
   "id_card": "身份证",
   "bank_card": "银行卡号",
+  "please_select_bank": "请选择银行",
   "submit": "提交",
   "required_field": "必填项",
   "bind_bank_card": "绑定银行卡",
@@ -134,5 +135,6 @@
   "order_confirm_collapse": "收起",
   "order_confirm_cancel": "取消",
   "order_confirm_confirm": "确认",
-  "order_confirm_repayment_plan": "还款计划"
+  "order_confirm_repayment_plan": "还款计划",
+  "order_success": "下单成功"
 }

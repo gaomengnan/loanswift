@@ -1,3 +1,3 @@
-  import 'dart:async';
-
-final StreamController<void> tokenExpireStreamController = StreamController<void>();
+import 'dart:async';
+final StreamController<void> tokenExpireStreamController =
+    StreamController<void>();

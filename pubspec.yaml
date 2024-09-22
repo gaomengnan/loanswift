@@ -31,6 +31,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  native_connector_plugin:
+    path: ../native_connector_plugin
+
   liveness_detection:
     # When depending on this package from a real application you should use:
     #   liveness_detection: ^x.y.z
@@ -78,11 +81,12 @@ dependencies:
   flutter_easyloading: ^3.0.5
   shimmer: ^3.0.0
   dropdown_search: ^5.0.6
-  geolocator: ^13.0.1
   package_info_plus: ^8.0.2
   webview_flutter: ^4.9.0
   network_info_plus: ^6.0.1
-  geocoding: ^3.0.0
+  # installed_apps: ^1.5.0
+  # location: ^6.0.2
+  geolocator: ^13.0.1
 
 dev_dependencies:
   # flutter_launcher_icons: "^0.13.1"

@@ -138,9 +138,9 @@ class _RInputState extends State<RInput> {
                 initialValue: _initVal,
                 controller: _controller,
                 onFieldSubmitted: (s) {
-                  if (s.isNotEmpty) {
-                    widget.onChanged!(s);
-                  }
+                  //if (s.isNotEmpty) {
+                  //  widget.onChanged!(s);
+                  //}
                 },
                 //onChanged: onChanged,
                 decoration: const InputDecoration(

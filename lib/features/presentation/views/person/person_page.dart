@@ -178,7 +178,7 @@ class _PersonPageState extends State<PersonPage> {
               SliverToBoxAdapter(
                 child: Container(
                   margin: EdgeInsets.only(left: 20.w, right: 20.w, top: 10.h),
-                  padding: EdgeInsets.all(10.0.w),
+                  padding: EdgeInsets.symmetric(horizontal: 20.0.w),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10.0.sp),
@@ -187,7 +187,7 @@ class _PersonPageState extends State<PersonPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: EdgeInsets.all(10.h),
+                        padding: EdgeInsets.symmetric(horizontal: 0.w, vertical: 10.h),
                         child: RText(
                           text: S.current.my_repayment,
                           size: 13.sp,
@@ -318,11 +318,8 @@ class _PersonPageState extends State<PersonPage> {
               SliverToBoxAdapter(
                 //padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: Padding(
-                  padding: EdgeInsets.only(
-                    left: 20.0.w,
-                    right: 20.w,
-                    top: 10.h
-                  ),
+                  padding:
+                      EdgeInsets.only(left: 20.0.w, right: 20.w, top: 10.h),
                   child: Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -341,16 +338,24 @@ class _PersonPageState extends State<PersonPage> {
                           ),
                         ),
                         SizedBox(
-                          height: 90.h,
-                          child: GridView.builder(
-                            physics: const NeverScrollableScrollPhysics(),
-                            gridDelegate:
-                                SliverGridDelegateWithMaxCrossAxisExtent(
-                              maxCrossAxisExtent: 70.w, // 每个网格项的最大宽度为150
-                              crossAxisSpacing: 5.w, // 列间距
-                              mainAxisSpacing: 5.h, // 行间距
-                              childAspectRatio: 1, // 每个网格项的宽高比例
+                          //padding: EdgeInsets.symmetric(horizontal: 15.w,),
+                          height: 100.h,
+                          child: ListView.separated(
+                            separatorBuilder: (context, index) {
+                              return const SizedBox(width: 10,);
+                            },
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 15.w,
                             ),
+                            scrollDirection: Axis.horizontal,
+                            //physics: const NeverScrollableScrollPhysics(),
+                            //gridDelegate:
+                            //    SliverGridDelegateWithMaxCrossAxisExtent(
+                            //  maxCrossAxisExtent: 70.w, // 每个网格项的最大宽度为150
+                            //  crossAxisSpacing: 5.w, // 列间距
+                            //  mainAxisSpacing: 5.h, // 行间距
+                            //  childAspectRatio: 1, // 每个网格项的宽高比例
+                            //),
                             itemBuilder: (BuildContext context, int index) {
                               final data = protocols[index];
                               return GestureDetector(
@@ -371,12 +376,18 @@ class _PersonPageState extends State<PersonPage> {
                                   children: [
                                     CachedNetworkImage(
                                       imageUrl: data.icon,
-                                      height: 15.h,
-                                      width: 15.w,
+                                      height: 25.h,
+                                      width: 25.w,
                                       fit: BoxFit.cover,
                                     ),
                                     UI.kHeight5(),
-                                    RText(text: data.name),
+                                    SizedBox(
+                                        width: 60.w,
+                                        child: RText(
+                                          text: data.name,
+                                          maxLines: 2,
+                                          size: 11.sp,
+                                        )),
                                   ],
                                 ),
                               );

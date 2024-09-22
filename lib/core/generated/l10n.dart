@@ -970,6 +970,16 @@ class S {
     );
   }
 
+  /// `请选择银行`
+  String get please_select_bank {
+    return Intl.message(
+      '请选择银行',
+      name: 'please_select_bank',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `提交`
   String get submit {
     return Intl.message(
@@ -1365,6 +1375,16 @@ class S {
     return Intl.message(
       '还款计划',
       name: 'order_confirm_repayment_plan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `下单成功`
+  String get order_success {
+    return Intl.message(
+      '下单成功',
+      name: 'order_success',
       desc: '',
       args: [],
     );

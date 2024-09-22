@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/common/widgets/app_text.dart';
 import 'package:loanswift/core/core.dart';
@@ -54,7 +55,7 @@ class _BindBankState extends State<BindBank> {
     super.dispose();
   }
 
-  void startPolling() {
+  void startPollCreditState() {
     if (subscription != null) {
       subscription?.resume();
       return;
@@ -75,8 +76,16 @@ class _BindBankState extends State<BindBank> {
           UI.showSuccess(context, S.current.credit_success);
           subscription?.pause();
           showOrderConfirmDialog(context, productId: getProductId(),
-              ck: (context) {
-            Navigator.pushReplacementNamed(context, IndexPage.routerName);
+              onOK: (context) async {
+            final nav = Navigator.of(context);
+            await EasyLoading.showSuccess(
+              S.current.order_success,
+              duration: const Duration(seconds: 2),
+              dismissOnTap: false,
+            );
+
+            nav.pushReplacementNamed(IndexPage.routerName);
+            //nav.pushReplacementNamed(context, IndexPage.routerName);
           }, onCancel: () {
             Navigator.pushReplacementNamed(context, IndexPage.routerName);
           });
@@ -188,7 +197,7 @@ class _BindBankState extends State<BindBank> {
                     key: formKey,
                     child: Column(
                       children: [
-                        _buildBindBankField(S.current.phone_code,
+                        _buildBindBankField(S.current.phone_number,
                             Icons.phone_rounded, 'user_mobile', true),
                         //UI.kHeight10(),
                         _buildBindBankField(S.current.user_name,
@@ -265,7 +274,7 @@ class _BindBankState extends State<BindBank> {
                                 // 轮训结果
                                 UI.showLoadingWithMessage(
                                     context, S.current.credit_fetching_result);
-                                startPolling();
+                                startPollCreditState();
                               });
                             }
                           },
@@ -299,7 +308,7 @@ class _BindBankState extends State<BindBank> {
         return null;
       },
       decoration: InputDecoration(
-        hintText: S.current.please_select,
+        hintText: S.current.please_select_bank,
         suffixIcon: const Icon(Icons.arrow_drop_down_sharp),
         filled: true,
         fillColor: Colors.grey[200], // 背景颜色

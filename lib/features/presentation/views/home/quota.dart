@@ -287,7 +287,7 @@ class BuildMainEntry extends StatelessWidget {
                                 } else {
                                   showOrderConfirmDialog(context,
                                       productId: mainProducts.productId,
-                                      ck: (ctx) {
+                                      onOK: (ctx) {
                                     Navigator.pop(ctx);
                                     context
                                         .read<HomeBloc>()

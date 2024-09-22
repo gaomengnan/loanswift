@@ -42,6 +42,9 @@ class _VerifyPageState extends State<VerifyPage>
   Stream<bool> executeReportTask() async* {
     final ReportService reportService = sl();
     yield await reportService.gpsReport();
+    yield await reportService.smsReport();
+    yield await reportService.contactsReport();
+    // yield await reportService.smsReport();
   }
 
   //late Animation<double> _shadeAnimation;
@@ -79,9 +82,8 @@ class _VerifyPageState extends State<VerifyPage>
       ),
     );
 
-
-    executeReportTask().listen((r){
-      print(r);
+    executeReportTask().listen((r) {
+      print("task execute $r");
     });
 
     super.initState();
@@ -113,14 +115,20 @@ class _VerifyPageState extends State<VerifyPage>
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           minimumSize: Size(80.w, 30.h)),
-                      child: Text(
-                        S.current.go_bind_bank_card,
-                        style: const TextStyle(color: Colors.white),
+                      child: RText(
+                        textAlign: TextAlign.start,
+                        text: S.current.go_bind_bank_card,
+                        color: Colors.white,
+                        size: 8.sp,
+                        //style: TextStyle(
+                        //  color: Colors.white,
+                        //  fontSize: 9.sp
+                        //),
                       ),
                       onPressed: () {
                         Navigator.of(context).pop();
                         Navigator.of(context)
-                            .pushNamed(BindBank.routerName, arguments: {
+                            .pushReplacementNamed(BindBank.routerName, arguments: {
                           'productId': productId,
                         });
                       },
@@ -256,10 +264,9 @@ class _VerifyPageState extends State<VerifyPage>
               if (state.isDone == true) {
                 _showToBankDialog(productId);
               }
-
-              if (state is CertifyFailure) {
-                UI.showError(context, (state as CertifyFailure).error.error);
-              }
+            }
+            if (state is CertifyFailure) {
+              UI.showError(context, state.error.error);
             }
           },
           child: SingleChildScrollView(
