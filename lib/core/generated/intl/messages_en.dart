@@ -26,6 +26,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "all": MessageLookupByLibrary.simpleMessage("All"),
         "app_name": MessageLookupByLibrary.simpleMessage("Loan Swift"),
         "auditFailure": MessageLookupByLibrary.simpleMessage("Failed"),
+        "authFailed": MessageLookupByLibrary.simpleMessage(
+            "Authentication failed, please try again."),
         "awaitingRepayment": MessageLookupByLibrary.simpleMessage("Pending"),
         "bank_card": MessageLookupByLibrary.simpleMessage("Bank Card"),
         "bill_amount": MessageLookupByLibrary.simpleMessage("Bill Amount"),

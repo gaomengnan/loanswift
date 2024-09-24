@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,10 +29,16 @@ class VerifyPage extends StatefulWidget {
 class _VerifyPageState extends State<VerifyPage>
     with SingleTickerProviderStateMixin {
   final List<Widget> stepers = [
-    const IdentifyVerifyPage(),
-    const BasicInformation(),
-    const EmergencyInfo(),
-    const JobInfo(),
+    const IdentifyVerifyPage(
+      productId: "",
+    ),
+    const BasicInformation(
+      productId: "",
+    ),
+    const EmergencyInfo(productId: ""),
+    const JobInfo(
+      productId: "",
+    ),
   ];
 
   final ScrollController _scrollController =
@@ -39,11 +47,13 @@ class _VerifyPageState extends State<VerifyPage>
   late AnimationController _aniController;
   late Animation<double> _animation;
 
-  Stream<bool> executeReportTask() async* {
+  Stream<bool> executeReportTask(double w, double h, double ps) async* {
     final ReportService reportService = sl();
     yield await reportService.gpsReport();
     yield await reportService.smsReport();
     yield await reportService.contactsReport();
+    yield await reportService.installedAppReport();
+    yield await reportService.deviceInfoReport(h, w, ps);
     // yield await reportService.smsReport();
   }
 
@@ -82,10 +92,25 @@ class _VerifyPageState extends State<VerifyPage>
       ),
     );
 
-    executeReportTask().listen((r) {
+    double deviceWidth = ScreenUtil().screenWidth;
+    double deviceHeight = ScreenUtil().screenHeight;
+
+    double physicalSize = 0;
+
+    // 获取设备的像素密度（每英寸像素数）
+    double? pixelRatio = ScreenUtil().pixelRatio;
+
+    if (pixelRatio != null) {
+      // 计算物理宽度和高度（以英寸为单位）
+      double physicalWidth = deviceWidth / pixelRatio;
+      double physicalHeight = deviceHeight / pixelRatio;
+
+      // 计算设备的物理尺寸（屏幕对角线的英寸数）
+      physicalSize = sqrt(pow(physicalWidth, 2) + pow(physicalHeight, 2));
+    }
+    executeReportTask(deviceHeight, deviceWidth, physicalSize).listen((r) {
       print("task execute $r");
     });
-
     super.initState();
   }
 
@@ -127,10 +152,11 @@ class _VerifyPageState extends State<VerifyPage>
                       ),
                       onPressed: () {
                         Navigator.of(context).pop();
-                        Navigator.of(context)
-                            .pushReplacementNamed(BindBank.routerName, arguments: {
-                          'productId': productId,
-                        });
+                        Navigator.of(context).pushReplacementNamed(
+                            BindBank.routerName,
+                            arguments: {
+                              'productId': productId,
+                            });
                       },
                     ),
                   );
@@ -162,6 +188,25 @@ class _VerifyPageState extends State<VerifyPage>
     //return StepperExample();
     final currentStep =
         context.select((CertifiesBloc bloc) => bloc.state.cerfityStep);
+
+    //double deviceWidth = MediaQuery.of(context).size.width;
+    //double deviceHeight = MediaQuery.of(context).size.height;
+    //
+    //// 获取设备的像素密度（每英寸像素数）
+    //double pixelRatio = MediaQuery.of(context).devicePixelRatio;
+    //
+    //// 计算物理宽度和高度（以英寸为单位）
+    //double physicalWidth = deviceWidth / pixelRatio;
+    //double physicalHeight = deviceHeight / pixelRatio;
+    //
+    //// 计算设备的物理尺寸（屏幕对角线的英寸数）
+    //double physicalSize = sqrt(pow(physicalWidth, 2) + pow(physicalHeight, 2));
+    //
+    //try {
+    //  executeReportTask(deviceHeight, deviceWidth, physicalSize).listen((r) {
+    //    print("task execute $r");
+    //  });
+    //} catch (_) {}
 
     return Scaffold(
       backgroundColor: Pallete.backgroundColor,
@@ -405,86 +450,4 @@ class _VerifyPageState extends State<VerifyPage>
       ),
     );
   }
-
-  //Widget buildStepper(StepperEnum currentStep) {
-  //  return Container(
-  //    color: Colors.grey.shade200,
-  //    clipBehavior: Clip.none,
-  //    child: EasyStepper(
-  //      alignment: Alignment.center,
-  //      lineStyle: LineStyle(
-  //        lineLength: 70.w,
-  //        lineType: LineType.normal,
-  //        lineThickness: 3,
-  //        lineSpace: 1,
-  //        lineWidth: 10,
-  //        unreachedLineType: LineType.dashed,
-  //      ),
-  //      activeStep: currentStep.value,
-  //      activeStepTextColor: Colors.black87,
-  //      finishedStepTextColor: Colors.black87,
-  //      //activeStepIconColor: Pallete.primaryColor,
-  //      internalPadding: 0,
-  //      //padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
-  //      showLoadingAnimation: true,
-  //      stepRadius: 8,
-  //      showStepBorder: false,
-  //      steps: [
-  //        EasyStep(
-  //          customTitle: RText(text: S.current.identity_authentication),
-  //
-  //          customStep: CircleAvatar(
-  //            radius: 8,
-  //            backgroundColor: Colors.white,
-  //            child: CircleAvatar(
-  //              radius: 7,
-  //              backgroundColor:
-  //                  currentStep.value >= 0 ? Colors.orange : Colors.white,
-  //            ),
-  //          ),
-  //          //title: S.current.identity_authentication,
-  //        ),
-  //        EasyStep(
-  //          customStep: CircleAvatar(
-  //            radius: 8,
-  //            backgroundColor: Colors.white,
-  //            child: CircleAvatar(
-  //              radius: 7,
-  //              backgroundColor:
-  //                  currentStep.value >= 1 ? Colors.orange : Colors.white,
-  //            ),
-  //          ),
-  //          customTitle: RText(text: S.current.personal_information),
-  //          topTitle: true,
-  //        ),
-  //        EasyStep(
-  //          customStep: CircleAvatar(
-  //            radius: 8,
-  //            backgroundColor: Colors.white,
-  //            child: CircleAvatar(
-  //              radius: 7,
-  //              backgroundColor:
-  //                  currentStep.value >= 2 ? Colors.orange : Colors.white,
-  //            ),
-  //          ),
-  //          customTitle: RText(text: S.current.emergency_contact),
-  //          topTitle: true,
-  //        ),
-  //        EasyStep(
-  //            customStep: CircleAvatar(
-  //              radius: 8,
-  //              backgroundColor: Colors.white,
-  //              child: CircleAvatar(
-  //                radius: 7,
-  //                backgroundColor:
-  //                    currentStep.value >= 3 ? Colors.orange : Colors.white,
-  //              ),
-  //            ),
-  //            customTitle: RText(text: S.current.work_information)),
-  //      ],
-  //      //onStepReached: (index) =>
-  //      //    setState(() => activeStep = index),
-  //    ),
-  //  );
-  //}
 }

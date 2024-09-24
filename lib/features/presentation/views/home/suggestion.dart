@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/common/widgets/widgets.dart';
 import 'package:loanswift/core/core.dart';
+import 'package:loanswift/core/event_bus_service.dart';
+import 'package:loanswift/core/report.dart';
 import 'package:loanswift/features/domain/entity/entity.dart';
 import 'package:loanswift/features/presentation/bloc/home/home_bloc.dart';
 import 'package:loanswift/features/presentation/views/person/bind_bank.dart';
@@ -161,10 +163,19 @@ class _BuildSuggestionState extends State<BuildSuggestion>
                           },
                         );
                       } else {
+                        final startTime = DateTime.now();
+
                         showOrderConfirmDialog(
                           context,
                           productId: product.productId,
                           onOK: (ctx) {
+                            bus.fire(TargetPointEvent(
+                              startTime,
+                              DateTime.now(),
+                              SceneType.applyPage,
+                              productCode: product.productId.toString()
+                            ));
+
                             Navigator.pop(ctx);
                             context.read<HomeBloc>().add(HomeRefreshEvent());
                           },

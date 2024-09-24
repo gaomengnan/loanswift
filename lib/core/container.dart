@@ -1,10 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get_it/get_it.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/core/dio_client.dart';
+import 'package:loanswift/core/event_bus_service.dart';
 import 'package:loanswift/core/firebase_api.dart';
 import 'package:loanswift/core/report.dart';
 import 'package:loanswift/features/data/datasource/auth.dart';
@@ -34,6 +37,7 @@ import 'package:loanswift/features/domain/usecases/common/get_cities.dart';
 import 'package:loanswift/features/domain/usecases/common/ocr.dart';
 import 'package:loanswift/features/domain/usecases/common/report_fcm.dart';
 import 'package:loanswift/features/domain/usecases/common/report_gps.dart';
+import 'package:loanswift/features/domain/usecases/common/target_report.dart';
 import 'package:loanswift/features/domain/usecases/home/data.dart';
 import 'package:loanswift/features/domain/usecases/order/check_order.dart';
 import 'package:loanswift/features/domain/usecases/order/get_order_detail.dart';
@@ -48,6 +52,7 @@ import '../features/data/models/models.dart';
 import '../features/presentation/bloc/bloc.dart';
 
 final sl = GetIt.instance;
+final EventBus bus = EventBus();
 
 Future<void> initialize() async {
   await dotenv.load(
@@ -99,6 +104,7 @@ Future<void> initialize() async {
       () => AuthBloc(
         useCase: sl(),
         logoutUseCase: sl(),
+        //reportService: sl(),
       ),
     )
     ..registerLazySingleton<AuthDataSource>(
@@ -178,10 +184,10 @@ Future<void> initialize() async {
 
   sl
     ..registerFactory(() => CertifiesBloc(
-          getCertifies: sl(),
-          commitCertify: sl(),
-          getCities: sl(),
-        ))
+        getCertifies: sl(),
+        commitCertify: sl(),
+        getCities: sl(),
+        reportService: sl()))
     ..registerLazySingleton(() => GetCertifies(authRepo: sl()));
 
   /*  BUILD UPLOAD  */
@@ -201,11 +207,11 @@ Future<void> initialize() async {
     ..registerLazySingleton(() => Reportgps(reportRepo: sl()))
     ..registerLazySingleton(() => OrderConfim(order: sl()))
     ..registerLazySingleton(() => CheckOrder(order: sl()))
-    ..registerLazySingleton(() => DataReport(reportRepo: sl()));
+    ..registerLazySingleton(() => DataReport(reportRepo: sl()))
+    ..registerLazySingleton(() => TargetReport(repo: sl()));
 
   /*     获取设备信息         */
   try {
-
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
@@ -215,10 +221,10 @@ Future<void> initialize() async {
     final ReportService service = sl();
 
     service.fcmTokenReport();
-    
-    await service.getDeviceId();
 
+    await service.getDeviceId();
     //service.gpsReport();
+    await Geolocator.requestPermission();
   } catch (_) {}
 
   // Geolocator.getCurrentPosition().then((e){
@@ -226,4 +232,6 @@ Future<void> initialize() async {
   //   print(e);
   //
   // });
+  WidgetsBinding.instance.addObserver(bus);
+  bus.onEvent();
 }

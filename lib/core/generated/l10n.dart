@@ -1389,6 +1389,16 @@ class S {
       args: [],
     );
   }
+
+  /// `认证失败，请重新尝试。`
+  String get authFailed {
+    return Intl.message(
+      '认证失败，请重新尝试。',
+      name: 'authFailed',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

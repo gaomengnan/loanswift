@@ -5,6 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:liveness_detection/liveness_detection.dart';
 import 'package:loanswift/core/common/widgets/widgets.dart';
 import 'package:loanswift/core/core.dart';
+import 'package:loanswift/core/event_bus_service.dart';
+import 'package:loanswift/core/report.dart';
 import 'package:loanswift/core/utils.dart';
 import 'package:loanswift/features/domain/entity/user/certify.dart';
 import 'package:lottie/lottie.dart';
@@ -91,12 +93,14 @@ class FaceRecognotion extends FormField<List<ImagePickEntity>> {
                               color: Colors.green,
                             )
                           : TextButton(
-                            style: TextButton.styleFrom(minimumSize: const Size(100, 30)),
+                              style: TextButton.styleFrom(
+                                  minimumSize: const Size(100, 30)),
                               child: RText(text: S.current.go_to_verify),
                               onPressed: () async {
                                 try {
-                                  final status =
-                                      await Permission.camera.status;
+                                  final DateTime startTime = DateTime.now();
+
+                                  final status = await Permission.camera.status;
                                   if (status != PermissionStatus.granted) {
                                     await Permission.camera.request();
                                   }
@@ -105,27 +109,31 @@ class FaceRecognotion extends FormField<List<ImagePickEntity>> {
                                       await faceRect.startFaceRect();
 
                                   // 清理 Base64 字符串中的换行符和空格
-                                  String? cleanedBase64String = faceData
-                                      ?.replaceAll(RegExp(r'\s+'), '');
+                                  String? cleanedBase64String =
+                                      faceData?.replaceAll(RegExp(r'\s+'), '');
 
                                   if (cleanedBase64String == null ||
                                       cleanedBase64String.isEmpty) {
+                                    UI.showErrorNoContext(S.current.authFailed);
                                     return;
                                   }
 
                                   UI.showLoading();
                                   // 将 Base64 字符串解码为 Uint8List
-                                  var bytes =
-                                      base64Decode(cleanedBase64String);
+                                  var bytes = base64Decode(cleanedBase64String);
 
-                                  final resp =
-                                      await Utils.uploadImageFromBytes(
-                                          bytes, "living_img");
+                                  final resp = await Utils.uploadImageFromBytes(
+                                      bytes, "living_img");
 
                                   resp.fold(
-                                    (err) =>
-                                        UI.showError(context, err.message),
+                                    (err) => UI.showError(context, err.message),
                                     (l) {
+                                      bus.fire(TargetPointEvent(
+                                        startTime,
+                                        DateTime.now(),
+                                        SceneType.live,
+                                      ));
+
                                       UI.hideLoading();
 
                                       final body = l.data as DataMap?;

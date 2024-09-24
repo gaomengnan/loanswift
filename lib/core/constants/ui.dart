@@ -78,6 +78,13 @@ class UI {
     );
   }
 
+  static void showErrorNoContext(String message) {
+    EasyLoading.showError(
+      message,
+      duration: const Duration(seconds: 5),
+    );
+  }
+
   static Future<void> showLoading() async {
     await EasyLoading.show(
       dismissOnTap: false,

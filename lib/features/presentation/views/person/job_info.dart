@@ -6,7 +6,8 @@ import 'package:loanswift/features/presentation/bloc/certify/certifies_bloc.dart
 import 'package:loanswift/features/presentation/views/person/build_form_item.dart';
 
 class JobInfo extends StatefulWidget {
-  const JobInfo({super.key});
+  final String productId;
+  const JobInfo({super.key, required this.productId});
 
   @override
   State<JobInfo> createState() => _JobInfoState();

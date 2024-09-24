@@ -13,7 +13,6 @@ import 'features/presentation/bloc/bloc.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -79,8 +78,11 @@ class MyApp extends StatelessWidget {
               if (state is LogoutSuccess) {
                 //Navigator.of(context).pushNamed('/auth');
                 UI.showError(context, S.current.credit_login_expired);
-                Future.delayed(const Duration(seconds: 2), (){
-                  navigatorKey.currentState?.pushReplacementNamed('/auth');
+                Future.delayed(const Duration(milliseconds: 100), () {
+                  navigatorKey.currentState?.pushNamedAndRemoveUntil(
+                    '/auth',
+                    (Route<dynamic> route) => false,
+                  );
                 });
               }
             },

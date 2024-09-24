@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
-import 'package:loanswift/core/generated/l10n.dart';
+import 'package:loanswift/core/core.dart';
 import 'package:loanswift/features/presentation/bloc/bloc.dart';
 import 'package:loanswift/features/presentation/views/index/index_page.dart';
 import 'package:loanswift/features/presentation/views/widgets/verification_code.dart';
 import 'package:loanswift/theme/pallete.dart';
 
 import '../../../../core/common/widgets/widgets.dart';
-import '../../../../core/constants/constants.dart';
 
 class LoginWidget extends StatefulWidget {
   final String sourceName;
@@ -18,7 +17,7 @@ class LoginWidget extends StatefulWidget {
     this.sourceName = "sheet",
   });
 
-  static const routerName = "/verification_code";
+  //static const routerName = "/verification_code";
 
   @override
   State<LoginWidget> createState() => _LoginWidgetState();
@@ -40,14 +39,21 @@ class _LoginWidgetState extends State<LoginWidget> {
     number = PhoneNumber(isoCode: initialCountry);
     focusNode = FocusNode();
 
-    final loginState =
-        context.read<AuthBloc>().state.authenticationStatus.isLogined;
+    final authBloc = context.read<AuthBloc>();
+
+    final loginState = authBloc.state.authenticationStatus.isLogined;
 
     if (loginState) {
       Navigator.of(context).pushReplacementNamed(
         IndexPage.routerName,
       );
     }
+
+    authBloc.add(
+      UserLoginLogTime(
+        startTime: DateTime.now(),
+      ),
+    );
   }
 
   @override
@@ -97,9 +103,9 @@ class _LoginWidgetState extends State<LoginWidget> {
               ),
             ],
           ),
-    
+
           UI.kHeight20(),
-    
+
           BuildVerifyCode(
             formKey: formKey,
             countries: countries,
@@ -107,9 +113,9 @@ class _LoginWidgetState extends State<LoginWidget> {
             number: number,
             focusNode: focusNode,
           ),
-    
+
           UI.kHeight20(),
-    
+
           BuildBottomButton(
             formKey: formKey,
           ),

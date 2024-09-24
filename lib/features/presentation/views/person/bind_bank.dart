@@ -8,6 +8,8 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/common/widgets/app_text.dart';
 import 'package:loanswift/core/core.dart';
+import 'package:loanswift/core/event_bus_service.dart';
+import 'package:loanswift/core/report.dart';
 import 'package:loanswift/features/data/models/bank_card.dart';
 import 'package:loanswift/features/domain/repos/auth.dart';
 import 'package:loanswift/features/domain/usecases/common/get_banks.dart';
@@ -36,6 +38,8 @@ class _BindBankState extends State<BindBank> {
   // 创建 StreamSubscription 变量
   StreamSubscription? subscription;
 
+  late final DateTime startTime;
+
   Future<List<BankCardModel>> getBankds() async {
     final GetBanks getBanks = sl();
     final resp = await getBanks.call();
@@ -53,6 +57,12 @@ class _BindBankState extends State<BindBank> {
       subscription?.cancel();
     }
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    startTime = DateTime.now();
   }
 
   void startPollCreditState() {
@@ -73,10 +83,30 @@ class _BindBankState extends State<BindBank> {
         final creditStatus = r['credit_status'];
 
         if (creditStatus == 1) {
+          // 上报
+          bus.fire(TargetPointEvent(
+            startTime,
+            DateTime.now(),
+            SceneType.bindCard,
+            productCode: getProductId().toString(),
+          ));
+
           UI.showSuccess(context, S.current.credit_success);
+
           subscription?.pause();
-          showOrderConfirmDialog(context, productId: getProductId(),
-              onOK: (context) async {
+
+          final orderStartTime = DateTime.now();
+
+          showOrderConfirmDialog(context, productId: getProductId(), onOK: (
+            context,
+          ) async {
+            bus.fire(TargetPointEvent(
+              orderStartTime,
+              DateTime.now(),
+              SceneType.applyPage,
+              productCode: getProductId().toString(),
+            ));
+
             final nav = Navigator.of(context);
             await EasyLoading.showSuccess(
               S.current.order_success,

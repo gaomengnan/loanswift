@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loanswift/core/constants/app.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:loanswift/core/core.dart';
+import 'package:loanswift/core/event_bus_service.dart';
+import 'package:loanswift/core/report.dart';
 import 'package:loanswift/features/data/models/city_model.dart';
 import 'package:loanswift/features/data/models/error.dart';
 import 'package:loanswift/features/domain/entity/user/certify.dart';
@@ -16,10 +19,14 @@ class CertifiesBloc extends Bloc<CertifiesEvent, CertifiesState> {
   final CommitCertify commitCertify;
   final GetCertifies getCertifies;
   final GetCities getCities;
+
+  final ReportService reportService;
+
   CertifiesBloc({
     required this.getCertifies,
     required this.commitCertify,
     required this.getCities,
+    required this.reportService,
   }) : super(CertifiesState.initial()) {
     on<CertifiesSettingsLoadEvent>(_certifiesLoadHandler);
     on<CertifyStepContinue>(_stepContinueHandler);
@@ -40,10 +47,6 @@ class CertifiesBloc extends Bloc<CertifiesEvent, CertifiesState> {
         cities: r,
         cerfityStep: state.cerfityStep,
         certifies: state.certifies,
-        //identifyInfo: state.identifyInfo,
-        //emergencyInfo: state.emergencyInfo,
-        //personalInfo: state.personalInfo,
-        //workInfo: state.workInfo,
         isDone: false,
       ));
     });
@@ -81,35 +84,6 @@ class CertifiesBloc extends Bloc<CertifiesEvent, CertifiesState> {
         emit(
           state.copyWith(certifies: certifies),
         );
-
-        //switch (state.cerfityStep) {
-        //  case StepperEnum.first:
-        //    emit(
-        //      state.copyWith(identify: updated),
-        //    );
-        //  case StepperEnum.second:
-        //    emit(
-        //      state.copyWith(personal: updated),
-        //    );
-        //
-        //  case StepperEnum.third:
-        //    emit(
-        //      state.copyWith(emerge: updated),
-        //    );
-        //
-        //  case StepperEnum.fourth:
-        //    emit(
-        //      state.copyWith(work: updated),
-        //    );
-        //
-        //  default:
-        //    emit(
-        //      state.copyWith(personal: updated),
-        //    );
-        //}
-        //emit(
-        //  state.copyWith(identify: updated),
-        //);
       }
     });
   }
@@ -122,17 +96,13 @@ class CertifiesBloc extends Bloc<CertifiesEvent, CertifiesState> {
 
     final currenStepData = state.getCurrentStepData();
 
-    if (currenStepData.any((e) => e.certifyStatus != 1 && e.isMust())) {
+    if (currenStepData.any((e) => !e.isCertify() && e.isMust())) {
       return;
     }
 
     emit(CertifiesRequestState(
       cerfityStep: state.cerfityStep,
       certifies: state.certifies,
-      //identifyInfo: state.identifyInfo,
-      //emergencyInfo: state.emergencyInfo,
-      //personalInfo: state.personalInfo,
-      //workInfo: state.workInfo,
       isDone: state.cerfityStep.isLastStep,
     ));
   }
@@ -152,6 +122,41 @@ class CertifiesBloc extends Bloc<CertifiesEvent, CertifiesState> {
     if (state.cerfityStep.isLastStep) {
       isDone = true;
     }
+
+    // 计算步骤使用时间
+    const key = "step_start_time";
+    // 第二步个人信息
+    // 计算第二部开始时间
+    DateTime? startTime;
+
+    if (!state.cerfityStep.isFirstStep) {
+      final st = GetStorage().read<String>(key);
+      if (st != null) {
+        startTime = DateTime.fromMillisecondsSinceEpoch(int.parse(st) * 1000);
+      }
+      //sceneType = SceneType.personalInfo;
+    }
+
+    // 如果当前存在当前开始时间
+    // 并且下一步未完成
+
+    if (startTime != null) {
+      final stepKey = "step_${state.cerfityStep.value}_finish";
+      //final nextStepData = state.certifies[nextStep.value];
+      final isFinished = GetStorage().read<bool>(stepKey);
+      if (isFinished == null) {
+        bus.fire(TargetPointEvent(
+          startTime,
+          DateTime.now(),
+          state.cerfityStep.point,
+        ));
+        GetStorage().write(stepKey, true);
+      }
+    }
+
+    GetStorage().write(
+        key, (DateTime.now().millisecondsSinceEpoch / 1000).round().toString());
+
     emit(state.copyWith(
       step: state.cerfityStep.nextStep,
       isDone: isDone,
@@ -172,26 +177,6 @@ class CertifiesBloc extends Bloc<CertifiesEvent, CertifiesState> {
       ),
       (l) {
         StepperEnum currentStep = StepperEnum.first;
-
-        //if (l.identityInfo
-        //    .every((element) => element.isCertify() && element.isMust())) {
-        //  currentStep = currentStep.nextStep;
-        //
-        //  if (l.personalInfo
-        //      .every((element) => element.isCertify() && element.isMust())) {
-        //    currentStep = currentStep.nextStep;
-        //
-        //    if (l.emergencyInfo
-        //        .every((element) => element.isCertify() && element.isMust())) {
-        //      currentStep = currentStep.nextStep;
-        //    }
-        //  }
-        //}
-
-        //if (l.emergencyInfo
-        //  .every((element) => element.isCertify() && element.isMust())) {
-        //  currentStep = currentStep.nextStep;
-        //}
 
         List<List<Info>> data = [];
         data.add(l.identityInfo);
@@ -214,11 +199,6 @@ class CertifiesBloc extends Bloc<CertifiesEvent, CertifiesState> {
             isDone: false,
             cerfityStep: currentStep,
             certifies: data,
-            //settings: l,
-            //identifyInfo: l.identityInfo,
-            //emergencyInfo: l.emergencyInfo,
-            //personalInfo: l.personalInfo,
-            //workInfo: l.jobInfo,
           ),
         );
       },

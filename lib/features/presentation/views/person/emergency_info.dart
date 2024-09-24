@@ -6,7 +6,8 @@ import 'package:loanswift/features/presentation/bloc/certify/certifies_bloc.dart
 import 'package:loanswift/features/presentation/views/person/build_form_item.dart';
 
 class EmergencyInfo extends StatefulWidget {
-  const EmergencyInfo({super.key});
+  final String productId;
+  const EmergencyInfo({super.key, required this.productId});
 
   @override
   State<EmergencyInfo> createState() => _EmergencyInfoState();

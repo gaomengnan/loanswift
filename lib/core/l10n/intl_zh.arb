@@ -136,5 +136,6 @@
   "order_confirm_cancel": "取消",
   "order_confirm_confirm": "确认",
   "order_confirm_repayment_plan": "还款计划",
-  "order_success": "下单成功"
+  "order_success": "下单成功",
+  "authFailed": "认证失败，请重新尝试。"
 }

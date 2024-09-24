@@ -6,6 +6,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:loanswift/core/common/widgets/widgets.dart';
 import 'package:loanswift/core/core.dart';
+import 'package:loanswift/core/event_bus_service.dart';
+import 'package:loanswift/core/report.dart';
 import 'package:loanswift/core/utils.dart';
 import 'package:loanswift/features/domain/entity/user/certify.dart';
 import 'package:loanswift/theme/pallete.dart';
@@ -72,193 +74,193 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
               );
             }
 
-            void showUploadTypeBottomSheet(context) {
-              showModalBottomSheet(
-                  isDismissible: false,
-                  context: context,
-                  builder: (context) {
-                    return Container(
-                      height: 150.h,
-                      // width: double.maxFinite,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(10.r),
-                          topRight: Radius.circular(10.r),
-                        ),
-                        color: Colors.white,
-                      ),
-                      child: Column(
-                        children: [
-                          GestureDetector(
-                            onTap: () async {
-                              Navigator.of(context).pop();
-                              //Navigator.push(
-                              //  context,
-                              //  MaterialPageRoute(
-                              //    builder: (context) => const CardScanner()),
-                              //);
-
-                              final picker = ImagePicker();
-
-                              final pickedFiles = await picker.pickImage(
-                                source: ImageSource.camera,
-                                maxWidth: 600,
-                              );
-
-                              //Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //       builder: (context) => const CardScanner()));
-                              //
-                              if (pickedFiles != null) {
-                                UI.showLoading();
-
-                                final resp = await Utils.uploadImage(
-                                  pickedFiles.path,
-                                  info.certifyCode,
-                                );
-
-                                resp.fold(
-                                  (err) => UI.showError(context, err.message),
-                                  (l) {
-                                    UI.hideLoading();
-
-                                    final body = l.data as DataMap?;
-                                    //final path = body?['data']['path'];
-                                    final object = body?['data']['object'];
-                                    final url = body?['data']['path'];
-
-                                    state.didChange([
-                                      ImagePickEntity(
-                                          filePath: pickedFiles.path,
-                                          path: object,
-                                          url: url)
-                                    ]);
-
-                                    if (onChanged != null) {
-                                      onChanged(object);
-                                    }
-
-                                    //state.didChange(List.from(state.value ?? [])
-                                    //  ..addAll([File(pickedFiles.path)]));
-                                  },
-                                );
-                              }
-                            },
-                            child: Container(
-                              width: double.infinity,
-                              height: 50.h,
-                              decoration: BoxDecoration(
-                                border: Border(
-                                  bottom: BorderSide(
-                                    color: Colors.grey.withOpacity(
-                                      0.3,
-                                    ), // 可以更改颜色
-                                    width: 1.0, // 可以更改宽度
-                                  ),
-                                ),
-                              ),
-                              child: Center(
-                                child: RText(
-                                  text: S.current.take_photo,
-                                  size: 17.sp,
-                                ),
-                              ),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () async {
-                              Navigator.of(context).pop();
-
-                              //Utils.pickerImageFromGallery();
-                              final picker = ImagePicker();
-                              final file = await picker.pickImage(
-                                source: ImageSource.gallery,
-                              );
-
-                              if (file != null) {
-                                UI.showLoading();
-                                final resp = await Utils.uploadImage(
-                                  file.path,
-                                  info.certifyCode,
-                                );
-
-                                resp.fold(
-                                  (err) => UI.showError(context, err.message),
-                                  (l) {
-                                    UI.hideLoading();
-
-                                    final body = l.data as DataMap?;
-                                    final object = body?['data']['object'];
-                                    final url = body?['data']['path'];
-
-                                    state.didChange([
-                                      ImagePickEntity(
-                                          filePath: file.path,
-                                          path: object,
-                                          url: url)
-                                    ]);
-
-                                    if (onChanged != null) {
-                                      onChanged(object);
-                                    }
-
-                                    //state.didChange(List.from(state.value ?? [])
-                                    //  ..addAll([File(pickedFiles.path)]));
-                                  },
-                                );
-                              }
-                            },
-                            child: Container(
-                              height: 50.h,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                border: Border(
-                                  bottom: BorderSide(
-                                    color: Colors.grey.withOpacity(
-                                      0.1,
-                                    ), // 可以更改颜色
-                                    width: 8, // 可以更改宽度
-                                  ),
-                                ),
-                              ),
-                              child: Center(
-                                child: RText(
-                                  text: S.current.take_photo_from_gallery,
-                                  size: 17.sp,
-                                ),
-                              ),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).pop();
-                            },
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                border: Border(
-                                  bottom: BorderSide(
-                                    color: Colors.blue, // 可以更改颜色
-                                    width: 2.0, // 可以更改宽度
-                                  ),
-                                ),
-                              ),
-                              height: 50.h,
-                              width: double.infinity,
-                              child: Center(
-                                child: RText(
-                                  text: S.current.cancel,
-                                  size: 17.sp,
-                                ),
-                              ),
-                            ),
-                          ),
-                          // 关闭按钮
-                        ],
-                      ),
-                    );
-                  });
-            }
+            //void showUploadTypeBottomSheet(context) {
+            //  showModalBottomSheet(
+            //      isDismissible: false,
+            //      context: context,
+            //      builder: (context) {
+            //        return Container(
+            //          height: 150.h,
+            //          // width: double.maxFinite,
+            //          decoration: BoxDecoration(
+            //            borderRadius: BorderRadius.only(
+            //              topLeft: Radius.circular(10.r),
+            //              topRight: Radius.circular(10.r),
+            //            ),
+            //            color: Colors.white,
+            //          ),
+            //          child: Column(
+            //            children: [
+            //              GestureDetector(
+            //                onTap: () async {
+            //                  Navigator.of(context).pop();
+            //                  //Navigator.push(
+            //                  //  context,
+            //                  //  MaterialPageRoute(
+            //                  //    builder: (context) => const CardScanner()),
+            //                  //);
+            //
+            //                  final picker = ImagePicker();
+            //
+            //                  final pickedFiles = await picker.pickImage(
+            //                    source: ImageSource.camera,
+            //                    maxWidth: 600,
+            //                  );
+            //
+            //                  //Navigator.push(
+            //                  //   context,
+            //                  //   MaterialPageRoute(
+            //                  //       builder: (context) => const CardScanner()));
+            //                  //
+            //                  if (pickedFiles != null) {
+            //                    UI.showLoading();
+            //
+            //                    final resp = await Utils.uploadImage(
+            //                      pickedFiles.path,
+            //                      info.certifyCode,
+            //                    );
+            //
+            //                    resp.fold(
+            //                      (err) => UI.showError(context, err.message),
+            //                      (l) {
+            //                        UI.hideLoading();
+            //
+            //                        final body = l.data as DataMap?;
+            //                        //final path = body?['data']['path'];
+            //                        final object = body?['data']['object'];
+            //                        final url = body?['data']['path'];
+            //
+            //                        state.didChange([
+            //                          ImagePickEntity(
+            //                              filePath: pickedFiles.path,
+            //                              path: object,
+            //                              url: url)
+            //                        ]);
+            //
+            //                        if (onChanged != null) {
+            //                          onChanged(object);
+            //                        }
+            //
+            //                        //state.didChange(List.from(state.value ?? [])
+            //                        //  ..addAll([File(pickedFiles.path)]));
+            //                      },
+            //                    );
+            //                  }
+            //                },
+            //                child: Container(
+            //                  width: double.infinity,
+            //                  height: 50.h,
+            //                  decoration: BoxDecoration(
+            //                    border: Border(
+            //                      bottom: BorderSide(
+            //                        color: Colors.grey.withOpacity(
+            //                          0.3,
+            //                        ), // 可以更改颜色
+            //                        width: 1.0, // 可以更改宽度
+            //                      ),
+            //                    ),
+            //                  ),
+            //                  child: Center(
+            //                    child: RText(
+            //                      text: S.current.take_photo,
+            //                      size: 17.sp,
+            //                    ),
+            //                  ),
+            //                ),
+            //              ),
+            //              GestureDetector(
+            //                onTap: () async {
+            //                  Navigator.of(context).pop();
+            //
+            //                  //Utils.pickerImageFromGallery();
+            //                  final picker = ImagePicker();
+            //                  final file = await picker.pickImage(
+            //                    source: ImageSource.gallery,
+            //                  );
+            //
+            //                  if (file != null) {
+            //                    UI.showLoading();
+            //                    final resp = await Utils.uploadImage(
+            //                      file.path,
+            //                      info.certifyCode,
+            //                    );
+            //
+            //                    resp.fold(
+            //                      (err) => UI.showError(context, err.message),
+            //                      (l) {
+            //                        UI.hideLoading();
+            //
+            //                        final body = l.data as DataMap?;
+            //                        final object = body?['data']['object'];
+            //                        final url = body?['data']['path'];
+            //
+            //                        state.didChange([
+            //                          ImagePickEntity(
+            //                              filePath: file.path,
+            //                              path: object,
+            //                              url: url)
+            //                        ]);
+            //
+            //                        if (onChanged != null) {
+            //                          onChanged(object);
+            //                        }
+            //
+            //                        //state.didChange(List.from(state.value ?? [])
+            //                        //  ..addAll([File(pickedFiles.path)]));
+            //                      },
+            //                    );
+            //                  }
+            //                },
+            //                child: Container(
+            //                  height: 50.h,
+            //                  width: double.infinity,
+            //                  decoration: BoxDecoration(
+            //                    border: Border(
+            //                      bottom: BorderSide(
+            //                        color: Colors.grey.withOpacity(
+            //                          0.1,
+            //                        ), // 可以更改颜色
+            //                        width: 8, // 可以更改宽度
+            //                      ),
+            //                    ),
+            //                  ),
+            //                  child: Center(
+            //                    child: RText(
+            //                      text: S.current.take_photo_from_gallery,
+            //                      size: 17.sp,
+            //                    ),
+            //                  ),
+            //                ),
+            //              ),
+            //              GestureDetector(
+            //                onTap: () {
+            //                  Navigator.of(context).pop();
+            //                },
+            //                child: Container(
+            //                  decoration: const BoxDecoration(
+            //                    border: Border(
+            //                      bottom: BorderSide(
+            //                        color: Colors.blue, // 可以更改颜色
+            //                        width: 2.0, // 可以更改宽度
+            //                      ),
+            //                    ),
+            //                  ),
+            //                  height: 50.h,
+            //                  width: double.infinity,
+            //                  child: Center(
+            //                    child: RText(
+            //                      text: S.current.cancel,
+            //                      size: 17.sp,
+            //                    ),
+            //                  ),
+            //                ),
+            //              ),
+            //              // 关闭按钮
+            //            ],
+            //          ),
+            //        );
+            //      });
+            //}
 
             return SizedBox(
               height: 200.h,
@@ -302,7 +304,69 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
                     flex: 3,
                     child: GestureDetector(
                       onTap: () async {
-                        showUploadTypeBottomSheet(context);
+                        //showUploadTypeBottomSheet(context);
+                        //Navigator.of(context).pop();
+                        //Navigator.push(
+                        //  context,
+                        //  MaterialPageRoute(
+                        //    builder: (context) => const CardScanner()),
+                        //);
+
+                        final DateTime startTime = DateTime.now();
+
+                        final picker = ImagePicker();
+
+                        final pickedFiles = await picker.pickImage(
+                          source: ImageSource.camera,
+                          maxWidth: 600,
+                        );
+
+                        //Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //       builder: (context) => const CardScanner()));
+                        //
+                        if (pickedFiles != null) {
+                          UI.showLoading();
+
+                          final resp = await Utils.uploadImage(
+                            pickedFiles.path,
+                            info.certifyCode,
+                          );
+
+                          resp.fold(
+                            (err) => UI.showError(context, err.message),
+                            (l) {
+
+                              bus.fire(TargetPointEvent(
+                                startTime,
+                                DateTime.now(),
+                                SceneType.idCardFrontOcr,
+                              ));
+
+                              UI.hideLoading();
+
+                              final body = l.data as DataMap?;
+                              //final path = body?['data']['path'];
+                              final object = body?['data']['object'];
+                              final url = body?['data']['path'];
+
+                              state.didChange([
+                                ImagePickEntity(
+                                    filePath: pickedFiles.path,
+                                    path: object,
+                                    url: url)
+                              ]);
+
+                              if (onChanged != null) {
+                                onChanged(object);
+                              }
+
+                              //state.didChange(List.from(state.value ?? [])
+                              //  ..addAll([File(pickedFiles.path)]));
+                            },
+                          );
+                        }
                       },
                       child: state.value == null || state.value!.isEmpty
                           ? Stack(

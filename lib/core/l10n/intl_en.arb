@@ -136,6 +136,7 @@
   "order_confirm_cancel": "Cancel",
   "order_confirm_confirm": "Confirm",
   "order_confirm_repayment_plan": "Repayment Plan",
-  "order_success": "Order Success"
+  "order_success": "Order Success",
+  "authFailed": "Authentication failed, please try again."
 }
 

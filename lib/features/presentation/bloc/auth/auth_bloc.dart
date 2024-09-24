@@ -4,10 +4,10 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:loanswift/core/constants/app.dart';
+import 'package:loanswift/core/core.dart';
+import 'package:loanswift/core/event_bus_service.dart';
+import 'package:loanswift/core/report.dart';
 import 'package:loanswift/core/storage.dart';
-import 'package:loanswift/core/subscription.dart';
-import 'package:loanswift/core/typedefs.dart';
 import 'package:loanswift/features/data/models/error.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/login.dart';
 import 'package:loanswift/features/domain/usecases/authenticated/logout.dart';
@@ -21,6 +21,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   late final StreamSubscription<void> _subscription;
 
+  DateTime? startTime;
+  DateTime? endTime;
+
   AuthBloc({
     required LoginUseCase useCase,
     required LogoutUseCase logoutUseCase,
@@ -29,14 +32,39 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         super(
           const AuthInitial(),
         ) {
-
     on<UserLoginEvent>(_userLoginHandler);
     on<AppStarupEvent>(_appStartUpHandler);
     on<UserLogoutEvent>(_userLogoutHandler);
     on<UserTokenExpiredEvent>(_userTokenExpiredHandler);
-    _subscription = tokenExpireStreamController.stream.listen((_) {
+    on<UserLoginLogTime>(_userLoginLogTime);
+
+    //_subscription = bus.stream.listen((_) {
+    //  add(UserTokenExpiredEvent());
+    //});
+
+    _subscription = bus.on<LoginExpireEvent>().listen((e) {
       add(UserTokenExpiredEvent());
     });
+  }
+
+  void _userLoginLogTime(UserLoginLogTime event, Emitter<AuthState> emit) {
+    if (event.startTime != null) {
+      startTime = event.startTime;
+    }
+
+    if (event.endTime != null) {
+      endTime = event.endTime;
+    }
+
+    if (startTime != null && endTime != null) {
+      bus.fire(
+        TargetPointEvent(
+          startTime!,
+          endTime!,
+          SceneType.register,
+        ),
+      );
+    }
   }
 
   void _userTokenExpiredHandler(
@@ -78,7 +106,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   void _appStartUpHandler(AppStarupEvent event, Emitter<AuthState> emit) {
-    final token = GetStorage().read<DataMap>(AppContant.tokenKey); /* 假设本地有token，如果没有，使用初始值 */
+    final token = GetStorage()
+        .read<DataMap>(AppContant.tokenKey); /* 假设本地有token，如果没有，使用初始值 */
     debugPrint('本地token：$token');
     if (token != null) {
       emit(
@@ -109,8 +138,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         ),
       ),
       (r) {
-        final box = r.toMap();
+        add(
+          UserLoginLogTime(
+            endTime: DateTime.now(),
+          ),
+        );
 
+        final box = r.toMap();
         box['phone'] = event.phone;
 
         /*保存token 信息 本地*/

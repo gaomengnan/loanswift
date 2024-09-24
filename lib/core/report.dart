@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:dio/dio.dart';
@@ -7,18 +8,78 @@ import 'package:flutter/services.dart';
 import 'package:flutter_sms_inbox/flutter_sms_inbox.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get_storage/get_storage.dart';
-//import 'package:installed_apps/app_info.dart';
-//import 'package:installed_apps/installed_apps.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/core/dio_client.dart';
 import 'package:loanswift/core/firebase_api.dart';
 import 'package:loanswift/features/domain/usecases/common/data_report.dart';
 import 'package:loanswift/features/domain/usecases/common/report_fcm.dart';
 import 'package:loanswift/features/domain/usecases/common/report_gps.dart';
+import 'package:loanswift/features/domain/usecases/common/target_report.dart';
+import 'package:native_connector_plugin/entity/installed_app_info.dart';
 import 'package:native_connector_plugin/native_connector_plugin.dart';
 import 'package:network_info_plus/network_info_plus.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
+
+enum SceneType {
+  register,
+  idCardFrontOcr,
+  live,
+  personalInfo,
+  workInfo,
+  contacts,
+  bindCard,
+  applyPage,
+  doApply,
+}
+
+extension SceneTypeExtension on SceneType {
+  int get value {
+    switch (this) {
+      case SceneType.register:
+        return 1;
+      case SceneType.idCardFrontOcr:
+        return 2;
+      case SceneType.live:
+        return 3;
+      case SceneType.personalInfo:
+        return 4;
+      case SceneType.workInfo:
+        return 5;
+      case SceneType.contacts:
+        return 6;
+      case SceneType.bindCard:
+        return 7;
+      case SceneType.applyPage:
+        return 7;
+      case SceneType.doApply:
+        return 8;
+    }
+  }
+
+  String get description {
+    switch (this) {
+      case SceneType.register:
+        return '注册';
+      case SceneType.idCardFrontOcr:
+        return '上传身份证';
+      case SceneType.live:
+        return '活体照片';
+      case SceneType.personalInfo:
+        return '个人信息';
+      case SceneType.workInfo:
+        return '工作信息';
+      case SceneType.contacts:
+        return '紧急联系人';
+      case SceneType.bindCard:
+        return '绑卡';
+      case SceneType.applyPage:
+        return '确认用款页';
+      case SceneType.doApply:
+        return '申请';
+    }
+  }
+}
 
 class ReportService {
   final DeviceInfoPlugin deviceInfoPlg = DeviceInfoPlugin();
@@ -29,22 +90,135 @@ class ReportService {
 
   final nativeConnector = NativeConnectorPlugin();
 
-  //Future<BatteryInfo> getBatteryInfo() async {
-  //  final resp = await nativeConnector.getBatteryInfo();
-  //  return resp;
-  //}
+  Future<void> targetReport(
+    DateTime startTime,
+    DateTime endTime,
+    SceneType sceneType, {
+    String? productCode,
+  }) async {
+    try {
+      await Geolocator.requestPermission();
+      final deviceNo = await getDeviceId();
+      final wifi = await readNetwork();
+      Geolocator.getCurrentPosition().then((e) {
+        final lat = e.latitude;
+        final lng = e.longitude;
+        final TargetReport targetReport = sl();
+
+        targetReport.call({
+          "device_no": deviceNo,
+          "scene_type": sceneType.value,
+          "longitude": lng,
+          "latitude": lat,
+          "start_time": (startTime.millisecondsSinceEpoch / 1000).round(),
+          "end_time": (endTime.millisecondsSinceEpoch / 100).round(),
+          "product_code": productCode,
+          "ip": wifi["IP"] ?? ""
+        });
+      });
+    } catch (_) {}
+  }
+
+  Future<bool> deviceInfoReport(
+      double height, double width, double physicalSize) async {
+    // storage
+    try {
+      final storage = await nativeConnector.getStorage();
+
+      // deive info
+      final genreal = await nativeConnector.getDeviceInfo();
+
+      // hardware
+      final hardware = await getHardware(height, width, physicalSize);
+
+      //network
+      final networkInfo = await readNetwork();
+
+      // battery_status
+      final battery = await nativeConnector.getBatteryInfo();
+
+      final DataReport dataReport = sl();
+      dataReport.call({
+        'data': {
+          "storage": storage.toMap(),
+          "general_storage": genreal,
+          "hardware": hardware,
+          "network": networkInfo,
+          "battery_status": {
+            "battery_pct": battery.batteryPct,
+            "is_ac_charge": battery.isAcCharge,
+            "is_charging": battery.isCharging,
+            "is_usb_charge": battery.isUsbCharge,
+            "battery_max": battery.batteryMax,
+            "battery_level": battery.batteryLevel
+          }
+        },
+        'type': 1001,
+      });
+
+      return Future.value(true);
+    } catch (_) {}
+    return Future.value(false);
+  }
 
   Future<PackageInfo> getPackageInfo() async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     return packageInfo;
   }
 
-  //Future<List<AppInfo>> getApps() async {
-  //  if (Platform.isAndroid) {
-  //    return await InstalledApps.getInstalledApps(true, true);
-  //  }
-  //  return List.empty();
-  //}
+  Future<List<InstalledAppInfo>?> getApps() async {
+    if (Platform.isAndroid) {
+      return await nativeConnector.getInstalledApps();
+    }
+    return List.empty();
+  }
+
+  Future<bool> installedAppReport() async {
+    try {
+      final apps = await getApps() ?? [];
+      //final String packageName;
+      //final String? appName;
+      //final String? versionName;
+      //final bool? isSystemApp;
+      final appsData = apps.map((e) {
+        return {
+          'package_name': e.packageName,
+          'app_name': e.appName,
+          'version': e.versionName,
+          'is_system_app': e.isSystemApp,
+          'in_time': e.installTime,
+        };
+      }).toList();
+
+      final DataReport dataReport = sl();
+      dataReport.call({
+        'data': appsData,
+        'type': 1002,
+      });
+
+      return Future.value(true);
+    } catch (_) {}
+
+    return Future.value(false);
+  }
+
+  getHardware(double height, double width, double physicalSize) async {
+    final deviceInfo = await getDeviceDetails();
+    return {
+      "device_name": deviceInfo['device'] ?? '',
+      "brand": deviceInfo['brand'] ?? '',
+      "model": deviceInfo['model'] ?? '',
+      "physical_size": physicalSize,
+      "release": deviceInfo['osVersion'] ?? '',
+      "sdk_version": deviceInfo['version.sdkInt'] ?? '',
+      "serial_number": deviceInfo['serialNumber'] ?? '',
+      "board": deviceInfo['board'] ?? '',
+      //"cores": deviceInfo['supported64BitAbis'] ?? '',
+      //"production_date": deviceInfo['type'] ?? '',
+      "device_height": height,
+      "device_width": width
+    };
+  }
 
   void fcmTokenReport() async {
     try {
@@ -83,15 +257,25 @@ class ReportService {
     }
   }
 
-  void readNetwork() async {
+  Future<Map> readNetwork() async {
     final wifiName = await network.getWifiName(); // "FooNetwork"
     final wifiBSSID = await network.getWifiBSSID(); // 11:22:33:44:55:66
     final wifiIP = await network.getWifiIP(); // 192.168.1.43
     final wifiIPv6 =
         await network.getWifiIPv6(); // 2001:0db8:85a3:0000:0000:8a2e:0370:7334
-    final wifiSubmask = await network.getWifiSubmask(); // 255.255.255.0
-    final wifiBroadcast = await network.getWifiBroadcast(); // 192.168.1.255
-    final wifiGateway = await network.getWifiGatewayIP(); // 192.168.1.1
+    //final wifiSubmask = await network.getWifiSubmask(); // 255.255.255.0
+    //final wifiBroadcast = await network.getWifiBroadcast(); // 192.168.1.255
+    //final wifiGateway = await network.getWifiGatewayIP(); // 192.168.1.1
+    return {
+      "IP": wifiIP,
+      "IP6": wifiIPv6,
+      "current_wifi": {
+        "bssid": wifiBSSID,
+        "mac": wifiBSSID,
+        "name": wifiName,
+        "ssid": wifiName,
+      }
+    };
   }
 
   Future<bool> gpsReport() async {

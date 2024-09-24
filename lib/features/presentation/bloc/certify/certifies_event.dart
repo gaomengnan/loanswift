@@ -5,11 +5,16 @@ sealed class CertifiesEvent {}
 
 class CertifiesSettingsLoadEvent extends CertifiesEvent {}
 
-class CertifyStepContinue extends CertifiesEvent {}
+class CertifyStepContinue extends CertifiesEvent {
+  final String? productId;
+
+  CertifyStepContinue({this.productId});
+}
 
 class CertifyStepBack extends CertifiesEvent {}
 
 class CertifyStepRequest extends CertifiesEvent {}
+
 class CertifyLastStepRequest extends CertifiesEvent {}
 
 class CertifyCommitEvent extends CertifiesEvent {
@@ -20,4 +25,3 @@ class CertifyCommitEvent extends CertifiesEvent {
 }
 
 class LoadCitiesEvent extends CertifiesEvent {}
-

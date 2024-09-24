@@ -3,8 +3,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:loanswift/core/core.dart';
+import 'package:loanswift/core/event_bus_service.dart';
 import 'package:loanswift/core/storage.dart';
-import 'package:loanswift/core/subscription.dart';
 
 class DioClient {
   BaseOptions options = BaseOptions(
@@ -171,7 +171,7 @@ class DioInterceptor extends Interceptor {
     //final errMessage = response.data['message'].toString();
 
     if (apiCode == AppContant.tokenExpireCode) {
-      tokenExpireStreamController.add(null);
+      bus.fire(LoginExpireEvent());
     }
     //if(apiCode != AppContant.apiSuccessCode) {
     //

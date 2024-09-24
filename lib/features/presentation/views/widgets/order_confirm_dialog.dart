@@ -265,7 +265,7 @@ Future<OrderConfirmModel> getData(productId) async {
   final resp = await orderConfim
       .call(OrderConfirmParam(isConfim: "1", productId: productId));
 
-  return resp.fold((l) => throw Exception(l.message), (r) {
+  return resp.fold((l) => Future.error(l.message), (r) {
     return r;
   });
 }
@@ -299,47 +299,47 @@ Widget buildItem(BuildContext context, String label, String value,
       children: [
         Expanded(
           child: isDescription
-              ? Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  //mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      label,
-                      style: TextStyle(
-                          fontSize: 11.sp,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500),
-                    ),
-                    UI.kWidth5(),
-                    if (isDescription)
-                      Flexible(
-                        child: GestureDetector(
-                          onTap: () {
-                            showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  //title: Text('Tip'),
-                                  content: Text(desc),
-                                  actions: <Widget>[
-                                    TextButton(
-                                      child: Text(S.current.confirm),
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                    ),
-                                  ],
-                                );
+              ? GestureDetector(
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          //title: Text('Tip'),
+                          content: Text(desc),
+                          actions: <Widget>[
+                            TextButton(
+                              child: Text(S.current.confirm),
+                              onPressed: () {
+                                Navigator.of(context).pop();
                               },
-                            );
-                          },
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    //mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        label,
+                        style: TextStyle(
+                            fontSize: 11.sp,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500),
+                      ),
+                      UI.kWidth5(),
+                      if (isDescription)
+                        Flexible(
                           child: Icon(
                             Icons.info_rounded,
                             size: 11.sp,
                           ),
                         ),
-                      ),
-                  ],
+                    ],
+                  ),
                 )
               : Text(
                   label,

@@ -26,6 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "all": MessageLookupByLibrary.simpleMessage("所有"),
         "app_name": MessageLookupByLibrary.simpleMessage("急用钱"),
         "auditFailure": MessageLookupByLibrary.simpleMessage("审核失败"),
+        "authFailed": MessageLookupByLibrary.simpleMessage("认证失败，请重新尝试。"),
         "auto_repayment": MessageLookupByLibrary.simpleMessage("自动还款"),
         "awaitingRepayment": MessageLookupByLibrary.simpleMessage("待还款"),
         "bank_card": MessageLookupByLibrary.simpleMessage("银行卡号"),

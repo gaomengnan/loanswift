@@ -88,7 +88,10 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
           if (sauthState is AuthSuccess) {
             EasyLoading.dismiss();
             context.read<PhoneSenderBloc>().add(PhoneSenderReset());
-            Navigator.of(context).pushReplacementNamed(IndexPage.routerName);
+            Navigator.of(context).pushNamedAndRemoveUntil(
+              IndexPage.routerName,
+              (Route<dynamic> route) => false,
+            );
           }
         },
         builder: (context, sate) {

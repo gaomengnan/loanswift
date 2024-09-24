@@ -51,7 +51,7 @@ class _PersonPageState extends State<PersonPage> {
             //const SizedBox(height: 20),
             RText(
               text: label,
-              size: 12.sp,
+              size: 13.sp,
             ),
           ],
         ),
@@ -382,7 +382,7 @@ class _PersonPageState extends State<PersonPage> {
                                     ),
                                     UI.kHeight5(),
                                     SizedBox(
-                                        width: 60.w,
+                                        width: 70.w,
                                         child: RText(
                                           text: data.name,
                                           maxLines: 2,

@@ -26,6 +26,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "all": MessageLookupByLibrary.simpleMessage("Semua"),
         "app_name": MessageLookupByLibrary.simpleMessage("Butuh uang"),
         "auditFailure": MessageLookupByLibrary.simpleMessage("Gagal"),
+        "authFailed": MessageLookupByLibrary.simpleMessage(
+            "Autentikasi gagal, silakan coba lagi."),
         "auto_repayment":
             MessageLookupByLibrary.simpleMessage("Pembayaran Otomatis"),
         "awaitingRepayment": MessageLookupByLibrary.simpleMessage("Tunda"),

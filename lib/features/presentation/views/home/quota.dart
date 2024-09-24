@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/core.dart';
+import 'package:loanswift/core/event_bus_service.dart';
+import 'package:loanswift/core/report.dart';
 import 'package:loanswift/features/domain/entity/home/rules.dart';
 import 'package:loanswift/features/domain/entity/products/main_products.dart';
 import 'package:loanswift/features/presentation/bloc/home/home_bloc.dart';
@@ -285,9 +287,21 @@ class BuildMainEntry extends StatelessWidget {
                                     },
                                   );
                                 } else {
+                                  final startTime = DateTime.now();
+
                                   showOrderConfirmDialog(context,
-                                      productId: mainProducts.productId,
-                                      onOK: (ctx) {
+                                      productId: mainProducts.productId, onOK: (
+                                    ctx,
+                                  ) {
+                                    bus.fire(
+                                      TargetPointEvent(
+                                        startTime,
+                                        DateTime.now(),
+                                        SceneType.applyPage,
+                                        productCode: mainProducts.productId.toString(),
+                                      ),
+                                    );
+
                                     Navigator.pop(ctx);
                                     context
                                         .read<HomeBloc>()

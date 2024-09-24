@@ -14,4 +14,6 @@ abstract class ReportRepo {
   });
 
   ResultVoid gpsReport(ReportgpsParams data);
+
+  ResultVoid targetReport(DataMap data);
 }

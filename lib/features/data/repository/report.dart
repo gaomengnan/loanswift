@@ -27,4 +27,9 @@ class ReportRepository implements ReportRepo {
   ResultVoid gpsReport(ReportgpsParams data) async {
     return await _deviceDataSource.gpsReport(data);
   }
+
+  @override
+  ResultVoid targetReport(DataMap data) async {
+    return await _deviceDataSource.targetReport(data);
+  }
 }

@@ -20,7 +20,8 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+class _HomePageState extends State<HomePage>
+    with TickerProviderStateMixin, WidgetsBindingObserver {
   final RefreshController _refreshController =
       RefreshController(initialRefresh: false);
 
@@ -33,6 +34,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
     _scaleController =
         AnimationController(value: 0.0, vsync: this, upperBound: 1.0);
+
+    WidgetsBinding.instance.addObserver(this);
+
     super.initState();
   }
 
@@ -41,7 +45,15 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     _refreshController.dispose();
     _anicontroller.dispose();
     _scaleController.dispose();
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      context.read<HomeBloc>().add(HomeRefreshEvent());
+    }
   }
 
   @override
@@ -49,7 +61,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     final isLogined = context
         .select((AuthBloc auth) => auth.state.authenticationStatus.isLogined);
 
-    final feedbackUrl = context.select((HomeBloc auth) => auth.state.homeData.other.feedbackUrl);
+    final feedbackUrl = context
+        .select((HomeBloc auth) => auth.state.homeData.other.feedbackUrl);
 
     debugPrint('isLogined: $isLogined');
 

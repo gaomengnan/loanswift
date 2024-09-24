@@ -135,5 +135,6 @@
   "order_confirm_cancel": "Batal",
   "order_confirm_confirm": "Konfirmasi",
   "order_confirm_repayment_plan": "Rencana Pembayaran",
-  "order_success": "Order Success"
+  "order_success": "Order Success",
+  "authFailed": "Autentikasi gagal, silakan coba lagi."
 }

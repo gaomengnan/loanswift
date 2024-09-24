@@ -35,6 +35,8 @@ extension StepperEnumExt on StepperEnum {
   }
 
   bool get isFirstStep => this == StepperEnum.first;
+  bool get isSecondaryStep => this == StepperEnum.second;
+  bool get isThirdStep => this == StepperEnum.third;
   bool get isLastStep => this == StepperEnum.fourth;
 
   int get value {
@@ -47,6 +49,19 @@ extension StepperEnumExt on StepperEnum {
         return 2;
       case StepperEnum.fourth:
         return 3;
+    }
+  }
+
+  SceneType get point {
+    switch (this) {
+      case StepperEnum.first:
+        return SceneType.live;
+      case StepperEnum.second:
+        return SceneType.personalInfo;
+      case StepperEnum.third:
+        return SceneType.contacts;
+      case StepperEnum.fourth:
+        return SceneType.workInfo;
     }
   }
 }

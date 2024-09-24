@@ -9,9 +9,11 @@ import 'package:loanswift/features/presentation/views/person/build_form_item.dar
 import '../../../../core/core.dart';
 
 class IdentifyVerifyPage extends StatefulWidget {
+  final String productId;
   //final List<Info> settings;
   const IdentifyVerifyPage({
     super.key,
+    required this.productId,
     //required this.settings,
   });
 

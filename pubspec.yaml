@@ -87,6 +87,8 @@ dependencies:
   # installed_apps: ^1.5.0
   # location: ^6.0.2
   geolocator: ^13.0.1
+  # event_bus: ^2.0.0
+  # appcheck: ^1.5.2
 
 dev_dependencies:
   # flutter_launcher_icons: "^0.13.1"

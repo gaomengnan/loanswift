@@ -6,7 +6,8 @@ import 'package:loanswift/features/presentation/bloc/certify/certifies_bloc.dart
 import 'package:loanswift/features/presentation/views/person/build_form_item.dart';
 
 class BasicInformation extends StatefulWidget {
-  const BasicInformation({super.key});
+  final String productId;
+  const BasicInformation({super.key, required this.productId});
 
   @override
   State<BasicInformation> createState() => _BasicInformationState();
