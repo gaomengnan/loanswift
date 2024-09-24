@@ -47,65 +47,72 @@ class PhoneSenderBloc extends Bloc<PhoneSenderEvent, PhoneSenderState> {
     PhoneSenderStarted event,
     Emitter<PhoneSenderState> emit,
   ) async {
+    if (state.phone != event.phone) {
+      add(PhoneSenderReset());
+    }
+
     if (state.countdownState.isRunning) {
       //emit(PhoneSenderVerifyState());
-      emit(PhoneSenderSuccessState(
-        state.duration,
-        event.phone,
-        state.countdownState,
-        state.error,
-      ));
-    } else {
-      emit(
-        PhoneSenderLoadingState(
+
+      if (state.phone == event.phone) {
+        emit(PhoneSenderSuccessState(
           state.duration,
           event.phone,
           state.countdownState,
           state.error,
-        ),
-      );
-      final res = await _sender(SendPhoneCodeRequest(phone: event.phone));
-
-      res.fold(
-        (l) {
-          CountdownState cs = CountdownState.idle;
-
-          if (l.statusCode == 10405) {
-            cs = CountdownState.running;
-          }
-          emit(
-            PhoneSenderErrorState(
-              l.message,
-              event.phone,
-              cs,
-            ),
-          );
-        },
-        (r) {
-          _tickerSubscription?.cancel();
-          // 验证框
-          //emit(PhoneSenderVerifyState());
-          // 触发倒计时
-          emit(PhoneSenderRunInProgress(
-            event.duration,
-            event.phone,
-            CountdownState.running,
-          ));
-
-          emit(PhoneSenderSuccessState(
-            event.duration,
-            event.phone,
-            CountdownState.running,
-            state.error,
-          ));
-          _tickerSubscription = _ticker.tick(ticks: event.duration).listen(
-                (duration) => add(
-                  PhoneSenderTicked(duration, event.phone),
-                ),
-              );
-        },
-      );
+        ));
+        return;
+      }
     }
+    emit(
+      PhoneSenderLoadingState(
+        state.duration,
+        event.phone,
+        state.countdownState,
+        state.error,
+      ),
+    );
+    final res = await _sender(SendPhoneCodeRequest(phone: event.phone));
+
+    res.fold(
+      (l) {
+        CountdownState cs = CountdownState.idle;
+
+        if (l.statusCode == 10405) {
+          cs = CountdownState.running;
+        }
+        emit(
+          PhoneSenderErrorState(
+            l.message,
+            event.phone,
+            cs,
+          ),
+        );
+      },
+      (r) {
+        _tickerSubscription?.cancel();
+        // 验证框
+        //emit(PhoneSenderVerifyState());
+        // 触发倒计时
+        emit(PhoneSenderRunInProgress(
+          event.duration,
+          event.phone,
+          CountdownState.running,
+        ));
+
+        emit(PhoneSenderSuccessState(
+          event.duration,
+          event.phone,
+          CountdownState.running,
+          state.error,
+        ));
+        _tickerSubscription = _ticker.tick(ticks: event.duration).listen(
+              (duration) => add(
+                PhoneSenderTicked(duration, event.phone),
+              ),
+            );
+      },
+    );
   }
 
   void _onReStarted(

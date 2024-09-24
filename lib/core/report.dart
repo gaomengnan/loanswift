@@ -111,7 +111,7 @@ class ReportService {
           "longitude": lng,
           "latitude": lat,
           "start_time": (startTime.millisecondsSinceEpoch / 1000).round(),
-          "end_time": (endTime.millisecondsSinceEpoch / 100).round(),
+          "end_time": (endTime.millisecondsSinceEpoch / 1000).round(),
           "product_code": productCode,
           "ip": wifi["IP"] ?? ""
         });
