@@ -37,11 +37,11 @@ class UI {
           content: Text(desc),
           actions: <Widget>[
             TextButton(
-              child:  Text(S.current.cancel),
+              child: Text(S.current.cancel),
               onPressed: () => Navigator.of(context).pop(), // 关闭对话框
             ),
             TextButton(
-              child:  Text(S.current.confirm),
+              child: Text(S.current.confirm),
               onPressed: () {
                 callback!();
               },
@@ -61,16 +61,17 @@ class UI {
 
   static void showLoadingWithMessage(BuildContext context, String message) {
     EasyLoading.show(
-     status: message,
+      status: message,
     );
   }
 
   static void showProgress(BuildContext context, String message) {
     EasyLoading.showProgress(
       0,
-     status: message,
+      status: message,
     );
   }
+
   static void showError(BuildContext context, String message) {
     EasyLoading.showError(
       message,
@@ -95,6 +96,7 @@ class UI {
   static Future<void> hideLoading() async {
     await EasyLoading.dismiss();
   }
+
   static void showSignInAndUpBottomSheet(context) async {
     await showModalBottomSheet(
       useSafeArea: true,
@@ -210,6 +212,7 @@ class UI {
       width: 50.w,
     );
   }
+
   static Widget squareContainer(Widget child) {
     return Container(
       //height: 50,

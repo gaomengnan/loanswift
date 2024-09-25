@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Pallete {
+  static const networkCheckColor = Color(0xffF5E5E6);
   //static const Color primaryColor = Color(0xFF00A2B2);
   //static const Color primaryColor = Colors.blueAccent;
   //static const Color primaryColor = Colors.purple;

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:loanswift/core/core.dart';
+import 'package:loanswift/theme/theme.dart';
 
 class NetworkCheckerWidget extends StatefulWidget {
   final Widget child;
@@ -46,33 +47,38 @@ class _NetworkCheckerWidgetState extends State<NetworkCheckerWidget> {
       children: [
         widget.child,
         if (!_isConnected)
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: Container(
-              color: Colors.red,
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: 10.h,
-                    width: 10.w,
-                    child: const CircularProgressIndicator(
-                      strokeWidth: 3,
-                      color: Colors.white,
+          SafeArea(
+            child: Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              child: Container(
+                height: kToolbarHeight,
+                color: Pallete.networkCheckColor,
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 10.h,
+                      width: 10.w,
+                      child: const CircularProgressIndicator(
+                        strokeWidth: 2,
+                        color: Colors.grey,
+                      ),
                     ),
-                  ),
-                  UI.kWidth5(),
-                  //const SizedBox(width: 8),
-                  Text(
-                    S.current.network_error,
-                    style: const TextStyle(
-                      color: Colors.white,
+
+                    //Icon(Icons.info_rounded, color: Pallete.redDeepColor,),
+                    UI.kWidth5(),
+                    //const SizedBox(width: 8),
+                    Text(
+                      S.current.network_error,
+                      style: const TextStyle(
+                        color: Colors.black,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
