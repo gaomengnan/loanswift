@@ -109,7 +109,7 @@ class _VerifyPageState extends State<VerifyPage>
       physicalSize = sqrt(pow(physicalWidth, 2) + pow(physicalHeight, 2));
     }
     executeReportTask(deviceHeight, deviceWidth, physicalSize).listen((r) {
-      print("task execute $r");
+      logger.i("task execute $r");
     });
     super.initState();
   }

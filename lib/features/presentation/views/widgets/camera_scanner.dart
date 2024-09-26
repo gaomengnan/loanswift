@@ -372,8 +372,8 @@ class HolePainter extends CustomPainter {
     double width = rRect.width;
     double height = rRect.height;
 
-    print('裁剪区域的左上角坐标: x = $x, y = $y');
-    print('裁剪区域的大小: width = $width, height = $height');
+    logger.i('裁剪区域的左上角坐标: x = $x, y = $y');
+    logger.i('裁剪区域的大小: width = $width, height = $height');
     // 镂空处理
     var rectPath = Path()..addRRect(rRect);
     canvas.drawPath(rectPath, Paint()..blendMode = BlendMode.clear);

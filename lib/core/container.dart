@@ -48,12 +48,24 @@ import 'package:loanswift/features/presentation/bloc/certify/certifies_bloc.dart
 import 'package:loanswift/features/presentation/bloc/home/home_bloc.dart';
 import 'package:loanswift/features/presentation/bloc/order/order_bloc.dart';
 import 'package:loanswift/firebase_options.dart';
+import 'package:logger/web.dart';
 
 import '../features/data/models/models.dart';
 import '../features/presentation/bloc/bloc.dart';
 
 final sl = GetIt.instance;
 final EventBus bus = EventBus();
+
+var logger = Logger(
+  printer: PrettyPrinter(
+    methodCount: 2, // Number of method calls to be displayed
+    errorMethodCount: 8, // Number of method calls if stacktrace is provided
+    lineLength: 120, // Width of the output
+    colors: true, // Colorful log messages
+    printEmojis: true, // Print an emoji for each log message
+    dateTimeFormat: DateTimeFormat.onlyTimeAndSinceStart,
+  ),
+);
 
 Future<void> initialize() async {
   await dotenv.load(

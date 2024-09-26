@@ -151,11 +151,10 @@ class DioInterceptor extends Interceptor {
 
     final nowTime = (DateTime.now().millisecondsSinceEpoch / 1000).round();
 
-    final hashString = "${options.method}${options.path}$nowTime${AppContant.apiSecret}";
+    final hashString =
+        "${options.method}${options.path}$nowTime${AppContant.apiSecret}";
 
-    // 将字符串转换为字节
     List<int> bytes = utf8.encode(hashString);
-    // 计算 SHA-256 哈希值
     Digest digest = sha256.convert(bytes);
 
     options.headers.addAll({
@@ -166,18 +165,19 @@ class DioInterceptor extends Interceptor {
       "iv": digest.toString(),
     });
 
-    print('请求路径: ${options.path}');
-    print('请求方法: ${options.method}');
-    print('请求头: ${options.headers}');
-    print('请求参数: ${options.queryParameters}');
-    print('请求数据: ${options.data.toString()}');
+    logger.i('请求信息: \n'
+        '请求路径: ${options.path}\n'
+        '请求方法: ${options.method}\n'
+        '请求头: ${options.headers}\n'
+        '请求参数: ${options.queryParameters}\n'
+        '请求数据: ${options.data.toString()}');
 
     return super.onRequest(options, handler);
   }
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    debugPrint(response.toString());
+    logger.i(response.toString());
 
     final int apiCode =
         int.tryParse(response.data['code']?.toString() ?? '') ?? 10000;
