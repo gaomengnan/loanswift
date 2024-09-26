@@ -21,7 +21,6 @@ class AppContant {
 
   static const String uploadUri = '/middle/upload/index';
 
-
   static const fcmTokenReportInitial = "fcm_token_report_initial";
   static const fcmToken = "fcm_token";
 
@@ -29,4 +28,7 @@ class AppContant {
   static const deviceUUIDKy = "device_uuid_key";
 
   static const homeDataKey = "home_data_key";
+
+  static const apiSecret =
+      "48ab1dd3e274f2d67ea84ba7e004a5bc4d5c6329d79a03b9ba64391f0ef47f33";
 }

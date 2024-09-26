@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,35 +10,47 @@ import 'package:loanswift/core/core.dart';
 import 'package:loanswift/features/presentation/views/board/boarding_page.dart';
 import 'package:loanswift/theme/theme.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'features/presentation/bloc/bloc.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  runZonedGuarded(() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    /*  INIT */
+    await initialize();
+    //Worker().initial();
+    SystemChrome.setPreferredOrientations(
+      [
+        DeviceOrientation.portraitUp,
+      ],
+    );
 
-  /*  INIT */
-  await initialize();
+    await SentryFlutter.init(
+      (opts) {
+        opts.dsn =
+            'https://4bcbede8124b3e94dec1df6237004e9a@o4508013720502272.ingest.us.sentry.io/4508013739704320';
+        opts.tracesSampleRate = 1.0;
+        opts.profilesSampleRate = 1.0;
+      },
+    );
 
-  //Worker().initial();
-
-  SystemChrome.setPreferredOrientations(
-    [
-      DeviceOrientation.portraitUp,
-    ],
-  );
-  runApp(MultiBlocProvider(
-    providers: [
-      BlocProvider(
-        create: (_) => sl<PhoneSenderBloc>(),
-      ),
-      BlocProvider(
-        create: (_) => sl<AuthBloc>()..add(AppStarupEvent()),
-      ),
-    ],
-    child: const MyApp(),
-  ));
+    runApp(MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => sl<PhoneSenderBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => sl<AuthBloc>()..add(AppStarupEvent()),
+        ),
+      ],
+      child: const MyApp(),
+    ));
+  }, (excepation, stackTrace) async {
+    await Sentry.captureException(excepation, stackTrace: stackTrace);
+  });
 }
 
 class MyApp extends StatelessWidget {

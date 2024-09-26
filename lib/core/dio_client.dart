@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:crypto/crypto.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
@@ -146,10 +149,21 @@ class DioInterceptor extends Interceptor {
 
     final String deviceId = Storage.deviceID;
 
+    final nowTime = (DateTime.now().millisecondsSinceEpoch / 1000).round();
+
+    final hashString = "${options.method}${options.path}$nowTime${AppContant.apiSecret}";
+
+    // 将字符串转换为字节
+    List<int> bytes = utf8.encode(hashString);
+    // 计算 SHA-256 哈希值
+    Digest digest = sha256.convert(bytes);
+
     options.headers.addAll({
       //"Content-Type": "application/json",
       "Authorization": "${token?['token'].toString()}",
       "deviceId": deviceId,
+      "timestamp": nowTime,
+      "iv": digest.toString(),
     });
 
     print('请求路径: ${options.path}');
