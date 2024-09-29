@@ -68,7 +68,7 @@ class PhoneSenderBloc extends Bloc<PhoneSenderEvent, PhoneSenderState> {
       PhoneSenderLoadingState(
         state.duration,
         event.phone,
-        state.countdownState,
+        CountdownState.processing,
         state.error,
       ),
     );
@@ -78,9 +78,9 @@ class PhoneSenderBloc extends Bloc<PhoneSenderEvent, PhoneSenderState> {
       (l) {
         CountdownState cs = CountdownState.idle;
 
-        if (l.statusCode == 10405) {
-          cs = CountdownState.running;
-        }
+        //if (l.statusCode == 10405) {
+        //  cs = CountdownState.running;
+        //}
         emit(
           PhoneSenderErrorState(
             l.message,

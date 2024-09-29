@@ -43,42 +43,42 @@ class _NetworkCheckerWidgetState extends State<NetworkCheckerWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final pd =  MediaQuery.of(context).padding;
     return Stack(
       children: [
         widget.child,
         if (!_isConnected)
-          SafeArea(
-            child: Positioned(
-              top: 0,
-              left: 0,
-              right: 0,
-              child: Container(
-                height: kToolbarHeight,
-                color: Pallete.networkCheckColor,
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: 10.h,
-                      width: 10.w,
-                      child: const CircularProgressIndicator(
-                        strokeWidth: 2,
-                        color: Colors.grey,
-                      ),
+          Positioned(
+            top: pd.top,
+            left: 0,
+            right: 0,
+            child: Container(
+              height: kToolbarHeight,
+              color: Pallete.networkCheckColor,
+              //padding: EdgeInsets.only(top: pd.top),
+              //padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: 10.h,
+                    width: 10.w,
+                    child: const CircularProgressIndicator(
+                      strokeWidth: 2,
+                      color: Colors.grey,
                     ),
-
-                    //Icon(Icons.info_rounded, color: Pallete.redDeepColor,),
-                    UI.kWidth5(),
-                    //const SizedBox(width: 8),
-                    Text(
-                      S.current.network_error,
-                      style: const TextStyle(
-                        color: Colors.black,
-                      ),
+                  ),
+          
+                  //Icon(Icons.info_rounded, color: Pallete.redDeepColor,),
+                  UI.kWidth5(),
+                  //const SizedBox(width: 8),
+                  Text(
+                    S.current.network_error,
+                    style: const TextStyle(
+                      color: Colors.black,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),

@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:loanswift/core/generated/l10n.dart';
+import 'package:loanswift/core/core.dart';
 import 'package:loanswift/features/presentation/bloc/bloc.dart';
 import 'package:loanswift/features/presentation/views/index/index_page.dart';
 import 'package:loanswift/theme/theme.dart';
 import 'package:pinput/pinput.dart';
 
 import '../../../../core/common/widgets/widgets.dart';
-import '../../../../core/constants/constants.dart';
 
 class VerificationCodePage extends StatefulWidget {
   // final String? phoneNumber;
@@ -65,6 +64,15 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
           context,
           state.error.error,
         );
+      } else {
+        final isSend = state.countdownState == CountdownState.processing;
+
+        if (isSend) {
+          UI.showLoading();
+        } else {
+          focusNode.requestFocus();
+          UI.hideLoading();
+        }
       }
     }, builder: (
       context,
@@ -152,13 +160,14 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
                       key: formKey,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
                         children: [
                           Directionality(
                             // Specify direction if desired
                             textDirection: TextDirection.ltr,
                             child: Pinput(
                               //enabled: state.countdownState.isRunning,
-                              autofocus: true,
+                              //autofocus: true,
                               length: 5,
                               controller: pinController,
                               focusNode: focusNode,
@@ -222,9 +231,11 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              RText(
-                                  text:
-                                      "${S.current.unable_to_receive_the_verification_code}?"),
+                              Expanded(
+                                child: RText(
+                                    text:
+                                        "${S.current.unable_to_receive_the_verification_code}?"),
+                              ),
 
                               // Text("${context.select((PhoneSenderBloc bloc) => bloc.state.duration)}"),
 
@@ -269,7 +280,7 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
                                             style: const TextStyle(
                                               color: Pallete.redColor,
                                             ),
-                                            text: "(${state.duration})s",
+                                            text: "  (${state.duration})s",
                                           )
                                         ]),
                                   ),

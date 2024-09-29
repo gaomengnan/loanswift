@@ -2,6 +2,7 @@ part of 'phone_sender_bloc.dart';
 
 enum CountdownState {
   idle,
+  processing,
   running,
 }
 

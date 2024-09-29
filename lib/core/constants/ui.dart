@@ -75,14 +75,14 @@ class UI {
   static void showError(BuildContext context, String message) {
     EasyLoading.showError(
       message,
-      duration: const Duration(seconds: 5),
+      duration: const Duration(seconds: 2),
     );
   }
 
   static void showErrorNoContext(String message) {
     EasyLoading.showError(
       message,
-      duration: const Duration(seconds: 5),
+      duration: const Duration(seconds: 2),
     );
   }
 
@@ -90,6 +90,7 @@ class UI {
     await EasyLoading.show(
       dismissOnTap: false,
       status: "${S.current.loading}...",
+      maskType: EasyLoadingMaskType.black,
     );
   }
 

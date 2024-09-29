@@ -54,11 +54,12 @@ class _WebViewComponentState extends State<WebViewComponent> {
     if (token != null) {
       tokenStr = token['token'].toString();
     }
-    // 需要添加的参数
-    var urlParams = {
-      'token': tokenStr,
-    };
-    String urlWithParams = _buildUrlWithParams(widget.url, urlParams);
+    //// 需要添加的参数
+    //var urlParams = {
+    //  'token': tokenStr,
+    //};
+    //String urlWithParams = _buildUrlWithParams(widget.url, urlParams);
+    String urlWithParams = widget.url;
 
     controller
       ..setJavaScriptMode(JavaScriptMode.unrestricted)

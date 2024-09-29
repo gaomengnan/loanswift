@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/features/presentation/views/board/boarding_page.dart';
@@ -18,15 +19,16 @@ final navigatorKey = GlobalKey<NavigatorState>();
 
 Future<void> main() async {
   runZonedGuarded(() async {
-    WidgetsFlutterBinding.ensureInitialized();
-    /*  INIT */
-    await initialize();
-    //Worker().initial();
+    WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+    FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
     SystemChrome.setPreferredOrientations(
       [
         DeviceOrientation.portraitUp,
       ],
     );
+    /*  INIT */
+    await initialize().then((_) {});
+    //Worker().initial();
 
     await SentryFlutter.init(
       (opts) {
@@ -36,7 +38,7 @@ Future<void> main() async {
         opts.profilesSampleRate = 1.0;
       },
     );
-
+    FlutterNativeSplash.remove();
     runApp(MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -49,6 +51,8 @@ Future<void> main() async {
       child: const MyApp(),
     ));
   }, (excepation, stackTrace) async {
+    logger
+        .e("runZonedGuarded excepation: $excepation, stackTrace: $stackTrace");
     await Sentry.captureException(excepation, stackTrace: stackTrace);
   });
 }
