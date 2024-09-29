@@ -9,7 +9,7 @@ import 'package:loanswift/features/presentation/bloc/auth/auth_bloc.dart';
 import 'package:loanswift/features/presentation/bloc/home/home_bloc.dart';
 import 'package:loanswift/features/presentation/views/home/banner.dart';
 import 'package:loanswift/features/presentation/views/home/bill.dart';
-import 'package:loanswift/features/presentation/views/home/quota.dart';
+import 'package:loanswift/features/presentation/views/home/main.dart';
 import 'package:loanswift/features/presentation/views/home/suggestion.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -144,15 +144,15 @@ class _HomePageState extends State<HomePage>
                     banners: state.homeData.banners,
                   ),
 
+                  /*   Bill Amount */
+                  BuildBill(
+                    userOrder: state.homeData.userOrders,
+                  ),
+
                   // 查看额度
                   BuildMainEntry(
                     mainProducts: state.homeData.mainProducts,
                     rule: state.homeData.rules,
-                  ),
-
-                  /*   Bill Amount */
-                  BuildBill(
-                    userOrder: state.homeData.userOrders,
                   ),
 
                   // 借钱攻略

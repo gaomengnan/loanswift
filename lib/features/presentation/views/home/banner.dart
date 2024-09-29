@@ -57,19 +57,20 @@ class _BuildBannerState extends State<BuildBanner> {
         );
       },
       placeholder: (context, url) => Center(
-          child: Shimmer.fromColors(
-        baseColor: Colors.grey[300]!,
-        highlightColor: Colors.grey[100]!,
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Colors.white,
+        child: Shimmer.fromColors(
+          baseColor: Colors.grey[300]!,
+          highlightColor: Colors.grey[100]!,
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Colors.white,
+            ),
+            margin: EdgeInsets.symmetric(horizontal: 10.h),
+            //width: double.infinity,
+            //height: 200.0,
           ),
-          margin: EdgeInsets.symmetric(horizontal: 10.h),
-          //width: double.infinity,
-          //height: 200.0,
         ),
-      )),
+      ),
       errorWidget: (context, url, error) => const Icon(Icons.error),
     );
   }

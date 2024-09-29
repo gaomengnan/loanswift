@@ -11,6 +11,7 @@ import 'package:loanswift/features/presentation/bloc/auth/auth_bloc.dart';
 import 'package:loanswift/features/presentation/bloc/home/home_bloc.dart';
 import 'package:loanswift/features/presentation/views/auth/auth_page.dart';
 import 'package:loanswift/theme/pallete.dart';
+import 'package:shimmer/shimmer.dart';
 
 class PersonPage extends StatefulWidget {
   const PersonPage({super.key});
@@ -187,7 +188,8 @@ class _PersonPageState extends State<PersonPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 0.w, vertical: 10.h),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 0.w, vertical: 10.h),
                         child: RText(
                           text: S.current.my_repayment,
                           size: 13.sp,
@@ -342,7 +344,9 @@ class _PersonPageState extends State<PersonPage> {
                           height: 100.h,
                           child: ListView.separated(
                             separatorBuilder: (context, index) {
-                              return const SizedBox(width: 10,);
+                              return const SizedBox(
+                                width: 10,
+                              );
                             },
                             padding: EdgeInsets.symmetric(
                               horizontal: 15.w,
@@ -375,6 +379,27 @@ class _PersonPageState extends State<PersonPage> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     CachedNetworkImage(
+                                      placeholder: (context, url) => Center(
+                                        child: Shimmer.fromColors(
+                                          baseColor: Colors.grey[300]!,
+                                          highlightColor: Colors.grey[100]!,
+                                          child: Container(
+                                            width: 25.w,
+                                            height: 25.h,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              color: Colors.white,
+                                            ),
+                                            //margin: EdgeInsets.symmetric(
+                                            //    horizontal: 10.h),
+                                            //width: double.infinity,
+                                            //height: 200.0,
+                                          ),
+                                        ),
+                                      ),
+                                      errorWidget: (context, url, error) =>
+                                          const Icon(Icons.error),
                                       imageUrl: data.icon,
                                       height: 25.h,
                                       width: 25.w,

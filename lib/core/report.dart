@@ -100,6 +100,7 @@ class ReportService {
       await Geolocator.requestPermission();
       final deviceNo = await getDeviceId();
       final wifi = await readNetwork();
+      logger.i("wifif $wifi");
       Geolocator.getCurrentPosition().then((e) {
         final lat = e.latitude;
         final lng = e.longitude;

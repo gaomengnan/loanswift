@@ -4,8 +4,8 @@
 	<dict>
 		<key>UIBackgroundModes</key>
 		<array>
-		<string>fetch</string>
-		<string>processing</string>
+			<string>fetch</string>
+			<string>processing</string>
 		</array>
 		<key>NSBatteryUsageDescription</key>
 		<string>该应用需要获取电池状态来提供更好的服务。</string>

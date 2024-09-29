@@ -11,6 +11,7 @@ import 'package:loanswift/features/presentation/bloc/home/home_bloc.dart';
 import 'package:loanswift/features/presentation/views/person/bind_bank.dart';
 import 'package:loanswift/features/presentation/views/widgets/order_confirm_dialog.dart';
 import 'package:loanswift/features/presentation/views/widgets/permission.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../../../core/common/widgets/widgets.dart';
 import '../../../../theme/theme.dart';
@@ -356,6 +357,22 @@ class BuildMainEntry extends StatelessWidget {
         children: [
           Expanded(
             child: CachedNetworkImage(
+              placeholder: (context, url) => Center(
+                child: Shimmer.fromColors(
+                  baseColor: Colors.grey[300]!,
+                  highlightColor: Colors.grey[100]!,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.white,
+                    ),
+                    margin: EdgeInsets.symmetric(horizontal: 10.h),
+                    //width: double.infinity,
+                    //height: 200.0,
+                  ),
+                ),
+              ),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
               width: 30.w,
               height: 30.h,
               imageUrl: mainProducts.copywriterInfo.productDesc.logo,

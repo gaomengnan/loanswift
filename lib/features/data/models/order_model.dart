@@ -9,7 +9,7 @@ import 'package:loanswift/features/domain/entity/products/relation_product.dart'
 enum OrderStatus {
   all,
   unserReview,
-  awaitingRepayment,
+  //awaitingRepayment,
   auditFailure,
   overdue,
   completed
@@ -22,8 +22,8 @@ extension OrderStatusExtension on OrderStatus {
         return S.current.all;
       case OrderStatus.unserReview:
         return S.current.underReview;
-      case OrderStatus.awaitingRepayment:
-        return S.current.awaitingRepayment;
+      //case OrderStatus.awaitingRepayment:
+      //  return S.current.awaitingRepayment;
       case OrderStatus.auditFailure:
         return S.current.auditFailure;
       case OrderStatus.overdue:
@@ -39,8 +39,8 @@ extension OrderStatusExtension on OrderStatus {
         return 'ALL';
       case OrderStatus.unserReview:
         return 'UNDER_REVIEW';
-      case OrderStatus.awaitingRepayment:
-        return 'AWAITING_REPAYMENT';
+      //case OrderStatus.awaitingRepayment:
+      //  return 'AWAITING_REPAYMENT';
       case OrderStatus.auditFailure:
         return 'AUDIT_FAILURE';
       case OrderStatus.overdue:

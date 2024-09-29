@@ -221,7 +221,7 @@ class _VerifyPageState extends State<VerifyPage>
               ),
         ),
         bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(kToolbarHeight),
+            preferredSize: Size.fromHeight(kToolbarHeight + 10.h),
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Padding(
@@ -232,7 +232,7 @@ class _VerifyPageState extends State<VerifyPage>
                   //alignment: WrapAlignment.spaceBetween,
                   children: [
                     SizedBox(
-                      height: 80,
+                      height: 80.h,
                       child: buildStep(
                           S.current.identity_authentication,
                           true,
@@ -243,7 +243,7 @@ class _VerifyPageState extends State<VerifyPage>
                     ),
 
                     SizedBox(
-                      height: 80,
+                      height: 80.h,
                       child: buildStep(
                           S.current.personal_information,
                           false,
@@ -253,7 +253,7 @@ class _VerifyPageState extends State<VerifyPage>
                           true),
                     ),
                     SizedBox(
-                      height: 80,
+                      height: 80.h,
                       child: buildStep(
                           S.current.emergency_contact,
                           false,
@@ -264,7 +264,7 @@ class _VerifyPageState extends State<VerifyPage>
                     ),
 
                     SizedBox(
-                      height: 80,
+                      height: 80.h,
                       child: buildStep(S.current.work_information, false, true,
                           currentStep.value > 3, currentStep.value == 3, true),
                     ),
@@ -378,7 +378,7 @@ class _VerifyPageState extends State<VerifyPage>
           : Container(),
       endChild: !inTop
           ? SizedBox(
-              width: 80.w,
+              width: 90.w,
               child: RText(
                 textAlign: TextAlign.start,
                 text: title,
@@ -440,7 +440,7 @@ class _VerifyPageState extends State<VerifyPage>
                   ),
                 ),
               ),
-        width: 30,
+        width: 30.w,
         //height: 30,
         color: Pallete.secondaryColor,
         iconStyle: IconStyle(

@@ -82,11 +82,20 @@ class DioClient {
 
         return right(resp);
       } on DioException catch (e) {
+        logger.e("exception: $e");
         //debugprint("DIO CLIENT ERROR: $e");
         return left(
           ServerFailure(
             message: e.message ?? "",
             statusCode: e.response?.statusCode ?? 0,
+          ),
+        );
+      } catch (e) {
+        logger.e("exception: $e");
+        return left(
+          ServerFailure(
+            message: S.current.service_error,
+            statusCode: -1,
           ),
         );
       }
@@ -126,11 +135,20 @@ class DioClient {
 
         return right(resp);
       } on DioException catch (e) {
+        logger.e("exception: $e");
         //print("DIO CLIENT ERROR: $e");
         return left(
           ServerFailure(
-            message: S.current.service_error,
+            message: e.message ?? '',
             statusCode: e.response?.statusCode ?? 0,
+          ),
+        );
+      } catch (e) {
+        logger.e("exception: $e");
+        return left(
+          ServerFailure(
+            message: S.current.service_error,
+            statusCode: -1,
           ),
         );
       }

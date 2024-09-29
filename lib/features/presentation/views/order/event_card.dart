@@ -37,14 +37,10 @@ class EventCard extends StatelessWidget {
             //color: Colors.pink,
             ),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Row(
               children: <Widget>[
-                //Opacity(
-                //  opacity: 1,
-                //  child: asset,
-                //),
-                //const SizedBox(width: 16),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
@@ -66,7 +62,7 @@ class EventCard extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(10),
               width: double.maxFinite,
-              height: 70.h,
+              height: 100.h,
               margin: EdgeInsets.only(
                 //horizontal: 10.w,
                 top: 10.h,
@@ -110,6 +106,7 @@ class EventCard extends StatelessWidget {
                         //color: Colors.blueAccent,
                       ),
                       child: Row(
+                        mainAxisSize: MainAxisSize.min,
                         //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           RText(
@@ -118,9 +115,12 @@ class EventCard extends StatelessWidget {
                             fontWeight: FontWeight.w700,
                           ),
                           UI.kWidth50(),
-                          RText(
-                            text: amount,
-                            size: 13.sp,
+                          Expanded(
+                            child: RText(
+                              maxLines: 2,
+                              text: amount,
+                              size: 13.sp,
+                            ),
                           ),
                         ],
                       ),

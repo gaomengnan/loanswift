@@ -48,12 +48,15 @@ class _OrderDetailState extends State<OrderDetail> {
                   text: k,
                 ),
               ),
-              RText(
-                maxLines: 2,
-                //size: 15.sp,
-                color: Pallete.blackColor,
-                fontWeight: FontWeight.bold,
-                text: v,
+              Expanded(
+                child: RText(
+                  textAlign: TextAlign.end,
+                  maxLines: 2,
+                  //size: 15.sp,
+                  color: Pallete.blackColor,
+                  fontWeight: FontWeight.bold,
+                  text: v,
+                ),
               )
             ],
           ),
@@ -69,42 +72,6 @@ class _OrderDetailState extends State<OrderDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //bottomNavigationBar: BottomAppBar(
-      //  color: Colors.transparent,
-      //  height: 65.h,
-      //  child: Column(
-      //    mainAxisAlignment: MainAxisAlignment.spaceAround,
-      //    children: [
-      //      Expanded(
-      //        child: FilledButton(
-      //          style: FilledButton.styleFrom(
-      //              minimumSize: Size(ScreenUtil().screenWidth * 0.5, 25.h)),
-      //          onPressed: () {},
-      //          child: const Text(
-      //            "偿还",
-      //            style: TextStyle(
-      //              color: Pallete.whiteColor,
-      //            ),
-      //          ),
-      //        ),
-      //      ),
-      //      UI.kHeight5(),
-      //      Expanded(
-      //        child: OutlinedButton(
-      //          style: OutlinedButton.styleFrom(
-      //            minimumSize: Size.fromWidth(ScreenUtil().screenWidth * 0.5),
-      //            //backgroundColor: Colors.redAccent
-      //          ),
-      //          onPressed: () {},
-      //          child: const Text(
-      //            "差别分还",
-      //            style: TextStyle(color: Pallete.blackColor),
-      //          ),
-      //        ),
-      //      ),
-      //    ],
-      //  ),
-      //),
       backgroundColor: const Color(0xffF0F0F0),
       appBar: AppBar(
         backgroundColor: Pallete.backgroundColor,
@@ -130,7 +97,7 @@ class _OrderDetailState extends State<OrderDetail> {
                         color: Colors.white,
                         elevation: 1,
                         child: SizedBox(
-                          height: 70.h,
+                          //height: 70.h,
                           child: Padding(
                             padding: EdgeInsets.only(
                               top: 10.0.h,
@@ -139,21 +106,18 @@ class _OrderDetailState extends State<OrderDetail> {
                               bottom: 10.h,
                             ),
                             child: Column(
+                              mainAxisSize: MainAxisSize.min,
                               children: [
-                                Expanded(
-                                  child: RText(
-                                    color: Colors.red,
-                                    text: succeed.orderDetail.noticeStatusText,
-                                    size: 20.sp,
-                                  ),
+                                RText(
+                                  color: Colors.red,
+                                  text: succeed.orderDetail.noticeStatusText,
+                                  size: 20.sp,
                                 ),
                                 UI.kHeight5(),
-                                Expanded(
-                                  child: RText(
-                                    text: succeed.orderDetail.noticeDesText,
-                                    size: 13.sp,
-                                    color: Pallete.greyColor,
-                                  ),
+                                RText(
+                                  text: succeed.orderDetail.noticeDesText,
+                                  size: 13.sp,
+                                  color: Pallete.greyColor,
                                 ),
                               ],
                             ),
@@ -220,6 +184,7 @@ class _OrderDetailState extends State<OrderDetail> {
                           color: Colors.white,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
                             children: [
                               ...List.generate(bestDesc.length, (index) {
                                 final data = bestDesc[index];
@@ -289,7 +254,8 @@ class _OrderDetailState extends State<OrderDetail> {
                             ),
                           if (succeed.orderDetail.orderStatus > 151 &&
                               succeed.orderDetail.orderStatus != 999 &&
-                              succeed.orderDetail.orderStatus != 200)
+                              succeed.orderDetail.orderStatus != 200 &&
+                              succeed.orderDetail.isDelay == 1)
                             OutlinedButton(
                               onPressed: () {
                                 Navigator.push(

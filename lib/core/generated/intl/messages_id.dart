@@ -24,224 +24,221 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "agree_privacy": MessageLookupByLibrary.simpleMessage("Setuju"),
         "all": MessageLookupByLibrary.simpleMessage("Semua"),
-        "app_name": MessageLookupByLibrary.simpleMessage("Butuh uang"),
-        "auditFailure": MessageLookupByLibrary.simpleMessage("Gagal"),
-        "authFailed": MessageLookupByLibrary.simpleMessage(
-            "Autentikasi gagal, silakan coba lagi."),
+        "app_name": MessageLookupByLibrary.simpleMessage("pintek"),
+        "auditFailure": MessageLookupByLibrary.simpleMessage("Kegagalan audit"),
+        "authFailed": MessageLookupByLibrary.simpleMessage("Auth gagal"),
         "auto_repayment":
             MessageLookupByLibrary.simpleMessage("Pembayaran Otomatis"),
-        "awaitingRepayment": MessageLookupByLibrary.simpleMessage("Tunda"),
-        "bank_card":
-            MessageLookupByLibrary.simpleMessage("Masukan No Rekening"),
+        "awaitingRepayment":
+            MessageLookupByLibrary.simpleMessage("Menunggu pembayaran kembali"),
+        "bank_card": MessageLookupByLibrary.simpleMessage("Nomor kartu bank"),
         "bill_amount": MessageLookupByLibrary.simpleMessage("Jumlah Tagihan"),
-        "bill_state":
-            MessageLookupByLibrary.simpleMessage("Pernyataan Tagihan"),
+        "bill_state": MessageLookupByLibrary.simpleMessage("Laporan Tagihan"),
         "bind_bank_card":
-            MessageLookupByLibrary.simpleMessage("Hubungkan Kartu Bank"),
+            MessageLookupByLibrary.simpleMessage("Mengikat kartu bank"),
         "camera": MessageLookupByLibrary.simpleMessage("Kamera"),
-        "cancel": MessageLookupByLibrary.simpleMessage("Batal"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Membatalkan"),
         "click_to_access":
-            MessageLookupByLibrary.simpleMessage("Klik untuk mengakses"),
-        "completed": MessageLookupByLibrary.simpleMessage("Selesai"),
+            MessageLookupByLibrary.simpleMessage("Klik untuk mengotorisasi"),
+        "completed": MessageLookupByLibrary.simpleMessage("Diselesaikan"),
         "confirm": MessageLookupByLibrary.simpleMessage("Konfirmasi"),
-        "congratulations_verified": MessageLookupByLibrary.simpleMessage(
-            "Selamat, Anda telah berhasil diverifikasi"),
+        "congratulations_verified":
+            MessageLookupByLibrary.simpleMessage("Selamat diverifikasi"),
         "contact": MessageLookupByLibrary.simpleMessage("Daftar Kontak"),
         "credit_failure":
-            MessageLookupByLibrary.simpleMessage("Pemberian kredit gagal"),
+            MessageLookupByLibrary.simpleMessage("Kegagalan kredit"),
         "credit_fetching_result":
-            MessageLookupByLibrary.simpleMessage("Mengambil hasil kredit"),
+            MessageLookupByLibrary.simpleMessage("Hasil pengambilan kredit"),
         "credit_login_expired":
-            MessageLookupByLibrary.simpleMessage("Login kedaluwarsa"),
+            MessageLookupByLibrary.simpleMessage("Login kredit berakhir"),
         "credit_success":
-            MessageLookupByLibrary.simpleMessage("Pemberian kredit berhasil"),
-        "due_date": MessageLookupByLibrary.simpleMessage("Tanggal Jatuh Tempo"),
+            MessageLookupByLibrary.simpleMessage("Keberhasilan kredit"),
+        "due_date": MessageLookupByLibrary.simpleMessage("Tanggal jatuh tempo"),
         "emergency_contact":
-            MessageLookupByLibrary.simpleMessage("Kontak Darurat"),
-        "enter_verification_code":
-            MessageLookupByLibrary.simpleMessage("Masukkan Kode Verifikasi"),
+            MessageLookupByLibrary.simpleMessage("Kontak darurat"),
+        "enter_verification_code": MessageLookupByLibrary.simpleMessage(
+            "Silakan masukkan kode verifikasi"),
         "errorPhone": MessageLookupByLibrary.simpleMessage(
-            "Masukkan nomor telepon yang benar"),
+            "Masukkan nomor ponsel yang benar"),
         "exclusive": MessageLookupByLibrary.simpleMessage("Eksklusif"),
-        "feedback": MessageLookupByLibrary.simpleMessage("Umpan Balik"),
-        "free_concession": MessageLookupByLibrary.simpleMessage("Discount"),
+        "feedback": MessageLookupByLibrary.simpleMessage("Umpan balik"),
+        "free_concession": MessageLookupByLibrary.simpleMessage("Tarif diskon"),
         "get_credit_limit":
-            MessageLookupByLibrary.simpleMessage("Dapatkan Limit Kredit"),
-        "go_bind_bank_card": MessageLookupByLibrary.simpleMessage(
-            "Pergi ke menghubungkan kartu bank"),
+            MessageLookupByLibrary.simpleMessage("Mendapatkan batas kredit"),
+        "go_bind_bank_card":
+            MessageLookupByLibrary.simpleMessage("Pergi ikat kartu bank"),
         "go_to_verify":
-            MessageLookupByLibrary.simpleMessage("Pergi ke verifikasi"),
-        "grab_go": MessageLookupByLibrary.simpleMessage("Ambil dan Pergi"),
-        "hello_world":
-            MessageLookupByLibrary.simpleMessage("Hitungannya bertambah"),
+            MessageLookupByLibrary.simpleMessage("Pergi untuk memverifikasi"),
+        "grab_go":
+            MessageLookupByLibrary.simpleMessage("Menarik uang kapan saja"),
+        "hello_world": MessageLookupByLibrary.simpleMessage("Hello World"),
         "home_button": MessageLookupByLibrary.simpleMessage("Rumah"),
         "huanying":
-            MessageLookupByLibrary.simpleMessage("Selamat datang masuk/daftar"),
-        "id_card":
-            MessageLookupByLibrary.simpleMessage("Identitas yang dipakai(KTP)"),
-        "idcard": MessageLookupByLibrary.simpleMessage("Foto Kartu Identitas"),
-        "idcard_front":
-            MessageLookupByLibrary.simpleMessage("Foto Depan Kartu Identitas"),
-        "idcard_reverse": MessageLookupByLibrary.simpleMessage(
-            "Foto Belakang Kartu Identitas"),
+            MessageLookupByLibrary.simpleMessage("Selamat Datang Login/Daftar"),
+        "id_card": MessageLookupByLibrary.simpleMessage("KTP"),
+        "idcard": MessageLookupByLibrary.simpleMessage("Foto KTP"),
+        "idcard_front": MessageLookupByLibrary.simpleMessage("Foto depan KTP"),
+        "idcard_reverse":
+            MessageLookupByLibrary.simpleMessage("Foto belakang KTP"),
         "identity_authentication":
-            MessageLookupByLibrary.simpleMessage("Autentikasi Identitas"),
+            MessageLookupByLibrary.simpleMessage("Otentikasi identitas"),
         "immediate_repayment":
-            MessageLookupByLibrary.simpleMessage("Pembayaran Langsung"),
+            MessageLookupByLibrary.simpleMessage("Pelunasan segera"),
         "install_packages":
-            MessageLookupByLibrary.simpleMessage("Aplikasi Terinstal"),
+            MessageLookupByLibrary.simpleMessage("Aplikasi yang terinstal"),
         "installment_repayment":
-            MessageLookupByLibrary.simpleMessage("Cicilan"),
+            MessageLookupByLibrary.simpleMessage("Pembayaran cicilan"),
         "jindengluzhuce":
-            MessageLookupByLibrary.simpleMessage("Hanya masuk atau daftar"),
+            MessageLookupByLibrary.simpleMessage("Hanya Login atau Daftar"),
         "lang": MessageLookupByLibrary.simpleMessage("id"),
         "lijishengqing":
-            MessageLookupByLibrary.simpleMessage("Ajukan sekarang"),
-        "load_amount": MessageLookupByLibrary.simpleMessage("Catatan Pinjaman"),
-        "loading": MessageLookupByLibrary.simpleMessage("Mohon tunggu"),
-        "loan_return": MessageLookupByLibrary.simpleMessage(
-            "Riwayat Pinjaman dan Pembayaran"),
+            MessageLookupByLibrary.simpleMessage("Daftar sekarang"),
+        "load_amount": MessageLookupByLibrary.simpleMessage("Jumlah Beban"),
+        "loading": MessageLookupByLibrary.simpleMessage("Memuat"),
+        "loan_return":
+            MessageLookupByLibrary.simpleMessage("Pengembalian Pinjaman"),
         "location": MessageLookupByLibrary.simpleMessage("Lokasi"),
         "login_or_register":
-            MessageLookupByLibrary.simpleMessage("Masuk/Daftar"),
+            MessageLookupByLibrary.simpleMessage("Login/Daftar"),
         "logout": MessageLookupByLibrary.simpleMessage("Keluar"),
         "logoutConfirmation": MessageLookupByLibrary.simpleMessage(
-            "Apakah Anda yakin ingin keluar?"),
+            "Apakah Anda yakin ingin keluar"),
         "maximun_load_sub_text": MessageLookupByLibrary.simpleMessage(
-            "Peminjaman 1000 selama 1 bulan, biaya harian mulai dari 6 sen, suku bunga tahunan (bunga sederhana) mulai dari #rate#"),
-        "maximun_load_text":
-            MessageLookupByLibrary.simpleMessage("Jumlah Pinjaman Maksimum"),
+            "Untuk 12 bulan, biaya pinjaman perhari dimulai dari 6%, tingkat suku bunga tahunan dimulai dari #rate#"),
+        "maximun_load_text": MessageLookupByLibrary.simpleMessage(
+            "Kuota setinggi-tingginya meminjam"),
         "maximun_load_text_unit":
-            MessageLookupByLibrary.simpleMessage("(Rupiah)"),
+            MessageLookupByLibrary.simpleMessage("(yuan)"),
         "my_account_about_us":
-            MessageLookupByLibrary.simpleMessage("Tentang Kami"),
+            MessageLookupByLibrary.simpleMessage("Akun saya tentang kami"),
         "my_account_my_bank_card":
-            MessageLookupByLibrary.simpleMessage("Kartu Bank Saya"),
+            MessageLookupByLibrary.simpleMessage("Kartu bank saya"),
         "my_account_order_management":
-            MessageLookupByLibrary.simpleMessage("Manajemen Pesanan"),
+            MessageLookupByLibrary.simpleMessage("Manajemen pesanan akun saya"),
         "my_account_privacy_policy":
-            MessageLookupByLibrary.simpleMessage("Kebijakan Privasi"),
+            MessageLookupByLibrary.simpleMessage("Pernyataan privasi"),
         "my_repayment": MessageLookupByLibrary.simpleMessage("Pembayaran Saya"),
-        "name": MessageLookupByLibrary.simpleMessage("Halo"),
+        "name": MessageLookupByLibrary.simpleMessage("Flutter localization"),
         "network_error":
-            MessageLookupByLibrary.simpleMessage("Kesalahan koneksi jaringan"),
-        "nextStep": MessageLookupByLibrary.simpleMessage("Langkah Berikutnya"),
-        "no_credit_limit": MessageLookupByLibrary.simpleMessage(
-            "Belum Mendapatkan Limit, Tidak Ada Tagihan"),
-        "normal_repayment": MessageLookupByLibrary.simpleMessage("Bayar"),
+            MessageLookupByLibrary.simpleMessage("Kesalahan Jaringan"),
+        "nextStep": MessageLookupByLibrary.simpleMessage("Langkah selanjutnya"),
+        "no_credit_limit":
+            MessageLookupByLibrary.simpleMessage("Tanpa batas kredit"),
+        "normal_repayment":
+            MessageLookupByLibrary.simpleMessage("Pembayaran normal"),
         "notification": MessageLookupByLibrary.simpleMessage("Pemberitahuan"),
-        "orderDetails": MessageLookupByLibrary.simpleMessage("Detail Pesanan"),
+        "orderDetails": MessageLookupByLibrary.simpleMessage("Detail pesanan"),
         "order_confirm_actual_amount":
-            MessageLookupByLibrary.simpleMessage("Jumlah Aktual"),
-        "order_confirm_cancel": MessageLookupByLibrary.simpleMessage("Batal"),
+            MessageLookupByLibrary.simpleMessage("Jumlah yang sebenarnya"),
+        "order_confirm_cancel":
+            MessageLookupByLibrary.simpleMessage("Membatalkan"),
         "order_confirm_collapse":
-            MessageLookupByLibrary.simpleMessage("Sembunyikan"),
+            MessageLookupByLibrary.simpleMessage("Runtuh"),
         "order_confirm_confirm":
             MessageLookupByLibrary.simpleMessage("Konfirmasi"),
         "order_confirm_deduction_fee":
-            MessageLookupByLibrary.simpleMessage("Biaya Potongan"),
+            MessageLookupByLibrary.simpleMessage("Biaya pengurangan"),
         "order_confirm_first_period_fee":
-            MessageLookupByLibrary.simpleMessage("Biaya Periode Pertama"),
+            MessageLookupByLibrary.simpleMessage("Biaya periode pertama"),
         "order_confirm_first_period_interest_fee":
-            MessageLookupByLibrary.simpleMessage("Biaya Bunga Periode Pertama"),
+            MessageLookupByLibrary.simpleMessage("Biaya bunga periode pertama"),
         "order_confirm_first_period_pay_time":
             MessageLookupByLibrary.simpleMessage(
-                "Waktu Pembayaran Periode Pertama"),
+                "Waktu pembayaran periode pertama"),
         "order_confirm_gst_fee":
             MessageLookupByLibrary.simpleMessage("Biaya GST"),
         "order_confirm_interest_fee":
-            MessageLookupByLibrary.simpleMessage("Biaya Bunga"),
+            MessageLookupByLibrary.simpleMessage("Beban bunga"),
         "order_confirm_platform_management_fee":
-            MessageLookupByLibrary.simpleMessage("Biaya Manajemen Platform"),
+            MessageLookupByLibrary.simpleMessage("Biaya pengelolaan platform"),
         "order_confirm_processing_fee":
-            MessageLookupByLibrary.simpleMessage("Biaya Proses"),
+            MessageLookupByLibrary.simpleMessage("Biaya pemrosesan"),
         "order_confirm_repay_amount":
-            MessageLookupByLibrary.simpleMessage("Jumlah Pembayaran"),
+            MessageLookupByLibrary.simpleMessage("Jumlah pembayaran kembali"),
         "order_confirm_repayment_amount":
-            MessageLookupByLibrary.simpleMessage("Jumlah Pembayaran Kembali"),
+            MessageLookupByLibrary.simpleMessage("Jumlah pembayaran kembali"),
         "order_confirm_repayment_plan":
-            MessageLookupByLibrary.simpleMessage("Rencana Pembayaran"),
+            MessageLookupByLibrary.simpleMessage("Rencana pembayaran kembali"),
         "order_confirm_risk_service_fee":
-            MessageLookupByLibrary.simpleMessage("Biaya Layanan Risiko"),
+            MessageLookupByLibrary.simpleMessage("Biaya layanan risiko"),
         "order_confirm_see_more":
-            MessageLookupByLibrary.simpleMessage("Lihat Selengkapnya"),
+            MessageLookupByLibrary.simpleMessage("Lihat lebih lanjut"),
         "order_confirm_service_fee":
-            MessageLookupByLibrary.simpleMessage("Biaya Layanan"),
+            MessageLookupByLibrary.simpleMessage("Biaya layanan"),
         "order_confirm_title":
             MessageLookupByLibrary.simpleMessage("Konfirmasi Pesanan"),
         "order_confirm_total_interest":
-            MessageLookupByLibrary.simpleMessage("Total Bunga"),
+            MessageLookupByLibrary.simpleMessage("Total bunga"),
         "order_confirm_total_service_fee":
-            MessageLookupByLibrary.simpleMessage("Total Biaya Layanan"),
-        "order_success": MessageLookupByLibrary.simpleMessage("Order Success"),
-        "overdue": MessageLookupByLibrary.simpleMessage("Telat"),
+            MessageLookupByLibrary.simpleMessage("Total biaya layanan"),
+        "order_success":
+            MessageLookupByLibrary.simpleMessage("Pesanan Berhasil"),
+        "overdue": MessageLookupByLibrary.simpleMessage("Jatuh tempo"),
         "permission_title": MessageLookupByLibrary.simpleMessage(
-            "Untuk mempercepat proses pinjaman Anda, kami memerlukan izin-izin ini"),
-        "person_button": MessageLookupByLibrary.simpleMessage("Saya"),
+            "Untuk menyelesaikan proses pinjaman Anda dengan cepat, kami memerlukan akses ke izin ini"),
+        "person_button": MessageLookupByLibrary.simpleMessage("Milikku"),
         "personal_info":
             MessageLookupByLibrary.simpleMessage("Informasi Pribadi"),
         "personal_information":
-            MessageLookupByLibrary.simpleMessage("Informasi Pribadi"),
+            MessageLookupByLibrary.simpleMessage("Informasi pribadi"),
         "phone_code": MessageLookupByLibrary.simpleMessage("ID"),
-        "phone_number": MessageLookupByLibrary.simpleMessage("No Handphone"),
-        "photo_permission_missing":
-            MessageLookupByLibrary.simpleMessage("Gagal mengakses izin kamera"),
-        "please_select":
-            MessageLookupByLibrary.simpleMessage("Silakan pilih opsi"),
+        "phone_number": MessageLookupByLibrary.simpleMessage("Nomor telepon"),
+        "photo_permission_missing": MessageLookupByLibrary.simpleMessage(
+            "Gagal mendapatkan hak istimewa kamera"),
+        "please_select": MessageLookupByLibrary.simpleMessage("Silakan pilih"),
         "please_select_bank":
-            MessageLookupByLibrary.simpleMessage("Pilih bank yang digunakan"),
+            MessageLookupByLibrary.simpleMessage("Silakan pilih bank"),
         "previousStep":
-            MessageLookupByLibrary.simpleMessage("Langkah Sebelumnya"),
+            MessageLookupByLibrary.simpleMessage("Langkah sebelumnya"),
         "privacy": MessageLookupByLibrary.simpleMessage("Kebijakan Privasi"),
-        "quick_deposit": MessageLookupByLibrary.simpleMessage("Fast Transfer"),
-        "read_privacy": MessageLookupByLibrary.simpleMessage("Baca"),
+        "quick_deposit":
+            MessageLookupByLibrary.simpleMessage("Penagihan cepat"),
+        "read_privacy": MessageLookupByLibrary.simpleMessage("Silakan baca"),
         "real_authentication":
-            MessageLookupByLibrary.simpleMessage("Verifikasi nama asli"),
-        "recommend": MessageLookupByLibrary.simpleMessage("Rekomendasi"),
-        "required_field": MessageLookupByLibrary.simpleMessage("Wajib Diisi"),
-        "resend": MessageLookupByLibrary.simpleMessage("Kirim Ulang"),
+            MessageLookupByLibrary.simpleMessage("Verifikasi Data Diri"),
+        "recommend": MessageLookupByLibrary.simpleMessage("Merekomendasikan"),
+        "required_field":
+            MessageLookupByLibrary.simpleMessage("Bidang yang diperlukan"),
+        "resend": MessageLookupByLibrary.simpleMessage("Kirim ulang"),
         "retrieve_again":
-            MessageLookupByLibrary.simpleMessage("Dapatkan Kembali"),
-        "service_error": MessageLookupByLibrary.simpleMessage(
-            "Kesalahan permintaan layanan"),
+            MessageLookupByLibrary.simpleMessage("Mendapatkan kembali"),
+        "service_error":
+            MessageLookupByLibrary.simpleMessage("Kesalahan Layanan"),
         "shurushoujihao": MessageLookupByLibrary.simpleMessage(
-            "Masukkan nomor ponsel yang terverifikasi"),
+            "Masukkan nomor ponsel nama asli Anda"),
         "sms": MessageLookupByLibrary.simpleMessage("SMS"),
-        "soon_pay": MessageLookupByLibrary.simpleMessage("Harap segera bayar"),
-        "submit": MessageLookupByLibrary.simpleMessage("Kirim"),
-        "take_photo": MessageLookupByLibrary.simpleMessage("Ambil Foto"),
+        "soon_pay":
+            MessageLookupByLibrary.simpleMessage("Harap bayar secepatnya"),
+        "submit": MessageLookupByLibrary.simpleMessage("Kirimkan"),
+        "take_photo": MessageLookupByLibrary.simpleMessage("Mengambil Gambar"),
         "take_photo_from_gallery":
-            MessageLookupByLibrary.simpleMessage("Pilih dari Galeri"),
+            MessageLookupByLibrary.simpleMessage("Pilih dari Album"),
         "title100": MessageLookupByLibrary.simpleMessage(
-            "Setelah mendapatkan batas, hadiah dapat diperoleh."),
+            "Hadiah dapat diperoleh setelah kredit diperoleh"),
         "title200":
-            MessageLookupByLibrary.simpleMessage("Hingga 30 hari bebas bunga"),
-        "title300":
-            MessageLookupByLibrary.simpleMessage("Suku bunga tahunan minimum "),
-        "title400":
-            MessageLookupByLibrary.simpleMessage("Pencairan  lima menit"),
-        "title500": MessageLookupByLibrary.simpleMessage("Periksa batasmu"),
-        "title600": MessageLookupByLibrary.simpleMessage("Strategi Peminjaman"),
-        "title700":
-            MessageLookupByLibrary.simpleMessage("Ajukan dalam 3 menit"),
-        "title800": MessageLookupByLibrary.simpleMessage(
-            "Persetujuan pinjaman dalam 5 menit"),
+            MessageLookupByLibrary.simpleMessage("Bebas selama 30 hari"),
+        "title300": MessageLookupByLibrary.simpleMessage("Tahunan minimun"),
+        "title400": MessageLookupByLibrary.simpleMessage(
+            "Pencairan pinjaman hanya dalam 5 menit"),
+        "title500": MessageLookupByLibrary.simpleMessage("Periksa kuota"),
+        "title600": MessageLookupByLibrary.simpleMessage("Tips meminjam"),
+        "title700": MessageLookupByLibrary.simpleMessage("Aplikasi 3 menit"),
+        "title800": MessageLookupByLibrary.simpleMessage("Pinjaman 5 menit"),
         "title900": MessageLookupByLibrary.simpleMessage(
-            "Peminjaman dan Pembayaran yang Fleksibel"),
+            "Fleksibilitas untuk meminjam uang dan membayarnya kembali"),
         "unable_to_receive_the_verification_code":
             MessageLookupByLibrary.simpleMessage(
-                "Tidak menerima kode verifikasi?"),
-        "underReview": MessageLookupByLibrary.simpleMessage("Tinjau"),
-        "user_name":
-            MessageLookupByLibrary.simpleMessage("Nama Sesuai No Rekening"),
+                "Tidak bisa mendapatkan kode verifikasi"),
+        "underReview": MessageLookupByLibrary.simpleMessage("Sedang ditinjau"),
+        "user_name": MessageLookupByLibrary.simpleMessage("Nama"),
         "verification_code_sendto": MessageLookupByLibrary.simpleMessage(
-            "Kode verifikasi SMS telah dikirim ke"),
+            "Kode verifikasi SMS telah terkirim"),
         "verification_code_wrong":
-            MessageLookupByLibrary.simpleMessage("Kode verifikasi salah"),
-        "verified": MessageLookupByLibrary.simpleMessage("Terverifikasi"),
-        "view_contract": MessageLookupByLibrary.simpleMessage("Kontrak"),
+            MessageLookupByLibrary.simpleMessage("Kesalahan kode verifikasi"),
+        "verified": MessageLookupByLibrary.simpleMessage("Diverifikasi"),
+        "view_contract": MessageLookupByLibrary.simpleMessage("Lihat kontrak"),
         "welcome_you": MessageLookupByLibrary.simpleMessage("Selamat datang"),
         "work_information":
-            MessageLookupByLibrary.simpleMessage("Informasi Pekerjaan")
+            MessageLookupByLibrary.simpleMessage("Informasi pekerjaan")
       };
 }

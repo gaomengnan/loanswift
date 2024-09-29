@@ -24,7 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "agree_privacy": MessageLookupByLibrary.simpleMessage("同意"),
         "all": MessageLookupByLibrary.simpleMessage("所有"),
-        "app_name": MessageLookupByLibrary.simpleMessage("急用钱"),
+        "app_name": MessageLookupByLibrary.simpleMessage("pintek"),
         "auditFailure": MessageLookupByLibrary.simpleMessage("审核失败"),
         "authFailed": MessageLookupByLibrary.simpleMessage("认证失败，请重新尝试。"),
         "auto_repayment": MessageLookupByLibrary.simpleMessage("自动还款"),

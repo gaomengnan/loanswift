@@ -91,7 +91,7 @@ class MyApp extends StatelessWidget {
             listener: (context, state) {
               if (state is LogoutSuccess) {
                 //Navigator.of(context).pushNamed('/auth');
-                UI.showError(context, S.current.credit_login_expired);
+                //UI.showError(context, S.current.credit_login_expired);
                 Future.delayed(const Duration(milliseconds: 100), () {
                   navigatorKey.currentState?.pushNamedAndRemoveUntil(
                     '/auth',
