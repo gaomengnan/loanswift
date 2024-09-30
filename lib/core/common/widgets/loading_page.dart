@@ -10,6 +10,7 @@ class LoadingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //backgroundColor: Colors.grey.shade300,
         body: Container(
       constraints: const BoxConstraints.expand(),
       // decoration: const BoxDecoration(
@@ -21,9 +22,10 @@ class LoadingPage extends StatelessWidget {
       child: Center(
         child: SafeArea(
           child: Lottie.asset(
+            //reverse: true,
             Assets.loading,
-            height: 150.h,
-            width: 150.w,
+            height: 300.h,
+            width: 300.w,
           ),
         ),
       ),

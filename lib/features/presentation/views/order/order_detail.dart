@@ -10,6 +10,7 @@ import 'package:loanswift/core/core.dart';
 import 'package:loanswift/features/presentation/bloc/order/order_bloc.dart';
 import 'package:loanswift/features/presentation/views/order/event_card.dart';
 import 'package:loanswift/theme/theme.dart';
+import 'package:shimmer/shimmer.dart';
 
 class OrderDetail extends StatefulWidget {
   const OrderDetail({super.key});
@@ -148,15 +149,32 @@ class _OrderDetailState extends State<OrderDetail> {
                                   horizontal: 0,
                                 ),
                                 leading: UI.squareContainer(
-                                  Image(
+                                  CachedNetworkImage(
+                                    placeholder: (context, url) => Center(
+                                      child: Shimmer.fromColors(
+                                        baseColor: Colors.grey[300]!,
+                                        highlightColor: Colors.grey[100]!,
+                                        child: Container(
+                                          width: double.infinity,
+                                          height: 200.0,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                    imageUrl: succeed.orderDetail.productLogo,
                                     height: 40,
                                     width: 40,
                                     fit: BoxFit.cover,
-                                    image: CachedNetworkImageProvider(
-                                      succeed.orderDetail.productLogo,
-                                      errorListener: (p0) {},
-                                    ),
                                   ),
+                                  //Image(
+                                  //  height: 40,
+                                  //  width: 40,
+                                  //  fit: BoxFit.cover,
+                                  //  image: CachedNetworkImageProvider(
+                                  //    succeed.orderDetail.productLogo,
+                                  //    errorListener: (p0) {},
+                                  //  ),
+                                  //),
                                 ),
                                 title: RText(
                                   textAlign: TextAlign.start,
@@ -233,7 +251,7 @@ class _OrderDetailState extends State<OrderDetail> {
                         spacing: 10.w,
                         alignment: WrapAlignment.end,
                         children: [
-                          //TextButton(onPressed: () {}, child: RText(text: "更多",)),
+                          //TextButtdn(onPressed: () {}, child: RText(text: "更多",)),
                           if (succeed.orderDetail.orderStatus > 151 &&
                               succeed.orderDetail.orderStatus != 999)
                             OutlinedButton(

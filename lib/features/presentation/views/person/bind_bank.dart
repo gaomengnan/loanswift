@@ -56,6 +56,7 @@ class _BindBankState extends State<BindBank> {
     if (subscription != null) {
       subscription?.cancel();
     }
+    UI.hideLoading();
     super.dispose();
   }
 
