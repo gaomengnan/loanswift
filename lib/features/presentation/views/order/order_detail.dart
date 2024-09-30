@@ -136,9 +136,9 @@ class _OrderDetailState extends State<OrderDetail> {
                             Container(
                               margin: const EdgeInsets.all(10),
                               padding: const EdgeInsets.all(5),
-                              decoration: const BoxDecoration(
-                                color: Colors.black12,
-                                borderRadius: BorderRadius.all(
+                              decoration: BoxDecoration(
+                                color: Colors.grey.shade50,
+                                borderRadius: const BorderRadius.all(
                                   Radius.circular(10),
                                 ),
                               ),
@@ -224,16 +224,20 @@ class _OrderDetailState extends State<OrderDetail> {
                     alignment: Alignment.bottomCenter,
                     child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 10.w),
-                      decoration: BoxDecoration(color: Colors.grey.shade200),
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade200,
+                      ),
                       width: ScreenUtil().screenWidth,
                       height: 50.h,
                       child: Wrap(
                         spacing: 10.w,
                         alignment: WrapAlignment.end,
                         children: [
+                          //TextButton(onPressed: () {}, child: RText(text: "更多",)),
                           if (succeed.orderDetail.orderStatus > 151 &&
                               succeed.orderDetail.orderStatus != 999)
                             OutlinedButton(
+                              style: UI.orderButtonStyle(),
                               onPressed: () {
                                 Navigator.push(
                                   context,
@@ -246,10 +250,14 @@ class _OrderDetailState extends State<OrderDetail> {
                                   ),
                                 );
                               },
-                              child: RText(
-                                text: S.current.view_contract,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black,
+                              child: Text(
+                                S.current.view_contract,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 8.sp),
+                                //fontWeight: FontWeight.w500,
+                                //color: Colors.black,
                               ),
                             ),
                           if (succeed.orderDetail.orderStatus > 151 &&
@@ -257,6 +265,7 @@ class _OrderDetailState extends State<OrderDetail> {
                               succeed.orderDetail.orderStatus != 200 &&
                               succeed.orderDetail.isDelay == 1)
                             OutlinedButton(
+                              style: UI.orderButtonStyle(),
                               onPressed: () {
                                 Navigator.push(
                                   context,
@@ -269,16 +278,27 @@ class _OrderDetailState extends State<OrderDetail> {
                                   ),
                                 );
                               },
-                              child: RText(
-                                text: S.current.installment_repayment,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black,
+                              child: Text(
+                                S.current.installment_repayment,
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 8.sp,
+                                ),
+                                //fontWeight: FontWeight.w500,
+                                //color: Colors.black,
                               ),
                             ),
                           if (succeed.orderDetail.orderStatus > 151 &&
                               succeed.orderDetail.orderStatus != 999 &&
                               succeed.orderDetail.orderStatus != 200)
                             ElevatedButton(
+                              style: UI.orderButtonStyle().copyWith(
+                                    backgroundColor:
+                                        WidgetStateProperty.all<Color>(
+                                      Colors.red,
+                                    ),
+                                  ),
                               onPressed: () {
                                 // 处理按钮点击事件
                                 Navigator.push(
@@ -292,10 +312,13 @@ class _OrderDetailState extends State<OrderDetail> {
                                   ),
                                 );
                               },
-                              child: RText(
-                                text: S.current.normal_repayment,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500,
+                              child: Text(
+                                S.current.normal_repayment,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 9.sp,
+                                  fontWeight: FontWeight.w700,
+                                ),
                               ),
                             ),
                         ],

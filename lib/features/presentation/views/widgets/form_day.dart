@@ -34,8 +34,8 @@ class _FormDayFieldState extends State<FormDayField> {
     final DateTime? pickedDate = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2101),
+      firstDate: DateTime(1000),
+      lastDate: DateTime(3101),
     );
     if (pickedDate != null) {
       setState(() {

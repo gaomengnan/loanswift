@@ -70,7 +70,7 @@ class EventCard extends StatelessWidget {
                 right: 10.w,
               ),
               decoration: BoxDecoration(
-                color: Colors.grey.shade200,
+                color: Colors.grey.shade50,
                 borderRadius: BorderRadius.circular(5.0),
                 //border: Border.all(
                 //  color: Pallete.timelineNo,

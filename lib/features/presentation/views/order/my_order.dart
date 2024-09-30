@@ -84,11 +84,12 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
           S.current.load_amount,
         ),
         bottom: TabBar(
+          splashFactory: NoSplash.splashFactory,
           tabAlignment: TabAlignment.start,
           //labelPadding: EdgeInsets.all(0),
           dividerColor: Colors.transparent,
           indicatorColor: Colors.transparent,
-          indicator: null,
+          indicator: BoxDecoration(color: Colors.transparent),
           //indicatorColor: Pallete.primaryColor,
           labelColor: Pallete.blackColor,
           labelStyle: TextStyle(
@@ -128,7 +129,7 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
         UI.showError(context, state.error.error);
       }
 
-      if (state is OrderRefresh) {
+      if (state is OrderRefresh || state is OrderLoading) {
         UI.showLoading();
       } else {
         UI.hideLoading();

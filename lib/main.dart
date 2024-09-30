@@ -111,7 +111,7 @@ class MyApp extends StatelessWidget {
               // 设置国际化语言loan包
               localizationsDelegates: const [
                 S.delegate,
-                RefreshLocalizations.delegate,
+                //RefreshLocalizations.delegate,
                 GlobalMaterialLocalizations.delegate,
                 GlobalWidgetsLocalizations.delegate,
                 GlobalCupertinoLocalizations.delegate,

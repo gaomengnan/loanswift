@@ -22,8 +22,8 @@ class LoadingPage extends StatelessWidget {
         child: SafeArea(
           child: Lottie.asset(
             Assets.loading,
-            height: 90.h,
-            width: 90.w,
+            height: 150.h,
+            width: 150.w,
           ),
         ),
       ),

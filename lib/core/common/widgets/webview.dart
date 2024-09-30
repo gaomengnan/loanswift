@@ -66,9 +66,11 @@ class _WebViewComponentState extends State<WebViewComponent> {
       ..setNavigationDelegate(
         NavigationDelegate(
           onProgress: (int progress) {
-            setState(() {
-              loadingPercentage = progress / 100;
-            });
+            if (mounted) {
+              setState(() {
+                loadingPercentage = progress / 100;
+              });
+            }
             debugPrint('WebView is loading (progress : $progress%)');
           },
           onPageStarted: (String url) {

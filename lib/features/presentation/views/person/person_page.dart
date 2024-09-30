@@ -133,47 +133,91 @@ class _PersonPageState extends State<PersonPage> {
                     left: 5.0.w,
                     //bottom: 15,
                   ),
-                  title: ListTile(
-                    leading: const CircleAvatar(
-                      radius: 15,
-                      backgroundColor: Colors.blue,
-                      child: Icon(
-                        size: 25,
-                        Icons.person_rounded,
-                        color: Colors.white,
+                  title: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.w),
+                    child: GestureDetector(
+                      onTap: () {
+                        if (!isLogin) {
+                          Navigator.of(context).pushNamed(
+                            AuthPage.routerName,
+                          );
+                        } else {
+                          UI.showLogoutConfirmDialog(context, S.current.logout,
+                              S.current.logoutConfirmation, () {
+                            context.read<AuthBloc>().add(UserLogoutEvent());
+
+                            Navigator.of(context).pop();
+                          });
+                        }
+                      },
+                      child: Row(
+                        children: [
+                          const CircleAvatar(
+                            radius: 15,
+                            backgroundColor: Colors.blue,
+                            child: Icon(
+                              size: 25,
+                              Icons.person_rounded,
+                              color: Colors.white,
+                            ),
+                          ),
+                          UI.kWidth10(),
+                          RText(
+                            text: isLogin
+                                ? loginPhone
+                                : S.current.login_or_register,
+                            size: 14.sp,
+                            textAlign: TextAlign.start,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          const Icon(
+                            Icons.arrow_right,
+                          )
+                        ],
                       ),
                     ),
-                    //tileColor: Colors.orange,
-                    onTap: () {
-                      if (!isLogin) {
-                        Navigator.of(context).pushNamed(
-                          AuthPage.routerName,
-                        );
-                      } else {
-                        UI.showLogoutConfirmDialog(context, S.current.logout,
-                            S.current.logoutConfirmation, () {
-                          context.read<AuthBloc>().add(UserLogoutEvent());
-
-                          Navigator.of(context).pop();
-                        });
-                      }
-                    },
-                    title: Row(
-                      children: [
-                        RText(
-                          text: isLogin
-                              ? loginPhone
-                              : S.current.login_or_register,
-                          size: 14.sp,
-                          textAlign: TextAlign.start,
-                          fontWeight: FontWeight.w600,
-                        ),
-                        const Icon(
-                          Icons.arrow_right,
-                        )
-                      ],
-                    ),
                   ),
+                  //title: ListTile(
+                  //  leading: const CircleAvatar(
+                  //    radius: 15,
+                  //    backgroundColor: Colors.blue,
+                  //    child: Icon(
+                  //      size: 25,
+                  //      Icons.person_rounded,
+                  //      color: Colors.white,
+                  //    ),
+                  //  ),
+                  //  //tileColor: Colors.orange,
+                  //  onTap: () {
+                  //    if (!isLogin) {
+                  //      Navigator.of(context).pushNamed(
+                  //        AuthPage.routerName,
+                  //      );
+                  //    } else {
+                  //      UI.showLogoutConfirmDialog(context, S.current.logout,
+                  //          S.current.logoutConfirmation, () {
+                  //        context.read<AuthBloc>().add(UserLogoutEvent());
+                  //
+                  //        Navigator.of(context).pop();
+                  //      });
+                  //    }
+                  //  },
+                  //  title: Row(
+                  //    children: [
+                  //      RText(
+                  //        text: isLogin
+                  //            ? loginPhone
+                  //            : S.current.login_or_register,
+                  //        size: 14.sp,
+                  //        textAlign: TextAlign.start,
+                  //        fontWeight: FontWeight.w600,
+                  //      ),
+                  //      const Icon(
+                  //        Icons.arrow_right,
+                  //      )
+                  //    ],
+                  //  ),
+                  //),
                 ),
               ),
               SliverToBoxAdapter(

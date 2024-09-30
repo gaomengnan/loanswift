@@ -229,4 +229,27 @@ class UI {
       ),
     );
   }
+
+  static ButtonStyle orderButtonStyle() {
+    return OutlinedButton.styleFrom().copyWith(
+      minimumSize: WidgetStateProperty.all<Size>(
+        Size(
+          10.w,
+          30.h,
+        ),
+      ),
+      side: WidgetStateProperty.all<BorderSide>(
+        BorderSide(
+          width: 1,
+          color: Colors.black.withOpacity(0.1),
+        ),
+      ),
+      padding: WidgetStateProperty.all<EdgeInsets>(
+        EdgeInsets.symmetric(
+          //vertical: 10,
+          horizontal: 9.w,
+        ),
+      ),
+    );
+  }
 }
