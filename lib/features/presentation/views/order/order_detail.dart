@@ -252,32 +252,32 @@ class _OrderDetailState extends State<OrderDetail> {
                         alignment: WrapAlignment.end,
                         children: [
                           //TextButtdn(onPressed: () {}, child: RText(text: "更多",)),
-                          if (succeed.orderDetail.orderStatus > 151 &&
-                              succeed.orderDetail.orderStatus != 999)
-                            OutlinedButton(
-                              style: UI.orderButtonStyle(),
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => WebViewComponent(
-                                      url: succeed.orderDetail.jumpPath
-                                          .jumpByLoanContact,
-                                      title: S.current.view_contract,
-                                    ),
-                                  ),
-                                );
-                              },
-                              child: Text(
-                                S.current.view_contract,
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 8.sp),
-                                //fontWeight: FontWeight.w500,
-                                //color: Colors.black,
-                              ),
-                            ),
+                          //if (succeed.orderDetail.orderStatus > 151 &&
+                          //    succeed.orderDetail.orderStatus != 999)
+                          //  OutlinedButton(
+                          //    style: UI.orderButtonStyle(),
+                          //    onPressed: () {
+                          //      Navigator.push(
+                          //        context,
+                          //        MaterialPageRoute(
+                          //          builder: (context) => WebViewComponent(
+                          //            url: succeed.orderDetail.jumpPath
+                          //                .jumpByLoanContact,
+                          //            title: S.current.view_contract,
+                          //          ),
+                          //        ),
+                          //      );
+                          //    },
+                          //    child: Text(
+                          //      S.current.view_contract,
+                          //      style: TextStyle(
+                          //          color: Colors.black,
+                          //          fontWeight: FontWeight.w500,
+                          //          fontSize: 8.sp),
+                          //      //fontWeight: FontWeight.w500,
+                          //      //color: Colors.black,
+                          //    ),
+                          //  ),
                           if (succeed.orderDetail.orderStatus > 151 &&
                               succeed.orderDetail.orderStatus != 999 &&
                               succeed.orderDetail.orderStatus != 200 &&

@@ -19,7 +19,12 @@ class BuildBill extends StatelessWidget {
       (context, index) {
         final order = userOrder[index];
         return Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+          padding: EdgeInsets.only(
+            left: 20.w,
+            right: 20.w,
+            bottom: 20.h,
+            top: 5.h,
+          ),
           child: Container(
             padding: EdgeInsets.symmetric(
               horizontal: 20.w,

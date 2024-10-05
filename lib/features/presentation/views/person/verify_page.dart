@@ -73,6 +73,7 @@ class _VerifyPageState extends State<VerifyPage>
   void dispose() {
     _scrollController.dispose();
     _aniController.dispose();
+    UI.hideLoading();
     super.dispose();
   }
 

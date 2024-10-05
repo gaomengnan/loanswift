@@ -82,6 +82,7 @@ class _BuildBannerState extends State<BuildBanner> {
         left: 10.h,
         right: 10.h,
         bottom: 5.h,
+        top: 5.h,
       ),
       sliver: SliverToBoxAdapter(
         child: Column(
@@ -96,7 +97,7 @@ class _BuildBannerState extends State<BuildBanner> {
                 },
               ),
             ),
-            Space(height: 5.h, width: 0),
+            Space(height: 10.h, width: 0),
             SizedBox(
               height: 10,
               child: Wrap(

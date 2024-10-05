@@ -124,72 +124,92 @@ class _StateDialogState extends State<StateDialog>
                     buildItem(context, S.current.order_confirm_service_fee,
                         snap.data!.serviceFee.toString(),
                         isDescription: true, desc: snap.data!.serviceFeeDesc),
+
                     buildItem(context, S.current.order_confirm_interest_fee,
                         snap.data!.interestFee.toString()),
-                    buildItem(context, S.current.order_confirm_first_period_fee,
-                        snap.data!.firstPeriodInterest.toString()),
+
+                    //buildItem(context, S.current.order_confirm_first_period_fee,
+                    //    snap.data!.firstPeriodInterest.toString()),
+
                     buildItem(context, S.current.order_confirm_repay_amount,
                         snap.data!.repayAmount.toString()),
-                    buildItem(context, S.current.order_confirm_total_interest,
-                        snap.data!.totalInterest.toString()),
-                    buildItem(
-                        context,
-                        S.current.order_confirm_total_service_fee,
-                        snap.data!.totalServiceFee.toString()),
+
+                    //buildItem(context, S.current.order_confirm_total_interest,
+                    //    snap.data!.totalInterest.toString()),
+
+                    //buildItem(
+                    //    context,
+                    //    S.current.order_confirm_total_service_fee,
+                    //    snap.data!.totalServiceFee.toString()),
                     //buildItem(context, S.current.order_confirm_deduction_fee,
                     //    snap.data!.deductionFee.toString()),
-                    AnimatedSize(
-                      duration: const Duration(milliseconds: 50),
-                      curve: Curves.fastOutSlowIn,
-                      child: _isExpanded
-                          ? Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                buildItem(
-                                    context,
-                                    S.current.order_confirm_deduction_fee,
-                                    snap.data!.deductionFee.toString()),
-                                buildItem(
-                                    context,
-                                    S.current
-                                        .order_confirm_first_period_interest_fee,
-                                    snap.data!.firstPeriodInterestFee
-                                        .toString()),
-                                //buildItem(
-                                //    context,
-                                //    S.current
-                                //        .order_confirm_platform_management_fee,
-                                //    snap.data!.platformManagementFee
-                                //        .toString()),
-                                //buildItem(
-                                //    context,
-                                //    S.current.order_confirm_risk_service_fee,
-                                //    snap.data!.riskServiceFee.toString()),
-                                buildItem(
-                                    context,
-                                    S.current.order_confirm_actual_amount,
-                                    snap.data!.actualAmount.toString()),
-                                buildItem(
-                                    context,
-                                    S.current
-                                        .order_confirm_first_period_pay_time,
-                                    snap.data!.firstPeriodPayTime.toString()),
-                                buildItem(
-                                    context,
-                                    S.current.order_confirm_processing_fee,
-                                    snap.data!.processingFee.toString()),
-                                buildItem(
-                                    context,
-                                    S.current.order_confirm_gst_fee,
-                                    snap.data!.gstFee.toString()),
-                                buildItem(
-                                    context,
-                                    S.current.order_confirm_repayment_amount,
-                                    snap.data!.repaymentAmount.toString()),
-                              ],
-                            )
-                          : const SizedBox.shrink(),
-                    ),
+                    buildItem(
+                      context,
+                      S.current.order_confirm_actual_amount,
+                      snap.data!.actualAmount.toString()),
+
+                    buildItem(
+                      context,
+                      S.current
+                      .order_confirm_first_period_pay_time,
+                      snap.data!.firstPeriodPayTime.toString()),
+
+                    buildItem(
+                      context,
+                      S.current.order_confirm_repayment_amount,
+                      snap.data!.repaymentAmount.toString()),
+                    //AnimatedSize(
+                    //  duration: const Duration(milliseconds: 50),
+                    //  curve: Curves.fastOutSlowIn,
+                    //  child: _isExpanded
+                    //      ? Column(
+                    //          crossAxisAlignment: CrossAxisAlignment.start,
+                    //          children: [
+                    //            //buildItem(
+                    //            //    context,
+                    //            //    S.current.order_confirm_deduction_fee,
+                    //            //    snap.data!.deductionFee.toString()),
+                    //            //buildItem(
+                    //            //    context,
+                    //            //    S.current
+                    //            //        .order_confirm_first_period_interest_fee,
+                    //            //    snap.data!.firstPeriodInterestFee
+                    //            //        .toString()),
+                    //            //buildItem(
+                    //            //    context,
+                    //            //    S.current
+                    //            //        .order_confirm_platform_management_fee,
+                    //            //    snap.data!.platformManagementFee
+                    //            //        .toString()),
+                    //            //buildItem(
+                    //            //    context,
+                    //            //    S.current.order_confirm_risk_service_fee,
+                    //            //    snap.data!.riskServiceFee.toString()),
+                    //            //buildItem(
+                    //            //    context,
+                    //            //    S.current.order_confirm_actual_amount,
+                    //            //    snap.data!.actualAmount.toString()),
+                    //            //buildItem(
+                    //            //    context,
+                    //            //    S.current
+                    //            //        .order_confirm_first_period_pay_time,
+                    //            //    snap.data!.firstPeriodPayTime.toString()),
+                    //            //buildItem(
+                    //            //    context,
+                    //            //    S.current.order_confirm_processing_fee,
+                    //            //    snap.data!.processingFee.toString()),
+                    //            //buildItem(
+                    //            //    context,
+                    //            //    S.current.order_confirm_gst_fee,
+                    //            //    snap.data!.gstFee.toString()),
+                    //            //buildItem(
+                    //            //    context,
+                    //            //    S.current.order_confirm_repayment_amount,
+                    //            //    snap.data!.repaymentAmount.toString()),
+                    //          ],
+                    //        )
+                    //      : const SizedBox.shrink(),
+                    //),
                     TextButton(
                       onPressed: _toggleExpansion,
                       child: Row(

@@ -124,14 +124,13 @@ class _BuildSuggestionState extends State<BuildSuggestion>
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       ClipOval(
-                        child: Image(
+                        child: CachedNetworkImage(
                           height: 35.h,
                           fit: BoxFit.cover,
                           width: 35.w,
-                          image: CachedNetworkImageProvider(
-                            product.copywriterInfo.productDesc.logo,
-                            errorListener: (p0) {},
-                          ),
+                          imageUrl: product.copywriterInfo.productDesc.logo,
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.error),
                         ),
                       ),
                       UI.kWidth10(),
@@ -170,11 +169,8 @@ class _BuildSuggestionState extends State<BuildSuggestion>
                           productId: product.productId,
                           onOK: (ctx) {
                             bus.fire(TargetPointEvent(
-                              startTime,
-                              DateTime.now(),
-                              SceneType.applyPage,
-                              productCode: product.productId.toString()
-                            ));
+                                startTime, DateTime.now(), SceneType.applyPage,
+                                productCode: product.productId.toString()));
 
                             Navigator.pop(ctx);
                             context.read<HomeBloc>().add(HomeRefreshEvent());

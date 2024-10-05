@@ -164,12 +164,12 @@ Page resource error:
   }
 
   // 构建带参数的 URL
-  String _buildUrlWithParams(String baseUrl, Map<String, String> params) {
-    Uri uri = Uri.parse(baseUrl);
-    Uri newUri =
-        uri.replace(queryParameters: {...uri.queryParameters, ...params});
-    return newUri.toString();
-  }
+  //String _buildUrlWithParams(String baseUrl, Map<String, String> params) {
+  //  Uri uri = Uri.parse(baseUrl);
+  //  Uri newUri =
+  //      uri.replace(queryParameters: {...uri.queryParameters, ...params});
+  //  return newUri.toString();
+  //}
 
   Future<void> _canPop() async {
     final NavigatorState navigator = Navigator.of(context);

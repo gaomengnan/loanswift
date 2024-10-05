@@ -58,6 +58,7 @@ class _IdentifyVerifyPageState extends State<IdentifyVerifyPage> {
         value.dispose();
       },
     );
+    UI.hideLoading();
     super.dispose();
   }
 

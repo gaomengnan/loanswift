@@ -11,7 +11,6 @@ import 'package:loanswift/features/presentation/views/home/banner.dart';
 import 'package:loanswift/features/presentation/views/home/bill.dart';
 import 'package:loanswift/features/presentation/views/home/main.dart';
 import 'package:loanswift/features/presentation/views/home/suggestion.dart';
-import 'package:loanswift/theme/pallete.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class HomePage extends StatefulWidget {

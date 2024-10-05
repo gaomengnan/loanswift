@@ -34,6 +34,7 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
     pinController.dispose();
     focusNode.unfocus();
     focusNode.dispose();
+    UI.hideLoading();
     super.dispose();
   }
 

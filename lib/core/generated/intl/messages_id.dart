@@ -104,7 +104,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "logoutConfirmation": MessageLookupByLibrary.simpleMessage(
             "Apakah Anda yakin ingin keluar"),
         "maximun_load_sub_text": MessageLookupByLibrary.simpleMessage(
-            "Untuk 12 bulan, biaya pinjaman perhari dimulai dari 6%, tingkat suku bunga tahunan dimulai dari #rate#"),
+            "Pinjaman mulai dari Rp.800.000 dengan tenor 1bulan dan suku bunga mulai dari #rate#"),
         "maximun_load_text": MessageLookupByLibrary.simpleMessage(
             "Kuota setinggi-tingginya meminjam"),
         "maximun_load_text_unit":
@@ -215,9 +215,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Pilih dari Album"),
         "title100": MessageLookupByLibrary.simpleMessage(
             "Hadiah dapat diperoleh setelah kredit diperoleh"),
-        "title200":
-            MessageLookupByLibrary.simpleMessage("Bebas selama 30 hari"),
-        "title300": MessageLookupByLibrary.simpleMessage("Tahunan minimun"),
+        "title200": MessageLookupByLibrary.simpleMessage("Bebas selama 7 hari"),
+        "title300": MessageLookupByLibrary.simpleMessage(
+            "Suku bunga harian mulai dari"),
         "title400": MessageLookupByLibrary.simpleMessage(
             "Pencairan pinjaman hanya dalam 5 menit"),
         "title500": MessageLookupByLibrary.simpleMessage("Periksa kuota"),

@@ -86,7 +86,7 @@ class DioClient {
         //debugprint("DIO CLIENT ERROR: $e");
         return left(
           ServerFailure(
-            message: e.message ?? "",
+            message: e.error.toString(),
             statusCode: e.response?.statusCode ?? 0,
           ),
         );
@@ -139,7 +139,7 @@ class DioClient {
         //print("DIO CLIENT ERROR: $e");
         return left(
           ServerFailure(
-            message: e.message ?? '',
+            message: e.error.toString(),
             statusCode: e.response?.statusCode ?? 0,
           ),
         );

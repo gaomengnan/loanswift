@@ -24,6 +24,13 @@ class _PersonPageState extends State<PersonPage> {
   late ScrollController _scrollController;
   bool scrolled = false;
 
+
+  @override
+    void dispose() {
+      UI.hideLoading();
+      super.dispose();
+    }
+
   @override
   void initState() {
     super.initState();
@@ -34,6 +41,8 @@ class _PersonPageState extends State<PersonPage> {
       });
     });
   }
+
+
 
   Widget _buildIconButton(IconData icon, String label, Color color) {
     return Row(

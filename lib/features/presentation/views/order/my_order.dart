@@ -69,6 +69,7 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
     //_refreshController.dispose();
     _anicontroller.dispose();
     _scaleController.dispose();
+    UI.hideLoading();
     super.dispose();
   }
 
@@ -89,7 +90,7 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
           //labelPadding: EdgeInsets.all(0),
           dividerColor: Colors.transparent,
           indicatorColor: Colors.transparent,
-          indicator: BoxDecoration(color: Colors.transparent),
+          indicator: const BoxDecoration(color: Colors.transparent),
           //indicatorColor: Pallete.primaryColor,
           labelColor: Pallete.blackColor,
           labelStyle: TextStyle(
