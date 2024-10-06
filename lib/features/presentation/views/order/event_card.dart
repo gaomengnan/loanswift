@@ -74,7 +74,7 @@ class EventCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(5.0),
                 //border: Border.all(
                 //  color: Pallete.timelineNo,
-                  //width: 1,
+                //width: 1,
                 //),
               ),
               child: Column(
@@ -97,14 +97,14 @@ class EventCard extends StatelessWidget {
                     ),
                   ),
                   Divider(
-                    color: Colors.grey.shade50,
-                    ),
+                    color: Colors.grey.shade200,
+                  ),
                   Expanded(
                     flex: 2,
                     child: Container(
                       decoration: const BoxDecoration(
-                        //color: Colors.blueAccent,
-                      ),
+                          //color: Colors.blueAccent,
+                          ),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         //mainAxisAlignment: MainAxisAlignment.spaceBetween,
