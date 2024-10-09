@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:loanswift/features/domain/entity/user/certify.dart';
 import 'package:loanswift/features/presentation/views/widgets/face_recognition.dart';
 import 'package:loanswift/features/presentation/views/widgets/form_cascade.dart';
@@ -56,6 +57,7 @@ class BuildFormItem extends StatelessWidget {
           info: info,
           label: info.certifyFieldName,
           context: context,
+          imagePicker: ImagePicker(),
           onChanged: (s) async {
             if (onChanged != null) {
               onChanged!(s);
