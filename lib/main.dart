@@ -27,7 +27,9 @@ Future<void> main() async {
       ],
     );
     /*  INIT */
-    await initialize().then((_) {});
+    await initialize().then(
+      (_) {},
+    );
     //Worker().initial();
 
     await SentryFlutter.init(

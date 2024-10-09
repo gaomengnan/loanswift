@@ -30,7 +30,7 @@ class BuildMainEntry extends StatelessWidget {
     List<Map<String, dynamic>> districtFirst = [
       {
         "title": S.current.title200,
-        "icon_text": "30",
+        "icon_text": "7",
         "subtitle": "",
       },
       {

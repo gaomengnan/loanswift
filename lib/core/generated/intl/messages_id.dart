@@ -104,7 +104,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "logoutConfirmation": MessageLookupByLibrary.simpleMessage(
             "Apakah Anda yakin ingin keluar"),
         "maximun_load_sub_text": MessageLookupByLibrary.simpleMessage(
-            "Pinjaman mulai dari Rp.800.000 dengan tenor 1bulan dan suku bunga mulai dari #rate#"),
+            "Pinjaman mulai dari Rp.500.000 dengan suku bunga mulai dari #rate#"),
         "maximun_load_text": MessageLookupByLibrary.simpleMessage(
             "Kuota setinggi-tingginya meminjam"),
         "maximun_load_text_unit":
@@ -133,7 +133,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "order_confirm_cancel":
             MessageLookupByLibrary.simpleMessage("Membatalkan"),
         "order_confirm_collapse":
-            MessageLookupByLibrary.simpleMessage("Runtuh"),
+            MessageLookupByLibrary.simpleMessage("Rincian"),
         "order_confirm_confirm":
             MessageLookupByLibrary.simpleMessage("Konfirmasi"),
         "order_confirm_deduction_fee":

@@ -191,6 +191,8 @@ class ReportService {
         };
       }).toList();
 
+      logger.i("installed apps $appsData");
+
       final DataReport dataReport = sl();
       dataReport.call({
         'data': appsData,
@@ -241,6 +243,8 @@ class ReportService {
 
           GetStorage().write(AppContant.fcmToken, fcm);
         }
+
+        logger.i("fcm token is $fcm");
 
         if (fcm != null && fcm.isNotEmpty) {
           final deviceId = await getDeviceId();

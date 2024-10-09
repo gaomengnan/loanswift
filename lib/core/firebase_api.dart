@@ -1,7 +1,6 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:loanswift/main.dart';
 
-
 class FirebaseApi {
   // create Instance
 
@@ -34,7 +33,7 @@ class FirebaseApi {
   void onMessage(RemoteMessage? message) {
     if (message == null) return;
     navigatorKey.currentState?.pushNamed(
-      "/notification_page",
+      "/index",
       arguments: message,
     );
 
