@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:android_id/android_id.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
@@ -89,6 +90,8 @@ class ReportService {
   final network = NetworkInfo();
 
   final nativeConnector = NativeConnectorPlugin();
+
+  final AndroidId androidId = const AndroidId();
 
   Future<void> targetReport(
     DateTime startTime,
@@ -436,10 +439,13 @@ class ReportService {
     }
 
     final deviceInfo = await getDeviceDetails();
+    String deviceId = deviceInfo['deviceId'];
 
-    GetStorage().write(AppContant.deviceUUIDKy, deviceInfo['deviceId']);
+    GetStorage().write(AppContant.deviceUUIDKy, deviceId);
 
-    return Future.value(deviceInfo['deviceId']);
+    logger.i("device id $deviceId");
+
+    return Future.value(deviceId);
   }
 
   Future<Map<String, dynamic>> getDeviceDetails() async {
@@ -450,8 +456,10 @@ class ReportService {
       } else {
         //await Permission.storage.request();
         deviceData = switch (defaultTargetPlatform) {
-          TargetPlatform.android =>
-            _readAndroidBuildData(await deviceInfoPlg.androidInfo),
+          TargetPlatform.android => _readAndroidBuildData(
+              await androidId.getId() ?? 'unknow id',
+              await deviceInfoPlg.androidInfo,
+            ),
           TargetPlatform.iOS => _readIosDeviceInfo(await deviceInfoPlg.iosInfo),
           TargetPlatform.linux => <String, dynamic>{
               'Error:': 'Fuchsia platform isn\'t supported'
@@ -477,7 +485,8 @@ class ReportService {
     return Future.value(deviceData);
   }
 
-  static Map<String, dynamic> _readAndroidBuildData(AndroidDeviceInfo build) {
+  static Map<String, dynamic> _readAndroidBuildData(
+      String deviceId, AndroidDeviceInfo build) {
     return <String, dynamic>{
       'version.securityPatch': build.version.securityPatch,
       'version.sdkInt': build.version.sdkInt,
@@ -494,7 +503,7 @@ class ReportService {
       'fingerprint': build.fingerprint,
       'hardware': build.hardware,
       'host': build.host,
-      'deviceId': build.id,
+      'deviceId': deviceId,
       'manufacturer': build.manufacturer,
       'model': build.model,
       'product': build.product,
