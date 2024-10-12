@@ -8,6 +8,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/core.dart';
+import 'package:loanswift/core/firebase_analytics.dart';
 import 'package:loanswift/features/presentation/views/board/boarding_page.dart';
 import 'package:loanswift/theme/theme.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -61,6 +62,10 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+  // static FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+  // static FirebaseAnalyticsObserver observer = FirebaseAnalyticsObserver(
+  //   analytics: analytics,
+  // );
 
   @override
   Widget build(BuildContext context) {
@@ -109,6 +114,9 @@ class MyApp extends StatelessWidget {
             child: MaterialApp(
               builder: EasyLoading.init(),
               navigatorKey: navigatorKey,
+              navigatorObservers: [
+                FirebaseAnalyticsService.instance.observer,
+              ],
               debugShowCheckedModeBanner: false,
               // 设置国际化语言loan包
               localizationsDelegates: const [

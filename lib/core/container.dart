@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -218,15 +221,17 @@ Future<void> initialize() async {
     ..registerLazySingleton(() => TargetReport(repo: sl()));
 
   try {
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
-
-    await FirebaseApi().initNotifications();
-
     final ReportService service = sl();
 
-    service.fcmTokenReport();
+    if (Platform.isAndroid) {
+      await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      );
+
+      await FirebaseApi().initNotifications();
+
+      service.fcmTokenReport();
+    }
 
     await service.getDeviceId();
     //service.gpsReport();

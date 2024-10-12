@@ -39,7 +39,7 @@ dependencies:
     #   liveness_detection: ^x.y.z
     # See https://dart.dev/tools/pub/dependencies#version-constraints
     # The example app is bundled with the plugin so we use a path dependency on
-    # the parent directory to use the current plugin's version.
+    # the parent directory to use the current plugin's version.kk
     path: ../liveness_detection
 
   # The following adds the Cupertino Icons font to your application.
@@ -59,7 +59,11 @@ dependencies:
   dartz: ^0.10.1
   flutter_screenutil: ^5.9.0
   flutter_iconly: ^1.0.2
-  intl_phone_number_input: ^0.7.4
+  # intl_phone_number_input: ^0.7.4
+  intl_phone_number_input:
+    git:
+      url: https://github.com/Shahidbangash/intl_phone_number_input.git
+      ref: develop
   pinput: ^5.0.0
   auto_size_text: ^3.0.0
   get_it: ^7.6.7
@@ -91,6 +95,7 @@ dependencies:
   crypto: ^3.0.5
   logger: ^2.4.0
   android_id: ^0.4.0
+  firebase_analytics: ^10.10.7
   # event_bus: ^2.0.0
   # appcheck: ^1.5.2
 
