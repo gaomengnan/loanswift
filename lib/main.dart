@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -114,9 +115,11 @@ class MyApp extends StatelessWidget {
             child: MaterialApp(
               builder: EasyLoading.init(),
               navigatorKey: navigatorKey,
-              navigatorObservers: [
-                FirebaseAnalyticsService.instance.observer,
-              ],
+              navigatorObservers: Platform.isAndroid
+                  ? [
+                      FirebaseAnalyticsService.instance.observer,
+                    ]
+                  : [],
               debugShowCheckedModeBanner: false,
               // 设置国际化语言loan包
               localizationsDelegates: const [

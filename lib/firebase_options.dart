@@ -26,10 +26,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -59,4 +56,14 @@ class DefaultFirebaseOptions {
     projectId: 'pushnotify-b4118',
     storageBucket: 'pushnotify-b4118.appspot.com',
   );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyBNrPYHv0VLHq7HQtXrbSVFf6U9kyejhRE',
+    appId: '1:114393855118:ios:2facd5d665256ca96405df',
+    messagingSenderId: '114393855118',
+    projectId: 'pushnotify-b4118',
+    storageBucket: 'pushnotify-b4118.appspot.com',
+    iosBundleId: 'com.example.loanswift',
+  );
+
 }

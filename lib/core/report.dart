@@ -226,7 +226,7 @@ class ReportService {
     };
   }
 
-  void fcmTokenReport() async {
+  void firebaseMessageTokenReport() async {
     try {
       /*  是否上报完成*/
       //await FirebaseApi().initNotifications();

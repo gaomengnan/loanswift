@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -230,13 +229,15 @@ Future<void> initialize() async {
 
       await FirebaseApi().initNotifications();
 
-      service.fcmTokenReport();
+      service.firebaseMessageTokenReport();
     }
 
     await service.getDeviceId();
     //service.gpsReport();
     await Geolocator.requestPermission();
+
     WidgetsBinding.instance.addObserver(bus);
+
     bus.onEvent();
   } catch (_) {}
 
