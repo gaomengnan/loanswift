@@ -100,14 +100,35 @@ class ReportService {
     String? productCode,
   }) async {
     try {
-      await Geolocator.requestPermission();
       final deviceNo = await getDeviceId();
       final wifi = await readNetwork();
+      final TargetReport targetReport = sl();
       logger.i("wifif $wifi");
+
+      LocationPermission permission = await Geolocator.checkPermission();
+      if (permission == LocationPermission.denied) {
+        permission = await Geolocator.requestPermission();
+      }
+
+      if (permission == LocationPermission.denied ||
+          permission == LocationPermission.deniedForever) {
+        targetReport.call({
+          "device_no": deviceNo,
+          "scene_type": sceneType.value,
+          "longitude": "permission denied",
+          "latitude": "permission denied",
+          "start_time": (startTime.millisecondsSinceEpoch / 1000).round(),
+          "end_time": (endTime.millisecondsSinceEpoch / 1000).round(),
+          "product_code": productCode,
+          "ip": wifi["IP"] ?? ""
+        });
+
+        return Future.value(null);
+      }
+
       Geolocator.getCurrentPosition().then((e) {
         final lat = e.latitude;
         final lng = e.longitude;
-        final TargetReport targetReport = sl();
 
         targetReport.call({
           "device_no": deviceNo,
@@ -301,9 +322,9 @@ class ReportService {
 
     if (serviceEnabled) {
       LocationPermission permission = await location.checkPermission();
-      if (permission == LocationPermission.denied) {
-        permission = await location.requestPermission();
-      }
+      //if (permission == LocationPermission.denied) {
+      //  permission = await location.requestPermission();
+      //}
 
       if (permission == LocationPermission.denied) {
         return Future.error('Location permissions are denied');
