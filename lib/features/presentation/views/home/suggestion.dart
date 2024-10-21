@@ -175,7 +175,18 @@ class _BuildSuggestionState extends State<BuildSuggestion>
                             Navigator.pop(ctx);
                             context.read<HomeBloc>().add(HomeRefreshEvent());
                           },
-                          onCancel: () => Navigator.pop(context),
+                          onCancel: () {
+                            showRetainDialog(
+                              context,
+                              onOK: (context) {
+                                Navigator.pop(context);
+                              },
+                              onCancel: () {
+                                Navigator.pop(context);
+                                Navigator.pop(context);
+                              },
+                            );
+                          },
                         );
                       }
                       //if (isButnDisabled) {

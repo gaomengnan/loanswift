@@ -41,10 +41,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "click_to_access":
             MessageLookupByLibrary.simpleMessage("Klik untuk mengotorisasi"),
         "completed": MessageLookupByLibrary.simpleMessage("Diselesaikan"),
+        "compliant_platform":
+            MessageLookupByLibrary.simpleMessage("Platform sesuai aturan"),
         "confirm": MessageLookupByLibrary.simpleMessage("Konfirmasi"),
         "congratulations_verified":
             MessageLookupByLibrary.simpleMessage("Selamat diverifikasi"),
         "contact": MessageLookupByLibrary.simpleMessage("Daftar Kontak"),
+        "continue_to_apply":
+            MessageLookupByLibrary.simpleMessage("Lanjutkan Pemintaan"),
         "credit_failure":
             MessageLookupByLibrary.simpleMessage("Kegagalan kredit"),
         "credit_fetching_result":
@@ -53,15 +57,27 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Login kredit berakhir"),
         "credit_success":
             MessageLookupByLibrary.simpleMessage("Keberhasilan kredit"),
+        "cruelly_reject":
+            MessageLookupByLibrary.simpleMessage("Tolak dengan Kejam"),
+        "daily_interest": MessageLookupByLibrary.simpleMessage("Bunga harian"),
         "due_date": MessageLookupByLibrary.simpleMessage("Tanggal jatuh tempo"),
+        "easy_to_use": MessageLookupByLibrary.simpleMessage("Mudah digunakan"),
         "emergency_contact":
             MessageLookupByLibrary.simpleMessage("Kontak darurat"),
         "enter_verification_code": MessageLookupByLibrary.simpleMessage(
             "Silakan masukkan kode verifikasi"),
         "errorPhone": MessageLookupByLibrary.simpleMessage(
             "Masukkan nomor ponsel yang benar"),
+        "everyone_says":
+            MessageLookupByLibrary.simpleMessage("Semua orang berkata"),
         "exclusive": MessageLookupByLibrary.simpleMessage("Eksklusif"),
+        "fast_approval":
+            MessageLookupByLibrary.simpleMessage("Persetujuan cepat"),
+        "fast_disbursement":
+            MessageLookupByLibrary.simpleMessage("Pencairan cepat"),
         "feedback": MessageLookupByLibrary.simpleMessage("Umpan balik"),
+        "flexible_repayment":
+            MessageLookupByLibrary.simpleMessage("Pembayaran fleksibel"),
         "free_concession": MessageLookupByLibrary.simpleMessage("Tarif diskon"),
         "get_credit_limit":
             MessageLookupByLibrary.simpleMessage("Mendapatkan batas kredit"),
@@ -185,12 +201,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "phone_number": MessageLookupByLibrary.simpleMessage("Nomor telepon"),
         "photo_permission_missing": MessageLookupByLibrary.simpleMessage(
             "Gagal mendapatkan hak istimewa kamera"),
+        "please_ask": MessageLookupByLibrary.simpleMessage(
+            "Dapatkan segera suku bunga rendah"),
         "please_select": MessageLookupByLibrary.simpleMessage("Silakan pilih"),
         "please_select_bank":
             MessageLookupByLibrary.simpleMessage("Silakan pilih bank"),
         "previousStep":
             MessageLookupByLibrary.simpleMessage("Langkah sebelumnya"),
         "privacy": MessageLookupByLibrary.simpleMessage("Kebijakan Privasi"),
+        "privacy_security":
+            MessageLookupByLibrary.simpleMessage("Privasi dan keamanan"),
         "quick_deposit":
             MessageLookupByLibrary.simpleMessage("Penagihan cepat"),
         "read_privacy": MessageLookupByLibrary.simpleMessage("Silakan baca"),
@@ -238,6 +258,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "verified": MessageLookupByLibrary.simpleMessage("Diverifikasi"),
         "view_contract": MessageLookupByLibrary.simpleMessage("Lihat kontrak"),
         "welcome_you": MessageLookupByLibrary.simpleMessage("Selamat datang"),
+        "whether_abandon_benefits": MessageLookupByLibrary.simpleMessage(
+            "segera lakukan pengajuan, untuk mendapatkan potongan bunga dan potongan lainnya?"),
         "work_information":
             MessageLookupByLibrary.simpleMessage("Informasi pekerjaan")
       };

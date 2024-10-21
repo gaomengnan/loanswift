@@ -137,5 +137,17 @@
   "order_confirm_confirm": "确认",
   "order_confirm_repayment_plan": "还款计划",
   "order_success": "下单成功",
-  "authFailed": "认证失败，请重新尝试。"
+  "authFailed": "认证失败，请重新尝试。",
+  "please_ask": "请问您",
+  "whether_abandon_benefits": "是否要放弃以下福利?",
+  "everyone_says": "大家都说:",
+   "easy_to_use": "操作简单",
+  "fast_approval": "审批快",
+  "flexible_repayment": "还款灵活",
+  "daily_interest": "按日计息",
+  "fast_disbursement": "放款快",
+  "compliant_platform": "合规平台",
+  "privacy_security": "隐私安全",
+  "continue_to_apply": "继续申请",
+  "cruelly_reject": "残忍拒绝"
 }

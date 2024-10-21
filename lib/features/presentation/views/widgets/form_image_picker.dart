@@ -134,6 +134,7 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
                         final pickedFiles = await imagePicker.pickImage(
                           source: ImageSource.camera,
                           maxWidth: 600,
+                          imageQuality: 90,
                         );
 
                         //Navigator.push(

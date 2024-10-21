@@ -134,5 +134,17 @@
   "order_confirm_confirm": "Konfirmasi",
   "order_confirm_repayment_plan": "Rencana pembayaran kembali",
   "order_success": "Pesanan Berhasil",
-  "authFailed": "Auth gagal"
+  "authFailed": "Auth gagal",
+  "please_ask": "Dapatkan segera suku bunga rendah",
+  "whether_abandon_benefits": "segera lakukan pengajuan, untuk mendapatkan potongan bunga dan potongan lainnya?",
+  "everyone_says": "Semua orang berkata",
+   "easy_to_use": "Mudah digunakan",
+  "fast_approval": "Persetujuan cepat",
+  "flexible_repayment": "Pembayaran fleksibel",
+  "daily_interest": "Bunga harian",
+  "fast_disbursement": "Pencairan cepat",
+  "compliant_platform": "Platform sesuai aturan",
+  "privacy_security": "Privasi dan keamanan",
+  "continue_to_apply": "Lanjutkan Pemintaan",
+  "cruelly_reject": "Tolak dengan Kejam"
 }

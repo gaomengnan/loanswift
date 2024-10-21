@@ -16,10 +16,10 @@ import 'package:shimmer/shimmer.dart';
 import '../../../../core/common/widgets/widgets.dart';
 import '../../../../theme/theme.dart';
 
-class BuildMainEntry extends StatelessWidget {
+class BuildMainProductEntry extends StatelessWidget {
   final MainProducts mainProducts;
   final Rules rule;
-  const BuildMainEntry({
+  const BuildMainProductEntry({
     super.key,
     required this.mainProducts,
     required this.rule,
@@ -299,7 +299,8 @@ class BuildMainEntry extends StatelessWidget {
                                         startTime,
                                         DateTime.now(),
                                         SceneType.applyPage,
-                                        productCode: mainProducts.productId.toString(),
+                                        productCode:
+                                            mainProducts.productId.toString(),
                                       ),
                                     );
 
@@ -308,7 +309,17 @@ class BuildMainEntry extends StatelessWidget {
                                         .read<HomeBloc>()
                                         .add(HomeRefreshEvent());
                                   }, onCancel: () {
-                                    Navigator.pop(context);
+                                    showRetainDialog(
+                                      context,
+                                      onOK: (context) {
+                                        Navigator.pop(context);
+                                      },
+                                      onCancel: () {
+                                        Navigator.pop(context);
+                                        Navigator.pop(context);
+                                      },
+                                    );
+                                    //Navigator.pop(context);
                                   });
                                 }
                               },

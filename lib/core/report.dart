@@ -103,32 +103,35 @@ class ReportService {
       final deviceNo = await getDeviceId();
       final wifi = await readNetwork();
       final TargetReport targetReport = sl();
-      logger.i("wifif $wifi");
 
-      LocationPermission permission = await Geolocator.checkPermission();
-      if (permission == LocationPermission.denied) {
-        permission = await Geolocator.requestPermission();
-      }
+      //LocationPermission permission = await Geolocator.checkPermission();
+      //if (permission == LocationPermission.denied) {
+      //  permission = await Geolocator.requestPermission();
+      //}
+      //
+      //if (permission == LocationPermission.denied ||
+      //    permission == LocationPermission.deniedForever) {
+      //  targetReport.call({
+      //    "device_no": deviceNo,
+      //    "scene_type": sceneType.value,
+      //    "longitude": "permission denied",
+      //    "latitude": "permission denied",
+      //    "start_time": (startTime.millisecondsSinceEpoch / 1000).round(),
+      //    "end_time": (endTime.millisecondsSinceEpoch / 1000).round(),
+      //    "product_code": productCode,
+      //    "ip": wifi["IP"] ?? ""
+      //  });
+      //
+      //  return Future.value(null);
+      //}
 
-      if (permission == LocationPermission.denied ||
-          permission == LocationPermission.deniedForever) {
-        targetReport.call({
-          "device_no": deviceNo,
-          "scene_type": sceneType.value,
-          "longitude": "permission denied",
-          "latitude": "permission denied",
-          "start_time": (startTime.millisecondsSinceEpoch / 1000).round(),
-          "end_time": (endTime.millisecondsSinceEpoch / 1000).round(),
-          "product_code": productCode,
-          "ip": wifi["IP"] ?? ""
-        });
-
-        return Future.value(null);
-      }
-
-      Geolocator.getCurrentPosition().then((e) {
-        final lat = e.latitude;
-        final lng = e.longitude;
+      getLocation().then((e) {
+        double lat = 0;
+        double lng = 0;
+        if (e != null) {
+          lat = e.latitude;
+          lng = e.longitude;
+        }
 
         targetReport.call({
           "device_no": deviceNo,
@@ -308,65 +311,71 @@ class ReportService {
   }
 
   Future<bool> gpsReport() async {
-    final location = GeolocatorPlatform.instance;
+    //final location = GeolocatorPlatform.instance;
+    //
+    //bool serviceEnabled = await location.isLocationServiceEnabled();
+    //
+    //if (!serviceEnabled) {
+    //  if (!serviceEnabled) {
+    //    if (!serviceEnabled) {
+    //      return Future.value(false);
+    //    }
+    //  }
+    //}
 
-    bool serviceEnabled = await location.isLocationServiceEnabled();
+    //if (serviceEnabled) {
+    //LocationPermission permission = await location.checkPermission();
+    ////if (permission == LocationPermission.denied) {
+    ////  permission = await location.requestPermission();
+    ////}
+    //
+    //if (permission == LocationPermission.denied) {
+    //  return Future.error('Location permissions are denied');
+    //}
+    //
+    //if (permission == LocationPermission.deniedForever) {
+    //  // 权限被永久拒绝
+    //  return Future.error(
+    //      'Location permissions are permanently denied, we cannot request permissions.');
+    //}
 
-    if (!serviceEnabled) {
-      if (!serviceEnabled) {
-        if (!serviceEnabled) {
-          return Future.value(false);
-        }
+    getLocation().then((resp) async {
+      // 获取 deviceId
+      final deviceInf = await getDeviceDetails();
+
+      // package info
+
+      final packageInfo = await getPackageInfo();
+      Dio dio = Dio(BaseOptions(baseUrl: Environment.baseUrl));
+      dio.interceptors.add(DioInterceptor());
+
+      /* GEOENCODING */
+      ///*   DO HTT PREPORT */
+      double lat = 0;
+      double lng = 0;
+      if (resp != null) {
+        lat = resp.latitude;
+        lng = resp.longitude;
       }
-    }
-
-    if (serviceEnabled) {
-      LocationPermission permission = await location.checkPermission();
-      //if (permission == LocationPermission.denied) {
-      //  permission = await location.requestPermission();
-      //}
-
-      if (permission == LocationPermission.denied) {
-        return Future.error('Location permissions are denied');
-      }
-
-      if (permission == LocationPermission.deniedForever) {
-        // 权限被永久拒绝
-        return Future.error(
-            'Location permissions are permanently denied, we cannot request permissions.');
-      }
-
-      location.getCurrentPosition().then((resp) async {
-        // 获取 deviceId
-        final deviceInf = await getDeviceDetails();
-
-        // package info
-
-        final packageInfo = await getPackageInfo();
-        Dio dio = Dio(BaseOptions(baseUrl: Environment.baseUrl));
-        dio.interceptors.add(DioInterceptor());
-
-        /* GEOENCODING */
-        ///*   DO HTT PREPORT */
-        final params = ReportgpsParams(
-          latitude: resp.latitude,
-          longitude: resp.longitude,
-          addressDistinct: '',
-          clientType: "android",
-          appVersion: packageInfo.version,
-          deviceId: deviceInf['deviceId'] ?? '',
-          deviceName: deviceInf['model'] ?? '',
-          osVersion: deviceInf['osVersion'] ?? '',
-          appName: packageInfo.appName,
-          packageId: packageInfo.packageName,
-        );
-        final Reportgps reportgps = sl();
-        await reportgps.call(params);
-      });
-      //return right(resp);
-      return Future.value(true);
-    }
-    return Future.value(false);
+      final params = ReportgpsParams(
+        latitude: lat,
+        longitude: lng,
+        addressDistinct: '',
+        clientType: "android",
+        appVersion: packageInfo.version,
+        deviceId: deviceInf['deviceId'] ?? '',
+        deviceName: deviceInf['model'] ?? '',
+        osVersion: deviceInf['osVersion'] ?? '',
+        appName: packageInfo.appName,
+        packageId: packageInfo.packageName,
+      );
+      final Reportgps reportgps = sl();
+      await reportgps.call(params);
+    });
+    //return right(resp);
+    return Future.value(true);
+    //}
+    //return Future.value(false);
 
     //return Future.error(
     //'Location permissions are permanently denied, we cannot request permissions.');
@@ -575,6 +584,41 @@ class ReportService {
       'utsname.version': data.utsname.version,
       'utsname.machine': data.utsname.machine,
     };
+  }
+
+  Future<Position?> getLocation() async {
+    Position? pos;
+
+    final location = GeolocatorPlatform.instance;
+
+    bool serviceEnabled = await location.isLocationServiceEnabled();
+
+    if (!serviceEnabled) {
+      return pos;
+    }
+
+    LocationPermission permission = await location.checkPermission();
+
+    if (permission == LocationPermission.denied) {
+      return pos;
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      return pos;
+    }
+
+    try {
+      pos = await location.getCurrentPosition(
+        locationSettings: const LocationSettings(
+          accuracy: LocationAccuracy.medium,
+          timeLimit: Duration(seconds: 10),
+        ),
+      );
+    } catch (e) {
+      logger.e('Error getting location: $e');
+      pos = await location.getLastKnownPosition();
+    }
+    return pos;
   }
   // 上报fcmtoken
 }

@@ -118,7 +118,15 @@ class _BindBankState extends State<BindBank> {
             nav.pushReplacementNamed(IndexPage.routerName);
             //nav.pushReplacementNamed(context, IndexPage.routerName);
           }, onCancel: () {
-            Navigator.pushReplacementNamed(context, IndexPage.routerName);
+            showRetainDialog(
+              context,
+              onOK: (context) {
+                Navigator.pop(context);
+              },
+              onCancel: () {
+                Navigator.pushReplacementNamed(context, IndexPage.routerName);
+              },
+            );
           });
         }
 

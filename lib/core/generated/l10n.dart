@@ -1399,6 +1399,126 @@ class S {
       args: [],
     );
   }
+
+  /// `请问您`
+  String get please_ask {
+    return Intl.message(
+      '请问您',
+      name: 'please_ask',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `是否要放弃以下福利?`
+  String get whether_abandon_benefits {
+    return Intl.message(
+      '是否要放弃以下福利?',
+      name: 'whether_abandon_benefits',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `大家都说:`
+  String get everyone_says {
+    return Intl.message(
+      '大家都说:',
+      name: 'everyone_says',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `操作简单`
+  String get easy_to_use {
+    return Intl.message(
+      '操作简单',
+      name: 'easy_to_use',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `审批快`
+  String get fast_approval {
+    return Intl.message(
+      '审批快',
+      name: 'fast_approval',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `还款灵活`
+  String get flexible_repayment {
+    return Intl.message(
+      '还款灵活',
+      name: 'flexible_repayment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `按日计息`
+  String get daily_interest {
+    return Intl.message(
+      '按日计息',
+      name: 'daily_interest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `放款快`
+  String get fast_disbursement {
+    return Intl.message(
+      '放款快',
+      name: 'fast_disbursement',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `合规平台`
+  String get compliant_platform {
+    return Intl.message(
+      '合规平台',
+      name: 'compliant_platform',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `隐私安全`
+  String get privacy_security {
+    return Intl.message(
+      '隐私安全',
+      name: 'privacy_security',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `继续申请`
+  String get continue_to_apply {
+    return Intl.message(
+      '继续申请',
+      name: 'continue_to_apply',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `残忍拒绝`
+  String get cruelly_reject {
+    return Intl.message(
+      '残忍拒绝',
+      name: 'cruelly_reject',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

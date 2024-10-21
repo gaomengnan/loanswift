@@ -137,6 +137,18 @@
   "order_confirm_confirm": "Confirm",
   "order_confirm_repayment_plan": "Repayment Plan",
   "order_success": "Order Success",
-  "authFailed": "Authentication failed, please try again."
+  "authFailed": "Authentication failed, please try again.",
+  "please_ask": "May I ask",
+  "whether_abandon_benefits": "whether you want to abandon the following benefits?",
+  "everyone_says": "Everyone says:",
+  "easy_to_use": "Easy to use",
+  "fast_approval": "Fast approval",
+  "flexible_repayment": "Flexible repayment",
+  "daily_interest": "Daily interest",
+  "fast_disbursement": "Fast disbursement",
+  "compliant_platform": "Compliant platform",
+  "privacy_security": "Privacy and security",
+  "continue_to_apply": "Continue to Apply",
+  "cruelly_reject": "Cruelly Reject"
 }
 

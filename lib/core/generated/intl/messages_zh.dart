@@ -37,22 +37,31 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancel": MessageLookupByLibrary.simpleMessage("取消"),
         "click_to_access": MessageLookupByLibrary.simpleMessage("点击授权"),
         "completed": MessageLookupByLibrary.simpleMessage("已完成"),
+        "compliant_platform": MessageLookupByLibrary.simpleMessage("合规平台"),
         "confirm": MessageLookupByLibrary.simpleMessage("确定"),
         "congratulations_verified":
             MessageLookupByLibrary.simpleMessage("恭喜您已经认证成功"),
         "contact": MessageLookupByLibrary.simpleMessage("联系人列表"),
+        "continue_to_apply": MessageLookupByLibrary.simpleMessage("继续申请"),
         "credit_failure": MessageLookupByLibrary.simpleMessage("授信失败"),
         "credit_fetching_result":
             MessageLookupByLibrary.simpleMessage("获取授信结果中"),
         "credit_login_expired": MessageLookupByLibrary.simpleMessage("登录失效"),
         "credit_success": MessageLookupByLibrary.simpleMessage("授信成功"),
+        "cruelly_reject": MessageLookupByLibrary.simpleMessage("残忍拒绝"),
+        "daily_interest": MessageLookupByLibrary.simpleMessage("按日计息"),
         "due_date": MessageLookupByLibrary.simpleMessage("到期日"),
+        "easy_to_use": MessageLookupByLibrary.simpleMessage("操作简单"),
         "emergency_contact": MessageLookupByLibrary.simpleMessage("紧急联系人"),
         "enter_verification_code":
             MessageLookupByLibrary.simpleMessage("请输入验证码"),
         "errorPhone": MessageLookupByLibrary.simpleMessage("请输入正确手机号码"),
+        "everyone_says": MessageLookupByLibrary.simpleMessage("大家都说:"),
         "exclusive": MessageLookupByLibrary.simpleMessage("优质专享"),
+        "fast_approval": MessageLookupByLibrary.simpleMessage("审批快"),
+        "fast_disbursement": MessageLookupByLibrary.simpleMessage("放款快"),
         "feedback": MessageLookupByLibrary.simpleMessage("意见反馈"),
+        "flexible_repayment": MessageLookupByLibrary.simpleMessage("还款灵活"),
         "free_concession": MessageLookupByLibrary.simpleMessage("费率优惠"),
         "get_credit_limit": MessageLookupByLibrary.simpleMessage("获取额度"),
         "go_bind_bank_card": MessageLookupByLibrary.simpleMessage("去绑定银行卡"),
@@ -146,10 +155,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "phone_number": MessageLookupByLibrary.simpleMessage("手机号码"),
         "photo_permission_missing":
             MessageLookupByLibrary.simpleMessage("相机权限获取失败"),
+        "please_ask": MessageLookupByLibrary.simpleMessage("请问您"),
         "please_select": MessageLookupByLibrary.simpleMessage("请选择一个选项"),
         "please_select_bank": MessageLookupByLibrary.simpleMessage("请选择银行"),
         "previousStep": MessageLookupByLibrary.simpleMessage("上一步"),
         "privacy": MessageLookupByLibrary.simpleMessage("隐私政策"),
+        "privacy_security": MessageLookupByLibrary.simpleMessage("隐私安全"),
         "quick_deposit": MessageLookupByLibrary.simpleMessage("快速到账"),
         "read_privacy": MessageLookupByLibrary.simpleMessage("请阅读"),
         "real_authentication": MessageLookupByLibrary.simpleMessage("实名认证"),
@@ -185,6 +196,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "verified": MessageLookupByLibrary.simpleMessage("已认证"),
         "view_contract": MessageLookupByLibrary.simpleMessage("查看合同"),
         "welcome_you": MessageLookupByLibrary.simpleMessage("欢迎你"),
+        "whether_abandon_benefits":
+            MessageLookupByLibrary.simpleMessage("是否要放弃以下福利?"),
         "work_information": MessageLookupByLibrary.simpleMessage("工作信息")
       };
 }

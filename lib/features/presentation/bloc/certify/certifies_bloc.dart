@@ -130,9 +130,14 @@ class CertifiesBloc extends Bloc<CertifiesEvent, CertifiesState> {
     DateTime? startTime;
 
     if (!state.cerfityStep.isFirstStep) {
-      final st = GetStorage().read<String>(key);
+      String? st = GetStorage().read<String>(key);
       if (st != null) {
         startTime = DateTime.fromMillisecondsSinceEpoch(int.parse(st) * 1000);
+      } else {
+        st = GetStorage().read<String>(AppContant.appCertifyIntoTimeKey);
+        if (st != null) {
+          startTime = DateTime.fromMillisecondsSinceEpoch(int.parse(st) * 1000);
+        }
       }
       //sceneType = SceneType.personalInfo;
     }
@@ -193,6 +198,8 @@ class CertifiesBloc extends Bloc<CertifiesEvent, CertifiesState> {
           }
           break;
         }
+        GetStorage().write(AppContant.appCertifyIntoTimeKey,
+            (DateTime.now().millisecondsSinceEpoch / 1000).round().toString());
 
         emit(
           CertifiesSettingsLoadSuccess(

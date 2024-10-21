@@ -42,6 +42,7 @@ class RText extends StatelessWidget {
         borderRadius: BorderRadius.circular(10.sp),
       ),
       child: AutoSizeText(
+        textScaleFactor: 1.0,
         text,
         textAlign: textAlign,
         maxLines: maxLines,

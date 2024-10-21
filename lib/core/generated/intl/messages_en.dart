@@ -38,10 +38,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "click_to_access":
             MessageLookupByLibrary.simpleMessage("Click to access"),
         "completed": MessageLookupByLibrary.simpleMessage("Done"),
+        "compliant_platform":
+            MessageLookupByLibrary.simpleMessage("Compliant platform"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "congratulations_verified": MessageLookupByLibrary.simpleMessage(
             "Congratulations, you have been successfully verified"),
         "contact": MessageLookupByLibrary.simpleMessage("Contact List"),
+        "continue_to_apply":
+            MessageLookupByLibrary.simpleMessage("Continue to Apply"),
         "credit_failure":
             MessageLookupByLibrary.simpleMessage("Credit granting failed"),
         "credit_fetching_result":
@@ -50,15 +54,26 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Login expired"),
         "credit_success":
             MessageLookupByLibrary.simpleMessage("Credit granted successfully"),
+        "cruelly_reject":
+            MessageLookupByLibrary.simpleMessage("Cruelly Reject"),
+        "daily_interest":
+            MessageLookupByLibrary.simpleMessage("Daily interest"),
         "due_date": MessageLookupByLibrary.simpleMessage("Due Date"),
+        "easy_to_use": MessageLookupByLibrary.simpleMessage("Easy to use"),
         "emergency_contact":
             MessageLookupByLibrary.simpleMessage("Emergency Contact"),
         "enter_verification_code":
             MessageLookupByLibrary.simpleMessage("Enter Verification Code"),
         "errorPhone":
             MessageLookupByLibrary.simpleMessage("Invalid phone number"),
+        "everyone_says": MessageLookupByLibrary.simpleMessage("Everyone says:"),
         "exclusive": MessageLookupByLibrary.simpleMessage("Exclusive"),
+        "fast_approval": MessageLookupByLibrary.simpleMessage("Fast approval"),
+        "fast_disbursement":
+            MessageLookupByLibrary.simpleMessage("Fast disbursement"),
         "feedback": MessageLookupByLibrary.simpleMessage("Feedback"),
+        "flexible_repayment":
+            MessageLookupByLibrary.simpleMessage("Flexible repayment"),
         "free_concession": MessageLookupByLibrary.simpleMessage("Concession"),
         "get_credit_limit":
             MessageLookupByLibrary.simpleMessage("Get Credit Limit"),
@@ -173,12 +188,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "phone_number": MessageLookupByLibrary.simpleMessage("Phone Number"),
         "photo_permission_missing": MessageLookupByLibrary.simpleMessage(
             "Failed to access camera permission"),
+        "please_ask": MessageLookupByLibrary.simpleMessage("May I ask"),
         "please_select":
             MessageLookupByLibrary.simpleMessage("Please select an option"),
         "please_select_bank":
             MessageLookupByLibrary.simpleMessage("Please select bank"),
         "previousStep": MessageLookupByLibrary.simpleMessage("Previous Step"),
         "privacy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
+        "privacy_security":
+            MessageLookupByLibrary.simpleMessage("Privacy and security"),
         "quick_deposit": MessageLookupByLibrary.simpleMessage("Fast Transfer"),
         "read_privacy": MessageLookupByLibrary.simpleMessage("Read"),
         "real_authentication":
@@ -227,6 +245,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "verified": MessageLookupByLibrary.simpleMessage("Verified"),
         "view_contract": MessageLookupByLibrary.simpleMessage("View Contract"),
         "welcome_you": MessageLookupByLibrary.simpleMessage("You Welcome"),
+        "whether_abandon_benefits": MessageLookupByLibrary.simpleMessage(
+            "whether you want to abandon the following benefits?"),
         "work_information":
             MessageLookupByLibrary.simpleMessage("Work Information")
       };
