@@ -13,7 +13,7 @@ abstract class ReportRepo {
     required String deviceId,
   });
 
-  ResultVoid gpsReport(ReportgpsParams data);
+  ResultVoid locationReport(ReportLocationParams data);
 
   ResultVoid targetReport(DataMap data);
 }

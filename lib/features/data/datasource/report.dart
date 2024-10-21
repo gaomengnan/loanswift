@@ -17,7 +17,7 @@ abstract class ReportDataSource {
 
   /*  GPS REPORT */
 
-  ResultVoid gpsReport(ReportgpsParams data);
+  ResultVoid gpsReport(ReportLocationParams data);
 
   // 埋点
 
@@ -53,7 +53,7 @@ class ReportDataSourceImpl extends ReportDataSource {
   }
 
   @override
-  ResultVoid gpsReport(ReportgpsParams data) async {
+  ResultVoid gpsReport(ReportLocationParams data) async {
     return await _dioClient.post(path: "/middle/data/gps", data: data.toMap());
   }
 

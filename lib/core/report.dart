@@ -357,7 +357,7 @@ class ReportService {
         lat = resp.latitude;
         lng = resp.longitude;
       }
-      final params = ReportgpsParams(
+      final params = ReportLocationParams(
         latitude: lat,
         longitude: lng,
         addressDistinct: '',
@@ -369,7 +369,7 @@ class ReportService {
         appName: packageInfo.appName,
         packageId: packageInfo.packageName,
       );
-      final Reportgps reportgps = sl();
+      final ReportLocation reportgps = sl();
       await reportgps.call(params);
     });
     //return right(resp);

@@ -213,7 +213,7 @@ Future<void> initialize() async {
     ..registerLazySingleton(() => GetBanks(commonService: sl()))
     ..registerLazySingleton(() => ReportService())
     ..registerLazySingleton(() => ReportFcm(reportRepo: sl()))
-    ..registerLazySingleton(() => Reportgps(reportRepo: sl()))
+    ..registerLazySingleton(() => ReportLocation(reportRepo: sl()))
     ..registerLazySingleton(() => OrderConfim(order: sl()))
     ..registerLazySingleton(() => CheckOrder(order: sl()))
     ..registerLazySingleton(() => DataReport(reportRepo: sl()))

@@ -2,17 +2,17 @@ import 'package:loanswift/core/typedefs.dart';
 import 'package:loanswift/core/usecase.dart';
 import 'package:loanswift/features/domain/repos/report.dart';
 
-class Reportgps extends UsecaseParams<void, ReportgpsParams> {
+class ReportLocation extends UsecaseParams<void, ReportLocationParams> {
   final ReportRepo reportRepo;
 
-  Reportgps({required this.reportRepo});
+  ReportLocation({required this.reportRepo});
 
   @override
-  ResultFuture<void> call(ReportgpsParams params) => reportRepo.gpsReport(params);
+  ResultFuture<void> call(ReportLocationParams params) => reportRepo.locationReport(params);
   
 }
 
-class ReportgpsParams {
+class ReportLocationParams {
   final double latitude;
   final double longitude;
   final String addressDistinct;
@@ -24,7 +24,7 @@ class ReportgpsParams {
   final String appName;
   final String packageId;
 
-  ReportgpsParams({
+  ReportLocationParams({
     required this.latitude,
     required this.longitude,
     required this.addressDistinct,
