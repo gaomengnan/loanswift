@@ -52,9 +52,9 @@ extension SceneTypeExtension on SceneType {
       case SceneType.bindCard:
         return 7;
       case SceneType.applyPage:
-        return 7;
-      case SceneType.doApply:
         return 8;
+      case SceneType.doApply:
+        return 9;
     }
   }
 
@@ -254,35 +254,31 @@ class ReportService {
     try {
       /*  是否上报完成*/
       //await FirebaseApi().initNotifications();
-      final reported = GetStorage().hasData(AppContant.fcmTokenReportInitial);
+      //final reported = GetStorage().hasData(AppContant.fcmTokenReportInitial);
+      //String? fcm;
+      //fcm = GetStorage().read<String>(AppContant.fcmToken);
+      //
+      //if (fcm == null) {
+      //  //await Firebase.initializeApp(
+      //  //  options: DefaultFirebaseOptions.currentPlatform,
+      //  //);
+      //
+      //}
+      final fcm = await FirebaseApi().getToken();
 
-      if (!reported) {
-        String? fcm;
+      //GetStorage().write(AppContant.fcmToken, fcm);
 
-        fcm = GetStorage().read<String>(AppContant.fcmToken);
+      logger.i("fcm token is $fcm");
 
-        if (fcm == null) {
-          //await Firebase.initializeApp(
-          //  options: DefaultFirebaseOptions.currentPlatform,
-          //);
+      if (fcm != null && fcm.isNotEmpty) {
+        final deviceId = await getDeviceId();
 
-          fcm = await FirebaseApi().getToken();
-
-          GetStorage().write(AppContant.fcmToken, fcm);
-        }
-
-        logger.i("fcm token is $fcm");
-
-        if (fcm != null && fcm.isNotEmpty) {
-          final deviceId = await getDeviceId();
-
-          final ReportFcm fcmSer = sl();
-          final reportResp = await fcmSer
-              .call(ReportFcmParams(token: fcm, deviceId: deviceId));
-          reportResp.fold((l) {}, (r) {
-            GetStorage().write(AppContant.fcmTokenReportInitial, 1);
-          });
-        }
+        final ReportFcm fcmSer = sl();
+        final reportResp =
+            await fcmSer.call(ReportFcmParams(token: fcm, deviceId: deviceId));
+        reportResp.fold((l) {}, (r) {
+          GetStorage().write(AppContant.fcmTokenReportInitial, 1);
+        });
       }
     } catch (e) {
       debugPrint(e.toString());

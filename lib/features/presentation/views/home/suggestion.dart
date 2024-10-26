@@ -168,9 +168,14 @@ class _BuildSuggestionState extends State<BuildSuggestion>
                           context,
                           productId: product.productId,
                           onOK: (ctx) {
-                            bus.fire(TargetPointEvent(
-                                startTime, DateTime.now(), SceneType.applyPage,
-                                productCode: product.productId.toString()));
+                            bus.fire(
+                              TargetPointEvent(
+                                startTime,
+                                DateTime.now(),
+                                SceneType.applyPage,
+                                productCode: product.productId.toString(),
+                              ),
+                            );
 
                             Navigator.pop(ctx);
                             context.read<HomeBloc>().add(HomeRefreshEvent());
