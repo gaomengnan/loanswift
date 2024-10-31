@@ -40,6 +40,8 @@ Future<void> main() async {
             'https://4bcbede8124b3e94dec1df6237004e9a@o4508013720502272.ingest.us.sentry.io/4508013739704320';
         opts.tracesSampleRate = 1.0;
         opts.profilesSampleRate = 1.0;
+        opts.attachStacktrace = true;
+        opts.enableAutoSessionTracking = true;
       },
     );
     FlutterNativeSplash.remove();
