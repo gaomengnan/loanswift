@@ -4,6 +4,7 @@ import 'package:loanswift/core/api_response.dart';
 import 'package:loanswift/core/dio_client.dart';
 import 'package:loanswift/features/data/models/bank_card.dart';
 import 'package:loanswift/features/data/models/city_model.dart';
+import 'package:loanswift/features/data/models/configure_model.dart';
 import 'package:loanswift/features/data/models/upload_model.dart';
 
 import '../../../core/typedefs.dart';
@@ -13,6 +14,7 @@ abstract class ICommonDataSource {
   ResultFuture<ApiResponse<DataMap>> ocr({required String objectKey});
   ResultFuture<ApiResponse<List<CityModel>>> getCities();
   ResultFuture<ApiResponse<List<BankCardModel>>> getBanks();
+  ResultFuture<ApiResponse<ConfigureModel>> getConfigure();
 }
 
 class CommonDataSource extends ICommonDataSource {
@@ -82,6 +84,20 @@ class CommonDataSource extends ICommonDataSource {
         ApiResponse.fromJson(
           r.data,
           (om) => bankCardsDataFromList(om),
+        ),
+      );
+    });
+  }
+
+  @override
+  ResultFuture<ApiResponse<ConfigureModel>> getConfigure() async {
+    final resp = await http.get(path: "/app/configure");
+
+    return resp.fold((l) => left(l), (r) {
+      return right(
+        ApiResponse.fromJson(
+          r.data,
+          (om) => ConfigureModel.fromMap(om),
         ),
       );
     });

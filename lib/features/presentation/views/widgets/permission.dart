@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:loanswift/core/config_manager.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/features/presentation/views/person/verify_page.dart';
 import 'package:loanswift/theme/pallete.dart';
@@ -100,24 +101,43 @@ Future<void> showPermissionDialog(context, int productId) async {
                             // padding: const EdgeInsets.all(10), // 设置内边距
                           ),
                           onPressed: () async {
-                            await controllerPermissions.request();
-                            //if (statuses.entries.every((e) {
-                            //  return e.value == PermissionStatus.granted;
-                            //})) {
-                            //}
-                            WidgetsBinding.instance.addPostFrameCallback((_) {
-                              Navigator.pushReplacementNamed(
-                                context,
-                                VerifyPage.routerName,
-                                arguments: {
-                                  'productId': productId,
-                                },
-                              );
-                            });
-                            //statuses.forEach((permission, status) {
-                            //  if (status == PermissionStatus.granted) {
-                            //  } else {}
-                            //});
+                            final ConfigManager configManager = sl();
+                            final DataMap configureModel =
+                                await configManager.getConfig();
+                            final perms = await controllerPermissions.request();
+                            final DataMap permissionConfig =
+                                configureModel["permission"] ?? {};
+
+                            bool rejected = false;
+
+                            for (var entry in perms.entries) {
+                              final k = entry.key;
+                              final v = entry.value;
+
+                              if (permissionConfig.containsKey(k.toString())) {
+                                final currentConfigure =
+                                    permissionConfig[k.toString()] ?? 0;
+
+                                if (currentConfigure == 1 &&
+                                    v != PermissionStatus.granted) {
+                                  // 满足条件的处理逻辑
+                                  rejected = true;
+                                  break; // 找到一个满足条件的项后退出循环
+                                }
+                              }
+                            }
+
+                            if (!rejected) {
+                              WidgetsBinding.instance.addPostFrameCallback((_) {
+                                Navigator.pushReplacementNamed(
+                                  context,
+                                  VerifyPage.routerName,
+                                  arguments: {
+                                    'productId': productId,
+                                  },
+                                );
+                              });
+                            }
                           },
                           child: Text(
                             S.current.agree_privacy,

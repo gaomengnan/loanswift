@@ -278,7 +278,9 @@ class BuildMainProductEntry extends StatelessWidget {
                                   //      'productId': mainProducts.productId,
                                   //    });
                                   showPermissionDialog(
-                                      context, mainProducts.productId);
+                                    context,
+                                    mainProducts.productId,
+                                  );
                                 } else if (rule.certifyCompleted &&
                                     !rule.isBindCard) {
                                   Navigator.of(context).pushNamed(
