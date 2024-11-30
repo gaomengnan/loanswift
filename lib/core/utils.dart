@@ -2,7 +2,6 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'dart:async';
 
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -13,6 +12,15 @@ import 'package:permission_handler/permission_handler.dart';
 
 class Utils {
   Utils._();
+  static String maskPhoneNumber(String phoneNumber) {
+    if (phoneNumber.length < 4) {
+      return phoneNumber; // 如果手机号长度小于4，直接返回
+    }
+    String masked = '*' * (phoneNumber.length - 4); // 前面的部分用 * 替代
+    String lastFour = phoneNumber.substring(phoneNumber.length - 4); // 提取后四位
+    return masked + lastFour;
+  }
+
   static void showSnakebar(BuildContext context, String content) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -134,7 +142,8 @@ class Utils {
     );
   }
 
-  static ResultFuture<Response> uploadImageFromBytes(Uint8List bytes, String? code) async {
+  static ResultFuture<Response> uploadImageFromBytes(
+      Uint8List bytes, String? code) async {
     final resp = await sl<DioClient>().post(
       path: AppContant.uploadUri,
       data: {

@@ -11,16 +11,18 @@ import 'package:loanswift/features/presentation/views/order/my_order.dart';
 import 'package:loanswift/features/presentation/views/order/order_detail.dart';
 import 'package:loanswift/features/presentation/views/order/repayment_page.dart';
 import 'package:loanswift/features/presentation/views/person/bind_bank.dart';
+import 'package:loanswift/features/presentation/views/person/settings.dart';
 import 'package:loanswift/features/presentation/views/person/verify_page.dart';
 import 'package:loanswift/features/presentation/views/widgets/verification_code.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
-    //case PermissionPage.routerName:
-    //  return _pageBuilder(
-    //    (_) => const PermissionPage(),
-    //    settings: settings,
-    //  );
+    case SettingsPage.routerName:
+      return _pageBuilder(
+        (_) => const SettingsPage(),
+        settings: settings,
+      );
+
     case BindBank.routerName:
       return _pageBuilder(
         (_) => const BindBank(),
