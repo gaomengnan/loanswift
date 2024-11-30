@@ -103,7 +103,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "install_packages":
             MessageLookupByLibrary.simpleMessage("Aplikasi yang terinstal"),
         "installment_repayment":
-            MessageLookupByLibrary.simpleMessage("Pembayaran cicilan"),
+            MessageLookupByLibrary.simpleMessage("Perpanjangan"),
         "jindengluzhuce":
             MessageLookupByLibrary.simpleMessage("Hanya Login atau Daftar"),
         "lang": MessageLookupByLibrary.simpleMessage("id"),
