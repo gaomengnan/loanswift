@@ -34,7 +34,7 @@ class _OrderDetailState extends State<OrderDetail> {
       ),
       child: Column(
         children: [
-          UI.kHeight5(),
+          Ui.kHeight5(),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -61,7 +61,7 @@ class _OrderDetailState extends State<OrderDetail> {
               )
             ],
           ),
-          UI.kHeight5(),
+          Ui.kHeight5(),
           Divider(
             color: Colors.grey[100],
           ),
@@ -114,7 +114,7 @@ class _OrderDetailState extends State<OrderDetail> {
                                   text: succeed.orderDetail.noticeStatusText,
                                   size: 20.sp,
                                 ),
-                                UI.kHeight5(),
+                                Ui.kHeight5(),
                                 RText(
                                   text: succeed.orderDetail.noticeDesText,
                                   size: 13.sp,
@@ -148,7 +148,7 @@ class _OrderDetailState extends State<OrderDetail> {
                                   vertical: 0,
                                   horizontal: 0,
                                 ),
-                                leading: UI.squareContainer(
+                                leading: Ui.squareContainer(
                                   CachedNetworkImage(
                                     placeholder: (context, url) => Center(
                                       child: Shimmer.fromColors(
@@ -226,7 +226,7 @@ class _OrderDetailState extends State<OrderDetail> {
                                   ),
                                 );
                               }),
-                              UI.kHeight20(),
+                              Ui.kHeight20(),
                             ],
                           ),
                         ),
@@ -283,7 +283,7 @@ class _OrderDetailState extends State<OrderDetail> {
                               succeed.orderDetail.orderStatus != 200 &&
                               succeed.orderDetail.isDelay == 1)
                             OutlinedButton(
-                              style: UI.orderButtonStyle(),
+                              style: Ui.orderButtonStyle(),
                               onPressed: () {
                                 Navigator.push(
                                   context,
@@ -311,7 +311,7 @@ class _OrderDetailState extends State<OrderDetail> {
                               succeed.orderDetail.orderStatus != 999 &&
                               succeed.orderDetail.orderStatus != 200)
                             ElevatedButton(
-                              style: UI.orderButtonStyle().copyWith(
+                              style: Ui.orderButtonStyle().copyWith(
                                     backgroundColor:
                                         WidgetStateProperty.all<Color>(
                                       Colors.red,

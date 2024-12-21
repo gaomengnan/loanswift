@@ -33,4 +33,6 @@ class AppContant {
       "48ab1dd3e274f2d67ea84ba7e004a5bc4d5c6329d79a03b9ba64391f0ef47f33";
 
   static const String appCertifyIntoTimeKey = "app_certify_into_time_key";
+
+  static const String appAdvertiseIdKey = "app_advertise_id_key";
 }

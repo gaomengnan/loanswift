@@ -101,7 +101,7 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
                                     : Colors.grey,
                               ),
                       ),
-                      UI.kWidth5(),
+                      Ui.kWidth5(),
                       Expanded(
                         child: RText(
                           textAlign: TextAlign.start,
@@ -113,12 +113,12 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
                       ),
                     ],
                   ),
-                  UI.kHeight10(),
+                  Ui.kHeight10(),
                   Expanded(
                     flex: 3,
                     child: GestureDetector(
                       onTap: () async {
-                        UI.showLoading();
+                        Ui.showLoading();
                         //showUploadTypeBottomSheet(context);
                         //Navigator.of(context).pop();
                         //Navigator.push(
@@ -143,7 +143,7 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
                         //       builder: (context) => const CardScanner()));
                         //
                         if (pickedFiles != null) {
-                          UI.showLoading();
+                          Ui.showLoading();
 
                           final resp = await Utils.uploadImage(
                             pickedFiles.path,
@@ -151,7 +151,7 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
                           );
 
                           resp.fold(
-                            (err) => UI.showError(context, err.message),
+                            (err) => Ui.showError(context, err.message),
                             (l) {
                               bus.fire(TargetPointEvent(
                                 startTime,
@@ -159,7 +159,7 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
                                 SceneType.idCardFrontOcr,
                               ));
 
-                              UI.hideLoading();
+                              Ui.hideLoading();
 
                               final body = l.data as DataMap?;
                               //final path = body?['data']['path'];
@@ -182,7 +182,7 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
                             },
                           );
                         }
-                        UI.hideLoading();
+                        Ui.hideLoading();
                       },
                       child: state.value == null || state.value!.isEmpty
                           ? Stack(
@@ -306,7 +306,7 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
                             ),
                     ),
                   ),
-                  UI.kHeight5(),
+                  Ui.kHeight5(),
                   if (state.hasError)
                     Padding(
                       padding: EdgeInsets.only(left: 10.0.w),

@@ -38,11 +38,11 @@ class _PersonPageState extends State<PersonPage> {
     return Scaffold(
       body: BlocConsumer<AuthBloc, AuthState>(listener: (context, state) {
         if (state is LogoutFailure) {
-          UI.showError(context, state.error.error);
+          Ui.showError(context, state.error.error);
         }
 
         if (state is LogoutLoading) {
-          UI.showLoading();
+          Ui.showLoading();
         }
 
         if (state is LogoutSuccess) {
@@ -108,7 +108,7 @@ class _PersonPageState extends State<PersonPage> {
                             AuthPage.routerName,
                           );
                         } else {
-                          UI.showLogoutConfirmDialog(context, S.current.logout,
+                          Ui.showLogoutConfirmDialog(context, S.current.logout,
                               S.current.logoutConfirmation, () {
                             context.read<AuthBloc>().add(UserLogoutEvent());
 
@@ -130,7 +130,7 @@ class _PersonPageState extends State<PersonPage> {
                                   color: Colors.white,
                                 ),
                               ),
-                              UI.kWidth10(),
+                              Ui.kWidth10(),
                               RText(
                                 text: isLogin
                                     ? "您好, $maskPhone"
@@ -250,7 +250,7 @@ class _PersonPageState extends State<PersonPage> {
                                 const Color(0xffEE7C7A),
                               ),
                             ),
-                            UI.kHeight20(),
+                            Ui.kHeight20(),
                             //Padding(
                             //  padding: EdgeInsets.only(
                             //    left: 27.w,
@@ -275,7 +275,7 @@ class _PersonPageState extends State<PersonPage> {
                                 const Color(0xffEE7C7A),
                               ),
                             ),
-                            UI.kHeight20(),
+                            Ui.kHeight20(),
                             //Padding(
                             //  padding: EdgeInsets.only(
                             //    left: 27.w,
@@ -428,7 +428,7 @@ class _PersonPageState extends State<PersonPage> {
                                       width: 25.w,
                                       fit: BoxFit.cover,
                                     ),
-                                    UI.kHeight5(),
+                                    Ui.kHeight5(),
                                     SizedBox(
                                         width: 70.w,
                                         child: RText(
@@ -521,7 +521,7 @@ class _PersonPageState extends State<PersonPage> {
 
   @override
   void dispose() {
-    UI.hideLoading();
+    Ui.hideLoading();
     super.dispose();
   }
 
@@ -549,7 +549,7 @@ class _PersonPageState extends State<PersonPage> {
               size: 15.sp,
               color: color,
             ),
-            UI.kWidth10(),
+            Ui.kWidth10(),
             //const SizedBox(height: 20),
             RText(
               text: label,

@@ -4,6 +4,7 @@ class ConfigureModel extends ConfigureEntity {
   ConfigureModel({
     required super.permissions,
     required super.currentVersion,
+    required super.advertise,
   });
 
   // fromMap factory method
@@ -11,6 +12,7 @@ class ConfigureModel extends ConfigureEntity {
     return ConfigureModel(
       permissions: Permissions.fromMap(map['permission'] ?? {}),
       currentVersion: map['current_version'] ?? '',
+      advertise: AdvertiseEntity.fromMap(map['advertise'] ?? {}),
     );
   }
 
@@ -19,6 +21,7 @@ class ConfigureModel extends ConfigureEntity {
     return {
       'permission': permissions.toMap(),
       'current_version': currentVersion,
+      'advertise': advertise.toMap()
     };
   }
 
@@ -27,6 +30,7 @@ class ConfigureModel extends ConfigureEntity {
     return ConfigureModel(
       permissions: Permissions.fromJson(json['permission'] ?? {}),
       currentVersion: json['current_version'] ?? '',
+      advertise: json['advertise'] ?? {},
     );
   }
 

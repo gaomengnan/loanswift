@@ -6,6 +6,7 @@ import 'package:loanswift/features/data/models/bank_card.dart';
 import 'package:loanswift/features/data/models/city_model.dart';
 import 'package:loanswift/features/data/models/configure_model.dart';
 import 'package:loanswift/features/data/models/upload_model.dart';
+import 'package:loanswift/features/domain/entity/common/messages.dart';
 
 import '../../../core/typedefs.dart';
 
@@ -15,6 +16,7 @@ abstract class ICommonDataSource {
   ResultFuture<ApiResponse<List<CityModel>>> getCities();
   ResultFuture<ApiResponse<List<BankCardModel>>> getBanks();
   ResultFuture<ApiResponse<ConfigureModel>> getConfigure();
+  ResultFuture<ApiResponse<List<MessagesEntity>>> getNotifyMessages();
 }
 
 class CommonDataSource extends ICommonDataSource {
@@ -98,6 +100,19 @@ class CommonDataSource extends ICommonDataSource {
         ApiResponse.fromJson(
           r.data,
           (om) => ConfigureModel.fromMap(om),
+        ),
+      );
+    });
+  }
+
+  @override
+  ResultFuture<ApiResponse<List<MessagesEntity>>> getNotifyMessages() async {
+    final resp = await http.get(path: "/middle/market/apply-logs");
+    return resp.fold((l) => left(l), (r) {
+      return right(
+        ApiResponse.fromJson(
+          r.data,
+          (om) => messagesDataFromList(om),
         ),
       );
     });

@@ -100,7 +100,7 @@ class _RInputState extends State<RInput> {
                             : Colors.grey,
                       ),
               ),
-              UI.kWidth5(),
+              Ui.kWidth5(),
               Expanded(
                 child: RText(
                   textAlign: TextAlign.start,
@@ -112,7 +112,7 @@ class _RInputState extends State<RInput> {
               ),
             ],
           ),
-          UI.kHeight5(),
+          Ui.kHeight5(),
           Expanded(
             child: Container(
               padding: EdgeInsets.only(left: 10.w),

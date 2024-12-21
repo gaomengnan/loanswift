@@ -40,6 +40,7 @@ import 'package:loanswift/features/domain/usecases/common/file_upload.dart';
 import 'package:loanswift/features/domain/usecases/common/get_banks.dart';
 import 'package:loanswift/features/domain/usecases/common/get_cities.dart';
 import 'package:loanswift/features/domain/usecases/common/get_configure.dart';
+import 'package:loanswift/features/domain/usecases/common/get_notify_messages.dart';
 import 'package:loanswift/features/domain/usecases/common/ocr.dart';
 import 'package:loanswift/features/domain/usecases/common/report_fcm.dart';
 import 'package:loanswift/features/domain/usecases/common/report_gps.dart';
@@ -49,6 +50,7 @@ import 'package:loanswift/features/domain/usecases/order/check_order.dart';
 import 'package:loanswift/features/domain/usecases/order/get_order_detail.dart';
 import 'package:loanswift/features/domain/usecases/order/order_confirm.dart';
 import 'package:loanswift/features/domain/usecases/order/query_order.dart';
+import 'package:loanswift/features/presentation/bloc/advertise/advertise.dart';
 import 'package:loanswift/features/presentation/bloc/certify/certifies_bloc.dart';
 import 'package:loanswift/features/presentation/bloc/home/home_bloc.dart';
 import 'package:loanswift/features/presentation/bloc/order/order_bloc.dart';
@@ -95,6 +97,11 @@ Future<void> initialize() async {
   // BLOC
   // REPO DATASOURCE USERCASE
   sl
+    ..registerFactory(
+      () => AdvertiseCubit(
+        configManager: sl(),
+      ),
+    )
     ..registerFactory(
       () => HomeBloc(
         sl(),
@@ -223,6 +230,7 @@ Future<void> initialize() async {
     ..registerLazySingleton(() => TargetReport(repo: sl()))
     ..registerLazySingleton(() => GetConfigureUseCase(commonService: sl()))
     ..registerLazySingleton(() => ConfigManager(useCase: sl()))
+    ..registerLazySingleton(() => GetNotifyMessages(commonService: sl()))
     ..registerLazySingleton(() => MyWebviewController());
 
   try {
@@ -244,6 +252,10 @@ Future<void> initialize() async {
 
     WidgetsBinding.instance.addObserver(bus);
     bus.onEvent();
+
+    ConfigManager configManager = sl();
+
+    await configManager.initConfig();
   } catch (_) {}
 
   //EasyLoading.instance

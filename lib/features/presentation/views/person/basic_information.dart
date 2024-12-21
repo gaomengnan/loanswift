@@ -67,7 +67,7 @@ class _BasicInformationState extends State<BasicInformation> {
                             certifyId: e.certifyId, certifyResult: s));
                       },
                     ),
-                    UI.kHeight10(),
+                    Ui.kHeight10(),
                     const Divider(
                       color: Colors.black12,
                     ),

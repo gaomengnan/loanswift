@@ -87,7 +87,7 @@ class EventCard extends StatelessWidget {
                           isPast ? IconlyBold.unlock : IconlyBold.lock,
                           size: 17.sp,
                         ),
-                        UI.kWidth5(),
+                        Ui.kWidth5(),
                         RText(
                           text: status,
                           color: isPast ? Colors.blue : Colors.red,
@@ -114,7 +114,7 @@ class EventCard extends StatelessWidget {
                             //size: 12.sp,
                             fontWeight: FontWeight.w700,
                           ),
-                          UI.kWidth50(),
+                          Ui.kWidth50(),
                           Expanded(
                             child: RText(
                               maxLines: 2,

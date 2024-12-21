@@ -88,7 +88,7 @@ class _FormDayFieldState extends State<FormDayField> {
                             : Colors.grey,
                       ),
               ),
-              UI.kWidth5(),
+              Ui.kWidth5(),
               Expanded(
                 child: RText(
                   maxLines: 1,
@@ -100,7 +100,7 @@ class _FormDayFieldState extends State<FormDayField> {
               ),
             ],
           ),
-          UI.kHeight5(),
+          Ui.kHeight5(),
           Expanded(
             flex: 2,
             child: Container(

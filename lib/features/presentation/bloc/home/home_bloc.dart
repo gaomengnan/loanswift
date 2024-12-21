@@ -21,6 +21,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc(this.getHomeDataUseCase) : super(HomeInitial()) {
     on<HomeStarupEvent>(_homeStartUpHandler);
     on<HomeRefreshEvent>(_homeRefreshHandler);
+    on<LoadNotifyMessage>(_loadNotifyMessages);
+  }
+
+  void _loadNotifyMessages(event, emit) {
   }
 
   void _homeRefreshHandler(event, emit) async {

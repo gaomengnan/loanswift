@@ -70,7 +70,7 @@ class _NetworkCheckerWidgetState extends State<NetworkCheckerWidget> {
                   ),
           
                   //Icon(Icons.info_rounded, color: Pallete.redDeepColor,),
-                  UI.kWidth5(),
+                  Ui.kWidth5(),
                   //const SizedBox(width: 8),
                   Text(
                     S.current.network_error,

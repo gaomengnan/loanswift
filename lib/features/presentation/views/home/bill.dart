@@ -91,7 +91,7 @@ class BuildBill extends StatelessWidget {
                               //  ),
                               //),
                             ),
-                            UI.kWidth10(),
+                            Ui.kWidth10(),
                             RText(
                               textAlign: TextAlign.start,
                               text: order.relationProduct.productName,
@@ -153,7 +153,7 @@ class BuildBill extends StatelessWidget {
                                   size: 16.sp,
                                   fontWeight: FontWeight.bold,
                                 ),
-                                UI.kHeight10(),
+                                Ui.kHeight10(),
                                 RText(
                                   text: order.copywriterInfo.orderStatusText,
                                   size: 12.sp,
@@ -184,7 +184,7 @@ class BuildBill extends StatelessWidget {
                                 size: 18.sp,
                                 fontWeight: FontWeight.bold,
                               ),
-                              UI.kHeight10(),
+                              Ui.kHeight10(),
                               RText(
                                 maxLines: 1,
                                 text: order.copywriterInfo.dateText,

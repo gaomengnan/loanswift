@@ -12,7 +12,6 @@ import 'package:loanswift/features/presentation/views/person/emergency_info.dart
 import 'package:loanswift/features/presentation/views/person/identify_verify_page.dart';
 import 'package:loanswift/features/presentation/views/person/job_info.dart';
 import 'package:loanswift/theme/pallete.dart';
-import 'package:lottie/lottie.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 
 import '../../../../core/core.dart';
@@ -73,7 +72,7 @@ class _VerifyPageState extends State<VerifyPage>
   void dispose() {
     _scrollController.dispose();
     _aniController.dispose();
-    UI.hideLoading();
+    Ui.hideLoading();
     super.dispose();
   }
 
@@ -226,7 +225,10 @@ class _VerifyPageState extends State<VerifyPage>
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 10.h),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 5.w,
+                  vertical: 10.h,
+                ),
                 child: Row(
                   //crossAxisAlignment: CrossAxisAlignment.center,
                   //mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -287,18 +289,18 @@ class _VerifyPageState extends State<VerifyPage>
         child: BlocListener<CertifiesBloc, CertifiesState>(
           listener: (context, state) {
             if (state is CertifiesSettingLoadFailure) {
-              UI.showError(
+              Ui.showError(
                 context,
                 state.error.error,
               );
             }
 
             if (state is CertifiesSettingsLoading) {
-              UI.showLoading();
+              Ui.showLoading();
             }
 
             if (state is CertifiesSettingsLoadSuccess) {
-              UI.hideLoading();
+              Ui.hideLoading();
             }
 
             if (state is CertifiesRequestState) {
@@ -312,7 +314,7 @@ class _VerifyPageState extends State<VerifyPage>
               }
             }
             if (state is CertifyFailure) {
-              UI.showError(context, state.error.error);
+              Ui.showError(context, state.error.error);
             }
           },
           child: SingleChildScrollView(
@@ -340,7 +342,7 @@ class _VerifyPageState extends State<VerifyPage>
                           ),
                         ),
                       ),
-                      UI.kWidth10(),
+                      Ui.kWidth10(),
                       Expanded(
                         child: FilledButton(
                           onPressed: () {
@@ -413,31 +415,36 @@ class _VerifyPageState extends State<VerifyPage>
                   )
                 : Container(
                     decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Color(0xFF2ACA8E),
-                    ),
-                    child: const Center(
+                        shape: BoxShape.circle, color: Colors.grey
+                        // color: Color(0xFF2ACA8E),
+                        ),
+                    child: Center(
                       child: SizedBox(
                         height: 15,
                         width: 15,
-                        child: CircularProgressIndicator(
-                          strokeWidth: 3,
-                          valueColor:
-                              AlwaysStoppedAnimation<Color>(Colors.white),
+                        child: Icon(
+                          Icons.lock,
+                          color: Colors.white,
+                          size: 12.sp,
                         ),
+                        //child: CircularProgressIndicator(
+                        //  strokeWidth: 1,
+                        //  valueColor:
+                        //      AlwaysStoppedAnimation<Color>(Colors.white),
+                        //),
                       ),
                     ),
                   ))
             : Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Pallete.thirdColor,
+                  color: Pallete.primaryColor,
                 ),
                 child: Center(
-                  child: Lottie.asset(
-                    Assets.stepper,
-                    height: 100.h,
-                    width: 100.w,
+                  child: Icon(
+                    size: 12.sp,
+                    Icons.lock,
+                    color: Colors.white,
                   ),
                 ),
               ),

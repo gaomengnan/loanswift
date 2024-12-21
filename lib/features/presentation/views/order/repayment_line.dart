@@ -45,7 +45,7 @@ class RepaymentLine extends StatelessWidget {
                 text: amount,
                 size: 16.sp,
               ),
-              UI.kHeight5(),
+              Ui.kHeight5(),
               RText(
                 text: title,
                 size: 14.sp,
@@ -61,14 +61,14 @@ class RepaymentLine extends StatelessWidget {
                     text: dateline,
                     size: 16.sp,
                   ),
-                  UI.kHeight5(),
+                  Ui.kHeight5(),
                   RText(
                     text: desc,
                     size: 14.sp,
                   ),
                 ],
               ),
-              UI.kWidth10(),
+              Ui.kWidth10(),
               Icon(
                 color: isPost ? Pallete.primaryColor : Colors.grey,
                 isPost

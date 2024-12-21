@@ -99,7 +99,7 @@ class BuildMainProductEntry extends StatelessWidget {
               // color: Pallete.whiteColor,
               size: 13.sp,
             ),
-            UI.kHeight5(),
+            Ui.kHeight5(),
             RText(
               text: mainProducts.productAmount,
               size: 33.sp,
@@ -235,7 +235,7 @@ class BuildMainProductEntry extends StatelessWidget {
                                             ),
                                           ),
                                         ),
-                                        UI.kWidth10(),
+                                        Ui.kWidth10(),
                                         Expanded(
                                           child: RichText(
                                               text: TextSpan(
@@ -326,14 +326,10 @@ class BuildMainProductEntry extends StatelessWidget {
                                 }
                               },
                               child: Center(
-                                child: Text(
-                                  mainProducts.copywriterInfo.button.text,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14.sp,
-                                  ),
-                                  //color: Pallete.whiteColor,
-                                  //size: 16.sp,
+                                child: RText(
+                                  text: mainProducts.copywriterInfo.button.text,
+                                  color: Colors.white,
+                                  size: 14.sp,
                                 ),
                               ),
                             ),

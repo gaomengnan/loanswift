@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:loanswift/core/config_manager.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/core/storage.dart';
 import 'package:loanswift/features/presentation/views/auth/auth_page.dart';
@@ -17,16 +16,16 @@ class _BoardingPageState extends State<BoardingPage> {
   @override
   void initState() {
     super.initState();
-    initSystemConfigurations();
+    //initSystemConfigurations();
   }
 
 
   // 初始化系统配置
-  void initSystemConfigurations() {
-    // 初始化配置
-    final ConfigManager configManager = sl();
-    configManager.initConfig();
-  }
+  //void initSystemConfigurations() {
+  //  // 初始化配置
+  //  final ConfigManager configManager = sl();
+  //  configManager.initConfig();
+  //}
 
 
 

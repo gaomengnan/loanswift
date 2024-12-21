@@ -1,7 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:loanswift/features/domain/entity/common/configure.dart';
+import 'package:loanswift/features/presentation/bloc/advertise/advertise.dart';
 import 'package:loanswift/features/presentation/views/widgets/login_widget.dart';
 import 'package:loanswift/features/presentation/views/widgets/verification_code.dart';
 import 'package:loanswift/theme/theme.dart';
@@ -10,7 +15,7 @@ import '../../features/presentation/bloc/auth/auth_bloc.dart';
 import '../common/widgets/widgets.dart';
 import '../core.dart';
 
-class UI {
+class Ui {
   static AppBar appBar() {
     return AppBar(
       centerTitle: true,
@@ -250,6 +255,88 @@ class UI {
           horizontal: 9.w,
         ),
       ),
+    );
+  }
+
+  static Future<bool?> showAdvertiseWindow(
+    GlobalKey gkey,
+    context,
+    AdvertiseEntity advertise,
+    void Function()? callback,
+  ) {
+    if (Navigator.canPop(context)) {
+      return Future.value(false);
+    }
+    return showDialog<bool>(
+      //barrierColor: Colors.grey.withOpacity(0.5),
+      barrierDismissible: false,
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          contentPadding: EdgeInsets.all(
+            1.r,
+          ),
+          backgroundColor: Colors.transparent,
+          key: gkey,
+          //shape: RoundedRectangleBorder(
+          //  borderRadius: BorderRadius.circular(10.r), // 设置圆角
+          //),
+          //title: const Text("title"),
+          content: Stack(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                width: double.maxFinite,
+                //height: 300.h,
+                child: CarouselSlider(
+                  options: CarouselOptions(
+                    enableInfiniteScroll: false,
+                    height: 300.h,
+                    enlargeCenterPage: true, // 居中显示并放大当前页面
+                    autoPlay: false, // 自动播放
+                    aspectRatio: 16 / 9, // 宽高比
+                    viewportFraction: 1, // 每次显示部分页面
+                  ),
+                  items: [
+                    ...advertise.list.map((e) {
+                      return ClipRRect(
+                        borderRadius: BorderRadius.circular(10), // 设置圆角半径
+                        child: CachedNetworkImage(
+                          fit: BoxFit.cover,
+                          imageUrl: e.imageUrl,
+                          placeholder: (context, url) => const Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                        ),
+                      );
+                    }),
+                  ],
+                ),
+              ),
+              Positioned(
+                top: 0,
+                right: 0,
+                child: FloatingActionButton(
+                  onPressed: () {
+                    //context.read<AdvertiseCubit>().setKnown();
+                    callback!();
+                    Navigator.pop(context);
+                  },
+                  backgroundColor: Colors.white,
+                  mini: true,
+                  //elevation: 5.0,
+                  child: const Icon(
+                    Icons.close,
+                    color: Colors.grey,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

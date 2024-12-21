@@ -69,7 +69,7 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
     //_refreshController.dispose();
     _anicontroller.dispose();
     _scaleController.dispose();
-    UI.hideLoading();
+    Ui.hideLoading();
     super.dispose();
   }
 
@@ -127,13 +127,13 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
       OrderStatus orderStatus, RefreshController refreshController) {
     return BlocConsumer<OrderBloc, OrderState>(listener: (context, state) {
       if (state is OrderLoadFailure) {
-        UI.showError(context, state.error.error);
+        Ui.showError(context, state.error.error);
       }
 
       if (state is OrderRefresh || state is OrderLoading) {
-        UI.showLoading();
+        Ui.showLoading();
       } else {
-        UI.hideLoading();
+        Ui.hideLoading();
       }
 
       if (state is OrderLoadSuccess) {
@@ -237,7 +237,7 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
                                                 imageUrl: order.relationProduct
                                                     .productLogo),
                                           ),
-                                          UI.kWidth10(),
+                                          Ui.kWidth10(),
                                           Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.center,
@@ -275,7 +275,7 @@ class _MyOrderState extends State<MyOrder> with TickerProviderStateMixin {
                                                         .dateText,
                                                     size: 14.sp,
                                                   ),
-                                                  UI.kHeight5(),
+                                                  Ui.kHeight5(),
                                                   RText(
                                                     text: order.showTime,
                                                     size: 14.sp,

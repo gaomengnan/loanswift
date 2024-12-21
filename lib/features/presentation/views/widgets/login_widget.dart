@@ -104,7 +104,7 @@ class _LoginWidgetState extends State<LoginWidget> {
             ],
           ),
 
-          UI.kHeight20(),
+          Ui.kHeight20(),
 
           BuildVerifyCode(
             formKey: formKey,
@@ -114,7 +114,7 @@ class _LoginWidgetState extends State<LoginWidget> {
             focusNode: focusNode,
           ),
 
-          UI.kHeight20(),
+          Ui.kHeight20(),
 
           BuildBottomButton(
             formKey: formKey,

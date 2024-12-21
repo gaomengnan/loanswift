@@ -124,7 +124,7 @@ class _FormSelectFieldState extends State<FormSelectField> {
                             : Colors.grey,
                       ),
               ),
-              UI.kWidth5(),
+              Ui.kWidth5(),
               Expanded(
                 child: RText(
                   maxLines: 1,
@@ -136,7 +136,7 @@ class _FormSelectFieldState extends State<FormSelectField> {
               ),
             ],
           ),
-          UI.kHeight5(),
+          Ui.kHeight5(),
           Expanded(
             flex: 2,
             child: Container(

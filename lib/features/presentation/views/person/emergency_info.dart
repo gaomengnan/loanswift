@@ -66,7 +66,7 @@ class _EmergencyInfoState extends State<EmergencyInfo> {
                             certifyId: e.certifyId, certifyResult: s));
                       },
                     ),
-                    UI.kHeight10(),
+                    Ui.kHeight10(),
                     const Divider(
                       color: Colors.black12,
                     ),

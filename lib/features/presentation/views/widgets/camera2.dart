@@ -149,7 +149,7 @@ class _CardScanner2State extends State<CardScanner2> {
                           Icons.sentiment_very_dissatisfied,
                           color: Colors.red,
                         ),
-                        UI.kWidth10(),
+                        Ui.kWidth10(),
                         Text(
                           S.current.photo_permission_missing,
                           style: TextStyle(
@@ -159,7 +159,7 @@ class _CardScanner2State extends State<CardScanner2> {
                         ),
                       ],
                     ),
-                    UI.kHeight10(),
+                    Ui.kHeight10(),
                     OutlinedButton(
                       onPressed: () async {
                         await openAppSettings();

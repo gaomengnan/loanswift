@@ -1,6 +1,7 @@
 import 'package:get_storage/get_storage.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/features/data/models/configure_model.dart';
+import 'package:loanswift/features/domain/entity/common/configure.dart';
 import 'package:loanswift/features/domain/usecases/common/get_configure.dart';
 
 class ConfigManager {
@@ -14,6 +15,19 @@ class ConfigManager {
   Future<DataMap> getConfig() async {
     final cachedConfig = GetStorage().read<DataMap>(_configKey);
     return cachedConfig ?? {};
+  }
+
+  /// 获取配置：从缓存中读取，如果缓存无效则返回空
+  Future<AdvertiseEntity> getAdvertisesConfigure() async {
+    final cachedConfig = GetStorage().read<DataMap>(_configKey);
+    final configModelData = ConfigureModel.fromMap(cachedConfig ?? {});
+    return configModelData.advertise;
+  }
+
+  Future<String> getCurrentVersion() async {
+    final cachedConfig = GetStorage().read<DataMap>(_configKey);
+    final configModelData = ConfigureModel.fromMap(cachedConfig ?? {});
+    return configModelData.currentVersion;
   }
 
   /// 初始化配置：先从缓存读取，如果缓存失效则从远程获取
