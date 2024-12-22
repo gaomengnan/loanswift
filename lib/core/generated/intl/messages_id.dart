@@ -22,6 +22,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "about": MessageLookupByLibrary.simpleMessage("Tentang"),
+        "account_settings":
+            MessageLookupByLibrary.simpleMessage("Pengaturan Akun"),
         "agree_privacy": MessageLookupByLibrary.simpleMessage("Setuju"),
         "all": MessageLookupByLibrary.simpleMessage("Semua"),
         "app_name": MessageLookupByLibrary.simpleMessage("pintek"),
@@ -38,6 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Mengikat kartu bank"),
         "camera": MessageLookupByLibrary.simpleMessage("Kamera"),
         "cancel": MessageLookupByLibrary.simpleMessage("Membatalkan"),
+        "clear_cache": MessageLookupByLibrary.simpleMessage("Bersihkan Cache"),
         "click_to_access":
             MessageLookupByLibrary.simpleMessage("Klik untuk mengotorisasi"),
         "completed": MessageLookupByLibrary.simpleMessage("Diselesaikan"),
@@ -60,6 +64,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "cruelly_reject":
             MessageLookupByLibrary.simpleMessage("Tolak dengan Kejam"),
         "daily_interest": MessageLookupByLibrary.simpleMessage("Bunga harian"),
+        "discover_new_version":
+            MessageLookupByLibrary.simpleMessage("Temukan Versi Baru"),
         "due_date": MessageLookupByLibrary.simpleMessage("Tanggal jatuh tempo"),
         "easy_to_use": MessageLookupByLibrary.simpleMessage("Mudah digunakan"),
         "emergency_contact":
@@ -256,6 +262,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "verification_code_wrong":
             MessageLookupByLibrary.simpleMessage("Kesalahan kode verifikasi"),
         "verified": MessageLookupByLibrary.simpleMessage("Diverifikasi"),
+        "version": MessageLookupByLibrary.simpleMessage("Versi"),
         "view_contract": MessageLookupByLibrary.simpleMessage("Lihat kontrak"),
         "welcome_you": MessageLookupByLibrary.simpleMessage("Selamat datang"),
         "whether_abandon_benefits": MessageLookupByLibrary.simpleMessage(

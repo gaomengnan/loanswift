@@ -22,6 +22,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "about": MessageLookupByLibrary.simpleMessage("About"),
+        "account_settings":
+            MessageLookupByLibrary.simpleMessage("Account Settings"),
         "agree_privacy": MessageLookupByLibrary.simpleMessage("Agree"),
         "all": MessageLookupByLibrary.simpleMessage("All"),
         "app_name": MessageLookupByLibrary.simpleMessage("Loan Swift"),
@@ -35,6 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Bind Bank Card"),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "clear_cache": MessageLookupByLibrary.simpleMessage("Clear Cache"),
         "click_to_access":
             MessageLookupByLibrary.simpleMessage("Click to access"),
         "completed": MessageLookupByLibrary.simpleMessage("Done"),
@@ -58,6 +62,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Cruelly Reject"),
         "daily_interest":
             MessageLookupByLibrary.simpleMessage("Daily interest"),
+        "discover_new_version":
+            MessageLookupByLibrary.simpleMessage("Discover New Version"),
         "due_date": MessageLookupByLibrary.simpleMessage("Due Date"),
         "easy_to_use": MessageLookupByLibrary.simpleMessage("Easy to use"),
         "emergency_contact":
@@ -243,6 +249,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "verification_code_wrong":
             MessageLookupByLibrary.simpleMessage("Incorrect verification code"),
         "verified": MessageLookupByLibrary.simpleMessage("Verified"),
+        "version": MessageLookupByLibrary.simpleMessage("Version"),
         "view_contract": MessageLookupByLibrary.simpleMessage("View Contract"),
         "welcome_you": MessageLookupByLibrary.simpleMessage("You Welcome"),
         "whether_abandon_benefits": MessageLookupByLibrary.simpleMessage(

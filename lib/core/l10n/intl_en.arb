@@ -149,6 +149,12 @@
   "compliant_platform": "Compliant platform",
   "privacy_security": "Privacy and security",
   "continue_to_apply": "Continue to Apply",
-  "cruelly_reject": "Cruelly Reject"
+  "cruelly_reject": "Cruelly Reject",
+  "account_settings": "Account Settings",
+  "clear_cache": "Clear Cache",
+  "about": "About",
+  "version": "Version",
+  "discover_new_version": "Discover New Version"
+
 }
 

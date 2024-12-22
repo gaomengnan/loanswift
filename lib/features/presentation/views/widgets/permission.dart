@@ -73,24 +73,6 @@ Future<void> showPermissionDialog(context, int productId) async {
                             );
                           },
                         ),
-                        //Row(
-                        //  children: [
-                        //    Checkbox(
-                        //      fillColor: WidgetStateProperty.resolveWith<Color>(
-                        //          (Set<WidgetState> states) {
-                        //        if (states.contains(WidgetState.disabled)) {
-                        //          return Pallete.primaryColor.withOpacity(.32);
-                        //        }
-                        //        return Pallete.primaryColor;
-                        //      }),
-                        //      value: true,
-                        //      onChanged: (val) {},
-                        //    ),
-                        //    Text(
-                        //      "${S.current.read_privacy} ${S.current.privacy}",
-                        //    ),
-                        //  ],
-                        //),
                         FilledButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Pallete.primaryColor,
@@ -137,6 +119,13 @@ Future<void> showPermissionDialog(context, int productId) async {
                                   },
                                 );
                               });
+                            } else {
+                              if (context.mounted) {
+                                Ui.showError(
+                                  context,
+                                  "请开启必要权限",
+                                );
+                              }
                             }
                           },
                           child: Text(

@@ -146,5 +146,11 @@
   "compliant_platform": "Platform sesuai aturan",
   "privacy_security": "Privasi dan keamanan",
   "continue_to_apply": "Lanjutkan Pemintaan",
-  "cruelly_reject": "Tolak dengan Kejam"
+  "cruelly_reject": "Tolak dengan Kejam",
+  "account_settings": "Pengaturan Akun",
+  "clear_cache": "Bersihkan Cache",
+  "about": "Tentang",
+  "version": "Versi",
+  "discover_new_version": "Temukan Versi Baru"
+
 }

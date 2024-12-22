@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/common/widgets/widgets.dart';
 import 'package:loanswift/core/config_manager.dart';
 import 'package:loanswift/core/container.dart';
+import 'package:loanswift/core/generated/l10n.dart';
 import 'package:loanswift/core/report.dart';
+import 'package:loanswift/features/presentation/views/person/about_us.dart';
 import 'package:loanswift/theme/theme.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -48,7 +50,9 @@ class _SettingsPageState extends State<SettingsPage> {
     return Scaffold(
       backgroundColor: Pallete.backgroundColor,
       appBar: AppBar(
-        title: const Text("账号设置"),
+        title: Text(
+          S.current.account_settings,
+        ),
       ),
       body: Padding(
         padding: EdgeInsets.only(top: 10.h),
@@ -56,12 +60,6 @@ class _SettingsPageState extends State<SettingsPage> {
           children: [
             Container(
               decoration: const BoxDecoration(
-                //border: Border(
-                //  bottom: BorderSide(
-                //    color: Colors.grey.shade300, // 边框颜色
-                //    width: 1.0, // 边框宽度
-                //  ),
-                //),
                 color: Colors.white,
               ),
               child: Column(
@@ -73,7 +71,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     ),
                     title: RText(
                       textAlign: TextAlign.start,
-                      text: "清理缓存",
+                      text: S.current.clear_cache,
                       fontWeight: FontWeight.w600,
                       size: 14.sp,
                     ),
@@ -103,36 +101,26 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             Container(
               decoration: const BoxDecoration(
-                //border: Border(
-                //  bottom: BorderSide(
-                //    color: Colors.grey.shade300, // 边框颜色
-                //    width: 1.0, // 边框宽度
-                //  ),
-                //),
                 color: Colors.white,
               ),
               child: Column(
                 children: [
-                  //Row(
-                  //  children: [
-                  //    RText(
-                  //      textAlign: TextAlign.start,
-                  //      text: "关于Pintek",
-                  //      fontWeight: FontWeight.w600,
-                  //      size: 14.sp,
-                  //    ),
-                  //    const Icon(
-                  //      Icons.arrow_right_rounded,
-                  //    ),
-                  //  ],
-                  //),
                   ListTile(
+                    onTap: () {
+                      //Utils.showSnakebar(
+                      //  context,
+                      //  "wqha基本面wqha基本面wqha基本面wqha基本面wqha基本面wqha基本面wqha基本面wqha基本面wqha基本面wqha基本面wqha基本面wqha基本面wqha基本面wqha基本面wqha基本面",
+                      //);
+                      Navigator.of(context).pushNamed(
+                        AboutUs.routerName,
+                      );
+                    },
                     contentPadding: EdgeInsets.symmetric(
                       horizontal: 20.w,
                     ),
                     title: RText(
                       textAlign: TextAlign.start,
-                      text: "关于Pintek",
+                      text: "${S.current.about} Pintek",
                       fontWeight: FontWeight.w600,
                       size: 14.sp,
                     ),
@@ -150,7 +138,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                 color: Pallete.redDeepColor,
                               ),
                               child: RText(
-                                text: "发现新版本",
+                                text: S.current.discover_new_version,
                                 color: Pallete.whiteColor,
                                 //size: 8,
                                 //style: TextStyle(
@@ -160,7 +148,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           if (!isUpgrade)
                             RText(
                               textAlign: TextAlign.start,
-                              text: "版本 $version",
+                              text: "${S.current.version} $version",
                             ),
                           const Icon(
                             Icons.arrow_right_rounded,

@@ -272,11 +272,6 @@ class BuildMainProductEntry extends StatelessWidget {
                             ElevatedButton(
                               onPressed: () {
                                 if (!rule.certifyCompleted) {
-                                  //Navigator.of(context).pushNamed(
-                                  //    VerifyPage.routerName,
-                                  //    arguments: {
-                                  //      'productId': mainProducts.productId,
-                                  //    });
                                   showPermissionDialog(
                                     context,
                                     mainProducts.productId,
@@ -291,6 +286,11 @@ class BuildMainProductEntry extends StatelessWidget {
                                   );
                                 } else {
                                   final startTime = DateTime.now();
+
+                                  // 触发上报
+                                  bus.fire(
+                                    ReportTaskEvent(),
+                                  );
 
                                   showOrderConfirmDialog(context,
                                       productId: mainProducts.productId, onOK: (

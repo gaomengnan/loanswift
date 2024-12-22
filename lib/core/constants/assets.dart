@@ -16,4 +16,8 @@ class Assets {
   static const messageLotties = "assets/lottie/message_notice.json";
   static const messageLogoGIF = "assets/images/message_logo.gif";
 
+  static const logo11 = "assets/images/logo_11.png";
+  static const logo12 = "assets/images/logo_12.png";
+  static const pintekLogo = "assets/images/Pintek_Logo.png";
+
 }

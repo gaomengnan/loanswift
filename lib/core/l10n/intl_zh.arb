@@ -149,5 +149,11 @@
   "compliant_platform": "合规平台",
   "privacy_security": "隐私安全",
   "continue_to_apply": "继续申请",
-  "cruelly_reject": "残忍拒绝"
+  "cruelly_reject": "残忍拒绝",
+  "account_settings": "账号设置",
+  "clear_cache": "清理缓存",
+  "about": "关于",
+  "version": "版本",
+  "discover_new_version": "发现新版本"
+
 }

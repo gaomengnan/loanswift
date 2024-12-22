@@ -4,9 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get_storage/get_storage.dart';
+import 'package:loanswift/core/utils.dart';
 import 'package:loanswift/features/domain/entity/common/configure.dart';
-import 'package:loanswift/features/presentation/bloc/advertise/advertise.dart';
 import 'package:loanswift/features/presentation/views/widgets/login_widget.dart';
 import 'package:loanswift/features/presentation/views/widgets/verification_code.dart';
 import 'package:loanswift/theme/theme.dart';
@@ -78,10 +77,11 @@ class Ui {
   }
 
   static void showError(BuildContext context, String message) {
-    EasyLoading.showError(
-      message,
-      duration: const Duration(seconds: 2),
-    );
+    Utils.showSnakebar(context, message);
+    //EasyLoading.showError(
+    //  message,
+    //  duration: const Duration(seconds: 2),
+    //);
   }
 
   static void showErrorNoContext(String message) {

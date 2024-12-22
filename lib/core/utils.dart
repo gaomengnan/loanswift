@@ -4,7 +4,9 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:loanswift/core/common/widgets/app_text.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/core/dio_client.dart';
 import 'package:loanswift/theme/theme.dart';
@@ -24,50 +26,64 @@ class Utils {
   static void showSnakebar(BuildContext context, String content) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
+        elevation: 0,
         backgroundColor: Colors.transparent,
         behavior: SnackBarBehavior.floating,
         content: Stack(
           children: [
             Container(
-              padding: const EdgeInsets.all(10),
+              padding: EdgeInsets.symmetric(
+                vertical: 10.h,
+              ),
               decoration: BoxDecoration(
-                color: Pallete.redDeepColor,
+                color: Colors.red,
                 borderRadius: BorderRadius.circular(20),
               ),
-              height: 100,
+              height: 80.h,
               child: Row(
                 children: [
-                  const SizedBox(
-                    width: 48,
+                  SizedBox(
+                    width: 20.w,
                   ),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Row(
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Icon(Icons.chat),
-                            Text(
-                              " 发生问题了",
-                              style: TextStyle(
-                                color: Pallete.whiteColor,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
+                            Icon(
+                              Icons.chat,
+                              size: 14.sp,
+                              color: Colors.red,
+                            ),
+                            Ui.kWidth5(),
+                            RText(
+                              textAlign: TextAlign.start,
+                              text: " 发生问题了",
+                              color: Pallete.whiteColor,
+                              size: 13.sp,
+                              fontWeight: FontWeight.bold,
+                              //style: TextStyle(
+                              //  color: Pallete.whiteColor,
+                              //  fontSize: 18,
+                              //  fontWeight: FontWeight.bold,
+                              //),
                             ),
                           ],
                         ),
-                        const Spacer(),
-                        Text(
-                          content,
-                          style: const TextStyle(
+                        Ui.kHeight5(),
+                        //const Spacer(),
+                        Expanded(
+                          child: RText(
+                            text: content,
                             color: Pallete.whiteColor,
-                            fontSize: 12,
-                            // fontWeight: FontWeight.bold,
+                            size: 12.sp,
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
+                            // textAlign: TextAlign.center,
                           ),
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          // textAlign: TextAlign.center,
                         ),
                       ],
                     ),

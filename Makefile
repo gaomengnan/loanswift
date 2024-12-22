@@ -1,3 +1,5 @@
+V := $(shell git rev-parse --abbrev-ref HEAD | sed 's/^v//')
+
 pack: pack_version rename_arm64 rename_armeabi rename_86
 
 run:

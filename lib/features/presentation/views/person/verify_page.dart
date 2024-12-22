@@ -1,10 +1,8 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/common/widgets/app_text.dart';
-import 'package:loanswift/core/report.dart';
+import 'package:loanswift/core/event_bus_service.dart';
 import 'package:loanswift/features/presentation/bloc/certify/certifies_bloc.dart';
 import 'package:loanswift/features/presentation/views/person/basic_information.dart';
 import 'package:loanswift/features/presentation/views/person/bind_bank.dart';
@@ -46,15 +44,10 @@ class _VerifyPageState extends State<VerifyPage>
   late AnimationController _aniController;
   late Animation<double> _animation;
 
-  Stream<bool> executeReportTask(double w, double h, double ps) async* {
-    final ReportService reportService = sl();
-    yield await reportService.gpsReport();
-    yield await reportService.smsReport();
-    yield await reportService.contactsReport();
-    yield await reportService.installedAppReport();
-    yield await reportService.deviceInfoReport(h, w, ps);
-    // yield await reportService.smsReport();
-  }
+  //Stream<bool> executeReportTask() async* {
+  //  ReportService reportService = sl();
+  //  reportService.applyReportTasks();
+  //}
 
   //late Animation<double> _shadeAnimation;
 
@@ -92,25 +85,13 @@ class _VerifyPageState extends State<VerifyPage>
       ),
     );
 
-    double deviceWidth = ScreenUtil().screenWidth;
-    double deviceHeight = ScreenUtil().screenHeight;
+    //executeReportTask().listen((r) {
+    //  logger.i("task execute $r");
+    //});
+    bus.fire(
+      ReportTaskEvent(),
+    );
 
-    double physicalSize = 0;
-
-    // 获取设备的像素密度（每英寸像素数）
-    double? pixelRatio = ScreenUtil().pixelRatio;
-
-    if (pixelRatio != null) {
-      // 计算物理宽度和高度（以英寸为单位）
-      double physicalWidth = deviceWidth / pixelRatio;
-      double physicalHeight = deviceHeight / pixelRatio;
-
-      // 计算设备的物理尺寸（屏幕对角线的英寸数）
-      physicalSize = sqrt(pow(physicalWidth, 2) + pow(physicalHeight, 2));
-    }
-    executeReportTask(deviceHeight, deviceWidth, physicalSize).listen((r) {
-      logger.i("task execute $r");
-    });
     super.initState();
   }
 
@@ -188,25 +169,6 @@ class _VerifyPageState extends State<VerifyPage>
     //return StepperExample();
     final currentStep =
         context.select((CertifiesBloc bloc) => bloc.state.cerfityStep);
-
-    //double deviceWidth = MediaQuery.of(context).size.width;
-    //double deviceHeight = MediaQuery.of(context).size.height;
-    //
-    //// 获取设备的像素密度（每英寸像素数）
-    //double pixelRatio = MediaQuery.of(context).devicePixelRatio;
-    //
-    //// 计算物理宽度和高度（以英寸为单位）
-    //double physicalWidth = deviceWidth / pixelRatio;
-    //double physicalHeight = deviceHeight / pixelRatio;
-    //
-    //// 计算设备的物理尺寸（屏幕对角线的英寸数）
-    //double physicalSize = sqrt(pow(physicalWidth, 2) + pow(physicalHeight, 2));
-    //
-    //try {
-    //  executeReportTask(deviceHeight, deviceWidth, physicalSize).listen((r) {
-    //    print("task execute $r");
-    //  });
-    //} catch (_) {}
 
     return Scaffold(
       backgroundColor: Pallete.backgroundColor,
