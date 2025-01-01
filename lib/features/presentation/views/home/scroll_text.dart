@@ -42,17 +42,17 @@ class _ScrollTextState extends State<ScrollText>
               sliver: SliverToBoxAdapter(
                 child: Container(
                   padding: EdgeInsets.only(
-                    top: 12.h,
+                    top: 10.h,
                     right: 10.w,
                     left: 10.w,
                   ),
                   decoration: BoxDecoration(
-                    color: Colors.green[100],
+                    color: Pallete.whiteColor,
                     borderRadius: BorderRadius.circular(
                       5.sp,
                     ),
                   ),
-                  height: 40.h,
+                  height: 35.h,
                   child: Marquee(
                     text: noticeMeg,
                     style: const TextStyle(
