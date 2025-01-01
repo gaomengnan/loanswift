@@ -123,7 +123,7 @@ Future<void> showPermissionDialog(context, int productId) async {
                               if (context.mounted) {
                                 Ui.showError(
                                   context,
-                                  "请开启必要权限",
+                                  "${S.current.permission_error}!",
                                 );
                               }
                             }

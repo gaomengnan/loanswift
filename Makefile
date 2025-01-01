@@ -11,7 +11,7 @@ pack_version:
 	flutter build apk --build-name=$(V) --build-number=1 --release --obfuscate --split-debug-info=build/debug-info --split-per-abi  --tree-shake-icons
 
 pack2:
-	flutter build apk --release --obfuscate --split-debug-info=build/debug-info   --tree-shake-icons
+	flutter build apk
 
 rename_arm64:
 	mv build/app/outputs/flutter-apk/app-arm64-v8a-release.apk build/app/outputs/flutter-apk/app-arm64-v8a-release-v$(V).apk

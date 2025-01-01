@@ -12,7 +12,7 @@ import 'package:loanswift/features/presentation/bloc/home/home_bloc.dart';
 import 'package:loanswift/features/presentation/views/home/banner.dart';
 import 'package:loanswift/features/presentation/views/home/bill.dart';
 import 'package:loanswift/features/presentation/views/home/main_product.dart';
-import 'package:loanswift/features/presentation/views/home/messages.dart';
+import 'package:loanswift/features/presentation/views/home/scroll_text.dart';
 import 'package:loanswift/features/presentation/views/home/suggestion.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -172,7 +172,7 @@ class _HomePageState extends State<HomePage>
                     banners: state.homeData.banners,
                   ),
 
-                  const Messages(),
+                  const ScrollText(),
 
                   /*   Bill Amount */
                   BuildBill(

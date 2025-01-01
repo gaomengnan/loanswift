@@ -133,7 +133,7 @@ class _PersonPageState extends State<PersonPage> {
                               Ui.kWidth10(),
                               RText(
                                 text: isLogin
-                                    ? "您好, $maskPhone"
+                                    ? "${S.current.ninhao}, $maskPhone"
                                     : S.current.login_or_register,
                                 size: 16.sp,
                                 textAlign: TextAlign.start,

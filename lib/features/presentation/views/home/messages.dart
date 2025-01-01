@@ -21,7 +21,7 @@ class _MessagesState extends State<Messages> {
     return FutureBuilder(
         future: _action,
         builder: (context, snapshot) {
-          if (snapshot.hasData) {
+          if (snapshot.hasData && snapshot.data!.isNotEmpty) {
             List<MessagesEntity> data = snapshot.data!;
 
             return SliverPadding(
@@ -78,66 +78,30 @@ class _MessagesState extends State<Messages> {
                                     ? data.length
                                     : endIndex);
 
-                            return Container(
-                              //height: 50,
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 10.w,
-                                // vertical: 5.h,
-                              ),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  ...List.generate(pageData.length, (e) {
-                                    // 0 1 2
-                                    int index = e;
-                                    //if (index == 1) {
-                                    //  return UI.kHeight10();
-                                    //}
-                                    //
-                                    //if (index == 2) {
-                                    //  index = 1;
-                                    //}
-
-                                    final currentData = pageData[index];
-                                    return Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Expanded(
-                                          flex: 4,
-                                          child: RText(
-                                            maxLines: 3,
-                                            textAlign: TextAlign.start,
-                                            text: currentData.notice,
-                                            size: 10.sp,
-                                          ),
-                                        ),
-                                        Expanded(
-                                          flex: 2,
-                                          child: RText(
-                                            maxLines: 1,
-                                            textAlign: TextAlign.start,
-                                            text: "    ${currentData.time}",
-                                            color: Colors.black38,
-                                            size: 12.sp,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                      ],
-                                    );
-                                  }),
-                                ],
-                              ),
+                            return Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                ...List.generate(pageData.length, (e) {
+                                  // 0 1 2
+                                  int index = e;
+                                  final currentData = pageData[index];
+                                  return RText(
+                                    height: 0,
+                                    text: currentData.notice,
+                                    maxLines: 3,
+                                    textAlign: TextAlign.start,
+                                  );
+                                }),
+                              ],
                             );
                           },
                           options: CarouselOptions(
+                            autoPlayCurve: Curves.easeInOutCubic,
                             scrollPhysics: const NeverScrollableScrollPhysics(),
                             viewportFraction: 1,
                             height: 50.h,
-                            scrollDirection: Axis.vertical,
+                            scrollDirection: Axis.horizontal,
                             autoPlay: true,
                             autoPlayInterval: const Duration(seconds: 3),
                           ),

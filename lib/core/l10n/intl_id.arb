@@ -151,6 +151,10 @@
   "clear_cache": "Bersihkan Cache",
   "about": "Tentang",
   "version": "Versi",
-  "discover_new_version": "Temukan Versi Baru"
-
+  "discover_new_version": "Temukan Versi Baru",
+  "error_occurred": "Terjadi kesalahan",
+  "ninhao": "Halo",
+  "permission_error": "Silakan aktifkan izin yang ditandai merah di daftar atas dalam pengaturan sistem, lalu coba lagi",
+  "check_for_updates": "Periksa pembaruan",
+  "cacheCleared": "Cache Telah Dihapus"
 }

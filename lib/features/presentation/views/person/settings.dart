@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/common/widgets/widgets.dart';
 import 'package:loanswift/core/config_manager.dart';
-import 'package:loanswift/core/container.dart';
-import 'package:loanswift/core/generated/l10n.dart';
+import 'package:loanswift/core/core.dart';
 import 'package:loanswift/core/report.dart';
+import 'package:loanswift/core/webview_controller.dart';
 import 'package:loanswift/features/presentation/views/person/about_us.dart';
 import 'package:loanswift/theme/theme.dart';
 
@@ -65,6 +65,15 @@ class _SettingsPageState extends State<SettingsPage> {
               child: Column(
                 children: [
                   ListTile(
+                    onTap: () async {
+                      final webviewController = MyWebviewController().controller;
+                      await webviewController.clearCache();
+                      await webviewController.clearLocalStorage();
+
+                      if (context.mounted) {
+                        Ui.showSuccess(context, S.current.cacheCleared);
+                      }
+                    },
                     contentPadding: EdgeInsets.symmetric(
                       horizontal: 20.w,
                       //vertical: 0

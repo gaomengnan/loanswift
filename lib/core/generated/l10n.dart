@@ -1569,6 +1569,56 @@ class S {
       args: [],
     );
   }
+
+  /// `发生错误了`
+  String get error_occurred {
+    return Intl.message(
+      '发生错误了',
+      name: 'error_occurred',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `您好`
+  String get ninhao {
+    return Intl.message(
+      '您好',
+      name: 'ninhao',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `请将上方列表中带有红色标记的权限在系统设置打开之后再重试`
+  String get permission_error {
+    return Intl.message(
+      '请将上方列表中带有红色标记的权限在系统设置打开之后再重试',
+      name: 'permission_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `检查更新`
+  String get check_for_updates {
+    return Intl.message(
+      '检查更新',
+      name: 'check_for_updates',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `已清除缓存`
+  String get cacheCleared {
+    return Intl.message(
+      '已清除缓存',
+      name: 'cacheCleared',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

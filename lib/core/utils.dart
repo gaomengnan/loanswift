@@ -56,12 +56,12 @@ class Utils {
                             Icon(
                               Icons.chat,
                               size: 14.sp,
-                              color: Colors.red,
+                              color: Colors.white,
                             ),
                             Ui.kWidth5(),
                             RText(
                               textAlign: TextAlign.start,
-                              text: " 发生问题了",
+                              text: " ${S.current.error_occurred}",
                               color: Pallete.whiteColor,
                               size: 13.sp,
                               fontWeight: FontWeight.bold,

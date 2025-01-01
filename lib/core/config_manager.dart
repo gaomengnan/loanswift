@@ -24,6 +24,12 @@ class ConfigManager {
     return configModelData.advertise;
   }
 
+  Future<String> getUpgradeLink() async {
+    final cachedConfig = GetStorage().read<DataMap>(_configKey);
+    final configModelData = ConfigureModel.fromMap(cachedConfig ?? {});
+    return configModelData.upgradeLink;
+  }
+
   Future<String> getCurrentVersion() async {
     final cachedConfig = GetStorage().read<DataMap>(_configKey);
     final configModelData = ConfigureModel.fromMap(cachedConfig ?? {});

@@ -2,10 +2,12 @@ class ConfigureEntity {
   final Permissions permissions;
   final String currentVersion;
   final AdvertiseEntity advertise;
+  final String upgradeLink;
   ConfigureEntity({
     required this.permissions,
     required this.currentVersion,
     required this.advertise,
+    required this.upgradeLink,
   });
 }
 

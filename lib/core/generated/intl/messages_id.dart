@@ -39,8 +39,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "bill_state": MessageLookupByLibrary.simpleMessage("Laporan Tagihan"),
         "bind_bank_card":
             MessageLookupByLibrary.simpleMessage("Mengikat kartu bank"),
+        "cacheCleared":
+            MessageLookupByLibrary.simpleMessage("Cache Telah Dihapus"),
         "camera": MessageLookupByLibrary.simpleMessage("Kamera"),
         "cancel": MessageLookupByLibrary.simpleMessage("Membatalkan"),
+        "check_for_updates":
+            MessageLookupByLibrary.simpleMessage("Periksa pembaruan"),
         "clear_cache": MessageLookupByLibrary.simpleMessage("Bersihkan Cache"),
         "click_to_access":
             MessageLookupByLibrary.simpleMessage("Klik untuk mengotorisasi"),
@@ -74,6 +78,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Silakan masukkan kode verifikasi"),
         "errorPhone": MessageLookupByLibrary.simpleMessage(
             "Masukkan nomor ponsel yang benar"),
+        "error_occurred":
+            MessageLookupByLibrary.simpleMessage("Terjadi kesalahan"),
         "everyone_says":
             MessageLookupByLibrary.simpleMessage("Semua orang berkata"),
         "exclusive": MessageLookupByLibrary.simpleMessage("Eksklusif"),
@@ -144,6 +150,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "network_error":
             MessageLookupByLibrary.simpleMessage("Kesalahan Jaringan"),
         "nextStep": MessageLookupByLibrary.simpleMessage("Langkah selanjutnya"),
+        "ninhao": MessageLookupByLibrary.simpleMessage("Halo"),
         "no_credit_limit":
             MessageLookupByLibrary.simpleMessage("Tanpa batas kredit"),
         "normal_repayment":
@@ -196,6 +203,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "order_success":
             MessageLookupByLibrary.simpleMessage("Pesanan Berhasil"),
         "overdue": MessageLookupByLibrary.simpleMessage("Jatuh tempo"),
+        "permission_error": MessageLookupByLibrary.simpleMessage(
+            "Silakan aktifkan izin yang ditandai merah di daftar atas dalam pengaturan sistem, lalu coba lagi"),
         "permission_title": MessageLookupByLibrary.simpleMessage(
             "Untuk menyelesaikan proses pinjaman Anda dengan cepat, kami memerlukan akses ke izin ini"),
         "person_button": MessageLookupByLibrary.simpleMessage("Milikku"),
