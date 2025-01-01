@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/features/domain/entity/common/messages.dart';
 import 'package:loanswift/features/domain/usecases/common/get_notify_messages.dart';
+import 'package:loanswift/theme/pallete.dart';
 import 'package:marquee/marquee.dart';
+import 'package:meta/dart2js.dart';
 
 class ScrollText extends StatefulWidget {
   const ScrollText({super.key});
@@ -25,7 +27,12 @@ class _ScrollTextState extends State<ScrollText>
             List<MessagesEntity> data = snapshot.data!;
 
             // 使用 forEach 遍历列表
-            final noticeMessage = data.map((e) => e.notice).join('            ');
+            var noticeMeg = "";
+            if (data.length > 1) {
+              noticeMeg = data.map((e) => e.notice).join('            ');
+            }else{
+              noticeMeg = data.map((e) => e.notice).join('');
+            }
 
             return SliverPadding(
               padding: EdgeInsets.only(
@@ -35,19 +42,19 @@ class _ScrollTextState extends State<ScrollText>
               sliver: SliverToBoxAdapter(
                 child: Container(
                   padding: EdgeInsets.only(
-                    top: 3.h,
+                    top: 12.h,
                     right: 10.w,
                     left: 10.w,
                   ),
                   decoration: BoxDecoration(
-                    // color: Pallete.secondaryColor,
+                    color: Colors.green[100],
                     borderRadius: BorderRadius.circular(
                       5.sp,
                     ),
                   ),
-                  height: 16.h,
+                  height: 40.h,
                   child: Marquee(
-                    text: noticeMessage,
+                    text: noticeMeg,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
