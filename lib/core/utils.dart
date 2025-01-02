@@ -26,6 +26,9 @@ class Utils {
   static void showSnakebar(BuildContext context, String content) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
+        duration: const Duration(
+          seconds: 2,
+        ),
         elevation: 0,
         backgroundColor: Colors.transparent,
         behavior: SnackBarBehavior.floating,

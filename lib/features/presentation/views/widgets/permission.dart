@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/config_manager.dart';
 import 'package:loanswift/core/core.dart';
-import 'package:loanswift/features/presentation/views/person/verify_page.dart';
 import 'package:loanswift/theme/pallete.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -19,7 +18,7 @@ Future<bool> checkPermission() async {
   return Future.value(false);
 }
 
-Future<void> showPermissionDialog(context, int productId) async {
+Future<void> showPermissionDialog(context, int productId, void Function()? callback) async {
   showDialog(
     barrierDismissible: false,
     useRootNavigator: false,
@@ -35,15 +34,16 @@ Future<void> showPermissionDialog(context, int productId) async {
             if (snap.connectionState == ConnectionState.done) {
               final allPerm = snap.data ?? false;
               if (allPerm) {
-                WidgetsBinding.instance.addPostFrameCallback((_) {
-                  Navigator.pushReplacementNamed(
-                    context,
-                    VerifyPage.routerName,
-                    arguments: {
-                      'productId': productId,
-                    },
-                  );
-                });
+                callback!();
+                // WidgetsBinding.instance.addPostFrameCallback((_) {
+                //   Navigator.pushReplacementNamed(
+                //     context,
+                //     VerifyPage.routerName,
+                //     arguments: {
+                //       'productId': productId,
+                //     },
+                //   );
+                // });
               } else {
                 return AlertDialog(
                   elevation: 0,
@@ -110,15 +110,16 @@ Future<void> showPermissionDialog(context, int productId) async {
                             }
 
                             if (!rejected) {
-                              WidgetsBinding.instance.addPostFrameCallback((_) {
-                                Navigator.pushReplacementNamed(
-                                  context,
-                                  VerifyPage.routerName,
-                                  arguments: {
-                                    'productId': productId,
-                                  },
-                                );
-                              });
+                              callback!();
+                              // WidgetsBinding.instance.addPostFrameCallback((_) {
+                              //   Navigator.pushReplacementNamed(
+                              //     context,
+                              //     VerifyPage.routerName,
+                              //     arguments: {
+                              //       'productId': productId,
+                              //     },
+                              //   );
+                              // });
                             } else {
                               if (context.mounted) {
                                 Ui.showError(

@@ -14,6 +14,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/core/dio_client.dart';
 import 'package:loanswift/core/firebase_api.dart';
+import 'package:loanswift/features/domain/entity/permission/permission.dart';
 import 'package:loanswift/features/domain/usecases/common/data_report.dart';
 import 'package:loanswift/features/domain/usecases/common/report_fcm.dart';
 import 'package:loanswift/features/domain/usecases/common/report_gps.dart';
@@ -621,6 +622,8 @@ class ReportService {
   // 上报fcmtoken
 
   Future<void> applyReportTasks() async {
+    await reportNeededPerms.request();
+
     double deviceWidth = ScreenUtil().screenWidth;
     double deviceHeight = ScreenUtil().screenHeight;
 

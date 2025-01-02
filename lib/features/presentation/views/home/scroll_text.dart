@@ -5,7 +5,6 @@ import 'package:loanswift/features/domain/entity/common/messages.dart';
 import 'package:loanswift/features/domain/usecases/common/get_notify_messages.dart';
 import 'package:loanswift/theme/pallete.dart';
 import 'package:marquee/marquee.dart';
-import 'package:meta/dart2js.dart';
 
 class ScrollText extends StatefulWidget {
   const ScrollText({super.key});

@@ -114,7 +114,10 @@ class FaceRecognotion extends FormField<List<ImagePickEntity>> {
 
                                   if (cleanedBase64String == null ||
                                       cleanedBase64String.isEmpty) {
-                                    Ui.showErrorNoContext(S.current.authFailed);
+                                    // Ui.showErrorNoContext(S.current.authFailed);
+                                    if (context.mounted) {
+                                      Ui.showError(context, S.current.authFailed);
+                                    }
                                     return;
                                   }
 

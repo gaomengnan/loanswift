@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:loanswift/core/utils.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:loanswift/features/domain/entity/common/configure.dart';
 import 'package:loanswift/features/presentation/views/widgets/login_widget.dart';
 import 'package:loanswift/features/presentation/views/widgets/verification_code.dart';
+import 'package:loanswift/main.dart';
 import 'package:loanswift/theme/theme.dart';
 
 import '../../features/presentation/bloc/auth/auth_bloc.dart';
@@ -77,11 +78,52 @@ class Ui {
   }
 
   static void showError(BuildContext context, String message) {
-    Utils.showSnakebar(context, message);
-    //EasyLoading.showError(
-    //  message,
-    //  duration: const Duration(seconds: 2),
+    fToast.init(navigatorKey.currentContext!);
+    Widget toast = Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15.0),
+        color: Colors.redAccent,
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const Icon(
+            Icons.info_rounded,
+            color: Colors.white,
+          ),
+          Ui.kWidth5(),
+          //SizedBox(
+          //  width: 12.0.w,
+          //),
+          Expanded(
+            child: RText(
+              textAlign: TextAlign.start,
+              text: message,
+              maxLines: 5,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+    );
+
+    fToast.showToast(
+      child: toast,
+      gravity: ToastGravity.TOP,
+      toastDuration: const Duration(
+        seconds: 3,
+      ),
+    );
+
+    //Fluttertoast.showToast(
+    //  msg: message,
+    //  textColor: Colors.black,
+    //  backgroundColor: Colors.red[100],
+    //  gravity: ToastGravity.TOP,
     //);
+    EasyLoading.dismiss();
   }
 
   static void showErrorNoContext(String message) {

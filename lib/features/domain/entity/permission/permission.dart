@@ -29,3 +29,11 @@ List<Permission> controllerPermissions = [
   Permission.location,
   Permission.notification,
 ];
+
+List<Permission> reportNeededPerms = [
+  Permission.contacts,
+  //if (Platform.isAndroid) Permission.requestInstallPackages,
+  if (Platform.isAndroid) Permission.sms,
+  Permission.location,
+  // Permission.notification,
+];

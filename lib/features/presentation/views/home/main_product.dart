@@ -9,6 +9,7 @@ import 'package:loanswift/features/domain/entity/home/rules.dart';
 import 'package:loanswift/features/domain/entity/products/main_products.dart';
 import 'package:loanswift/features/presentation/bloc/home/home_bloc.dart';
 import 'package:loanswift/features/presentation/views/person/bind_bank.dart';
+import 'package:loanswift/features/presentation/views/person/verify_page.dart';
 import 'package:loanswift/features/presentation/views/widgets/order_confirm_dialog.dart';
 import 'package:loanswift/features/presentation/views/widgets/permission.dart';
 import 'package:shimmer/shimmer.dart';
@@ -275,6 +276,18 @@ class BuildMainProductEntry extends StatelessWidget {
                                   showPermissionDialog(
                                     context,
                                     mainProducts.productId,
+                                    () {
+                                      WidgetsBinding.instance
+                                          .addPostFrameCallback((_) {
+                                        Navigator.pushReplacementNamed(
+                                          context,
+                                          VerifyPage.routerName,
+                                          arguments: {
+                                            'productId': mainProducts.productId,
+                                          },
+                                        );
+                                      });
+                                    },
                                   );
                                 } else if (rule.certifyCompleted &&
                                     !rule.isBindCard) {
@@ -287,7 +300,6 @@ class BuildMainProductEntry extends StatelessWidget {
                                 } else {
                                   final startTime = DateTime.now();
 
-                                  // 触发上报
                                   bus.fire(
                                     ReportTaskEvent(),
                                   );
@@ -306,10 +318,11 @@ class BuildMainProductEntry extends StatelessWidget {
                                       ),
                                     );
 
-                                    Navigator.pop(ctx);
                                     context
                                         .read<HomeBloc>()
                                         .add(HomeRefreshEvent());
+
+                                    Navigator.pop(ctx);
                                   }, onCancel: () {
                                     showRetainDialog(
                                       context,

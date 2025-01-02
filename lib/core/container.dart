@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get_it/get_it.dart';
 import 'package:get_storage/get_storage.dart';
@@ -62,6 +63,8 @@ import '../features/presentation/bloc/bloc.dart';
 
 final sl = GetIt.instance;
 final EventBus bus = EventBus();
+
+FToast fToast = FToast();
 
 var logger = Logger(
   printer: PrettyPrinter(
