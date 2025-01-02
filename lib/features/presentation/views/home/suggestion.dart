@@ -9,26 +9,27 @@ import 'package:loanswift/core/report.dart';
 import 'package:loanswift/features/domain/entity/entity.dart';
 import 'package:loanswift/features/presentation/bloc/home/home_bloc.dart';
 import 'package:loanswift/features/presentation/views/person/bind_bank.dart';
+import 'package:loanswift/features/presentation/views/person/verify_page.dart';
 import 'package:loanswift/features/presentation/views/widgets/order_confirm_dialog.dart';
 import 'package:loanswift/features/presentation/views/widgets/permission.dart';
 import 'package:loanswift/theme/theme.dart';
 
-class BuildSuggestion extends StatefulWidget {
+class BuildSubProducts extends StatefulWidget {
   final List<MainProducts> apiProducts;
 
   final Rules rule;
 
-  const BuildSuggestion({
+  const BuildSubProducts({
     super.key,
     required this.apiProducts,
     required this.rule,
   });
 
   @override
-  State<BuildSuggestion> createState() => _BuildSuggestionState();
+  State<BuildSubProducts> createState() => _BuildSubProductsState();
 }
 
-class _BuildSuggestionState extends State<BuildSuggestion>
+class _BuildSubProductsState extends State<BuildSubProducts>
     with TickerProviderStateMixin {
   late PageController _pageController;
 
@@ -125,15 +126,15 @@ class _BuildSuggestionState extends State<BuildSuggestion>
                     children: [
                       ClipOval(
                         child: CachedNetworkImage(
-                          height: 35.h,
+                          height: 40,
                           fit: BoxFit.cover,
-                          width: 35.w,
+                          width: 40,
                           imageUrl: product.copywriterInfo.productDesc.logo,
                           errorWidget: (context, url, error) =>
                               const Icon(Icons.error),
                         ),
                       ),
-                      UI.kWidth10(),
+                      Ui.kWidth10(),
                       RText(
                         textAlign: TextAlign.start,
                         text: product.productName,
@@ -147,12 +148,17 @@ class _BuildSuggestionState extends State<BuildSuggestion>
                   ElevatedButton(
                     onPressed: () {
                       if (!widget.rule.certifyCompleted) {
-                        //Navigator.of(context).pushNamed(
-                        //    VerifyPage.routerName,
-                        //    arguments: {
-                        //      'productId': mainProducts.productId,
-                        //    });
-                        showPermissionDialog(context, product.productId);
+                        showPermissionDialog(context, product.productId, () {
+                          WidgetsBinding.instance.addPostFrameCallback((_) {
+                            Navigator.pushReplacementNamed(
+                              context,
+                              VerifyPage.routerName,
+                              arguments: {
+                                'productId': product.productId,
+                              },
+                            );
+                          });
+                        });
                       } else if (widget.rule.certifyCompleted &&
                           !widget.rule.isBindCard) {
                         Navigator.of(context).pushNamed(
@@ -163,6 +169,10 @@ class _BuildSuggestionState extends State<BuildSuggestion>
                         );
                       } else {
                         final startTime = DateTime.now();
+
+                        bus.fire(
+                          ReportTaskEvent(),
+                        );
 
                         showOrderConfirmDialog(
                           context,
@@ -290,7 +300,7 @@ class _BuildSuggestionState extends State<BuildSuggestion>
                           //size: 14.sp,
                           fontWeight: FontWeight.w600,
                         ),
-                        UI.kHeight5(),
+                        Ui.kHeight5(),
                         RText(
                           text: product.productAmount,
                           fontWeight: FontWeight.w800,

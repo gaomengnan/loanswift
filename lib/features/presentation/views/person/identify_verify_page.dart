@@ -58,7 +58,7 @@ class _IdentifyVerifyPageState extends State<IdentifyVerifyPage> {
         value.dispose();
       },
     );
-    UI.hideLoading();
+    Ui.hideLoading();
     super.dispose();
   }
 
@@ -121,12 +121,12 @@ class _IdentifyVerifyPageState extends State<IdentifyVerifyPage> {
 
       final ocrUsecase = sl<Ocr>();
 
-      UI.showLoading();
+      Ui.showLoading();
 
       final resp = await ocrUsecase.call(OcrParams(objectKey: s));
 
-      resp.fold((l) => UI.showError(context, l.message), (r) {
-        UI.hideLoading();
+      resp.fold((l) => Ui.showError(context, l.message), (r) {
+        Ui.hideLoading();
         final entity = r['message'] ?? {};
         final name = entity['name'] ?? '';
         final id = entity['id'] ?? '';
@@ -174,7 +174,7 @@ class _IdentifyVerifyPageState extends State<IdentifyVerifyPage> {
                         }
                       },
                     ),
-                    UI.kHeight10(),
+                    Ui.kHeight10(),
                     const Divider(
                       color: Colors.black12,
                     ),

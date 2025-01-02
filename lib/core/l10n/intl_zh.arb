@@ -149,5 +149,15 @@
   "compliant_platform": "合规平台",
   "privacy_security": "隐私安全",
   "continue_to_apply": "继续申请",
-  "cruelly_reject": "残忍拒绝"
-}
+  "cruelly_reject": "残忍拒绝",
+  "account_settings": "账号设置",
+  "clear_cache": "清理缓存",
+  "about": "关于",
+  "version": "版本",
+  "discover_new_version": "发现新版本",
+  "error_occurred": "发生错误了",
+  "ninhao": "您好",
+  "permission_error": "请将上方列表中带有红色标记的权限在系统设置打开之后再重试",
+  "check_for_updates": "检查更新",
+  "cacheCleared": "已清除缓存"
+  }

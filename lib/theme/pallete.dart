@@ -39,7 +39,7 @@ class Pallete {
     colors: [
       Color(0xffDEE5F7),
       Color(0xffDFE6F5),
-      //Color(0xffE7EDF9),
+      Color(0xffE7EDF9),
       Color(0xffF5F5FE),
       Pallete.whiteColor
     ],

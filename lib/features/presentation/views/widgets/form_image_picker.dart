@@ -101,7 +101,7 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
                                     : Colors.grey,
                               ),
                       ),
-                      UI.kWidth5(),
+                      Ui.kWidth5(),
                       Expanded(
                         child: RText(
                           textAlign: TextAlign.start,
@@ -113,12 +113,12 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
                       ),
                     ],
                   ),
-                  UI.kHeight10(),
+                  Ui.kHeight10(),
                   Expanded(
                     flex: 3,
                     child: GestureDetector(
                       onTap: () async {
-                        UI.showLoading();
+                        Ui.showLoading();
                         //showUploadTypeBottomSheet(context);
                         //Navigator.of(context).pop();
                         //Navigator.push(
@@ -131,58 +131,66 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
 
                         // final picker = ImagePicker();
 
-                        final pickedFiles = await imagePicker.pickImage(
-                          source: ImageSource.camera,
-                          maxWidth: 600,
-                          imageQuality: 90,
-                        );
+                        try {
+                          final pickedFiles = await imagePicker.pickImage(
+                            source: ImageSource.camera,
+                            maxWidth: 600,
+                            imageQuality: 90,
+                          );
+
+                          if (pickedFiles != null) {
+                            Ui.showLoading();
+
+                            final resp = await Utils.uploadImage(
+                              pickedFiles.path,
+                              info.certifyCode,
+                            );
+
+                            resp.fold(
+                              (err) => Ui.showError(context, err.message),
+                              (l) {
+                                bus.fire(TargetPointEvent(
+                                  startTime,
+                                  DateTime.now(),
+                                  SceneType.idCardFrontOcr,
+                                ));
+
+                                Ui.hideLoading();
+
+                                final body = l.data as DataMap?;
+                                //final path = body?['data']['path'];
+                                final object = body?['data']['object'];
+                                final url = body?['data']['path'];
+
+                                state.didChange([
+                                  ImagePickEntity(
+                                      filePath: pickedFiles.path,
+                                      path: object,
+                                      url: url)
+                                ]);
+
+                                if (onChanged != null) {
+                                  onChanged(object);
+                                }
+
+                                //state.didChange(List.from(state.value ?? [])
+                                //  ..addAll([File(pickedFiles.path)]));
+                              },
+                            );
+                          }
+                          Ui.hideLoading();
+                        } catch (e) {
+                          if (context.mounted) {
+                            Ui.showError(context, e.toString());
+                          }
+                          Ui.hideLoading();
+                        }
 
                         //Navigator.push(
                         //   context,
                         //   MaterialPageRoute(
                         //       builder: (context) => const CardScanner()));
                         //
-                        if (pickedFiles != null) {
-                          UI.showLoading();
-
-                          final resp = await Utils.uploadImage(
-                            pickedFiles.path,
-                            info.certifyCode,
-                          );
-
-                          resp.fold(
-                            (err) => UI.showError(context, err.message),
-                            (l) {
-                              bus.fire(TargetPointEvent(
-                                startTime,
-                                DateTime.now(),
-                                SceneType.idCardFrontOcr,
-                              ));
-
-                              UI.hideLoading();
-
-                              final body = l.data as DataMap?;
-                              //final path = body?['data']['path'];
-                              final object = body?['data']['object'];
-                              final url = body?['data']['path'];
-
-                              state.didChange([
-                                ImagePickEntity(
-                                    filePath: pickedFiles.path,
-                                    path: object,
-                                    url: url)
-                              ]);
-
-                              if (onChanged != null) {
-                                onChanged(object);
-                              }
-
-                              //state.didChange(List.from(state.value ?? [])
-                              //  ..addAll([File(pickedFiles.path)]));
-                            },
-                          );
-                        }
-                        UI.hideLoading();
                       },
                       child: state.value == null || state.value!.isEmpty
                           ? Stack(
@@ -306,7 +314,7 @@ class ImagePickerFormField extends FormField<List<ImagePickEntity>> {
                             ),
                     ),
                   ),
-                  UI.kHeight5(),
+                  Ui.kHeight5(),
                   if (state.hasError)
                     Padding(
                       padding: EdgeInsets.only(left: 10.0.w),

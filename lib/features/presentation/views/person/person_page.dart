@@ -2,11 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loanswift/core/common/widgets/webview.dart';
 import 'package:loanswift/core/common/widgets/widgets.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/core/storage.dart';
+import 'package:loanswift/core/utils.dart';
 import 'package:loanswift/features/presentation/bloc/auth/auth_bloc.dart';
 import 'package:loanswift/features/presentation/bloc/home/home_bloc.dart';
 import 'package:loanswift/features/presentation/views/auth/auth_page.dart';
@@ -24,52 +26,6 @@ class _PersonPageState extends State<PersonPage> {
   late ScrollController _scrollController;
   bool scrolled = false;
 
-
-  @override
-    void dispose() {
-      UI.hideLoading();
-      super.dispose();
-    }
-
-  @override
-  void initState() {
-    super.initState();
-    _scrollController = ScrollController(initialScrollOffset: 0);
-    _scrollController.addListener(() {
-      setState(() {
-        scrolled = _scrollController.offset > 5000.h;
-      });
-    });
-  }
-
-
-
-  Widget _buildIconButton(IconData icon, String label, Color color) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //mainAxisSize: MainAxisSize.min,
-      children: [
-        Row(
-          children: [
-            Icon(
-              icon,
-              size: 15.sp,
-              color: color,
-            ),
-            UI.kWidth10(),
-            //const SizedBox(height: 20),
-            RText(
-              text: label,
-              size: 13.sp,
-            ),
-          ],
-        ),
-        const Icon(Icons.arrow_right_rounded)
-      ],
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     /*  获取 意见反馈 跳转地址  */
@@ -82,11 +38,11 @@ class _PersonPageState extends State<PersonPage> {
     return Scaffold(
       body: BlocConsumer<AuthBloc, AuthState>(listener: (context, state) {
         if (state is LogoutFailure) {
-          UI.showError(context, state.error.error);
+          Ui.showError(context, state.error.error);
         }
 
         if (state is LogoutLoading) {
-          UI.showLoading();
+          Ui.showLoading();
         }
 
         if (state is LogoutSuccess) {
@@ -102,6 +58,7 @@ class _PersonPageState extends State<PersonPage> {
         final logined = Storage.token ?? DataMap();
 
         final loginPhone = logined['phone'].toString();
+        final maskPhone = Utils.maskPhoneNumber(loginPhone);
 
         return Scaffold(
           //backgroundColor: Colors.grey.shade200,
@@ -151,7 +108,7 @@ class _PersonPageState extends State<PersonPage> {
                             AuthPage.routerName,
                           );
                         } else {
-                          UI.showLogoutConfirmDialog(context, S.current.logout,
+                          Ui.showLogoutConfirmDialog(context, S.current.logout,
                               S.current.logoutConfirmation, () {
                             context.read<AuthBloc>().add(UserLogoutEvent());
 
@@ -160,27 +117,40 @@ class _PersonPageState extends State<PersonPage> {
                         }
                       },
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const CircleAvatar(
-                            radius: 15,
-                            backgroundColor: Colors.blue,
-                            child: Icon(
-                              size: 25,
-                              Icons.person_rounded,
-                              color: Colors.white,
+                          Row(
+                            children: [
+                              const CircleAvatar(
+                                radius: 15,
+                                backgroundColor: Colors.blue,
+                                child: Icon(
+                                  size: 25,
+                                  Icons.person_rounded,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              Ui.kWidth10(),
+                              RText(
+                                text: isLogin
+                                    ? "${S.current.ninhao}, $maskPhone"
+                                    : S.current.login_or_register,
+                                size: 16.sp,
+                                textAlign: TextAlign.start,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ],
+                          ),
+                          //  Icons.arrow_right,
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).pushNamed(
+                                "/settings",
+                              );
+                            },
+                            child: const Icon(
+                              IconlyLight.setting,
                             ),
-                          ),
-                          UI.kWidth10(),
-                          RText(
-                            text: isLogin
-                                ? loginPhone
-                                : S.current.login_or_register,
-                            size: 14.sp,
-                            textAlign: TextAlign.start,
-                            fontWeight: FontWeight.w600,
-                          ),
-                          const Icon(
-                            Icons.arrow_right,
                           )
                         ],
                       ),
@@ -280,7 +250,7 @@ class _PersonPageState extends State<PersonPage> {
                                 const Color(0xffEE7C7A),
                               ),
                             ),
-                            UI.kHeight20(),
+                            Ui.kHeight20(),
                             //Padding(
                             //  padding: EdgeInsets.only(
                             //    left: 27.w,
@@ -305,7 +275,7 @@ class _PersonPageState extends State<PersonPage> {
                                 const Color(0xffEE7C7A),
                               ),
                             ),
-                            UI.kHeight20(),
+                            Ui.kHeight20(),
                             //Padding(
                             //  padding: EdgeInsets.only(
                             //    left: 27.w,
@@ -458,7 +428,7 @@ class _PersonPageState extends State<PersonPage> {
                                       width: 25.w,
                                       fit: BoxFit.cover,
                                     ),
-                                    UI.kHeight5(),
+                                    Ui.kHeight5(),
                                     SizedBox(
                                         width: 70.w,
                                         child: RText(
@@ -546,6 +516,49 @@ class _PersonPageState extends State<PersonPage> {
           ),
         );
       }),
+    );
+  }
+
+  @override
+  void dispose() {
+    Ui.hideLoading();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController = ScrollController(initialScrollOffset: 0);
+    _scrollController.addListener(() {
+      setState(() {
+        scrolled = _scrollController.offset > 5000.h;
+      });
+    });
+  }
+
+  Widget _buildIconButton(IconData icon, String label, Color color) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //mainAxisSize: MainAxisSize.min,
+      children: [
+        Row(
+          children: [
+            Icon(
+              icon,
+              size: 15.sp,
+              color: color,
+            ),
+            Ui.kWidth10(),
+            //const SizedBox(height: 20),
+            RText(
+              text: label,
+              size: 13.sp,
+            ),
+          ],
+        ),
+        const Icon(Icons.arrow_right_rounded)
+      ],
     );
   }
 }

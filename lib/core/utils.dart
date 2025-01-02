@@ -2,10 +2,11 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'dart:async';
 
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:loanswift/core/common/widgets/app_text.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/core/dio_client.dart';
 import 'package:loanswift/theme/theme.dart';
@@ -13,53 +14,79 @@ import 'package:permission_handler/permission_handler.dart';
 
 class Utils {
   Utils._();
+  static String maskPhoneNumber(String phoneNumber) {
+    if (phoneNumber.length < 4) {
+      return phoneNumber; // 如果手机号长度小于4，直接返回
+    }
+    String masked = '*' * (phoneNumber.length - 4); // 前面的部分用 * 替代
+    String lastFour = phoneNumber.substring(phoneNumber.length - 4); // 提取后四位
+    return masked + lastFour;
+  }
+
   static void showSnakebar(BuildContext context, String content) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
+        duration: const Duration(
+          seconds: 2,
+        ),
+        elevation: 0,
         backgroundColor: Colors.transparent,
         behavior: SnackBarBehavior.floating,
         content: Stack(
           children: [
             Container(
-              padding: const EdgeInsets.all(10),
+              padding: EdgeInsets.symmetric(
+                vertical: 10.h,
+              ),
               decoration: BoxDecoration(
-                color: Pallete.redDeepColor,
+                color: Colors.red,
                 borderRadius: BorderRadius.circular(20),
               ),
-              height: 100,
+              height: 80.h,
               child: Row(
                 children: [
-                  const SizedBox(
-                    width: 48,
+                  SizedBox(
+                    width: 20.w,
                   ),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Row(
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Icon(Icons.chat),
-                            Text(
-                              " 发生问题了",
-                              style: TextStyle(
-                                color: Pallete.whiteColor,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
+                            Icon(
+                              Icons.chat,
+                              size: 14.sp,
+                              color: Colors.white,
+                            ),
+                            Ui.kWidth5(),
+                            RText(
+                              textAlign: TextAlign.start,
+                              text: " ${S.current.error_occurred}",
+                              color: Pallete.whiteColor,
+                              size: 13.sp,
+                              fontWeight: FontWeight.bold,
+                              //style: TextStyle(
+                              //  color: Pallete.whiteColor,
+                              //  fontSize: 18,
+                              //  fontWeight: FontWeight.bold,
+                              //),
                             ),
                           ],
                         ),
-                        const Spacer(),
-                        Text(
-                          content,
-                          style: const TextStyle(
+                        Ui.kHeight5(),
+                        //const Spacer(),
+                        Expanded(
+                          child: RText(
+                            text: content,
                             color: Pallete.whiteColor,
-                            fontSize: 12,
-                            // fontWeight: FontWeight.bold,
+                            size: 12.sp,
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
+                            // textAlign: TextAlign.center,
                           ),
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          // textAlign: TextAlign.center,
                         ),
                       ],
                     ),
@@ -134,7 +161,8 @@ class Utils {
     );
   }
 
-  static ResultFuture<Response> uploadImageFromBytes(Uint8List bytes, String? code) async {
+  static ResultFuture<Response> uploadImageFromBytes(
+      Uint8List bytes, String? code) async {
     final resp = await sl<DioClient>().post(
       path: AppContant.uploadUri,
       data: {

@@ -1519,6 +1519,106 @@ class S {
       args: [],
     );
   }
+
+  /// `账号设置`
+  String get account_settings {
+    return Intl.message(
+      '账号设置',
+      name: 'account_settings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `清理缓存`
+  String get clear_cache {
+    return Intl.message(
+      '清理缓存',
+      name: 'clear_cache',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `关于`
+  String get about {
+    return Intl.message(
+      '关于',
+      name: 'about',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `版本`
+  String get version {
+    return Intl.message(
+      '版本',
+      name: 'version',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `发现新版本`
+  String get discover_new_version {
+    return Intl.message(
+      '发现新版本',
+      name: 'discover_new_version',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `发生错误了`
+  String get error_occurred {
+    return Intl.message(
+      '发生错误了',
+      name: 'error_occurred',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `您好`
+  String get ninhao {
+    return Intl.message(
+      '您好',
+      name: 'ninhao',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `请将上方列表中带有红色标记的权限在系统设置打开之后再重试`
+  String get permission_error {
+    return Intl.message(
+      '请将上方列表中带有红色标记的权限在系统设置打开之后再重试',
+      name: 'permission_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `检查更新`
+  String get check_for_updates {
+    return Intl.message(
+      '检查更新',
+      name: 'check_for_updates',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `已清除缓存`
+  String get cacheCleared {
+    return Intl.message(
+      '已清除缓存',
+      name: 'cacheCleared',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -30,7 +30,9 @@ Future<void> main() async {
     );
     /*  INIT */
     await initialize().then(
-      (_) {},
+      (_) {
+        logger.i("Application started successfully.");
+      },
     );
     //Worker().initial();
 

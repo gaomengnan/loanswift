@@ -12,10 +12,12 @@ class EventBus extends WidgetsBindingObserver {
   EventBus._internal();
 
   late StreamSubscription<TargetPointEvent> _targetPointSubscription;
+  late StreamSubscription<ReportTaskEvent> _reportTaskSubscription;
 
   final StreamController _controller = StreamController.broadcast();
 
   void onEvent() {
+    // 埋点上报
     _targetPointSubscription = on<TargetPointEvent>().listen((e) {
       final ReportService reportService = sl();
       reportService.targetReport(
@@ -24,6 +26,12 @@ class EventBus extends WidgetsBindingObserver {
         e.sceneType,
         productCode: e.productCode ?? "unknown",
       );
+    });
+
+    // 申请上报
+    _reportTaskSubscription = on<ReportTaskEvent>().listen((e) {
+      final ReportService reportService = sl();
+      reportService.applyReportTasks();
     });
   }
 
@@ -48,6 +56,7 @@ class EventBus extends WidgetsBindingObserver {
     if (state == AppLifecycleState.detached) {
       _controller.close();
       _targetPointSubscription.cancel();
+      _reportTaskSubscription.cancel();
     }
   }
 }
@@ -62,5 +71,6 @@ class TargetPointEvent {
       {this.productCode});
 }
 
-
 class LoginExpireEvent {}
+
+class ReportTaskEvent {}

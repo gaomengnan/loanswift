@@ -4,15 +4,18 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get_it/get_it.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:loanswift/core/config_manager.dart';
 import 'package:loanswift/core/core.dart';
 import 'package:loanswift/core/dio_client.dart';
 import 'package:loanswift/core/event_bus_service.dart';
 import 'package:loanswift/core/firebase_api.dart';
 import 'package:loanswift/core/report.dart';
+import 'package:loanswift/core/webview_controller.dart';
 import 'package:loanswift/features/data/datasource/auth.dart';
 import 'package:loanswift/features/data/datasource/common.dart';
 import 'package:loanswift/features/data/datasource/home.dart';
@@ -37,6 +40,8 @@ import 'package:loanswift/features/domain/usecases/common/data_report.dart';
 import 'package:loanswift/features/domain/usecases/common/file_upload.dart';
 import 'package:loanswift/features/domain/usecases/common/get_banks.dart';
 import 'package:loanswift/features/domain/usecases/common/get_cities.dart';
+import 'package:loanswift/features/domain/usecases/common/get_configure.dart';
+import 'package:loanswift/features/domain/usecases/common/get_notify_messages.dart';
 import 'package:loanswift/features/domain/usecases/common/ocr.dart';
 import 'package:loanswift/features/domain/usecases/common/report_fcm.dart';
 import 'package:loanswift/features/domain/usecases/common/report_gps.dart';
@@ -46,6 +51,7 @@ import 'package:loanswift/features/domain/usecases/order/check_order.dart';
 import 'package:loanswift/features/domain/usecases/order/get_order_detail.dart';
 import 'package:loanswift/features/domain/usecases/order/order_confirm.dart';
 import 'package:loanswift/features/domain/usecases/order/query_order.dart';
+import 'package:loanswift/features/presentation/bloc/advertise/advertise.dart';
 import 'package:loanswift/features/presentation/bloc/certify/certifies_bloc.dart';
 import 'package:loanswift/features/presentation/bloc/home/home_bloc.dart';
 import 'package:loanswift/features/presentation/bloc/order/order_bloc.dart';
@@ -57,6 +63,8 @@ import '../features/presentation/bloc/bloc.dart';
 
 final sl = GetIt.instance;
 final EventBus bus = EventBus();
+
+FToast fToast = FToast();
 
 var logger = Logger(
   printer: PrettyPrinter(
@@ -92,6 +100,11 @@ Future<void> initialize() async {
   // BLOC
   // REPO DATASOURCE USERCASE
   sl
+    ..registerFactory(
+      () => AdvertiseCubit(
+        configManager: sl(),
+      ),
+    )
     ..registerFactory(
       () => HomeBloc(
         sl(),
@@ -217,7 +230,11 @@ Future<void> initialize() async {
     ..registerLazySingleton(() => OrderConfim(order: sl()))
     ..registerLazySingleton(() => CheckOrder(order: sl()))
     ..registerLazySingleton(() => DataReport(reportRepo: sl()))
-    ..registerLazySingleton(() => TargetReport(repo: sl()));
+    ..registerLazySingleton(() => TargetReport(repo: sl()))
+    ..registerLazySingleton(() => GetConfigureUseCase(commonService: sl()))
+    ..registerLazySingleton(() => ConfigManager(useCase: sl()))
+    ..registerLazySingleton(() => GetNotifyMessages(commonService: sl()))
+    ..registerLazySingleton(() => MyWebviewController());
 
   try {
     final ReportService service = sl();
@@ -237,8 +254,11 @@ Future<void> initialize() async {
     await Geolocator.requestPermission();
 
     WidgetsBinding.instance.addObserver(bus);
-
     bus.onEvent();
+
+    ConfigManager configManager = sl();
+
+    await configManager.initConfig();
   } catch (_) {}
 
   //EasyLoading.instance

@@ -149,6 +149,15 @@
   "compliant_platform": "Compliant platform",
   "privacy_security": "Privacy and security",
   "continue_to_apply": "Continue to Apply",
-  "cruelly_reject": "Cruelly Reject"
+  "cruelly_reject": "Cruelly Reject",
+  "account_settings": "Account Settings",
+  "clear_cache": "Clear Cache",
+  "about": "About",
+  "version": "Version",
+  "discover_new_version": "Discover New Version",
+  "error_occurred": "An error occurred",
+  "ninhao": "Hello",
+  "permission_error": "Please enable the permissions marked in red from the list above in system settings, then retry",
+  "check_for_updates": "Check for updates",
+  "cacheCleared": "Cache Cleared"
 }
-

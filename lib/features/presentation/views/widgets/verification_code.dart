@@ -34,7 +34,7 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
     pinController.dispose();
     focusNode.unfocus();
     focusNode.dispose();
-    UI.hideLoading();
+    Ui.hideLoading();
     super.dispose();
   }
 
@@ -61,7 +61,7 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
     return BlocConsumer<PhoneSenderBloc, PhoneSenderState>(
         listener: (context, state) {
       if (state is PhoneSenderErrorState) {
-        UI.showError(
+        Ui.showError(
           context,
           state.error.error,
         );
@@ -69,10 +69,10 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
         final isSend = state.countdownState == CountdownState.processing;
 
         if (isSend) {
-          UI.showLoading();
+          Ui.showLoading();
         } else {
           focusNode.requestFocus();
-          UI.hideLoading();
+          Ui.hideLoading();
         }
       }
     }, builder: (
@@ -84,12 +84,12 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
         listener: (context, sauthState) {
           /*   LOADING STATE   */
           if (sauthState is AuthLoading) {
-            UI.showLoading();
+            Ui.showLoading();
           }
 
           /*   FAILER STATE  */
           if (sauthState is AuthFailure) {
-            UI.showError(context, sauthState.error.error);
+            Ui.showError(context, sauthState.error.error);
           }
 
           /*  LOGIN SUCCESS */
@@ -129,7 +129,7 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
                             text: S.current.enter_verification_code,
                             size: 16.sp,
                           ),
-                          UI.kHeight10(),
+                          Ui.kHeight10(),
                           RichText(
                             text: TextSpan(
                               text: S.current.verification_code_sendto,
@@ -156,7 +156,7 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
                         ],
                       ),
                     ),
-                    UI.kHeight10(),
+                    Ui.kHeight10(),
                     Form(
                       key: formKey,
                       child: Column(

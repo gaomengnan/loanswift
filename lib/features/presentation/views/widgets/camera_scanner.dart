@@ -114,7 +114,7 @@ class _CardScannerState extends State<CardScanner> {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasError) {
-            UI.showError(context, snapshot.error.toString());
+            Ui.showError(context, snapshot.error.toString());
             // Navigator.of(context).pop();
             return Scaffold(
               appBar: AppBar(
@@ -141,7 +141,7 @@ class _CardScannerState extends State<CardScanner> {
                           Icons.sentiment_very_dissatisfied,
                           color: Colors.red,
                         ),
-                        UI.kWidth10(),
+                        Ui.kWidth10(),
                         Text(
                           S.current.photo_permission_missing,
                           style: TextStyle(
@@ -151,7 +151,7 @@ class _CardScannerState extends State<CardScanner> {
                         ),
                       ],
                     ),
-                    UI.kHeight10(),
+                    Ui.kHeight10(),
                     OutlinedButton(
                       onPressed: () async {
                         await openAppSettings();

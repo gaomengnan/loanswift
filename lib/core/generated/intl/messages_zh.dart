@@ -22,6 +22,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "about": MessageLookupByLibrary.simpleMessage("关于"),
+        "account_settings": MessageLookupByLibrary.simpleMessage("账号设置"),
         "agree_privacy": MessageLookupByLibrary.simpleMessage("同意"),
         "all": MessageLookupByLibrary.simpleMessage("所有"),
         "app_name": MessageLookupByLibrary.simpleMessage("pintek"),
@@ -33,8 +35,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "bill_amount": MessageLookupByLibrary.simpleMessage("账单金额"),
         "bill_state": MessageLookupByLibrary.simpleMessage("账单证明"),
         "bind_bank_card": MessageLookupByLibrary.simpleMessage("绑定银行卡"),
+        "cacheCleared": MessageLookupByLibrary.simpleMessage("已清除缓存"),
         "camera": MessageLookupByLibrary.simpleMessage("相机"),
         "cancel": MessageLookupByLibrary.simpleMessage("取消"),
+        "check_for_updates": MessageLookupByLibrary.simpleMessage("检查更新"),
+        "clear_cache": MessageLookupByLibrary.simpleMessage("清理缓存"),
         "click_to_access": MessageLookupByLibrary.simpleMessage("点击授权"),
         "completed": MessageLookupByLibrary.simpleMessage("已完成"),
         "compliant_platform": MessageLookupByLibrary.simpleMessage("合规平台"),
@@ -50,12 +55,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "credit_success": MessageLookupByLibrary.simpleMessage("授信成功"),
         "cruelly_reject": MessageLookupByLibrary.simpleMessage("残忍拒绝"),
         "daily_interest": MessageLookupByLibrary.simpleMessage("按日计息"),
+        "discover_new_version": MessageLookupByLibrary.simpleMessage("发现新版本"),
         "due_date": MessageLookupByLibrary.simpleMessage("到期日"),
         "easy_to_use": MessageLookupByLibrary.simpleMessage("操作简单"),
         "emergency_contact": MessageLookupByLibrary.simpleMessage("紧急联系人"),
         "enter_verification_code":
             MessageLookupByLibrary.simpleMessage("请输入验证码"),
         "errorPhone": MessageLookupByLibrary.simpleMessage("请输入正确手机号码"),
+        "error_occurred": MessageLookupByLibrary.simpleMessage("发生错误了"),
         "everyone_says": MessageLookupByLibrary.simpleMessage("大家都说:"),
         "exclusive": MessageLookupByLibrary.simpleMessage("优质专享"),
         "fast_approval": MessageLookupByLibrary.simpleMessage("审批快"),
@@ -104,6 +111,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "name": MessageLookupByLibrary.simpleMessage("Flutter localization"),
         "network_error": MessageLookupByLibrary.simpleMessage("网络连接异常"),
         "nextStep": MessageLookupByLibrary.simpleMessage("下一步"),
+        "ninhao": MessageLookupByLibrary.simpleMessage("您好"),
         "no_credit_limit": MessageLookupByLibrary.simpleMessage("暂未获取额度，无账单"),
         "normal_repayment": MessageLookupByLibrary.simpleMessage("正常还款"),
         "notification": MessageLookupByLibrary.simpleMessage("通知"),
@@ -146,6 +154,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("总服务费"),
         "order_success": MessageLookupByLibrary.simpleMessage("下单成功"),
         "overdue": MessageLookupByLibrary.simpleMessage("已逾期"),
+        "permission_error": MessageLookupByLibrary.simpleMessage(
+            "请将上方列表中带有红色标记的权限在系统设置打开之后再重试"),
         "permission_title":
             MessageLookupByLibrary.simpleMessage("为了快速完成您的贷款流程, 我们需要这些权限"),
         "person_button": MessageLookupByLibrary.simpleMessage("我的"),
@@ -194,6 +204,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "verification_code_wrong":
             MessageLookupByLibrary.simpleMessage("验证码错误"),
         "verified": MessageLookupByLibrary.simpleMessage("已认证"),
+        "version": MessageLookupByLibrary.simpleMessage("版本"),
         "view_contract": MessageLookupByLibrary.simpleMessage("查看合同"),
         "welcome_you": MessageLookupByLibrary.simpleMessage("欢迎你"),
         "whether_abandon_benefits":

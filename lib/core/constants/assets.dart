@@ -12,4 +12,12 @@ class Assets {
   static const facePlaceholder = "assets/images/face.webp";
   static const idcardFrontAdd = "assets/images/id_front_add.webp";
   static const idcardReverse = "assets/images/idcard_reverse.png";
+  static const messageLogo = "assets/images/message_logo.png";
+  static const messageLotties = "assets/lottie/message_notice.json";
+  static const messageLogoGIF = "assets/images/message_logo.gif";
+
+  static const logo11 = "assets/images/logo_11.png";
+  static const logo12 = "assets/images/logo_12.png";
+  static const pintekLogo = "assets/images/Pintek_Logo.png";
+
 }

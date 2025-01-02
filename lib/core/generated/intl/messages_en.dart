@@ -22,6 +22,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "about": MessageLookupByLibrary.simpleMessage("About"),
+        "account_settings":
+            MessageLookupByLibrary.simpleMessage("Account Settings"),
         "agree_privacy": MessageLookupByLibrary.simpleMessage("Agree"),
         "all": MessageLookupByLibrary.simpleMessage("All"),
         "app_name": MessageLookupByLibrary.simpleMessage("Loan Swift"),
@@ -33,8 +36,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "bill_amount": MessageLookupByLibrary.simpleMessage("Bill Amount"),
         "bind_bank_card":
             MessageLookupByLibrary.simpleMessage("Bind Bank Card"),
+        "cacheCleared": MessageLookupByLibrary.simpleMessage("Cache Cleared"),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "check_for_updates":
+            MessageLookupByLibrary.simpleMessage("Check for updates"),
+        "clear_cache": MessageLookupByLibrary.simpleMessage("Clear Cache"),
         "click_to_access":
             MessageLookupByLibrary.simpleMessage("Click to access"),
         "completed": MessageLookupByLibrary.simpleMessage("Done"),
@@ -58,6 +65,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Cruelly Reject"),
         "daily_interest":
             MessageLookupByLibrary.simpleMessage("Daily interest"),
+        "discover_new_version":
+            MessageLookupByLibrary.simpleMessage("Discover New Version"),
         "due_date": MessageLookupByLibrary.simpleMessage("Due Date"),
         "easy_to_use": MessageLookupByLibrary.simpleMessage("Easy to use"),
         "emergency_contact":
@@ -66,6 +75,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter Verification Code"),
         "errorPhone":
             MessageLookupByLibrary.simpleMessage("Invalid phone number"),
+        "error_occurred":
+            MessageLookupByLibrary.simpleMessage("An error occurred"),
         "everyone_says": MessageLookupByLibrary.simpleMessage("Everyone says:"),
         "exclusive": MessageLookupByLibrary.simpleMessage("Exclusive"),
         "fast_approval": MessageLookupByLibrary.simpleMessage("Fast approval"),
@@ -128,6 +139,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "network_error":
             MessageLookupByLibrary.simpleMessage("Network connection abnormal"),
         "nextStep": MessageLookupByLibrary.simpleMessage("Next Step"),
+        "ninhao": MessageLookupByLibrary.simpleMessage("Hello"),
         "no_credit_limit": MessageLookupByLibrary.simpleMessage(
             "No Credit Limit Available, No Bill"),
         "normal_repayment":
@@ -177,6 +189,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Total Service Fee"),
         "order_success": MessageLookupByLibrary.simpleMessage("Order Success"),
         "overdue": MessageLookupByLibrary.simpleMessage("Late"),
+        "permission_error": MessageLookupByLibrary.simpleMessage(
+            "Please enable the permissions marked in red from the list above in system settings, then retry"),
         "permission_title": MessageLookupByLibrary.simpleMessage(
             "To expedite your loan process, we need these permissions"),
         "person_button": MessageLookupByLibrary.simpleMessage("Profile"),
@@ -243,6 +257,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "verification_code_wrong":
             MessageLookupByLibrary.simpleMessage("Incorrect verification code"),
         "verified": MessageLookupByLibrary.simpleMessage("Verified"),
+        "version": MessageLookupByLibrary.simpleMessage("Version"),
         "view_contract": MessageLookupByLibrary.simpleMessage("View Contract"),
         "welcome_you": MessageLookupByLibrary.simpleMessage("You Welcome"),
         "whether_abandon_benefits": MessageLookupByLibrary.simpleMessage(

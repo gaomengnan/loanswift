@@ -110,7 +110,7 @@ class BottomAmount extends StatelessWidget {
           text: "60000",
           size: 18.sp,
         ),
-        UI.kWidth10(),
+        Ui.kWidth10(),
         RText(
           color: Pallete.blackColor,
           text: "全额付款",
@@ -142,7 +142,7 @@ class Timeline2 extends StatelessWidget {
               "贷款本金",
               "2400",
             ),
-            UI.kHeight5(),
+            Ui.kHeight5(),
             item(
               "贷款本金",
               "2400",
@@ -272,7 +272,7 @@ class ReturnAmountComponent extends StatelessWidget {
                 )
               ],
             ),
-            UI.kHeight10(),
+            Ui.kHeight10(),
             RText(
               size: 24.sp,
               fontWeight: FontWeight.w900,

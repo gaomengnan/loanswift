@@ -9,6 +9,7 @@ import 'package:loanswift/features/domain/entity/home/rules.dart';
 import 'package:loanswift/features/domain/entity/products/main_products.dart';
 import 'package:loanswift/features/presentation/bloc/home/home_bloc.dart';
 import 'package:loanswift/features/presentation/views/person/bind_bank.dart';
+import 'package:loanswift/features/presentation/views/person/verify_page.dart';
 import 'package:loanswift/features/presentation/views/widgets/order_confirm_dialog.dart';
 import 'package:loanswift/features/presentation/views/widgets/permission.dart';
 import 'package:shimmer/shimmer.dart';
@@ -99,7 +100,7 @@ class BuildMainProductEntry extends StatelessWidget {
               // color: Pallete.whiteColor,
               size: 13.sp,
             ),
-            UI.kHeight5(),
+            Ui.kHeight5(),
             RText(
               text: mainProducts.productAmount,
               size: 33.sp,
@@ -235,7 +236,7 @@ class BuildMainProductEntry extends StatelessWidget {
                                             ),
                                           ),
                                         ),
-                                        UI.kWidth10(),
+                                        Ui.kWidth10(),
                                         Expanded(
                                           child: RichText(
                                               text: TextSpan(
@@ -272,13 +273,22 @@ class BuildMainProductEntry extends StatelessWidget {
                             ElevatedButton(
                               onPressed: () {
                                 if (!rule.certifyCompleted) {
-                                  //Navigator.of(context).pushNamed(
-                                  //    VerifyPage.routerName,
-                                  //    arguments: {
-                                  //      'productId': mainProducts.productId,
-                                  //    });
                                   showPermissionDialog(
-                                      context, mainProducts.productId);
+                                    context,
+                                    mainProducts.productId,
+                                    () {
+                                      WidgetsBinding.instance
+                                          .addPostFrameCallback((_) {
+                                        Navigator.pushReplacementNamed(
+                                          context,
+                                          VerifyPage.routerName,
+                                          arguments: {
+                                            'productId': mainProducts.productId,
+                                          },
+                                        );
+                                      });
+                                    },
+                                  );
                                 } else if (rule.certifyCompleted &&
                                     !rule.isBindCard) {
                                   Navigator.of(context).pushNamed(
@@ -289,6 +299,10 @@ class BuildMainProductEntry extends StatelessWidget {
                                   );
                                 } else {
                                   final startTime = DateTime.now();
+
+                                  bus.fire(
+                                    ReportTaskEvent(),
+                                  );
 
                                   showOrderConfirmDialog(context,
                                       productId: mainProducts.productId, onOK: (
@@ -304,10 +318,11 @@ class BuildMainProductEntry extends StatelessWidget {
                                       ),
                                     );
 
-                                    Navigator.pop(ctx);
                                     context
                                         .read<HomeBloc>()
                                         .add(HomeRefreshEvent());
+
+                                    Navigator.pop(ctx);
                                   }, onCancel: () {
                                     showRetainDialog(
                                       context,
@@ -324,14 +339,10 @@ class BuildMainProductEntry extends StatelessWidget {
                                 }
                               },
                               child: Center(
-                                child: Text(
-                                  mainProducts.copywriterInfo.button.text,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14.sp,
-                                  ),
-                                  //color: Pallete.whiteColor,
-                                  //size: 16.sp,
+                                child: RText(
+                                  text: mainProducts.copywriterInfo.button.text,
+                                  color: Colors.white,
+                                  size: 14.sp,
                                 ),
                               ),
                             ),

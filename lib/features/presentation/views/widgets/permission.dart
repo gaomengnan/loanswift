@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:loanswift/core/config_manager.dart';
 import 'package:loanswift/core/core.dart';
-import 'package:loanswift/features/presentation/views/person/verify_page.dart';
 import 'package:loanswift/theme/pallete.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -18,7 +18,7 @@ Future<bool> checkPermission() async {
   return Future.value(false);
 }
 
-Future<void> showPermissionDialog(context, int productId) async {
+Future<void> showPermissionDialog(context, int productId, void Function()? callback) async {
   showDialog(
     barrierDismissible: false,
     useRootNavigator: false,
@@ -34,15 +34,16 @@ Future<void> showPermissionDialog(context, int productId) async {
             if (snap.connectionState == ConnectionState.done) {
               final allPerm = snap.data ?? false;
               if (allPerm) {
-                WidgetsBinding.instance.addPostFrameCallback((_) {
-                  Navigator.pushReplacementNamed(
-                    context,
-                    VerifyPage.routerName,
-                    arguments: {
-                      'productId': productId,
-                    },
-                  );
-                });
+                callback!();
+                // WidgetsBinding.instance.addPostFrameCallback((_) {
+                //   Navigator.pushReplacementNamed(
+                //     context,
+                //     VerifyPage.routerName,
+                //     arguments: {
+                //       'productId': productId,
+                //     },
+                //   );
+                // });
               } else {
                 return AlertDialog(
                   elevation: 0,
@@ -72,24 +73,6 @@ Future<void> showPermissionDialog(context, int productId) async {
                             );
                           },
                         ),
-                        //Row(
-                        //  children: [
-                        //    Checkbox(
-                        //      fillColor: WidgetStateProperty.resolveWith<Color>(
-                        //          (Set<WidgetState> states) {
-                        //        if (states.contains(WidgetState.disabled)) {
-                        //          return Pallete.primaryColor.withOpacity(.32);
-                        //        }
-                        //        return Pallete.primaryColor;
-                        //      }),
-                        //      value: true,
-                        //      onChanged: (val) {},
-                        //    ),
-                        //    Text(
-                        //      "${S.current.read_privacy} ${S.current.privacy}",
-                        //    ),
-                        //  ],
-                        //),
                         FilledButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Pallete.primaryColor,
@@ -100,24 +83,51 @@ Future<void> showPermissionDialog(context, int productId) async {
                             // padding: const EdgeInsets.all(10), // 设置内边距
                           ),
                           onPressed: () async {
-                            await controllerPermissions.request();
-                            //if (statuses.entries.every((e) {
-                            //  return e.value == PermissionStatus.granted;
-                            //})) {
-                            //}
-                            WidgetsBinding.instance.addPostFrameCallback((_) {
-                              Navigator.pushReplacementNamed(
-                                context,
-                                VerifyPage.routerName,
-                                arguments: {
-                                  'productId': productId,
-                                },
-                              );
-                            });
-                            //statuses.forEach((permission, status) {
-                            //  if (status == PermissionStatus.granted) {
-                            //  } else {}
-                            //});
+                            final ConfigManager configManager = sl();
+                            final DataMap configureModel =
+                                await configManager.getConfig();
+                            final perms = await controllerPermissions.request();
+                            final DataMap permissionConfig =
+                                configureModel["permission"] ?? {};
+
+                            bool rejected = false;
+
+                            for (var entry in perms.entries) {
+                              final k = entry.key;
+                              final v = entry.value;
+
+                              if (permissionConfig.containsKey(k.toString())) {
+                                final currentConfigure =
+                                    permissionConfig[k.toString()] ?? 0;
+
+                                if (currentConfigure == 1 &&
+                                    v != PermissionStatus.granted) {
+                                  // 满足条件的处理逻辑
+                                  rejected = true;
+                                  break; // 找到一个满足条件的项后退出循环
+                                }
+                              }
+                            }
+
+                            if (!rejected) {
+                              callback!();
+                              // WidgetsBinding.instance.addPostFrameCallback((_) {
+                              //   Navigator.pushReplacementNamed(
+                              //     context,
+                              //     VerifyPage.routerName,
+                              //     arguments: {
+                              //       'productId': productId,
+                              //     },
+                              //   );
+                              // });
+                            } else {
+                              if (context.mounted) {
+                                Ui.showError(
+                                  context,
+                                  "${S.current.permission_error}!",
+                                );
+                              }
+                            }
                           },
                           child: Text(
                             S.current.agree_privacy,

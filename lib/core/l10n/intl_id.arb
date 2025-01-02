@@ -101,7 +101,7 @@
   "verified": "Diverifikasi",
   "go_to_verify": "Pergi untuk memverifikasi",
   "view_contract": "Lihat kontrak",
-  "installment_repayment": "Pembayaran cicilan",
+  "installment_repayment": "Perpanjangan",
   "normal_repayment": "Pembayaran normal",
   "feedback": "Umpan balik",
   "credit_success": "Keberhasilan kredit",
@@ -146,5 +146,15 @@
   "compliant_platform": "Platform sesuai aturan",
   "privacy_security": "Privasi dan keamanan",
   "continue_to_apply": "Lanjutkan Pemintaan",
-  "cruelly_reject": "Tolak dengan Kejam"
+  "cruelly_reject": "Tolak dengan Kejam",
+  "account_settings": "Pengaturan Akun",
+  "clear_cache": "Bersihkan Cache",
+  "about": "Tentang",
+  "version": "Versi",
+  "discover_new_version": "Temukan Versi Baru",
+  "error_occurred": "Terjadi kesalahan",
+  "ninhao": "Halo",
+  "permission_error": "Silakan aktifkan izin yang ditandai merah di daftar atas dalam pengaturan sistem, lalu coba lagi",
+  "check_for_updates": "Periksa pembaruan",
+  "cacheCleared": "Cache Telah Dihapus"
 }

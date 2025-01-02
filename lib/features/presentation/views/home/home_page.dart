@@ -5,11 +5,14 @@ import 'package:loanswift/core/common/widgets/loading_page.dart';
 import 'package:loanswift/core/common/widgets/webview.dart';
 import 'package:loanswift/core/common/widgets/widgets.dart';
 import 'package:loanswift/core/core.dart';
+import 'package:loanswift/features/domain/entity/common/configure.dart';
+import 'package:loanswift/features/presentation/bloc/advertise/advertise.dart';
 import 'package:loanswift/features/presentation/bloc/auth/auth_bloc.dart';
 import 'package:loanswift/features/presentation/bloc/home/home_bloc.dart';
 import 'package:loanswift/features/presentation/views/home/banner.dart';
 import 'package:loanswift/features/presentation/views/home/bill.dart';
 import 'package:loanswift/features/presentation/views/home/main_product.dart';
+import 'package:loanswift/features/presentation/views/home/scroll_text.dart';
 import 'package:loanswift/features/presentation/views/home/suggestion.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -58,6 +61,8 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey alertDialogKey = GlobalKey();
+
     final isLogined = context
         .select((AuthBloc auth) => auth.state.authenticationStatus.isLogined);
 
@@ -65,6 +70,29 @@ class _HomePageState extends State<HomePage>
         .select((HomeBloc auth) => auth.state.homeData.other.feedbackUrl);
 
     debugPrint('isLogined: $isLogined');
+
+    final AdvertiseEntity? advertiseEntity = context.select(
+      (AdvertiseCubit adver) => adver.state,
+    );
+
+    if (advertiseEntity != null && advertiseEntity.id.isNotEmpty) {
+      Future.delayed(
+          const Duration(
+            seconds: 2,
+          ), () {
+        if (context.mounted) {
+          Ui.showAdvertiseWindow(
+            alertDialogKey,
+            context,
+            advertiseEntity,
+            () {
+              context.read<AdvertiseCubit>().setKnown();
+            },
+          );
+        }
+      });
+      logger.i("Application broadcast advertise");
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -95,11 +123,11 @@ class _HomePageState extends State<HomePage>
               Icons.feedback_rounded,
             ),
           ),
-          UI.kWidth20(),
+          Ui.kWidth20(),
         ],
         leading: Row(
           children: [
-            UI.kWidth20(),
+            Ui.kWidth20(),
             RText(
               text: "Hi~ ${S.current.welcome_you}",
               size: 16.sp,
@@ -112,7 +140,7 @@ class _HomePageState extends State<HomePage>
       resizeToAvoidBottomInset: true,
       body: BlocConsumer<HomeBloc, HomeState>(listener: (context, state) {
         if (state is HomeLoadFailure) {
-          UI.showError(
+          Ui.showError(
             context,
             state.error.error,
           );
@@ -144,6 +172,8 @@ class _HomePageState extends State<HomePage>
                     banners: state.homeData.banners,
                   ),
 
+                  const ScrollText(),
+
                   /*   Bill Amount */
                   BuildBill(
                     userOrder: state.homeData.userOrders,
@@ -158,19 +188,24 @@ class _HomePageState extends State<HomePage>
                   // 借钱攻略
 
                   if (state.homeData.apiProducts.isNotEmpty)
-                    BuildSuggestion(
+                    BuildSubProducts(
                       apiProducts: state.homeData.apiProducts,
                       rule: state.homeData.rules,
                     ),
 
-                  //const SliverPadding(
-                  //  padding: EdgeInsets.all(8.0),
-                  //  sliver: SliverToBoxAdapter(
-                  //    child: Divider(
-                  //      color: Colors.black12,
-                  //    ),
-                  //  ),
-                  //),
+                  SliverPadding(
+                    padding: const EdgeInsets.only(
+                      //left: 20.0,
+                      //right: 20.0,
+                      top: 8,
+                      bottom: 8.0,
+                    ),
+                    sliver: SliverToBoxAdapter(
+                      child: Divider(
+                        color: Colors.grey[300],
+                      ),
+                    ),
+                  ),
 
                   //const BuildContactUS(),
                   /*  Apps  */

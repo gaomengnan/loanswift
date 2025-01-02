@@ -32,11 +32,11 @@ class BuildAppBar extends StatelessWidget {
         const Icon(
           IconlyBold.message,
         ),
-        UI.kWidth20(),
+        Ui.kWidth20(),
       ],
       leading: Row(
         children: [
-          UI.kWidth20(),
+          Ui.kWidth20(),
           RText(
             text: "Hi~ ${S.current.welcome_you}",
             size: 16.sp,

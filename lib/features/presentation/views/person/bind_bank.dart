@@ -56,7 +56,7 @@ class _BindBankState extends State<BindBank> {
     if (subscription != null) {
       subscription?.cancel();
     }
-    UI.hideLoading();
+    Ui.hideLoading();
     super.dispose();
   }
 
@@ -78,7 +78,7 @@ class _BindBankState extends State<BindBank> {
           await repo.getCreditResult(productId: getProductId());
 
       creditResult.fold((l) {
-        UI.showError(context, l.message);
+        Ui.showError(context, l.message);
         subscription?.pause();
       }, (r) {
         final creditStatus = r['credit_status'];
@@ -92,7 +92,7 @@ class _BindBankState extends State<BindBank> {
             productCode: getProductId().toString(),
           ));
 
-          UI.showSuccess(context, S.current.credit_success);
+          Ui.showSuccess(context, S.current.credit_success);
 
           subscription?.pause();
 
@@ -131,7 +131,7 @@ class _BindBankState extends State<BindBank> {
         }
 
         if (creditStatus == -2) {
-          UI.showError(context, S.current.credit_failure);
+          Ui.showError(context, S.current.credit_failure);
           subscription?.pause();
           Navigator.pushReplacementNamed(context, IndexPage.routerName);
         }
@@ -185,7 +185,7 @@ class _BindBankState extends State<BindBank> {
                         width: 50.w,
                         imageUrl: e.bankLogo,
                       ),
-                      UI.kWidth5(),
+                      Ui.kWidth5(),
                       RText(
                         text: e.bankName,
                         size: 14.sp,
@@ -244,9 +244,9 @@ class _BindBankState extends State<BindBank> {
                         //UI.kHeight10(),
                         _buildBindBankField(S.current.id_card,
                             Icons.credit_score_outlined, 'id_card', false),
-                        UI.kHeight20(),
+                        Ui.kHeight20(),
                         buildBank(snap),
-                        UI.kHeight20(),
+                        Ui.kHeight20(),
                         Container(
                           margin: EdgeInsets.symmetric(vertical: 8.h),
                           decoration: BoxDecoration(
@@ -300,7 +300,7 @@ class _BindBankState extends State<BindBank> {
                                 formKey.currentState?.validate() ?? false;
 
                             if (validate) {
-                              UI.showLoading();
+                              Ui.showLoading();
                               formKey.currentState?.save();
 
                               final AuthRepo authRepo = sl();
@@ -308,10 +308,10 @@ class _BindBankState extends State<BindBank> {
                               data['main_card'] = 1;
                               final resp = await authRepo.bindBank(data);
                               resp.fold((l) {
-                                UI.showError(context, l.message);
+                                Ui.showError(context, l.message);
                               }, (r) {
                                 // 轮训结果
-                                UI.showLoadingWithMessage(
+                                Ui.showLoadingWithMessage(
                                     context, S.current.credit_fetching_result);
                                 startPollCreditState();
                               });

@@ -145,7 +145,7 @@ class _FormCascadeState extends State<FormCascade> {
                             : Colors.grey,
                       ),
               ),
-              UI.kWidth5(),
+              Ui.kWidth5(),
               Expanded(
                 child: RText(
                   maxLines: 1,
@@ -157,7 +157,7 @@ class _FormCascadeState extends State<FormCascade> {
               ),
             ],
           ),
-          UI.kHeight5(),
+          Ui.kHeight5(),
           Expanded(
             flex: 2,
             child: Row(
@@ -203,7 +203,7 @@ class _FormCascadeState extends State<FormCascade> {
                     ),
                   ),
                 ),
-                UI.kWidth10(),
+                Ui.kWidth10(),
                 Expanded(
                   child: DropdownSearch<City>(
                     selectedItem: c2Value,
@@ -240,7 +240,7 @@ class _FormCascadeState extends State<FormCascade> {
                     ),
                   ),
                 ),
-                UI.kWidth10(),
+                Ui.kWidth10(),
                 Expanded(
                   child: DropdownSearch<City>(
                     selectedItem: c3Value,

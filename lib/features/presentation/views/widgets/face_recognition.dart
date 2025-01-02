@@ -77,7 +77,7 @@ class FaceRecognotion extends FormField<List<ImagePickEntity>> {
                                     : Colors.grey,
                               ),
                       ),
-                      UI.kWidth5(),
+                      Ui.kWidth5(),
                       Expanded(
                         child: RText(
                           textAlign: TextAlign.start,
@@ -114,11 +114,14 @@ class FaceRecognotion extends FormField<List<ImagePickEntity>> {
 
                                   if (cleanedBase64String == null ||
                                       cleanedBase64String.isEmpty) {
-                                    UI.showErrorNoContext(S.current.authFailed);
+                                    // Ui.showErrorNoContext(S.current.authFailed);
+                                    if (context.mounted) {
+                                      Ui.showError(context, S.current.authFailed);
+                                    }
                                     return;
                                   }
 
-                                  UI.showLoading();
+                                  Ui.showLoading();
                                   // 将 Base64 字符串解码为 Uint8List
                                   var bytes = base64Decode(cleanedBase64String);
 
@@ -126,7 +129,7 @@ class FaceRecognotion extends FormField<List<ImagePickEntity>> {
                                       bytes, "living_img");
 
                                   resp.fold(
-                                    (err) => UI.showError(context, err.message),
+                                    (err) => Ui.showError(context, err.message),
                                     (l) {
                                       bus.fire(TargetPointEvent(
                                         startTime,
@@ -134,7 +137,7 @@ class FaceRecognotion extends FormField<List<ImagePickEntity>> {
                                         SceneType.live,
                                       ));
 
-                                      UI.hideLoading();
+                                      Ui.hideLoading();
 
                                       final body = l.data as DataMap?;
                                       //final path = body?['data']['path'];
@@ -157,7 +160,7 @@ class FaceRecognotion extends FormField<List<ImagePickEntity>> {
                                     },
                                   );
                                 } catch (_) {
-                                  UI.hideLoading();
+                                  Ui.hideLoading();
                                 }
                                 //showUploadTypeBottomSheet(context);
                               },

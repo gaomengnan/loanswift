@@ -67,17 +67,17 @@ class _OrderConfirmDialogState extends State<OrderConfirmDialog>
       future: _dataFuture,
       builder: (context, snap) {
         if (snap.connectionState == ConnectionState.waiting) {
-          UI.showLoading();
+          Ui.showLoading();
           return const SizedBox.shrink();
         }
 
         if (snap.hasError) {
-          UI.showError(context, snap.error.toString());
+          Ui.showError(context, snap.error.toString());
           Navigator.pop(context);
           return const SizedBox.shrink();
         }
 
-        UI.hideLoading();
+        Ui.hideLoading();
 
         return AlertDialog(
           actions: [
@@ -93,16 +93,16 @@ class _OrderConfirmDialogState extends State<OrderConfirmDialog>
             ),
             ElevatedButton(
               onPressed: () async {
-                UI.showLoading();
+                Ui.showLoading();
 
                 final CheckOrder checkOrder = sl();
 
                 final resp = await checkOrder.call(CheckOrderParam(
                     isConfim: "0", productId: widget.productId));
 
-                resp.fold((l) => UI.showError(context, l.message), (r) {
+                resp.fold((l) => Ui.showError(context, l.message), (r) {
                   //UI.showSuccess(context, message);
-                  UI.hideLoading();
+                  Ui.hideLoading();
                   //Navigator.of(context).pop(); // 关闭对话框
                   if (widget.callback != null) {
                     widget.callback!(context);
@@ -368,9 +368,9 @@ void showRetainDialog(
                     fontWeight: FontWeight.bold,
                     size: 15.sp,
                   ),
-                  UI.kHeight20(),
+                  Ui.kHeight20(),
                   RText(text: "${S.current.everyone_says}:"),
-                  UI.kHeight10(),
+                  Ui.kHeight10(),
                   Wrap(
                     spacing: 8.0, // 标签之间的水平间距
                     runSpacing: 8.0, // 标签之间的垂直间距
@@ -394,7 +394,7 @@ void showRetainDialog(
                               color: Colors.green,
                               size: 12.sp,
                             ),
-                            UI.kWidth5(),
+                            Ui.kWidth5(),
                             Text(
                               currentTag,
                               style: TextStyle(
@@ -530,7 +530,7 @@ Widget buildItem(BuildContext context, String label, String value,
                             color: Colors.black,
                             fontWeight: FontWeight.w500),
                       ),
-                      UI.kWidth5(),
+                      Ui.kWidth5(),
                       if (isDescription)
                         Flexible(
                           child: Icon(
