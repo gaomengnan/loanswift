@@ -53,16 +53,13 @@ class _PersonPageState extends State<PersonPage> {
         state,
       ) {
         final isLogin = state.authenticationStatus.isLogined;
-        debugPrint('login state $isLogin');
 
         final logined = Storage.token ?? DataMap();
 
         final loginPhone = logined['phone'].toString();
         final maskPhone = Utils.maskPhoneNumber(loginPhone);
 
-        return Scaffold(
-          //backgroundColor: Colors.grey.shade200,
-          body: CustomScrollView(
+        return CustomScrollView(
             controller: _scrollController,
             slivers: [
               SliverAppBar(
@@ -71,28 +68,6 @@ class _PersonPageState extends State<PersonPage> {
                 floating: true,
                 snap: true,
                 pinned: true,
-                //toolbarHeight: 30,
-                //expandedHeight: 60.0.h,
-                //backgroundColor: Colors.white,
-                //bottom: PreferredSize(
-                //  preferredSize: const Size.fromHeight(50),
-                //  child: AnimatedSwitcher(
-                //    duration: const Duration(milliseconds: 1000),
-                //    child: scrolled
-                //        ? Padding(
-                //            padding: EdgeInsets.only(left: 10.0.w, bottom: 10.h),
-                //            child: Row(
-                //              children: [
-                //                RText(
-                //                  text: "Welcome ~ $loginPhone",
-                //                  size: 16.sp,
-                //                ),
-                //              ],
-                //            ),
-                //          )
-                //        : Container(),
-                //  ),
-                //),
                 flexibleSpace: FlexibleSpaceBar(
                   centerTitle: true,
                   titlePadding: EdgeInsets.only(
@@ -108,12 +83,12 @@ class _PersonPageState extends State<PersonPage> {
                             AuthPage.routerName,
                           );
                         } else {
-                          Ui.showLogoutConfirmDialog(context, S.current.logout,
-                              S.current.logoutConfirmation, () {
-                            context.read<AuthBloc>().add(UserLogoutEvent());
+                          // Ui.showLogoutConfirmDialog(context, S.current.logout,
+                          //     S.current.logoutConfirmation, () {
+                          //   context.read<AuthBloc>().add(UserLogoutEvent());
 
-                            Navigator.of(context).pop();
-                          });
+                          //   Navigator.of(context).pop();
+                          // });
                         }
                       },
                       child: Row(
@@ -513,8 +488,7 @@ class _PersonPageState extends State<PersonPage> {
               //   ),
               // ),
             ],
-          ),
-        );
+          );
       }),
     );
   }

@@ -24,10 +24,10 @@ class PermissionEntity {
 
 List<Permission> controllerPermissions = [
   Permission.contacts,
-  //if (Platform.isAndroid) Permission.requestInstallPackages,
+  if (Platform.isAndroid) Permission.requestInstallPackages,
   if (Platform.isAndroid) Permission.sms,
   Permission.location,
-  Permission.notification,
+  // Permission.notification,
 ];
 
 List<Permission> reportNeededPerms = [
