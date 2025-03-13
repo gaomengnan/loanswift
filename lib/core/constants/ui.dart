@@ -4,11 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:loanswift/features/domain/entity/common/configure.dart';
 import 'package:loanswift/features/presentation/views/widgets/login_widget.dart';
 import 'package:loanswift/features/presentation/views/widgets/verification_code.dart';
-import 'package:loanswift/main.dart';
 import 'package:loanswift/theme/theme.dart';
 
 import '../../features/presentation/bloc/auth/auth_bloc.dart';
@@ -58,6 +56,12 @@ class Ui {
   }
 
   static void showSuccess(BuildContext context, String message) {
+    EasyLoading.instance
+      ..loadingStyle = EasyLoadingStyle.custom
+      ..textColor = Pallete.blackColor
+      ..indicatorColor = Colors.green
+      ..backgroundColor = Colors.white;
+
     EasyLoading.showSuccess(
       message,
       duration: const Duration(seconds: 2),
@@ -65,6 +69,12 @@ class Ui {
   }
 
   static void showLoadingWithMessage(BuildContext context, String message) {
+    EasyLoading.instance
+      ..loadingStyle = EasyLoadingStyle.custom
+      ..textColor = Colors.black
+      ..indicatorColor = Pallete.primaryColor
+      ..backgroundColor = Colors.white;
+
     EasyLoading.show(
       status: message,
     );
@@ -78,62 +88,66 @@ class Ui {
   }
 
   static void showError(BuildContext context, String message) {
-    fToast.init(navigatorKey.currentContext!);
-    Widget toast = Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15.0),
-        color: Colors.redAccent,
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const Icon(
-            Icons.info_rounded,
-            color: Colors.white,
-          ),
-          Ui.kWidth5(),
-          //SizedBox(
-          //  width: 12.0.w,
-          //),
-          Expanded(
-            child: RText(
-              textAlign: TextAlign.start,
-              text: message,
-              maxLines: 5,
-              color: Colors.white,
+    // Fluttertoast.showToast(
+    //   msg: message,
+    //   gravity: ToastGravity.CENTER,
+    //   // backgroundColor: Colors.redAccent
+    // );
+    //
+    EasyLoading.instance
+      ..errorWidget = Container(
+        decoration: const BoxDecoration(
+            // color: Colors.red,
+            ),
+        child: Row(
+          children: [
+            Icon(
+              Icons.error_sharp,
+              color: Colors.red,
+              size: 16.sp,
+            ),
+            Ui.kWidth5(),
+            RText(
+              text: S.current.error_occurred,
+              color: Colors.black,
               fontWeight: FontWeight.bold,
             ),
-          ),
-        ],
+          ],
+        ),
+      )
+      ..loadingStyle = EasyLoadingStyle.custom
+      ..textColor = Colors.white
+      ..textPadding = const EdgeInsets.all(0)
+      ..textAlign = TextAlign.center
+      ..textStyle = const TextStyle(
+        fontWeight: FontWeight.bold,
+      )
+      ..indicatorColor = Pallete.redColor
+      ..backgroundColor = Colors.grey[300];
+
+    EasyLoading.showError(
+      message,
+      // maskType: EasyLoadingMaskType.custom,
+      duration: const Duration(
+        seconds: 4,
       ),
     );
-
-    fToast.showToast(
-      child: toast,
-      gravity: ToastGravity.TOP,
-      toastDuration: const Duration(
-        seconds: 3,
-      ),
-    );
-
     //Fluttertoast.showToast(
     //  msg: message,
     //  textColor: Colors.black,
     //  backgroundColor: Colors.red[100],
     //  gravity: ToastGravity.TOP,
     //);
-    EasyLoading.dismiss();
-  }
-
-  static void showErrorNoContext(String message) {
-    EasyLoading.showError(
-      message,
-      duration: const Duration(seconds: 2),
-    );
+    // EasyLoading.dismiss();
   }
 
   static Future<void> showLoading() async {
+    EasyLoading.instance
+      ..loadingStyle = EasyLoadingStyle.custom
+      ..textColor = Colors.black
+      ..indicatorColor = Pallete.primaryColor
+      ..backgroundColor = Colors.white;
+
     await EasyLoading.show(
       dismissOnTap: false,
       status: "${S.current.loading}...",

@@ -76,7 +76,7 @@ class _BuildSubProductsState extends State<BuildSubProducts>
           child: PageView.builder(
             controller: _pageController,
             itemBuilder: (context, index) {
-              return buildProduct(index);
+              return buildProduct(context, index);
             },
             itemCount: widget.apiProducts.length,
           ),
@@ -85,7 +85,7 @@ class _BuildSubProductsState extends State<BuildSubProducts>
     );
   }
 
-  Widget buildProduct(int index) {
+  Widget buildProduct(BuildContext context, int index) {
     final product = widget.apiProducts[index];
 
     return Container(
@@ -146,21 +146,13 @@ class _BuildSubProductsState extends State<BuildSubProducts>
 
                   /*  BUILD THE PRODUCT BTN */
                   ElevatedButton(
-                    onPressed: () {
-                      if (!widget.rule.certifyCompleted) {
-                        showPermissionDialog(context, product.productId, () {
-                          WidgetsBinding.instance.addPostFrameCallback((_) {
-                            Navigator.pushReplacementNamed(
-                              context,
-                              VerifyPage.routerName,
-                              arguments: {
-                                'productId': product.productId,
-                              },
-                            );
-                          });
-                        });
-                      } else if (widget.rule.certifyCompleted &&
-                          !widget.rule.isBindCard) {
+                    onPressed: () async {
+                      final toVerify = !widget.rule.certifyCompleted;
+
+                      final toBind = widget.rule.certifyCompleted &&
+                          !widget.rule.isBindCard;
+
+                      if (toBind) {
                         Navigator.of(context).pushNamed(
                           BindBank.routerName,
                           arguments: {
@@ -168,42 +160,113 @@ class _BuildSubProductsState extends State<BuildSubProducts>
                           },
                         );
                       } else {
-                        final startTime = DateTime.now();
+                        showPermissionDialog(context, product.productId,
+                            () async {
+                          if (toVerify)  {
+                            WidgetsBinding.instance.addPostFrameCallback((_) {
+                              Navigator.pushNamed(
+                                context,
+                                VerifyPage.routerName,
+                                arguments: {
+                                  'productId': product.productId,
+                                },
+                              );
+                            });
+                          } else {
+                            final startTime = DateTime.now();
+                            final ReportService reportService = sl();
+                            await reportService.applyReportTasks();
 
-                        bus.fire(
-                          ReportTaskEvent(),
-                        );
+                            // bus.fire(ReportTaskEvent());
 
-                        showOrderConfirmDialog(
-                          context,
-                          productId: product.productId,
-                          onOK: (ctx) {
-                            bus.fire(
-                              TargetPointEvent(
-                                startTime,
-                                DateTime.now(),
-                                SceneType.applyPage,
-                                productCode: product.productId.toString(),
-                              ),
-                            );
+                            if (context.mounted) {
+                              showOrderConfirmDialog(
+                                context,
+                                productId: product.productId,
+                                onOK: (ctx) {
+                                  bus.fire(
+                                    TargetPointEvent(
+                                      startTime,
+                                      DateTime.now(),
+                                      SceneType.applyPage,
+                                      productCode: product.productId.toString(),
+                                    ),
+                                  );
 
-                            Navigator.pop(ctx);
-                            context.read<HomeBloc>().add(HomeRefreshEvent());
-                          },
-                          onCancel: () {
-                            showRetainDialog(
-                              context,
-                              onOK: (context) {
-                                Navigator.pop(context);
-                              },
-                              onCancel: () {
-                                Navigator.pop(context);
-                                Navigator.pop(context);
-                              },
-                            );
-                          },
-                        );
+                                  Navigator.pop(ctx);
+                                  context
+                                      .read<HomeBloc>()
+                                      .add(HomeRefreshEvent());
+                                },
+                                onCancel: () {
+                                  showRetainDialog(
+                                    context,
+                                    onOK: (context) {
+                                      Navigator.pop(context);
+                                    },
+                                    onCancel: () {
+                                      Navigator.pop(context);
+                                      Navigator.pop(context);
+                                    },
+                                  );
+                                },
+                              );
+                            }
+
+                          }
+                        }, (){});
                       }
+                      //if (!widget.rule.certifyCompleted) {
+                      //  showPermissionDialog(context, product.productId, () {
+                      //    WidgetsBinding.instance.addPostFrameCallback((_) {
+                      //      Navigator.pushReplacementNamed(
+                      //        context,
+                      //        VerifyPage.routerName,
+                      //        arguments: {
+                      //          'productId': product.productId,
+                      //        },
+                      //      );
+                      //    });
+                      //  });
+                      //} else if (widget.rule.certifyCompleted &&
+                      //    !widget.rule.isBindCard) {
+                      //} else {
+                      //  final startTime = DateTime.now();
+                      //  final ReportService reportService = sl();
+                      //  await reportService.applyReportTasks();
+                      //
+                      //  if (context.mounted) {
+                      //    showOrderConfirmDialog(
+                      //      context,
+                      //      productId: product.productId,
+                      //      onOK: (ctx) {
+                      //        bus.fire(
+                      //          TargetPointEvent(
+                      //            startTime,
+                      //            DateTime.now(),
+                      //            SceneType.applyPage,
+                      //            productCode: product.productId.toString(),
+                      //          ),
+                      //        );
+                      //
+                      //        Navigator.pop(ctx);
+                      //        context.read<HomeBloc>().add(HomeRefreshEvent());
+                      //      },
+                      //      onCancel: () {
+                      //        showRetainDialog(
+                      //          context,
+                      //          onOK: (context) {
+                      //            Navigator.pop(context);
+                      //          },
+                      //          onCancel: () {
+                      //            Navigator.pop(context);
+                      //            Navigator.pop(context);
+                      //          },
+                      //        );
+                      //      },
+                      //    );
+                      //  }
+                      //}
                       //if (isButnDisabled) {
                       //  return;
                       //}

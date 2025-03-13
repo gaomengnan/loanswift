@@ -18,7 +18,7 @@ Future<bool> checkPermission() async {
   return Future.value(false);
 }
 
-Future<void> showPermissionDialog(context, int productId, void Function()? callback) async {
+Future<void> showPermissionDialog(context, int productId, void Function()? callback, void Function()? failure) async {
   showDialog(
     barrierDismissible: false,
     useRootNavigator: false,
@@ -34,7 +34,10 @@ Future<void> showPermissionDialog(context, int productId, void Function()? callb
             if (snap.connectionState == ConnectionState.done) {
               final allPerm = snap.data ?? false;
               if (allPerm) {
+
+                Navigator.of(context).pop();
                 callback!();
+                return const SizedBox.shrink();
                 // WidgetsBinding.instance.addPostFrameCallback((_) {
                 //   Navigator.pushReplacementNamed(
                 //     context,
@@ -110,22 +113,19 @@ Future<void> showPermissionDialog(context, int productId, void Function()? callb
                             }
 
                             if (!rejected) {
+                              if (context.mounted) {
+                                Navigator.of(context).pop();
+                              }
                               callback!();
-                              // WidgetsBinding.instance.addPostFrameCallback((_) {
-                              //   Navigator.pushReplacementNamed(
-                              //     context,
-                              //     VerifyPage.routerName,
-                              //     arguments: {
-                              //       'productId': productId,
-                              //     },
-                              //   );
-                              // });
                             } else {
                               if (context.mounted) {
+                                // Navigator.of(context).pop();
                                 Ui.showError(
                                   context,
                                   "${S.current.permission_error}!",
                                 );
+
+                                failure!();
                               }
                             }
                           },

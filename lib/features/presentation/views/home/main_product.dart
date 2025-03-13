@@ -271,26 +271,16 @@ class BuildMainProductEntry extends StatelessWidget {
 
                             // 按钮
                             ElevatedButton(
-                              onPressed: () {
-                                if (!rule.certifyCompleted) {
-                                  showPermissionDialog(
-                                    context,
-                                    mainProducts.productId,
-                                    () {
-                                      WidgetsBinding.instance
-                                          .addPostFrameCallback((_) {
-                                        Navigator.pushReplacementNamed(
-                                          context,
-                                          VerifyPage.routerName,
-                                          arguments: {
-                                            'productId': mainProducts.productId,
-                                          },
-                                        );
-                                      });
-                                    },
-                                  );
-                                } else if (rule.certifyCompleted &&
-                                    !rule.isBindCard) {
+                              onPressed: () async {
+                                final toVerify = !rule.certifyCompleted;
+
+                                final toBind =
+                                    rule.certifyCompleted && !rule.isBindCard;
+
+                                //final toOrder =
+                                //    rule.certifyCompleted && rule.isBindCard;
+
+                                if (toBind) {
                                   Navigator.of(context).pushNamed(
                                     BindBank.routerName,
                                     arguments: {
@@ -298,45 +288,135 @@ class BuildMainProductEntry extends StatelessWidget {
                                     },
                                   );
                                 } else {
-                                  final startTime = DateTime.now();
+                                  showPermissionDialog(
+                                    context,
+                                    mainProducts.productId,
+                                    () async {
+                                      if (toVerify) {
+                                        WidgetsBinding.instance
+                                            .addPostFrameCallback((_) {
+                                          Navigator.pushNamed(
+                                            context,
+                                            VerifyPage.routerName,
+                                            arguments: {
+                                              'productId':
+                                                  mainProducts.productId,
+                                            },
+                                          );
+                                        });
+                                      } else  {
+                                        final startTime = DateTime.now();
+                                        final ReportService reportService =
+                                            sl();
+                                        await reportService.applyReportTasks();
 
-                                  bus.fire(
-                                    ReportTaskEvent(),
+                                        if (context.mounted) {
+                                          showOrderConfirmDialog(context,
+                                              productId: mainProducts.productId,
+                                              onOK: (
+                                            ctx,
+                                          ) {
+                                            bus.fire(
+                                              TargetPointEvent(
+                                                startTime,
+                                                DateTime.now(),
+                                                SceneType.applyPage,
+                                                productCode: mainProducts
+                                                    .productId
+                                                    .toString(),
+                                              ),
+                                            );
+
+                                            context
+                                                .read<HomeBloc>()
+                                                .add(HomeRefreshEvent());
+
+                                            Navigator.pop(ctx);
+                                          }, onCancel: () {
+                                            showRetainDialog(
+                                              context,
+                                              onOK: (context) {
+                                                Navigator.pop(context);
+                                              },
+                                              onCancel: () {
+                                                Navigator.pop(context);
+                                                Navigator.pop(context);
+                                              },
+                                            );
+                                            //Navigator.pop(context);
+                                          });
+                                        }
+                                      }
+                                    }, (){},
                                   );
-
-                                  showOrderConfirmDialog(context,
-                                      productId: mainProducts.productId, onOK: (
-                                    ctx,
-                                  ) {
-                                    bus.fire(
-                                      TargetPointEvent(
-                                        startTime,
-                                        DateTime.now(),
-                                        SceneType.applyPage,
-                                        productCode:
-                                            mainProducts.productId.toString(),
-                                      ),
-                                    );
-
-                                    context
-                                        .read<HomeBloc>()
-                                        .add(HomeRefreshEvent());
-
-                                    Navigator.pop(ctx);
-                                  }, onCancel: () {
-                                    showRetainDialog(
-                                      context,
-                                      onOK: (context) {
-                                        Navigator.pop(context);
-                                      },
-                                      onCancel: () {
-                                        Navigator.pop(context);
-                                        Navigator.pop(context);
-                                      },
-                                    );
-                                    //Navigator.pop(context);
-                                  });
                                 }
+
+                                //if (rule.certifyCompleted) {
+                                //  showPermissionDialog(
+                                //    context,
+                                //    mainProducts.productId,
+                                //    () {
+                                //      WidgetsBinding.instance
+                                //          .addPostFrameCallback((_) {
+                                //        Navigator.pushReplacementNamed(
+                                //          context,
+                                //          VerifyPage.routerName,
+                                //          arguments: {
+                                //            'productId': mainProducts.productId,
+                                //          },
+                                //        );
+                                //      });
+                                //    },
+                                //  );
+                                //} else if (rule.certifyCompleted &&
+                                //    !rule.isBindCard) {
+                                //  Navigator.of(context).pushNamed(
+                                //    BindBank.routerName,
+                                //    arguments: {
+                                //      'productId': mainProducts.productId,
+                                //    },
+                                //  );
+                                //} else {
+                                  //final startTime = DateTime.now();
+                                  //final ReportService reportService = sl();
+                                  //await reportService.applyReportTasks();
+                                  //
+                                  //if (context.mounted) {
+                                  //  showOrderConfirmDialog(context,
+                                  //      productId: mainProducts.productId,
+                                  //      onOK: (
+                                  //    ctx,
+                                  //  ) {
+                                  //    bus.fire(
+                                  //      TargetPointEvent(
+                                  //        startTime,
+                                  //        DateTime.now(),
+                                  //        SceneType.applyPage,
+                                  //        productCode:
+                                  //            mainProducts.productId.toString(),
+                                  //      ),
+                                  //    );
+                                  //
+                                  //    context
+                                  //        .read<HomeBloc>()
+                                  //        .add(HomeRefreshEvent());
+                                  //
+                                  //    Navigator.pop(ctx);
+                                  //  }, onCancel: () {
+                                  //    showRetainDialog(
+                                  //      context,
+                                  //      onOK: (context) {
+                                  //        Navigator.pop(context);
+                                  //      },
+                                  //      onCancel: () {
+                                  //        Navigator.pop(context);
+                                  //        Navigator.pop(context);
+                                  //      },
+                                  //    );
+                                  //    //Navigator.pop(context);
+                                  //  });
+                                  //}
+                                //}
                               },
                               child: Center(
                                 child: RText(
