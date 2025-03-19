@@ -34,15 +34,27 @@ class HomeDataModel extends HomeData {
       HomeDataModel.fromMap(json.decode(source));
 
   factory HomeDataModel.fromMap(Map<String, dynamic> json) => HomeDataModel(
-        banners: List<BannerEntity>.from(
-            json["banners"].map((x) => BannerEntity.fromMap(x))),
-        mainProducts: MainProducts.fromMap(json["main_products"] ?? {}),
-        apiProducts: List<MainProducts>.from(
-            json["api_products"].map((x) => MainProducts.fromMap(x))),
-        userOrders: List<UserOrder>.from(
-            json["user_orders"].map((x) => UserOrder.fromMap(x))),
-        rules: Rules.fromMap(json["rules"] ?? {}),
-        other: Other.fromMap(json["other"] ?? {}),
+        banners: json["banners"] != null
+            ? List<BannerEntity>.from(
+                json["banners"].map((x) => BannerEntity.fromMap(x)))
+            : [],
+        mainProducts: json["main_products"] != null
+            ? MainProducts.fromMap(json["main_products"])
+            : MainProducts.empty(),
+        apiProducts: json["api_products"] != null
+            ? List<MainProducts>.from(
+                json["api_products"].map((x) => MainProducts.fromMap(x)))
+            : [],
+        userOrders: json["user_orders"] != null
+            ? List<UserOrder>.from(
+                json["user_orders"].map((x) => UserOrder.fromMap(x)))
+            : [],
+        rules: json["rules"] != null
+            ? Rules.fromMap(json["rules"])
+            : Rules.empty(),
+        other: json["other"] != null
+            ? Other.fromMap(json["other"])
+            : Other.empty(),
       );
 
   Map<String, dynamic> toMap() => {

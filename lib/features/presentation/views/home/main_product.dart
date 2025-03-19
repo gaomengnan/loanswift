@@ -304,7 +304,7 @@ class BuildMainProductEntry extends StatelessWidget {
                                             },
                                           );
                                         });
-                                      } else  {
+                                      } else {
                                         final startTime = DateTime.now();
                                         final ReportService reportService =
                                             sl();
@@ -347,7 +347,8 @@ class BuildMainProductEntry extends StatelessWidget {
                                           });
                                         }
                                       }
-                                    }, (){},
+                                    },
+                                    () {},
                                   );
                                 }
 
@@ -377,45 +378,45 @@ class BuildMainProductEntry extends StatelessWidget {
                                 //    },
                                 //  );
                                 //} else {
-                                  //final startTime = DateTime.now();
-                                  //final ReportService reportService = sl();
-                                  //await reportService.applyReportTasks();
-                                  //
-                                  //if (context.mounted) {
-                                  //  showOrderConfirmDialog(context,
-                                  //      productId: mainProducts.productId,
-                                  //      onOK: (
-                                  //    ctx,
-                                  //  ) {
-                                  //    bus.fire(
-                                  //      TargetPointEvent(
-                                  //        startTime,
-                                  //        DateTime.now(),
-                                  //        SceneType.applyPage,
-                                  //        productCode:
-                                  //            mainProducts.productId.toString(),
-                                  //      ),
-                                  //    );
-                                  //
-                                  //    context
-                                  //        .read<HomeBloc>()
-                                  //        .add(HomeRefreshEvent());
-                                  //
-                                  //    Navigator.pop(ctx);
-                                  //  }, onCancel: () {
-                                  //    showRetainDialog(
-                                  //      context,
-                                  //      onOK: (context) {
-                                  //        Navigator.pop(context);
-                                  //      },
-                                  //      onCancel: () {
-                                  //        Navigator.pop(context);
-                                  //        Navigator.pop(context);
-                                  //      },
-                                  //    );
-                                  //    //Navigator.pop(context);
-                                  //  });
-                                  //}
+                                //final startTime = DateTime.now();
+                                //final ReportService reportService = sl();
+                                //await reportService.applyReportTasks();
+                                //
+                                //if (context.mounted) {
+                                //  showOrderConfirmDialog(context,
+                                //      productId: mainProducts.productId,
+                                //      onOK: (
+                                //    ctx,
+                                //  ) {
+                                //    bus.fire(
+                                //      TargetPointEvent(
+                                //        startTime,
+                                //        DateTime.now(),
+                                //        SceneType.applyPage,
+                                //        productCode:
+                                //            mainProducts.productId.toString(),
+                                //      ),
+                                //    );
+                                //
+                                //    context
+                                //        .read<HomeBloc>()
+                                //        .add(HomeRefreshEvent());
+                                //
+                                //    Navigator.pop(ctx);
+                                //  }, onCancel: () {
+                                //    showRetainDialog(
+                                //      context,
+                                //      onOK: (context) {
+                                //        Navigator.pop(context);
+                                //      },
+                                //      onCancel: () {
+                                //        Navigator.pop(context);
+                                //        Navigator.pop(context);
+                                //      },
+                                //    );
+                                //    //Navigator.pop(context);
+                                //  });
+                                //}
                                 //}
                               },
                               child: Center(

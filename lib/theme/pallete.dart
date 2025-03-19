@@ -5,7 +5,7 @@ class Pallete {
   //static const Color primaryColor = Color(0xFF00A2B2);
   //static const Color primaryColor = Colors.blueAccent;
   //static const Color primaryColor = Colors.purple;
-  static const Color primaryColor = Color(0xFF4F53CD);
+  static const Color primaryColor = Color(0xFF5E97EF);
 //#B1C1F0
   static Color secondaryColor = const Color(0xFFB1C1F0);
   static Color thirdColor = const Color(0xffA7ACE6);

@@ -168,9 +168,11 @@ class _HomePageState extends State<HomePage>
                   //BuildAppBar(),
                   // banner
                   SliverPadding(padding: EdgeInsets.only(top: 5.h)),
-                  BuildBanner(
-                    banners: state.homeData.banners,
-                  ),
+
+                  if (state.homeData.banners.isNotEmpty)
+                    BuildBanner(
+                      banners: state.homeData.banners,
+                    ),
 
                   const ScrollText(),
 
